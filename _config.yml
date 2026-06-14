@@ -1,91 +1,47 @@
-# ============================================================================
-# JEKYLL CONFIGURATION - goldenflorals.com
-# Phase 1: Exact Squarespace URL Match (No URL Changes)
-# ============================================================================
-
-# Site metadata
-title: "Golden Flowers | Artisan Floral Design | Lake Tahoe & Sierra Nevada"
-description: "Foam-free, seasonally grown, California-sourced floral arrangements for Lake Tahoe weddings. Award-winning florist designing for Edgewood Tahoe, Ritz-Carlton, Palisades High Camp, and more."
+site: "Golden Flowers | Lake Tahoe Wedding Florist"
 url: "https://goldenflorals.com"
 baseurl: ""
 
-# Author & Contact
-author: "Brittany"
-email: "info@goldenflorals.com"
-phone: "+1 (530) 265-9900"
-address: "313 Commercial Street, Nevada City, CA 95959"
-instagram: "goldenflowersfloraldesign"
+# Permalink setting - posts override this with their own permalink in frontmatter
+permalink: /:categories/:title/
 
-# ============================================================================
-# JEKYLL BUILD SETTINGS
-# ============================================================================
+# Collections
+collections:
+  posts:
+    permalink: /:path/
 
-# Timezone (important for blog timestamps)
-timezone: "America/Los_Angeles"
-
-# Markdown processor
-markdown: kramdown
-kramdown:
-  parse_block_html: true
-  auto_ids: true
-  input: GFM
-
-# ============================================================================
-# URL & PERMALINK STRUCTURE - PHASE 1
-# CRITICAL: Matches current Squarespace structure EXACTLY
-# ============================================================================
-
-permalink: /natures-canvas-lake-tahoe-wedding-flowers/:title/
-
-# ============================================================================
-# PLUGIN CONFIGURATION
-# ============================================================================
-
+# Plugins
 plugins:
   - jekyll-seo-tag
   - jekyll-sitemap
   - jekyll-feed
   - jekyll-paginate-v2
 
-# SEO Tag Plugin
-seo:
-  skip_dns_prefetch: false
+# SEO
+title: "Golden Flowers"
+description: "Lake Tahoe wedding florist specializing in sustainable, locally-grown, foam-free floral design"
+author:
+  name: "Brittany"
+  email: "brittany@goldenflorals.com"
 
-# Sitemap Plugin
-sitemap:
-  filename: "sitemap.xml"
+# Build settings
+markdown: kramdown
+timezone: "America/Los_Angeles"
+encoding: utf-8
 
-# Feed Plugin
-feed:
-  path: atom.xml
-
-# Pagination v2 (for blog index)
-pagination:
-  enabled: true
-  per_page: 6
-  permalink: /natures-canvas-lake-tahoe-wedding-flowers/page/:num/
-  title_suffix: " | Page :num"
-  sort_field: "date"
-  sort_reverse: true
-  trail:
-    before: 1
-    after: 1
-
-# ============================================================================
-# BUILD SETTINGS
-# ============================================================================
-
+# Exclude files from the output
 exclude:
-  - vendor
   - Gemfile
   - Gemfile.lock
   - README.md
-  - node_modules
   - .gitignore
-  - LICENSE
+  - .jekyll-metadata
 
-include:
-  - .well-known
-
-destination: _site
-incremental: true
+# Front matter defaults
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+      author: "Brittany"
