@@ -78,7 +78,7 @@ a { text-decoration: none; color: inherit; }
 img { display: block; max-width: 100%; }
 
 /* ── 03. NAVIGATION ───────────────────────────────────── */
-nav {
+#site-nav {
   position: fixed; top: 0; left: 0; right: 0;
   z-index: 100;
   display: flex; align-items: center; justify-content: space-between;
@@ -87,10 +87,10 @@ nav {
   border-bottom: 1px solid var(--bor);
   transition: top .35s ease, box-shadow .35s ease;
 }
-nav.nav-hidden {
+#site-nav.nav-hidden {
   top: -80px;
 }
-nav.nav-scrolled {
+#site-nav.nav-scrolled {
   box-shadow: 0 2px 24px oklch(20% .023 148 / .08);
 }
 /* Push page content below fixed nav */
@@ -586,7 +586,7 @@ h1.venue-title { font-family: var(--f-d); font-style: italic; font-weight: 300; 
 @media (max-width: 1024px) {
 
   /* --- Navigation --- */
-  nav {
+  #site-nav {
     padding: 16px 24px;
   }
   .nav-logo { font-size: .8rem; }
