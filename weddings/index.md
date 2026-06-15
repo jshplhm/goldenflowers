@@ -5,7 +5,7 @@ permalink: /weddings
 ---
 
 <!-- Page Header -->
-<header class="page-header">
+<header class="page-header page-header--split">
   <div>
     <span class="label">Working with us</span>
     <h1>Full-service<br>wedding flowers.</h1>
