@@ -323,4 +323,18 @@ if (window.location.hash === '#consultation-success') {
   if (form) form.style.display = 'none';
   if (success) success.style.display = 'block';
 }
+
+// Hide sticky CTA when near the consultation form
+(function() {
+  var bar = document.querySelector('.sticky-cta');
+  var form = document.getElementById('consultation');
+  if (!bar || !form) return;
+  var io = new IntersectionObserver(function(entries) {
+    bar.style.display = entries[0].isIntersecting ? 'none' : '';
+  }, { threshold: 0.1 });
+  io.observe(form);
+})();
 </script>
+
+<div class="sticky-cta"><a href="#consultation">Schedule a Consultation</a></div>
+<style>@media(max-width:640px){body{padding-bottom:60px;}}</style>

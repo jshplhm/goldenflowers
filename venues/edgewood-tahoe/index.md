@@ -43,6 +43,10 @@ canonical_url: https://jshplhm.github.io/goldenflowers/venues/edgewood-tahoe/
     </div>
     <div class="facts-strip">
       <div class="fact">
+        <p class="fact-num">Preferred</p>
+        <p class="fact-label">We're a preferred floral vendor for Edgewood's wedding coordination team. The planners know our work.</p>
+      </div>
+      <div class="fact">
         <p class="fact-num">South Shore</p>
         <p class="fact-label">Edgewood Tahoe sits on the Nevada side of South Shore — dramatic mountain backdrop, direct lake access.</p>
       </div>
@@ -53,10 +57,6 @@ canonical_url: https://jshplhm.github.io/goldenflowers/venues/edgewood-tahoe/
       <div class="fact">
         <p class="fact-num">Seasonal</p>
         <p class="fact-label">We design around what's peak in the landscape: lupine in early summer, warm harvest tones in fall, alpine white in early season.</p>
-      </div>
-      <div class="fact">
-        <p class="fact-num">Preferred</p>
-        <p class="fact-label">We're a preferred floral vendor for Edgewood's wedding coordination team. The planners know our work.</p>
       </div>
     </div>
   </div>
@@ -97,6 +97,7 @@ canonical_url: https://jshplhm.github.io/goldenflowers/venues/edgewood-tahoe/
   <div class="container">
     <span class="label">Our Edgewood work</span>
     <h2>Recent weddings<br>at this venue.</h2>
+    <p style="font-size:.85rem;color:var(--fgm);margin-bottom:36px;max-width:560px;">Both of our Edgewood weddings to date have leaned Elevated Minimalist — the clean lines work with the venue's architecture and the open lake view. All three of our aesthetics are available here.</p>
     <div class="example-grid">
       <div class="example-card">
         <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1776975190166-PCFON7QIR65XK1VPLH3K/l-a-preview-8192.jpg" alt="Allie and Devin at Edgewood" loading="lazy">
@@ -214,7 +215,6 @@ canonical_url: https://jshplhm.github.io/goldenflowers/venues/edgewood-tahoe/
 <div class="venue-nav">
   <h4>Other venues we work at</h4>
   <div class="venue-links">
-    <a href="{{ site.baseurl }}/venues/edgewood-tahoe" class="venue-link current">Edgewood Tahoe</a>
     <a href="{{ site.baseurl }}/portfolio?venue=palisades" class="venue-link">Palisades High Camp</a>
     <a href="{{ site.baseurl }}/portfolio?venue=national-exchange" class="venue-link">National Exchange Hotel</a>
     <a href="{{ site.baseurl }}/portfolio?venue=ritz-carlton" class="venue-link">Ritz-Carlton Tahoe</a>

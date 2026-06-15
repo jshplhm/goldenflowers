@@ -110,9 +110,10 @@ body { padding-top: 65px; }
   font-family: var(--f-b); font-size: .76rem;
   letter-spacing: .08em; text-transform: uppercase;
   border: 1px solid var(--bor); color: var(--fg2);
-  padding: 10px 22px; transition: all .2s;
+  padding: 10px 22px; transition: all .2s; border-radius: 2px;
 }
 .nav-cta:hover { border-color: var(--acc); color: var(--acc); }
+.nav-actions { display: flex; align-items: center; gap: 16px; }
 @media (min-width: 1025px) {
   .nav-menu { display: flex; align-items: center; gap: 48px; }
 }
@@ -202,7 +203,7 @@ h3 {
   color: var(--fg);
 }
 p { font-size: 1rem; line-height: 1.75; color: var(--fg2); }
-hr.div { border: none; border-top: 1px solid var(--bor); margin: 0; }
+hr.div { border: none; border-top: 1px solid var(--bor); display: block; width: 48px; margin: 0 auto; }
 
 /* ── 07. HOMEPAGE HERO ────────────────────────────────── */
 .hero {
@@ -323,6 +324,8 @@ hr.div { border: none; border-top: 1px solid var(--bor); margin: 0; }
 .price-list { list-style: none; margin: 28px 0; display: flex; flex-direction: column; gap: 12px; }
 .price-list li { font-size: .88rem; color: var(--fg2); padding-left: 20px; position: relative; }
 .price-list li::before { content: '—'; position: absolute; left: 0; color: var(--acc); }
+.price-tagline { font-family: var(--f-d); font-style: italic; font-size: 1.05rem; color: var(--fg); margin-top: 8px; line-height: 1.5; }
+.sticky-cta { display: none; }
 
 /* ── 12. TESTIMONIALS ─────────────────────────────────── */
 .testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-top: 56px; }
@@ -396,7 +399,7 @@ hr.div { border: none; border-top: 1px solid var(--bor); margin: 0; }
 .wedding-couple { font-family: var(--f-d); font-style: italic; font-size: 1.3rem; color: var(--fg); margin-bottom: 4px; }
 .wedding-meta { display: flex; gap: 12px; align-items: center; margin-bottom: 10px; }
 .wedding-venue { font-size: .7rem; letter-spacing: .08em; text-transform: uppercase; color: var(--fg2); }
-.wedding-tag { font-size: .62rem; letter-spacing: .14em; text-transform: uppercase; color: var(--acc); border: 1px solid oklch(34% .09 148 / .3); padding: 2px 7px; }
+.wedding-tag { font-size: .62rem; letter-spacing: .14em; text-transform: uppercase; color: var(--acc); border: 1px solid oklch(34% .09 148 / .3); padding: 3px 10px; border-radius: 100px; }
 .wedding-desc { font-size: .82rem; color: var(--fgm); line-height: 1.6; margin-bottom: 14px; }
 .wedding-cta { font-size: .68rem; letter-spacing: .12em; text-transform: uppercase; color: var(--acc); border-bottom: 1px solid oklch(34% .09 148 / .3); padding-bottom: 2px; display: inline-block; }
 .see-more { display: block; text-align: center; padding: 28px; font-size: .7rem; letter-spacing: .14em; text-transform: uppercase; color: var(--fgm); border-top: 1px solid var(--bor); cursor: pointer; transition: color .2s; }
@@ -501,13 +504,23 @@ select option { background: var(--bg2); }
 
 /* ── 24. ABOUT — SEASONAL + VALUES ───────────────────── */
 .seasonal-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--bor); margin-top: 56px; }
-.season-card { background: var(--bg2); padding: 36px 28px; }
-.season-name { font-family: var(--f-d); font-style: italic; font-size: 1.6rem; color: var(--fg); margin-bottom: 6px; }
-.season-dates { font-size: .68rem; letter-spacing: .14em; text-transform: uppercase; color: var(--acc); margin-bottom: 20px; }
+details.season-card, .season-card { background: var(--bg2); padding: 36px 28px; }
+details.season-card summary { list-style: none; padding: 36px 28px 0; margin: -36px -28px 0; }
+details.season-card summary::-webkit-details-marker { display: none; }
+details.season-card .season-body { padding-top: 20px; }
+/* On desktop: always show the body */
+@media (min-width: 641px) {
+  details.season-card .season-body { display: block !important; }
+  details.season-card summary { pointer-events: none; cursor: default; }
+  .season-toggle { display: none !important; }
+}
+.season-name { font-family: var(--f-d); font-style: italic; font-size: 1.6rem; color: var(--fg); margin-bottom: 6px; display: block; }
+.season-dates { font-size: .68rem; letter-spacing: .14em; text-transform: uppercase; color: var(--acc); margin-bottom: 20px; display: block; }
 .flower-list { list-style: none; display: flex; flex-direction: column; gap: 7px; }
 .flower-list li { font-size: .8rem; color: var(--fg2); padding-left: 16px; position: relative; }
 .flower-list li::before { content: '·'; position: absolute; left: 0; color: var(--acc); }
 .season-note { font-size: .75rem; color: var(--fgm); margin-top: 16px; font-style: italic; line-height: 1.6; }
+.season-toggle { display: none; }
 .values-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--bor); margin-top: 56px; }
 .value-item { background: var(--bg3); padding: 40px; }
 .value-item h3 { font-family: var(--f-d); font-style: italic; font-size: 1.4rem; color: var(--fg); margin-bottom: 12px; }
@@ -607,10 +620,18 @@ h1.venue-title { font-family: var(--f-d); font-style: italic; font-weight: 300; 
 
   /* --- Navigation --- */
   #site-nav {
-    padding: 16px 24px;
+    padding: 12px 20px;
   }
   .nav-logo { font-size: .8rem; }
   .nav-toggle { display: flex; }
+
+  /* CTA always visible on mobile — solid fill, compact */
+  .nav-cta {
+    background: var(--acc); color: oklch(95% .006 88);
+    border-color: var(--acc); font-size: .62rem;
+    padding: 8px 14px; white-space: nowrap;
+  }
+  .nav-cta:hover { background: oklch(28% .09 148); border-color: oklch(28% .09 148); color: oklch(95% .006 88); }
 
   /* Hamburger open state */
   .nav-open .nav-menu {
@@ -625,13 +646,6 @@ h1.venue-title { font-family: var(--f-d); font-style: italic; font-weight: 300; 
   .nav-open .nav-links a {
     padding: 18px 24px; border-top: 1px solid var(--bor);
     font-size: .88rem; letter-spacing: .04em;
-  }
-  .nav-open .nav-cta {
-    display: block; margin: 0; border-radius: 0;
-    padding: 18px 24px; border: none;
-    border-top: 1px solid var(--bor);
-    text-align: left; font-size: .88rem;
-    background: var(--bg2);
   }
 
   /* --- Layout --- */
@@ -692,9 +706,10 @@ h1.venue-title { font-family: var(--f-d); font-style: italic; font-weight: 300; 
   .aesthetic-grid { grid-template-columns: 1fr; }
   .aesthetic-card { aspect-ratio: 4/5; }
 
-  /* --- Portfolio preview grid (homepage) --- */
+  /* --- Portfolio preview grid (homepage) — 1+2+2 editorial layout --- */
   .port-grid { grid-template-columns: 1fr 1fr; }
-  .port-item.wide { grid-column: span 2; aspect-ratio: 16/9; }
+  .port-item:first-child { grid-column: span 2; aspect-ratio: 16/9; }
+  .port-item.wide { grid-column: auto; aspect-ratio: 4/5; }
 
   /* --- Pricing --- */
   .pricing-inner {
@@ -734,10 +749,13 @@ h1.venue-title { font-family: var(--f-d); font-style: italic; font-weight: 300; 
   .port-section { padding: 48px 20px; }
   .section-header { flex-direction: column; align-items: flex-start; gap: 12px; }
   .section-header p { text-align: left; max-width: 100%; }
-  .wedding-grid { grid-template-columns: 1fr; }
+  .wedding-grid { grid-template-columns: 1fr 1fr; }
+  .wedding-grid .wedding-card:first-child { grid-column: span 2; }
+  .wedding-grid .wedding-card:first-child .wedding-card-img { aspect-ratio: 3/2; }
 
   /* --- Process steps --- */
   .process-steps { grid-template-columns: 1fr; }
+  .step-num { font-size: 4rem; }
 
   /* --- Includes grid --- */
   .includes-grid { grid-template-columns: 1fr; }
@@ -769,8 +787,17 @@ h1.venue-title { font-family: var(--f-d); font-style: italic; font-weight: 300; 
   .farm-text { padding: 40px 20px; }
   .farm-imgs { grid-template-columns: 1fr 1fr; }
 
-  /* --- About: Seasonal + values --- */
-  .seasonal-grid { grid-template-columns: 1fr; }
+  /* --- About: Seasonal accordion --- */
+  .seasonal-grid { grid-template-columns: 1fr; background: transparent; gap: 0; }
+  details.season-card { border-bottom: 1px solid var(--bor); }
+  details.season-card summary { padding: 20px; cursor: pointer; }
+  details.season-card[open] summary { padding-bottom: 0; }
+  details.season-card .season-body { padding: 16px 20px 24px; }
+  .season-toggle { float: right; font-size: 1.1rem; color: var(--fgm); line-height: 1; margin-top: 4px; }
+  details.season-card[open] .season-toggle::before { content: '−'; }
+  details.season-card:not([open]) .season-toggle::before { content: '+'; }
+  .season-toggle { font-style: normal; }
+  /* --- About: Values --- */
   .values-grid { grid-template-columns: 1fr; }
 
   /* --- Venue hero --- */
@@ -797,6 +824,24 @@ h1.venue-title { font-family: var(--f-d); font-style: italic; font-weight: 300; 
   /* --- Blog --- */
   .blog-header { padding: 48px 20px 32px; }
   .blog-body { padding: 40px 20px; }
+
+  /* --- Portfolio filters mobile padding --- */
+  .portfolio-filters { padding: 24px 20px 0; }
+
+  /* --- Sticky consultation CTA (Weddings page) --- */
+  .sticky-cta {
+    display: block;
+    position: fixed; bottom: 0; left: 0; right: 0; z-index: 90;
+    background: var(--fg); padding: 12px 20px;
+    box-shadow: 0 -2px 24px oklch(20% .023 148 / .18);
+  }
+  .sticky-cta a {
+    display: block; width: 100%; text-align: center;
+    background: var(--acc2); color: oklch(95% .006 88);
+    padding: 14px; font-family: var(--f-b);
+    font-size: .72rem; letter-spacing: .1em; text-transform: uppercase;
+    border-radius: 2px;
+  }
 }
 
 /* ── 29. MOBILE 768PX ─────────────────────────────────── */

@@ -87,62 +87,82 @@ canonical_url: https://jshplhm.github.io/goldenflowers/about/
     <h2>What's growing<br>when you're married.</h2>
     <p style="font-size:.92rem;color:var(--fg2);max-width:560px;margin-bottom:8px;">California's seasons produce dramatically different palettes. Here's what we can source at its peak across the year — and what that means for your design.</p>
     <div class="seasonal-grid">
-      <div class="season-card">
-        <p class="season-name">Spring</p>
-        <p class="season-dates">March – May</p>
-        <ul class="flower-list">
-          <li>Ranunculus (peak season)</li>
-          <li>Anemone</li>
-          <li>Tulip, parrot and standard</li>
-          <li>Lilac and sweet pea</li>
-          <li>Early peonies (May)</li>
-          <li>Hellebore</li>
-          <li>Muscari and fritillaria</li>
-        </ul>
-        <p class="season-note">The most romantic palette of the year. Rich jewel tones and soft pastels. Peak for Lush &amp; Romantic aesthetics.</p>
-      </div>
-      <div class="season-card">
-        <p class="season-name">Summer</p>
-        <p class="season-dates">June – August</p>
-        <ul class="flower-list">
-          <li>Garden rose (peak season)</li>
-          <li>Dahlia (mid-late summer)</li>
-          <li>Peony (early June)</li>
-          <li>Delphinium and larkspur</li>
-          <li>Native wildflowers</li>
-          <li>Sunflower and marigold</li>
-          <li>Lisianthus and cosmos</li>
-        </ul>
-        <p class="season-note">Peak Lake Tahoe wedding season. Abundant, warm, and beautiful. Ideal for all three of our aesthetics.</p>
-      </div>
-      <div class="season-card">
-        <p class="season-name">Fall</p>
-        <p class="season-dates">September – November</p>
-        <ul class="flower-list">
-          <li>Dahlia (peak season)</li>
-          <li>Chrysanthemum</li>
-          <li>Autumn-foliage branches</li>
-          <li>Amaranth, celosia</li>
-          <li>Dried and preserved stems</li>
-          <li>Persimmon and pyracantha berry</li>
-          <li>Squash and gourd accents</li>
-        </ul>
-        <p class="season-note">Dramatic harvest tones. The richest palette of the year for Lush &amp; Romantic and Wildflower Modern.</p>
-      </div>
-      <div class="season-card">
-        <p class="season-name">Winter</p>
-        <p class="season-dates">December – February</p>
-        <ul class="flower-list">
-          <li>Hellebore and anemone</li>
-          <li>Camellia and paperwhite</li>
-          <li>Evergreen branch and berry</li>
-          <li>Early forced tulip</li>
-          <li>Amaryllis</li>
-          <li>Dried and architectural stems</li>
-          <li>Moss, lichen, and forage</li>
-        </ul>
-        <p class="season-note">Quieter availability means intentional design. Winter florals lean into structure, texture, and restraint.</p>
-      </div>
+      <details class="season-card">
+        <summary>
+          <span class="season-name">Spring</span>
+          <span class="season-dates">March – May</span>
+          <span class="season-toggle"></span>
+        </summary>
+        <div class="season-body">
+          <ul class="flower-list">
+            <li>Ranunculus (peak season)</li>
+            <li>Anemone</li>
+            <li>Tulip, parrot and standard</li>
+            <li>Lilac and sweet pea</li>
+            <li>Early peonies (May)</li>
+            <li>Hellebore</li>
+            <li>Muscari and fritillaria</li>
+          </ul>
+          <p class="season-note">The most romantic palette of the year. Rich jewel tones and soft pastels. Peak for Lush &amp; Romantic aesthetics.</p>
+        </div>
+      </details>
+      <details class="season-card">
+        <summary>
+          <span class="season-name">Summer</span>
+          <span class="season-dates">June – August</span>
+          <span class="season-toggle"></span>
+        </summary>
+        <div class="season-body">
+          <ul class="flower-list">
+            <li>Garden rose (peak season)</li>
+            <li>Dahlia (mid-late summer)</li>
+            <li>Peony (early June)</li>
+            <li>Delphinium and larkspur</li>
+            <li>Native wildflowers</li>
+            <li>Sunflower and marigold</li>
+            <li>Lisianthus and cosmos</li>
+          </ul>
+          <p class="season-note">Peak Lake Tahoe wedding season. Abundant, warm, and beautiful. Ideal for all three of our aesthetics.</p>
+        </div>
+      </details>
+      <details class="season-card">
+        <summary>
+          <span class="season-name">Fall</span>
+          <span class="season-dates">September – November</span>
+          <span class="season-toggle"></span>
+        </summary>
+        <div class="season-body">
+          <ul class="flower-list">
+            <li>Dahlia (peak season)</li>
+            <li>Chrysanthemum</li>
+            <li>Autumn-foliage branches</li>
+            <li>Amaranth, celosia</li>
+            <li>Dried and preserved stems</li>
+            <li>Persimmon and pyracantha berry</li>
+            <li>Squash and gourd accents</li>
+          </ul>
+          <p class="season-note">Dramatic harvest tones. The richest palette of the year for Lush &amp; Romantic and Wildflower Modern.</p>
+        </div>
+      </details>
+      <details class="season-card">
+        <summary>
+          <span class="season-name">Winter</span>
+          <span class="season-dates">December – February</span>
+          <span class="season-toggle"></span>
+        </summary>
+        <div class="season-body">
+          <ul class="flower-list">
+            <li>Hellebore and anemone</li>
+            <li>Camellia and paperwhite</li>
+            <li>Evergreen branch and berry</li>
+            <li>Early forced tulip</li>
+            <li>Amaryllis</li>
+            <li>Dried and architectural stems</li>
+            <li>Moss, lichen, and forage</li>
+          </ul>
+          <p class="season-note">Quieter availability means intentional design. Winter florals lean into structure, texture, and restraint.</p>
+        </div>
+      </details>
     </div>
     <p style="font-size:.78rem;color:var(--fgm);margin-top:24px;font-style:italic;">Availability varies by year and growing conditions. Your proposal will reflect what's actually at peak in your specific season.</p>
   </div>

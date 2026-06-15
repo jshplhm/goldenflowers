@@ -12,7 +12,7 @@ canonical_url: https://jshplhm.github.io/goldenflowers/
   </div>
   <div class="hero-copy">
     <span class="hero-eyebrow">Lake Tahoe Wedding Florist</span>
-    <h1>Artful, farm-grown<br>florals.<br>Foam-free.</h1>
+    <h1>Artful, farm&#8209;grown<br>florals.<br>Foam-free.</h1>
     <p class="hero-sub">One wedding per date · Agronomist-founded</p>
     <div class="hero-btns">
       <a href="{{ site.baseurl }}/portfolio" class="btn-primary">Explore Portfolio</a>
@@ -135,8 +135,8 @@ canonical_url: https://jshplhm.github.io/goldenflowers/
           <li>A 100-person Lake Tahoe wedding typically ranges from <strong>$12,000–$18,000</strong></li>
           <li>Every package includes consultation through day-of setup and breakdown</li>
           <li>We'll build a custom proposal around your venue, vision, and what's in season</li>
-          <li>No floral foam minimums. No imported filler. Just intentional design.</li>
         </ul>
+        <p class="price-tagline">No floral foam minimums. No imported filler. Just intentional design.</p>
         <a href="{{ site.baseurl }}/weddings#consultation" class="btn-primary">Request a Custom Estimate</a>
       </div>
       <div>
