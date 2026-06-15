@@ -4,14 +4,12 @@ title: "Edgewood Tahoe Wedding Florist"
 permalink: /venues/edgewood-tahoe
 ---
 
-{% include header.html %}
-
 <!-- Hero -->
 <section class="venue-hero">
   <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1776975190166-PCFON7QIR65XK1VPLH3K/l-a-preview-8192.jpg" alt="Edgewood Tahoe wedding flowers by Golden Flowers">
   <div class="hero-content">
     <div class="hero-breadcrumb">
-      <a href="/portfolio">Portfolio</a>
+      <a href="{{ site.baseurl }}/portfolio">Portfolio</a>
       <span>→</span>
       <span>Venues</span>
       <span>→</span>
@@ -21,7 +19,7 @@ permalink: /venues/edgewood-tahoe
     <p class="hero-sub">South Shore, Lake Tahoe &nbsp;·&nbsp; Lakeside ceremonies &amp; receptions</p>
     <div class="hero-btns">
       <a href="#weddings" class="btn-primary">See our Edgewood work</a>
-      <a href="/weddings#consultation" class="btn-ghost">Book a consultation</a>
+      <a href="{{ site.baseurl }}/weddings#consultation" class="btn-ghost">Book a consultation</a>
     </div>
   </div>
 </section>
@@ -180,7 +178,7 @@ permalink: /venues/edgewood-tahoe
       <div class="price-details">
         <p>Every proposal is custom — built around your table count, ceremony footprint, and vision. We don't offer packages with minimum bids or imported filler.</p>
         <p>A standard Edgewood engagement covers: initial consultation, design proposal and mood board, ceremony arch or installation, bridal bouquet, bridesmaids and groomsmen florals, reception centerpieces, and full day-of setup and breakdown.</p>
-        <a href="/weddings#consultation" class="btn-primary" style="margin-top:16px;display:inline-block;">Request a custom estimate</a>
+        <a href="{{ site.baseurl }}/weddings#consultation" class="btn-primary" style="margin-top:16px;display:inline-block;">Request a custom estimate</a>
       </div>
     </div>
   </div>
@@ -203,23 +201,21 @@ permalink: /venues/edgewood-tahoe
   <span class="label" style="display:block;text-align:center">Get started</span>
   <h2>Getting married at Edgewood?</h2>
   <p>Tell us your date and vision. We'll let you know if we're available and what the design process looks like from here.</p>
-  <a href="/weddings#consultation" class="btn-primary">Schedule a Consultation</a>
+  <a href="{{ site.baseurl }}/weddings#consultation" class="btn-primary">Schedule a Consultation</a>
 </div>
 
 <!-- Other Venues -->
 <div class="venue-nav">
   <h4>Other venues we work at</h4>
   <div class="venue-links">
-    <a href="/venues/edgewood-tahoe" class="venue-link current">Edgewood Tahoe</a>
-    <a href="Golden Flowers - Portfolio.html?venue=palisades" class="venue-link">Palisades High Camp</a>
-    <a href="Golden Flowers - Portfolio.html?venue=national-exchange" class="venue-link">National Exchange Hotel</a>
-    <a href="Golden Flowers - Portfolio.html?venue=ritz-carlton" class="venue-link">Ritz-Carlton Tahoe</a>
-    <a href="Golden Flowers - Portfolio.html?venue=hellman-ehrman" class="venue-link">Hellman-Ehrman Mansion</a>
-    <a href="Golden Flowers - Portfolio.html?venue=miners-foundry" class="venue-link">Miner's Foundry</a>
+    <a href="{{ site.baseurl }}/venues/edgewood-tahoe" class="venue-link current">Edgewood Tahoe</a>
+    <a href="{{ site.baseurl }}/portfolio?venue=palisades" class="venue-link">Palisades High Camp</a>
+    <a href="{{ site.baseurl }}/portfolio?venue=national-exchange" class="venue-link">National Exchange Hotel</a>
+    <a href="{{ site.baseurl }}/portfolio?venue=ritz-carlton" class="venue-link">Ritz-Carlton Tahoe</a>
+    <a href="{{ site.baseurl }}/portfolio?venue=hellman-ehrman" class="venue-link">Hellman-Ehrman Mansion</a>
+    <a href="{{ site.baseurl }}/portfolio?venue=miners-foundry" class="venue-link">Miner's Foundry</a>
   </div>
 </div>
-
-{% include footer.html %}
 
 <script>
 function toggleFaq(el) {
