@@ -1,8 +1,10 @@
-site: "Golden Flowers | Lake Tahoe Wedding Florist"
-url: "https://jshplhm.github.io/goldenflowers"
+title: "Golden Flowers"
+description: "Lake Tahoe wedding florist specializing in sustainable, locally-grown, foam-free floral design"
+
+url: "https://jshplhm.github.io"
 baseurl: "/goldenflowers"
 
-# Permalink setting - posts override this with their own permalink in frontmatter
+# Permalink setting
 permalink: /:categories/:title/
 
 # Collections
@@ -18,8 +20,6 @@ plugins:
   - jekyll-paginate-v2
 
 # SEO
-title: "Golden Flowers"
-description: "Lake Tahoe wedding florist specializing in sustainable, locally-grown, foam-free floral design"
 author:
   name: "Brittany"
   email: "brittany@goldenflorals.com"
