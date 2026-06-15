@@ -100,6 +100,7 @@ body { padding-top: 65px; }
   letter-spacing: .2em; text-transform: uppercase;
   color: var(--fg); font-weight: 500;
 }
+.nav-menu { display: flex; align-items: center; gap: 48px; }
 .nav-links { display: flex; gap: 36px; }
 .nav-links a {
   font-family: var(--f-b); font-size: .82rem;
@@ -583,17 +584,19 @@ h1.venue-title { font-family: var(--f-d); font-style: italic; font-weight: 300; 
   nav {
     padding: 16px 24px;
   }
-  .nav-links { display: none; }
-  .nav-cta { display: none; }
+  .nav-menu { display: none; }
   .nav-logo { font-size: .8rem; }
 
   /* Hamburger toggle */
   .nav-toggle { display: flex; }
-  .nav-open .nav-links {
-    display: flex; flex-direction: column; gap: 0;
+  .nav-open .nav-menu {
+    display: flex; flex-direction: column;
     position: absolute; top: 100%; left: 0; right: 0;
     background: var(--bg); border-bottom: 1px solid var(--bor);
-    z-index: 200; padding: 0;
+    z-index: 200;
+  }
+  .nav-open .nav-links {
+    display: flex; flex-direction: column; gap: 0;
   }
   .nav-open .nav-links a {
     padding: 18px 24px; border-top: 1px solid var(--bor);
