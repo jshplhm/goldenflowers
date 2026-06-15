@@ -107,7 +107,9 @@ permalink: /weddings
     <div class="form-intro">
       <p>We'll reach out within 48 hours to confirm availability and set a time. Consultations are by phone or video — no need to travel to us first.</p>
     </div>
-    <form onsubmit="handleSubmit(event)">
+    <form action="https://formspree.io/f/xgobrjyo" method="POST" id="consultation-form">
+      <input type="hidden" name="_subject" value="New consultation request — Golden Flowers">
+      <input type="hidden" name="_next" value="{{ site.baseurl }}/weddings#consultation-success">
       <div>
         <label for="name">Your name</label>
         <input type="text" id="name" name="name" placeholder="Full name" required>
@@ -174,12 +176,23 @@ permalink: /weddings
         <p class="form-note">We'll respond within 48 hours · Consultations are complimentary</p>
       </div>
     </form>
-    <div id="consultation-success" style="display:none;margin-top:32px;padding:24px;border:1px solid var(--acc/.4);background:var(--acc/.08);">
+    <div id="consultation-success" style="display:none;margin-top:32px;padding:24px;border:1px solid oklch(34% .09 148 / .4);background:oklch(34% .09 148 / .06);">
       <p style="color:var(--acc);font-family:var(--f-d);font-style:italic;font-size:1.4rem;margin-bottom:8px;">Thank you — we'll be in touch soon.</p>
-      <p style="font-size:.85rem;color:var(--fg2);">We'll follow up within 48 hours to confirm availability and schedule your consultation.</p>
+      <p style="font-size:.88rem;color:var(--fg2);">We'll follow up within 48 hours to confirm availability and schedule your consultation.</p>
     </div>
   </div>
 </section>
+
+<!-- Testimonials -->
+<section class="section">
+  <div class="container">
+    <span class="label">What couples say</span>
+    <h2>Thirteen couples.<br>Their words.</h2>
+    {% include testimonials.html %}
+  </div>
+</section>
+
+<hr class="div">
 
 <!-- FAQ -->
 <div class="faq-section">
@@ -296,10 +309,11 @@ function toggleFaq(el) {
   }
 }
 
-function handleSubmit(e) {
-  e.preventDefault();
-  document.getElementById('consultation-success').style.display = 'block';
-  e.target.style.display = 'none';
-  document.getElementById('consultation-success').scrollIntoView({behavior:'smooth', block:'nearest'});
+// Show success message if redirected back after Formspree submission
+if (window.location.hash === '#consultation-success') {
+  const form = document.getElementById('consultation-form');
+  const success = document.getElementById('consultation-success');
+  if (form) form.style.display = 'none';
+  if (success) success.style.display = 'block';
 }
 </script>
