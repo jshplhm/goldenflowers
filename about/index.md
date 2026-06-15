@@ -4,8 +4,6 @@ title: "About Golden Flowers"
 permalink: /about
 ---
 
-{% include header.html %}
-
 <!-- Founder Hero -->
 <section class="founder-hero">
   <div class="founder-img">
@@ -176,7 +174,5 @@ permalink: /about
   <span class="label" style="display:block;text-align:center">Work with us</span>
   <h2>Start with<br>a conversation.</h2>
   <p>Reach out with your date and venue — we'll let you know if we're available.</p>
-  <a href="/weddings#consultation" class="btn-primary">Schedule a Consultation</a>
+  <a href="{{ site.baseurl }}/weddings#consultation" class="btn-primary">Schedule a Consultation</a>
 </div>
-
-{% include footer.html %}
