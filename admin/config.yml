@@ -2,7 +2,7 @@ backend:
   name: github
   repo: jshplhm/goldenflowers
   branch: main
-  base_url: https://REPLACE-WITH-YOUR-NETLIFY-SITE.netlify.app
+  base_url: https://elaborate-gumption-591603.netlify.app
 
 media_folder: assets/images/blog
 public_folder: /goldenflowers/assets/images/blog
