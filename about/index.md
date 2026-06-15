@@ -21,7 +21,7 @@ canonical_url: https://goldenflorals.com/about
   </div>
 </section>
 
-<hr class="div">
+<hr class="section-div">
 
 <!-- Agronomist Background -->
 <section class="section">
@@ -59,7 +59,7 @@ canonical_url: https://goldenflorals.com/about
   </div>
 </section>
 
-<hr class="div">
+<hr class="section-div">
 
 <!-- Farm & Sourcing -->
 <section class="section" style="padding-top:0;padding-bottom:0;">
@@ -79,7 +79,7 @@ canonical_url: https://goldenflorals.com/about
   </div>
 </section>
 
-<hr class="div">
+<hr class="section-div">
 
 <!-- Seasonal Availability Guide -->
 <section class="section" id="seasonal-availability">
@@ -169,7 +169,7 @@ canonical_url: https://goldenflorals.com/about
   </div>
 </section>
 
-<hr class="div">
+<hr class="section-div">
 
 <!-- Values -->
 <section class="section">

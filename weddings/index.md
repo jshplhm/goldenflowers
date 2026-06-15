@@ -22,7 +22,7 @@ redirect_from:
 </header>
 
 <!-- Process -->
-<section class="section">
+<section class="section section-tinted">
   <div class="container">
     <span class="label">How it works</span>
     <h2>From first conversation<br>to wedding day.</h2>
@@ -50,8 +50,6 @@ redirect_from:
     </div>
   </div>
 </section>
-
-<hr class="div">
 
 <!-- What's Included -->
 <section class="section">
@@ -191,7 +189,7 @@ redirect_from:
   </div>
 </section>
 
-<hr class="div">
+<hr class="section-div">
 
 <!-- Seasonal Callout -->
 <section class="section">
@@ -203,7 +201,7 @@ redirect_from:
   </div>
 </section>
 
-<hr class="div">
+<hr class="section-div">
 
 <!-- FAQ -->
 <div class="faq-section">

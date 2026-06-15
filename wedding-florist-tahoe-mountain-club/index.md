@@ -30,7 +30,7 @@ canonical_url: https://goldenflorals.com/wedding-florist-tahoe-mountain-club
   </div>
 </section>
 
-<hr class="div">
+<hr class="section-div">
 
 <section class="section">
   <div class="container">
@@ -57,7 +57,7 @@ canonical_url: https://goldenflorals.com/wedding-florist-tahoe-mountain-club
   </div>
 </section>
 
-<hr class="div">
+<hr class="section-div">
 
 <div class="cta-section">
   <div style="max-width:640px;margin:0 auto;">

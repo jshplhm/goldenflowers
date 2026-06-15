@@ -22,9 +22,7 @@ canonical_url: https://goldenflorals.com/
   </div>
 </section>
 
-<hr class="div">
-
-<section class="section">
+<section class="section section-tinted">
   <div class="container">
     <span class="label">What sets us apart</span>
     <h2 class="section-head">Designed to be<br>unlike anything else.</h2>
@@ -52,8 +50,6 @@ canonical_url: https://goldenflorals.com/
     </div>
   </div>
 </section>
-
-<hr class="div">
 
 <section class="section">
   <div class="container">
@@ -91,7 +87,7 @@ canonical_url: https://goldenflorals.com/
   </div>
 </section>
 
-<hr class="div">
+<hr class="section-div">
 
 <section class="section">
   <div class="container">
@@ -122,7 +118,7 @@ canonical_url: https://goldenflorals.com/
   </div>
 </section>
 
-<hr class="div">
+<hr class="section-div">
 
 <section class="section">
   <div class="container">
@@ -147,7 +143,7 @@ canonical_url: https://goldenflorals.com/
   </div>
 </section>
 
-<hr class="div">
+<hr class="section-div">
 
 <section class="section">
   <div class="container">
@@ -188,9 +184,7 @@ canonical_url: https://goldenflorals.com/
   </div>
 </section>
 
-<hr class="div">
-
-<section class="section">
+<section class="section section-tinted">
   <div class="container">
     <span class="label">Browse by venue</span>
     <h2 class="section-head">Every venue<br>is its own world.</h2>
@@ -216,12 +210,7 @@ canonical_url: https://goldenflorals.com/
       <p style="font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--fgm);margin-bottom:10px;">Also at</p>
       <p style="font-size:.85rem;color:var(--fg2);line-height:2.1;">Ritz-Carlton Lake Tahoe at Northstar &middot; Hellman-Ehrman Mansion &middot; Chateau at Incline Village &middot; Hyatt Regency Lake Tahoe &middot; Tahoe Mountain Club &middot; Olympic Valley Stables &middot; Martis Camp &middot; Valhalla Tahoe &middot; North Lake Tahoe Event Center &middot; Heavenly &middot; Miner's Foundry &middot; National Exchange Hotel &middot; Harmony Ridge Estate &middot; River Highlands Ranch</p>
     </div>
-  </div>
-</section>
-
-<section class="section" style="padding-top:0;">
-  <div class="container">
-    <p style="font-size:.85rem;color:var(--fg2);">Delivering flowers throughout Grass Valley, Nevada City &amp; the Gold Country foothills. <a href="https://grassvalleyflowers.com" target="_blank" rel="noopener" style="color:var(--acc);border-bottom:1px solid oklch(34% .09 148 / .3);">Shop local delivery at grassvalleyflowers.com →</a></p>
+    <p style="font-size:.85rem;color:var(--fg2);margin-top:32px;padding-top:24px;border-top:1px solid var(--bor);">Delivering flowers throughout Grass Valley, Nevada City &amp; the Gold Country foothills. <a href="https://grassvalleyflowers.com" target="_blank" rel="noopener" style="color:var(--acc);border-bottom:1px solid oklch(34% .09 148 / .3);">Shop local delivery at grassvalleyflowers.com →</a></p>
   </div>
 </section>
 

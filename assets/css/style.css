@@ -55,6 +55,9 @@
 
   /* Borders */
   --bor: oklch(78% .017 128);     /* soft sage border */
+
+  /* Section backgrounds */
+  --bg-sage: oklch(74% .042 126); /* distinctive CTA / closing section */
 }
 
 /* ── 02. RESET + BASE ─────────────────────────────────── */
@@ -212,6 +215,8 @@ h3 {
 }
 p { font-size: 1rem; line-height: 1.75; color: var(--fg2); }
 hr.div { border: none; border-top: 1px solid var(--bor); display: block; width: 48px; margin: 0 auto; }
+hr.section-div { border: none; border-top: 1px solid var(--bor); display: block; width: 100%; margin: 0; }
+.section-tinted { background: var(--bg2); }
 
 /* ── 07. HOMEPAGE HERO ────────────────────────────────── */
 .hero {
@@ -378,7 +383,7 @@ hr.div { border: none; border-top: 1px solid var(--bor); display: block; width: 
 .venue-meta { font-size: .7rem; letter-spacing: .1em; text-transform: uppercase; color: oklch(78% .012 128); }
 
 /* ── 14. CTA SECTION ──────────────────────────────────── */
-.cta-section { text-align: center; padding: 130px 48px; background: var(--bg2); border-top: 1px solid var(--bor); }
+.cta-section { text-align: center; padding: 130px 48px; background: var(--bg-sage); }
 .cta-section h2 { font-family: var(--f-d); font-style: italic; font-weight: 300; font-size: clamp(2.8rem, 5vw, 5rem); color: var(--fg); margin-bottom: 12px; line-height: 1.1; }
 .cta-section p { font-size: .9rem; color: var(--fg2); margin-bottom: 40px; letter-spacing: .05em; }
 

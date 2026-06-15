@@ -62,7 +62,7 @@ canonical_url: https://goldenflorals.com/venues/edgewood-tahoe
   </div>
 </section>
 
-<hr class="div">
+<hr class="section-div">
 
 <!-- Design Philosophy for Venue -->
 <section class="section">
@@ -90,7 +90,7 @@ canonical_url: https://goldenflorals.com/venues/edgewood-tahoe
   </div>
 </section>
 
-<hr class="div">
+<hr class="section-div">
 
 <!-- Wedding Examples -->
 <section class="section" id="weddings">
@@ -119,7 +119,7 @@ canonical_url: https://goldenflorals.com/venues/edgewood-tahoe
   </div>
 </section>
 
-<hr class="div">
+<hr class="section-div">
 
 <!-- FAQ -->
 <section class="section">
@@ -166,7 +166,7 @@ canonical_url: https://goldenflorals.com/venues/edgewood-tahoe
   </div>
 </section>
 
-<hr class="div">
+<hr class="section-div">
 
 <!-- Pricing Anchor -->
 <section class="section">
