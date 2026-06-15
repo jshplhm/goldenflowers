@@ -100,7 +100,7 @@ body { padding-top: 65px; }
   letter-spacing: .2em; text-transform: uppercase;
   color: var(--fg); font-weight: 500;
 }
-.nav-menu { display: flex; align-items: center; gap: 48px; }
+.nav-menu { display: none; }
 .nav-links { display: flex; gap: 36px; }
 .nav-links a {
   font-family: var(--f-b); font-size: .82rem;
@@ -115,6 +115,10 @@ body { padding-top: 65px; }
   padding: 10px 22px; transition: all .2s;
 }
 .nav-cta:hover { border-color: var(--acc); color: var(--acc); }
+@media (min-width: 1025px) {
+  .nav-menu { display: flex; align-items: center; gap: 48px; }
+  .nav-toggle { display: none; }
+}
 
 /* ── 04. FOOTER ───────────────────────────────────────── */
 .site-footer {
@@ -576,19 +580,18 @@ h1.venue-title { font-family: var(--f-d); font-style: italic; font-weight: 300; 
 .blog-cta-inline .btn-primary { flex-shrink: 0; }
 
 /* ── 28. MOBILE ───────────────────────────────────────── */
-.nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 4px; margin-left: auto; flex-direction: column; gap: 5px; }
-.nav-toggle span { display: block; width: 22px; height: 1.5px; background: var(--fg); transition: all .3s; }
+/* Mobile-first: hamburger is visible by default; desktop hides it via min-width above */
+.nav-toggle { display: flex; flex-direction: column; gap: 5px; align-items: center; justify-content: center; background: none; border: none; cursor: pointer; padding: 8px; margin-left: auto; }
+.nav-toggle span { display: block; width: 24px; height: 2px; background: #2d4a2d; background: var(--fg); transition: all .3s; flex-shrink: 0; }
 @media (max-width: 1024px) {
 
   /* --- Navigation --- */
   nav {
     padding: 16px 24px;
   }
-  .nav-menu { display: none; }
   .nav-logo { font-size: .8rem; }
 
-  /* Hamburger toggle */
-  .nav-toggle { display: flex; }
+  /* Hamburger open state */
   .nav-open .nav-menu {
     display: flex; flex-direction: column;
     position: absolute; top: 100%; left: 0; right: 0;
