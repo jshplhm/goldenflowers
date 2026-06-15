@@ -1,11 +1,11 @@
 ---
 layout: default
-title: "Journal"
+title: "Blog"
 permalink: /blog
 ---
 
 <header class="page-header">
-  <span class="label">Journal</span>
+  <span class="label">Blog</span>
   <h1>Flowers, farming,<br>and the Sierra Nevada.</h1>
   <p>Seasonal notes, wedding inspiration, and thoughts from the farm at Golden Flowers.</p>
 </header>
