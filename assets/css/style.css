@@ -79,17 +79,16 @@ img { display: block; max-width: 100%; }
 
 /* ── 03. NAVIGATION ───────────────────────────────────── */
 nav {
-  position: fixed; top: 0; left: 50%; transform: translateX(-50%);
-  width: 100%; max-width: 1440px;
+  position: fixed; top: 0; left: 0; right: 0;
   z-index: 100;
   display: flex; align-items: center; justify-content: space-between;
   padding: 22px 48px;
   background: var(--bg);
   border-bottom: 1px solid var(--bor);
-  transition: transform .35s ease, box-shadow .35s ease;
+  transition: top .35s ease, box-shadow .35s ease;
 }
 nav.nav-hidden {
-  transform: translateX(-50%) translateY(-100%);
+  top: -80px;
 }
 nav.nav-scrolled {
   box-shadow: 0 2px 24px oklch(20% .023 148 / .08);
