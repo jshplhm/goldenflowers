@@ -232,8 +232,9 @@ hr.div { border: none; border-top: 1px solid var(--bor); display: block; width: 
   font-family: var(--f-b); font-size: .7rem;
   letter-spacing: .2em; text-transform: uppercase;
   color: oklch(76% .10 60); margin-bottom: 20px; display: block;
+  font-weight: 400; font-style: normal; /* reset h1 browser defaults when used as h1 */
 }
-.hero h1 {
+.hero .hero-display {
   font-family: var(--f-d); font-style: italic; font-weight: 300;
   font-size: clamp(3.8rem, 7vw, 7.5rem); line-height: 1.02;
   color: oklch(95% .006 88); margin-bottom: 22px; text-wrap: balance;
@@ -693,7 +694,7 @@ h1.venue-title { font-family: var(--f-d); font-style: italic; font-weight: 300; 
   /* --- Hero --- */
   .hero { height: 92svh; min-height: 480px; padding-bottom: 56px; }
   .hero-copy { padding: 0 20px; }
-  .hero h1 { font-size: clamp(2.8rem, 11vw, 4.2rem); }
+  .hero .hero-display { font-size: clamp(2.8rem, 11vw, 4.2rem); }
   .hero-sub { font-size: .88rem; }
   .hero-btns { flex-direction: column; align-items: center; gap: 10px; }
   .hero-btns .btn-primary,

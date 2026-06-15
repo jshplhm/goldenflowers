@@ -1,9 +1,10 @@
 ---
 layout: default
 title: "Golden Flowers"
+seo_title: "Lake Tahoe Wedding Florist | Golden Flowers"
 permalink: /
-description: "Farm-grown, foam-free wedding florals for Lake Tahoe and the Sierra Nevada. One wedding per date. Founded by an agronomist."
-canonical_url: https://jshplhm.github.io/goldenflowers/
+description: "Golden Flowers is a Lake Tahoe wedding florist designing artful and sustainably grown Lake Tahoe wedding flowers for couples getting married in the Sierra Nevada"
+canonical_url: https://goldenflorals.com/
 ---
 
 <section class="hero">
@@ -11,8 +12,8 @@ canonical_url: https://jshplhm.github.io/goldenflowers/
     <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/2b98245c-1230-4e50-847e-90c7d13f793b/Lake%2BTahoe%2BFloral%2BInstallation.jpeg" alt="Lake Tahoe floral installation by Golden Flowers" loading="eager">
   </div>
   <div class="hero-copy">
-    <span class="hero-eyebrow">Lake Tahoe Wedding Florist</span>
-    <h1>Artful, farm&#8209;grown<br>florals.<br>Foam-free.</h1>
+    <h1 class="hero-eyebrow">Lake Tahoe Wedding Florist</h1>
+    <p class="hero-display">Artful, farm&#8209;grown<br>florals.<br>Foam-free.</p>
     <p class="hero-sub">One wedding per date · Agronomist-founded</p>
     <div class="hero-btns">
       <a href="{{ site.baseurl }}/portfolio" class="btn-primary">Explore Portfolio</a>
@@ -211,6 +212,16 @@ canonical_url: https://jshplhm.github.io/goldenflowers/
         <div class="venue-overlay"><p class="venue-name">Ritz-Carlton Lake Tahoe</p><p class="venue-meta">Northstar · Mountain Resort</p></div>
       </a>
     </div>
+    <div style="margin-top:40px;padding-top:32px;border-top:1px solid var(--bor);">
+      <p style="font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--fgm);margin-bottom:10px;">Also at</p>
+      <p style="font-size:.85rem;color:var(--fg2);line-height:2.1;">Ritz-Carlton Lake Tahoe at Northstar &middot; Hellman-Ehrman Mansion &middot; Chateau at Incline Village &middot; Hyatt Regency Lake Tahoe &middot; Tahoe Mountain Club &middot; Olympic Valley Stables &middot; Martis Camp &middot; Valhalla Tahoe &middot; North Lake Tahoe Event Center &middot; Heavenly &middot; Miner's Foundry &middot; National Exchange Hotel &middot; Harmony Ridge Estate &middot; River Highlands Ranch</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0;">
+  <div class="container">
+    <p style="font-size:.85rem;color:var(--fg2);">Delivering flowers throughout Grass Valley, Nevada City &amp; the Gold Country foothills. <a href="https://grassvalleyflowers.com" target="_blank" rel="noopener" style="color:var(--acc);border-bottom:1px solid oklch(34% .09 148 / .3);">Shop local delivery at grassvalleyflowers.com →</a></p>
   </div>
 </section>
 

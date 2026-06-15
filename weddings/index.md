@@ -1,9 +1,13 @@
 ---
 layout: default
 title: "Weddings"
+seo_title: "Lake Tahoe Wedding Flowers & Wedding Florist | Golden Flowers"
 permalink: /weddings
-description: "Full-service Lake Tahoe wedding florals designed by Brittany, an agronomist. Custom proposals, California-grown flowers, one wedding per date."
-canonical_url: https://jshplhm.github.io/goldenflowers/weddings/
+description: "Golden Flowers is a Lake Tahoe wedding florist designing seasonally grown, foam-free wedding flowers for couples getting married in Lake Tahoe, Truckee, and the Sierra Nevada."
+canonical_url: https://goldenflorals.com/weddings
+redirect_from:
+  - /weddingflowers
+  - /weddings-1
 ---
 
 <!-- Page Header -->

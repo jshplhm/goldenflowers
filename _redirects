@@ -1,0 +1,11 @@
+# Squarespace → new site 301 redirects
+# Weddings
+/weddingflowers              /weddings             301
+/weddings-1                  /weddings             301
+
+# Portfolio
+/portfolio-1                 /portfolio            301
+/portfolio-1/*               /portfolio            301
+
+# Blog
+/natures-canvas-lake-tahoe-wedding-flowers  /blog  301

@@ -1,9 +1,23 @@
 ---
 layout: default
 title: "Portfolio"
+seo_title: "Lake Tahoe Wedding Floral Design | Golden Flowers Portfolio"
 permalink: /portfolio
-description: "Browse our work across three aesthetics — Lush & Romantic, Elevated Minimalist, and Wildflower Modern — at venues across Lake Tahoe and the Sierra Nevada."
-canonical_url: https://jshplhm.github.io/goldenflowers/portfolio/
+description: "Browse our wedding floral designs — wild, sustainable, editorial arrangements for Lake Tahoe, Nevada City, Truckee and the broader Sierras"
+canonical_url: https://goldenflorals.com/portfolio
+redirect_from:
+  - /portfolio-1
+  - /portfolio-1/lynn-and-aaron
+  - /portfolio-1/camille-and-max
+  - /portfolio-1/jennaandcal
+  - /portfolio-1/tori-and-tucker
+  - /portfolio-1/katieandjames
+  - /portfolio-1/jacquelineandbrandon
+  - /portfolio-1/dylanandjosh-jd238
+  - /portfolio-1/samandmatt
+  - /portfolio-1/dylanandjosh
+  - /portfolio-1/allieanddevin
+  - /portfolio-1/sarahandbrian
 ---
 
 <header class="page-header">

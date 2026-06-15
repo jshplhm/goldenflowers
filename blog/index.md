@@ -2,6 +2,8 @@
 layout: default
 title: "Blog"
 permalink: /blog
+redirect_from:
+  - /natures-canvas-lake-tahoe-wedding-flowers
 ---
 
 <header class="page-header">
