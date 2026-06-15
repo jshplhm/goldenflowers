@@ -1,0 +1,36 @@
+---
+layout: default
+---
+
+<!-- Blog Post Header -->
+<header class="blog-header">
+  <span class="blog-category">{{ page.category | default: 'Blog' }}</span>
+  <h1 class="blog-title">{{ page.title }}</h1>
+  <div class="blog-meta">
+    <!-- Date hidden from readers per migration strategy -->
+    <span>By Brittany · Golden Flowers</span>
+  </div>
+</header>
+
+<!-- Featured Image (if present) -->
+{% if page.featured_image %}
+<img
+  class="blog-hero-img"
+  src="{{ page.featured_image }}"
+  alt="{{ page.title }}"
+  loading="eager"
+>
+{% endif %}
+
+<!-- Blog Body -->
+<article class="blog-body">
+  {{ content }}
+</article>
+
+<!-- Post-specific CTA -->
+<div class="cta-section">
+  <span class="label" style="display:block;text-align:center">Get started</span>
+  <h2>Ready to design your wedding florals?</h2>
+  <p>We take one wedding per date. Reach out early.</p>
+  <a href="/weddings#consultation" class="btn-primary">Schedule a Consultation</a>
+</div>
