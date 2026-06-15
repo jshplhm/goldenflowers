@@ -4,8 +4,6 @@ title: "Portfolio"
 permalink: /portfolio
 ---
 
-{% include header.html %}
-
 <header class="page-header">
   <span class="label">Portfolio</span>
   <h1>A look into<br>our creative world.</h1>
@@ -87,7 +85,7 @@ permalink: /portfolio
       </div>
     </div>
   </div>
-  <a class="see-more" href="Golden Flowers - Portfolio.html?filter=dark-romance">See all Lush &amp; Romantic weddings →</a>
+  <a class="see-more" href="{{ site.baseurl }}/portfolio?filter=dark-romance">See all Lush &amp; Romantic weddings →</a>
 </section>
 
 <hr style="border:none;border-top:1px solid var(--bor);">
@@ -159,7 +157,7 @@ permalink: /portfolio
       </div>
     </div>
   </div>
-  <a class="see-more" href="Golden Flowers - Portfolio.html?filter=minimalist">See all Elevated Minimalist weddings →</a>
+  <a class="see-more" href="{{ site.baseurl }}/portfolio?filter=minimalist">See all Elevated Minimalist weddings →</a>
 </section>
 
 <hr style="border:none;border-top:1px solid var(--bor);">
@@ -231,7 +229,7 @@ permalink: /portfolio
       </div>
     </div>
   </div>
-  <a class="see-more" href="Golden Flowers - Portfolio.html?filter=wildflower">See all Wildflower Modern weddings →</a>
+  <a class="see-more" href="{{ site.baseurl }}/portfolio?filter=wildflower">See all Wildflower Modern weddings →</a>
 </section>
 
 <div class="empty-state" id="empty-state" style="display:none;">
@@ -243,10 +241,8 @@ permalink: /portfolio
   <span class="label" style="display:block;text-align:center">Get started</span>
   <h3>See yourself here?</h3>
   <p>Tell us about your wedding date and vision and we'll let you know if we're available.</p>
-  <a href="/weddings#consultation" class="btn-primary">Schedule a Consultation</a>
+  <a href="{{ site.baseurl }}/weddings#consultation" class="btn-primary">Schedule a Consultation</a>
 </div>
-
-{% include footer.html %}
 
 <script>
 const cards = document.querySelectorAll('.wedding-card');
@@ -261,7 +257,6 @@ document.querySelectorAll('.filter-chip').forEach(chip => {
   chip.addEventListener('click', function() {
     const filterType = this.dataset.filter;
     const val = this.dataset.value;
-    // Update active state for this group
     document.querySelectorAll(`.filter-chip[data-filter="${filterType}"]`).forEach(c => c.classList.remove('active'));
     this.classList.add('active');
     if (filterType === 'aesthetic') currentAesthetic = val;
@@ -283,7 +278,6 @@ function applyFilters() {
     }
   });
 
-  // Show/hide sections
   sections.forEach(section => {
     const sectionAesthetic = section.dataset.section;
     const sectionCards = section.querySelectorAll('.wedding-card:not(.filtered-out)');
