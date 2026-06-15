@@ -53,7 +53,7 @@ canonical_url: https://jshplhm.github.io/goldenflowers/weddings/
 <section class="section">
   <div class="container">
     <span class="label">What's included</span>
-    <h2>Full-service means<br>all of it.</h2>
+    <h2>Full-service means all of it.</h2>
     <div class="includes-grid">
       <div class="include-item">
         <div class="include-icon">✦</div>
@@ -182,7 +182,7 @@ canonical_url: https://jshplhm.github.io/goldenflowers/weddings/
 <section class="section">
   <div class="container">
     <span class="label">What couples say</span>
-    <h2>Thirteen couples.<br>Their words.</h2>
+    <h2>Thirteen couples, their words.</h2>
     {% include testimonials.html %}
   </div>
 </section>

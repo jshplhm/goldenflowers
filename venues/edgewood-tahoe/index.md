@@ -32,7 +32,7 @@ canonical_url: https://jshplhm.github.io/goldenflowers/venues/edgewood-tahoe/
     <div class="two-col">
       <div class="two-col-text">
         <span class="label">Why this venue matters</span>
-        <h2>Edgewood is unlike anywhere else on the lake.</h2>
+        <h2>Edgewood is unlike<br>anywhere else on the lake.</h2>
         <p>The combination of lakefront access, the manicured grounds of a world-class golf course, and the dramatic Sierra Nevada backdrop means flowers here need to do something specific: belong.</p>
         <p>Arrangements that feel imported or generic read immediately against this landscape. We design florals that feel as though they came from the property itself — from the meadows at the course edge, the forested ridgeline, the Nevada-side light.</p>
         <p>We've worked Edgewood ceremonies from the lakeside lawn to the Edgewood Pavilion. Every setting has its own light, its own proportion. We know the space.</p>

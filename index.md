@@ -126,7 +126,7 @@ canonical_url: https://jshplhm.github.io/goldenflowers/
 <section class="section">
   <div class="container">
     <span class="label">Investment</span>
-    <h2 class="section-head">Transparent<br>pricing.</h2>
+    <h2 class="section-head">Transparent pricing.</h2>
     <div class="pricing-inner">
       <div>
         <p class="price-num">$5,000–$25,000+</p>
