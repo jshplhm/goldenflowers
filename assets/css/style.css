@@ -115,7 +115,6 @@ body { padding-top: 65px; }
 .nav-cta:hover { border-color: var(--acc); color: var(--acc); }
 @media (min-width: 1025px) {
   .nav-menu { display: flex; align-items: center; gap: 48px; }
-  .nav-toggle { display: none; }
 }
 
 /* ── 04. FOOTER ───────────────────────────────────────── */
@@ -578,8 +577,7 @@ h1.venue-title { font-family: var(--f-d); font-style: italic; font-weight: 300; 
 .blog-cta-inline .btn-primary { flex-shrink: 0; }
 
 /* ── 28. MOBILE ───────────────────────────────────────── */
-/* Mobile-first: hamburger is visible by default; desktop hides it via min-width above */
-.nav-toggle { display: flex; flex-direction: column; gap: 5px; align-items: center; justify-content: center; background: none; border: none; cursor: pointer; padding: 8px; margin-left: auto; }
+.nav-toggle { display: none; flex-direction: column; gap: 5px; align-items: center; justify-content: center; background: none; border: none; cursor: pointer; padding: 8px; }
 .nav-toggle span { display: block; width: 24px; height: 2px; background: #2d4a2d; background: var(--fg); transition: all .3s; flex-shrink: 0; }
 @media (max-width: 1024px) {
 
@@ -588,6 +586,7 @@ h1.venue-title { font-family: var(--f-d); font-style: italic; font-weight: 300; 
     padding: 16px 24px;
   }
   .nav-logo { font-size: .8rem; }
+  .nav-toggle { display: flex; }
 
   /* Hamburger open state */
   .nav-open .nav-menu {
@@ -685,7 +684,7 @@ h1.venue-title { font-family: var(--f-d); font-style: italic; font-weight: 300; 
   .testi-grid { grid-template-columns: 1fr; gap: 16px; }
 
   /* --- Venue grid --- */
-  .venue-grid { grid-template-columns: 1fr 1fr; }
+  .venue-grid { grid-template-columns: 1fr; }
 
   /* --- CTA section --- */
   .cta-section { padding: 80px 20px; }
@@ -748,7 +747,7 @@ h1.venue-title { font-family: var(--f-d); font-style: italic; font-weight: 300; 
   .farm-imgs { grid-template-columns: 1fr 1fr; }
 
   /* --- About: Seasonal + values --- */
-  .seasonal-grid { grid-template-columns: 1fr 1fr; }
+  .seasonal-grid { grid-template-columns: 1fr; }
   .values-grid { grid-template-columns: 1fr; }
 
   /* --- Venue hero --- */

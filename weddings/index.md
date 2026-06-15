@@ -119,14 +119,6 @@ permalink: /weddings
         <input type="email" id="email" name="email" placeholder="your@email.com" required>
       </div>
       <div>
-        <label for="partner">Partner's name</label>
-        <input type="text" id="partner" name="partner" placeholder="Partner's name">
-      </div>
-      <div>
-        <label for="phone">Phone number</label>
-        <input type="tel" id="phone" name="phone" placeholder="(000) 000-0000">
-      </div>
-      <div>
         <label for="date">Wedding date</label>
         <input type="date" id="date" name="date">
       </div>
