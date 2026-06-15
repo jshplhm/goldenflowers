@@ -63,7 +63,7 @@ permalink: /
           <span class="aesthetic-tag">Aesthetic 01</span>
           <h3>Lush &amp; Romantic</h3>
           <p>Rich, dramatic, and lush. Deep burgundy, plum, and forest tones. Arrangements that feel cinematic and of the moment.</p>
-          <a href="Golden Flowers - Portfolio.html?filter=dark-romance" class="aesthetic-link">View weddings →</a>
+          <a href="{{ site.baseurl }}/portfolio?filter=dark-romance" class="aesthetic-link">View weddings →</a>
         </div>
       </div>
       <div class="aesthetic-card">
@@ -72,7 +72,7 @@ permalink: /
           <span class="aesthetic-tag">Aesthetic 02</span>
           <h3>Elevated Minimalist</h3>
           <p>Clean lines, airy compositions, and restrained palettes. White, ivory, and soft sage. Design that doesn't compete with the view.</p>
-          <a href="Golden Flowers - Portfolio.html?filter=minimalist" class="aesthetic-link">View weddings →</a>
+          <a href="{{ site.baseurl }}/portfolio?filter=minimalist" class="aesthetic-link">View weddings →</a>
         </div>
       </div>
       <div class="aesthetic-card">
@@ -81,7 +81,7 @@ permalink: /
           <span class="aesthetic-tag">Aesthetic 03</span>
           <h3>Wildflower Modern</h3>
           <p>Wild, seasonal, and rooted in the landscape. Native blooms and grasses styled with an editorial eye. Effortless and of this place.</p>
-          <a href="Golden Flowers - Portfolio.html?filter=wildflower" class="aesthetic-link">View weddings →</a>
+          <a href="{{ site.baseurl }}/portfolio?filter=wildflower" class="aesthetic-link">View weddings →</a>
         </div>
       </div>
     </div>
@@ -181,15 +181,15 @@ permalink: /
         <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1776975190166-PCFON7QIR65XK1VPLH3K/l-a-preview-8192.jpg" alt="Edgewood Tahoe" loading="lazy">
         <div class="venue-overlay"><p class="venue-name">Edgewood Tahoe</p><p class="venue-meta">South Shore · Lakeside</p></div>
       </a>
-      <a href="Golden Flowers - Portfolio.html?venue=palisades" class="venue-card">
+      <a href="{{ site.baseurl }}/portfolio?venue=palisades" class="venue-card">
         <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/4da65886-1655-4ecd-957b-8d48969ffc60/l-a-preview-0305.jpg" alt="Palisades High Camp" loading="lazy">
         <div class="venue-overlay"><p class="venue-name">Palisades High Camp</p><p class="venue-meta">Olympic Valley · Alpine</p></div>
       </a>
-      <a href="Golden Flowers - Portfolio.html?venue=national-exchange" class="venue-card">
+      <a href="{{ site.baseurl }}/portfolio?venue=national-exchange" class="venue-card">
         <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/3ddf1f69-8e31-44e3-8204-d28d4797d6f7/NationalGothic--264.jpg" alt="National Exchange Hotel" loading="lazy">
         <div class="venue-overlay"><p class="venue-name">National Exchange Hotel</p><p class="venue-meta">Nevada City · Historic</p></div>
       </a>
-      <a href="Golden Flowers - Portfolio.html?venue=ritz-carlton" class="venue-card">
+      <a href="{{ site.baseurl }}/portfolio?venue=ritz-carlton" class="venue-card">
         <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1776975178999-V2BIKI0FVBMBXFKG8Z3I/l-a-preview-8139.jpg" alt="Ritz-Carlton Lake Tahoe" loading="lazy">
         <div class="venue-overlay"><p class="venue-name">Ritz-Carlton Lake Tahoe</p><p class="venue-meta">Northstar · Mountain Resort</p></div>
       </a>
@@ -202,14 +202,4 @@ permalink: /
   <h2>Your Lake Tahoe wedding<br>flowers start here.</h2>
   <p>We take one wedding per date. Reach out early.</p>
   <a href="{{ site.baseurl }}/weddings#consultation" class="btn-primary">Schedule a Consultation</a>
-</div>
-
-{% include footer.html %}
-<div class="footer-bottom">
-  <span>© 2026 Golden Flowers · Lake Tahoe</span>
-  <span>
-    <a href="https://www.instagram.com/goldenflowersfloraldesign/" style="color:inherit;text-decoration:none;" target="_blank">Instagram</a>
-    &nbsp;·&nbsp;
-    <a href="https://www.grassvalleyflowers.com/" style="color:inherit;text-decoration:none;" target="_blank">Grass Valley Delivery</a>
-  </span>
 </div>
