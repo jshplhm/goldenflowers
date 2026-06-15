@@ -2,6 +2,7 @@
 layout: default
 title: "About Golden Flowers"
 permalink: /about
+description: "Golden Flowers is founded by Brittany, a certified agronomist and floral designer creating farm-grown, foam-free wedding florals in Lake Tahoe and the Sierra Nevada."
 ---
 
 <!-- Founder Hero -->
@@ -97,7 +98,7 @@ permalink: /about
           <li>Hellebore</li>
           <li>Muscari and fritillaria</li>
         </ul>
-        <p class="season-note">The most romantic palette of the year. Rich jewel tones and soft pastels. Peak for Dark Romance aesthetics.</p>
+        <p class="season-note">The most romantic palette of the year. Rich jewel tones and soft pastels. Peak for Lush &amp; Romantic aesthetics.</p>
       </div>
       <div class="season-card">
         <p class="season-name">Summer</p>
@@ -125,7 +126,7 @@ permalink: /about
           <li>Persimmon and pyracantha berry</li>
           <li>Squash and gourd accents</li>
         </ul>
-        <p class="season-note">Dramatic harvest tones. The richest palette of the year for Dark Romance and Wildflower Modern.</p>
+        <p class="season-note">Dramatic harvest tones. The richest palette of the year for Lush &amp; Romantic and Wildflower Modern.</p>
       </div>
       <div class="season-card">
         <p class="season-name">Winter</p>
@@ -171,8 +172,10 @@ permalink: /about
 </section>
 
 <div class="cta-section">
-  <span class="label" style="display:block;text-align:center">Work with us</span>
-  <h2>Start with<br>a conversation.</h2>
-  <p>Reach out with your date and venue — we'll let you know if we're available.</p>
-  <a href="{{ site.baseurl }}/weddings#consultation" class="btn-primary">Schedule a Consultation</a>
+  <div style="max-width:640px;margin:0 auto;">
+    <span class="label" style="display:block;text-align:center">Work with us</span>
+    <h2>Start with<br>a conversation.</h2>
+    <p>Reach out with your date and venue — we'll let you know if we're available.</p>
+    <a href="{{ site.baseurl }}/weddings#consultation" class="btn-primary">Schedule a Consultation</a>
+  </div>
 </div>

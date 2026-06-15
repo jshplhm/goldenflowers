@@ -14,7 +14,6 @@ permalink: /blog
   <div class="container" style="max-width:900px;">
     {% for post in site.posts %}
     <article style="padding:36px 0;border-bottom:1px solid var(--bor);">
-      <time style="font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--fgm);display:block;margin-bottom:10px;">{{ post.date | date: "%B %-d, %Y" }}</time>
       <h2 style="font-family:var(--f-d);font-style:italic;font-weight:300;font-size:clamp(1.6rem,3vw,2.4rem);line-height:1.15;color:var(--fg);margin-bottom:12px;">
         <a href="{{ site.baseurl }}{{ post.url }}" style="color:inherit;">{{ post.title }}</a>
       </h2>

@@ -2,6 +2,7 @@
 layout: default
 title: "Portfolio"
 permalink: /portfolio
+description: "Browse Golden Flowers' wedding portfolio — three distinct floral aesthetics for Lake Tahoe and Sierra Nevada weddings. Lush & Romantic, Elevated Minimalist, and Wildflower Modern."
 ---
 
 <header class="page-header">
@@ -172,15 +173,11 @@ permalink: /portfolio
 
 <!-- Don't see your vibe -->
 <section class="cta-section" style="background:var(--bg3);border-top:1px solid var(--bor);">
-  <span class="label">Something different in mind?</span>
-  <h2>We work in every direction.</h2>
-  <p>These aesthetics are a starting point — not a limit. Bring your Pinterest board, a venue photo, or a feeling you can't quite name yet. Every wedding we design starts from your vision, not ours.</p>
-  <a href="{{ site.baseurl }}/weddings#consultation" class="btn-primary">Share your inspiration</a>
+  <div style="max-width:640px;margin:0 auto;">
+    <span class="label">Something different in mind?</span>
+    <h2>We work in every direction.</h2>
+    <p>These aesthetics are a starting point — not a limit. Bring your Pinterest board, a venue photo, or a feeling you can't quite name yet. Every wedding we design starts from your vision, not ours.</p>
+    <a href="{{ site.baseurl }}/weddings#consultation" class="btn-primary">Share your inspiration</a>
+  </div>
 </section>
 
-<div class="cta-strip">
-  <span class="label" style="display:block;text-align:center">Get started</span>
-  <h3>See yourself here?</h3>
-  <p>Tell us about your wedding date and vision and we'll let you know if we're available.</p>
-  <a href="{{ site.baseurl }}/weddings#consultation" class="btn-primary">Schedule a Consultation</a>
-</div>

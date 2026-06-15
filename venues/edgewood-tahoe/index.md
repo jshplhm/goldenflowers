@@ -2,6 +2,7 @@
 layout: default
 title: "Edgewood Tahoe Wedding Florist"
 permalink: /venues/edgewood-tahoe
+description: "Golden Flowers is a preferred floral vendor at Edgewood Tahoe. Farm-grown, foam-free wedding florals designed for the South Shore lake setting."
 ---
 
 <!-- Hero -->
@@ -186,22 +187,26 @@ permalink: /venues/edgewood-tahoe
 
 <!-- Planner Callout -->
 <div class="planner-strip">
-  <div class="planner-text">
-    <h3>Planning at Edgewood?</h3>
-    <p>We work closely with Edgewood's preferred coordinator team. Ask your planner about us — or reach out directly.</p>
-  </div>
-  <div class="planner-logos">
-    <span class="planner-badge">Edgewood Tahoe Preferred</span>
-    <span class="planner-badge">One wedding per date</span>
+  <div class="container" style="max-width:1280px;display:flex;justify-content:space-between;align-items:center;gap:40px;flex-wrap:wrap;">
+    <div class="planner-text">
+      <h3>Planning at Edgewood?</h3>
+      <p>We work closely with Edgewood's preferred coordinator team. Ask your planner about us — or reach out directly.</p>
+    </div>
+    <div class="planner-logos">
+      <span class="planner-badge">Edgewood Tahoe Preferred</span>
+      <span class="planner-badge">One wedding per date</span>
+    </div>
   </div>
 </div>
 
 <!-- CTA -->
 <div class="cta-section">
-  <span class="label" style="display:block;text-align:center">Get started</span>
-  <h2>Getting married at Edgewood?</h2>
-  <p>Tell us your date and vision. We'll let you know if we're available and what the design process looks like from here.</p>
-  <a href="{{ site.baseurl }}/weddings#consultation" class="btn-primary">Schedule a Consultation</a>
+  <div style="max-width:640px;margin:0 auto;">
+    <span class="label" style="display:block;text-align:center">Get started</span>
+    <h2>Getting married at Edgewood?</h2>
+    <p>Tell us your date and vision. We'll let you know if we're available and what the design process looks like from here.</p>
+    <a href="{{ site.baseurl }}/weddings#consultation" class="btn-primary">Schedule a Consultation</a>
+  </div>
 </div>
 
 <!-- Other Venues -->
@@ -223,11 +228,17 @@ function toggleFaq(el) {
   const isOpen = item.classList.contains('open');
   document.querySelectorAll('.faq-item').forEach(i => {
     i.classList.remove('open');
-    i.querySelector('.faq-toggle').textContent = '+';
+    const t = i.querySelector('.faq-toggle');
+    t.textContent = '+';
+    t.removeAttribute('style');
   });
   if (!isOpen) {
     item.classList.add('open');
-    item.querySelector('.faq-toggle').textContent = '×';
+    const toggle = item.querySelector('.faq-toggle');
+    toggle.textContent = '×';
+    toggle.style.background = 'var(--acc)';
+    toggle.style.borderColor = 'var(--acc)';
+    toggle.style.color = 'var(--bg)';
   }
 }
 </script>
