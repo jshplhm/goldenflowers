@@ -2,7 +2,7 @@ backend:
   name: github
   repo: jshplhm/goldenflowers
   branch: main
-  base_url: https://NETLIFY-SITE.netlify.app
+  base_url: https://lambent-biscuit-db61e4.netlify.app
   auth_endpoint: .netlify/functions/auth
 
 media_folder: assets/images/blog
