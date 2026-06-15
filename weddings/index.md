@@ -4,8 +4,6 @@ title: "Weddings"
 permalink: /weddings
 ---
 
-{% include header.html %}
-
 <!-- Page Header -->
 <header class="page-header">
   <div>
@@ -248,7 +246,7 @@ permalink: /weddings
           <div class="faq-toggle">+</div>
         </div>
         <div class="faq-answer">That's what the consultation is for. Bring whatever references you have — Pinterest boards, photos, a vibe description, an outfit. We're very good at translating what someone means from what they show us. We'll help you identify the aesthetic direction and show you examples of our work in that register. Many couples come in with "I like moody but also clean?" and leave with a crystal-clear vision.<br><br>
-        You can also <a href="/portfolio">browse the portfolio by aesthetic</a> before your consultation to get your bearings.</div>
+        You can also <a href="{{ site.baseurl }}/portfolio">browse the portfolio by aesthetic</a> before your consultation to get your bearings.</div>
       </div>
     </div>
   </div>
@@ -263,23 +261,21 @@ permalink: /weddings
       <div class="venue-cta-card">
         <h4>Edgewood Tahoe</h4>
         <p>Full portfolio of our Edgewood work, venue-specific design philosophy, and FAQ.</p>
-        <a href="/venues/edgewood-tahoe" class="venue-cta-link">See Edgewood weddings →</a>
+        <a href="{{ site.baseurl }}/venues/edgewood-tahoe" class="venue-cta-link">See Edgewood weddings →</a>
       </div>
       <div class="venue-cta-card">
         <h4>Palisades High Camp</h4>
         <p>Alpine weddings at 8,200 feet. We know what works and what doesn't at altitude.</p>
-        <a href="Golden Flowers - Portfolio.html?venue=palisades" class="venue-cta-link">See Palisades weddings →</a>
+        <a href="{{ site.baseurl }}/portfolio?venue=palisades" class="venue-cta-link">See Palisades weddings →</a>
       </div>
       <div class="venue-cta-card">
         <h4>National Exchange Hotel</h4>
         <p>Historic Nevada City venue with stone walls, high ceilings, and dramatic ceremony spaces.</p>
-        <a href="Golden Flowers - Portfolio.html?venue=national-exchange" class="venue-cta-link">See National Exchange weddings →</a>
+        <a href="{{ site.baseurl }}/portfolio?venue=national-exchange" class="venue-cta-link">See National Exchange weddings →</a>
       </div>
     </div>
   </div>
 </div>
-
-{% include footer.html %}
 
 <script>
 function toggleFaq(el) {
