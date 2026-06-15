@@ -2,7 +2,8 @@
 layout: default
 title: "About Golden Flowers"
 permalink: /about
-description: "Golden Flowers is founded by Brittany, a certified agronomist and floral designer creating farm-grown, foam-free wedding florals in Lake Tahoe and the Sierra Nevada."
+description: "Brittany trained as an agronomist before becoming a floral designer. That background shapes every foam-free, farm-grown arrangement she creates."
+canonical_url: https://jshplhm.github.io/goldenflowers/about/
 ---
 
 <!-- Founder Hero -->
@@ -80,7 +81,7 @@ description: "Golden Flowers is founded by Brittany, a certified agronomist and 
 <hr class="div">
 
 <!-- Seasonal Availability Guide -->
-<section class="section">
+<section class="section" id="seasonal-availability">
   <div class="container">
     <span class="label">Seasonal availability</span>
     <h2>What's growing<br>when you're married.</h2>

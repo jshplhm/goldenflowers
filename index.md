@@ -2,6 +2,8 @@
 layout: default
 title: "Golden Flowers"
 permalink: /
+description: "Farm-grown, foam-free wedding florals for Lake Tahoe and the Sierra Nevada. One wedding per date. Founded by an agronomist."
+canonical_url: https://jshplhm.github.io/goldenflowers/
 ---
 
 <section class="hero">
@@ -44,7 +46,7 @@ permalink: /
       <div class="diff-card">
         <div class="diff-icon">◉</div>
         <h3>Agronomist-founded</h3>
-        <p>Founder Brittany trained as an agronomist. That scientific understanding of how plants grow informs every design decision.</p>
+        <p>Founder Brittany trained as an agronomist — a scientist specializing in soil health and how plants grow. That understanding informs every design decision.</p>
       </div>
     </div>
   </div>
@@ -218,5 +220,6 @@ permalink: /
     <h2>Your Lake Tahoe wedding<br>flowers start here.</h2>
     <p>We take one wedding per date. Reach out early.</p>
     <a href="{{ site.baseurl }}/weddings#consultation" class="btn-primary">Schedule a Consultation</a>
+    <p style="font-size:.75rem;color:var(--fgm);margin-top:16px;letter-spacing:.04em;">Summer 2026 dates filling — we take one wedding per date.</p>
   </div>
 </div>

@@ -2,7 +2,8 @@
 layout: default
 title: "Portfolio"
 permalink: /portfolio
-description: "Browse Golden Flowers' wedding portfolio — three distinct floral aesthetics for Lake Tahoe and Sierra Nevada weddings. Lush & Romantic, Elevated Minimalist, and Wildflower Modern."
+description: "Browse our work across three aesthetics — Lush & Romantic, Elevated Minimalist, and Wildflower Modern — at venues across Lake Tahoe and the Sierra Nevada."
+canonical_url: https://jshplhm.github.io/goldenflowers/portfolio/
 ---
 
 <header class="page-header">
@@ -10,6 +11,13 @@ description: "Browse Golden Flowers' wedding portfolio — three distinct floral
   <h1>A look into<br>our creative world.</h1>
   <p>Three aesthetics that define our work — but not the only ones we do. Browse what resonates and bring us your vision.</p>
 </header>
+
+<div class="portfolio-filters">
+  <button class="filter-chip portfolio-filter-btn active" data-filter="all">All</button>
+  <button class="filter-chip portfolio-filter-btn" data-filter="dark-romance">Lush &amp; Romantic</button>
+  <button class="filter-chip portfolio-filter-btn" data-filter="minimalist">Elevated Minimalist</button>
+  <button class="filter-chip portfolio-filter-btn" data-filter="wildflower">Wildflower Modern</button>
+</div>
 
 <!-- Lush & Romantic -->
 <section class="port-section">
@@ -21,7 +29,7 @@ description: "Browse Golden Flowers' wedding portfolio — three distinct floral
     <p>Rich, dramatic, and lush. Deep tones, candlelit settings, and arrangements that feel cinematic and unforgettable.</p>
   </div>
   <div class="wedding-grid">
-    <div class="wedding-card">
+    <div class="wedding-card" data-aesthetic="dark-romance">
       <div class="wedding-card-img">
         <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1779129636646-VAQ2FSYB2YNR4O0UZFAA/K%252BJ-8434.jpg" alt="Katie and James" loading="lazy">
       </div>
@@ -32,9 +40,10 @@ description: "Browse Golden Flowers' wedding portfolio — three distinct floral
           <span class="wedding-tag">Lush &amp; Romantic</span>
         </div>
         <p class="wedding-desc">Stone walls, candlelight, and a dramatic arch of deep burgundy and plum blooms. A theatrical installation designed around the Foundry's historic stonework.</p>
+        <a href="{{ site.baseurl }}/weddings#consultation" class="wedding-cta">Plan something similar →</a>
       </div>
     </div>
-    <div class="wedding-card">
+    <div class="wedding-card" data-aesthetic="dark-romance">
       <div class="wedding-card-img">
         <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1770534306889-NSEB5HC1TYWMEPG4WSCI/NationalGothic--268.jpg" alt="Niamh and Nick" loading="lazy">
       </div>
@@ -45,9 +54,10 @@ description: "Browse Golden Flowers' wedding portfolio — three distinct floral
           <span class="wedding-tag">Lush &amp; Romantic</span>
         </div>
         <p class="wedding-desc">A richly composed bridal bouquet with trailing stems and a deep jewel-toned palette. One of the most editorial pieces we've ever created.</p>
+        <a href="{{ site.baseurl }}/weddings#consultation" class="wedding-cta">Plan something similar →</a>
       </div>
     </div>
-    <div class="wedding-card">
+    <div class="wedding-card" data-aesthetic="dark-romance">
       <div class="wedding-card-img">
         <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/3ddf1f69-8e31-44e3-8204-d28d4797d6f7/NationalGothic--264.jpg" alt="Dylan and Josh" loading="lazy">
       </div>
@@ -58,6 +68,7 @@ description: "Browse Golden Flowers' wedding portfolio — three distinct floral
           <span class="wedding-tag">Lush &amp; Romantic</span>
         </div>
         <p class="wedding-desc">A romantic evening wedding in Nevada City's historic hotel ballroom. Arrangements in midnight plum, forest green, and warm amber candlelight tones.</p>
+        <a href="{{ site.baseurl }}/weddings#consultation" class="wedding-cta">Plan something similar →</a>
       </div>
     </div>
   </div>
@@ -75,7 +86,7 @@ description: "Browse Golden Flowers' wedding portfolio — three distinct floral
     <p>Clean, structured, and quietly beautiful. White, ivory, soft sage. Design that belongs in the landscape without competing with it.</p>
   </div>
   <div class="wedding-grid">
-    <div class="wedding-card">
+    <div class="wedding-card" data-aesthetic="minimalist">
       <div class="wedding-card-img">
         <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1776975105426-4BAEXMVDBX6Q5ETZ1BVC/l-a-preview-6962.jpg" alt="Jacqueline and Brandon" loading="lazy">
       </div>
@@ -86,9 +97,10 @@ description: "Browse Golden Flowers' wedding portfolio — three distinct floral
           <span class="wedding-tag">Elevated Minimalist</span>
         </div>
         <p class="wedding-desc">Modern bridal bouquet in ivory and white with textural greenery. Restrained, refined, and impeccably composed.</p>
+        <a href="{{ site.baseurl }}/weddings#consultation" class="wedding-cta">Plan something similar →</a>
       </div>
     </div>
-    <div class="wedding-card">
+    <div class="wedding-card" data-aesthetic="minimalist">
       <div class="wedding-card-img">
         <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/4da65886-1655-4ecd-957b-8d48969ffc60/l-a-preview-0305.jpg" alt="Lynn and Aaron" loading="lazy">
       </div>
@@ -99,9 +111,10 @@ description: "Browse Golden Flowers' wedding portfolio — three distinct floral
           <span class="wedding-tag">Elevated Minimalist</span>
         </div>
         <p class="wedding-desc">High-altitude table arrangements at 8,200 feet. Low-profile centerpieces in cream and ivory designed to preserve the panoramic mountain view.</p>
+        <a href="{{ site.baseurl }}/weddings#consultation" class="wedding-cta">Plan something similar →</a>
       </div>
     </div>
-    <div class="wedding-card">
+    <div class="wedding-card" data-aesthetic="minimalist">
       <div class="wedding-card-img">
         <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1776975190166-PCFON7QIR65XK1VPLH3K/l-a-preview-8192.jpg" alt="Allie and Devin" loading="lazy">
       </div>
@@ -112,6 +125,7 @@ description: "Browse Golden Flowers' wedding portfolio — three distinct floral
           <span class="wedding-tag">Elevated Minimalist</span>
         </div>
         <p class="wedding-desc">Ceremony arch and reception florals at Edgewood's lakeside terrace. Airy whites and soft sage framing the lake beyond.</p>
+        <a href="{{ site.baseurl }}/weddings#consultation" class="wedding-cta">Plan something similar →</a>
       </div>
     </div>
   </div>
@@ -129,7 +143,7 @@ description: "Browse Golden Flowers' wedding portfolio — three distinct floral
     <p>Native blooms, grasses, and foraged elements styled with an editorial eye. Wild and seasonal — but never untended.</p>
   </div>
   <div class="wedding-grid">
-    <div class="wedding-card">
+    <div class="wedding-card" data-aesthetic="wildflower">
       <div class="wedding-card-img">
         <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1779129057432-Y8VGDRIHTV4BILCZVW27/MountainTimePhoto-48.jpg" alt="Camille and Max" loading="lazy">
       </div>
@@ -140,9 +154,10 @@ description: "Browse Golden Flowers' wedding portfolio — three distinct floral
           <span class="wedding-tag">Wildflower Modern</span>
         </div>
         <p class="wedding-desc">A Sierra Nevada outdoor ceremony with a wooden arch wrapped in native wildflowers, grasses, and trailing foliage. The lake visible through the arrangement.</p>
+        <a href="{{ site.baseurl }}/weddings#consultation" class="wedding-cta">Plan something similar →</a>
       </div>
     </div>
-    <div class="wedding-card">
+    <div class="wedding-card" data-aesthetic="wildflower">
       <div class="wedding-card-img">
         <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1779129078871-L0C6RZWY0OFNYM1EF93C/MountainTimePhoto-64.jpg" alt="Tori and Tucker" loading="lazy">
       </div>
@@ -153,9 +168,10 @@ description: "Browse Golden Flowers' wedding portfolio — three distinct floral
           <span class="wedding-tag">Wildflower Modern</span>
         </div>
         <p class="wedding-desc">An outdoor summer wedding on the Hellman-Ehrman grounds with arrangements of meadow-foraged and farm-grown California wildflowers.</p>
+        <a href="{{ site.baseurl }}/weddings#consultation" class="wedding-cta">Plan something similar →</a>
       </div>
     </div>
-    <div class="wedding-card">
+    <div class="wedding-card" data-aesthetic="wildflower">
       <div class="wedding-card-img">
         <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/5854318e-a30f-4303-b4d9-38c510fdc75a/Lake+Tahoe+Floral+Installationn" alt="Sam and Matt" loading="lazy">
       </div>
@@ -166,12 +182,47 @@ description: "Browse Golden Flowers' wedding portfolio — three distinct floral
           <span class="wedding-tag">Wildflower Modern</span>
         </div>
         <p class="wedding-desc">Lakeside ceremony with a sprawling floral installation. Native shrubs and seasonal blooms blending seamlessly into the Tahoe shoreline landscape.</p>
+        <a href="{{ site.baseurl }}/weddings#consultation" class="wedding-cta">Plan something similar →</a>
       </div>
     </div>
   </div>
 </section>
 
 <!-- Don't see your vibe -->
+<script>
+(function() {
+  function getFilter() {
+    return new URLSearchParams(window.location.search).get('filter') || 'all';
+  }
+  function applyFilter(filter) {
+    document.querySelectorAll('.wedding-card[data-aesthetic]').forEach(function(card) {
+      card.style.display = (filter === 'all' || card.dataset.aesthetic === filter) ? '' : 'none';
+    });
+    document.querySelectorAll('.port-section').forEach(function(section) {
+      var cards = section.querySelectorAll('.wedding-card[data-aesthetic]');
+      var hasVisible = Array.from(cards).some(function(c) { return c.style.display !== 'none'; });
+      section.style.display = hasVisible ? '' : 'none';
+      var next = section.nextElementSibling;
+      if (next && next.tagName === 'HR') next.style.display = hasVisible ? '' : 'none';
+    });
+    document.querySelectorAll('.portfolio-filter-btn').forEach(function(btn) {
+      btn.classList.toggle('active', btn.dataset.filter === filter);
+    });
+  }
+  function setFilter(filter) {
+    var url = new URL(window.location.href);
+    if (filter === 'all') { url.searchParams.delete('filter'); }
+    else { url.searchParams.set('filter', filter); }
+    history.pushState({}, '', url);
+    applyFilter(filter);
+  }
+  document.querySelectorAll('.portfolio-filter-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() { setFilter(btn.dataset.filter); });
+  });
+  applyFilter(getFilter());
+})();
+</script>
+
 <section class="cta-section" style="background:var(--bg3);border-top:1px solid var(--bor);">
   <div style="max-width:640px;margin:0 auto;">
     <span class="label">Something different in mind?</span>

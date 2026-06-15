@@ -2,6 +2,8 @@
 layout: default
 title: "Weddings"
 permalink: /weddings
+description: "Full-service Lake Tahoe wedding florals designed by Brittany, an agronomist. Custom proposals, California-grown flowers, one wedding per date."
+canonical_url: https://jshplhm.github.io/goldenflowers/weddings/
 ---
 
 <!-- Page Header -->
@@ -170,7 +172,8 @@ permalink: /weddings
     </form>
     <div id="consultation-success" style="display:none;margin-top:32px;padding:24px;border:1px solid oklch(34% .09 148 / .4);background:oklch(34% .09 148 / .06);">
       <p style="color:var(--acc);font-family:var(--f-d);font-style:italic;font-size:1.4rem;margin-bottom:8px;">Thank you — we'll be in touch soon.</p>
-      <p style="font-size:.88rem;color:var(--fg2);">We'll follow up within 48 hours to confirm availability and schedule your consultation.</p>
+      <p style="font-size:.88rem;color:var(--fg2);margin-bottom:12px;">We'll follow up within 48 hours to confirm availability and schedule your consultation.</p>
+      <p style="font-size:.88rem;color:var(--fg2);">Your consultation will be a 30–45 minute call with Brittany — by phone or video, wherever is easiest for you. Bring any inspiration you have: photos, a Pinterest board, a venue layout. No need to have it figured out yet.</p>
     </div>
   </div>
 </section>
@@ -181,6 +184,18 @@ permalink: /weddings
     <span class="label">What couples say</span>
     <h2>Thirteen couples.<br>Their words.</h2>
     {% include testimonials.html %}
+  </div>
+</section>
+
+<hr class="div">
+
+<!-- Seasonal Callout -->
+<section class="section">
+  <div class="container">
+    <span class="label">Seasonal flowers</span>
+    <h2>What's growing<br>for your date.</h2>
+    <p style="max-width:560px;margin-bottom:32px;">California's seasons produce dramatically different palettes — ranunculus and anemone in spring, garden roses and dahlias in summer, rich harvest tones in fall. Your proposal is built around what's at peak on your date, not what's convenient to import.</p>
+    <a href="{{ site.baseurl }}/about#seasonal-availability" class="btn-ghost">See what's in season →</a>
   </div>
 </section>
 
