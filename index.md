@@ -4,8 +4,6 @@ title: "Golden Flowers"
 permalink: /
 ---
 
-{% include header.html %}
-
 <section class="hero">
   <div class="hero-media">
     <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/2b98245c-1230-4e50-847e-90c7d13f793b/Lake%2BTahoe%2BFloral%2BInstallation.jpeg" alt="Lake Tahoe floral installation by Golden Flowers" loading="eager">
@@ -15,8 +13,8 @@ permalink: /
     <h1>Artful, farm-grown<br>florals.<br>Foam-free.</h1>
     <p class="hero-sub">One wedding per date &nbsp;·&nbsp; Founded by an agronomist</p>
     <div class="hero-btns">
-      <a href="/portfolio" class="btn-primary">Explore Portfolio</a>
-      <a href="/weddings" class="btn-ghost">How We Work</a>
+      <a href="{{ site.baseurl }}/portfolio" class="btn-primary">Explore Portfolio</a>
+      <a href="{{ site.baseurl }}/weddings" class="btn-ghost">How We Work</a>
     </div>
   </div>
 </section>
@@ -99,7 +97,7 @@ permalink: /
         <span class="label">Recent work</span>
         <h2 class="section-head">From our<br>portfolio.</h2>
       </div>
-      <a href="/portfolio" class="btn-ghost">View full portfolio →</a>
+      <a href="{{ site.baseurl }}/portfolio" class="btn-ghost">View full portfolio →</a>
     </div>
     <div class="port-grid">
       <div class="port-item tall">
@@ -137,7 +135,7 @@ permalink: /
           <li>We'll build a custom proposal around your venue, vision, and what's in season</li>
           <li>No floral foam minimums. No imported filler. Just intentional design.</li>
         </ul>
-        <a href="/weddings#consultation" class="btn-primary">Request a Custom Estimate</a>
+        <a href="{{ site.baseurl }}/weddings#consultation" class="btn-primary">Request a Custom Estimate</a>
       </div>
       <div>
         <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/f77301d9-f890-451d-8bf8-c8d3a07d2bc4/Lake+Tahoe+Luxe+Boquet.jpg" alt="Luxe bouquet" loading="lazy" style="width:100%;aspect-ratio:4/5;object-fit:cover;display:block;">
@@ -179,7 +177,7 @@ permalink: /
     <span class="label">Browse by venue</span>
     <h2 class="section-head">Every venue<br>is its own world.</h2>
     <div class="venue-grid">
-      <a href="/venues/edgewood-tahoe" class="venue-card">
+      <a href="{{ site.baseurl }}/venues/edgewood-tahoe" class="venue-card">
         <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1776975190166-PCFON7QIR65XK1VPLH3K/l-a-preview-8192.jpg" alt="Edgewood Tahoe" loading="lazy">
         <div class="venue-overlay"><p class="venue-name">Edgewood Tahoe</p><p class="venue-meta">South Shore · Lakeside</p></div>
       </a>
@@ -203,7 +201,7 @@ permalink: /
   <span class="label" style="display:block;text-align:center">Start here</span>
   <h2>Your Lake Tahoe wedding<br>flowers start here.</h2>
   <p>We take one wedding per date. Reach out early.</p>
-  <a href="/weddings#consultation" class="btn-primary">Schedule a Consultation</a>
+  <a href="{{ site.baseurl }}/weddings#consultation" class="btn-primary">Schedule a Consultation</a>
 </div>
 
 {% include footer.html %}

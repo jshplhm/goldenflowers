@@ -1,6 +1,6 @@
 site: "Golden Flowers | Lake Tahoe Wedding Florist"
-url: "https://goldenflorals.com"
-baseurl: ""
+url: "https://jshplhm.github.io/goldenflowers"
+baseurl: "/goldenflowers"
 
 # Permalink setting - posts override this with their own permalink in frontmatter
 permalink: /:categories/:title/
