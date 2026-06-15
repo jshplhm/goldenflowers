@@ -2,7 +2,8 @@ backend:
   name: github
   repo: jshplhm/goldenflowers
   branch: main
-  base_url: https://api.netlify.com
+  auth_type: pkce
+  app_id: Ov23li30OHE4IrMTgS9F
 
 media_folder: assets/images/blog
 public_folder: /goldenflowers/assets/images/blog
