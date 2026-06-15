@@ -9,7 +9,7 @@ permalink: /
     <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/2b98245c-1230-4e50-847e-90c7d13f793b/Lake%2BTahoe%2BFloral%2BInstallation.jpeg" alt="Lake Tahoe floral installation by Golden Flowers" loading="eager">
   </div>
   <div class="hero-copy">
-    <span class="hero-eyebrow">Lake Tahoe · Est. Golden Flowers</span>
+    <span class="hero-eyebrow">Lake Tahoe Wedding Florist</span>
     <h1>Artful, farm-grown<br>florals.<br>Foam-free.</h1>
     <p class="hero-sub">One wedding per date &nbsp;·&nbsp; Founded by an agronomist</p>
     <div class="hero-btns">

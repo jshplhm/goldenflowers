@@ -61,7 +61,6 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html {
   scroll-behavior: smooth;
-  background: oklch(87% .016 115); /* --bg2 tone so ultra-wide gutters look intentional */
 }
 body {
   background: var(--bg);
@@ -71,8 +70,6 @@ body {
   font-weight: 300;
   line-height: 1.7;
   overflow-x: hidden;
-  max-width: 1440px;
-  margin: 0 auto;
 }
 a { text-decoration: none; color: inherit; }
 img { display: block; max-width: 100%; }
@@ -85,16 +82,17 @@ img { display: block; max-width: 100%; }
   padding: 22px 48px;
   background: var(--bg);
   border-bottom: 1px solid var(--bor);
-  transition: top .35s ease, box-shadow .35s ease;
+  transition: transform .35s ease, box-shadow .35s ease;
 }
 #site-nav.nav-hidden {
-  top: -80px;
+  transform: translateY(-100%);
 }
 #site-nav.nav-scrolled {
   box-shadow: 0 2px 24px oklch(20% .023 148 / .08);
 }
 /* Push page content below fixed nav */
 body { padding-top: 65px; }
+@media (max-width: 1024px) { body { padding-top: 52px; } }
 .nav-logo {
   font-family: var(--f-b); font-size: .78rem;
   letter-spacing: .2em; text-transform: uppercase;
