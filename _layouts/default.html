@@ -21,5 +21,54 @@
 
 {% include footer.html %}
 
+<script>
+// ── Scroll-reveal nav ──────────────────────────────────
+(function() {
+  const nav = document.getElementById('site-nav');
+  let lastY = 0;
+  let ticking = false;
+
+  window.addEventListener('scroll', function() {
+    if (!ticking) {
+      window.requestAnimationFrame(function() {
+        const y = window.scrollY;
+        if (y > 80) {
+          nav.classList.add('nav-scrolled');
+          if (y > lastY + 4) {
+            nav.classList.add('nav-hidden');
+          } else if (y < lastY - 4) {
+            nav.classList.remove('nav-hidden');
+          }
+        } else {
+          nav.classList.remove('nav-scrolled');
+          nav.classList.remove('nav-hidden');
+        }
+        lastY = y;
+        ticking = false;
+      });
+      ticking = true;
+    }
+  });
+
+  // Close mobile menu on outside click
+  document.addEventListener('click', function(e) {
+    if (!nav.contains(e.target)) {
+      nav.classList.remove('nav-open');
+    }
+  });
+})();
+
+// ── Active nav state ───────────────────────────────────
+(function() {
+  const path = window.location.pathname;
+  document.querySelectorAll('.nav-links a').forEach(function(link) {
+    const href = link.getAttribute('href');
+    if (href && path.endsWith(href.replace('{{ site.baseurl }}', '').split('#')[0])) {
+      link.classList.add('active');
+    }
+  });
+})();
+</script>
+
 </body>
 </html>
