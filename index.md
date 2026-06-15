@@ -149,38 +149,7 @@ canonical_url: https://goldenflorals.com/
   <div class="container">
     <span class="label">What couples say</span>
     <h2 class="section-head">Words from<br>our couples.</h2>
-    <div class="testi-grid">
-      <div class="testi-card">
-        <span class="testi-tag">Wildflower Modern · Hellman-Ehrman</span>
-        <p class="testi-quote">"Brittany accomplished the look we wanted. The flowers were gorgeous. She was professional and very easy to work with."</p>
-        <div class="testi-by"><strong>Julie</strong>Hellman-Ehrman Estate, Lake Tahoe</div>
-      </div>
-      <div class="testi-card">
-        <span class="testi-tag">Elevated Minimalist · Ritz-Carlton</span>
-        <p class="testi-quote">"Brittany had ideas that helped me achieve the luxe look I wanted while staying in budget."</p>
-        <div class="testi-by"><strong>Sara</strong>The Ritz-Carlton, Truckee</div>
-      </div>
-      <div class="testi-card">
-        <span class="testi-tag">Lush &amp; Romantic · Miner's Foundry</span>
-        <p class="testi-quote">"All of the bouquets were perfect, exactly the way we envisioned them. We would absolutely recommend Golden Flowers to anyone married-to-be."</p>
-        <div class="testi-by"><strong>Samantha</strong>The Miner's Foundry, Nevada City</div>
-      </div>
-      <div class="testi-card">
-        <span class="testi-tag">National Exchange Hotel</span>
-        <p class="testi-quote">"They went above and beyond to ensure my personal vision was executed professionally. The bouquets were truly unforgettable."</p>
-        <div class="testi-by"><strong>Jenna</strong>National Exchange Hotel, Nevada City</div>
-      </div>
-      <div class="testi-card">
-        <span class="testi-tag">Destination Wedding · Nevada City</span>
-        <p class="testi-quote">"She brought her creativity to make something that far exceeded my expectations — even incorporating handmade wooden flowers I sent her."</p>
-        <div class="testi-by"><strong>Lauren</strong>Harmony Ridge Estate, Nevada City</div>
-      </div>
-      <div class="testi-card">
-        <span class="testi-tag">Edgewood Tahoe</span>
-        <p class="testi-quote">"Golden Flowers did a great job, I would hire them again in a heartbeat. Thank you Brittany and team."</p>
-        <div class="testi-by"><strong>Nicole</strong>Edgewood, Lake Tahoe</div>
-      </div>
-    </div>
+    {% include testimonials.html %}
   </div>
 </section>
 

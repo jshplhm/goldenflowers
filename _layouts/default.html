@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/style.css?v=16">
+  <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/style.css?v=18">
   
   {% seo %}
 </head>
@@ -52,7 +52,35 @@
   document.addEventListener('click', function(e) {
     if (!nav.contains(e.target)) {
       nav.classList.remove('nav-open');
+      const t = nav.querySelector('.nav-toggle');
+      if (t) t.setAttribute('aria-expanded', 'false');
     }
+  });
+})();
+
+// ── Testimonials carousel ──────────────────────────────
+(function() {
+  document.querySelectorAll('[data-testi]').forEach(function(carousel) {
+    const track = carousel.querySelector('.testi-track');
+    const prev = carousel.querySelector('[data-dir="prev"]');
+    const next = carousel.querySelector('[data-dir="next"]');
+    if (!track) return;
+
+    function step() {
+      const card = track.querySelector('.testi-card');
+      const gap = parseFloat(getComputedStyle(track).columnGap) || 0;
+      return card ? card.getBoundingClientRect().width + gap : track.clientWidth;
+    }
+    function update() {
+      const max = track.scrollWidth - track.clientWidth;
+      if (prev) prev.disabled = track.scrollLeft <= 4;
+      if (next) next.disabled = track.scrollLeft >= max - 4;
+    }
+    if (prev) prev.addEventListener('click', function() { track.scrollBy({ left: -step(), behavior: 'smooth' }); });
+    if (next) next.addEventListener('click', function() { track.scrollBy({ left: step(), behavior: 'smooth' }); });
+    track.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    update();
   });
 })();
 

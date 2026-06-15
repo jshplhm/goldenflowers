@@ -10,8 +10,8 @@
     </div>
   </div>
   <div class="nav-actions">
-    <a href="{{ site.baseurl }}/weddings#consultation" class="nav-cta">Schedule a Consultation</a>
-    <button class="nav-toggle" aria-label="Toggle navigation" onclick="document.getElementById('site-nav').classList.toggle('nav-open')">
+    <a href="{{ site.baseurl }}/weddings#consultation" class="nav-cta"><span class="nav-cta-full">Schedule a Consultation</span><span class="nav-cta-short">Inquire</span></a>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="site-nav" onclick="var n=document.getElementById('site-nav');var o=n.classList.toggle('nav-open');this.setAttribute('aria-expanded',o)">
       <span></span><span></span><span></span>
     </button>
   </div>

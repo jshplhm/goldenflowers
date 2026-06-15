@@ -184,7 +184,7 @@ redirect_from:
 <section class="section">
   <div class="container">
     <span class="label">What couples say</span>
-    <h2>Thirteen couples, their words.</h2>
+    <h2>In their own words.</h2>
     {% include testimonials.html %}
   </div>
 </section>
