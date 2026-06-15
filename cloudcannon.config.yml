@@ -1,0 +1,35 @@
+paths:
+  uploads: assets/images/blog
+
+collections_config:
+  posts:
+    path: _posts
+    output: true
+    name: Blog Posts
+    icon: article
+    _enabled_editors:
+      - content
+      - data
+    _inputs:
+      layout:
+        hidden: true
+      permalink:
+        hidden: true
+      author:
+        hidden: true
+      category:
+        hidden: true
+      title:
+        type: text
+        label: Title
+      date:
+        type: date
+        label: Publish Date
+      featured_image:
+        type: image
+        label: Featured Image
+        comment: Main photo shown at the top of the post
+      description:
+        type: textarea
+        label: Description
+        comment: 1–2 sentences shown in search results and social previews
