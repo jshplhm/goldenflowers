@@ -8,7 +8,7 @@ redirect_from:
 
 <header class="page-header">
   <span class="label">Blog</span>
-  <h1>Flowers, farming,<br>and the Sierra Nevada.</h1>
+  <h1>Flowers, farming, and the Sierra Nevada.</h1>
   <p>Seasonal notes, wedding inspiration, and thoughts from the farm at Golden Flowers.</p>
 </header>
 

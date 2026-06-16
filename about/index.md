@@ -3,7 +3,7 @@ layout: default
 title: "About Golden Flowers"
 seo_title: "About Golden Flowers | Sustainable Lake Tahoe Wedding Florist"
 permalink: /about
-description: "Golden Flowers is a Lake Tahoe wedding florist specializing in bold, sustainable, artful floral design. Located in Incline Village, our studio creates seasonally grown arrangements — from editorial bouquets to full installations — for couples who want their wedding flowers to feel intentional, and unforgettable."
+description: "Golden Flowers is a Lake Tahoe wedding florist specializing in bold, sustainable, artful floral design. Located in Incline Village, our studio creates seasonally grown arrangements, from editorial bouquets to full installations, for couples who want their wedding flowers to feel intentional, and unforgettable."
 canonical_url: https://goldenflorals.com/about
 ---
 
@@ -14,8 +14,8 @@ canonical_url: https://goldenflorals.com/about
   </div>
   <div class="founder-copy">
     <span class="founder-tag">Founded by Brittany</span>
-    <h1>Designed by an<br>agronomist.</h1>
-    <p>Golden Flowers is Brittany's studio. She trained as an agronomist before becoming a floral designer — which means she understands not just how flowers look, but how they grow, what conditions produce them, and what it takes to source them responsibly.</p>
+    <h1>Designed by an agronomist.</h1>
+    <p>Golden Flowers is Brittany's studio. She trained as an agronomist before becoming a floral designer, which means she understands not just how flowers look, but how they grow, what conditions produce them, and what it takes to source them responsibly.</p>
     <p>That background shapes everything: the decision to grow on farm plots instead of buying imported product, the commitment to foam-free construction, and the design philosophy of working with what the California land offers at its seasonal peak.</p>
     <p class="credential">Agronomist · Floral Designer · Founded Golden Flowers in Incline Village, Lake Tahoe</p>
   </div>
@@ -29,14 +29,14 @@ canonical_url: https://goldenflorals.com/about
     <div class="agro-grid">
       <div class="agro-text">
         <span class="label">Background</span>
-        <h2>Why agronomy<br>changes everything.</h2>
-        <p>Most floral designers learn to arrange flowers. Brittany learned to grow them first. Agronomy — the science of soil, crops, and land management — informs the way she thinks about every material she works with.</p>
+        <h2>Why agronomy changes everything.</h2>
+        <p>Most floral designers learn to arrange flowers. Brittany learned to grow them first. Agronomy, the science of soil, crops, and land management, informs the way she thinks about every material she works with.</p>
         <p>When she sources from California growers, she's not just looking for pretty flowers. She's evaluating growing conditions, harvest timing, stem integrity, and how a flower will hold through a full wedding day. When she designs foam-free arrangements, she's applying the same rigor: understanding how stems take water, how structures hold without artificial support, and how to build something beautiful that also works.</p>
-        <p>It's not a marketing angle. It's a different way of knowing the material — and it shows in the work.</p>
+        <p>It's not a marketing angle. It's a different way of knowing the material, and it shows in the work.</p>
         <div class="agro-credentials">
           <div class="cred-item">
             <h4>Farm-grown</h4>
-            <p>Our own California farm plots, managed agronomically — not just grown.</p>
+            <p>Our own California farm plots, managed agronomically, not just grown.</p>
           </div>
           <div class="cred-item">
             <h4>California-sourced</h4>
@@ -66,8 +66,8 @@ canonical_url: https://goldenflorals.com/about
   <div class="farm-grid">
     <div class="farm-text">
       <span class="label">The farm</span>
-      <h3>Grown here,<br>designed for here.</h3>
-      <p>We maintain our own farm plots in California, growing varieties that perform well in the Sierra Nevada climate and light. This isn't window dressing — it means that a meaningful portion of what goes into every arrangement was grown by us, from seed or cutting, with care for soil health and biodiversity.</p>
+      <h3>Grown here, designed for here.</h3>
+      <p>We maintain our own farm plots in California, growing varieties that perform well in the Sierra Nevada climate and light. This isn't window dressing. It means that a meaningful portion of what goes into every arrangement was grown by us, from seed or cutting, with care for soil health and biodiversity.</p>
       <p style="margin-top:16px;">What we don't grow ourselves, we source from California growers we've worked with for years. We know where our flowers come from. We know the soil. We know the season. That chain of custody is part of the product.</p>
     </div>
     <div class="farm-imgs">
@@ -85,10 +85,10 @@ canonical_url: https://goldenflorals.com/about
 <section class="section" id="seasonal-availability">
   <div class="container">
     <span class="label">Seasonal availability</span>
-    <h2>What's growing<br>when you're married.</h2>
-    <p style="font-size:.92rem;color:var(--fg2);max-width:560px;margin-bottom:8px;">California's seasons produce dramatically different palettes. Here's what we can source at its peak across the year — and what that means for your design.</p>
+    <h2>What's growing for your wedding.</h2>
+    <p style="font-size:.92rem;color:var(--fg2);max-width:560px;margin-bottom:8px;">California's seasons produce dramatically different palettes. Here's what we can source at its peak across the year, and what that means for your design.</p>
     <div class="seasonal-grid">
-      <details class="season-card">
+      <details class="season-card" open>
         <summary>
           <span class="season-name">Spring</span>
           <span class="season-dates">March – May</span>
@@ -107,7 +107,7 @@ canonical_url: https://goldenflorals.com/about
           <p class="season-note">The most romantic palette of the year. Rich jewel tones and soft pastels. Peak for Lush &amp; Romantic aesthetics.</p>
         </div>
       </details>
-      <details class="season-card">
+      <details class="season-card" open>
         <summary>
           <span class="season-name">Summer</span>
           <span class="season-dates">June – August</span>
@@ -126,7 +126,7 @@ canonical_url: https://goldenflorals.com/about
           <p class="season-note">Peak Lake Tahoe wedding season. Abundant, warm, and beautiful. Ideal for all three of our aesthetics.</p>
         </div>
       </details>
-      <details class="season-card">
+      <details class="season-card" open>
         <summary>
           <span class="season-name">Fall</span>
           <span class="season-dates">September – November</span>
@@ -145,7 +145,7 @@ canonical_url: https://goldenflorals.com/about
           <p class="season-note">Dramatic harvest tones. The richest palette of the year for Lush &amp; Romantic and Wildflower Modern.</p>
         </div>
       </details>
-      <details class="season-card">
+      <details class="season-card" open>
         <summary>
           <span class="season-name">Winter</span>
           <span class="season-dates">December – February</span>
@@ -175,11 +175,11 @@ canonical_url: https://goldenflorals.com/about
 <section class="section">
   <div class="container">
     <span class="label">Philosophy</span>
-    <h2>The principles<br>behind the work.</h2>
+    <h2>The principles behind the work.</h2>
     <div class="values-grid">
       <div class="value-item">
         <h3>Intentional, not imported</h3>
-        <p>We don't import what's convenient. We work with what California produces at its peak, in the season you're getting married. The design responds to the land — not the other way around.</p>
+        <p>We don't import what's convenient. We work with what California produces at its peak, in the season you're getting married. The design responds to the land, not the other way around.</p>
       </div>
       <div class="value-item">
         <h3>Specific, not formula</h3>
@@ -196,8 +196,8 @@ canonical_url: https://goldenflorals.com/about
 <div class="cta-section">
   <div style="max-width:640px;margin:0 auto;">
     <span class="label" style="display:block;text-align:center">Work with us</span>
-    <h2>Start with<br>a conversation.</h2>
-    <p>Reach out with your date and venue — we'll let you know if we're available.</p>
+    <h2>Start with a conversation.</h2>
+    <p>Reach out with your date and venue, we'll let you know if we're available.</p>
     <a href="{{ site.baseurl }}/weddings#consultation" class="btn-primary">Schedule a Consultation</a>
   </div>
 </div>

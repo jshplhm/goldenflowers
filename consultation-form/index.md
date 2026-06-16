@@ -3,20 +3,20 @@ layout: default
 title: "Schedule a Consultation"
 seo_title: "Schedule a Wedding Floral Consultation | Golden Flowers"
 permalink: /consultation-form
-description: "Schedule a free consultation with Golden Flowers — Lake Tahoe's preferred wedding florist. We respond within 48 hours."
+description: "Schedule a free consultation with Golden Flowers, Lake Tahoe's preferred wedding florist. We respond within 48 hours."
 canonical_url: https://goldenflorals.com/consultation-form
 ---
 
 <header class="page-header">
   <span class="label">Get started</span>
-  <h1>Let's start the<br>conversation.</h1>
+  <h1>Let's start the conversation.</h1>
   <p>Tell us about your date, venue, and vision. We'll follow up within 48 hours to confirm availability and schedule a call.</p>
 </header>
 
 <section class="form-section" id="consultation">
   <div class="container" style="max-width:1100px;">
     <form action="https://formspree.io/f/xgobrjyo" method="POST" id="consultation-form">
-      <input type="hidden" name="_subject" value="New consultation request — Golden Flowers">
+      <input type="hidden" name="_subject" value="New consultation request, Golden Flowers">
       <input type="hidden" name="_next" value="{{ site.baseurl }}/consultation-form#consultation-success">
       <div>
         <label for="name">Your name</label>
@@ -62,10 +62,10 @@ canonical_url: https://goldenflorals.com/consultation-form
         <label for="aesthetic">Aesthetic direction</label>
         <select id="aesthetic" name="aesthetic">
           <option value="" disabled selected>Which direction resonates?</option>
-          <option>Lush &amp; Romantic — rich, dramatic, deep tones</option>
-          <option>Elevated Minimalist — clean, airy, restrained</option>
-          <option>Wildflower Modern — wild, seasonal, editorial</option>
-          <option>A mix — I'll explain below</option>
+          <option>Lush &amp; Romantic, rich, dramatic, deep tones</option>
+          <option>Elevated Minimalist, clean, airy, restrained</option>
+          <option>Wildflower Modern, wild, seasonal, editorial</option>
+          <option>A mix, I'll explain below</option>
           <option>Not sure yet</option>
         </select>
       </div>
@@ -79,7 +79,7 @@ canonical_url: https://goldenflorals.com/consultation-form
       </div>
     </form>
     <div id="consultation-success" style="display:none;margin-top:32px;padding:24px;border:1px solid oklch(34% .09 148 / .4);background:oklch(34% .09 148 / .06);">
-      <p style="color:var(--acc);font-family:var(--f-d);font-style:italic;font-size:1.4rem;margin-bottom:8px;">Thank you — we'll be in touch soon.</p>
+      <p style="color:var(--acc);font-family:var(--f-d);font-style:italic;font-size:1.4rem;margin-bottom:8px;">Thank you, we'll be in touch soon.</p>
       <p style="font-size:.88rem;color:var(--fg2);">We'll follow up within 48 hours to confirm availability and schedule your consultation with Brittany.</p>
     </div>
   </div>

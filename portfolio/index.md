@@ -3,7 +3,7 @@ layout: default
 title: "Portfolio"
 seo_title: "Lake Tahoe Wedding Floral Design | Golden Flowers Portfolio"
 permalink: /portfolio
-description: "Browse our wedding floral designs — wild, sustainable, editorial arrangements for Lake Tahoe, Nevada City, Truckee and the broader Sierras"
+description: "Browse our wedding floral designs, wild, sustainable, editorial arrangements for Lake Tahoe, Nevada City, Truckee and the broader Sierras"
 canonical_url: https://goldenflorals.com/portfolio
 redirect_from:
   - /portfolio-1
@@ -22,8 +22,8 @@ redirect_from:
 
 <header class="page-header">
   <span class="label">Portfolio</span>
-  <h1>A look into<br>our creative world.</h1>
-  <p>Three aesthetics that define our work — but not the only ones we do. Browse what resonates and bring us your vision.</p>
+  <h1>A look into our creative world.</h1>
+  <p>Three aesthetics that define our work, but not the only ones we do. Browse what resonates and bring us your vision.</p>
 </header>
 
 <div class="portfolio-filters">
@@ -154,7 +154,7 @@ redirect_from:
       <span class="label">Aesthetic 03</span>
       <h2>Wildflower Modern</h2>
     </div>
-    <p>Native blooms, grasses, and foraged elements styled with an editorial eye. Wild and seasonal — but never untended.</p>
+    <p>Native blooms, grasses, and foraged elements styled with an editorial eye. Wild and seasonal, but never untended.</p>
   </div>
   <div class="wedding-grid">
     <div class="wedding-card" data-aesthetic="wildflower">
@@ -241,7 +241,7 @@ redirect_from:
   <div style="max-width:640px;margin:0 auto;">
     <span class="label">Something different in mind?</span>
     <h2>We work in every direction.</h2>
-    <p>These aesthetics are a starting point — not a limit. Bring your Pinterest board, a venue photo, or a feeling you can't quite name yet. Every wedding we design starts from your vision, not ours.</p>
+    <p>These aesthetics are a starting point, not a limit. Bring your Pinterest board, a venue photo, or a feeling you can't quite name yet. Every wedding we design starts from your vision, not ours.</p>
     <a href="{{ site.baseurl }}/weddings#consultation" class="btn-primary">Share your inspiration</a>
   </div>
 </section>
