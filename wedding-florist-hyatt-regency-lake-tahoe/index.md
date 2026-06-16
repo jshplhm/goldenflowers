@@ -9,7 +9,7 @@ canonical_url: https://goldenflorals.com/wedding-florist-hyatt-regency-lake-taho
 
 <header class="page-header">
   <span class="label">Venue</span>
-  <h1>Hyatt Regency<br>Lake Tahoe</h1>
+  <h1>Hyatt Regency Lake Tahoe</h1>
   <p>Incline Village, North Shore &nbsp;·&nbsp; Lakefront resort ceremonies &amp; receptions</p>
 </header>
 
@@ -18,9 +18,9 @@ canonical_url: https://goldenflorals.com/wedding-florist-hyatt-regency-lake-taho
     <div class="two-col">
       <div class="two-col-text">
         <span class="label">Our approach here</span>
-        <h2>Where the North Shore<br>meets the water.</h2>
-        <p>The Hyatt Regency Lake Tahoe sits directly on the lake at Incline Village — Brittany's home base on the North Shore. It's a venue she knows the way you know your own neighborhood: the light at different times of day, the way the lake color shifts from morning to evening, which outdoor spaces benefit from tall installations versus low-profile work.</p>
-        <p>Florals at the Hyatt need to hold their own against the scenery without competing with it. The lake and mountain backdrop are the dominant visual elements. We design arrangements that feel native to the setting — sourced from California, grown with care for the soil they came from, and styled to belong in this specific landscape.</p>
+        <h2>Where the North Shore meets the water.</h2>
+        <p>The Hyatt Regency Lake Tahoe sits directly on the lake at Incline Village, Brittany's home base on the North Shore. It's a venue she knows the way you know your own neighborhood: the light at different times of day, the way the lake color shifts from morning to evening, which outdoor spaces benefit from tall installations versus low-profile work.</p>
+        <p>Florals at the Hyatt need to hold their own against the scenery without competing with it. The lake and mountain backdrop are the dominant visual elements. We design arrangements that feel native to the setting, sourced from California, grown with care for the soil they came from, and styled to belong in this specific landscape.</p>
         <p>The resort hosts ceremonies on the lakefront beach, the private pier, and the lawn terraces, as well as indoor receptions in the ballrooms and event suites. Each setting has different light, different scale, and different design requirements. We've worked them all.</p>
       </div>
       <div class="two-col-img">
@@ -35,7 +35,7 @@ canonical_url: https://goldenflorals.com/wedding-florist-hyatt-regency-lake-taho
 <section class="section">
   <div class="container">
     <span class="label">Design philosophy</span>
-    <h2>How we approach<br>Hyatt florals.</h2>
+    <h2>How we approach Hyatt florals.</h2>
     <div class="philosophy-grid">
       <div class="philosophy-item">
         <h3>Lakefront scale</h3>
@@ -43,15 +43,15 @@ canonical_url: https://goldenflorals.com/wedding-florist-hyatt-regency-lake-taho
       </div>
       <div class="philosophy-item">
         <h3>North Shore palette</h3>
-        <p>Incline Village's light is different from the South Shore — cooler, cleaner, with the Sierra Nevada peaks visible across the water. We pull palettes from that environment: alpine white, sage, deep forest green, with pops of seasonal color that feel honest to the place.</p>
+        <p>Incline Village's light is different from the South Shore, cooler, cleaner, with the Sierra Nevada peaks visible across the water. We pull palettes from that environment: alpine white, sage, deep forest green, with pops of seasonal color that feel honest to the place.</p>
       </div>
       <div class="philosophy-item">
         <h3>Indoor-outdoor continuity</h3>
-        <p>Many Hyatt weddings move from outdoor ceremony to indoor reception. We design the full floral program as a single cohesive system — so the transition feels seamless, not like two different events.</p>
+        <p>Many Hyatt weddings move from outdoor ceremony to indoor reception. We design the full floral program as a single cohesive system, so the transition feels seamless, not like two different events.</p>
       </div>
       <div class="philosophy-item">
         <h3>California-sourced</h3>
-        <p>No imported product, ever. Every arrangement at the Hyatt uses flowers grown in California — many from our own farm plots. The environmental ethic matches the venue's lakeside setting.</p>
+        <p>No imported product, ever. Every arrangement at the Hyatt uses flowers grown in California, many from our own farm plots. The environmental ethic matches the venue's lakeside setting.</p>
       </div>
     </div>
   </div>
@@ -62,7 +62,7 @@ canonical_url: https://goldenflorals.com/wedding-florist-hyatt-regency-lake-taho
 <div class="cta-section">
   <div style="max-width:640px;margin:0 auto;">
     <span class="label" style="display:block;text-align:center">Getting married at the Hyatt</span>
-    <h2>Let's design<br>your wedding.</h2>
+    <h2>Let's design your wedding.</h2>
     <p>Tell us your date and vision. We'll let you know if we're available and what the design process looks like.</p>
     <a href="{{ site.baseurl }}/weddings#consultation" class="btn-primary">Schedule a Consultation</a>
   </div>

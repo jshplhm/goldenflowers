@@ -13,8 +13,8 @@ canonical_url: https://goldenflorals.com/
   </div>
   <div class="hero-copy">
     <h1 class="hero-eyebrow">Lake Tahoe Wedding Florist</h1>
-    <p class="hero-display">Artful, farm&#8209;grown<br>florals.<br>Foam-free.</p>
-    <p class="hero-sub">One wedding per date · Agronomist-founded</p>
+    <p class="hero-display">Artful florals, rooted in the Sierra.</p>
+    <p class="hero-sub">Farm-grown &amp; foam-free · One wedding per date</p>
     <div class="hero-btns">
       <a href="{{ site.baseurl }}/portfolio" class="btn-primary">Explore Portfolio</a>
       <a href="{{ site.baseurl }}/weddings" class="btn-ghost">How We Work</a>
@@ -22,30 +22,30 @@ canonical_url: https://goldenflorals.com/
   </div>
 </section>
 
-<section class="section section-tinted">
+<section class="section section-warm">
   <div class="container">
     <span class="label">What sets us apart</span>
-    <h2 class="section-head">Designed to be<br>unlike anything else.</h2>
+    <h2 class="section-head">Designed to be unlike anything else.</h2>
     <div class="diff-grid">
       <div class="diff-card">
-        <div class="diff-icon">✦</div>
+        <div class="diff-icon">01</div>
         <h3>Farm-grown</h3>
         <p>We grow on our own plots in California and source exclusively from growers we trust. No flowers flown in from across the world.</p>
       </div>
       <div class="diff-card">
-        <div class="diff-icon">◌</div>
+        <div class="diff-icon">02</div>
         <h3>Foam-free</h3>
         <p>Every arrangement we make is built without floral foam. Intentional, sustainable, and better for the environment.</p>
       </div>
       <div class="diff-card">
-        <div class="diff-icon">◇</div>
+        <div class="diff-icon">03</div>
         <h3>One wedding per date</h3>
-        <p>We never double-book. Your wedding day gets our complete attention, start to finish — from design through breakdown.</p>
+        <p>We never double-book. Your wedding day gets our complete attention, start to finish, from design through breakdown.</p>
       </div>
       <div class="diff-card">
-        <div class="diff-icon">◉</div>
+        <div class="diff-icon">04</div>
         <h3>Agronomist-founded</h3>
-        <p>Founder Brittany trained as an agronomist — a scientist specializing in soil health and how plants grow. That understanding informs every design decision.</p>
+        <p>Founder Brittany trained as an agronomist, a scientist specializing in soil health and how plants grow. That understanding informs every design decision.</p>
       </div>
     </div>
   </div>
@@ -54,7 +54,7 @@ canonical_url: https://goldenflorals.com/
 <section class="section">
   <div class="container">
     <span class="label">Find your aesthetic</span>
-    <h2 class="section-head">Three distinct<br>design languages.</h2>
+    <h2 class="section-head">Three distinct design languages.</h2>
     <div class="aesthetic-grid">
       <div class="aesthetic-card">
         <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1770534306889-NSEB5HC1TYWMEPG4WSCI/NationalGothic--268.jpg" alt="Lush and Romantic floral design" loading="lazy">
@@ -87,14 +87,20 @@ canonical_url: https://goldenflorals.com/
   </div>
 </section>
 
-<hr class="section-div">
+<section class="fullbleed">
+  <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/4685a495-c2ce-4b90-9fd1-f91ca0d6a135/K%2BJ-0962.jpg" alt="Golden Flowers ceremony arch at a Lake Tahoe wedding" loading="lazy">
+  <div class="fullbleed-copy">
+    <span class="fullbleed-eyebrow">Grown, not shipped</span>
+    <p class="fullbleed-line">Every stem chosen for one couple, one date, one place in the mountains.</p>
+  </div>
+</section>
 
 <section class="section">
   <div class="container">
     <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:56px;">
       <div>
         <span class="label">Recent work</span>
-        <h2 class="section-head">From our<br>portfolio.</h2>
+        <h2 class="section-head">From our portfolio.</h2>
       </div>
       <a href="{{ site.baseurl }}/portfolio" class="btn-ghost">View full portfolio →</a>
     </div>
@@ -133,7 +139,7 @@ canonical_url: https://goldenflorals.com/
           <li>Every package includes consultation through day-of setup and breakdown</li>
           <li>We'll build a custom proposal around your venue, vision, and what's in season</li>
         </ul>
-        <p class="price-tagline">No floral foam minimums. No imported filler. Just intentional design.</p>
+        <p class="price-tagline">No floral foam. No imported filler. Just intentional design.</p>
         <a href="{{ site.baseurl }}/weddings#consultation" class="btn-primary">Request a Custom Estimate</a>
       </div>
       <div>
@@ -148,7 +154,7 @@ canonical_url: https://goldenflorals.com/
 <section class="section">
   <div class="container">
     <span class="label">What couples say</span>
-    <h2 class="section-head">Words from<br>our couples.</h2>
+    <h2 class="section-head">Words from our couples.</h2>
     {% include testimonials.html %}
   </div>
 </section>
@@ -156,7 +162,7 @@ canonical_url: https://goldenflorals.com/
 <section class="section section-tinted">
   <div class="container">
     <span class="label">Browse by venue</span>
-    <h2 class="section-head">Every venue<br>is its own world.</h2>
+    <h2 class="section-head">Every venue is its own world.</h2>
     <div class="venue-grid">
       <a href="{{ site.baseurl }}/venues/edgewood-tahoe" class="venue-card">
         <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1776975190166-PCFON7QIR65XK1VPLH3K/l-a-preview-8192.jpg" alt="Edgewood Tahoe" loading="lazy">
@@ -176,19 +182,18 @@ canonical_url: https://goldenflorals.com/
       </a>
     </div>
     <div style="margin-top:40px;padding-top:32px;border-top:1px solid var(--bor);">
-      <p style="font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--fgm);margin-bottom:10px;">Also at</p>
-      <p style="font-size:.85rem;color:var(--fg2);line-height:2.1;">Ritz-Carlton Lake Tahoe at Northstar &middot; Hellman-Ehrman Mansion &middot; Chateau at Incline Village &middot; Hyatt Regency Lake Tahoe &middot; Tahoe Mountain Club &middot; Olympic Valley Stables &middot; Martis Camp &middot; Valhalla Tahoe &middot; North Lake Tahoe Event Center &middot; Heavenly &middot; Miner's Foundry &middot; National Exchange Hotel &middot; Harmony Ridge Estate &middot; River Highlands Ranch</p>
+      <p style="font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--fgm);margin-bottom:10px;">We've also designed weddings at</p>
+      <p style="font-size:.85rem;color:var(--fg2);line-height:2.1;">Hellman-Ehrman Mansion &middot; Chateau at Incline Village &middot; Hyatt Regency Lake Tahoe &middot; Tahoe Mountain Club &middot; Olympic Valley Stables &middot; Martis Camp &middot; Valhalla Tahoe &middot; North Lake Tahoe Event Center &middot; Heavenly &middot; Miner's Foundry &middot; Harmony Ridge Estate &middot; River Highlands Ranch</p>
     </div>
-    <p style="font-size:.85rem;color:var(--fg2);margin-top:32px;padding-top:24px;border-top:1px solid var(--bor);">Delivering flowers throughout Grass Valley, Nevada City &amp; the Gold Country foothills. <a href="https://grassvalleyflowers.com" target="_blank" rel="noopener" style="color:var(--acc);border-bottom:1px solid oklch(34% .09 148 / .3);">Shop local delivery at grassvalleyflowers.com →</a></p>
   </div>
 </section>
 
 <div class="cta-section">
   <div style="max-width:640px;margin:0 auto;">
     <span class="label" style="display:block;text-align:center">Start here</span>
-    <h2>Your Lake Tahoe wedding<br>flowers start here.</h2>
+    <h2>Your Lake Tahoe wedding flowers start here.</h2>
     <p>We take one wedding per date. Reach out early.</p>
     <a href="{{ site.baseurl }}/weddings#consultation" class="btn-primary">Schedule a Consultation</a>
-    <p style="font-size:.75rem;color:var(--fgm);margin-top:16px;letter-spacing:.04em;">Summer 2026 dates filling — we take one wedding per date.</p>
+    <p style="font-size:.75rem;color:var(--fgm);margin-top:16px;letter-spacing:.04em;">Summer 2026 dates filling. We take one wedding per date.</p>
   </div>
 </div>
