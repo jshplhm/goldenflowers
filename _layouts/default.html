@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/style.css?v=22">
+  <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/style.css?v=23">
   
   {% seo %}
 </head>
@@ -19,7 +19,60 @@
 
 {% include footer.html %}
 
+{% include consult-modal.html %}
+
 <script>
+// ── Consultation modal (lightbox CTAs) ─────────────────
+(function() {
+  const modal = document.getElementById('consult-modal');
+  if (!modal) return;
+  let lastFocus = null;
+  function open(e) {
+    lastFocus = document.activeElement;
+    modal.classList.add('open');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('modal-open');
+    const first = modal.querySelector('input, select, textarea, button');
+    if (first) setTimeout(function() { first.focus(); }, 60);
+  }
+  function close() {
+    modal.classList.remove('open');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('modal-open');
+    if (lastFocus) lastFocus.focus();
+  }
+  document.addEventListener('click', function(e) {
+    const trigger = e.target.closest('a[href*="#consultation"]:not([href*="consultation-success"]), [data-consult-open]');
+    if (trigger) { e.preventDefault(); open(); return; }
+    if (e.target === modal || e.target.closest('[data-consult-close]')) { close(); }
+  });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && modal.classList.contains('open')) close();
+  });
+})();
+
+// ── Blog search filter ─────────────────────────────────
+(function() {
+  const input = document.getElementById('blog-search');
+  if (!input) return;
+  const cards = Array.prototype.slice.call(document.querySelectorAll('#blog-grid .blog-card'));
+  const empty = document.getElementById('blog-empty');
+  const count = document.getElementById('blog-count');
+  function apply() {
+    const q = input.value.trim().toLowerCase();
+    let n = 0;
+    cards.forEach(function(c) {
+      const hay = (c.dataset.title || '') + ' ' + (c.dataset.text || '');
+      const show = !q || hay.indexOf(q) !== -1;
+      c.style.display = show ? '' : 'none';
+      if (show) n++;
+    });
+    if (empty) empty.style.display = n ? 'none' : 'block';
+    if (count) count.textContent = n + (n === 1 ? ' post' : ' posts');
+  }
+  input.addEventListener('input', apply);
+  apply();
+})();
 // ── Scroll-reveal nav ──────────────────────────────────
 (function() {
   const nav = document.getElementById('site-nav');
@@ -32,9 +85,14 @@
         const y = window.scrollY;
         if (y > 80) {
           nav.classList.add('nav-scrolled');
-          if (y > lastY + 4) {
-            nav.classList.add('nav-hidden');
-          } else if (y < lastY - 4) {
+          // Desktop: always visible. Mobile (≤1024): auto-hide on scroll-down.
+          if (window.innerWidth <= 1024) {
+            if (y > lastY + 4) {
+              nav.classList.add('nav-hidden');
+            } else if (y < lastY - 4) {
+              nav.classList.remove('nav-hidden');
+            }
+          } else {
             nav.classList.remove('nav-hidden');
           }
         } else {
