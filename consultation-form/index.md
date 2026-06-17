@@ -9,7 +9,7 @@ canonical_url: https://goldenflorals.com/consultation-form
 
 <section class="hero hero--interior">
   <div class="hero-media">
-    <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/50ef2005-58af-4984-811f-1db29027b87c/bride+and+groom+with+bouquet+and+airplane.jpg" alt="Bride and groom with bouquet" loading="eager">
+    <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1779129104888-WQHCD92BY6WE4CQZH8QU/14.jpg" alt="Bride holding her bouquet at Lake Tahoe" loading="eager">
   </div>
   <div class="hero-copy">
     <span class="hero-eyebrow">Get started</span>
