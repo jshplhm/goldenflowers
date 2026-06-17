@@ -7,11 +7,16 @@ description: "Schedule a free consultation with Golden Flowers, Lake Tahoe's pre
 canonical_url: https://goldenflorals.com/consultation-form
 ---
 
-<header class="page-header">
-  <span class="label">Get started</span>
-  <h1>Let's start the conversation.</h1>
-  <p>Tell us about your date, venue, and vision. We'll follow up within 48 hours to confirm availability and schedule a call.</p>
-</header>
+<section class="hero hero--interior">
+  <div class="hero-media">
+    <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/50ef2005-58af-4984-811f-1db29027b87c/bride+and+groom+with+bouquet+and+airplane.jpg" alt="Bride and groom with bouquet" loading="eager">
+  </div>
+  <div class="hero-copy">
+    <span class="hero-eyebrow">Get started</span>
+    <h1 class="hero-display">Let's start the conversation.</h1>
+    <p class="hero-sub">Tell us about your date, venue, and vision. We'll follow up within 48 hours to confirm availability and schedule a call.</p>
+  </div>
+</section>
 
 <section class="form-section" id="consultation">
   <div class="container" style="max-width:1100px;">

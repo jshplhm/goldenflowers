@@ -20,11 +20,19 @@ redirect_from:
   - /portfolio-1/sarahandbrian
 ---
 
-<header class="page-header">
-  <span class="label">Portfolio</span>
-  <h1>A look into our creative world.</h1>
-  <p>Three aesthetics that define our work, but not the only ones we do. Browse what resonates and bring us your vision.</p>
-</header>
+<section class="hero hero--interior">
+  <div class="hero-media">
+    <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1770534306889-NSEB5HC1TYWMEPG4WSCI/NationalGothic--268.jpg" alt="Lake Tahoe wedding floral installation" loading="eager">
+  </div>
+  <div class="hero-copy">
+    <span class="hero-eyebrow">Portfolio</span>
+    <h1 class="hero-display">A look into our creative world.</h1>
+    <p class="hero-sub">Three aesthetics that define our work, but not the only ones we do. Browse what resonates and bring us your vision.</p>
+    <div class="hero-btns">
+      <a href="{{ site.baseurl }}/weddings#consultation" class="btn-primary" data-consult-open>Start a Consultation</a>
+    </div>
+  </div>
+</section>
 
 <div class="portfolio-filters">
   <button class="filter-chip portfolio-filter-btn active" data-filter="all">All</button>

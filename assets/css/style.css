@@ -1164,6 +1164,12 @@ details.season-card, .season-card {
 /* — Interior image hero (Home-style, bottom-aligned) — */
 .hero--interior { height: 72vh; min-height: 440px; padding-bottom: 70px; }
 .hero--interior .hero-display { margin-bottom: 16px; }
+/* Interior subhead reads as a normal sentence, not the uppercase tagline */
+.hero--interior .hero-sub {
+  text-transform: none; letter-spacing: .01em;
+  font-size: 1rem; font-weight: 400;
+  max-width: 660px; margin-left: auto; margin-right: auto;
+}
 
 /* — Consultation modal (lightbox CTAs) — */
 .modal-overlay {
