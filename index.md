@@ -222,7 +222,7 @@ canonical_url: https://goldenflorals.com/
     <form action="https://formspree.io/f/xgobrjyo" method="POST" id="consultation-form" data-multistep data-ajax>
       <input type="hidden" name="_subject" value="New consultation request, Golden Flowers">
       <input type="hidden" name="_next" value="{{ site.baseurl }}/#consultation-success">
-      <span class="form-step-indicator" aria-hidden="true">Step 1 of 2 · Is your date open?</span>
+      <span class="form-step-indicator" aria-hidden="true">Step 1 of 2</span>
       <div class="form-step-1">
         <div class="field-full">
           <label for="date">Wedding date</label>

@@ -19,7 +19,7 @@ canonical_url: https://goldenflorals.com/about
   </div>
 </section>
 
-<section class="section" style="padding-bottom:0;">
+<section class="section" style="padding-bottom:56px;">
   <div class="container" style="max-width:760px;">
     <p style="font-size:1.05rem;">Golden Flowers is Brittany's studio. She trained as an agronomist before becoming a floral designer, which means she understands not just how flowers look, but how they grow, what conditions produce them, and what it takes to source them responsibly.</p>
     <p style="margin-top:16px;">That background shapes everything: the decision to grow on farm plots instead of buying imported product, the commitment to foam-free construction, and the design philosophy of working with what the California land offers at its seasonal peak.</p>

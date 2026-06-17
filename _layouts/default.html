@@ -124,6 +124,7 @@
 (function() {
   // Step 1 → Step 2 reveal (progressive enhancement; no-JS shows all)
   document.querySelectorAll('form[data-multistep]').forEach(function(form) {
+    const step1 = form.querySelector('.form-step-1');
     const step2 = form.querySelector('.form-step-2');
     const advance = form.querySelector('.form-advance');
     const advanceBtn = form.querySelector('[data-form-advance]');
@@ -131,21 +132,26 @@
     const backBtn = form.querySelector('[data-form-back]');
     if (!step2 || !advanceBtn) return;
     step2.hidden = true;
+    function toTop() { const m = form.closest('.modal'); if (m) m.scrollTop = 0; }
     advanceBtn.addEventListener('click', function() {
       const reqs = form.querySelectorAll('.form-step-1 [required]');
       for (let i = 0; i < reqs.length; i++) {
         if (!reqs[i].reportValidity()) return;
       }
-      step2.hidden = false;
+      if (step1) step1.hidden = true;          // page 2 no longer shows page 1's answers
       if (advance) advance.hidden = true;
-      if (indicator) indicator.hidden = true;
+      step2.hidden = false;
+      if (indicator) indicator.textContent = 'Step 2 of 2';
+      toTop();
       const first = step2.querySelector('select, input, textarea');
       if (first) first.focus();
     });
     if (backBtn) backBtn.addEventListener('click', function() {
       step2.hidden = true;
+      if (step1) step1.hidden = false;
       if (advance) advance.hidden = false;
-      if (indicator) indicator.hidden = false;
+      if (indicator) indicator.textContent = 'Step 1 of 2';
+      toTop();
       const f = form.querySelector('.form-step-1 input'); if (f) f.focus();
     });
   });
@@ -182,17 +188,26 @@
           const tagWrap = success.querySelector('[data-success-tags]');
           if (tagWrap) {
             tagWrap.innerHTML = '';
+            const chips = [];
+            if (dateVal) chips.push(fmtDate(dateVal));
             ['venue', 'budget', 'aesthetic'].forEach(function(name) {
               let v = data.get(name);
               if (!v || /not sure/i.test(v)) return;
               if (name === 'aesthetic') v = v.split(',')[0];
+              chips.push(v);
+            });
+            chips.forEach(function(t) {
               const s = document.createElement('span');
               s.className = 'stag';
-              s.textContent = v;
+              s.textContent = t;
               tagWrap.appendChild(s);
             });
           }
           form.hidden = true;
+          // Hide the form header (label / heading / intro) so the confirmation is its own clean view
+          Array.prototype.forEach.call(wrap.children, function(el) {
+            if (el !== success && !el.classList.contains('modal-close')) el.classList.add('is-gone');
+          });
           success.hidden = false;
           success.setAttribute('tabindex', '-1');
           success.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -207,7 +222,7 @@
   });
 })();
 
-// ── Testimonials: reveal the rest on mobile ────────────
+// ── (removed) testimonials reveal — all reviews now swipeable ──
 (function() {
   document.querySelectorAll('[data-testi-more]').forEach(function(btn) {
     const carousel = btn.closest('[data-testi]');

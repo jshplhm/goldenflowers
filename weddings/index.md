@@ -26,7 +26,7 @@ redirect_from:
   </div>
 </section>
 
-<section class="section" style="padding-top:80px;padding-bottom:0;">
+<section class="section" style="padding-top:80px;padding-bottom:64px;">
   <div class="container" style="max-width:760px;">
     <p style="font-size:1.05rem;">We take one wedding per date. Every couple gets Brittany's full attention, from the first consultation through setup and breakdown on the day. No handoffs. No junior designers. Just us.</p>
     <p style="margin-top:16px;font-size:.88rem;color:var(--fgm);">Available for weddings throughout Lake Tahoe, the Sierra Nevada, and the Gold Country foothills.</p>
@@ -135,7 +135,7 @@ redirect_from:
     <form action="https://formspree.io/f/xgobrjyo" method="POST" id="consultation-form" data-multistep data-ajax>
       <input type="hidden" name="_subject" value="New consultation request, Golden Flowers">
       <input type="hidden" name="_next" value="{{ site.baseurl }}/weddings#consultation-success">
-      <span class="form-step-indicator" aria-hidden="true">Step 1 of 2 · Is your date open?</span>
+      <span class="form-step-indicator" aria-hidden="true">Step 1 of 2</span>
       <div class="form-step-1">
         <div class="field-full">
           <label for="date">Wedding date</label>
