@@ -7,11 +7,19 @@ description: "Golden Flowers creates custom wedding florals for Tahoe Mountain C
 canonical_url: https://goldenflorals.com/wedding-florist-tahoe-mountain-club
 ---
 
-<header class="page-header">
-  <span class="label">Venue</span>
-  <h1>Tahoe Mountain Club &amp; The Timbers</h1>
-  <p>Truckee, CA &nbsp;·&nbsp; Mountain resort ceremonies &amp; receptions at Old Greenwood</p>
-</header>
+<section class="hero hero--interior">
+  <div class="hero-media">
+    <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1779129057432-Y8VGDRIHTV4BILCZVW27/MountainTimePhoto-48.jpg" alt="Mountain wedding florals at Tahoe Mountain Club" loading="eager">
+  </div>
+  <div class="hero-copy">
+    <span class="hero-eyebrow">Venue</span>
+    <h1 class="hero-display">Tahoe Mountain Club &amp; The Timbers</h1>
+    <p class="hero-sub">Truckee, CA &nbsp;·&nbsp; Mountain resort ceremonies &amp; receptions at Old Greenwood</p>
+    <div class="hero-btns">
+      <a href="{{ site.baseurl }}/weddings#consultation" class="btn-primary" data-consult-open>Schedule a Consultation</a>
+    </div>
+  </div>
+</section>
 
 <section class="section">
   <div class="container">

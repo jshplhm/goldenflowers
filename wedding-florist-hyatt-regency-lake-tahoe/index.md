@@ -7,11 +7,19 @@ description: "Golden Flowers designs farm-grown, foam-free wedding florals at th
 canonical_url: https://goldenflorals.com/wedding-florist-hyatt-regency-lake-tahoe
 ---
 
-<header class="page-header">
-  <span class="label">Venue</span>
-  <h1>Hyatt Regency Lake Tahoe</h1>
-  <p>Incline Village, North Shore &nbsp;·&nbsp; Lakefront resort ceremonies &amp; receptions</p>
-</header>
+<section class="hero hero--interior">
+  <div class="hero-media">
+    <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1776975190166-PCFON7QIR65XK1VPLH3K/l-a-preview-8192.jpg" alt="Lakefront wedding florals at Hyatt Regency Lake Tahoe" loading="eager">
+  </div>
+  <div class="hero-copy">
+    <span class="hero-eyebrow">Venue</span>
+    <h1 class="hero-display">Hyatt Regency Lake Tahoe</h1>
+    <p class="hero-sub">Incline Village, North Shore &nbsp;·&nbsp; Lakefront resort ceremonies &amp; receptions</p>
+    <div class="hero-btns">
+      <a href="{{ site.baseurl }}/weddings#consultation" class="btn-primary" data-consult-open>Schedule a Consultation</a>
+    </div>
+  </div>
+</section>
 
 <section class="section">
   <div class="container">

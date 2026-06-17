@@ -6,11 +6,16 @@ redirect_from:
   - /natures-canvas-lake-tahoe-wedding-flowers
 ---
 
-<header class="page-header">
-  <span class="label">Blog</span>
-  <h1>Flowers, farming, and the Sierra Nevada.</h1>
-  <p>Seasonal notes, wedding inspiration, and thoughts from the farm at Golden Flowers.</p>
-</header>
+<section class="hero hero--interior">
+  <div class="hero-media">
+    <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/f77301d9-f890-451d-8bf8-c8d3a07d2bc4/Lake+Tahoe+Luxe+Boquet.jpg" alt="Seasonal California-grown bouquet" loading="eager">
+  </div>
+  <div class="hero-copy">
+    <span class="hero-eyebrow">Blog</span>
+    <h1 class="hero-display">Flowers, farming, and the Sierra Nevada.</h1>
+    <p class="hero-sub">Seasonal notes, wedding inspiration, and thoughts from the farm at Golden Flowers.</p>
+  </div>
+</section>
 
 <section class="section">
   <div class="container">
