@@ -8,16 +8,21 @@ canonical_url: https://goldenflorals.com/about
 ---
 
 <!-- Founder Hero -->
-<section class="founder-hero">
-  <div class="founder-img">
+<section class="hero hero--interior">
+  <div class="hero-media">
     <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/50ef2005-58af-4984-811f-1db29027b87c/bride+and+groom+with+bouquet+and+airplane.jpg" alt="Brittany at Golden Flowers" loading="eager">
   </div>
-  <div class="founder-copy">
-    <span class="founder-tag">Founded by Brittany</span>
-    <h1>Designed by an agronomist.</h1>
-    <p>Golden Flowers is Brittany's studio. She trained as an agronomist before becoming a floral designer, which means she understands not just how flowers look, but how they grow, what conditions produce them, and what it takes to source them responsibly.</p>
-    <p>That background shapes everything: the decision to grow on farm plots instead of buying imported product, the commitment to foam-free construction, and the design philosophy of working with what the California land offers at its seasonal peak.</p>
-    <p class="credential">Agronomist · Floral Designer · Founded Golden Flowers in Incline Village, Lake Tahoe</p>
+  <div class="hero-copy">
+    <span class="hero-eyebrow">Founded by Brittany</span>
+    <h1 class="hero-display">Designed by an agronomist.</h1>
+    <p class="hero-sub">Agronomist · Floral Designer · Incline Village, Lake Tahoe</p>
+  </div>
+</section>
+
+<section class="section" style="padding-bottom:0;">
+  <div class="container" style="max-width:760px;">
+    <p style="font-size:1.05rem;">Golden Flowers is Brittany's studio. She trained as an agronomist before becoming a floral designer, which means she understands not just how flowers look, but how they grow, what conditions produce them, and what it takes to source them responsibly.</p>
+    <p style="margin-top:16px;">That background shapes everything: the decision to grow on farm plots instead of buying imported product, the commitment to foam-free construction, and the design philosophy of working with what the California land offers at its seasonal peak.</p>
   </div>
 </section>
 

@@ -7,21 +7,17 @@ canonical_url: https://goldenflorals.com/venues/edgewood-tahoe
 ---
 
 <!-- Hero -->
-<section class="venue-hero">
-  <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1776975190166-PCFON7QIR65XK1VPLH3K/l-a-preview-8192.jpg" alt="Edgewood Tahoe wedding flowers by Golden Flowers">
-  <div class="hero-content">
-    <div class="hero-breadcrumb">
-      <a href="{{ site.baseurl }}/portfolio">Portfolio</a>
-      <span>→</span>
-      <span>Venues</span>
-      <span>→</span>
-      <span>Edgewood Tahoe</span>
-    </div>
-    <h1 class="venue-title">Edgewood Tahoe</h1>
+<section class="hero hero--interior">
+  <div class="hero-media">
+    <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1776975190166-PCFON7QIR65XK1VPLH3K/l-a-preview-8192.jpg" alt="Edgewood Tahoe wedding flowers by Golden Flowers" loading="eager">
+  </div>
+  <div class="hero-copy">
+    <span class="hero-eyebrow">Venue</span>
+    <h1 class="hero-display">Edgewood Tahoe</h1>
     <p class="hero-sub">South Shore, Lake Tahoe &nbsp;·&nbsp; Lakeside ceremonies &amp; receptions</p>
     <div class="hero-btns">
       <a href="#weddings" class="btn-primary">See our Edgewood work</a>
-      <a href="{{ site.baseurl }}/weddings#consultation" class="btn-ghost">Book a consultation</a>
+      <a href="{{ site.baseurl }}/weddings#consultation" class="btn-ghost" data-consult-open>Book a consultation</a>
     </div>
   </div>
 </section>
