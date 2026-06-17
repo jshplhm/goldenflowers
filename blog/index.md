@@ -32,7 +32,6 @@ redirect_from:
         <a href="{{ site.baseurl }}{{ post.url }}" class="blog-card-link">
           <div class="blog-card-body">
             <span class="blog-card-icon">{% include icon.html name=card_icon %}</span>
-            <time class="blog-card-date">{{ post.date | date: "%b %-d, %Y" }}</time>
             <h2 class="blog-card-title">{{ post.title }}</h2>
             <p class="blog-card-excerpt">{{ post.description | strip_html | truncatewords: 24 }}</p>
             <span class="blog-card-more">Read more →</span>
