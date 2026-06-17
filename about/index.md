@@ -201,7 +201,7 @@ canonical_url: https://goldenflorals.com/about
     <div class="pledge-head">
       <span class="label">Our commitment</span>
       <h2>Working toward something better.</h2>
-      <p class="pledge-intro">Sustainability isn't a checkbox &mdash; it's a direction. These are the commitments that shape how we design, source, and grow. Some are already woven into every wedding; others we're actively working toward. We don't claim perfection, only a steady pull in the right direction.</p>
+      <p class="pledge-intro">Sustainability isn't a checkbox. It's a direction. These are the commitments that shape how we design, source, and grow. Some are already woven into every wedding; others we're actively working toward. We don't claim perfection, only a steady pull in the right direction.</p>
     </div>
 
     <hr class="pledge-rule">
@@ -212,7 +212,7 @@ canonical_url: https://goldenflorals.com/about
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22V11"/><path d="M12 11C12 8 9.5 5.5 5.5 5.5 5.5 9.5 8 12 12 12Z"/><path d="M12 13C12 10.2 14.2 8 17.5 8c0 3.3-2.2 5-5.5 5Z"/></svg>
         </span>
         <h4>Foam-free, plastic-free design</h4>
-        <p>No floral foam, ever. We build with reusable mechanics &mdash; chicken wire, wool, and pin frogs &mdash; instead of single-use plastic that sheds microplastics into the watershed.</p>
+        <p>No floral foam, ever. We build with reusable mechanics like chicken wire, wool, and pin frogs instead of single-use plastic that sheds microplastics into the watershed.</p>
       </article>
 
       <article class="pledge-card">
@@ -220,7 +220,7 @@ canonical_url: https://goldenflorals.com/about
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6-5.3-6-10a6 6 0 0 1 12 0c0 4.7-6 10-6 10Z"/><circle cx="12" cy="11" r="2.2"/></svg>
         </span>
         <h4>Buying local first</h4>
-        <p>We reach for what's grown closest before anything else &mdash; our own farm plots and California growers we know personally. No flowers flown in from across the world.</p>
+        <p>We reach for what's grown closest before anything else, starting with our own farm plots and California growers we know personally. No flowers flown in from across the world.</p>
       </article>
 
       <article class="pledge-card">
@@ -228,7 +228,7 @@ canonical_url: https://goldenflorals.com/about
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 19c0-7 4-12 14-13-1 10-6 14-13 14"/><path d="M5 19c2-4 5-6.5 9-8"/></svg>
         </span>
         <h4>Mindful growing practices</h4>
-        <p>Our farm plots are tended for soil health, biodiversity, and pollinators &mdash; a direct extension of Brittany's agronomic training in how land and plants actually thrive.</p>
+        <p>Our farm plots are tended for soil health, biodiversity, and pollinators, a direct extension of Brittany's agronomic training in how land and plants actually thrive.</p>
       </article>
 
       <article class="pledge-card">
@@ -244,7 +244,7 @@ canonical_url: https://goldenflorals.com/about
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20.5S4 15.5 4 9.5A4.2 4.2 0 0 1 12 7a4.2 4.2 0 0 1 8 2.5c0 6-8 11-8 11Z"/></svg>
         </span>
         <h4>Repurposing wedding florals</h4>
-        <p>We're building partnerships to give wedding flowers a second life after the event &mdash; to hospitals, senior care facilities, and community spaces.</p>
+        <p>We're building partnerships to give wedding flowers a second life after the event, going to hospitals, senior care facilities, and community spaces.</p>
       </article>
 
       <article class="pledge-card">
@@ -281,7 +281,7 @@ canonical_url: https://goldenflorals.com/about
     </div>
 
     <blockquote class="pledge-closing">
-      <p>This is a living pledge, not a finished one. Some of it is already core to how we work; some we're still building toward. We won't pretend to have it all figured out &mdash; we'd rather keep learning, evolving, and getting it more right each season. The aim is simple: leave the land a little better than we found it.</p>
+      <p>This is a living pledge, not a finished one. Some of it is already core to how we work; some we're still building toward. We won't pretend to have it all figured out. We'd rather keep learning, evolving, and getting it more right each season. The aim is simple: leave the land a little better than we found it.</p>
     </blockquote>
   </div>
 </section>
