@@ -9,7 +9,7 @@ canonical_url: https://goldenflorals.com/wedding-florist-tahoe-mountain-club
 
 <section class="hero hero--interior">
   <div class="hero-media">
-    <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1779129057432-Y8VGDRIHTV4BILCZVW27/MountainTimePhoto-48.jpg" alt="Mountain wedding florals at Tahoe Mountain Club" loading="eager">
+    <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1779129057432-Y8VGDRIHTV4BILCZVW27/MountainTimePhoto-48.jpg?format=1100w" alt="Mountain wedding florals at Tahoe Mountain Club" loading="eager">
   </div>
   <div class="hero-copy">
     <span class="hero-eyebrow">Venue</span>
@@ -32,7 +32,7 @@ canonical_url: https://goldenflorals.com/wedding-florist-tahoe-mountain-club
         <p>Old Greenwood ceremonies often move between the outdoor ceremony lawn, surrounded by pines and Sierra Nevada peaks, to the Timbers' warm interior reception spaces. We design the full program as one cohesive visual story.</p>
       </div>
       <div class="two-col-img">
-        <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1779129057432-Y8VGDRIHTV4BILCZVW27/MountainTimePhoto-48.jpg" alt="Mountain wedding florals in Truckee" loading="lazy">
+        <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1779129057432-Y8VGDRIHTV4BILCZVW27/MountainTimePhoto-48.jpg?format=1100w" alt="Mountain wedding florals in Truckee" loading="lazy">
       </div>
     </div>
   </div>

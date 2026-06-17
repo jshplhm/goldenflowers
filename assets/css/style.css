@@ -462,7 +462,9 @@ hr.section-div { border: none; border-top: 1px solid var(--bor); display: block;
 @media (max-width: 640px) {
   .testi-track { gap: 16px; }
   .testi-card { flex-basis: 86%; }                     /* ~1 across, next card peeks */
-  .testi-controls { display: none; }                   /* swipe instead */
+  /* Keep arrows on mobile so swipe isn't the only way to advance (a11y) */
+  .testi-controls { display: flex; justify-content: center; gap: 14px; }
+  .testi-arrow { width: 40px; height: 40px; }
 }
 
 /* ── 13. VENUE GRID ───────────────────────────────────── */
@@ -1372,25 +1374,53 @@ h1.venue-title, .page-header h1, .founder-copy h1, .blog-title,
   .trust-venues { width: 100%; }
 }
 
-/* — (d) Mobile menu booking footer (one quiet ask) — */
+/* — (d) Dark full-panel mobile menu (mockup Frame 5) — */
 .nav-menu-foot { display: none; }
 @media (max-width: 1024px) {
+  /* Nav bar turns dark while the menu is open */
+  #site-nav { transition: transform .35s ease, box-shadow .35s ease, background .3s ease; }
+  #site-nav.nav-open {
+    background: var(--fg); border-bottom-color: transparent; box-shadow: none;
+  }
+  #site-nav.nav-open .nav-logo { color: oklch(96% .006 88); }
+  #site-nav.nav-open .nav-toggle span { background: oklch(96% .006 88); }
+  /* Hamburger morphs into an × */
+  .nav-open .nav-toggle span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .nav-open .nav-toggle span:nth-child(2) { opacity: 0; }
+  .nav-open .nav-toggle span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  /* Full-height dark panel below the bar */
+  .nav-open .nav-menu {
+    position: fixed; top: var(--nav-h); left: 0; right: 0; bottom: 0;
+    background: var(--fg); border: none; z-index: 200;
+    display: flex; flex-direction: column; justify-content: space-between;
+    padding: 20px 0 0; overflow-y: auto;
+    animation: menuFade .28s ease;
+  }
+  .nav-open .nav-links { display: flex; flex-direction: column; gap: 0; padding: 8px 0; }
+  .nav-open .nav-links a {
+    font-family: var(--f-d); font-style: italic; font-weight: 300;
+    font-size: 2.3rem; line-height: 1.1; letter-spacing: 0; text-transform: none;
+    color: oklch(96% .006 88); padding: 12px 28px; border: none;
+  }
+  .nav-open .nav-links a::after { display: none; }
+  .nav-open .nav-links a.active { color: var(--acc2); }
+
+  /* Footer block inside the dark panel */
   .nav-open .nav-menu-foot {
-    display: block; padding: 22px 24px 26px; border-top: 1px solid var(--bor);
+    display: block; padding: 24px 28px calc(32px + env(safe-area-inset-bottom, 0px));
+    border-top: 1px solid oklch(96% .006 88 / .14);
   }
   .nav-menu-cta {
     display: inline-block; font-family: var(--f-b); font-weight: 500;
-    font-size: .82rem; letter-spacing: .06em; color: var(--acc2); margin-bottom: 12px;
+    font-size: .95rem; letter-spacing: .04em; color: var(--acc2); margin-bottom: 14px;
   }
-  .nav-menu-meta { font-size: .74rem; color: var(--fgm); line-height: 1.7; }
-  .nav-menu-meta a { color: var(--fgm); }
-  /* Large editorial menu links (mockup Frame 5) */
-  .nav-open .nav-links a {
-    font-family: var(--f-d); font-style: italic; font-weight: 300;
-    font-size: 1.7rem; letter-spacing: 0; text-transform: none; color: var(--fg);
-    padding: 14px 24px;
-  }
+  .nav-menu-meta { font-size: .78rem; color: oklch(80% .012 128); line-height: 1.9; }
+  .nav-menu-meta a { color: oklch(80% .012 128); }
+  body.nav-menu-open { overflow: hidden; }
 }
+@keyframes menuFade { from { opacity: 0; } to { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .nav-open .nav-menu { animation: none; } }
 
 /* — (e) Two-step consultation form — */
 .form-step-1, .form-step-2 { display: contents; }
@@ -1403,9 +1433,21 @@ h1.venue-title, .page-header h1, .founder-copy h1, .blog-title,
 .form-step-hint {
   font-size: .74rem; color: var(--fgm); margin-top: 10px; letter-spacing: .02em;
 }
+.form-back {
+  justify-self: start; background: none; border: none; cursor: pointer;
+  font-family: var(--f-b); font-size: .72rem; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--fgm); padding: 0 0 4px; transition: color .2s;
+}
+.form-back:hover { color: var(--acc); }
 
 /* — (f) In-place success state (modal + inline) — */
 .form-success { text-align: center; padding: 12px 0 4px; }
+.form-success-tags { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; margin-bottom: 22px; }
+.form-success-tags:empty { display: none; }
+.form-success-tags .stag {
+  background: var(--bg2); color: var(--fg2); font-family: var(--f-b);
+  font-size: .7rem; letter-spacing: .02em; padding: 6px 13px; border-radius: 100px;
+}
 .form-success-check {
   width: 56px; height: 56px; border-radius: 50%;
   background: var(--bg2); color: var(--acc);

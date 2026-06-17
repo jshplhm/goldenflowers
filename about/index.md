@@ -10,7 +10,7 @@ canonical_url: https://goldenflorals.com/about
 <!-- Founder Hero -->
 <section class="hero hero--interior">
   <div class="hero-media">
-    <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/50ef2005-58af-4984-811f-1db29027b87c/bride+and+groom+with+bouquet+and+airplane.jpg" alt="Brittany at Golden Flowers" loading="eager">
+    <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/50ef2005-58af-4984-811f-1db29027b87c/bride+and+groom+with+bouquet+and+airplane.jpg?format=1100w" alt="Brittany at Golden Flowers" loading="eager">
   </div>
   <div class="hero-copy">
     <span class="hero-eyebrow">Founded by Brittany</span>
@@ -58,7 +58,7 @@ canonical_url: https://goldenflorals.com/about
         </div>
       </div>
       <div class="agro-img">
-        <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/f77301d9-f890-451d-8bf8-c8d3a07d2bc4/Lake+Tahoe+Luxe+Boquet.jpg" alt="Golden Flowers luxe bouquet" loading="lazy">
+        <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/f77301d9-f890-451d-8bf8-c8d3a07d2bc4/Lake+Tahoe+Luxe+Boquet.jpg?format=1100w" alt="Golden Flowers luxe bouquet" loading="lazy">
       </div>
     </div>
   </div>
@@ -76,17 +76,17 @@ canonical_url: https://goldenflorals.com/about
       <p style="margin-top:16px;">What we don't grow ourselves, we source from California growers we've worked with for years. We know where our flowers come from. We know the soil. We know the season. That chain of custody is part of the product.</p>
     </div>
     <div class="farm-imgs">
-      <div class="farm-img"><img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/2b98245c-1230-4e50-847e-90c7d13f793b/Lake%2BTahoe%2BFloral%2BInstallation.jpeg" alt="Lake Tahoe floral installation" loading="lazy"></div>
-      <div class="farm-img"><img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1779132409797-K9BH7UUY32BCL87P6QI8/16.jpg" alt="Floral installation on Lake Tahoe" loading="lazy"></div>
-      <div class="farm-img"><img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/bc425f51-1b71-473f-815b-8c481fd5a5c1/8.jpg" alt="Reception table flowers" loading="lazy"></div>
-      <div class="farm-img"><img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1779129104888-WQHCD92BY6WE4CQZH8QU/14.jpg" alt="Bride holding bouquet" loading="lazy"></div>
+      <div class="farm-img"><img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/2b98245c-1230-4e50-847e-90c7d13f793b/Lake%2BTahoe%2BFloral%2BInstallation.jpeg?format=1100w" alt="Lake Tahoe floral installation" loading="lazy"></div>
+      <div class="farm-img"><img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1779132409797-K9BH7UUY32BCL87P6QI8/16.jpg?format=1100w" alt="Floral installation on Lake Tahoe" loading="lazy"></div>
+      <div class="farm-img"><img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/bc425f51-1b71-473f-815b-8c481fd5a5c1/8.jpg?format=1100w" alt="Reception table flowers" loading="lazy"></div>
+      <div class="farm-img"><img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1779129104888-WQHCD92BY6WE4CQZH8QU/14.jpg?format=1100w" alt="Bride holding bouquet" loading="lazy"></div>
     </div>
   </div>
 </section>
 
 <!-- Editorial break -->
 <section class="fullbleed">
-  <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/2b98245c-1230-4e50-847e-90c7d13f793b/Lake%2BTahoe%2BFloral%2BInstallation.jpeg" alt="Lake Tahoe floral installation by Golden Flowers" loading="lazy">
+  <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/2b98245c-1230-4e50-847e-90c7d13f793b/Lake%2BTahoe%2BFloral%2BInstallation.jpeg?format=1100w" alt="Lake Tahoe floral installation by Golden Flowers" loading="lazy">
   <div class="fullbleed-copy">
     <span class="fullbleed-eyebrow">Rooted in place</span>
     <p class="fullbleed-line">We design with what the California land gives us, in the season you say yes.</p>

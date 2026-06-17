@@ -13,14 +13,14 @@ redirect_from:
 <!-- Hero -->
 <section class="hero hero--interior">
   <div class="hero-media">
-    <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/5cc6b54a-8b19-461d-b81d-4c6f5c68f205/couple+getting+married+in+Lake+Tahoe+in+front+of+floral+installation" alt="Couple under floral installation at Lake Tahoe" loading="eager">
+    <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/5cc6b54a-8b19-461d-b81d-4c6f5c68f205/couple+getting+married+in+Lake+Tahoe+in+front+of+floral+installation?format=1100w" alt="Couple under floral installation at Lake Tahoe" loading="eager">
   </div>
   <div class="hero-copy">
     <span class="hero-eyebrow">Working with us</span>
     <h1 class="hero-display">Full-service wedding flowers.</h1>
     <p class="hero-sub">One wedding per date · Lake Tahoe & the Sierra Nevada</p>
     <div class="hero-btns">
-      <a href="{{ site.baseurl }}/weddings#consultation" class="btn-primary" data-consult-open>Schedule a Consultation</a>
+      <a href="{{ site.baseurl }}/weddings#consultation" class="btn-primary">Schedule a Consultation &rarr;</a>
       <a href="{{ site.baseurl }}/portfolio" class="btn-ghost">View Portfolio</a>
     </div>
   </div>
@@ -117,7 +117,7 @@ redirect_from:
 
 <!-- Editorial break -->
 <section class="fullbleed">
-  <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1779132409797-K9BH7UUY32BCL87P6QI8/16.jpg" alt="Floral installation at a Lake Tahoe wedding" loading="lazy">
+  <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1779132409797-K9BH7UUY32BCL87P6QI8/16.jpg?format=1100w" alt="Floral installation at a Lake Tahoe wedding" loading="lazy">
   <div class="fullbleed-copy">
     <span class="fullbleed-eyebrow">How we work</span>
     <p class="fullbleed-line">One wedding a day, built start to finish by the same hands.</p>
@@ -155,6 +155,7 @@ redirect_from:
         <p class="form-step-hint">Then — venue · budget · aesthetic · the details</p>
       </div>
       <div class="form-step-2">
+        <button type="button" class="form-back field-full" data-form-back>&larr; Back</button>
         <div>
           <label for="venue">Venue</label>
           <select id="venue" name="venue">
@@ -203,6 +204,7 @@ redirect_from:
       </div>
     </form>
     <div id="consultation-success" class="form-success" data-form-success hidden>
+      <div class="form-success-tags" data-success-tags></div>
       <div class="form-success-check" aria-hidden="true">&#10003;</div>
       <h3>Thank you — your date is with us.</h3>
       <p data-success-date-line hidden>We'll confirm availability for <strong data-success-date></strong> and reach out within <strong>48 hours</strong>.</p>

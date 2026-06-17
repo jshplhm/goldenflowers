@@ -55,7 +55,10 @@
   document.addEventListener('click', function(e) {
     const trigger = e.target.closest('a[href*="#consultation"]:not([href*="consultation-success"]), [data-consult-open]');
     if (trigger) {
-      if (inlineForm) {
+      // data-consult-open always opens the modal (hero / sticky bar / menu).
+      // Plain #consultation links scroll to an on-page form when one exists.
+      const forceModal = trigger.hasAttribute('data-consult-open');
+      if (inlineForm && !forceModal) {
         const target = document.getElementById('consultation') || inlineForm.closest('section');
         if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
         return;
@@ -125,6 +128,7 @@
     const advance = form.querySelector('.form-advance');
     const advanceBtn = form.querySelector('[data-form-advance]');
     const indicator = form.querySelector('.form-step-indicator');
+    const backBtn = form.querySelector('[data-form-back]');
     if (!step2 || !advanceBtn) return;
     step2.hidden = true;
     advanceBtn.addEventListener('click', function() {
@@ -135,8 +139,14 @@
       step2.hidden = false;
       if (advance) advance.hidden = true;
       if (indicator) indicator.hidden = true;
-      const first = step2.querySelector('input, select, textarea');
+      const first = step2.querySelector('select, input, textarea');
       if (first) first.focus();
+    });
+    if (backBtn) backBtn.addEventListener('click', function() {
+      step2.hidden = true;
+      if (advance) advance.hidden = false;
+      if (indicator) indicator.hidden = false;
+      const f = form.querySelector('.form-step-1 input'); if (f) f.focus();
     });
   });
 
@@ -167,6 +177,20 @@
             dateEl.textContent = fmtDate(dateVal);
             dateLine.hidden = false;
             if (dflt) dflt.hidden = true;
+          }
+          // Restate their selections as chips (mockup Frame 7)
+          const tagWrap = success.querySelector('[data-success-tags]');
+          if (tagWrap) {
+            tagWrap.innerHTML = '';
+            ['venue', 'budget', 'aesthetic'].forEach(function(name) {
+              let v = data.get(name);
+              if (!v || /not sure/i.test(v)) return;
+              if (name === 'aesthetic') v = v.split(',')[0];
+              const s = document.createElement('span');
+              s.className = 'stag';
+              s.textContent = v;
+              tagWrap.appendChild(s);
+            });
           }
           form.hidden = true;
           success.hidden = false;
@@ -269,6 +293,11 @@
       if (t) t.setAttribute('aria-expanded', 'false');
     }
   });
+
+  // Lock body scroll while the full-screen dark menu is open
+  new MutationObserver(function() {
+    document.body.classList.toggle('nav-menu-open', nav.classList.contains('nav-open'));
+  }).observe(nav, { attributes: true, attributeFilter: ['class'] });
 })();
 
 // ── Testimonials carousel ──────────────────────────────

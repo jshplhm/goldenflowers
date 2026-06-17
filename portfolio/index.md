@@ -22,7 +22,7 @@ redirect_from:
 
 <section class="hero hero--interior">
   <div class="hero-media">
-    <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1770534306889-NSEB5HC1TYWMEPG4WSCI/NationalGothic--268.jpg" alt="Lake Tahoe wedding floral installation" loading="eager">
+    <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1770534306889-NSEB5HC1TYWMEPG4WSCI/NationalGothic--268.jpg?format=1100w" alt="Lake Tahoe wedding floral installation" loading="eager">
   </div>
   <div class="hero-copy">
     <span class="hero-eyebrow">Portfolio</span>
@@ -53,7 +53,7 @@ redirect_from:
   <div class="wedding-grid">
     <div class="wedding-card" data-aesthetic="dark-romance">
       <div class="wedding-card-img">
-        <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1779129636646-VAQ2FSYB2YNR4O0UZFAA/K%252BJ-8434.jpg" alt="Katie and James" loading="lazy">
+        <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1779129636646-VAQ2FSYB2YNR4O0UZFAA/K%252BJ-8434.jpg?format=1100w" alt="Katie and James" loading="lazy">
       </div>
       <div class="wedding-card-info">
         <p class="wedding-couple">Katie &amp; James</p>
@@ -67,7 +67,7 @@ redirect_from:
     </div>
     <div class="wedding-card" data-aesthetic="dark-romance">
       <div class="wedding-card-img">
-        <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1770534306889-NSEB5HC1TYWMEPG4WSCI/NationalGothic--268.jpg" alt="Niamh and Nick" loading="lazy">
+        <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1770534306889-NSEB5HC1TYWMEPG4WSCI/NationalGothic--268.jpg?format=1100w" alt="Niamh and Nick" loading="lazy">
       </div>
       <div class="wedding-card-info">
         <p class="wedding-couple">Niamh &amp; Nick</p>
@@ -81,7 +81,7 @@ redirect_from:
     </div>
     <div class="wedding-card" data-aesthetic="dark-romance">
       <div class="wedding-card-img">
-        <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/3ddf1f69-8e31-44e3-8204-d28d4797d6f7/NationalGothic--264.jpg" alt="Dylan and Josh" loading="lazy">
+        <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/3ddf1f69-8e31-44e3-8204-d28d4797d6f7/NationalGothic--264.jpg?format=1100w" alt="Dylan and Josh" loading="lazy">
       </div>
       <div class="wedding-card-info">
         <p class="wedding-couple">Dylan &amp; Josh</p>
@@ -110,7 +110,7 @@ redirect_from:
   <div class="wedding-grid">
     <div class="wedding-card" data-aesthetic="minimalist">
       <div class="wedding-card-img">
-        <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1776975105426-4BAEXMVDBX6Q5ETZ1BVC/l-a-preview-6962.jpg" alt="Jacqueline and Brandon" loading="lazy">
+        <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1776975105426-4BAEXMVDBX6Q5ETZ1BVC/l-a-preview-6962.jpg?format=1100w" alt="Jacqueline and Brandon" loading="lazy">
       </div>
       <div class="wedding-card-info">
         <p class="wedding-couple">Jacqueline &amp; Brandon</p>
@@ -124,7 +124,7 @@ redirect_from:
     </div>
     <div class="wedding-card" data-aesthetic="minimalist">
       <div class="wedding-card-img">
-        <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/4da65886-1655-4ecd-957b-8d48969ffc60/l-a-preview-0305.jpg" alt="Lynn and Aaron" loading="lazy">
+        <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/4da65886-1655-4ecd-957b-8d48969ffc60/l-a-preview-0305.jpg?format=1100w" alt="Lynn and Aaron" loading="lazy">
       </div>
       <div class="wedding-card-info">
         <p class="wedding-couple">Lynn &amp; Aaron</p>
@@ -138,7 +138,7 @@ redirect_from:
     </div>
     <div class="wedding-card" data-aesthetic="minimalist">
       <div class="wedding-card-img">
-        <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1776975190166-PCFON7QIR65XK1VPLH3K/l-a-preview-8192.jpg" alt="Allie and Devin" loading="lazy">
+        <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1776975190166-PCFON7QIR65XK1VPLH3K/l-a-preview-8192.jpg?format=1100w" alt="Allie and Devin" loading="lazy">
       </div>
       <div class="wedding-card-info">
         <p class="wedding-couple">Allie &amp; Devin</p>
@@ -167,7 +167,7 @@ redirect_from:
   <div class="wedding-grid">
     <div class="wedding-card" data-aesthetic="wildflower">
       <div class="wedding-card-img">
-        <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1779129057432-Y8VGDRIHTV4BILCZVW27/MountainTimePhoto-48.jpg" alt="Camille and Max" loading="lazy">
+        <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1779129057432-Y8VGDRIHTV4BILCZVW27/MountainTimePhoto-48.jpg?format=1100w" alt="Camille and Max" loading="lazy">
       </div>
       <div class="wedding-card-info">
         <p class="wedding-couple">Camille &amp; Max</p>
@@ -181,7 +181,7 @@ redirect_from:
     </div>
     <div class="wedding-card" data-aesthetic="wildflower">
       <div class="wedding-card-img">
-        <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1779129078871-L0C6RZWY0OFNYM1EF93C/MountainTimePhoto-64.jpg" alt="Tori and Tucker" loading="lazy">
+        <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1779129078871-L0C6RZWY0OFNYM1EF93C/MountainTimePhoto-64.jpg?format=1100w" alt="Tori and Tucker" loading="lazy">
       </div>
       <div class="wedding-card-info">
         <p class="wedding-couple">Tori &amp; Tucker</p>
@@ -195,7 +195,7 @@ redirect_from:
     </div>
     <div class="wedding-card" data-aesthetic="wildflower">
       <div class="wedding-card-img">
-        <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/5854318e-a30f-4303-b4d9-38c510fdc75a/Lake+Tahoe+Floral+Installationn" alt="Sam and Matt" loading="lazy">
+        <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/5854318e-a30f-4303-b4d9-38c510fdc75a/Lake+Tahoe+Floral+Installationn?format=1100w" alt="Sam and Matt" loading="lazy">
       </div>
       <div class="wedding-card-info">
         <p class="wedding-couple">Sam &amp; Matt</p>

@@ -9,7 +9,7 @@ canonical_url: https://goldenflorals.com/wedding-florist-hyatt-regency-lake-taho
 
 <section class="hero hero--interior">
   <div class="hero-media">
-    <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1776975105426-4BAEXMVDBX6Q5ETZ1BVC/l-a-preview-6962.jpg" alt="Lakefront wedding florals at Hyatt Regency Lake Tahoe" loading="eager">
+    <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1776975105426-4BAEXMVDBX6Q5ETZ1BVC/l-a-preview-6962.jpg?format=1100w" alt="Lakefront wedding florals at Hyatt Regency Lake Tahoe" loading="eager">
   </div>
   <div class="hero-copy">
     <span class="hero-eyebrow">Venue</span>
@@ -32,7 +32,7 @@ canonical_url: https://goldenflorals.com/wedding-florist-hyatt-regency-lake-taho
         <p>The resort hosts ceremonies on the lakefront beach, the private pier, and the lawn terraces, as well as indoor receptions in the ballrooms and event suites. Each setting has different light, different scale, and different design requirements. We've worked them all.</p>
       </div>
       <div class="two-col-img">
-        <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1776975190166-PCFON7QIR65XK1VPLH3K/l-a-preview-8192.jpg" alt="Wedding florals at Lake Tahoe lakefront" loading="lazy">
+        <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1776975190166-PCFON7QIR65XK1VPLH3K/l-a-preview-8192.jpg?format=1100w" alt="Wedding florals at Lake Tahoe lakefront" loading="lazy">
       </div>
     </div>
   </div>

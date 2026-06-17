@@ -43,6 +43,7 @@ canonical_url: https://goldenflorals.com/consultation-form
         <p class="form-step-hint">Then — venue · budget · aesthetic · the details</p>
       </div>
       <div class="form-step-2">
+        <button type="button" class="form-back field-full" data-form-back>&larr; Back</button>
         <div>
           <label for="venue">Venue</label>
           <select id="venue" name="venue">
@@ -93,6 +94,7 @@ canonical_url: https://goldenflorals.com/consultation-form
       </div>
     </form>
     <div id="consultation-success" class="form-success" data-form-success hidden>
+      <div class="form-success-tags" data-success-tags></div>
       <div class="form-success-check" aria-hidden="true">&#10003;</div>
       <h3>Thank you — your date is with us.</h3>
       <p data-success-date-line hidden>We'll confirm availability for <strong data-success-date></strong> and reach out within <strong>48 hours</strong>.</p>

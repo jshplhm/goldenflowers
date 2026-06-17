@@ -9,7 +9,7 @@ canonical_url: https://goldenflorals.com/venues/edgewood-tahoe
 <!-- Hero -->
 <section class="hero hero--interior">
   <div class="hero-media">
-    <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1776975190166-PCFON7QIR65XK1VPLH3K/l-a-preview-8192.jpg" alt="Edgewood Tahoe wedding flowers by Golden Flowers" loading="eager">
+    <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1776975190166-PCFON7QIR65XK1VPLH3K/l-a-preview-8192.jpg?format=1100w" alt="Edgewood Tahoe wedding flowers by Golden Flowers" loading="eager">
   </div>
   <div class="hero-copy">
     <span class="hero-eyebrow">Venue</span>
@@ -34,7 +34,7 @@ canonical_url: https://goldenflorals.com/venues/edgewood-tahoe
         <p>We've worked Edgewood ceremonies from the lakeside lawn to the Edgewood Pavilion. Every setting has its own light, its own proportion. We know the space.</p>
       </div>
       <div class="two-col-img">
-        <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/4685a495-c2ce-4b90-9fd1-f91ca0d6a135/K%2BJ-0962.jpg" alt="Ceremony flower arch at Lake Tahoe" loading="lazy">
+        <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/4685a495-c2ce-4b90-9fd1-f91ca0d6a135/K%2BJ-0962.jpg?format=1100w" alt="Ceremony flower arch at Lake Tahoe" loading="lazy">
       </div>
     </div>
     <div class="facts-strip">
@@ -96,7 +96,7 @@ canonical_url: https://goldenflorals.com/venues/edgewood-tahoe
     <p style="font-size:.85rem;color:var(--fgm);margin-bottom:36px;max-width:560px;">Both of our Edgewood weddings to date have leaned Elevated Minimalist, the clean lines work with the venue's architecture and the open lake view. All three of our aesthetics are available here.</p>
     <div class="example-grid">
       <div class="example-card">
-        <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1776975190166-PCFON7QIR65XK1VPLH3K/l-a-preview-8192.jpg" alt="Allie and Devin at Edgewood" loading="lazy">
+        <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1776975190166-PCFON7QIR65XK1VPLH3K/l-a-preview-8192.jpg?format=1100w" alt="Allie and Devin at Edgewood" loading="lazy">
         <div class="example-info">
           <p class="example-couple">Allie &amp; Devin</p>
           <p class="example-meta">Edgewood Tahoe · Summer · Elevated Minimalist</p>
@@ -104,7 +104,7 @@ canonical_url: https://goldenflorals.com/venues/edgewood-tahoe
         </div>
       </div>
       <div class="example-card">
-        <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1776975178999-V2BIKI0FVBMBXFKG8Z3I/l-a-preview-8139.jpg" alt="Lynn and Aaron at Edgewood" loading="lazy">
+        <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1776975178999-V2BIKI0FVBMBXFKG8Z3I/l-a-preview-8139.jpg?format=1100w" alt="Lynn and Aaron at Edgewood" loading="lazy">
         <div class="example-info">
           <p class="example-couple">Lynn &amp; Aaron</p>
           <p class="example-meta">Edgewood Tahoe · Fall · Elevated Minimalist</p>
