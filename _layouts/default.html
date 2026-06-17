@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/style.css?v=24">
+  <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/style.css?v=25">
   
   {% seo %}
 </head>
@@ -41,9 +41,19 @@
     document.body.classList.remove('modal-open');
     if (lastFocus) lastFocus.focus();
   }
+  // If the current page already has an inline consultation form, scroll to it
+  // instead of opening the modal (avoids a modal-over-form redundancy).
+  const inlineForm = document.querySelector('.form-section form, #consultation form');
   document.addEventListener('click', function(e) {
     const trigger = e.target.closest('a[href*="#consultation"]:not([href*="consultation-success"]), [data-consult-open]');
-    if (trigger) { e.preventDefault(); open(); return; }
+    if (trigger) {
+      if (inlineForm) {
+        const target = document.getElementById('consultation') || inlineForm.closest('section');
+        if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
+        return;
+      }
+      e.preventDefault(); open(); return;
+    }
     if (e.target === modal || e.target.closest('[data-consult-close]')) { close(); }
   });
   document.addEventListener('keydown', function(e) {
@@ -51,26 +61,35 @@
   });
 })();
 
-// ── Blog search filter ─────────────────────────────────
+// ── Blog search + load-more ────────────────────────────
 (function() {
+  const grid = document.getElementById('blog-grid');
+  if (!grid) return;
   const input = document.getElementById('blog-search');
-  if (!input) return;
-  const cards = Array.prototype.slice.call(document.querySelectorAll('#blog-grid .blog-card'));
+  const cards = Array.prototype.slice.call(grid.querySelectorAll('.blog-card'));
   const empty = document.getElementById('blog-empty');
   const count = document.getElementById('blog-count');
+  const moreBtn = document.getElementById('blog-more');
+  const BATCH = 12;
+  let shown = BATCH;
   function apply() {
-    const q = input.value.trim().toLowerCase();
-    let n = 0;
+    const q = input ? input.value.trim().toLowerCase() : '';
+    const searching = q.length > 0;
+    let matched = 0, visible = 0;
     cards.forEach(function(c) {
       const hay = (c.dataset.title || '') + ' ' + (c.dataset.text || '');
-      const show = !q || hay.indexOf(q) !== -1;
+      const isMatch = !q || hay.indexOf(q) !== -1;
+      const show = searching ? isMatch : (matched < shown);
+      if (isMatch) matched++;
       c.style.display = show ? '' : 'none';
-      if (show) n++;
+      if (show) visible++;
     });
-    if (empty) empty.style.display = n ? 'none' : 'block';
-    if (count) count.textContent = n + (n === 1 ? ' post' : ' posts');
+    if (empty) empty.style.display = visible ? 'none' : 'block';
+    if (count) count.textContent = (searching ? visible : cards.length) + (((searching ? visible : cards.length) === 1) ? ' post' : ' posts');
+    if (moreBtn) moreBtn.style.display = (!searching && shown < cards.length) ? '' : 'none';
   }
-  input.addEventListener('input', apply);
+  if (input) input.addEventListener('input', function() { shown = BATCH; apply(); });
+  if (moreBtn) moreBtn.addEventListener('click', function() { shown += BATCH; apply(); });
   apply();
 })();
 // ── Scroll-reveal nav ──────────────────────────────────

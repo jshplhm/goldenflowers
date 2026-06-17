@@ -115,6 +115,15 @@ redirect_from:
   </div>
 </section>
 
+<!-- Editorial break -->
+<section class="fullbleed">
+  <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1779132409797-K9BH7UUY32BCL87P6QI8/16.jpg" alt="Floral installation at a Lake Tahoe wedding" loading="lazy">
+  <div class="fullbleed-copy">
+    <span class="fullbleed-eyebrow">How we work</span>
+    <p class="fullbleed-line">One wedding a day, built start to finish by the same hands.</p>
+  </div>
+</section>
+
 <!-- Consultation Form -->
 <section class="form-section" id="consultation">
   <div class="container" style="max-width:1100px;">

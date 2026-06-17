@@ -84,7 +84,14 @@ canonical_url: https://goldenflorals.com/about
   </div>
 </section>
 
-<hr class="section-div">
+<!-- Editorial break -->
+<section class="fullbleed">
+  <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/2b98245c-1230-4e50-847e-90c7d13f793b/Lake%2BTahoe%2BFloral%2BInstallation.jpeg" alt="Lake Tahoe floral installation by Golden Flowers" loading="lazy">
+  <div class="fullbleed-copy">
+    <span class="fullbleed-eyebrow">Rooted in place</span>
+    <p class="fullbleed-line">We design with what the California land gives us, in the season you say yes.</p>
+  </div>
+</section>
 
 <!-- Seasonal Availability Guide -->
 <section class="section" id="seasonal-availability">
