@@ -10,16 +10,28 @@ redirect_from:
   - /weddings-1
 ---
 
-<!-- Page Header -->
-<header class="page-header page-header--split">
-  <div>
-    <span class="label">Working with us</span>
-    <h1>Full-service wedding flowers.</h1>
-    <p>We take one wedding per date. Every couple gets Brittany's full attention, from the first consultation through setup and breakdown on the day. No handoffs. No junior designers. Just us.</p>
+<!-- Hero -->
+<section class="hero hero--interior">
+  <div class="hero-media">
+    <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/5cc6b54a-8b19-461d-b81d-4c6f5c68f205/couple+getting+married+in+Lake+Tahoe+in+front+of+floral+installation" alt="Couple under floral installation at Lake Tahoe" loading="eager">
+  </div>
+  <div class="hero-copy">
+    <span class="hero-eyebrow">Working with us</span>
+    <h1 class="hero-display">Full-service wedding flowers.</h1>
+    <p class="hero-sub">One wedding per date · Lake Tahoe & the Sierra Nevada</p>
+    <div class="hero-btns">
+      <a href="{{ site.baseurl }}/weddings#consultation" class="btn-primary" data-consult-open>Schedule a Consultation</a>
+      <a href="{{ site.baseurl }}/portfolio" class="btn-ghost">View Portfolio</a>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:80px;padding-bottom:0;">
+  <div class="container" style="max-width:760px;">
+    <p style="font-size:1.05rem;">We take one wedding per date. Every couple gets Brittany's full attention, from the first consultation through setup and breakdown on the day. No handoffs. No junior designers. Just us.</p>
     <p style="margin-top:16px;font-size:.88rem;color:var(--fgm);">Available for weddings throughout Lake Tahoe, the Sierra Nevada, and the Gold Country foothills.</p>
   </div>
-  <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/5cc6b54a-8b19-461d-b81d-4c6f5c68f205/couple+getting+married+in+Lake+Tahoe+in+front+of+floral+installation" alt="Couple under floral installation at Lake Tahoe" loading="lazy">
-</header>
+</section>
 
 <!-- Process -->
 <section class="section section-tinted">

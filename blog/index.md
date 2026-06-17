@@ -13,15 +13,29 @@ redirect_from:
 </header>
 
 <section class="section">
-  <div class="container" style="max-width:900px;">
-    {% for post in site.posts %}
-    <article style="padding:36px 0;border-bottom:1px solid var(--bor);">
-      <h2 style="font-family:var(--f-d);font-style:italic;font-weight:300;font-size:clamp(1.6rem,3vw,2.4rem);line-height:1.15;color:var(--fg);margin-bottom:12px;">
-        <a href="{{ site.baseurl }}{{ post.url }}" style="color:inherit;">{{ post.title }}</a>
-      </h2>
-      <p style="font-size:.9rem;color:var(--fg2);line-height:1.75;max-width:640px;margin-bottom:16px;">{{ post.excerpt | strip_html | truncatewords: 30 }}</p>
-      <a href="{{ site.baseurl }}{{ post.url }}" style="font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--acc);border-bottom:1px solid oklch(34% .09 148 / .3);padding-bottom:2px;">Read more →</a>
-    </article>
-    {% endfor %}
+  <div class="container">
+    <div class="blog-toolbar">
+      <input type="search" id="blog-search" class="blog-search" placeholder="Search posts…" aria-label="Search posts">
+      <span class="blog-count" id="blog-count"></span>
+    </div>
+    <div class="blog-grid" id="blog-grid">
+      {%- assign card_icons = "leaf,sprout,bouquet" | split: "," -%}
+      {% for post in site.posts %}
+      {%- assign mi = forloop.index0 | modulo: 3 -%}
+      {%- assign card_icon = card_icons[mi] -%}
+      <article class="blog-card" data-title="{{ post.title | strip_html | escape | downcase }}" data-text="{{ post.title | append: ' ' | append: post.description | append: ' ' | append: post.content | strip_html | escape | downcase }}">
+        <a href="{{ site.baseurl }}{{ post.url }}" class="blog-card-link">
+          <div class="blog-card-body">
+            <span class="blog-card-icon">{% include icon.html name=card_icon %}</span>
+            <time class="blog-card-date">{{ post.date | date: "%b %-d, %Y" }}</time>
+            <h2 class="blog-card-title">{{ post.title }}</h2>
+            <p class="blog-card-excerpt">{{ post.description | strip_html | truncatewords: 24 }}</p>
+            <span class="blog-card-more">Read more →</span>
+          </div>
+        </a>
+      </article>
+      {% endfor %}
+    </div>
+    <p class="blog-empty" id="blog-empty" style="display:none;">No posts match your search.</p>
   </div>
 </section>
