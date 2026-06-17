@@ -1245,5 +1245,42 @@ body.modal-open { overflow: hidden; }
 .blog-card-more { font-size: .68rem; letter-spacing: .12em; text-transform: uppercase; color: var(--acc); }
 .blog-empty { text-align: center; color: var(--fgm); padding: 64px 0; }
 @media (max-width: 900px) { .blog-grid { grid-template-columns: 1fr 1fr; } }
-@media (max-width: 600px) { .blog-grid { grid-template-columns: 1fr; } }
+@media (max-width: 540px) { .blog-grid { grid-template-columns: 1fr; } }
+
+/* Load-more button (blog) */
+.blog-more {
+  display: block; margin: 44px auto 0;
+  font-family: var(--f-b); font-size: .72rem; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--fg2); background: transparent; border: 1px solid var(--bor);
+  border-radius: 100px; padding: 13px 30px; cursor: pointer; transition: all .2s;
+}
+.blog-more:hover { border-color: var(--acc); color: var(--acc); }
+
+/* ════════════════════════════════════════════════════════
+   35. AUDIT FIXES (June 2026)
+   Modal/nav layering · stronger interior scrim · rounded blog
+   galleries · one reserved serif accent (full-bleed lines)
+   ════════════════════════════════════════════════════════ */
+
+/* P1 — lightbox must sit above the fixed header */
+body.modal-open #site-nav { display: none; }
+
+/* P2 — strengthen the scrim on interior heroes for white-text legibility */
+.hero--interior .hero-media::after {
+  background: linear-gradient(to top,
+    oklch(20% .03 150 / .82) 0%,
+    oklch(20% .03 150 / .42) 48%,
+    oklch(20% .03 150 / .12) 100%);
+}
+
+/* P2 — blog-post image galleries adopt the rounded-tile language */
+.image-gallery-wrapper { gap: var(--tile-gap); }
+.image-gallery-wrapper img { border-radius: var(--radius); }
+.blog-hero-img { border-radius: var(--radius); }
+
+/* P3 — reserve ONE serif accent: the full-bleed editorial line */
+.fullbleed-line {
+  font-family: var(--f-d); font-style: italic; font-weight: 300;
+  letter-spacing: 0;
+}
 

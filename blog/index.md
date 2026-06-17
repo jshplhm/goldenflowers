@@ -26,8 +26,17 @@ redirect_from:
     <div class="blog-grid" id="blog-grid">
       {%- assign card_icons = "leaf,sprout,bouquet" | split: "," -%}
       {% for post in site.posts %}
+      {%- comment -%} Icon chosen from the post topic for variety, with a cycling fallback {%- endcomment -%}
+      {%- assign t = post.title | append: ' ' | append: post.description | downcase -%}
       {%- assign mi = forloop.index0 | modulo: 3 -%}
       {%- assign card_icon = card_icons[mi] -%}
+      {%- if t contains 'season' or t contains 'winter' or t contains 'spring' or t contains 'summer' or t contains 'autumn' or t contains 'fall ' -%}{%- assign card_icon = 'leaf' -%}
+      {%- elsif t contains 'bouquet' or t contains 'bridal' or t contains 'bride' or t contains 'palette' or t contains 'color' -%}{%- assign card_icon = 'bouquet' -%}
+      {%- elsif t contains 'sustainab' or t contains 'foam' or t contains 'eco' or t contains 'compost' or t contains 'vase' or t contains 'local' -%}{%- assign card_icon = 'recycle' -%}
+      {%- elsif t contains 'install' or t contains 'arch' or t contains 'ceremony' or t contains 'arbor' -%}{%- assign card_icon = 'arch' -%}
+      {%- elsif t contains 'farm' or t contains 'grow' or t contains 'soil' or t contains 'garden' or t contains 'field' -%}{%- assign card_icon = 'sprout' -%}
+      {%- elsif t contains 'venue' or t contains 'edgewood' or t contains 'mountain' or t contains 'estate' or t contains 'resort' -%}{%- assign card_icon = 'pin' -%}
+      {%- endif -%}
       <article class="blog-card" data-title="{{ post.title | strip_html | escape | downcase }}" data-text="{{ post.title | append: ' ' | append: post.description | append: ' ' | append: post.content | strip_html | escape | downcase }}">
         <a href="{{ site.baseurl }}{{ post.url }}" class="blog-card-link">
           <div class="blog-card-body">
@@ -40,6 +49,7 @@ redirect_from:
       </article>
       {% endfor %}
     </div>
+    <button type="button" id="blog-more" class="blog-more">Load more posts</button>
     <p class="blog-empty" id="blog-empty" style="display:none;">No posts match your search.</p>
   </div>
 </section>
