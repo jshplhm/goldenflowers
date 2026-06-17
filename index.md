@@ -28,22 +28,22 @@ canonical_url: https://goldenflorals.com/
     <h2 class="section-head">Designed to be unlike anything else.</h2>
     <div class="diff-grid">
       <div class="diff-card">
-        <div class="diff-icon">01</div>
+        <div class="diff-icon">{% include icon.html name="sprout" %}</div>
         <h3>Farm-grown</h3>
         <p>We grow on our own plots in California and source exclusively from growers we trust. No flowers flown in from across the world.</p>
       </div>
       <div class="diff-card">
-        <div class="diff-icon">02</div>
+        <div class="diff-icon">{% include icon.html name="leaf" %}</div>
         <h3>Foam-free</h3>
         <p>Every arrangement we make is built without floral foam. Intentional, sustainable, and better for the environment.</p>
       </div>
       <div class="diff-card">
-        <div class="diff-icon">03</div>
+        <div class="diff-icon">{% include icon.html name="calendar-heart" %}</div>
         <h3>One wedding per date</h3>
         <p>We never double-book. Your wedding day gets our complete attention, start to finish, from design through breakdown.</p>
       </div>
       <div class="diff-card">
-        <div class="diff-icon">04</div>
+        <div class="diff-icon">{% include icon.html name="flask" %}</div>
         <h3>Agronomist-founded</h3>
         <p>Founder Brittany trained as an agronomist, a scientist specializing in soil health and how plants grow. That understanding informs every design decision.</p>
       </div>
