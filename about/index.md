@@ -193,6 +193,99 @@ canonical_url: https://goldenflorals.com/about
   </div>
 </section>
 
+<hr class="section-div">
+
+<!-- Sustainability Pledge -->
+<section class="section pledge">
+  <div class="container">
+    <div class="pledge-head">
+      <span class="label">Our commitment</span>
+      <h2>Working toward something better.</h2>
+      <p class="pledge-intro">Sustainability isn't a checkbox. It's a direction. These are the commitments that shape how we design, source, and grow. Some are already woven into every wedding; others we're actively working toward. We don't claim perfection, only a steady pull in the right direction.</p>
+    </div>
+
+    <hr class="pledge-rule">
+
+    <div class="pledge-grid">
+      <article class="pledge-card">
+        <span class="pledge-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22V11"/><path d="M12 11C12 8 9.5 5.5 5.5 5.5 5.5 9.5 8 12 12 12Z"/><path d="M12 13C12 10.2 14.2 8 17.5 8c0 3.3-2.2 5-5.5 5Z"/></svg>
+        </span>
+        <h4>Foam-free, plastic-free design</h4>
+        <p>No floral foam, ever. We build with reusable mechanics like chicken wire, wool, and pin frogs instead of single-use plastic that sheds microplastics into the watershed.</p>
+      </article>
+
+      <article class="pledge-card">
+        <span class="pledge-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6-5.3-6-10a6 6 0 0 1 12 0c0 4.7-6 10-6 10Z"/><circle cx="12" cy="11" r="2.2"/></svg>
+        </span>
+        <h4>Buying local first</h4>
+        <p>We reach for what's grown closest before anything else, starting with our own farm plots and California growers we know personally. No flowers flown in from across the world.</p>
+      </article>
+
+      <article class="pledge-card">
+        <span class="pledge-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 19c0-7 4-12 14-13-1 10-6 14-13 14"/><path d="M5 19c2-4 5-6.5 9-8"/></svg>
+        </span>
+        <h4>Mindful growing practices</h4>
+        <p>Our farm plots are tended for soil health, biodiversity, and pollinators, a direct extension of Brittany's agronomic training in how land and plants actually thrive.</p>
+      </article>
+
+      <article class="pledge-card">
+        <span class="pledge-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M21 4v4h-4"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/><path d="M3 20v-4h4"/></svg>
+        </span>
+        <h4>Vase return &amp; reuse</h4>
+        <p>Vessels and vases can come back to us. We clean, reuse, and recirculate what doesn't need to end up in the bin.</p>
+      </article>
+
+      <article class="pledge-card">
+        <span class="pledge-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20.5S4 15.5 4 9.5A4.2 4.2 0 0 1 12 7a4.2 4.2 0 0 1 8 2.5c0 6-8 11-8 11Z"/></svg>
+        </span>
+        <h4>Repurposing wedding florals</h4>
+        <p>We're building partnerships to give wedding flowers a second life after the event, going to hospitals, senior care facilities, and community spaces.</p>
+      </article>
+
+      <article class="pledge-card">
+        <span class="pledge-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4.5 13.5H11l-1 8.5L19.5 10H13l0-8Z"/></svg>
+        </span>
+        <h4>Toward electric delivery</h4>
+        <p>We're working toward an all-electric delivery vehicle to lower the carbon footprint of getting your flowers from our farm to your venue.</p>
+      </article>
+
+      <article class="pledge-card">
+        <span class="pledge-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 8 4.5v9L12 21l-8-4.5v-9L12 3Z"/><path d="m4 7.5 8 4.5 8-4.5"/><path d="M12 12v9"/></svg>
+        </span>
+        <h4>Low-waste packaging</h4>
+        <p>Digital-first invoicing and proposals, recycled paper for cards and wraps, and no single-use plastic wherever we can help it.</p>
+      </article>
+
+      <article class="pledge-card">
+        <span class="pledge-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17H4.5a1.5 1.5 0 0 1-1.3-2.25L5 11.5"/><path d="m9 5 1.7-2.9a1.5 1.5 0 0 1 2.6 0L18 10"/><path d="M16.5 16 19 11.6a1.5 1.5 0 0 1 2.6 0l1.2 2"/><path d="M7 17l1.8 3.1a1.5 1.5 0 0 0 1.3.75H15"/><path d="M5 11.5l3.4 2M16.5 16l-3.4 2M9 5l-3.4 2M21.6 13.6 18 14.5"/></svg>
+        </span>
+        <h4>Composting the harvest</h4>
+        <p>Stem trimmings and spent blooms from our farm go back into the soil to feed the next season, not into landfill.</p>
+      </article>
+
+      <article class="pledge-card">
+        <span class="pledge-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.5 2.5 3.8 5.7 3.8 9S14.5 18.5 12 21c-2.5-2.5-3.8-5.7-3.8-9S9.5 5.5 12 3Z"/></svg>
+        </span>
+        <h4>Giving back to the land</h4>
+        <p>We're committing a share of profits to organizations working to restore California habitat and protect the land this business is rooted in.</p>
+      </article>
+    </div>
+
+    <blockquote class="pledge-closing">
+      <p>This is a living pledge, not a finished one. Some of it is already core to how we work; some we're still building toward. We won't pretend to have it all figured out. We'd rather keep learning, evolving, and getting it more right each season. The aim is simple: leave the land a little better than we found it.</p>
+    </blockquote>
+  </div>
+</section>
+
 <div class="cta-section">
   <div style="max-width:640px;margin:0 auto;">
     <span class="label" style="display:block;text-align:center">Work with us</span>
