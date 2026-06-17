@@ -1279,7 +1279,9 @@ body.modal-open { overflow: hidden; }
    ════════════════════════════════════════════════════════ */
 
 /* P1 — lightbox must sit above the fixed header */
-body.modal-open #site-nav { display: none; }
+/* Keep the nav in the DOM under the modal overlay (z-index handles layering) so
+   opening the form from the dark menu slides up over it — no flash of the page. */
+body.modal-open #site-nav { z-index: 80; }
 
 /* P2 — strengthen the scrim on interior heroes for white-text legibility */
 .hero--interior .hero-media::after {
@@ -1422,6 +1424,27 @@ h1.venue-title, .page-header h1, .founder-copy h1, .blog-title,
 @keyframes menuFade { from { opacity: 0; } to { opacity: 1; } }
 @media (prefers-reduced-motion: reduce) { .nav-open .nav-menu { animation: none; } }
 
+/* — Hero image crop: show the florals on phones (was cropping to treetops) — */
+@media (max-width: 640px) {
+  .hero .hero-media img { object-position: center 52%; }
+}
+
+/* — Inline forms: clean single column, constrained width (parity with modal) — */
+.form-section form { grid-template-columns: 1fr; max-width: 620px; }
+/* Date control: left-align its value to match the other fields (iOS centers it) */
+input[type="date"]::-webkit-date-and-time-value { text-align: left; }
+input[type="date"] { text-align: left; }
+
+/* — About farm image grid: bring into the rounded-tile family (was full-bleed) — */
+.farm-grid { gap: var(--tile-gap); max-width: 1280px; margin: 0 auto; padding: 56px 48px; }
+.farm-imgs { gap: var(--tile-gap); }
+.farm-text {
+  border-radius: var(--radius); border: 1px solid var(--tile-border);
+  box-shadow: var(--tile-shadow);
+}
+.farm-img img { border-radius: var(--radius); display: block; }
+@media (max-width: 640px) { .farm-grid { padding: 40px 20px; } }
+
 /* — (e) Two-step consultation form — */
 .form-step-1, .form-step-2 { display: contents; }
 .form-step-1[hidden], .form-step-2[hidden] { display: none; }
@@ -1467,7 +1490,16 @@ form[hidden] { display: none; }
 
 /* — (g) Tap targets & self-select cards — */
 a.aesthetic-card { display: block; text-decoration: none; color: inherit; }
+.portfolio-note {
+  max-width: 1280px; margin: 16px auto 0; padding: 0 48px;
+  font-family: var(--f-d); font-style: italic; font-size: 1.05rem; color: var(--fg2);
+}
+.portfolio-note a {
+  font-family: var(--f-b); font-style: normal; font-size: .76rem;
+  letter-spacing: .08em; text-transform: uppercase; color: var(--acc2); white-space: nowrap;
+}
 @media (max-width: 640px) {
+  .portfolio-note { padding: 0 20px; font-size: .98rem; }
   .filter-chip { padding: 11px 16px; font-size: .7rem; }
   .portfolio-filters { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; }
   .portfolio-filters::-webkit-scrollbar { display: none; }

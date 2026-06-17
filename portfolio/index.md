@@ -40,6 +40,7 @@ redirect_from:
   <button class="filter-chip portfolio-filter-btn" data-filter="minimalist">Elevated Minimalist</button>
   <button class="filter-chip portfolio-filter-btn" data-filter="wildflower">Wildflower Modern</button>
 </div>
+<p class="portfolio-note">The three directions couples ask for most — a starting point, not a limit. We design in every style. <a href="{{ site.baseurl }}/weddings#consultation" data-consult-open>Tell us your vision &rarr;</a></p>
 
 <!-- Lush & Romantic -->
 <section class="port-section">

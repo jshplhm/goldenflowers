@@ -15,30 +15,27 @@
         </div>
         <div class="field-full">
           <label for="m-name">Your name</label>
-          <input type="text" id="m-name" name="name" placeholder="First &amp; last" required>
+          <input type="text" id="m-name" name="name" placeholder="First &amp; last" autocomplete="name" required>
         </div>
         <div class="field-full">
           <label for="m-email">Email address</label>
-          <input type="email" id="m-email" name="email" placeholder="your@email.com" required>
+          <input type="email" id="m-email" name="email" placeholder="your@email.com" autocomplete="email" required>
         </div>
       </div>
       <div class="form-advance field-full">
         <button type="button" class="btn-primary" data-form-advance>Check my date &rarr;</button>
-        <p class="form-step-hint">Then — venue · budget · aesthetic · details</p>
+        <p class="form-step-hint">Then — aesthetic · budget · the details</p>
       </div>
       <div class="form-step-2">
         <button type="button" class="form-back field-full" data-form-back>&larr; Back</button>
         <div class="field-full">
-          <label for="m-venue">Venue</label>
-          <select id="m-venue" name="venue">
-            <option value="" disabled selected>Select venue or type below</option>
-            <option>Edgewood Tahoe</option>
-            <option>Palisades High Camp</option>
-            <option>National Exchange Hotel, Nevada City</option>
-            <option>Ritz-Carlton Lake Tahoe at Northstar</option>
-            <option>Hellman-Ehrman Mansion</option>
-            <option>Miner's Foundry, Nevada City</option>
-            <option>Private estate / other</option>
+          <label for="m-aesthetic">Aesthetic direction</label>
+          <select id="m-aesthetic" name="aesthetic">
+            <option value="" disabled selected>Which direction resonates?</option>
+            <option>Lush &amp; Romantic, rich, dramatic, deep tones</option>
+            <option>Elevated Minimalist, clean, airy, restrained</option>
+            <option>Wildflower Modern, wild, seasonal, editorial</option>
+            <option>A mix, I'll explain below</option>
             <option>Not sure yet</option>
           </select>
         </div>
@@ -55,19 +52,8 @@
           </select>
         </div>
         <div class="field-full">
-          <label for="m-aesthetic">Aesthetic direction</label>
-          <select id="m-aesthetic" name="aesthetic">
-            <option value="" disabled selected>Which direction resonates?</option>
-            <option>Lush &amp; Romantic, rich, dramatic, deep tones</option>
-            <option>Elevated Minimalist, clean, airy, restrained</option>
-            <option>Wildflower Modern, wild, seasonal, editorial</option>
-            <option>A mix, I'll explain below</option>
-            <option>Not sure yet</option>
-          </select>
-        </div>
-        <div class="field-full">
           <label for="m-message">Tell us about your wedding</label>
-          <textarea id="m-message" name="message" placeholder="Venue, vision, anything that matters to you." rows="3"></textarea>
+          <textarea id="m-message" name="message" placeholder="Your venue, your vision, anything that matters to you." rows="3"></textarea>
         </div>
         <div class="form-submit field-full">
           <button type="submit" class="btn-primary">Send consultation request</button>
@@ -78,7 +64,7 @@
     <div class="form-success" data-form-success hidden>
       <div class="form-success-tags" data-success-tags></div>
       <div class="form-success-check" aria-hidden="true">&#10003;</div>
-      <h3>Thank you — your date is with us.</h3>
+      <h3>Thank you for reaching out.</h3>
       <p data-success-date-line hidden>We'll confirm availability for <strong data-success-date></strong> and reach out within <strong>48 hours</strong>.</p>
       <p data-success-default>We'll reach out within <strong>48 hours</strong> to confirm availability.</p>
       <p>Complimentary consultation, by phone or video.</p>

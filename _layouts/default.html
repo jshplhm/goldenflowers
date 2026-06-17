@@ -22,7 +22,6 @@
 <div class="sticky-cta">
   <div class="sticky-cta-text">
     <strong>One wedding per date</strong>
-    <span>Summer 2026 filling</span>
   </div>
   <a href="{{ site.baseurl }}/weddings#consultation" data-consult-open>Check your date &rarr;</a>
 </div>
@@ -47,7 +46,14 @@
     modal.classList.remove('open');
     modal.setAttribute('aria-hidden', 'true');
     document.body.classList.remove('modal-open');
-    if (lastFocus) lastFocus.focus();
+    // If opened from the dark menu, close the menu too so we land back on the page
+    const nav = document.getElementById('site-nav');
+    if (nav && nav.classList.contains('nav-open')) {
+      nav.classList.remove('nav-open');
+      const t = nav.querySelector('.nav-toggle');
+      if (t) t.setAttribute('aria-expanded', 'false');
+    }
+    if (lastFocus && lastFocus.focus) lastFocus.focus();
   }
   // If the current page already has an inline consultation form, scroll to it
   // instead of opening the modal (avoids a modal-over-form redundancy).
@@ -138,21 +144,31 @@
       for (let i = 0; i < reqs.length; i++) {
         if (!reqs[i].reportValidity()) return;
       }
+      // Capture the lead now (date/name/email) so an abandoned step 2 still reaches us
+      if (!form.dataset.partialSent && form.hasAttribute('data-ajax')) {
+        form.dataset.partialSent = '1';
+        try {
+          const p = new FormData();
+          ['date', 'name', 'email'].forEach(function(n) {
+            const fld = form.querySelector('[name="' + n + '"]');
+            if (fld) p.append(n, fld.value);
+          });
+          p.append('_subject', 'Date check started (Step 1) — Golden Flowers');
+          fetch(form.action, { method: 'POST', body: p, headers: { 'Accept': 'application/json' } });
+        } catch (e) {}
+      }
       if (step1) step1.hidden = true;          // page 2 no longer shows page 1's answers
       if (advance) advance.hidden = true;
       step2.hidden = false;
       if (indicator) indicator.textContent = 'Step 2 of 2';
-      toTop();
-      const first = step2.querySelector('select, input, textarea');
-      if (first) first.focus();
+      toTop();                                  // no auto-focus — avoids opening pickers
     });
     if (backBtn) backBtn.addEventListener('click', function() {
       step2.hidden = true;
       if (step1) step1.hidden = false;
       if (advance) advance.hidden = false;
       if (indicator) indicator.textContent = 'Step 1 of 2';
-      toTop();
-      const f = form.querySelector('.form-step-1 input'); if (f) f.focus();
+      toTop();                                  // no auto-focus — avoids opening the date picker
     });
   });
 
@@ -190,7 +206,7 @@
             tagWrap.innerHTML = '';
             const chips = [];
             if (dateVal) chips.push(fmtDate(dateVal));
-            ['venue', 'budget', 'aesthetic'].forEach(function(name) {
+            ['aesthetic', 'budget'].forEach(function(name) {
               let v = data.get(name);
               if (!v || /not sure/i.test(v)) return;
               if (name === 'aesthetic') v = v.split(',')[0];

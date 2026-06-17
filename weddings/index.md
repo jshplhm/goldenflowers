@@ -143,45 +143,19 @@ redirect_from:
         </div>
         <div>
           <label for="name">Your name</label>
-          <input type="text" id="name" name="name" placeholder="First &amp; last" required>
+          <input type="text" id="name" name="name" placeholder="First &amp; last" autocomplete="name" required>
         </div>
         <div>
           <label for="email">Email address</label>
-          <input type="email" id="email" name="email" placeholder="your@email.com" required>
+          <input type="email" id="email" name="email" placeholder="your@email.com" autocomplete="email" required>
         </div>
       </div>
       <div class="form-advance field-full">
         <button type="button" class="btn-primary" data-form-advance>Check my date &rarr;</button>
-        <p class="form-step-hint">Then — venue · budget · aesthetic · the details</p>
+        <p class="form-step-hint">Then — aesthetic · budget · the details</p>
       </div>
       <div class="form-step-2">
         <button type="button" class="form-back field-full" data-form-back>&larr; Back</button>
-        <div>
-          <label for="venue">Venue</label>
-          <select id="venue" name="venue">
-            <option value="" disabled selected>Select venue or type below</option>
-            <option>Edgewood Tahoe</option>
-            <option>Palisades High Camp</option>
-            <option>National Exchange Hotel, Nevada City</option>
-            <option>Ritz-Carlton Lake Tahoe at Northstar</option>
-            <option>Hellman-Ehrman Mansion</option>
-            <option>Miner's Foundry, Nevada City</option>
-            <option>Private estate / other</option>
-            <option>Not sure yet</option>
-          </select>
-        </div>
-        <div>
-          <label for="budget">Approximate budget</label>
-          <select id="budget" name="budget">
-            <option value="" disabled selected>Estimated florals budget</option>
-            <option>$5,000–$8,000</option>
-            <option>$8,000–$12,000</option>
-            <option>$12,000–$18,000</option>
-            <option>$18,000–$25,000</option>
-            <option>$25,000+</option>
-            <option>Not sure yet</option>
-          </select>
-        </div>
         <div class="field-full">
           <label for="aesthetic">Aesthetic direction</label>
           <select id="aesthetic" name="aesthetic">
@@ -194,8 +168,20 @@ redirect_from:
           </select>
         </div>
         <div class="field-full">
+          <label for="budget">Approximate budget</label>
+          <select id="budget" name="budget">
+            <option value="" disabled selected>Estimated florals budget</option>
+            <option>$5,000–$8,000</option>
+            <option>$8,000–$12,000</option>
+            <option>$12,000–$18,000</option>
+            <option>$18,000–$25,000</option>
+            <option>$25,000+</option>
+            <option>Not sure yet</option>
+          </select>
+        </div>
+        <div class="field-full">
           <label for="message">Tell us about your wedding</label>
-          <textarea id="message" name="message" placeholder="Venue setting, vision, anything that matters to you. The more context you give us, the better conversation we can have." rows="4"></textarea>
+          <textarea id="message" name="message" placeholder="Your venue, your vision, anything that matters to you. The more context you give us, the better conversation we can have." rows="4"></textarea>
         </div>
         <div class="form-submit">
           <button type="submit" class="btn-primary">Send consultation request</button>
@@ -206,7 +192,7 @@ redirect_from:
     <div id="consultation-success" class="form-success" data-form-success hidden>
       <div class="form-success-tags" data-success-tags></div>
       <div class="form-success-check" aria-hidden="true">&#10003;</div>
-      <h3>Thank you — your date is with us.</h3>
+      <h3>Thank you for reaching out.</h3>
       <p data-success-date-line hidden>We'll confirm availability for <strong data-success-date></strong> and reach out within <strong>48 hours</strong>.</p>
       <p data-success-default>We'll follow up within <strong>48 hours</strong> to confirm availability and schedule your consultation.</p>
       <p>Your consultation is a 30–45 minute call with Brittany, by phone or video. Bring any inspiration you have — photos, a Pinterest board, a venue layout. No need to have it figured out yet.</p>

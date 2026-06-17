@@ -12,7 +12,6 @@ canonical_url: https://goldenflorals.com/
     <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/2b98245c-1230-4e50-847e-90c7d13f793b/Lake%2BTahoe%2BFloral%2BInstallation.jpeg" alt="Lake Tahoe floral installation by Golden Flowers" loading="eager">
   </div>
   <div class="hero-copy">
-    <span class="hero-scarcity">Summer 2026 · 6 dates remaining</span>
     <h1 class="hero-eyebrow">Lake Tahoe Wedding Florist</h1>
     <p class="hero-display">Artful florals, rooted in the Sierra.</p>
     <p class="hero-sub">Farm-grown &amp; foam-free · One wedding per date</p>
@@ -112,12 +111,12 @@ canonical_url: https://goldenflorals.com/
 
 <section class="section">
   <div class="container">
-    <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:56px;">
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap;margin-bottom:56px;">
       <div>
         <span class="label">Recent work</span>
         <h2 class="section-head">From our portfolio.</h2>
       </div>
-      <a href="{{ site.baseurl }}/portfolio" class="btn-ghost">View full portfolio →</a>
+      <a href="{{ site.baseurl }}/portfolio" class="btn-ghost" style="white-space:nowrap;">View portfolio →</a>
     </div>
     <div class="port-grid">
       <div class="port-item">
@@ -208,7 +207,7 @@ canonical_url: https://goldenflorals.com/
     <h2>Your Lake Tahoe wedding flowers start here.</h2>
     <p>We take one wedding per date. Reach out early.</p>
     <a href="{{ site.baseurl }}/#consultation" class="btn-primary">Schedule a Consultation &rarr;</a>
-    <p style="font-size:.75rem;color:var(--fgm);margin-top:16px;letter-spacing:.04em;">Summer 2026 dates filling. We take one wedding per date.</p>
+    <p style="font-size:.75rem;color:var(--fgm);margin-top:16px;letter-spacing:.04em;">We take one wedding per date.</p>
   </div>
 </div>
 
@@ -230,45 +229,19 @@ canonical_url: https://goldenflorals.com/
         </div>
         <div>
           <label for="name">Your name</label>
-          <input type="text" id="name" name="name" placeholder="First &amp; last" required>
+          <input type="text" id="name" name="name" placeholder="First &amp; last" autocomplete="name" required>
         </div>
         <div>
           <label for="email">Email address</label>
-          <input type="email" id="email" name="email" placeholder="your@email.com" required>
+          <input type="email" id="email" name="email" placeholder="your@email.com" autocomplete="email" required>
         </div>
       </div>
       <div class="form-advance field-full">
         <button type="button" class="btn-primary" data-form-advance>Check my date &rarr;</button>
-        <p class="form-step-hint">Then — venue · budget · aesthetic · the details</p>
+        <p class="form-step-hint">Then — aesthetic · budget · the details</p>
       </div>
       <div class="form-step-2">
         <button type="button" class="form-back field-full" data-form-back>&larr; Back</button>
-        <div>
-          <label for="venue">Venue</label>
-          <select id="venue" name="venue">
-            <option value="" disabled selected>Select venue or type below</option>
-            <option>Edgewood Tahoe</option>
-            <option>Palisades High Camp</option>
-            <option>National Exchange Hotel, Nevada City</option>
-            <option>Ritz-Carlton Lake Tahoe at Northstar</option>
-            <option>Hellman-Ehrman Mansion</option>
-            <option>Miner's Foundry, Nevada City</option>
-            <option>Private estate / other</option>
-            <option>Not sure yet</option>
-          </select>
-        </div>
-        <div>
-          <label for="budget">Approximate budget</label>
-          <select id="budget" name="budget">
-            <option value="" disabled selected>Estimated florals budget</option>
-            <option>$5,000–$8,000</option>
-            <option>$8,000–$12,000</option>
-            <option>$12,000–$18,000</option>
-            <option>$18,000–$25,000</option>
-            <option>$25,000+</option>
-            <option>Not sure yet</option>
-          </select>
-        </div>
         <div class="field-full">
           <label for="aesthetic">Aesthetic direction</label>
           <select id="aesthetic" name="aesthetic">
@@ -281,8 +254,20 @@ canonical_url: https://goldenflorals.com/
           </select>
         </div>
         <div class="field-full">
+          <label for="budget">Approximate budget</label>
+          <select id="budget" name="budget">
+            <option value="" disabled selected>Estimated florals budget</option>
+            <option>$5,000–$8,000</option>
+            <option>$8,000–$12,000</option>
+            <option>$12,000–$18,000</option>
+            <option>$18,000–$25,000</option>
+            <option>$25,000+</option>
+            <option>Not sure yet</option>
+          </select>
+        </div>
+        <div class="field-full">
           <label for="message">Tell us about your wedding</label>
-          <textarea id="message" name="message" placeholder="Venue setting, vision, anything that matters to you." rows="4"></textarea>
+          <textarea id="message" name="message" placeholder="Your venue, your vision, anything that matters to you." rows="4"></textarea>
         </div>
         <div class="form-submit">
           <button type="submit" class="btn-primary">Send consultation request</button>
@@ -293,7 +278,7 @@ canonical_url: https://goldenflorals.com/
     <div id="consultation-success" class="form-success" data-form-success hidden>
       <div class="form-success-tags" data-success-tags></div>
       <div class="form-success-check" aria-hidden="true">&#10003;</div>
-      <h3>Thank you — your date is with us.</h3>
+      <h3>Thank you for reaching out.</h3>
       <p data-success-date-line hidden>We'll confirm availability for <strong data-success-date></strong> and reach out within <strong>48 hours</strong>.</p>
       <p data-success-default>We'll reach out within <strong>48 hours</strong> to confirm availability.</p>
       <p>Complimentary consultation, by phone or video.</p>
