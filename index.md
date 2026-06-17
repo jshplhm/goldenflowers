@@ -12,13 +12,28 @@ canonical_url: https://goldenflorals.com/
     <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/2b98245c-1230-4e50-847e-90c7d13f793b/Lake%2BTahoe%2BFloral%2BInstallation.jpeg" alt="Lake Tahoe floral installation by Golden Flowers" loading="eager">
   </div>
   <div class="hero-copy">
+    <span class="hero-scarcity">Summer 2026 · 6 dates remaining</span>
     <h1 class="hero-eyebrow">Lake Tahoe Wedding Florist</h1>
     <p class="hero-display">Artful florals, rooted in the Sierra.</p>
     <p class="hero-sub">Farm-grown &amp; foam-free · One wedding per date</p>
     <div class="hero-btns">
-      <a href="{{ site.baseurl }}/portfolio" class="btn-primary">Explore Portfolio</a>
-      <a href="{{ site.baseurl }}/weddings" class="btn-ghost">How We Work</a>
+      <a href="{{ site.baseurl }}/weddings#consultation" class="btn-primary" data-consult-open>Check Your Date</a>
+      <a href="{{ site.baseurl }}/portfolio" class="btn-ghost">Explore Portfolio</a>
     </div>
+  </div>
+</section>
+
+<section class="trust-strip" aria-label="Trusted venues and reviews">
+  <div class="container">
+    <span class="trust-eyebrow">Trusted at the region's best venues</span>
+    <div class="trust-venues">
+      <span class="trust-chip">Edgewood Tahoe</span>
+      <span class="trust-chip">Ritz-Carlton</span>
+      <span class="trust-chip">Palisades</span>
+      <span class="trust-chip">Martis Camp</span>
+      <span class="trust-chip">National Exchange</span>
+    </div>
+    <p class="trust-reviews"><span class="trust-stars" aria-hidden="true">★★★★★</span> <span>Loved by couples across the Sierra</span></p>
   </div>
 </section>
 
@@ -56,39 +71,39 @@ canonical_url: https://goldenflorals.com/
     <span class="label">Find your aesthetic</span>
     <h2 class="section-head">Three distinct design languages.</h2>
     <div class="aesthetic-grid">
-      <div class="aesthetic-card">
-        <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1770534306889-NSEB5HC1TYWMEPG4WSCI/NationalGothic--268.jpg" alt="Lush and Romantic floral design" loading="lazy">
+      <a class="aesthetic-card" href="{{ site.baseurl }}/portfolio?filter=dark-romance">
+        <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1770534306889-NSEB5HC1TYWMEPG4WSCI/NationalGothic--268.jpg?format=750w" alt="Lush and Romantic floral design" loading="lazy">
         <div class="aesthetic-overlay">
           <span class="aesthetic-tag">Aesthetic 01</span>
           <h3>Lush &amp; Romantic</h3>
           <p>Rich, dramatic, and lush. Deep burgundy, plum, and forest tones. Arrangements that feel cinematic and of the moment.</p>
-          <a href="{{ site.baseurl }}/portfolio?filter=dark-romance" class="aesthetic-link">View weddings →</a>
+          <span class="aesthetic-link">View weddings →</span>
         </div>
-      </div>
-      <div class="aesthetic-card">
-        <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1776975105426-4BAEXMVDBX6Q5ETZ1BVC/l-a-preview-6962.jpg" alt="Elevated Minimalist floral design" loading="lazy">
+      </a>
+      <a class="aesthetic-card" href="{{ site.baseurl }}/portfolio?filter=minimalist">
+        <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1776975105426-4BAEXMVDBX6Q5ETZ1BVC/l-a-preview-6962.jpg?format=750w" alt="Elevated Minimalist floral design" loading="lazy">
         <div class="aesthetic-overlay">
           <span class="aesthetic-tag">Aesthetic 02</span>
           <h3>Elevated Minimalist</h3>
           <p>Clean lines, airy compositions, and restrained palettes. White, ivory, and soft sage. Design that doesn't compete with the view.</p>
-          <a href="{{ site.baseurl }}/portfolio?filter=minimalist" class="aesthetic-link">View weddings →</a>
+          <span class="aesthetic-link">View weddings →</span>
         </div>
-      </div>
-      <div class="aesthetic-card">
-        <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1779129057432-Y8VGDRIHTV4BILCZVW27/MountainTimePhoto-48.jpg" alt="Wildflower Modern floral design" loading="lazy">
+      </a>
+      <a class="aesthetic-card" href="{{ site.baseurl }}/portfolio?filter=wildflower">
+        <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1779129057432-Y8VGDRIHTV4BILCZVW27/MountainTimePhoto-48.jpg?format=750w" alt="Wildflower Modern floral design" loading="lazy">
         <div class="aesthetic-overlay">
           <span class="aesthetic-tag">Aesthetic 03</span>
           <h3>Wildflower Modern</h3>
           <p>Wild, seasonal, and rooted in the landscape. Native blooms and grasses styled with an editorial eye. Effortless and of this place.</p>
-          <a href="{{ site.baseurl }}/portfolio?filter=wildflower" class="aesthetic-link">View weddings →</a>
+          <span class="aesthetic-link">View weddings →</span>
         </div>
-      </div>
+      </a>
     </div>
   </div>
 </section>
 
 <section class="fullbleed">
-  <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/4685a495-c2ce-4b90-9fd1-f91ca0d6a135/K%2BJ-0962.jpg" alt="Golden Flowers ceremony arch at a Lake Tahoe wedding" loading="lazy">
+  <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/4685a495-c2ce-4b90-9fd1-f91ca0d6a135/K%2BJ-0962.jpg?format=1500w" alt="Golden Flowers ceremony arch at a Lake Tahoe wedding" loading="lazy">
   <div class="fullbleed-copy">
     <span class="fullbleed-eyebrow">Grown, not shipped</span>
     <p class="fullbleed-line">Every stem chosen for one couple, one date, one place in the mountains.</p>
@@ -106,19 +121,19 @@ canonical_url: https://goldenflorals.com/
     </div>
     <div class="port-grid">
       <div class="port-item">
-        <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1779129636646-VAQ2FSYB2YNR4O0UZFAA/K%252BJ-8434.jpg" alt="Wedding at Miner's Foundry" loading="lazy">
+        <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1779129636646-VAQ2FSYB2YNR4O0UZFAA/K%252BJ-8434.jpg?format=750w" alt="Wedding at Miner's Foundry" loading="lazy">
       </div>
       <div class="port-item">
-        <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/4da65886-1655-4ecd-957b-8d48969ffc60/l-a-preview-0305.jpg" alt="Wedding at Palisades High Camp" loading="lazy">
+        <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/4da65886-1655-4ecd-957b-8d48969ffc60/l-a-preview-0305.jpg?format=750w" alt="Wedding at Palisades High Camp" loading="lazy">
       </div>
       <div class="port-item">
-        <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/bc425f51-1b71-473f-815b-8c481fd5a5c1/8.jpg" alt="Reception dinner table" loading="lazy">
+        <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/bc425f51-1b71-473f-815b-8c481fd5a5c1/8.jpg?format=750w" alt="Reception dinner table" loading="lazy">
       </div>
       <div class="port-item wide">
-        <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/5854318e-a30f-4303-b4d9-38c510fdc75a/Lake+Tahoe+Floral+Installationn" alt="Outdoor floral arch" loading="lazy">
+        <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/5854318e-a30f-4303-b4d9-38c510fdc75a/Lake+Tahoe+Floral+Installationn?format=1000w" alt="Outdoor floral arch" loading="lazy">
       </div>
       <div class="port-item">
-        <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/4685a495-c2ce-4b90-9fd1-f91ca0d6a135/K%2BJ-0962.jpg" alt="Ceremony flower arch" loading="lazy">
+        <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/4685a495-c2ce-4b90-9fd1-f91ca0d6a135/K%2BJ-0962.jpg?format=750w" alt="Ceremony flower arch" loading="lazy">
       </div>
     </div>
   </div>
@@ -140,10 +155,9 @@ canonical_url: https://goldenflorals.com/
           <li>We'll build a custom proposal around your venue, vision, and what's in season</li>
         </ul>
         <p class="price-tagline">No floral foam. No imported filler. Just intentional design.</p>
-        <a href="{{ site.baseurl }}/weddings#consultation" class="btn-primary">Request a Custom Estimate</a>
       </div>
       <div>
-        <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/f77301d9-f890-451d-8bf8-c8d3a07d2bc4/Lake+Tahoe+Luxe+Boquet.jpg" alt="Luxe bouquet" loading="lazy" style="width:100%;aspect-ratio:4/5;object-fit:cover;display:block;">
+        <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/f77301d9-f890-451d-8bf8-c8d3a07d2bc4/Lake+Tahoe+Luxe+Boquet.jpg?format=750w" alt="Luxe bouquet" loading="lazy" style="width:100%;aspect-ratio:4/5;object-fit:cover;display:block;">
       </div>
     </div>
   </div>
@@ -165,19 +179,19 @@ canonical_url: https://goldenflorals.com/
     <h2 class="section-head">Every venue is its own world.</h2>
     <div class="venue-grid">
       <a href="{{ site.baseurl }}/venues/edgewood-tahoe" class="venue-card">
-        <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1776975190166-PCFON7QIR65XK1VPLH3K/l-a-preview-8192.jpg" alt="Edgewood Tahoe" loading="lazy">
+        <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1776975190166-PCFON7QIR65XK1VPLH3K/l-a-preview-8192.jpg?format=750w" alt="Edgewood Tahoe" loading="lazy">
         <div class="venue-overlay"><p class="venue-name">Edgewood Tahoe</p><p class="venue-meta">South Shore · Lakeside</p></div>
       </a>
       <a href="{{ site.baseurl }}/portfolio?venue=palisades" class="venue-card">
-        <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/4da65886-1655-4ecd-957b-8d48969ffc60/l-a-preview-0305.jpg" alt="Palisades High Camp" loading="lazy">
+        <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/4da65886-1655-4ecd-957b-8d48969ffc60/l-a-preview-0305.jpg?format=750w" alt="Palisades High Camp" loading="lazy">
         <div class="venue-overlay"><p class="venue-name">Palisades High Camp</p><p class="venue-meta">Olympic Valley · Alpine</p></div>
       </a>
       <a href="{{ site.baseurl }}/portfolio?venue=national-exchange" class="venue-card">
-        <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/3ddf1f69-8e31-44e3-8204-d28d4797d6f7/NationalGothic--264.jpg" alt="National Exchange Hotel" loading="lazy">
+        <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/3ddf1f69-8e31-44e3-8204-d28d4797d6f7/NationalGothic--264.jpg?format=750w" alt="National Exchange Hotel" loading="lazy">
         <div class="venue-overlay"><p class="venue-name">National Exchange Hotel</p><p class="venue-meta">Nevada City · Historic</p></div>
       </a>
       <a href="{{ site.baseurl }}/portfolio?venue=ritz-carlton" class="venue-card">
-        <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1776975178999-V2BIKI0FVBMBXFKG8Z3I/l-a-preview-8139.jpg" alt="Ritz-Carlton Lake Tahoe" loading="lazy">
+        <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1776975178999-V2BIKI0FVBMBXFKG8Z3I/l-a-preview-8139.jpg?format=750w" alt="Ritz-Carlton Lake Tahoe" loading="lazy">
         <div class="venue-overlay"><p class="venue-name">Ritz-Carlton Lake Tahoe</p><p class="venue-meta">Northstar · Mountain Resort</p></div>
       </a>
     </div>

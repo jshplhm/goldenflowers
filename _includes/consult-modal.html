@@ -1,44 +1,89 @@
 <div class="modal-overlay" id="consult-modal" aria-hidden="true">
-  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="consult-modal-title">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="consult-modal-title" data-form-wrap>
     <button class="modal-close" type="button" aria-label="Close" data-consult-close>&times;</button>
     <span class="label">Schedule a consultation</span>
-    <h2 id="consult-modal-title">Let's start the conversation.</h2>
-    <p class="modal-intro">We'll reach out within 48 hours to confirm availability and set a time. Consultations are complimentary, by phone or video.</p>
-    <form action="https://formspree.io/f/xgobrjyo" method="POST">
+    <h2 id="consult-modal-title">Is your date open?</h2>
+    <p class="modal-intro">We reply within 48 hours · complimentary, by phone or video.</p>
+    <form action="https://formspree.io/f/xgobrjyo" method="POST" data-multistep data-ajax>
       <input type="hidden" name="_subject" value="New consultation request, Golden Flowers">
       <input type="hidden" name="_next" value="{{ site.baseurl }}/weddings#consultation-success">
-      <div class="field-full">
-        <label for="m-name">Your name</label>
-        <input type="text" id="m-name" name="name" placeholder="Full name" required>
+      <span class="form-step-indicator" aria-hidden="true">Step 1 of 2</span>
+      <div class="form-step-1">
+        <div class="field-full">
+          <label for="m-date">Wedding date</label>
+          <input type="date" id="m-date" name="date">
+        </div>
+        <div class="field-full">
+          <label for="m-name">Your name</label>
+          <input type="text" id="m-name" name="name" placeholder="First &amp; last" required>
+        </div>
+        <div class="field-full">
+          <label for="m-email">Email address</label>
+          <input type="email" id="m-email" name="email" placeholder="your@email.com" required>
+        </div>
       </div>
-      <div class="field-full">
-        <label for="m-email">Email address</label>
-        <input type="email" id="m-email" name="email" placeholder="your@email.com" required>
+      <div class="form-advance field-full">
+        <button type="button" class="btn-primary" data-form-advance>Check my date &rarr;</button>
+        <p class="form-step-hint">Then — venue · budget · aesthetic · details</p>
       </div>
-      <div>
-        <label for="m-date">Wedding date</label>
-        <input type="date" id="m-date" name="date">
-      </div>
-      <div>
-        <label for="m-budget">Approximate budget</label>
-        <select id="m-budget" name="budget">
-          <option value="" disabled selected>Estimated florals budget</option>
-          <option>$5,000–$8,000</option>
-          <option>$8,000–$12,000</option>
-          <option>$12,000–$18,000</option>
-          <option>$18,000–$25,000</option>
-          <option>$25,000+</option>
-          <option>Not sure yet</option>
-        </select>
-      </div>
-      <div class="field-full">
-        <label for="m-message">Tell us about your wedding</label>
-        <textarea id="m-message" name="message" placeholder="Venue, vision, anything that matters to you." rows="3"></textarea>
-      </div>
-      <div class="form-submit field-full">
-        <button type="submit" class="btn-primary">Send consultation request</button>
-        <p class="form-note">We'll respond within 48 hours</p>
+      <div class="form-step-2">
+        <div class="field-full">
+          <label for="m-venue">Venue</label>
+          <select id="m-venue" name="venue">
+            <option value="" disabled selected>Select venue or type below</option>
+            <option>Edgewood Tahoe</option>
+            <option>Palisades High Camp</option>
+            <option>National Exchange Hotel, Nevada City</option>
+            <option>Ritz-Carlton Lake Tahoe at Northstar</option>
+            <option>Hellman-Ehrman Mansion</option>
+            <option>Miner's Foundry, Nevada City</option>
+            <option>Private estate / other</option>
+            <option>Not sure yet</option>
+          </select>
+        </div>
+        <div class="field-full">
+          <label for="m-budget">Approximate budget</label>
+          <select id="m-budget" name="budget">
+            <option value="" disabled selected>Estimated florals budget</option>
+            <option>$5,000–$8,000</option>
+            <option>$8,000–$12,000</option>
+            <option>$12,000–$18,000</option>
+            <option>$18,000–$25,000</option>
+            <option>$25,000+</option>
+            <option>Not sure yet</option>
+          </select>
+        </div>
+        <div class="field-full">
+          <label for="m-aesthetic">Aesthetic direction</label>
+          <select id="m-aesthetic" name="aesthetic">
+            <option value="" disabled selected>Which direction resonates?</option>
+            <option>Lush &amp; Romantic, rich, dramatic, deep tones</option>
+            <option>Elevated Minimalist, clean, airy, restrained</option>
+            <option>Wildflower Modern, wild, seasonal, editorial</option>
+            <option>A mix, I'll explain below</option>
+            <option>Not sure yet</option>
+          </select>
+        </div>
+        <div class="field-full">
+          <label for="m-message">Tell us about your wedding</label>
+          <textarea id="m-message" name="message" placeholder="Venue, vision, anything that matters to you." rows="3"></textarea>
+        </div>
+        <div class="form-submit field-full">
+          <button type="submit" class="btn-primary">Send consultation request</button>
+          <p class="form-note">We'll respond within 48 hours</p>
+        </div>
       </div>
     </form>
+    <div class="form-success" data-form-success hidden>
+      <div class="form-success-check" aria-hidden="true">&#10003;</div>
+      <h3>Thank you — your date is with us.</h3>
+      <p data-success-date-line hidden>We'll confirm availability for <strong data-success-date></strong> and reach out within <strong>48 hours</strong>.</p>
+      <p data-success-default>We'll reach out within <strong>48 hours</strong> to confirm availability.</p>
+      <p>Complimentary consultation, by phone or video.</p>
+      <div class="form-success-next">
+        <span class="label">While you wait</span>
+        <a href="{{ site.baseurl }}/portfolio">Explore the portfolio &rarr;</a>
+      </div>
+    </div>
   </div>
 </div>

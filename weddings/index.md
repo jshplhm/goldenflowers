@@ -126,77 +126,92 @@ redirect_from:
 
 <!-- Consultation Form -->
 <section class="form-section" id="consultation">
-  <div class="container" style="max-width:1100px;">
+  <div class="container" style="max-width:1100px;" data-form-wrap>
     <span class="label">Schedule a consultation</span>
     <h2>Let's start the conversation.</h2>
     <div class="form-intro">
       <p>We'll reach out within 48 hours to confirm availability and set a time. Consultations are by phone or video, no need to travel to us first.</p>
     </div>
-    <form action="https://formspree.io/f/xgobrjyo" method="POST" id="consultation-form">
+    <form action="https://formspree.io/f/xgobrjyo" method="POST" id="consultation-form" data-multistep data-ajax>
       <input type="hidden" name="_subject" value="New consultation request, Golden Flowers">
       <input type="hidden" name="_next" value="{{ site.baseurl }}/weddings#consultation-success">
-      <div>
-        <label for="name">Your name</label>
-        <input type="text" id="name" name="name" placeholder="Full name" required>
+      <span class="form-step-indicator" aria-hidden="true">Step 1 of 2 · Is your date open?</span>
+      <div class="form-step-1">
+        <div class="field-full">
+          <label for="date">Wedding date</label>
+          <input type="date" id="date" name="date">
+        </div>
+        <div>
+          <label for="name">Your name</label>
+          <input type="text" id="name" name="name" placeholder="First &amp; last" required>
+        </div>
+        <div>
+          <label for="email">Email address</label>
+          <input type="email" id="email" name="email" placeholder="your@email.com" required>
+        </div>
       </div>
-      <div>
-        <label for="email">Email address</label>
-        <input type="email" id="email" name="email" placeholder="your@email.com" required>
+      <div class="form-advance field-full">
+        <button type="button" class="btn-primary" data-form-advance>Check my date &rarr;</button>
+        <p class="form-step-hint">Then — venue · budget · aesthetic · the details</p>
       </div>
-      <div>
-        <label for="date">Wedding date</label>
-        <input type="date" id="date" name="date">
-      </div>
-      <div>
-        <label for="venue">Venue</label>
-        <select id="venue" name="venue">
-          <option value="" disabled selected>Select venue or type below</option>
-          <option>Edgewood Tahoe</option>
-          <option>Palisades High Camp</option>
-          <option>National Exchange Hotel, Nevada City</option>
-          <option>Ritz-Carlton Lake Tahoe at Northstar</option>
-          <option>Hellman-Ehrman Mansion</option>
-          <option>Miner's Foundry, Nevada City</option>
-          <option>Private estate / other</option>
-          <option>Not sure yet</option>
-        </select>
-      </div>
-      <div>
-        <label for="budget">Approximate budget</label>
-        <select id="budget" name="budget">
-          <option value="" disabled selected>Estimated florals budget</option>
-          <option>$5,000–$8,000</option>
-          <option>$8,000–$12,000</option>
-          <option>$12,000–$18,000</option>
-          <option>$18,000–$25,000</option>
-          <option>$25,000+</option>
-          <option>Not sure yet</option>
-        </select>
-      </div>
-      <div>
-        <label for="aesthetic">Aesthetic direction</label>
-        <select id="aesthetic" name="aesthetic">
-          <option value="" disabled selected>Which direction resonates?</option>
-          <option>Lush &amp; Romantic, rich, dramatic, deep tones</option>
-          <option>Elevated Minimalist, clean, airy, restrained</option>
-          <option>Wildflower Modern, wild, seasonal, editorial</option>
-          <option>A mix, I'll explain below</option>
-          <option>Not sure yet</option>
-        </select>
-      </div>
-      <div class="field-full">
-        <label for="message">Tell us about your wedding</label>
-        <textarea id="message" name="message" placeholder="Venue setting, vision, anything that matters to you. The more context you give us, the better conversation we can have." rows="4"></textarea>
-      </div>
-      <div class="form-submit">
-        <button type="submit" class="btn-primary">Send consultation request</button>
-        <p class="form-note">We'll respond within 48 hours · Consultations are complimentary</p>
+      <div class="form-step-2">
+        <div>
+          <label for="venue">Venue</label>
+          <select id="venue" name="venue">
+            <option value="" disabled selected>Select venue or type below</option>
+            <option>Edgewood Tahoe</option>
+            <option>Palisades High Camp</option>
+            <option>National Exchange Hotel, Nevada City</option>
+            <option>Ritz-Carlton Lake Tahoe at Northstar</option>
+            <option>Hellman-Ehrman Mansion</option>
+            <option>Miner's Foundry, Nevada City</option>
+            <option>Private estate / other</option>
+            <option>Not sure yet</option>
+          </select>
+        </div>
+        <div>
+          <label for="budget">Approximate budget</label>
+          <select id="budget" name="budget">
+            <option value="" disabled selected>Estimated florals budget</option>
+            <option>$5,000–$8,000</option>
+            <option>$8,000–$12,000</option>
+            <option>$12,000–$18,000</option>
+            <option>$18,000–$25,000</option>
+            <option>$25,000+</option>
+            <option>Not sure yet</option>
+          </select>
+        </div>
+        <div class="field-full">
+          <label for="aesthetic">Aesthetic direction</label>
+          <select id="aesthetic" name="aesthetic">
+            <option value="" disabled selected>Which direction resonates?</option>
+            <option>Lush &amp; Romantic, rich, dramatic, deep tones</option>
+            <option>Elevated Minimalist, clean, airy, restrained</option>
+            <option>Wildflower Modern, wild, seasonal, editorial</option>
+            <option>A mix, I'll explain below</option>
+            <option>Not sure yet</option>
+          </select>
+        </div>
+        <div class="field-full">
+          <label for="message">Tell us about your wedding</label>
+          <textarea id="message" name="message" placeholder="Venue setting, vision, anything that matters to you. The more context you give us, the better conversation we can have." rows="4"></textarea>
+        </div>
+        <div class="form-submit">
+          <button type="submit" class="btn-primary">Send consultation request</button>
+          <p class="form-note">We'll respond within 48 hours · Consultations are complimentary</p>
+        </div>
       </div>
     </form>
-    <div id="consultation-success" style="display:none;margin-top:32px;padding:24px;border:1px solid oklch(34% .09 148 / .4);background:oklch(34% .09 148 / .06);">
-      <p style="color:var(--acc);font-family:var(--f-d);font-style:italic;font-size:1.4rem;margin-bottom:8px;">Thank you, we'll be in touch soon.</p>
-      <p style="font-size:.88rem;color:var(--fg2);margin-bottom:12px;">We'll follow up within 48 hours to confirm availability and schedule your consultation.</p>
-      <p style="font-size:.88rem;color:var(--fg2);">Your consultation will be a 30–45 minute call with Brittany, by phone or video, wherever is easiest for you. Bring any inspiration you have: photos, a Pinterest board, a venue layout. No need to have it figured out yet.</p>
+    <div id="consultation-success" class="form-success" data-form-success hidden>
+      <div class="form-success-check" aria-hidden="true">&#10003;</div>
+      <h3>Thank you — your date is with us.</h3>
+      <p data-success-date-line hidden>We'll confirm availability for <strong data-success-date></strong> and reach out within <strong>48 hours</strong>.</p>
+      <p data-success-default>We'll follow up within <strong>48 hours</strong> to confirm availability and schedule your consultation.</p>
+      <p>Your consultation is a 30–45 minute call with Brittany, by phone or video. Bring any inspiration you have — photos, a Pinterest board, a venue layout. No need to have it figured out yet.</p>
+      <div class="form-success-next">
+        <span class="label">While you wait</span>
+        <a href="{{ site.baseurl }}/portfolio">Explore the portfolio &rarr;</a>
+      </div>
     </div>
   </div>
 </section>
