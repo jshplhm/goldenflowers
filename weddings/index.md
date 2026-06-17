@@ -58,42 +58,42 @@ redirect_from:
     <h2>Full-service means all of it.</h2>
     <div class="includes-grid">
       <div class="include-item">
-        <div class="include-icon">✓</div>
+        <div class="include-icon">{% include icon.html name="bouquet" %}</div>
         <div class="include-text">
           <h4>Bridal &amp; party florals</h4>
           <p>Bridal bouquet, bridesmaids, boutonnieres, flower crown, corsages, all designed as a cohesive system.</p>
         </div>
       </div>
       <div class="include-item">
-        <div class="include-icon">✓</div>
+        <div class="include-icon">{% include icon.html name="arch" %}</div>
         <div class="include-text">
           <h4>Ceremony installation</h4>
           <p>Arch, altar arrangement, aisle florals, or hanging installation, designed for your specific venue and ceremony setup.</p>
         </div>
       </div>
       <div class="include-item">
-        <div class="include-icon">✓</div>
+        <div class="include-icon">{% include icon.html name="vase" %}</div>
         <div class="include-text">
           <h4>Reception centerpieces</h4>
           <p>Table arrangements designed to work at scale in your space. Low-profile, elevated, or dramatic, based on your vision and room proportions.</p>
         </div>
       </div>
       <div class="include-item">
-        <div class="include-icon">✓</div>
+        <div class="include-icon">{% include icon.html name="sparkle" %}</div>
         <div class="include-text">
           <h4>Environmental florals</h4>
           <p>Cocktail hour arrangements, bar florals, lounge area pieces, escort card table styling, and any other environmental design.</p>
         </div>
       </div>
       <div class="include-item">
-        <div class="include-icon">✓</div>
+        <div class="include-icon">{% include icon.html name="truck" %}</div>
         <div class="include-text">
           <h4>Setup &amp; breakdown</h4>
           <p>We coordinate directly with your venue and planner, handle full setup on the day, and break down and remove everything at the end of the night.</p>
         </div>
       </div>
       <div class="include-item">
-        <div class="include-icon">✓</div>
+        <div class="include-icon">{% include icon.html name="layout" %}</div>
         <div class="include-text">
           <h4>Mood board &amp; proposal</h4>
           <p>Visual design document and itemized proposal before you commit to anything. You know exactly what you're getting and why.</p>
