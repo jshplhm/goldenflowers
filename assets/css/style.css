@@ -1279,9 +1279,8 @@ body.modal-open { overflow: hidden; }
    ════════════════════════════════════════════════════════ */
 
 /* P1 — lightbox must sit above the fixed header */
-/* Keep the nav in the DOM under the modal overlay (z-index handles layering) so
-   opening the form from the dark menu slides up over it — no flash of the page. */
-body.modal-open #site-nav { z-index: 80; }
+/* Nav stays put under the modal overlay (overlay z-index 1000 covers it), so
+   opening the form from the dark menu slides up over it without a repaint flash. */
 
 /* P2 — strengthen the scrim on interior heroes for white-text legibility */
 .hero--interior .hero-media::after {
@@ -1434,6 +1433,8 @@ h1.venue-title, .page-header h1, .founder-copy h1, .blog-title,
 /* Date control: left-align its value to match the other fields (iOS centers it) */
 input[type="date"]::-webkit-date-and-time-value { text-align: left; }
 input[type="date"] { text-align: left; }
+/* Uniform control height so the empty date box matches name/email/selects */
+input, select { min-height: 50px; }
 
 /* — About farm image grid: bring into the rounded-tile family (was full-bleed) — */
 .farm-grid { gap: var(--tile-gap); max-width: 1280px; margin: 0 auto; padding: 56px 48px; }

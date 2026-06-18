@@ -40,7 +40,7 @@ redirect_from:
   <button class="filter-chip portfolio-filter-btn" data-filter="minimalist">Elevated Minimalist</button>
   <button class="filter-chip portfolio-filter-btn" data-filter="wildflower">Wildflower Modern</button>
 </div>
-<p class="portfolio-note">The three directions couples ask for most — a starting point, not a limit. We design in every style. <a href="{{ site.baseurl }}/weddings#consultation" data-consult-open>Tell us your vision &rarr;</a></p>
+<p class="portfolio-note">The three directions couples ask for most, and only a starting point. We design in every style. <a href="{{ site.baseurl }}/weddings#consultation" data-consult-open>Tell us your vision &rarr;</a></p>
 
 <!-- Lush & Romantic -->
 <section class="port-section">
@@ -63,7 +63,6 @@ redirect_from:
           <span class="wedding-tag">Lush &amp; Romantic</span>
         </div>
         <p class="wedding-desc">Stone walls, candlelight, and a dramatic arch of deep burgundy and plum blooms. A theatrical installation designed around the Foundry's historic stonework.</p>
-        <a href="{{ site.baseurl }}/weddings#consultation" class="wedding-cta">Plan something similar →</a>
       </div>
     </div>
     <div class="wedding-card" data-aesthetic="dark-romance">
@@ -77,7 +76,6 @@ redirect_from:
           <span class="wedding-tag">Lush &amp; Romantic</span>
         </div>
         <p class="wedding-desc">A richly composed bridal bouquet with trailing stems and a deep jewel-toned palette. One of the most editorial pieces we've ever created.</p>
-        <a href="{{ site.baseurl }}/weddings#consultation" class="wedding-cta">Plan something similar →</a>
       </div>
     </div>
     <div class="wedding-card" data-aesthetic="dark-romance">
@@ -91,7 +89,6 @@ redirect_from:
           <span class="wedding-tag">Lush &amp; Romantic</span>
         </div>
         <p class="wedding-desc">A romantic evening wedding in Nevada City's historic hotel ballroom. Arrangements in midnight plum, forest green, and warm amber candlelight tones.</p>
-        <a href="{{ site.baseurl }}/weddings#consultation" class="wedding-cta">Plan something similar →</a>
       </div>
     </div>
   </div>
@@ -120,7 +117,6 @@ redirect_from:
           <span class="wedding-tag">Elevated Minimalist</span>
         </div>
         <p class="wedding-desc">Modern bridal bouquet in ivory and white with textural greenery. Restrained, refined, and impeccably composed.</p>
-        <a href="{{ site.baseurl }}/weddings#consultation" class="wedding-cta">Plan something similar →</a>
       </div>
     </div>
     <div class="wedding-card" data-aesthetic="minimalist">
@@ -134,7 +130,6 @@ redirect_from:
           <span class="wedding-tag">Elevated Minimalist</span>
         </div>
         <p class="wedding-desc">High-altitude table arrangements at 8,200 feet. Low-profile centerpieces in cream and ivory designed to preserve the panoramic mountain view.</p>
-        <a href="{{ site.baseurl }}/weddings#consultation" class="wedding-cta">Plan something similar →</a>
       </div>
     </div>
     <div class="wedding-card" data-aesthetic="minimalist">
@@ -148,7 +143,6 @@ redirect_from:
           <span class="wedding-tag">Elevated Minimalist</span>
         </div>
         <p class="wedding-desc">Ceremony arch and reception florals at Edgewood's lakeside terrace. Airy whites and soft sage framing the lake beyond.</p>
-        <a href="{{ site.baseurl }}/weddings#consultation" class="wedding-cta">Plan something similar →</a>
       </div>
     </div>
   </div>
@@ -177,7 +171,6 @@ redirect_from:
           <span class="wedding-tag">Wildflower Modern</span>
         </div>
         <p class="wedding-desc">A Sierra Nevada outdoor ceremony with a wooden arch wrapped in native wildflowers, grasses, and trailing foliage. The lake visible through the arrangement.</p>
-        <a href="{{ site.baseurl }}/weddings#consultation" class="wedding-cta">Plan something similar →</a>
       </div>
     </div>
     <div class="wedding-card" data-aesthetic="wildflower">
@@ -191,7 +184,6 @@ redirect_from:
           <span class="wedding-tag">Wildflower Modern</span>
         </div>
         <p class="wedding-desc">An outdoor summer wedding on the Hellman-Ehrman grounds with arrangements of meadow-foraged and farm-grown California wildflowers.</p>
-        <a href="{{ site.baseurl }}/weddings#consultation" class="wedding-cta">Plan something similar →</a>
       </div>
     </div>
     <div class="wedding-card" data-aesthetic="wildflower">
@@ -205,7 +197,6 @@ redirect_from:
           <span class="wedding-tag">Wildflower Modern</span>
         </div>
         <p class="wedding-desc">Lakeside ceremony with a sprawling floral installation. Native shrubs and seasonal blooms blending seamlessly into the Tahoe shoreline landscape.</p>
-        <a href="{{ site.baseurl }}/weddings#consultation" class="wedding-cta">Plan something similar →</a>
       </div>
     </div>
   </div>

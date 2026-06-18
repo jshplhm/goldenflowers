@@ -10,3 +10,6 @@ _site/
 
 # macOS
 .DS_Store
+
+# Private design handoff (audit + mockups), not for the public site
+handoff/

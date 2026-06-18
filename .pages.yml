@@ -1,0 +1,44 @@
+# Pages CMS config (pagescms.org) — a hosted, modern, self-serve editor for the blog.
+# Brittany signs in at app.pagescms.org with GitHub (one-time), picks this repo,
+# and gets a clean UI to write posts. No Netlify / serverless backend required.
+
+media:
+  input: assets/images/blog
+  output: /goldenflowers/assets/images/blog
+
+content:
+  - name: posts
+    label: Blog Posts
+    type: collection
+    path: _posts
+    filename: '{year}-{month}-{day}-{fields.title}.md'
+    view:
+      fields: [title, date]
+      sort: [date]
+      default:
+        sort: date
+        order: desc
+    fields:
+      - name: layout
+        label: Layout
+        type: string
+        default: post
+        hidden: true
+      - name: title
+        label: Title
+        type: string
+        required: true
+      - name: date
+        label: Publish Date
+        type: date
+        options:
+          format: yyyy-MM-dd
+      - name: featured_image
+        label: Featured Image
+        type: image
+      - name: description
+        label: Description (1 to 2 sentences for search & social previews)
+        type: text
+      - name: body
+        label: Body
+        type: rich-text
