@@ -114,9 +114,9 @@ canonical_url: https://goldenflorals.com/
     <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap;margin-bottom:56px;">
       <div>
         <span class="label">Recent work</span>
-        <h2 class="section-head">Recently in bloom.</h2>
+        <h2 class="section-head" style="margin-bottom:0;">A few favorites.</h2>
       </div>
-      <a href="{{ site.baseurl }}/portfolio" class="btn-ghost" style="white-space:nowrap;">See all weddings →</a>
+      <a href="{{ site.baseurl }}/portfolio" class="btn-ghost" style="white-space:nowrap;">Browse the portfolio →</a>
     </div>
     <div class="port-grid">
       <div class="port-item">
@@ -168,7 +168,11 @@ canonical_url: https://goldenflorals.com/
   <div class="container">
     <span class="label">What couples say</span>
     <h2 class="section-head">Words from our couples.</h2>
-    {% include testimonials.html %}
+    <figure class="testi-featured">
+      <div class="testi-featured-stars" aria-hidden="true">★★★★★</div>
+      <blockquote>"Brittany had ideas that helped me achieve the luxe look I wanted while staying in budget. Working with her was effortless, and the flowers were exactly what I'd pictured."</blockquote>
+      <figcaption><cite>Sara</cite>, The Ritz-Carlton, Truckee</figcaption>
+    </figure>
   </div>
 </section>
 

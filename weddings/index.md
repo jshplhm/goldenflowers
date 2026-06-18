@@ -13,7 +13,7 @@ redirect_from:
 <!-- Hero -->
 <section class="hero hero--interior">
   <div class="hero-media">
-    <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/5cc6b54a-8b19-461d-b81d-4c6f5c68f205/couple+getting+married+in+Lake+Tahoe+in+front+of+floral+installation?format=1100w" alt="Couple under floral installation at Lake Tahoe" loading="eager">
+    <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/5cc6b54a-8b19-461d-b81d-4c6f5c68f205/couple+getting+married+in+Lake+Tahoe+in+front+of+floral+installation?format=1100w" alt="Couple under floral installation at Lake Tahoe" loading="eager" style="object-position:center 62%;">
   </div>
   <div class="hero-copy">
     <span class="hero-eyebrow">Working with us</span>
@@ -28,8 +28,8 @@ redirect_from:
 
 <section class="section" style="padding-top:80px;padding-bottom:64px;">
   <div class="container" style="max-width:760px;">
-    <p style="font-size:1.05rem;">We take one wedding per date, so every couple has Brittany's full attention from the first consultation through setup and breakdown. She works with a team of seasoned florists, several of whom run their own studios and farms. No junior staff, no assembly line, no handoffs.</p>
-    <p style="margin-top:16px;font-size:.88rem;color:var(--fgm);">Available for weddings throughout Lake Tahoe, the Sierra Nevada, and the Gold Country foothills.</p>
+    <p style="font-size:1.05rem;">We take one wedding per date, so every couple works directly with our founder, Brittany, from the first consultation through setup and breakdown. She designs alongside a team of seasoned florists, several of whom run their own studios and farms. No junior staff, no assembly line, no handoffs.</p>
+    <p style="margin-top:16px;font-size:.88rem;color:var(--fgm);">Available for weddings throughout Lake Tahoe, the Sierra Nevada, and the Gold Country foothills. <a href="{{ site.baseurl }}/about" style="color:var(--acc);">Meet Brittany &rarr;</a></p>
   </div>
 </section>
 
@@ -130,6 +130,11 @@ redirect_from:
   <div class="container">
     <span class="label">What couples say</span>
     <h2>In their own words.</h2>
+    <figure class="testi-featured">
+      <div class="testi-featured-stars" aria-hidden="true">★★★★★</div>
+      <blockquote>"My wedding florals were everything I hoped for and more, and Brittany was an absolute dream to work with. I would choose Golden Flowers again and again over other competitors any day."</blockquote>
+      <figcaption><cite>Brooke</cite>, Lake Tahoe wedding</figcaption>
+    </figure>
     {% include testimonials.html %}
   </div>
 </section>
