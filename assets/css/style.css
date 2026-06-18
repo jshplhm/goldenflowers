@@ -166,8 +166,8 @@ body { padding-top: var(--nav-h); }
   border-top: 1px solid var(--bor);
 }
 .site-footer--full {
-  padding: 76px 48px 64px;
-  display: grid; grid-template-columns: 1.6fr 1fr 1.4fr; gap: 56px;
+  padding: 64px 48px;
+  display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 48px;
 }
 .site-footer--minimal {
   padding: 48px;
@@ -187,10 +187,10 @@ body { padding-top: var(--nav-h); }
 }
 .footer-col a {
   display: block; font-size: .83rem; color: var(--fg2);
-  margin-bottom: 14px; transition: color .2s;
+  margin-bottom: 8px; transition: color .2s;
 }
 .footer-col a:hover { color: var(--acc); }
-.footer-info p { font-size: .82rem; color: var(--fg2); line-height: 1.8; margin-bottom: 14px; }
+.footer-info p { font-size: .82rem; color: var(--fg2); line-height: 1.8; }
 .footer-info a { color: var(--acc); }
 .foot-links { display: flex; gap: 24px; }
 .foot-links a {
@@ -1552,7 +1552,7 @@ h3, .diff-card h3, .step h3, .faq-question h3, .value-item h3,
 /* Body copy in components → one size + rhythm */
 .diff-card p, .step p, .value-item p, .philosophy-item p, .include-text p,
 .cred-item p, .farm-text p, .faq-answer, .wedding-desc, .price-list li,
-.footer-tagline, .footer-sister, .form-intro p, .farm-grid .farm-text p {
+.form-intro p, .farm-grid .farm-text p {
   font-size: .92rem; line-height: 1.7;
 }
 /* Small meta / supporting text → one size */
