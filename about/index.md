@@ -24,8 +24,9 @@ founder_video: ""
 
 <section class="section" style="padding-bottom:56px;">
   <div class="container" style="max-width:760px;">
-    <p style="font-size:1.05rem;">Golden Flowers is Brittany's studio. She trained as an agronomist before becoming a floral designer, which means she understands not just how flowers look, but how they grow, what conditions produce them, and what it takes to source them responsibly.</p>
-    <p style="margin-top:16px;">That background shapes everything: the decision to grow on farm plots instead of buying imported product, the commitment to foam-free construction, and the design philosophy of working with what the California land offers at its seasonal peak.</p>
+    <p style="font-size:1.05rem;">Golden Flowers is Brittany's studio. Before flowers, she earned a master's in agricultural science and spent more than a decade in sustainable agriculture across Spain, Mexico, New Zealand, and the United States, work that connected how things are grown with how they reach the people who love them, at the scale of partners like Whole Foods.</p>
+    <p style="margin-top:16px;">She paired that grounding with formal European floral design training. So she approaches your florals the way a grower does: knowing what each stem needs, what each season offers, and how to build something that feels genuinely alive.</p>
+    <p style="margin-top:16px;">When their son was born, she and her family moved to the Sierra Nevada to raise him in a small mountain town with a real sense of community. Golden Flowers grew from that, rooted in this place and designed for the couples who marry here.</p>
   </div>
 </section>
 
