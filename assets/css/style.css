@@ -1497,6 +1497,23 @@ input, select { min-height: 50px; }
 }
 .footer-info a:hover, .footer-contact a:hover { text-decoration-color: var(--acc); }
 
+/* ════════════════════════════════════════════════════════
+   37. TYPE SYSTEM — one small-caps label treatment, site-wide
+   Kills the .62–.72rem / .08–.22em / weight drift across every
+   eyebrow, kicker, tag, and column header. Color stays role-based
+   (handled by each element's own rule), only the type is unified.
+   ════════════════════════════════════════════════════════ */
+.label, .hero-eyebrow, .trust-eyebrow, .fullbleed-eyebrow, .aesthetic-tag,
+.testi-tag, .founder-tag, .footer-brand, .footer-col h4, .filter-label,
+.venue-meta, .wedding-venue, .wedding-tag, .form-step-indicator,
+.prefooter-link, .blog-card-date {
+  font-family: var(--f-b);
+  font-weight: 500;
+  font-size: .7rem;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+
 /* — Meet Brittany video (renders only when founder_video is set) — */
 .video-frame {
   position: relative; aspect-ratio: 16 / 9; width: 100%;
