@@ -1464,10 +1464,10 @@ input, select { min-height: 50px; }
 @media (max-width: 640px) { .testi-featured { margin-bottom: 32px; } }
 
 /* — Pre-footer CTA strip (dark green; one consistent close site-wide) — */
-.prefooter-cta { background: var(--fg); padding: 60px 48px; }
+.prefooter-cta { background: var(--fg); padding: 80px 48px; }
 .prefooter-inner { max-width: 1280px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 36px; flex-wrap: wrap; }
-.prefooter-head { font-family: var(--f-d); font-style: italic; font-weight: 300; font-size: clamp(2rem, 3.2vw, 2.9rem); line-height: 1.1; color: oklch(96% .006 88); }
-.prefooter-sub { font-family: var(--f-b); font-size: .9rem; line-height: 1.6; color: oklch(83% .015 128); margin-top: 10px; max-width: 480px; }
+.prefooter-head { font-family: var(--f-d); font-style: italic; font-weight: 300; font-size: clamp(2.4rem, 4vw, 3.4rem); line-height: 1.06; color: oklch(96% .006 88); }
+.prefooter-sub { font-family: var(--f-b); font-size: .95rem; line-height: 1.6; color: oklch(83% .015 128); margin-top: 14px; max-width: 480px; }
 .prefooter-actions { display: flex; align-items: center; gap: 28px; }
 .prefooter-link { font-family: var(--f-b); font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; color: oklch(83% .015 128); white-space: nowrap; transition: color .2s; }
 .prefooter-link:hover { color: oklch(96% .006 88); }
