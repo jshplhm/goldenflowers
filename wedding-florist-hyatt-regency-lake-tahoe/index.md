@@ -9,7 +9,7 @@ canonical_url: https://goldenflorals.com/wedding-florist-hyatt-regency-lake-taho
 
 <section class="hero hero--interior">
   <div class="hero-media">
-    <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1776975105426-4BAEXMVDBX6Q5ETZ1BVC/l-a-preview-6962.jpg?format=1100w" alt="Lakefront wedding florals at Hyatt Regency Lake Tahoe" loading="eager">
+    <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1776975105426-4BAEXMVDBX6Q5ETZ1BVC/l-a-preview-6962.jpg?format=2500w" alt="Lakefront wedding florals at Hyatt Regency Lake Tahoe" loading="eager">
   </div>
   <div class="hero-copy">
     <span class="hero-eyebrow">Venue</span>

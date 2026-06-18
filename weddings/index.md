@@ -13,7 +13,7 @@ redirect_from:
 <!-- Hero -->
 <section class="hero hero--interior">
   <div class="hero-media">
-    <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/5cc6b54a-8b19-461d-b81d-4c6f5c68f205/couple+getting+married+in+Lake+Tahoe+in+front+of+floral+installation?format=1100w" alt="Couple under floral installation at Lake Tahoe" loading="eager" style="object-position:center 62%;">
+    <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/5cc6b54a-8b19-461d-b81d-4c6f5c68f205/couple+getting+married+in+Lake+Tahoe+in+front+of+floral+installation?format=2500w" alt="Couple under floral installation at Lake Tahoe" loading="eager" style="object-position:center 62%;">
   </div>
   <div class="hero-copy">
     <span class="hero-eyebrow">Working with us</span>
@@ -118,7 +118,7 @@ redirect_from:
 
 <!-- Editorial break -->
 <section class="fullbleed">
-  <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1779132409797-K9BH7UUY32BCL87P6QI8/16.jpg?format=1100w" alt="Floral installation at a Lake Tahoe wedding" loading="lazy">
+  <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1779132409797-K9BH7UUY32BCL87P6QI8/16.jpg?format=2500w" alt="Floral installation at a Lake Tahoe wedding" loading="lazy">
   <div class="fullbleed-copy">
     <span class="fullbleed-eyebrow">How we work</span>
     <p class="fullbleed-line">One wedding a day, built start to finish by the same hands.</p>

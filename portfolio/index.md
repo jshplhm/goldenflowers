@@ -22,7 +22,7 @@ redirect_from:
 
 <section class="hero hero--interior">
   <div class="hero-media">
-    <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1770534306889-NSEB5HC1TYWMEPG4WSCI/NationalGothic--268.jpg?format=1100w" alt="Lake Tahoe wedding floral installation" loading="eager">
+    <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1770534306889-NSEB5HC1TYWMEPG4WSCI/NationalGothic--268.jpg?format=2500w" alt="Lake Tahoe wedding floral installation" loading="eager">
   </div>
   <div class="hero-copy">
     <span class="hero-eyebrow">Portfolio</span>

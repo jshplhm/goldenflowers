@@ -9,7 +9,7 @@ canonical_url: https://goldenflorals.com/
 
 <section class="hero">
   <div class="hero-media">
-    <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/2b98245c-1230-4e50-847e-90c7d13f793b/Lake%2BTahoe%2BFloral%2BInstallation.jpeg" alt="Lake Tahoe floral installation by Golden Flowers" loading="eager">
+    <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/2b98245c-1230-4e50-847e-90c7d13f793b/Lake%2BTahoe%2BFloral%2BInstallation.jpeg?format=2500w" alt="Lake Tahoe floral installation by Golden Flowers" loading="eager">
   </div>
   <div class="hero-copy">
     <h1 class="hero-eyebrow">Lake Tahoe Wedding Florist</h1>
@@ -102,7 +102,7 @@ canonical_url: https://goldenflorals.com/
 </section>
 
 <section class="fullbleed">
-  <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/4685a495-c2ce-4b90-9fd1-f91ca0d6a135/K%2BJ-0962.jpg?format=1500w" alt="Golden Flowers ceremony arch at a Lake Tahoe wedding" loading="lazy">
+  <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/4685a495-c2ce-4b90-9fd1-f91ca0d6a135/K%2BJ-0962.jpg?format=2500w" alt="Golden Flowers ceremony arch at a Lake Tahoe wedding" loading="lazy">
   <div class="fullbleed-copy">
     <span class="fullbleed-eyebrow">Grown, not shipped</span>
     <p class="fullbleed-line">Every stem chosen for one couple, one date, one place in the mountains.</p>
