@@ -1622,6 +1622,9 @@ form[hidden] { display: none; }
 .form-success-next .label { margin-bottom: 8px; color: var(--fgm); }
 .form-success-next a { font-family: var(--f-b); font-size: .85rem; letter-spacing: .04em; color: var(--acc2); }
 .form-success:focus { outline: none; }
+/* Book-a-call handoff (Google Appointment Schedule) */
+.form-success .form-success-book { display: inline-block; margin: 6px 0 14px; }
+.form-success p.form-success-booknote { font-size: .82rem; color: var(--fgm); margin-top: 0; }
 
 /* — (g) Tap targets & self-select cards — */
 a.aesthetic-card { display: block; text-decoration: none; color: inherit; }

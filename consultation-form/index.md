@@ -82,9 +82,10 @@ canonical_url: https://goldenflorals.com/consultation-form
       <div class="form-success-tags" data-success-tags></div>
       <div class="form-success-check" aria-hidden="true">&#10003;</div>
       <h3>Thank you for reaching out.</h3>
-      <p data-success-date-line hidden>We'll confirm availability for <strong data-success-date></strong> and reach out within <strong>48 hours</strong>.</p>
-      <p data-success-default>We'll follow up within <strong>48 hours</strong> to confirm availability and schedule your consultation with Brittany.</p>
-      <p>Complimentary consultation, by phone or video.</p>
+      <p data-success-date-line hidden>We've noted <strong data-success-date></strong>. Now let's find a time to talk.</p>
+      <p data-success-default>Now let's find a time to talk.</p>
+      <a href="https://calendar.app.google/iKY1Xqerqtcv6fdj7" target="_blank" rel="noopener" class="btn-primary form-success-book">Book your consultation call &rarr;</a>
+      <p class="form-success-booknote">A complimentary call with Brittany, by phone or video. Prefer we reach out instead? We'll email within 48 hours.</p>
       <div class="form-success-next">
         <span class="label">While you wait</span>
         <a href="{{ site.baseurl }}/portfolio">Explore the portfolio &rarr;</a>
