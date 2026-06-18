@@ -1561,6 +1561,18 @@ h3, .diff-card h3, .step h3, .faq-question h3, .value-item h3,
   font-size: .8rem;
 }
 
+/* ════════════════════════════════════════════════════════
+   40. CARD CONSISTENCY — one lifted-tile language everywhere
+   Brings the flat/outlined cards (pricing, testimonial, blog CTA) onto the
+   same whisper-border + soft-shadow treatment as the tile cards, so every
+   rounded card reads the same. Pricing keeps its sage bg as the one accent.
+   ════════════════════════════════════════════════════════ */
+.pricing-inner, .pricing-box, .testi-card, .blog-cta-inline {
+  border: 1px solid var(--tile-border);
+  box-shadow: var(--tile-shadow);
+}
+.testi-card { background: var(--tile-bg); }
+
 /* — Meet Brittany video (renders only when founder_video is set) — */
 .video-frame {
   position: relative; aspect-ratio: 16 / 9; width: 100%;
