@@ -1481,6 +1481,13 @@ input, select { min-height: 50px; }
   .prefooter-link { text-align: center; }
 }
 
+/* — Footer column headers: one identical treatment for all three — */
+.footer-brand, .footer-col h4 {
+  font-family: var(--f-b); font-weight: 600; font-size: .72rem;
+  letter-spacing: .2em; text-transform: uppercase; color: var(--fg);
+  margin-bottom: 18px;
+}
+
 /* — Footer contact links: live + underlined, separated by a hairline — */
 .footer-contact { margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--bor); display: flex; flex-direction: column; gap: 6px; }
 .footer-info a, .footer-contact a {
