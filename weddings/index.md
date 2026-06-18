@@ -28,7 +28,7 @@ redirect_from:
 
 <section class="section" style="padding-top:80px;padding-bottom:64px;">
   <div class="container" style="max-width:760px;">
-    <p style="font-size:1.05rem;">We take one wedding per date, so every couple has Brittany's full attention from the first consultation through setup and breakdown. The hands beside her are few and carefully chosen: seasoned florists, several of whom run their own studios and farms. No junior staff, no assembly line, no handoffs.</p>
+    <p style="font-size:1.05rem;">We take one wedding per date, so every couple has Brittany's full attention from the first consultation through setup and breakdown. She works with a team of seasoned florists, several of whom run their own studios and farms. No junior staff, no assembly line, no handoffs.</p>
     <p style="margin-top:16px;font-size:.88rem;color:var(--fgm);">Available for weddings throughout Lake Tahoe, the Sierra Nevada, and the Gold Country foothills.</p>
   </div>
 </section>
