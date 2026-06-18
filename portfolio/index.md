@@ -27,7 +27,7 @@ redirect_from:
   <div class="hero-copy">
     <span class="hero-eyebrow">Portfolio</span>
     <h1 class="hero-display">A look into our creative world.</h1>
-    <p class="hero-sub">Three aesthetics that define our work, but not the only ones we do. Browse what resonates and bring us your vision.</p>
+    <p class="hero-sub">Every wedding begins with your vision, your venue's language, and the season it happens in. These are the three directions couples reach for most.</p>
     <div class="hero-btns">
       <a href="{{ site.baseurl }}/weddings#consultation" class="btn-primary" data-consult-open>Start a Consultation</a>
     </div>

@@ -5,6 +5,9 @@ seo_title: "About Golden Flowers | Sustainable Lake Tahoe Wedding Florist"
 permalink: /about
 description: "Golden Flowers is a Lake Tahoe wedding florist specializing in bold, sustainable, artful floral design. Located in Incline Village, our studio creates seasonally grown arrangements, from editorial bouquets to full installations, for couples who want their wedding flowers to feel intentional, and unforgettable."
 canonical_url: https://goldenflorals.com/about
+# Paste a YouTube/Vimeo *embed* URL here to switch on the "Meet Brittany" video
+# section (e.g. https://www.youtube.com/embed/XXXXXXXX). Leave blank to hide it.
+founder_video: ""
 ---
 
 <!-- Founder Hero -->
@@ -25,6 +28,19 @@ canonical_url: https://goldenflorals.com/about
     <p style="margin-top:16px;">That background shapes everything: the decision to grow on farm plots instead of buying imported product, the commitment to foam-free construction, and the design philosophy of working with what the California land offers at its seasonal peak.</p>
   </div>
 </section>
+
+{% if page.founder_video and page.founder_video != "" %}
+<!-- Meet Brittany (renders only when founder_video is set in front matter) -->
+<section class="section" style="padding-top:0;">
+  <div class="container" style="max-width:900px;">
+    <span class="label">Meet Brittany</span>
+    <h2 class="section-head" style="margin-bottom:28px;">In her words.</h2>
+    <div class="video-frame">
+      <iframe src="{{ page.founder_video }}" title="Meet Brittany, founder of Golden Flowers" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+  </div>
+</section>
+{% endif %}
 
 <hr class="section-div">
 

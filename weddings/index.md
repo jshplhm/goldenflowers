@@ -38,6 +38,7 @@ redirect_from:
   <div class="container">
     <span class="label">How it works</span>
     <h2>From first conversation to wedding day.</h2>
+    <p style="max-width:620px;margin-bottom:8px;font-size:1.02rem;">You work with Brittany from the first call to the last centerpiece. One couple, one date, complete attention, and a process built around feeling heard rather than handed a catalog.</p>
     <div class="process-steps">
       <div class="step">
         <p class="step-num">01</p>
@@ -47,7 +48,7 @@ redirect_from:
       <div class="step">
         <p class="step-num">02</p>
         <h3>Proposal &amp; Design</h3>
-        <p>Brittany builds a custom proposal with a mood board, itemized quote, and seasonal sourcing plan. No boilerplate packages, just a design built for your specific wedding.</p>
+        <p>Brittany builds a custom proposal with a mood board, itemized quote, and seasonal sourcing plan. No boilerplate packages. If the first direction isn't quite right, we keep shaping it together until it's unmistakably yours.</p>
       </div>
       <div class="step">
         <p class="step-num">03</p>

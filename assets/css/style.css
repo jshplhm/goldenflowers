@@ -1436,6 +1436,15 @@ input[type="date"] { text-align: left; }
 /* Uniform control height so the empty date box matches name/email/selects */
 input, select { min-height: 50px; }
 
+/* — Meet Brittany video (renders only when founder_video is set) — */
+.video-frame {
+  position: relative; aspect-ratio: 16 / 9; width: 100%;
+  border-radius: var(--radius); overflow: hidden;
+  border: 1px solid var(--tile-border); box-shadow: var(--tile-shadow);
+  background: var(--bg2);
+}
+.video-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+
 /* — About farm image grid: bring into the rounded-tile family (was full-bleed) — */
 .farm-grid { gap: var(--tile-gap); max-width: 1280px; margin: 0 auto; padding: 56px 48px; }
 .farm-imgs { gap: var(--tile-gap); }
