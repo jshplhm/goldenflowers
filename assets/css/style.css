@@ -67,12 +67,12 @@
   /* Tile system — the rounded, spaced-tile direction (June 2026 redesign) */
   --radius:    16px;              /* content tiles */
   --radius-sm: 12px;              /* smaller chips / image tiles */
-  --tile-bg:     oklch(99% .003 90);               /* crisp near-white tile face (pops on sage) */
+  --tile-bg:     oklch(99% .003 90);               /* crisp near-white tile face */
   --tile-bg-warm: oklch(94.5% .018 64);            /* warm tile variant */
-  --tile-border: oklch(88% .010 125 / .5);         /* whisper border — shadow does the lifting */
-  --tile-border-hover: oklch(80% .025 125 / .7);
-  --tile-shadow: 0 2px 4px oklch(22% .04 150 / .04), 0 12px 30px oklch(22% .04 150 / .07);
-  --tile-shadow-hover: 0 4px 8px oklch(22% .04 150 / .05), 0 18px 40px oklch(22% .04 150 / .10);
+  --tile-border: oklch(82% .014 120 / .8);         /* clean visible hairline — crisp, not floaty */
+  --tile-border-hover: oklch(74% .03 120);
+  --tile-shadow: 0 1px 2px oklch(20% .023 148 / .04);   /* a hair of definition, not a float */
+  --tile-shadow-hover: 0 4px 14px oklch(20% .023 148 / .07);
   --tile-gap: 20px;               /* spacing between tiles, replaces 1px hairline grids */
 }
 @media (max-width: 1024px) {
@@ -671,11 +671,11 @@ details.season-card .season-body { padding-top: 20px; }
   gap: 20px;
 }
 .pledge-card {
-  background: var(--bg3);
-  border: 1px solid oklch(82% .014 120 / .8);
-  border-radius: 16px;
+  background: var(--tile-bg);
+  border: 1px solid var(--tile-border);
+  border-radius: var(--radius);
   padding: 32px 30px;
-  box-shadow: 0 1px 2px oklch(20% .023 148 / .03);
+  box-shadow: var(--tile-shadow);
   transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
 }
 .pledge-card:hover {
