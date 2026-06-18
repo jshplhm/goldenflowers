@@ -204,13 +204,3 @@ canonical_url: https://goldenflorals.com/
     </div>
   </div>
 </section>
-
-<div class="cta-section">
-  <div style="max-width:640px;margin:0 auto;">
-    <span class="label" style="display:block;text-align:center">Start here</span>
-    <h2>Your Lake Tahoe wedding flowers start here.</h2>
-    <p>We take one wedding per date. Reach out early.</p>
-    <a href="{{ site.baseurl }}/weddings#consultation" class="btn-primary" data-consult-open>Schedule a Consultation &rarr;</a>
-    <p style="font-size:.75rem;color:var(--fgm);margin-top:16px;letter-spacing:.04em;">We take one wedding per date.</p>
-  </div>
-</div>

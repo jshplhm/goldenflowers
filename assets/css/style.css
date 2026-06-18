@@ -41,7 +41,7 @@
 
   /* Backgrounds */
   --bg:  oklch(95.5% .007 90);    /* warm off-white */
-  --bg2: oklch(87%   .016 115);   /* soft sage green */
+  --bg2: oklch(85%   .035 128);   /* soft sage green — real saturation so it reads sage, not gray */
   --bg3: oklch(97.5% .004 88);    /* near-white */
 
   /* Text */
@@ -67,12 +67,12 @@
   /* Tile system — the rounded, spaced-tile direction (June 2026 redesign) */
   --radius:    16px;              /* content tiles */
   --radius-sm: 12px;              /* smaller chips / image tiles */
-  --tile-bg:     var(--bg3);                       /* near-white tile face */
+  --tile-bg:     oklch(99% .003 90);               /* crisp near-white tile face (pops on sage) */
   --tile-bg-warm: oklch(94.5% .018 64);            /* warm tile variant */
-  --tile-border: oklch(82% .014 120 / .8);         /* soft hairline border */
-  --tile-border-hover: oklch(76% .03 120);
-  --tile-shadow: 0 1px 2px oklch(20% .023 148 / .03);
-  --tile-shadow-hover: 0 8px 28px oklch(20% .023 148 / .07);
+  --tile-border: oklch(88% .010 125 / .5);         /* whisper border — shadow does the lifting */
+  --tile-border-hover: oklch(80% .025 125 / .7);
+  --tile-shadow: 0 2px 4px oklch(22% .04 150 / .04), 0 12px 30px oklch(22% .04 150 / .07);
+  --tile-shadow-hover: 0 4px 8px oklch(22% .04 150 / .05), 0 18px 40px oklch(22% .04 150 / .10);
   --tile-gap: 20px;               /* spacing between tiles, replaces 1px hairline grids */
 }
 @media (max-width: 1024px) {
@@ -1462,6 +1462,33 @@ input, select { min-height: 50px; }
 }
 .testi-featured cite { font-style: normal; color: var(--fg2); }
 @media (max-width: 640px) { .testi-featured { margin-bottom: 32px; } }
+
+/* — Pre-footer CTA strip (dark green; one consistent close site-wide) — */
+.prefooter-cta { background: var(--fg); padding: 60px 48px; }
+.prefooter-inner { max-width: 1280px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 36px; flex-wrap: wrap; }
+.prefooter-head { font-family: var(--f-d); font-style: italic; font-weight: 300; font-size: clamp(2rem, 3.2vw, 2.9rem); line-height: 1.1; color: oklch(96% .006 88); }
+.prefooter-sub { font-family: var(--f-b); font-size: .9rem; line-height: 1.6; color: oklch(83% .015 128); margin-top: 10px; max-width: 480px; }
+.prefooter-actions { display: flex; align-items: center; gap: 28px; }
+.prefooter-link { font-family: var(--f-b); font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; color: oklch(83% .015 128); white-space: nowrap; transition: color .2s; }
+.prefooter-link:hover { color: oklch(96% .006 88); }
+.prefooter-btn { background: var(--acc2); color: oklch(96% .006 88); font-family: var(--f-b); font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; padding: 16px 30px; border-radius: 2px; white-space: nowrap; transition: opacity .2s; }
+.prefooter-btn:hover { opacity: .9; }
+@media (max-width: 640px) {
+  .prefooter-cta { padding: 40px 20px; }
+  .prefooter-inner { flex-direction: column; align-items: flex-start; gap: 24px; }
+  .prefooter-actions { width: 100%; flex-direction: column-reverse; align-items: stretch; gap: 16px; }
+  .prefooter-btn { text-align: center; }
+  .prefooter-link { text-align: center; }
+}
+
+/* — Footer contact links: live + underlined, separated by a hairline — */
+.footer-contact { margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--bor); display: flex; flex-direction: column; gap: 6px; }
+.footer-info a, .footer-contact a {
+  color: var(--acc); text-decoration: underline; text-underline-offset: 3px;
+  text-decoration-thickness: 1px; text-decoration-color: oklch(34% .09 148 / .35);
+  transition: text-decoration-color .2s;
+}
+.footer-info a:hover, .footer-contact a:hover { text-decoration-color: var(--acc); }
 
 /* — Meet Brittany video (renders only when founder_video is set) — */
 .video-frame {
