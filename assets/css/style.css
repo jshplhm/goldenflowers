@@ -166,8 +166,8 @@ body { padding-top: var(--nav-h); }
   border-top: 1px solid var(--bor);
 }
 .site-footer--full {
-  padding: 56px 48px;
-  display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 48px;
+  padding: 76px 48px 64px;
+  display: grid; grid-template-columns: 1.6fr 1fr 1.4fr; gap: 56px;
 }
 .site-footer--minimal {
   padding: 48px;
@@ -187,10 +187,10 @@ body { padding-top: var(--nav-h); }
 }
 .footer-col a {
   display: block; font-size: .83rem; color: var(--fg2);
-  margin-bottom: 8px; transition: color .2s;
+  margin-bottom: 14px; transition: color .2s;
 }
 .footer-col a:hover { color: var(--acc); }
-.footer-info p { font-size: .82rem; color: var(--fg2); line-height: 1.8; }
+.footer-info p { font-size: .82rem; color: var(--fg2); line-height: 1.8; margin-bottom: 14px; }
 .footer-info a { color: var(--acc); }
 .foot-links { display: flex; gap: 24px; }
 .foot-links a {
@@ -1634,9 +1634,10 @@ form[hidden] { display: none; }
 .form-success-next .label { margin-bottom: 8px; color: var(--fgm); }
 .form-success-next a { font-family: var(--f-b); font-size: .85rem; letter-spacing: .04em; color: var(--acc2); }
 .form-success:focus { outline: none; }
-/* Book-a-call handoff (Google Appointment Schedule) */
-.form-success .form-success-book { display: inline-block; margin: 6px 0 14px; }
-.form-success p.form-success-booknote { font-size: .82rem; color: var(--fgm); margin-top: 0; }
+/* Book-a-call handoff (Google Appointment Schedule) — secondary to the 48h reassurance */
+.form-success-book { margin: 32px 0 4px; }
+.form-success p.form-success-book-prompt { font-size: .85rem; color: var(--fg2); margin: 0 auto 16px; max-width: 360px; }
+.form-success-book .btn-primary { display: inline-block; }
 
 /* — (g) Tap targets & self-select cards — */
 a.aesthetic-card { display: block; text-decoration: none; color: inherit; }
