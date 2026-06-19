@@ -48,6 +48,7 @@
   --fg:  oklch(20% .023 148);     /* deep forest green */
   --fg2: oklch(38% .020 148);     /* medium forest green */
   --fgm: oklch(49% .018 142);     /* muted green — darkened for AA contrast */
+  --fgm-on-tint: oklch(42% .020 145);  /* ~4.6:1 on sage --bg2; use for small text on tinted surfaces */
 
   /* Accents */
   --acc:  oklch(34% .09 148);     /* accent forest green */
@@ -62,6 +63,11 @@
 
   /* Layout */
   --nav-h: 65px;                  /* fixed nav height — referenced by body, hero, sticky filter */
+
+  /* Buttons — one spec for every control */
+  --btn-radius: 2px;              /* sharp-but-not-raw, suits the elevated language */
+  --btn-pad-y: 14px;
+  --btn-pad-x: 28px;
 
   /* Tile system — the rounded, spaced-tile direction (June 2026 redesign) */
   --radius:    16px;              /* content tiles */
@@ -148,7 +154,7 @@ body { padding-top: var(--nav-h); }
   font-family: var(--f-b); font-size: .76rem;
   letter-spacing: .08em; text-transform: uppercase;
   border: 1px solid var(--bor); color: var(--fg2);
-  padding: 10px 22px; transition: all .2s; border-radius: 2px;
+  padding: 10px 22px; transition: all .2s; border-radius: var(--btn-radius); /* compact padding kept on purpose */
 }
 .nav-cta:hover { border-color: var(--acc); color: var(--acc); }
 .nav-cta-short { display: none; } /* short label shown only on phones (see mobile block) */
@@ -207,15 +213,15 @@ body { padding-top: var(--nav-h); }
   font-family: var(--f-b); font-size: .72rem;
   letter-spacing: .12em; text-transform: uppercase;
   background: var(--acc); color: oklch(95% .006 88);
-  padding: 14px 28px; border: none; cursor: pointer;
-  display: inline-block; transition: opacity .2s;
+  padding: var(--btn-pad-y) var(--btn-pad-x); border: none; border-radius: var(--btn-radius);
+  cursor: pointer; display: inline-block; transition: background .2s, opacity .2s;
 }
-.btn-primary:hover { opacity: .85; }
+.btn-primary:hover { opacity: 1; background: oklch(28% .09 148); } /* deepen the fill, don't grey it */
 .btn-ghost {
   font-family: var(--f-b); font-size: .72rem;
   letter-spacing: .12em; text-transform: uppercase;
   background: transparent; color: var(--fg2);
-  padding: 14px 28px; border: 1px solid var(--bor);
+  padding: var(--btn-pad-y) var(--btn-pad-x); border: 1px solid var(--bor); border-radius: var(--btn-radius);
   cursor: pointer; display: inline-block; transition: all .2s;
 }
 .btn-ghost:hover { border-color: var(--acc); color: var(--acc); }
@@ -392,7 +398,7 @@ hr.section-div { border: none; border-top: 1px solid var(--bor); display: block;
   font-size: clamp(2.8rem, 5vw, 5rem);
   color: var(--fg); line-height: 1; margin-bottom: 6px;
 }
-.price-sub { font-size: .8rem; color: var(--fgm); letter-spacing: .06em; }
+.price-sub { font-size: .8rem; color: var(--fgm-on-tint); letter-spacing: .06em; }
 .price-list { list-style: none; margin: 28px 0; display: flex; flex-direction: column; gap: 12px; }
 .price-list li { font-size: .88rem; color: var(--fg2); padding-left: 20px; position: relative; }
 .price-list li::before { content: '·'; position: absolute; left: 0; color: var(--acc); font-weight: 700; }
@@ -461,7 +467,7 @@ hr.section-div { border: none; border-top: 1px solid var(--bor); display: block;
   .testi-card { flex-basis: 86%; }                     /* ~1 across, next card peeks */
   /* Keep arrows on mobile so swipe isn't the only way to advance (a11y) */
   .testi-controls { display: flex; justify-content: center; gap: 14px; }
-  .testi-arrow { width: 40px; height: 40px; }
+  /* arrows stay 44x44 (desktop size) to meet the min touch target */
 }
 
 /* ── 13. VENUE GRID ───────────────────────────────────── */
@@ -645,7 +651,7 @@ details.season-card .season-body { padding-top: 20px; }
 .flower-list { list-style: none; display: flex; flex-direction: column; gap: 7px; }
 .flower-list li { font-size: .8rem; color: var(--fg2); padding-left: 16px; position: relative; }
 .flower-list li::before { content: '·'; position: absolute; left: 0; color: var(--acc); }
-.season-note { font-size: .75rem; color: var(--fgm); margin-top: 16px; font-style: italic; line-height: 1.6; }
+.season-note { font-size: .75rem; color: var(--fgm-on-tint); margin-top: 16px; font-style: italic; line-height: 1.6; }
 .season-toggle { display: none; }
 .values-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--bor); margin-top: 56px; }
 .value-item { background: var(--bg3); padding: 40px; }
@@ -1430,7 +1436,7 @@ input, select { min-height: 50px; }
 .prefooter-actions { display: flex; align-items: center; gap: 28px; }
 .prefooter-link { font-family: var(--f-b); font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; color: oklch(83% .015 128); white-space: nowrap; transition: color .2s; }
 .prefooter-link:hover { color: oklch(96% .006 88); }
-.prefooter-btn { background: var(--acc2); color: oklch(96% .006 88); font-family: var(--f-b); font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; padding: 16px 30px; border-radius: 2px; white-space: nowrap; transition: opacity .2s; }
+.prefooter-btn { background: var(--acc); color: oklch(96% .006 88); font-family: var(--f-b); font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; padding: var(--btn-pad-y) var(--btn-pad-x); border-radius: var(--btn-radius); white-space: nowrap; transition: opacity .2s; }
 .prefooter-btn:hover { opacity: .9; }
 @media (max-width: 640px) {
   .prefooter-cta { padding: 40px 20px; }
