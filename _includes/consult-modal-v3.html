@@ -1,0 +1,150 @@
+<div class="gf-modal" id="consult-modal" aria-hidden="true">
+  <div class="form-wrap gf-modal-card" role="dialog" aria-modal="true" aria-labelledby="cm-title" data-form-wrap>
+    <button class="gf-modal-close" type="button" data-consult-close aria-label="Close">&times;</button>
+    <span class="eyebrow">Check your date</span>
+    <h2 id="cm-title" class="gf-modal-title">Is your date open?</h2>
+    <p class="gf-modal-intro">We reply within 48 hours · complimentary, by phone or video.</p>
+    <form action="https://formspree.io/f/xgobrjyo" method="POST" data-multistep data-ajax>
+      <input type="hidden" name="_subject" value="New consultation request, Golden Flowers">
+      <input type="hidden" name="_next" value="{{ site.baseurl }}/consultation-form#consultation-success">
+      <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;">
+      <span class="form-step-indicator" aria-hidden="true">Step 1 of 2</span>
+      <div class="form-step-1">
+        <div class="field-full"><label for="cm-date">Wedding date</label><input type="date" id="cm-date" name="date"></div>
+        <div class="field-full"><label for="cm-name">Your name</label><input type="text" id="cm-name" name="name" placeholder="First &amp; last" autocomplete="name" required></div>
+        <div class="field-full"><label for="cm-email">Email address</label><input type="email" id="cm-email" name="email" placeholder="your@email.com" autocomplete="email" required></div>
+      </div>
+      <div class="form-advance field-full">
+        <button type="button" class="btn btn--primary" data-form-advance>Check my date →</button>
+        <p class="form-step-hint">Then: aesthetic · budget · the details</p>
+      </div>
+      <div class="form-step-2">
+        <button type="button" class="form-back field-full" data-form-back>← Back</button>
+        <div class="field-full"><label for="cm-aesthetic">Aesthetic direction</label>
+          <select id="cm-aesthetic" name="aesthetic">
+            <option value="" disabled selected>Which direction resonates?</option>
+            <option>Lush &amp; Romantic, rich, dramatic, deep tones</option>
+            <option>Elevated Minimalist, clean, airy, restrained</option>
+            <option>Wildflower Modern, wild, seasonal, editorial</option>
+            <option>A mix, I'll explain below</option>
+            <option>Not sure yet</option>
+          </select>
+        </div>
+        <div class="field-full"><label for="cm-budget">Approximate budget</label>
+          <select id="cm-budget" name="budget">
+            <option value="" disabled selected>Estimated florals budget</option>
+            <option>$5,000–$8,000</option><option>$8,000–$12,000</option><option>$12,000–$18,000</option>
+            <option>$18,000–$25,000</option><option>$25,000+</option><option>Not sure yet</option>
+          </select>
+        </div>
+        <div class="field-full"><label for="cm-message">Tell us about your wedding</label>
+          <textarea id="cm-message" name="message" placeholder="Your venue, your vision, anything that matters to you." rows="3"></textarea>
+        </div>
+        <div class="form-submit"><button type="submit" class="btn btn--primary">Send consultation request</button><p class="form-note">We'll respond within 48 hours</p></div>
+      </div>
+    </form>
+    <div class="form-success" data-form-success hidden>
+      <div class="form-success-tags" data-success-tags></div>
+      <div class="form-success-check" aria-hidden="true">✓</div>
+      <h3>Thank you for reaching out.</h3>
+      <p data-success-date-line hidden>We've got your details for <strong data-success-date></strong>. We'll email you within <strong>48 hours</strong> to confirm availability.</p>
+      <p data-success-default>We'll email you within <strong>48 hours</strong> to confirm availability.</p>
+      <div class="form-success-book">
+        <p class="form-success-book-prompt">Prefer to skip the wait? Grab 30 minutes with Brittany, by phone or video.</p>
+        <a href="https://calendar.app.google/iKY1Xqerqtcv6fdj7" target="_blank" rel="noopener" class="btn btn--primary">Book a call with Brittany →</a>
+      </div>
+      <div class="form-success-next">
+        <span class="eyebrow">While you wait</span>
+        <a href="{{ site.baseurl }}/portfolio">Explore the portfolio →</a>
+        <a href="{{ site.baseurl }}/sustainability">Read our sustainability pledge →</a>
+        <a href="{{ site.baseurl }}/about">Meet Brittany →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  var modal = document.getElementById('consult-modal');
+  if (!modal) return;
+  var lastFocus = null;
+  function openModal() {
+    lastFocus = document.activeElement;
+    modal.classList.add('is-open'); modal.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('modal-open');
+    var first = modal.querySelector('input, select, button[data-form-advance]');
+    if (first) setTimeout(function () { try { first.focus(); } catch (e) {} }, 60);
+  }
+  function closeModal() {
+    modal.classList.remove('is-open'); modal.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('modal-open');
+    if (lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+  // Any "check your date" CTA (data-consult-open OR a link to the consult page) opens the modal.
+  document.addEventListener('click', function (e) {
+    var trigger = e.target.closest('[data-consult-open], a[href$="/consultation-form"]');
+    if (trigger && !trigger.closest('#consult-modal')) { e.preventDefault(); openModal(); return; }
+    if (e.target === modal || e.target.closest('[data-consult-close]')) closeModal();
+  });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && modal.classList.contains('is-open')) closeModal(); });
+
+  // Two-step reveal + partial-lead capture + in-place AJAX success (scoped to the modal).
+  modal.querySelectorAll('form[data-multistep]').forEach(function (form) {
+    var step1 = form.querySelector('.form-step-1'), step2 = form.querySelector('.form-step-2');
+    var advance = form.querySelector('.form-advance'), advanceBtn = form.querySelector('[data-form-advance]');
+    var indicator = form.querySelector('.form-step-indicator'), backBtn = form.querySelector('[data-form-back]');
+    if (!step2 || !advanceBtn) return;
+    step2.hidden = true;
+    advanceBtn.addEventListener('click', function () {
+      var reqs = form.querySelectorAll('.form-step-1 [required]');
+      for (var i = 0; i < reqs.length; i++) { if (!reqs[i].reportValidity()) return; }
+      if (!form.dataset.partialSent && form.hasAttribute('data-ajax')) {
+        form.dataset.partialSent = '1';
+        try {
+          var p = new FormData();
+          ['date', 'name', 'email'].forEach(function (n) { var fld = form.querySelector('[name="' + n + '"]'); if (fld) p.append(n, fld.value); });
+          p.append('_subject', 'Date check started (Step 1): Golden Flowers');
+          fetch(form.action, { method: 'POST', body: p, headers: { 'Accept': 'application/json' } });
+        } catch (e) {}
+      }
+      if (step1) step1.hidden = true; if (advance) advance.hidden = true; step2.hidden = false;
+      if (indicator) indicator.textContent = 'Step 2 of 2';
+      modal.scrollTop = 0;
+    });
+    if (backBtn) backBtn.addEventListener('click', function () {
+      step2.hidden = true; if (step1) step1.hidden = false; if (advance) advance.hidden = false;
+      if (indicator) indicator.textContent = 'Step 1 of 2'; modal.scrollTop = 0;
+    });
+  });
+  function fmtDate(v) { if (!v) return ''; var d = new Date(v + 'T00:00'); if (isNaN(d)) return v; return d.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }); }
+  modal.querySelectorAll('form[data-ajax]').forEach(function (form) {
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var btn = form.querySelector('[type="submit"]');
+      if (btn) { btn.dataset.label = btn.textContent; btn.disabled = true; btn.textContent = 'Sending…'; }
+      var data = new FormData(form);
+      fetch(form.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } })
+        .then(function (r) {
+          if (!r.ok) throw new Error('bad');
+          var wrap = form.closest('[data-form-wrap]') || form.parentNode;
+          var success = wrap.querySelector('[data-form-success]');
+          if (!success) { window.location = '/'; return; }
+          var dateVal = data.get('date');
+          var dateLine = success.querySelector('[data-success-date-line]'), dateEl = success.querySelector('[data-success-date]'), dflt = success.querySelector('[data-success-default]');
+          if (dateVal && dateEl && dateLine) { dateEl.textContent = fmtDate(dateVal); dateLine.hidden = false; if (dflt) dflt.hidden = true; }
+          var tagWrap = success.querySelector('[data-success-tags]');
+          if (tagWrap) {
+            tagWrap.innerHTML = ''; var chips = [];
+            if (dateVal) chips.push(fmtDate(dateVal));
+            ['aesthetic', 'budget'].forEach(function (name) { var v = data.get(name); if (!v || /not sure/i.test(v)) return; if (name === 'aesthetic') v = v.split(',')[0]; chips.push(v); });
+            chips.forEach(function (t) { var s = document.createElement('span'); s.className = 'stag'; s.textContent = t; tagWrap.appendChild(s); });
+          }
+          form.hidden = true;
+          Array.prototype.forEach.call(wrap.children, function (el) { if (el !== success && !el.classList.contains('gf-modal-close')) el.classList.add('is-gone'); });
+          success.hidden = false; success.setAttribute('tabindex', '-1'); success.focus();
+        })
+        .catch(function () { if (btn) { btn.disabled = false; btn.textContent = btn.dataset.label || 'Send'; } form.submit(); });
+    });
+  });
+})();
+</script>

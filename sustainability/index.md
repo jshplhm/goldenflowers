@@ -18,7 +18,7 @@ canonical_url: https://goldenflorals.com/sustainability
 
 <section class="section" style="padding-top:0;">
   <div class="container" style="max-width:860px;">
-    <ol class="gf-manifesto gf-manifesto--light">
+    <ol class="pledge-list pledge-list--light">
       <li><div><h3>Foam-free, plastic-free design</h3><p>No floral foam, ever. We build with reusable mechanics like chicken wire, wool, and pin frogs instead of single-use plastic that sheds microplastics into the watershed.</p></div></li>
       <li><div><h3>Buying local first</h3><p>We reach for what's grown closest before anything else, starting with our own farm plots and California growers we know personally. No flowers flown in from across the world.</p></div></li>
       <li><div><h3>Mindful growing practices</h3><p>Our farm plots are tended for soil health, biodiversity, and pollinators — a direct extension of Brittany's agronomic training in how land and plants actually thrive.</p></div></li>
@@ -29,7 +29,7 @@ canonical_url: https://goldenflorals.com/sustainability
       <li><div><h3>Composting the harvest</h3><p>Stem trimmings and spent blooms from our farm go back into the soil to feed the next season, not into landfill.</p></div></li>
       <li><div><h3>Giving back to the land</h3><p>We're committing a share of profits to organizations working to restore California habitat and protect the land this business is rooted in.</p></div></li>
     </ol>
-    <p class="gf-lightbox-closing" style="color:var(--ink);">This is a living pledge, not a finished one. Some of it is already core to how we work; some we're still building toward. The aim is simple: leave the land a little better than we found it.</p>
+    <p class="pledge-closing" style="color:var(--ink);">This is a living pledge, not a finished one. Some of it is already core to how we work; some we're still building toward. The aim is simple: leave the land a little better than we found it.</p>
   </div>
 </section>
 

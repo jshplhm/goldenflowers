@@ -8,20 +8,16 @@ description: "Golden Flowers is a Lake Tahoe wedding florist designing artful an
 canonical_url: https://goldenflorals.com/
 ---
 
-<section class="hero">
+<section class="hero hero--full">
+  <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/2b98245c-1230-4e50-847e-90c7d13f793b/Lake%2BTahoe%2BFloral%2BInstallation.jpeg?format=2500w" alt="Lake Tahoe floral installation by Golden Flowers" loading="eager">
   <div class="container">
-    <div class="hero-grid">
-      <div class="hero-copy">
-        <span class="eyebrow">Lake Tahoe Wedding Florist</span>
-        <h1 class="hero-display">Artful florals, <em>rooted in the Sierra.</em></h1>
-        <p class="hero-sub">Farm-grown &amp; foam-free · One wedding per date</p>
-        <div class="hero-btns">
-          <a href="{{ site.baseurl }}/consultation-form" class="btn btn--primary" data-consult-open>Check your date →</a>
-          <a href="{{ site.baseurl }}/portfolio" class="btn btn--ghost">Explore portfolio</a>
-        </div>
-      </div>
-      <div class="hero-media">
-        <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/2b98245c-1230-4e50-847e-90c7d13f793b/Lake%2BTahoe%2BFloral%2BInstallation.jpeg?format=1500w" alt="Lake Tahoe floral installation by Golden Flowers" loading="eager">
+    <div class="hero-inner">
+      <span class="eyebrow">Lake Tahoe Wedding Florist</span>
+      <h1 class="hero-display">Artful florals,<br><em>rooted in the Sierra.</em></h1>
+      <p class="hero-sub">Farm-grown &amp; foam-free · One wedding per date</p>
+      <div class="hero-btns">
+        <a href="{{ site.baseurl }}/consultation-form" class="btn btn--primary" data-consult-open>Check your date →</a>
+        <a href="{{ site.baseurl }}/portfolio" class="btn btn--ghost-light">Explore portfolio</a>
       </div>
     </div>
   </div>
@@ -47,52 +43,26 @@ canonical_url: https://goldenflorals.com/
   <div class="container">
     <span class="eyebrow">What sets us apart</span>
     <h2 class="section-title">Designed to be <em class="accent">unlike anything else.</em></h2>
-
-    <div class="moment">
-      <div class="moment-copy">
-        <span class="moment-num">01 — Grown, not shipped</span>
-        <h3 class="moment-title">Farm-grown.</h3>
+    <div class="diffs">
+      <div class="diff-card">
+        <div class="diff-icon">{% include icon.html name="sprout" %}</div>
+        <h3>Farm-grown</h3>
         <p>We grow on our own plots in California and source exclusively from growers we trust. No flowers flown in from across the world.</p>
       </div>
-      <div class="moment-media">
-        <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1779129057432-Y8VGDRIHTV4BILCZVW27/MountainTimePhoto-48.jpg?format=1000w" alt="Field-grown blooms" loading="lazy">
+      <div class="diff-card">
+        <div class="diff-icon">{% include icon.html name="leaf" %}</div>
+        <h3>Foam-free</h3>
+        <p>Every arrangement is built without floral foam — intentional, sustainable, and better for the watershed.</p>
       </div>
-    </div>
-
-    <div class="moment">
-      <div class="moment-copy">
-        <span class="moment-num">02 — No floral foam, ever</span>
-        <h3 class="moment-title">Foam-free.</h3>
-        <p>Every arrangement we make is built without floral foam — intentional, sustainable, and better for the watershed. We work with reusable mechanics instead of single-use plastic.</p>
+      <div class="diff-card">
+        <div class="diff-icon">{% include icon.html name="calendar-heart" %}</div>
+        <h3>One wedding per date</h3>
+        <p>We never double-book. Your wedding day gets our complete attention, start to finish.</p>
       </div>
-      <div class="moment-media">
-        <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1776975105426-4BAEXMVDBX6Q5ETZ1BVC/l-a-preview-6962.jpg?format=1000w" alt="Foam-free arrangement" loading="lazy">
-      </div>
-    </div>
-
-    <div class="moment">
-      <div class="moment-copy">
-        <span class="moment-num">03 — Never double-booked</span>
-        <h3 class="moment-title">One wedding per date.</h3>
-        <p>Your wedding day gets our complete attention, start to finish — from design through breakdown. We never split focus across two events.</p>
-      </div>
-      <div class="moment-media">
-        <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/4685a495-c2ce-4b90-9fd1-f91ca0d6a135/K%2BJ-0962.jpg?format=1000w" alt="Ceremony floral arch" loading="lazy">
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="panel-dark feature">
-  <div class="container">
-    <div class="feature-grid">
-      <div>
-        <span class="eyebrow">Founded on science</span>
-        <h2 class="feature-title">Agronomist-founded.</h2>
-      </div>
-      <div>
-        <p>Founder Brittany trained as an agronomist — a scientist specializing in soil health and how plants grow — before building Golden Flowers. That background shapes what we plant, what we source, and how a design holds up from first look to last dance.</p>
-        <a href="{{ site.baseurl }}/about" class="link link--action" style="margin-top:24px;">Meet Brittany</a>
+      <div class="diff-card">
+        <div class="diff-icon">{% include icon.html name="flask" %}</div>
+        <h3>Agronomist-founded</h3>
+        <p>Founder Brittany trained as an agronomist — soil science shapes what we plant, source, and design.</p>
       </div>
     </div>
   </div>

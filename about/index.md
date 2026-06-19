@@ -131,16 +131,24 @@ canonical_url: https://goldenflorals.com/about
   </div>
 </section>
 
-<section class="panel-dark feature">
-  <div class="container">
+<section class="section section--tight" id="pledge">
+  <div class="container" style="max-width:880px;">
     <span class="eyebrow">Our commitment</span>
-    <h2 class="feature-title">Working toward<br>something better.</h2>
-    <ul class="pledge-preview">
-      <li>Foam-free, plastic-free design — reusable mechanics, never single-use plastic.</li>
-      <li>Buying local first — our own plots and California growers, never flown in.</li>
-      <li>Composting the harvest, returning vessels, and working toward electric delivery.</li>
-    </ul>
-    <button class="link link--action" type="button" data-manifesto-open>Read the manifesto →</button>
+    <h2 class="section-title">Working toward something better.</h2>
+    <p class="lead">Sustainability isn't a checkbox — it's a direction. These commitments shape how we design, source, and grow. Some are already woven into every wedding; others we're actively working toward. We don't claim perfection, only a steady pull in the right direction.</p>
+    <ol class="pledge-list pledge-list--light">
+      <li><div><h3>Foam-free, plastic-free design</h3><p>No floral foam, ever. We build with reusable mechanics like chicken wire, wool, and pin frogs instead of single-use plastic that sheds microplastics into the watershed.</p></div></li>
+      <li><div><h3>Buying local first</h3><p>We reach for what's grown closest before anything else, starting with our own farm plots and California growers we know personally. No flowers flown in from across the world.</p></div></li>
+      <li><div><h3>Mindful growing practices</h3><p>Our farm plots are tended for soil health, biodiversity, and pollinators — a direct extension of Brittany's agronomic training in how land and plants actually thrive.</p></div></li>
+      <li><div><h3>Vase return &amp; reuse</h3><p>Vessels and vases can come back to us. We clean, reuse, and recirculate what doesn't need to end up in the bin.</p></div></li>
+      <li><div><h3>Repurposing wedding florals</h3><p>We're building partnerships to give wedding flowers a second life after the event — going to hospitals, senior care facilities, and community spaces.</p></div></li>
+      <li><div><h3>Toward electric delivery</h3><p>We're working toward an all-electric delivery vehicle to lower the carbon footprint of getting your flowers from our farm to your venue.</p></div></li>
+      <li><div><h3>Low-waste packaging</h3><p>Digital-first invoicing and proposals, recycled paper for cards and wraps, and no single-use plastic wherever we can help it.</p></div></li>
+      <li><div><h3>Composting the harvest</h3><p>Stem trimmings and spent blooms from our farm go back into the soil to feed the next season, not into landfill.</p></div></li>
+      <li><div><h3>Giving back to the land</h3><p>We're committing a share of profits to organizations working to restore California habitat and protect the land this business is rooted in.</p></div></li>
+    </ol>
+    <p class="pledge-closing">This is a living pledge, not a finished one. Some of it is already core to how we work; some we're still building toward. The aim is simple: leave the land a little better than we found it.</p>
+    <a href="{{ site.baseurl }}/sustainability" class="link link--action">See the full sustainability page →</a>
   </div>
 </section>
 
@@ -152,38 +160,3 @@ canonical_url: https://goldenflorals.com/about
   </div>
 </section>
 
-<!-- Manifesto lightbox (root overlay) -->
-<div class="gf-lightbox" id="manifesto" role="dialog" aria-modal="true" aria-labelledby="manifesto-title" aria-hidden="true">
-  <button class="gf-lightbox-close" type="button" data-manifesto-close aria-label="Close manifesto">&times;</button>
-  <div class="gf-lightbox-inner">
-    <span class="eyebrow">Our commitment</span>
-    <h2 id="manifesto-title">Working toward something better.</h2>
-    <p class="gf-lightbox-intro">Sustainability isn't a checkbox — it's a direction. These are the commitments that shape how we design, source, and grow. Some are already woven into every wedding; others we're actively working toward. We don't claim perfection, only a steady pull in the right direction.</p>
-    <ol class="gf-manifesto">
-      <li><div><h3>Foam-free, plastic-free design</h3><p>No floral foam, ever. We build with reusable mechanics like chicken wire, wool, and pin frogs instead of single-use plastic that sheds microplastics into the watershed.</p></div></li>
-      <li><div><h3>Buying local first</h3><p>We reach for what's grown closest before anything else, starting with our own farm plots and California growers we know personally. No flowers flown in from across the world.</p></div></li>
-      <li><div><h3>Mindful growing practices</h3><p>Our farm plots are tended for soil health, biodiversity, and pollinators — a direct extension of Brittany's agronomic training in how land and plants actually thrive.</p></div></li>
-      <li><div><h3>Vase return &amp; reuse</h3><p>Vessels and vases can come back to us. We clean, reuse, and recirculate what doesn't need to end up in the bin.</p></div></li>
-      <li><div><h3>Repurposing wedding florals</h3><p>We're building partnerships to give wedding flowers a second life after the event — going to hospitals, senior care facilities, and community spaces.</p></div></li>
-      <li><div><h3>Toward electric delivery</h3><p>We're working toward an all-electric delivery vehicle to lower the carbon footprint of getting your flowers from our farm to your venue.</p></div></li>
-      <li><div><h3>Low-waste packaging</h3><p>Digital-first invoicing and proposals, recycled paper for cards and wraps, and no single-use plastic wherever we can help it.</p></div></li>
-      <li><div><h3>Composting the harvest</h3><p>Stem trimmings and spent blooms from our farm go back into the soil to feed the next season, not into landfill.</p></div></li>
-      <li><div><h3>Giving back to the land</h3><p>We're committing a share of profits to organizations working to restore California habitat and protect the land this business is rooted in.</p></div></li>
-    </ol>
-    <p class="gf-lightbox-closing">This is a living pledge, not a finished one. Some of it is already core to how we work; some we're still building toward. The aim is simple: leave the land a little better than we found it.</p>
-    <a href="{{ site.baseurl }}/consultation-form" class="btn btn--primary">Check your date →</a>
-  </div>
-</div>
-
-<script>
-(function () {
-  var lb = document.getElementById('manifesto');
-  if (!lb) return;
-  function open() { lb.classList.add('is-open'); lb.setAttribute('aria-hidden', 'false'); document.body.classList.add('lightbox-open'); lb.scrollTop = 0; }
-  function close() { lb.classList.remove('is-open'); lb.setAttribute('aria-hidden', 'true'); document.body.classList.remove('lightbox-open'); }
-  document.querySelectorAll('[data-manifesto-open]').forEach(function (b) { b.addEventListener('click', open); });
-  document.querySelectorAll('[data-manifesto-close]').forEach(function (b) { b.addEventListener('click', close); });
-  lb.addEventListener('click', function (e) { if (e.target === lb) close(); });
-  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
-})();
-</script>

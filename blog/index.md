@@ -1,19 +1,18 @@
 ---
 layout: default
-title: "Blog"
+v3: true
+title: "Journal"
 permalink: /blog
 redirect_from:
   - /natures-canvas-lake-tahoe-wedding-flowers
 ---
 
-<section class="hero hero--interior">
-  <div class="hero-media">
-    <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/f77301d9-f890-451d-8bf8-c8d3a07d2bc4/Lake+Tahoe+Luxe+Boquet.jpg" alt="Seasonal California-grown bouquet" loading="eager">
-  </div>
-  <div class="hero-copy">
-    <span class="hero-eyebrow">Blog</span>
-    <h1 class="hero-display">Flowers, farming, and the Sierra Nevada.</h1>
-    <p class="hero-sub">Seasonal notes, wedding inspiration, and thoughts from the farm at Golden Flowers.</p>
+<section class="vhero" style="min-height:52vh;">
+  <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/f77301d9-f890-451d-8bf8-c8d3a07d2bc4/Lake+Tahoe+Luxe+Boquet.jpg?format=2500w" alt="Seasonal California-grown bouquet" loading="eager">
+  <div class="container vhero-copy">
+    <span class="eyebrow">Journal</span>
+    <h1 class="vhero-name">Flowers, farming,<br>and the Sierra Nevada.</h1>
+    <p class="vhero-loc">Seasonal notes, wedding inspiration, and thoughts from the farm</p>
   </div>
 </section>
 
@@ -26,7 +25,6 @@ redirect_from:
     <div class="blog-grid" id="blog-grid">
       {%- assign card_icons = "leaf,sprout,bouquet" | split: "," -%}
       {% for post in site.posts %}
-      {%- comment -%} Icon chosen from the post topic for variety, with a cycling fallback {%- endcomment -%}
       {%- assign t = post.title | append: ' ' | append: post.description | downcase -%}
       {%- assign mi = forloop.index0 | modulo: 3 -%}
       {%- assign card_icon = card_icons[mi] -%}
@@ -53,3 +51,37 @@ redirect_from:
     <p class="blog-empty" id="blog-empty" style="display:none;">No posts match your search.</p>
   </div>
 </section>
+
+<script>
+// Blog search + load-more (copied from the site's blog behavior, unchanged)
+(function() {
+  const grid = document.getElementById('blog-grid');
+  if (!grid) return;
+  const input = document.getElementById('blog-search');
+  const cards = Array.prototype.slice.call(grid.querySelectorAll('.blog-card'));
+  const empty = document.getElementById('blog-empty');
+  const count = document.getElementById('blog-count');
+  const moreBtn = document.getElementById('blog-more');
+  const BATCH = 12;
+  let shown = BATCH;
+  function apply() {
+    const q = input ? input.value.trim().toLowerCase() : '';
+    const searching = q.length > 0;
+    let matched = 0, visible = 0;
+    cards.forEach(function(c) {
+      const hay = (c.dataset.title || '') + ' ' + (c.dataset.text || '');
+      const isMatch = !q || hay.indexOf(q) !== -1;
+      const show = searching ? isMatch : (matched < shown);
+      if (isMatch) matched++;
+      c.style.display = show ? '' : 'none';
+      if (show) visible++;
+    });
+    if (empty) empty.style.display = visible ? 'none' : 'block';
+    if (count) count.textContent = (searching ? visible : cards.length) + (((searching ? visible : cards.length) === 1) ? ' post' : ' posts');
+    if (moreBtn) moreBtn.style.display = (!searching && shown < cards.length) ? '' : 'none';
+  }
+  if (input) input.addEventListener('input', function() { shown = BATCH; apply(); });
+  if (moreBtn) moreBtn.addEventListener('click', function() { shown += BATCH; apply(); });
+  apply();
+})();
+</script>
