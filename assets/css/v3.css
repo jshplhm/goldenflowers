@@ -328,6 +328,43 @@ body.gf3 img, body.gf3 picture { max-width: 100%; display: block; }
 .gf3 .pledge-preview li { color: var(--muted-dk); padding-left: var(--s-6); position: relative; }
 .gf3 .pledge-preview li::before { content: '—'; position: absolute; left: 0; color: var(--action); }
 
+/* ── Consultation form ────────────────────────────────── */
+.gf3 .form-wrap {
+  max-width: 600px; margin: 0 auto; background: var(--surface);
+  border: 1px solid var(--hair); border-radius: var(--radius); padding: var(--s-8) var(--s-7);
+  min-height: 700px; display: flex; flex-direction: column;  /* fixed size across step1/step2/success */
+}
+.gf3 .form-step-indicator { font-family: var(--f-mono); font-size: .68rem; letter-spacing: .16em; text-transform: uppercase; color: var(--action); display: block; margin-bottom: var(--s-5); }
+.gf3 .form-wrap form { display: flex; flex-direction: column; gap: var(--s-4); }
+.gf3 .form-wrap label { display: block; font-family: var(--f-mono); font-size: .66rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+.gf3 .form-wrap input, .gf3 .form-wrap select, .gf3 .form-wrap textarea {
+  width: 100%; font-family: var(--f-ui); font-size: 16px; /* 16px avoids iOS zoom */
+  padding: 13px 14px; min-height: 50px; border: 1px solid var(--hair); border-radius: var(--btn-radius);
+  background: var(--paper); color: var(--ink); -webkit-appearance: none; appearance: none;
+}
+.gf3 .form-wrap textarea { min-height: 96px; resize: vertical; }
+.gf3 .form-wrap input:focus, .gf3 .form-wrap select:focus, .gf3 .form-wrap textarea:focus { outline: 2px solid var(--action); outline-offset: 1px; border-color: var(--action); }
+.gf3 .form-wrap .btn { width: 100%; justify-content: center; }
+.gf3 .form-advance { display: flex; flex-direction: column; gap: 10px; }
+.gf3 .form-step-hint, .gf3 .form-note { font-family: var(--f-mono); font-size: .68rem; letter-spacing: .04em; color: var(--muted); text-align: center; margin: 0; }
+.gf3 .form-back { background: none; border: none; color: var(--muted); font-family: var(--f-mono); font-size: .7rem; letter-spacing: .1em; text-transform: uppercase; cursor: pointer; text-align: left; padding: 0; }
+.gf3 .form-submit { display: flex; flex-direction: column; gap: 10px; margin-top: var(--s-3); }
+.gf3 .is-gone { display: none !important; }
+.gf3 [hidden] { display: none !important; }
+
+.gf3 .form-success { text-align: center; margin: auto 0; }
+.gf3 .form-success-tags { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: var(--s-5); }
+.gf3 .stag { font-family: var(--f-mono); font-size: .64rem; letter-spacing: .08em; text-transform: uppercase; color: var(--action); border: 1px solid var(--action); border-radius: 100px; padding: 5px 12px; }
+.gf3 .form-success-check { width: 52px; height: 52px; margin: 0 auto var(--s-4); border-radius: 50%; background: var(--action); color: var(--on-dark); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; }
+.gf3 .form-success h3 { font-family: var(--f-display); font-size: 2rem; font-weight: 500; color: var(--ink); margin: 0 0 var(--s-4); }
+.gf3 .form-success > p { color: var(--muted); max-width: 42ch; margin: 0 auto var(--s-6); }
+.gf3 .form-success-book { background: var(--paper); border: 1px solid var(--hair); border-radius: var(--radius); padding: var(--s-6); margin: var(--s-6) 0; }
+.gf3 .form-success-book-prompt { font-size: .92rem; color: var(--ink); margin: 0 0 var(--s-4); }
+.gf3 .form-success-next { border-top: 1px solid var(--hair); padding-top: var(--s-5); }
+.gf3 .form-success-next .eyebrow { margin-bottom: var(--s-4); display: block; }
+.gf3 .form-success-next a { display: block; color: var(--ink); padding: 6px 0; }
+.gf3 .form-success-next a:hover { color: var(--action); }
+
 /* old-CSS global elements suppressed on v3 pages */
 body.gf3 .sticky-cta { display: none !important; }
 

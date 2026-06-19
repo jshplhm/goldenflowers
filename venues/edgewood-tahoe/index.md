@@ -139,7 +139,7 @@ hero_image: "https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec
       <div>
         <p>Every proposal is custom — built around your table count, ceremony footprint, and vision. No packages with minimum bids or imported filler.</p>
         <p>A standard Edgewood engagement covers: consultation, design proposal and mood board, ceremony arch or installation, bridal bouquet, bridal-party florals, reception centerpieces, and full day-of setup and breakdown.</p>
-        <a href="{{ site.baseurl }}/weddings#consultation" class="btn btn--primary" style="margin-top:16px;">Request a custom estimate</a>
+        <a href="{{ site.baseurl }}/consultation-form" class="btn btn--primary" style="margin-top:16px;">Request a custom estimate</a>
       </div>
     </div>
   </div>

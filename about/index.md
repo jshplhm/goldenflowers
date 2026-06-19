@@ -148,7 +148,7 @@ canonical_url: https://goldenflorals.com/about
   <div class="container">
     <span class="eyebrow">Work with us</span>
     <h2 class="section-title">Start with a conversation.</h2>
-    <a href="{{ site.baseurl }}/weddings#consultation" class="btn btn--primary">Check your date →</a>
+    <a href="{{ site.baseurl }}/consultation-form" class="btn btn--primary">Check your date →</a>
   </div>
 </section>
 
@@ -171,7 +171,7 @@ canonical_url: https://goldenflorals.com/about
       <li><div><h3>Giving back to the land</h3><p>We're committing a share of profits to organizations working to restore California habitat and protect the land this business is rooted in.</p></div></li>
     </ol>
     <p class="gf-lightbox-closing">This is a living pledge, not a finished one. Some of it is already core to how we work; some we're still building toward. The aim is simple: leave the land a little better than we found it.</p>
-    <a href="{{ site.baseurl }}/weddings#consultation" class="btn btn--primary">Check your date →</a>
+    <a href="{{ site.baseurl }}/consultation-form" class="btn btn--primary">Check your date →</a>
   </div>
 </div>
 
