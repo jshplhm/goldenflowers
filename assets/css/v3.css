@@ -384,6 +384,11 @@ body.lightbox-open { overflow: hidden; }
 .gf-manifesto h3 { font-family: var(--f-display); font-size: 1.4rem; font-weight: 500; margin: 0 0 6px; color: oklch(96% .009 85); }
 .gf-manifesto p { color: oklch(80% .015 130); font-size: .95rem; margin: 0; }
 .gf-lightbox-closing { font-family: var(--f-display); font-style: italic; font-size: 1.3rem; line-height: 1.4; color: oklch(90% .012 110); margin: var(--s-7) 0 var(--s-8); }
+/* light-page variant (crawlable /sustainability) */
+.gf3 .gf-manifesto--light li { border-top-color: var(--hair); }
+.gf3 .gf-manifesto--light li::before { color: var(--action); }
+.gf3 .gf-manifesto--light h3 { color: var(--ink); }
+.gf3 .gf-manifesto--light p { color: var(--muted); }
 
 /* ── Responsive ───────────────────────────────────────── */
 @media (max-width: 900px) {

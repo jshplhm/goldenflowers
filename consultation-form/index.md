@@ -89,7 +89,7 @@ canonical_url: https://goldenflorals.com/consultation-form
       <div class="form-success-next">
         <span class="eyebrow">While you wait</span>
         <a href="{{ site.baseurl }}/portfolio">Explore the portfolio →</a>
-        <a href="{{ site.baseurl }}/about#seasonal-availability">Read our sustainability pledge →</a>
+        <a href="{{ site.baseurl }}/sustainability">Read our sustainability pledge →</a>
         <a href="{{ site.baseurl }}/about">Meet Brittany →</a>
         <a href="{{ site.baseurl }}/" style="color:var(--muted);margin-top:8px;">← Back to home</a>
       </div>
