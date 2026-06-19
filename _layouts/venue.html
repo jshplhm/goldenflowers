@@ -1,0 +1,51 @@
+---
+layout: default
+---
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <div class="container">
+    <a href="{{ site.baseurl }}/">Home</a> / <span>Venues</span> / {{ page.venue_name }}
+  </div>
+</nav>
+
+<section class="vhero">
+  <img src="{{ page.hero_image }}" alt="{{ page.venue_name }} wedding flowers by Golden Flowers" loading="eager">
+  <div class="container vhero-copy">
+    <span class="eyebrow">{{ page.eyebrow | default: 'Venue' }}</span>
+    <h1 class="vhero-name">{{ page.venue_name }}</h1>
+    <p class="vhero-loc">{{ page.location }}</p>
+    <div class="vhero-btns">
+      {% if page.worked %}<a href="#weddings" class="btn btn--ghost-light">See our work here</a>{% endif %}
+      <a href="{{ site.baseurl }}/weddings#consultation" class="btn btn--primary">Book a consultation</a>
+    </div>
+  </div>
+</section>
+
+{{ content }}
+
+<section class="section cta">
+  <div class="container">
+    {% if page.worked %}
+    <span class="eyebrow">Get started</span>
+    <h2 class="section-title">Getting married at<br>{{ page.venue_name }}?</h2>
+    <p class="lead" style="margin:0 auto 32px;">Tell us your date and vision. We'll let you know if we're available and what the design process looks like from here.</p>
+    {% else %}
+    <span class="eyebrow">Be among our first</span>
+    <h2 class="section-title">Planning a wedding at<br>{{ page.venue_name }}?</h2>
+    <p class="lead" style="margin:0 auto 32px;">We haven't designed here yet — which means a clean canvas and our full attention. Tell us your date and what you're imagining. Full-service florals run $5,000–$25,000+.</p>
+    {% endif %}
+    <a href="{{ site.baseurl }}/weddings#consultation" class="btn btn--primary">Check your date →</a>
+  </div>
+</section>
+
+<section class="other-venues">
+  <div class="container">
+    <h4>Other venues we design at</h4>
+    <div class="other-venues-links">
+      <a href="{{ site.baseurl }}/venues/edgewood-tahoe">Edgewood Tahoe</a>
+      <a href="{{ site.baseurl }}/portfolio?venue=palisades">Palisades High Camp</a>
+      <a href="{{ site.baseurl }}/portfolio?venue=national-exchange">National Exchange Hotel</a>
+      <a href="{{ site.baseurl }}/portfolio?venue=ritz-carlton">Ritz-Carlton Tahoe</a>
+      <a href="{{ site.baseurl }}/portfolio?venue=hellman-ehrman">Hellman-Ehrman Mansion</a>
+    </div>
+  </div>
+</section>
