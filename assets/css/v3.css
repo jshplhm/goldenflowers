@@ -292,14 +292,61 @@ body.gf3 img, body.gf3 picture { max-width: 100%; display: block; }
 .gf3 .other-venues-links a { font-family: var(--f-display); font-size: 1.25rem; color: var(--ink); }
 .gf3 .other-venues-links a:hover { color: var(--action); }
 
+/* ── About page ───────────────────────────────────────── */
+.gf3 .pillars { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--s-5); margin-top: var(--s-7); }
+.gf3 .pillar { border-top: 2px solid var(--action); padding-top: var(--s-4); }
+.gf3 .pillar h4 { font-family: var(--f-display); font-size: 1.3rem; font-weight: 500; color: var(--ink); margin: 0 0 8px; }
+.gf3 .pillar p { font-size: .88rem; margin: 0; }
+
+.gf3 .twoup { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-8); margin-top: var(--s-6); }
+.gf3 .twoup h3 { font-family: var(--f-display); font-size: clamp(1.6rem, 2.6vw, 2.1rem); font-weight: 500; color: var(--ink); margin: 0 0 var(--s-4); }
+.gf3 .wont-list { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--s-3); }
+.gf3 .wont-list li { padding-left: var(--s-6); position: relative; color: var(--muted); }
+.gf3 .wont-list li::before { content: '✕'; position: absolute; left: 0; color: var(--action); font-size: .8rem; top: .2em; }
+
+.gf3 .trio { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s-6); margin-top: var(--s-7); }
+.gf3 .trio-item h3 { font-family: var(--f-display); font-size: 1.5rem; font-weight: 500; color: var(--ink); margin: 0 0 var(--s-3); }
+.gf3 .trio-item p { font-size: .92rem; margin: 0; }
+.gf3 .trio-item { padding-top: var(--s-4); border-top: 1px solid var(--hair); }
+
+.gf3 .pullquote { text-align: center; max-width: 880px; margin: 0 auto; }
+.gf3 .pullquote blockquote { font-family: var(--f-display); font-style: italic; font-size: clamp(1.8rem, 3.6vw, 2.8rem); line-height: 1.25; color: var(--ink); margin: 0; }
+.gf3 .pullquote cite { display: block; font-family: var(--f-mono); font-style: normal; font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin-top: var(--s-5); }
+
+.gf3 .seasons { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--s-5); margin-top: var(--s-7); }
+.gf3 .season { background: var(--surface); border: 1px solid var(--hair); border-radius: var(--radius); padding: var(--s-6); }
+.gf3 .season summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: baseline; gap: var(--s-4); }
+.gf3 .season summary::-webkit-details-marker { display: none; }
+.gf3 .season-name { font-family: var(--f-display); font-size: 1.6rem; color: var(--forest); font-style: italic; }
+.gf3 .season-dates { font-family: var(--f-mono); font-size: .66rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+.gf3 .season ul { list-style: none; padding: 0; margin: var(--s-4) 0 0; columns: 2; font-size: .9rem; color: var(--muted); }
+.gf3 .season ul li { padding: 3px 0; }
+.gf3 .season-note { font-size: .85rem; color: var(--muted); margin: var(--s-4) 0 0; font-style: italic; }
+
+/* Pledge feature (dark) → manifesto lightbox trigger */
+.gf3 .pledge-preview { list-style: none; padding: 0; margin: var(--s-5) 0 var(--s-6); display: grid; gap: var(--s-3); }
+.gf3 .pledge-preview li { color: var(--muted-dk); padding-left: var(--s-6); position: relative; }
+.gf3 .pledge-preview li::before { content: '—'; position: absolute; left: 0; color: var(--action); }
+
 /* old-CSS global elements suppressed on v3 pages */
 body.gf3 .sticky-cta { display: none !important; }
 
 /* ── Manifesto lightbox (root overlay) ────────────────── */
-.gf-lightbox { position: fixed; inset: 0; z-index: 1000; background: oklch(20% .02 152 / .96); display: none; overflow-y: auto; padding: var(--s-8) var(--s-5); }
+.gf-lightbox { position: fixed; inset: 0; z-index: 2000; background: oklch(19% .02 152); display: none; overflow-y: auto; padding: var(--s-8) var(--s-5); }
+body.lightbox-open #site-nav { display: none; }
+body.lightbox-open { overflow: hidden; }
 .gf-lightbox[open], .gf-lightbox.is-open { display: block; }
 .gf-lightbox-inner { max-width: 820px; margin: 0 auto; color: oklch(96% .009 85); }
-.gf-lightbox-close { position: fixed; top: var(--s-5); right: var(--s-5); background: none; border: 1px solid oklch(100% 0 0 / .3); color: oklch(96% .009 85); width: 44px; height: 44px; border-radius: 50%; cursor: pointer; font-size: 1.2rem; }
+.gf-lightbox-close { position: fixed; top: var(--s-5); right: var(--s-5); background: none; border: 1px solid oklch(100% 0 0 / .3); color: oklch(96% .009 85); width: 44px; height: 44px; border-radius: 50%; cursor: pointer; font-size: 1.2rem; z-index: 1; }
+.gf-lightbox .eyebrow { color: oklch(72% .12 44); }
+.gf-lightbox h2 { font-family: var(--f-display); font-size: clamp(2rem, 4vw, 3rem); font-weight: 400; margin: var(--s-3) 0 var(--s-5); color: oklch(96% .009 85); }
+.gf-lightbox-intro { color: oklch(82% .015 130); max-width: 60ch; margin: 0 0 var(--s-7); }
+.gf-manifesto { list-style: none; padding: 0; margin: 0; counter-reset: m; }
+.gf-manifesto li { counter-increment: m; padding: var(--s-5) 0; border-top: 1px solid oklch(100% 0 0 / .14); display: grid; grid-template-columns: 48px 1fr; gap: var(--s-5); align-items: baseline; }
+.gf-manifesto li::before { content: counter(m, decimal-leading-zero); font-family: var(--f-mono); color: oklch(72% .12 44); font-size: .8rem; }
+.gf-manifesto h3 { font-family: var(--f-display); font-size: 1.4rem; font-weight: 500; margin: 0 0 6px; color: oklch(96% .009 85); }
+.gf-manifesto p { color: oklch(80% .015 130); font-size: .95rem; margin: 0; }
+.gf-lightbox-closing { font-family: var(--f-display); font-style: italic; font-size: 1.3rem; line-height: 1.4; color: oklch(90% .012 110); margin: var(--s-7) 0 var(--s-8); }
 
 /* ── Responsive ───────────────────────────────────────── */
 @media (max-width: 900px) {
@@ -308,7 +355,7 @@ body.gf3 .sticky-cta { display: none !important; }
   .gf3 .work-langs, .gf3 .work-grid { grid-template-columns: repeat(2, 1fr); }
   .gf3 .venue-grid { grid-template-columns: repeat(2, 1fr); }
   .gf3 .vcol, .gf3 .vpricing, .gf3 .philosophy, .gf3 .examples { grid-template-columns: 1fr; }
-  .gf3 .facts { grid-template-columns: repeat(2, 1fr); }
+  .gf3 .facts, .gf3 .pillars, .gf3 .trio, .gf3 .twoup, .gf3 .seasons { grid-template-columns: repeat(2, 1fr); }
   .gf3 .footer-grid { grid-template-columns: 1fr 1fr; }
   .gf3 .section { padding: var(--s-9) 0; }
 
@@ -335,5 +382,6 @@ body.gf3 .sticky-cta { display: none !important; }
   .gf3 .work-grid { grid-template-columns: 1fr 1fr; }
   .gf3 .work-langs { grid-template-columns: 1fr; }
   .gf3 .footer-grid, .gf3 .venue-grid { grid-template-columns: 1fr; }
+  .gf3 .pillars, .gf3 .trio, .gf3 .twoup, .gf3 .seasons, .gf3 .facts { grid-template-columns: 1fr; }
   .gf3 .hero-btns .btn { flex: 1; justify-content: center; }
 }
