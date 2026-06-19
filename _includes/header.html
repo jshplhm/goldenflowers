@@ -1,3 +1,20 @@
+{% if page.v3 %}
+<nav id="site-nav">
+  <a href="{{ site.baseurl }}/" class="nav-logo">Golden Flowers</a>
+  <div class="nav-links">
+    <a href="{{ site.baseurl }}/weddings"{% if page.url contains '/weddings' %} class="active"{% endif %}>Weddings</a>
+    <a href="{{ site.baseurl }}/venues/edgewood-tahoe"{% if page.url contains '/venues' %} class="active"{% endif %}>Venues</a>
+    <a href="{{ site.baseurl }}/portfolio"{% if page.url contains '/portfolio' %} class="active"{% endif %}>Portfolio</a>
+    <a href="{{ site.baseurl }}/about"{% if page.url contains '/about' %} class="active"{% endif %}>About</a>
+  </div>
+  <div class="nav-actions">
+    <a href="{{ site.baseurl }}/weddings#consultation" class="nav-cta" data-consult-open>Check your date</a>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="site-nav" onclick="var n=document.getElementById('site-nav');var o=n.classList.toggle('nav-open');this.setAttribute('aria-expanded',o)">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+{% else %}
 <nav id="site-nav">
   <a href="{{ site.baseurl }}/" class="nav-logo">Golden Flowers</a>
   <div class="nav-menu">
@@ -21,3 +38,4 @@
     </button>
   </div>
 </nav>
+{% endif %}

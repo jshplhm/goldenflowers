@@ -6,12 +6,16 @@
   <title>{% if page.seo_title %}{{ page.seo_title }}{% elsif page.title %}{{ page.title }} · Golden Flowers{% else %}Lake Tahoe Wedding Florist | Golden Flowers{% endif %}</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=DM+Mono:ital,wght@0,400;0,500;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+  {% if page.v3 %}
+  <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/v3.css?v=1">
+  {% else %}
   <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/style.css?v=25">
-  
+  {% endif %}
+
   {% seo %}
 </head>
-<body>
+<body{% if page.v3 %} class="gf3"{% endif %}>
 
 {% include header.html %}
 
@@ -19,6 +23,7 @@
 
 {% include footer.html %}
 
+{% unless page.v3 %}
 <div class="sticky-cta">
   <div class="sticky-cta-text">
     <strong>One wedding per date</strong>
@@ -27,7 +32,9 @@
 </div>
 
 {% include consult-modal.html %}
+{% endunless %}
 
+{% unless page.v3 %}
 <script>
 // ── Consultation modal (lightbox CTAs) ─────────────────
 (function() {
@@ -373,6 +380,7 @@
   });
 })();
 </script>
+{% endunless %}
 
 </body>
 </html>
