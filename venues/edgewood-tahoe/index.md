@@ -18,7 +18,7 @@ hero_image: "https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec
         <span class="eyebrow">Why this venue matters</span>
         <h2 class="section-title">Edgewood is unlike anywhere<br>else on the lake.</h2>
         <p>The combination of lakefront access, the manicured grounds of a world-class golf course, and the dramatic Sierra Nevada backdrop means flowers here need to do something specific: belong.</p>
-        <p>Arrangements that feel imported or generic read immediately against this landscape. We design florals that feel as though they came from the property itself — from the meadows at the course edge, the forested ridgeline, the Nevada-side light.</p>
+        <p>Arrangements that feel imported or generic read immediately against this landscape. We design florals that feel as though they came from the property itself, from the meadows at the course edge, the forested ridgeline, the Nevada-side light.</p>
         <p>We've worked Edgewood ceremonies from the lakeside lawn to the Edgewood Pavilion. Every setting has its own light, its own proportion. We know the space.</p>
       </div>
       <div class="vcol-media">
@@ -33,7 +33,7 @@ hero_image: "https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec
       </div>
       <div class="fact">
         <p class="fact-label">South Shore</p>
-        <p>Edgewood sits on the Nevada side of South Shore — dramatic mountain backdrop, direct lake access.</p>
+        <p>Edgewood sits on the Nevada side of South Shore, dramatic mountain backdrop, direct lake access.</p>
       </div>
       <div class="fact">
         <p class="fact-label">Lakeside</p>
@@ -58,15 +58,15 @@ hero_image: "https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec
       </div>
       <div class="philosophy-item">
         <h3>Palette pulled from the landscape</h3>
-        <p>Edgewood's palette is the Nevada sage, the granite gray, the lake's deep blue-green. We bring whites, soft sage, and warm ivory that feel native — with moments of depth for drama when couples want it.</p>
+        <p>Edgewood's palette is the Nevada sage, the granite gray, the lake's deep blue-green. We bring whites, soft sage, and warm ivory that feel native, with moments of depth for drama when couples want it.</p>
       </div>
       <div class="philosophy-item">
         <h3>Proportions for the space</h3>
-        <p>The Edgewood Pavilion is grand. Low-profile centerpieces under ceilings this high disappear. We design installations and centerpieces to read at scale — visible across the room, beautiful up close.</p>
+        <p>The Edgewood Pavilion is grand. Low-profile centerpieces under ceilings this high disappear. We design installations and centerpieces to read at scale, visible across the room, beautiful up close.</p>
       </div>
       <div class="philosophy-item">
         <h3>California-sourced, always</h3>
-        <p>No flowers imported from South America or Europe. Every arrangement at Edgewood uses blooms grown in California — from our own plots and the growers we've worked with for years. The footprint matches the venue's own values.</p>
+        <p>No flowers imported from South America or Europe. Every arrangement at Edgewood uses blooms grown in California, from our own plots and the growers we've worked with for years. The footprint matches the venue's own values.</p>
       </div>
     </div>
   </div>
@@ -76,14 +76,14 @@ hero_image: "https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec
   <div class="container">
     <span class="eyebrow">Our Edgewood work</span>
     <h2 class="section-title">Recent weddings at this venue.</h2>
-    <p class="lead">Both of our Edgewood weddings to date have leaned Elevated Minimalist — the clean lines work with the venue's architecture and the open lake view. All three of our aesthetics are available here.</p>
+    <p class="lead">Both of our Edgewood weddings to date have leaned Elevated Minimalist, the clean lines work with the venue's architecture and the open lake view. All three of our aesthetics are available here.</p>
     <div class="examples">
       <div class="example-card">
         <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1776975190166-PCFON7QIR65XK1VPLH3K/l-a-preview-8192.jpg?format=1100w" alt="Allie and Devin's wedding at Edgewood Tahoe" loading="lazy">
         <div class="example-info">
           <p class="example-couple">Allie &amp; Devin</p>
           <p class="example-meta">Edgewood Tahoe · Summer · Elevated Minimalist</p>
-          <p class="example-desc">A lakeside ceremony with an elevated minimalist arch of white and soft sage. Low cascading centerpieces on 20 reception tables, each slightly different — designed around the lake view through the Pavilion's floor-to-ceiling windows.</p>
+          <p class="example-desc">A lakeside ceremony with an elevated minimalist arch of white and soft sage. Low cascading centerpieces on 20 reception tables, each slightly different, designed around the lake view through the Pavilion's floor-to-ceiling windows.</p>
         </div>
       </div>
       <div class="example-card">
@@ -91,7 +91,7 @@ hero_image: "https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec
         <div class="example-info">
           <p class="example-couple">Lynn &amp; Aaron</p>
           <p class="example-meta">Edgewood Tahoe · Fall · Elevated Minimalist</p>
-          <p class="example-desc">A fall ceremony on Edgewood's outdoor terrace. We worked with the turning landscape — warm amber harvest tones blending into the Sierra Nevada ridgeline. Ceremony arch and a 16-table reception installation.</p>
+          <p class="example-desc">A fall ceremony on Edgewood's outdoor terrace. We worked with the turning landscape, warm amber harvest tones blending into the Sierra Nevada ridgeline. Ceremony arch and a 16-table reception installation.</p>
         </div>
       </div>
     </div>
@@ -109,19 +109,19 @@ hero_image: "https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec
       </div>
       <div class="faq-item">
         <div class="faq-question" onclick="gfFaq(this)"><h3>What does a typical Edgewood wedding budget look like?</h3><span class="faq-toggle">+</span></div>
-        <div class="faq-answer">Edgewood weddings typically range from <strong>$12,000–$22,000+</strong> for full-service florals — consultation through day-of breakdown, ceremony installation, bridal-party florals, and reception centerpieces. The range depends on table count, installation scale, and aesthetic. We build a custom proposal after your consultation; nothing is boilerplate.</div>
+        <div class="faq-answer">Edgewood weddings typically range from <strong>$12,000–$22,000+</strong> for full-service florals, consultation through day-of breakdown, ceremony installation, bridal-party florals, and reception centerpieces. The range depends on table count, installation scale, and aesthetic. We build a custom proposal after your consultation; nothing is boilerplate.</div>
       </div>
       <div class="faq-item">
         <div class="faq-question" onclick="gfFaq(this)"><h3>Do you work with Edgewood's coordinators and other vendors?</h3><span class="faq-toggle">+</span></div>
-        <div class="faq-answer">Yes — we work closely with Edgewood's recommended coordinators and photographers. If you already have a planner, we coordinate directly with them. If not, we can suggest planners we've worked with successfully here. A well-coordinated vendor team makes the day run cleanly.</div>
+        <div class="faq-answer">Yes, we work closely with Edgewood's recommended coordinators and photographers. If you already have a planner, we coordinate directly with them. If not, we can suggest planners we've worked with successfully here. A well-coordinated vendor team makes the day run cleanly.</div>
       </div>
       <div class="faq-item">
         <div class="faq-question" onclick="gfFaq(this)"><h3>What aesthetics work best at Edgewood?</h3><span class="faq-toggle">+</span></div>
-        <div class="faq-answer">All three work beautifully, for different reasons. <strong>Elevated Minimalist</strong> is the most popular — clean lines with the architecture and open lake view. <strong>Wildflower Modern</strong> shines for outdoor lawn ceremonies. Rich, lush arrangements come alive in the Pavilion's evening reception settings, where deep tones and candlelight work beautifully.</div>
+        <div class="faq-answer">All three work beautifully, for different reasons. <strong>Elevated Minimalist</strong> is the most popular, clean lines with the architecture and open lake view. <strong>Wildflower Modern</strong> shines for outdoor lawn ceremonies. Rich, lush arrangements come alive in the Pavilion's evening reception settings, where deep tones and candlelight work beautifully.</div>
       </div>
       <div class="faq-item">
         <div class="faq-question" onclick="gfFaq(this)"><h3>How far in advance should I reach out?</h3><span class="faq-toggle">+</span></div>
-        <div class="faq-answer">Edgewood dates book fast, especially Saturday summer dates. We take one wedding per date, so we recommend reaching out <strong>12–18 months ahead</strong> if possible. If your date is sooner, reach out anyway — we occasionally have late-availability openings.</div>
+        <div class="faq-answer">Edgewood dates book fast, especially Saturday summer dates. We take one wedding per date, so we recommend reaching out <strong>12–18 months ahead</strong> if possible. If your date is sooner, reach out anyway, we occasionally have late-availability openings.</div>
       </div>
     </div>
   </div>
@@ -137,7 +137,7 @@ hero_image: "https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec
         <p class="price-note">Typical full-service Edgewood wedding</p>
       </div>
       <div>
-        <p>Every proposal is custom — built around your table count, ceremony footprint, and vision. No packages with minimum bids or imported filler.</p>
+        <p>Every proposal is custom, built around your table count, ceremony footprint, and vision. No packages with minimum bids or imported filler.</p>
         <p>A standard Edgewood engagement covers: consultation, design proposal and mood board, ceremony arch or installation, bridal bouquet, bridal-party florals, reception centerpieces, and full day-of setup and breakdown.</p>
         <a href="{{ site.baseurl }}/consultation-form" class="btn btn--primary" style="margin-top:16px;">Request a custom estimate</a>
       </div>

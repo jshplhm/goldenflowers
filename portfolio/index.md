@@ -26,7 +26,7 @@ redirect_from:
   <div class="container vhero-copy">
     <span class="eyebrow">Portfolio</span>
     <h1 class="vhero-name">A look into our<br>creative world.</h1>
-    <p class="vhero-loc">Three design languages couples reach for most — a starting point, not a limit</p>
+    <p class="vhero-loc">Three of the directions couples reach for most. We design in every style</p>
     <div class="vhero-btns">
       <a href="{{ site.baseurl }}/consultation-form" class="btn btn--primary">Start a consultation →</a>
     </div>
@@ -40,7 +40,7 @@ redirect_from:
     <button class="filter-chip portfolio-filter-btn" data-filter="minimalist">Elevated Minimalist</button>
     <button class="filter-chip portfolio-filter-btn" data-filter="wildflower">Wildflower Modern</button>
   </div>
-  <p class="portfolio-note">The three directions couples ask for most — and only a starting point. We design in every style. <a href="{{ site.baseurl }}/consultation-form">Tell us your vision →</a></p>
+  <p class="portfolio-note">The three directions couples ask for most, and only a starting point. We design in every style. <a href="{{ site.baseurl }}/consultation-form">Tell us your vision →</a></p>
 </div>
 
 <section class="port-section" style="padding-top:0;">
@@ -52,15 +52,15 @@ redirect_from:
     <div class="wedding-grid">
       <div class="wedding-card" data-aesthetic="dark-romance">
         <div class="wedding-card-img"><img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1779129636646-VAQ2FSYB2YNR4O0UZFAA/K%252BJ-8434.jpg?format=1100w" alt="Katie and James" loading="lazy"></div>
-        <div class="wedding-card-info"><p class="wedding-couple">Katie &amp; James</p><div class="wedding-meta"><span class="wedding-venue">Miner's Foundry · Nevada City</span><span class="wedding-tag">Lush &amp; Romantic</span></div><p class="wedding-desc">Stone walls, candlelight, and a dramatic arch of deep burgundy and plum blooms — designed around the Foundry's historic stonework.</p></div>
+        <div class="wedding-card-info"><p class="wedding-couple">Katie &amp; James</p><div class="wedding-meta"><span class="wedding-venue">Miner's Foundry · Nevada City</span><span class="wedding-tag">Lush &amp; Romantic</span></div><p class="wedding-desc">Stone walls, candlelight, and a dramatic arch of deep burgundy and plum blooms, designed around the Foundry's historic stonework.</p></div>
       </div>
       <div class="wedding-card" data-aesthetic="dark-romance">
         <div class="wedding-card-img"><img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1770534306889-NSEB5HC1TYWMEPG4WSCI/NationalGothic--268.jpg?format=1100w" alt="Niamh and Nick" loading="lazy"></div>
-        <div class="wedding-card-info"><p class="wedding-couple">Niamh &amp; Nick</p><div class="wedding-meta"><span class="wedding-venue">National Exchange Hotel · Nevada City</span><span class="wedding-tag">Lush &amp; Romantic</span></div><p class="wedding-desc">A richly composed bridal bouquet with trailing stems and a deep jewel-toned palette — one of the most editorial pieces we've created.</p></div>
+        <div class="wedding-card-info"><p class="wedding-couple">Niamh &amp; Nick</p><div class="wedding-meta"><span class="wedding-venue">National Exchange Hotel · Nevada City</span><span class="wedding-tag">Lush &amp; Romantic</span></div><p class="wedding-desc">A richly composed bridal bouquet with trailing stems and a deep jewel-toned palette, one of the most editorial pieces we've created.</p></div>
       </div>
       <div class="wedding-card" data-aesthetic="dark-romance">
         <div class="wedding-card-img"><img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/3ddf1f69-8e31-44e3-8204-d28d4797d6f7/NationalGothic--264.jpg?format=1100w" alt="Dylan and Josh" loading="lazy"></div>
-        <div class="wedding-card-info"><p class="wedding-couple">Dylan &amp; Josh</p><div class="wedding-meta"><span class="wedding-venue">National Exchange Hotel · Nevada City</span><span class="wedding-tag">Lush &amp; Romantic</span></div><p class="wedding-desc">A romantic evening wedding in the historic hotel ballroom — arrangements in midnight plum, forest green, and warm amber candlelight.</p></div>
+        <div class="wedding-card-info"><p class="wedding-couple">Dylan &amp; Josh</p><div class="wedding-meta"><span class="wedding-venue">National Exchange Hotel · Nevada City</span><span class="wedding-tag">Lush &amp; Romantic</span></div><p class="wedding-desc">A romantic evening wedding in the historic hotel ballroom, arrangements in midnight plum, forest green, and warm amber candlelight.</p></div>
       </div>
     </div>
   </div>
@@ -83,7 +83,7 @@ redirect_from:
       </div>
       <div class="wedding-card" data-aesthetic="minimalist">
         <div class="wedding-card-img"><img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1776975190166-PCFON7QIR65XK1VPLH3K/l-a-preview-8192.jpg?format=1100w" alt="Allie and Devin" loading="lazy"></div>
-        <div class="wedding-card-info"><p class="wedding-couple">Allie &amp; Devin</p><div class="wedding-meta"><span class="wedding-venue">Edgewood Tahoe · South Shore</span><span class="wedding-tag">Elevated Minimalist</span></div><p class="wedding-desc">Ceremony arch and reception florals at Edgewood's lakeside terrace — airy whites and soft sage framing the lake beyond.</p></div>
+        <div class="wedding-card-info"><p class="wedding-couple">Allie &amp; Devin</p><div class="wedding-meta"><span class="wedding-venue">Edgewood Tahoe · South Shore</span><span class="wedding-tag">Elevated Minimalist</span></div><p class="wedding-desc">Ceremony arch and reception florals at Edgewood's lakeside terrace, airy whites and soft sage framing the lake beyond.</p></div>
       </div>
     </div>
   </div>
@@ -98,7 +98,7 @@ redirect_from:
     <div class="wedding-grid">
       <div class="wedding-card" data-aesthetic="wildflower">
         <div class="wedding-card-img"><img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1779129057432-Y8VGDRIHTV4BILCZVW27/MountainTimePhoto-48.jpg?format=1100w" alt="Camille and Max" loading="lazy"></div>
-        <div class="wedding-card-info"><p class="wedding-couple">Camille &amp; Max</p><div class="wedding-meta"><span class="wedding-venue">Hellman-Ehrman Mansion · Lake Tahoe</span><span class="wedding-tag">Wildflower Modern</span></div><p class="wedding-desc">A Sierra Nevada outdoor ceremony with a wooden arch wrapped in native wildflowers, grasses, and trailing foliage — the lake visible through it.</p></div>
+        <div class="wedding-card-info"><p class="wedding-couple">Camille &amp; Max</p><div class="wedding-meta"><span class="wedding-venue">Hellman-Ehrman Mansion · Lake Tahoe</span><span class="wedding-tag">Wildflower Modern</span></div><p class="wedding-desc">A Sierra Nevada outdoor ceremony with a wooden arch wrapped in native wildflowers, grasses, and trailing foliage, the lake visible through it.</p></div>
       </div>
       <div class="wedding-card" data-aesthetic="wildflower">
         <div class="wedding-card-img"><img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1779129078871-L0C6RZWY0OFNYM1EF93C/MountainTimePhoto-64.jpg?format=1100w" alt="Tori and Tucker" loading="lazy"></div>
@@ -106,7 +106,7 @@ redirect_from:
       </div>
       <div class="wedding-card" data-aesthetic="wildflower">
         <div class="wedding-card-img"><img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/5854318e-a30f-4303-b4d9-38c510fdc75a/Lake+Tahoe+Floral+Installationn?format=1100w" alt="Sam and Matt" loading="lazy"></div>
-        <div class="wedding-card-info"><p class="wedding-couple">Sam &amp; Matt</p><div class="wedding-meta"><span class="wedding-venue">Lake Tahoe Shoreline · Outdoor</span><span class="wedding-tag">Wildflower Modern</span></div><p class="wedding-desc">A lakeside ceremony with a sprawling installation — native shrubs and seasonal blooms blending into the Tahoe shoreline landscape.</p></div>
+        <div class="wedding-card-info"><p class="wedding-couple">Sam &amp; Matt</p><div class="wedding-meta"><span class="wedding-venue">Lake Tahoe Shoreline · Outdoor</span><span class="wedding-tag">Wildflower Modern</span></div><p class="wedding-desc">A lakeside ceremony with a sprawling installation, native shrubs and seasonal blooms blending into the Tahoe shoreline landscape.</p></div>
       </div>
     </div>
   </div>
@@ -116,7 +116,7 @@ redirect_from:
   <div class="container" style="text-align:center;">
     <span class="eyebrow">Something different in mind?</span>
     <h2 class="feature-title">We work in every direction.</h2>
-    <p style="max-width:600px;margin:0 auto var(--s-6);">These aesthetics are a starting point, not a limit. Bring your Pinterest board, a venue photo, or a feeling you can't quite name yet. Every wedding we design starts from your vision, not ours.</p>
+    <p style="max-width:600px;margin:0 auto var(--s-6);">These three are where many couples begin. Bring your Pinterest board, a venue photo, or a feeling you can't quite name yet. Every wedding we design starts from your vision.</p>
     <a href="{{ site.baseurl }}/consultation-form" class="btn btn--primary">Share your inspiration →</a>
   </div>
 </section>

@@ -13,7 +13,7 @@ canonical_url: https://goldenflorals.com/
   <div class="container">
     <div class="hero-inner">
       <span class="eyebrow">Lake Tahoe Wedding Florist</span>
-      <h1 class="hero-display">Artful florals,<br><em>rooted in the Sierra.</em></h1>
+      <h1 class="hero-display">Artful florals,<br><em>grown by hand.</em></h1>
       <p class="hero-sub">Farm-grown &amp; foam-free · One wedding per date</p>
       <div class="hero-btns">
         <a href="{{ site.baseurl }}/consultation-form" class="btn btn--primary" data-consult-open>Check your date →</a>
@@ -52,7 +52,7 @@ canonical_url: https://goldenflorals.com/
       <div class="diff-card">
         <div class="diff-icon">{% include icon.html name="leaf" %}</div>
         <h3>Foam-free</h3>
-        <p>Every arrangement is built without floral foam — intentional, sustainable, and better for the watershed.</p>
+        <p>Every arrangement is built without floral foam. Intentional, sustainable, and better for the watershed.</p>
       </div>
       <div class="diff-card">
         <div class="diff-icon">{% include icon.html name="calendar-heart" %}</div>
@@ -62,7 +62,7 @@ canonical_url: https://goldenflorals.com/
       <div class="diff-card">
         <div class="diff-icon">{% include icon.html name="flask" %}</div>
         <h3>Agronomist-founded</h3>
-        <p>Founder Brittany trained as an agronomist — soil science shapes what we plant, source, and design.</p>
+        <p>Founder Brittany trained as an agronomist. Soil science shapes what we plant, source, and design.</p>
       </div>
     </div>
   </div>
@@ -92,7 +92,7 @@ canonical_url: https://goldenflorals.com/
   <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/4685a495-c2ce-4b90-9fd1-f91ca0d6a135/K%2BJ-0962.jpg?format=2500w" alt="Golden Flowers ceremony arch at a Lake Tahoe wedding" loading="lazy">
   <div class="container">
     <div class="fullbleed-copy">
-      <span class="eyebrow">Local, not imported</span>
+      <span class="eyebrow">Grown close to home</span>
       <p class="fullbleed-line">Every stem chosen for one couple, one date, one place in the mountains.</p>
     </div>
   </div>

@@ -49,6 +49,13 @@ body.gf3 img, body.gf3 picture { max-width: 100%; display: block; }
 .gf3 .section { padding: var(--s-10) 0; }
 .gf3 .section--tight { padding: var(--s-9) 0; }
 
+/* Hairline between adjacent sections that share a background (light→light,
+   and the dark panel → dark footer). Tone changes (light↔dark, image) are
+   their own separator, so those pairs are excluded. */
+.gf3 section.section:not(.panel-dark) + section.section:not(.panel-dark) { border-top: 1px solid var(--hair-soft); }
+.gf3 .port-section + .port-section { border-top: 1px solid var(--hair-soft); }
+.gf3 .site-footer { border-top: 1px solid oklch(100% 0 0 / .16); }  /* separates dark panel → dark footer */
+
 /* ── Type roles ───────────────────────────────────────── */
 .gf3 .eyebrow {
   font-family: var(--f-mono); font-weight: 400;
@@ -522,15 +529,15 @@ body.gf3 .sticky-cta { display: none !important; }
 
   .gf3 .nav-menu {
     display: none; position: fixed; inset: 0; z-index: 1500;
-    background: var(--ink); flex-direction: column; align-items: center; justify-content: center;
-    gap: var(--s-8); padding: var(--s-9) var(--s-6);
+    background: var(--ink); flex-direction: column; align-items: stretch; justify-content: flex-start;
+    gap: 0; padding: calc(var(--nav-h) + var(--s-7)) var(--s-6) var(--s-7);
   }
   .gf3 #site-nav.nav-open .nav-menu { display: flex; }
-  .gf3 .nav-menu .nav-links { flex-direction: column; align-items: center; gap: var(--s-5); margin: 0; }
-  .gf3 .nav-menu .nav-links a { font-family: var(--f-display); font-size: 2.2rem; color: var(--on-dark); }
+  .gf3 .nav-menu .nav-links { flex-direction: column; align-items: flex-start; gap: var(--s-4); margin: 0; }
+  .gf3 .nav-menu .nav-links a { font-family: var(--f-display); font-size: 2.1rem; line-height: 1.1; color: var(--on-dark); }
   .gf3 .nav-menu .nav-links a::after { display: none; }
   .gf3 .nav-menu .nav-links a.active { color: var(--action); font-style: italic; }
-  .gf3 .nav-menu-foot { display: flex; flex-direction: column; align-items: center; gap: var(--s-4); text-align: center; }
+  .gf3 .nav-menu-foot { display: flex; flex-direction: column; align-items: flex-start; gap: var(--s-4); text-align: left; margin-top: auto; padding-top: var(--s-7); border-top: 1px solid oklch(100% 0 0 / .14); width: 100%; }
   .gf3 .nav-cta-mobile { font-family: var(--f-ui); font-size: .85rem; font-weight: 500; background: var(--action); color: var(--on-dark); padding: 14px 28px; border-radius: 100px; }
   .gf3 .nav-menu-meta { font-family: var(--f-mono); font-size: .72rem; letter-spacing: .04em; color: oklch(78% .015 130); margin: 0; }
   .gf3 .nav-menu-meta a { color: oklch(78% .015 130); }

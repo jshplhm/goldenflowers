@@ -12,7 +12,7 @@ canonical_url: https://goldenflorals.com/consultation-form
   <div class="container">
     <span class="eyebrow">Check your date</span>
     <h2 class="section-title">Let's start the<br>conversation.</h2>
-    <p class="lead" style="margin:0 auto;">Tell us your date, venue, and vision. We reply within 48 hours to confirm availability — consultations are complimentary, by phone or video.</p>
+    <p class="lead" style="margin:0 auto;">Tell us your date, venue, and vision. We reply within 48 hours to confirm availability, consultations are complimentary, by phone or video.</p>
   </div>
 </section>
 
