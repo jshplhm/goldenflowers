@@ -70,45 +70,20 @@ canonical_url: https://goldenflorals.com/
 
 <section class="section">
   <div class="container">
-    <span class="eyebrow">The work</span>
-    <h2 class="section-title">Three design languages.</h2>
-    <p class="lead">Every wedding is designed in one of three languages. Choose one to filter the work below — or view it all.</p>
-
-    <div class="work-langs" style="margin-top:48px;">
-      <button class="lang-card" data-lang="romantic" type="button">
-        <div class="lang-card-media"><img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1770534306889-NSEB5HC1TYWMEPG4WSCI/NationalGothic--268.jpg?format=750w" alt="Lush &amp; Romantic" loading="lazy"></div>
-        <div class="lang-card-body">
-          <h3>Lush &amp; Romantic</h3>
-          <p>Rich, dramatic, and lush — deep burgundy, plum, and forest tones. Cinematic and of the moment.</p>
-        </div>
-      </button>
-      <button class="lang-card" data-lang="minimalist" type="button">
-        <div class="lang-card-media"><img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1776975105426-4BAEXMVDBX6Q5ETZ1BVC/l-a-preview-6962.jpg?format=750w" alt="Elevated Minimalist" loading="lazy"></div>
-        <div class="lang-card-body">
-          <h3>Elevated Minimalist</h3>
-          <p>Clean lines, airy compositions, restrained palettes. Design that doesn't compete with the view.</p>
-        </div>
-      </button>
-      <button class="lang-card" data-lang="wildflower" type="button">
-        <div class="lang-card-media"><img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1779129057432-Y8VGDRIHTV4BILCZVW27/MountainTimePhoto-48.jpg?format=750w" alt="Wildflower Modern" loading="lazy"></div>
-        <div class="lang-card-body">
-          <h3>Wildflower Modern</h3>
-          <p>Wild, seasonal, rooted in the landscape — native blooms and grasses with an editorial eye.</p>
-        </div>
-      </button>
+    <div class="work-head" style="align-items:flex-end;">
+      <div>
+        <span class="eyebrow">Selected work</span>
+        <h2 class="section-title" style="margin:0;">A few favorites.</h2>
+      </div>
+      <a href="{{ site.baseurl }}/portfolio" class="link link--action">Browse the portfolio →</a>
     </div>
-
-    <div class="work-head">
-      <span class="eyebrow" style="margin:0;" id="work-count">Showing all work</span>
-      <button class="link link--action" type="button" id="work-reset">View all work →</button>
-    </div>
-    <div class="work-grid" id="work-grid">
-      <div class="work-item" data-lang="romantic"><img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/3ddf1f69-8e31-44e3-8204-d28d4797d6f7/NationalGothic--264.jpg?format=750w" alt="Lush romantic wedding florals" loading="lazy"></div>
-      <div class="work-item" data-lang="minimalist"><img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1776975190166-PCFON7QIR65XK1VPLH3K/l-a-preview-8192.jpg?format=750w" alt="Elevated minimalist wedding florals" loading="lazy"></div>
-      <div class="work-item" data-lang="wildflower"><img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1779129636646-VAQ2FSYB2YNR4O0UZFAA/K%252BJ-8434.jpg?format=750w" alt="Wildflower modern wedding florals" loading="lazy"></div>
-      <div class="work-item" data-lang="minimalist"><img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/4da65886-1655-4ecd-957b-8d48969ffc60/l-a-preview-0305.jpg?format=750w" alt="Minimalist reception florals" loading="lazy"></div>
-      <div class="work-item" data-lang="romantic"><img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/bc425f51-1b71-473f-815b-8c481fd5a5c1/8.jpg?format=750w" alt="Romantic reception table" loading="lazy"></div>
-      <div class="work-item" data-lang="wildflower"><img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/4685a495-c2ce-4b90-9fd1-f91ca0d6a135/K%2BJ-0962.jpg?format=750w" alt="Wildflower ceremony arch" loading="lazy"></div>
+    <div class="work-grid">
+      <a class="work-item" href="{{ site.baseurl }}/portfolio"><img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/3ddf1f69-8e31-44e3-8204-d28d4797d6f7/NationalGothic--264.jpg?format=750w" alt="Lush romantic wedding florals" loading="lazy"></a>
+      <a class="work-item" href="{{ site.baseurl }}/portfolio"><img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1776975190166-PCFON7QIR65XK1VPLH3K/l-a-preview-8192.jpg?format=750w" alt="Elevated minimalist wedding florals" loading="lazy"></a>
+      <a class="work-item" href="{{ site.baseurl }}/portfolio"><img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1779129636646-VAQ2FSYB2YNR4O0UZFAA/K%252BJ-8434.jpg?format=750w" alt="Wildflower modern wedding florals" loading="lazy"></a>
+      <a class="work-item" href="{{ site.baseurl }}/portfolio"><img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/4da65886-1655-4ecd-957b-8d48969ffc60/l-a-preview-0305.jpg?format=750w" alt="Minimalist reception florals" loading="lazy"></a>
+      <a class="work-item" href="{{ site.baseurl }}/portfolio"><img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/bc425f51-1b71-473f-815b-8c481fd5a5c1/8.jpg?format=750w" alt="Romantic reception table" loading="lazy"></a>
+      <a class="work-item" href="{{ site.baseurl }}/portfolio"><img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/4685a495-c2ce-4b90-9fd1-f91ca0d6a135/K%2BJ-0962.jpg?format=750w" alt="Wildflower ceremony arch" loading="lazy"></a>
     </div>
   </div>
 </section>
@@ -191,32 +166,3 @@ canonical_url: https://goldenflorals.com/
     <a href="{{ site.baseurl }}/consultation-form" class="btn btn--primary" data-consult-open>Check your date →</a>
   </div>
 </section>
-
-<script>
-(function () {
-  var grid = document.getElementById('work-grid');
-  if (!grid) return;
-  var items = [].slice.call(grid.querySelectorAll('.work-item'));
-  var langCards = [].slice.call(document.querySelectorAll('.lang-card'));
-  var countEl = document.getElementById('work-count');
-  var resetBtn = document.getElementById('work-reset');
-  var labels = { romantic: 'Lush & Romantic', minimalist: 'Elevated Minimalist', wildflower: 'Wildflower Modern' };
-
-  function filter(lang) {
-    items.forEach(function (it) {
-      it.hidden = lang ? it.getAttribute('data-lang') !== lang : false;
-    });
-    langCards.forEach(function (c) {
-      c.classList.toggle('is-active', !!lang && c.getAttribute('data-lang') === lang);
-    });
-    countEl.textContent = lang ? ('Showing ' + labels[lang]) : 'Showing all work';
-  }
-  langCards.forEach(function (c) {
-    c.addEventListener('click', function () {
-      var lang = c.getAttribute('data-lang');
-      filter(c.classList.contains('is-active') ? null : lang);
-    });
-  });
-  resetBtn.addEventListener('click', function () { filter(null); });
-})();
-</script>

@@ -2,37 +2,28 @@
 layout: default
 ---
 
-<div style="padding:20px 48px 0;"><a href="{{ site.baseurl }}/blog" style="font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--fgm);text-decoration:none;">← Back to Blog</a></div>
-
-<!-- Blog Post Header -->
-<header class="blog-header">
-  <span class="blog-category">{{ page.category | default: 'Blog' }}</span>
-  <h1 class="blog-title">{{ page.title }}</h1>
-  <div class="blog-meta">
-    <!-- Date hidden from readers per migration strategy -->
-    <span>By Brittany · Golden Flowers</span>
+<article class="section post">
+  <div class="container post-narrow">
+    <a href="{{ site.baseurl }}/blog" class="post-back">← Back to the journal</a>
+    <header class="post-header" style="margin-top:32px;">
+      <span class="eyebrow">{{ page.category | default: 'Journal' }}</span>
+      <h1 class="post-title">{{ page.title }}</h1>
+      <p class="post-byline">By Brittany · Golden Flowers</p>
+    </header>
+    {% if page.featured_image %}
+    <img class="post-hero" src="{{ page.featured_image }}" alt="{{ page.title }}" loading="eager">
+    {% endif %}
+    <div class="blog-body post-body">
+      {{ content }}
+    </div>
   </div>
-</header>
-
-<!-- Featured Image (if present) -->
-{% if page.featured_image %}
-<img
-  class="blog-hero-img"
-  src="{{ page.featured_image }}"
-  alt="{{ page.title }}"
-  loading="eager"
->
-{% endif %}
-
-<!-- Blog Body -->
-<article class="blog-body">
-  {{ content }}
 </article>
 
-<!-- Post-specific CTA -->
-<div class="cta-section">
-  <span class="label" style="display:block;text-align:center">Get started</span>
-  <h2>Ready to design your wedding florals?</h2>
-  <p>We take one wedding per date. Reach out early.</p>
-  <a href="{{ site.baseurl }}/weddings#consultation" class="btn-primary">Schedule a Consultation</a>
-</div>
+<section class="section cta">
+  <div class="container">
+    <span class="eyebrow">Get started</span>
+    <h2 class="section-title">Ready to design your<br>wedding florals?</h2>
+    <p class="lead" style="margin:0 auto 32px;">We take one wedding per date. Reach out early — we reply within 48 hours.</p>
+    <a href="{{ site.baseurl }}/consultation-form" class="btn btn--primary">Check your date →</a>
+  </div>
+</section>
