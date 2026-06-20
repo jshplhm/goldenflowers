@@ -25,6 +25,23 @@
 
 {% if page.v3 and page.url != '/consultation-form' %}
 {% include consult-modal-v3.html %}
+<div class="gf-sticky-cta" id="gf-sticky">
+  <span class="gf-sticky-text">One wedding per date</span>
+  <a href="{{ site.baseurl }}/consultation-form" class="btn btn--primary" data-consult-open>Check your date →</a>
+</div>
+<script>
+(function () {
+  var bar = document.getElementById('gf-sticky'); if (!bar) return;
+  var footer = document.querySelector('.site-footer');
+  function vis() {
+    var show = window.scrollY > window.innerHeight * 0.5;
+    if (footer) { var r = footer.getBoundingClientRect(); if (r.top < window.innerHeight) show = false; }
+    bar.classList.toggle('is-visible', show);
+  }
+  window.addEventListener('scroll', vis, { passive: true });
+  window.addEventListener('resize', vis); vis();
+})();
+</script>
 {% endif %}
 
 {% unless page.v3 %}

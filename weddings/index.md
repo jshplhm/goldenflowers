@@ -27,7 +27,8 @@ redirect_from:
 <section class="section section--tight">
   <div class="container" style="max-width:760px;">
     <p class="lead">We take one wedding per date, so every couple works directly with our founder, Brittany, from the first consultation through setup and breakdown. She designs alongside a team of seasoned florists, several of whom run their own studios and farms. No junior staff, no assembly line, no handoffs.</p>
-    <p style="margin-top:16px;font-size:.92rem;">Available for weddings throughout Lake Tahoe, the Sierra Nevada, and the Gold Country foothills. <a href="{{ site.baseurl }}/about" class="link link--action">Meet Brittany</a></p>
+    <p style="margin-top:16px;font-size:.92rem;">Available for weddings throughout Lake Tahoe, the Sierra Nevada, and the Gold Country foothills.</p>
+    <a href="{{ site.baseurl }}/about" class="link link--action" style="display:inline-block;margin-top:20px;">Meet Brittany</a>
   </div>
 </section>
 

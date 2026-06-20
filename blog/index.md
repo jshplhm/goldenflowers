@@ -1,7 +1,7 @@
 ---
 layout: default
 v3: true
-title: "Journal"
+title: "Blog"
 permalink: /blog
 redirect_from:
   - /natures-canvas-lake-tahoe-wedding-flowers
@@ -10,7 +10,7 @@ redirect_from:
 <section class="vhero" style="min-height:52vh;">
   <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/f77301d9-f890-451d-8bf8-c8d3a07d2bc4/Lake+Tahoe+Luxe+Boquet.jpg?format=2500w" alt="Seasonal California-grown bouquet" loading="eager">
   <div class="container vhero-copy">
-    <span class="eyebrow">Journal</span>
+    <span class="eyebrow">Blog</span>
     <h1 class="vhero-name">Flowers, farming,<br>and the Sierra Nevada.</h1>
     <p class="vhero-loc">Seasonal notes, wedding inspiration, and thoughts from the farm</p>
   </div>
