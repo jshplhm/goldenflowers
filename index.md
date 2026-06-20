@@ -70,6 +70,38 @@ canonical_url: https://goldenflorals.com/
 
 <section class="section">
   <div class="container">
+    <span class="eyebrow">Find your aesthetic</span>
+    <h2 class="section-title">Three distinct design languages.</h2>
+    <p class="lead">Three directions we return to most. Explore each in the portfolio.</p>
+    <div class="work-langs" style="margin-top:48px;">
+      <a class="lang-card" href="{{ site.baseurl }}/portfolio?filter=dark-romance">
+        <div class="lang-card-media"><img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1770534306889-NSEB5HC1TYWMEPG4WSCI/NationalGothic--268.jpg?format=750w" alt="Lush &amp; Romantic" loading="lazy"></div>
+        <div class="lang-card-body"><h3>Lush &amp; Romantic</h3><p>Rich, dramatic, and lush. Deep burgundy, plum, and forest tones, cinematic and of the moment.</p><span class="link link--action">View weddings →</span></div>
+      </a>
+      <a class="lang-card" href="{{ site.baseurl }}/portfolio?filter=minimalist">
+        <div class="lang-card-media"><img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1776975105426-4BAEXMVDBX6Q5ETZ1BVC/l-a-preview-6962.jpg?format=750w" alt="Elevated Minimalist" loading="lazy"></div>
+        <div class="lang-card-body"><h3>Elevated Minimalist</h3><p>Clean lines, airy compositions, restrained palettes. Design that lets the view lead.</p><span class="link link--action">View weddings →</span></div>
+      </a>
+      <a class="lang-card" href="{{ site.baseurl }}/portfolio?filter=wildflower">
+        <div class="lang-card-media"><img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1779129057432-Y8VGDRIHTV4BILCZVW27/MountainTimePhoto-48.jpg?format=750w" alt="Wildflower Modern" loading="lazy"></div>
+        <div class="lang-card-body"><h3>Wildflower Modern</h3><p>Wild, seasonal, rooted in the landscape. Native blooms and grasses styled with an editorial eye.</p><span class="link link--action">View weddings →</span></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="fullbleed">
+  <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/4685a495-c2ce-4b90-9fd1-f91ca0d6a135/K%2BJ-0962.jpg?format=2500w" alt="Golden Flowers ceremony arch at a Lake Tahoe wedding" loading="lazy">
+  <div class="container">
+    <div class="fullbleed-copy">
+      <span class="eyebrow">Grown close to home</span>
+      <p class="fullbleed-line">Every stem chosen for one couple, one date, one place in the mountains.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
     <div class="work-head" style="align-items:flex-end;">
       <div>
         <span class="eyebrow">Selected work</span>
@@ -88,45 +120,26 @@ canonical_url: https://goldenflorals.com/
   </div>
 </section>
 
-<section class="fullbleed">
-  <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/4685a495-c2ce-4b90-9fd1-f91ca0d6a135/K%2BJ-0962.jpg?format=2500w" alt="Golden Flowers ceremony arch at a Lake Tahoe wedding" loading="lazy">
-  <div class="container">
-    <div class="fullbleed-copy">
-      <span class="eyebrow">Grown close to home</span>
-      <p class="fullbleed-line">Every stem chosen for one couple, one date, one place in the mountains.</p>
-    </div>
-  </div>
-</section>
-
 <section class="section">
-  <div class="container">
+  <div class="container pricing-solo">
     <span class="eyebrow">Investment</span>
     <h2 class="section-title">Transparent pricing.</h2>
-    <div class="pricing-grid" style="margin-top:48px;">
-      <div>
-        <p class="price-num">$5,000–$25,000+</p>
-        <p class="lead" style="margin:0;">Full-service wedding florals.</p>
-        <ul class="price-list">
-          <li>A 100-person Lake Tahoe wedding typically ranges from <strong>$12,000–$18,000</strong>.</li>
-          <li>Every package includes consultation through day-of setup and breakdown.</li>
-          <li>We build a custom proposal around your venue, vision, and what's in season.</li>
-        </ul>
-        <p class="price-refrain">No floral foam. No imported filler. Just intentional design.</p>
-      </div>
-      <div class="pricing-media">
-        <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/f77301d9-f890-451d-8bf8-c8d3a07d2bc4/Lake+Tahoe+Luxe+Boquet.jpg?format=1000w" alt="Luxe Lake Tahoe wedding bouquet" loading="lazy">
-      </div>
-    </div>
+    <p class="price-num" style="margin-top:24px;">$5,000–$25,000+</p>
+    <p class="lead" style="margin:0;">Full-service wedding florals.</p>
+    <ul class="price-list">
+      <li>A 100-person Lake Tahoe wedding typically ranges from <strong>$12,000–$18,000</strong>.</li>
+      <li>Every package includes consultation through day-of setup and breakdown.</li>
+      <li>We build a custom proposal around your venue, vision, and what's in season.</li>
+    </ul>
+    <p class="price-refrain">No floral foam. No imported filler. Just intentional design.</p>
   </div>
 </section>
 
-<section class="section section--tight">
+<section class="section section--tight section--tint">
   <div class="container">
-    <figure class="testi">
-      <div class="stars" aria-hidden="true">★★★★★</div>
-      <blockquote>Brittany had ideas that helped me achieve the luxe look I wanted while staying in budget. Working with her was effortless, and the flowers were exactly what I'd pictured.</blockquote>
-      <figcaption><cite>Sara</cite> · The Ritz-Carlton, Truckee</figcaption>
-    </figure>
+    <span class="eyebrow">What couples say</span>
+    <h2 class="section-title">Loved by couples across the Sierra.</h2>
+    {% include testimonials-v3.html %}
   </div>
 </section>
 

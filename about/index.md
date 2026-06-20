@@ -8,17 +8,11 @@ description: "Golden Flowers is a Lake Tahoe wedding florist specializing in bol
 canonical_url: https://goldenflorals.com/about
 ---
 
-<section class="hero">
-  <div class="container">
-    <div class="hero-grid">
-      <div class="hero-copy">
-        <span class="eyebrow">About Golden Flowers</span>
-        <h1 class="hero-display">A florist who came to flowers through <em>the science of growing them.</em></h1>
-      </div>
-      <div class="hero-media">
-        <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/50ef2005-58af-4984-811f-1db29027b87c/bride+and+groom+with+bouquet+and+airplane.jpg?format=1500w" alt="Brittany, founder of Golden Flowers" loading="eager">
-      </div>
-    </div>
+<section class="vhero">
+  <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/50ef2005-58af-4984-811f-1db29027b87c/bride+and+groom+with+bouquet+and+airplane.jpg?format=2500w" alt="Brittany, founder of Golden Flowers" loading="eager">
+  <div class="container vhero-copy">
+    <span class="eyebrow">About Golden Flowers</span>
+    <h1 class="vhero-name">A florist who came to flowers through <em>the science of growing them.</em></h1>
   </div>
 </section>
 
@@ -72,21 +66,16 @@ canonical_url: https://goldenflorals.com/about
         <p style="margin-top:16px;">What we don't grow, we source from California growers we've worked with for years. We know the soil. We know the season. That chain of custody is part of the product.</p>
       </div>
       <div>
-        <span class="eyebrow">What we won't do</span>
-        <h3>Some lines we don't cross.</h3>
-        <ul class="wont-list">
-          <li>No floral foam, on any wedding, ever.</li>
-          <li>No flowers flown in from South America or Europe.</li>
-          <li>No off-the-shelf packages or boilerplate proposals.</li>
-          <li>No double-booking, one wedding per date, always.</li>
-          <li>No over-claiming. We stay honest about what we can and can't do yet.</li>
-        </ul>
+        <span class="eyebrow">The team</span>
+        <h3>Never a one-woman show.</h3>
+        <p>Golden Flowers is Brittany's studio, but the work happens with a small, hand-picked team of senior designers, several of whom run their own studios and farms. The people building your florals have decades of weddings between them.</p>
+        <p style="margin-top:16px;">No junior staff, no assembly line, no handoffs. Because we take one wedding per date, that whole team is focused on your day alone.</p>
       </div>
     </div>
   </div>
 </section>
 
-<section class="section section--tight">
+<section class="section section--tight section--tint">
   <div class="container">
     <figure class="pullquote">
       <blockquote>Most floral designers learn to arrange flowers. I learned to grow them first.</blockquote>

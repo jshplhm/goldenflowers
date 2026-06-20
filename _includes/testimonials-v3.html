@@ -1,0 +1,66 @@
+<div class="gf-carousel" data-carousel>
+  <div class="gf-carousel-track" tabindex="0" role="group" aria-label="Couple testimonials, scrollable">
+    <figure class="gf-testi">
+      <div class="stars" aria-hidden="true">★★★★★</div>
+      <blockquote>Brittany and her team are the utmost in artistry, professionalism, and support. The presentation at the wedding, the bouquets, the ceremony, the reception, the table details, was through-the-roof beautiful.</blockquote>
+      <figcaption><cite>Brian</cite> · Lake Tahoe wedding</figcaption>
+    </figure>
+    <figure class="gf-testi">
+      <div class="stars" aria-hidden="true">★★★★★</div>
+      <blockquote>Brittany had ideas that helped me achieve the luxe look I wanted while staying in budget. Working with her was effortless, and the flowers were exactly what I'd pictured.</blockquote>
+      <figcaption><cite>Sara</cite> · The Ritz-Carlton, Truckee</figcaption>
+    </figure>
+    <figure class="gf-testi">
+      <div class="stars" aria-hidden="true">★★★★★</div>
+      <blockquote>They went above and beyond to ensure my vision was executed professionally. The bouquets for myself and my bridal party were truly unforgettable.</blockquote>
+      <figcaption><cite>Jenna</cite> · National Exchange Hotel, Nevada City</figcaption>
+    </figure>
+    <figure class="gf-testi">
+      <div class="stars" aria-hidden="true">★★★★★</div>
+      <blockquote>My wedding florals were everything I hoped for and more, and Brittany was an absolute dream to work with. I would choose Golden Flowers again and again.</blockquote>
+      <figcaption><cite>Brooke</cite> · Lake Tahoe wedding</figcaption>
+    </figure>
+    <figure class="gf-testi">
+      <div class="stars" aria-hidden="true">★★★★★</div>
+      <blockquote>All of the bouquets were perfect, exactly the way we envisioned them. We would absolutely recommend Golden Flowers to anyone married-to-be.</blockquote>
+      <figcaption><cite>Samantha</cite> · The Miner's Foundry, Nevada City</figcaption>
+    </figure>
+    <figure class="gf-testi">
+      <div class="stars" aria-hidden="true">★★★★★</div>
+      <blockquote>We had a floral emergency the morning of the wedding. Without any prior consultation, they nailed it. Our bouquets were exactly what the bride wanted. 10/10.</blockquote>
+      <figcaption><cite>Janelle</cite> · National Exchange Hotel, Nevada City</figcaption>
+    </figure>
+    <figure class="gf-testi">
+      <div class="stars" aria-hidden="true">★★★★★</div>
+      <blockquote>Golden Flowers did a great job, I would hire them again in a heartbeat. I wanted playful, colorful and fun, and the flowers they created were just that.</blockquote>
+      <figcaption><cite>Nicole</cite> · Edgewood Tahoe</figcaption>
+    </figure>
+    <figure class="gf-testi">
+      <div class="stars" aria-hidden="true">★★★★★</div>
+      <blockquote>She brought my vision to life even when I threw her the curveball of feathers and handmade wooden flowers. Something that far exceeded my expectations.</blockquote>
+      <figcaption><cite>Lauren</cite> · Harmony Ridge Estate, Nevada City</figcaption>
+    </figure>
+  </div>
+  <div class="gf-carousel-nav">
+    <button class="gf-carousel-btn" data-dir="prev" aria-label="Previous testimonials">←</button>
+    <button class="gf-carousel-btn" data-dir="next" aria-label="Next testimonials">→</button>
+  </div>
+</div>
+
+<script>
+(function () {
+  document.querySelectorAll('[data-carousel]').forEach(function (c) {
+    var track = c.querySelector('.gf-carousel-track');
+    var prev = c.querySelector('[data-dir="prev"]');
+    var next = c.querySelector('[data-dir="next"]');
+    if (!track) return;
+    function step() { var card = track.querySelector('.gf-testi'); var gap = parseFloat(getComputedStyle(track).columnGap) || 0; return card ? card.getBoundingClientRect().width + gap : track.clientWidth; }
+    function update() { var max = track.scrollWidth - track.clientWidth; if (prev) prev.disabled = track.scrollLeft <= 4; if (next) next.disabled = track.scrollLeft >= max - 4; }
+    if (prev) prev.addEventListener('click', function () { track.scrollBy({ left: -step(), behavior: 'smooth' }); });
+    if (next) next.addEventListener('click', function () { track.scrollBy({ left: step(), behavior: 'smooth' }); });
+    track.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    update();
+  });
+})();
+</script>
