@@ -13,7 +13,7 @@ canonical_url: https://goldenflorals.com/
   <div class="container">
     <div class="hero-inner">
       <span class="eyebrow">Lake Tahoe Wedding Florist</span>
-      <h1 class="hero-display">Artful florals,<br><em>grown by hand.</em></h1>
+      <h1 class="hero-display">Grown for one day.<br><em>Designed to feel alive.</em></h1>
       <p class="hero-sub">Farm-grown &amp; foam-free · One wedding per date</p>
       <div class="hero-btns">
         <a href="{{ site.baseurl }}/consultation-form" class="btn btn--primary" data-consult-open>Check your date →</a>
