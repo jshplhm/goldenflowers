@@ -136,11 +136,17 @@ canonical_url: https://goldenflorals.com/about
   </div>
 </section>
 
-<section class="section cta">
+<section class="cta-band">
   <div class="container">
-    <span class="eyebrow">Work with us</span>
-    <h2 class="section-title">Start with a conversation.</h2>
-    <a href="{{ site.baseurl }}/consultation-form" class="btn btn--primary">Check your date →</a>
+    <div class="cta-band-copy">
+      <span class="eyebrow">Work with us</span>
+      <h2 class="section-title">Start with a conversation.</h2>
+      <p class="lead">One wedding per date. Tell us yours and we'll reply within 48 hours.</p>
+    </div>
+    <div class="cta-band-actions">
+      <a href="{{ site.baseurl }}/portfolio" class="link link--action">View portfolio</a>
+      <a href="{{ site.baseurl }}/consultation-form" class="btn btn--primary" data-consult-open>Check your date →</a>
+    </div>
   </div>
 </section>
 

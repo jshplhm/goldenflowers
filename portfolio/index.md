@@ -112,12 +112,12 @@ redirect_from:
   </div>
 </section>
 
-<section class="panel-dark feature">
-  <div class="container" style="text-align:center;">
+<section class="section cta">
+  <div class="container">
     <span class="eyebrow">Something different in mind?</span>
-    <h2 class="feature-title">We work in every direction.</h2>
-    <p style="max-width:600px;margin:0 auto var(--s-6);">These three are where many couples begin. Bring your Pinterest board, a venue photo, or a feeling you can't quite name yet. Every wedding we design starts from your vision.</p>
-    <a href="{{ site.baseurl }}/consultation-form" class="btn btn--primary">Share your inspiration →</a>
+    <h2 class="section-title">We work in every direction.</h2>
+    <p class="lead" style="margin:0 auto var(--s-6);">These three are where many couples begin. Bring your Pinterest board, a venue photo, or a feeling you can't quite name yet. Every wedding we design starts from your vision.</p>
+    <a href="{{ site.baseurl }}/consultation-form" class="btn btn--primary" data-consult-open>Share your inspiration →</a>
   </div>
 </section>
 

@@ -56,6 +56,7 @@ body.gf3 img, body.gf3 picture { max-width: 100%; display: block; }
    their own separator, so those pairs are excluded. */
 .gf3 section.section:not(.panel-dark) + section.section:not(.panel-dark) { border-top: 1px solid var(--hair-soft); }
 .gf3 .port-section + .port-section { border-top: 1px solid var(--hair-soft); }
+.gf3 .port-section + section.section:not(.panel-dark) { border-top: 1px solid var(--hair-soft); }
 .gf3 .hero:not(.hero--full) + section.section { border-top: 1px solid var(--hair-soft); }  /* About: hero → intro */
 .gf3 .site-footer { border-top: 1px solid oklch(100% 0 0 / .16); }  /* separates dark panel → dark footer */
 
@@ -153,10 +154,10 @@ body.gf3 img, body.gf3 picture { max-width: 100%; display: block; }
 /* ── Full-screen hero (home) ──────────────────────────── */
 .gf3 .hero--full { position: relative; min-height: 92vh; display: flex; align-items: flex-end; overflow: hidden; text-align: center; }
 .gf3 .hero--full img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-.gf3 .hero--full::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, oklch(20% .02 152 / .78), oklch(20% .02 152 / .25) 55%, oklch(20% .02 152 / .15)); }
-.gf3 .hero--full .hero-inner { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding-bottom: 6vh; }
-.gf3 .hero--full .eyebrow { color: var(--accent2-dk); }
-.gf3 .hero--full .hero-display { color: var(--on-dark); font-style: italic; font-weight: 400; font-size: clamp(3rem, 7vw, 5.8rem); line-height: 1.05; margin: var(--s-4) 0 var(--s-5); }
+.gf3 .hero--full::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, oklch(16% .02 152 / .86) 0%, oklch(16% .02 152 / .55) 32%, oklch(16% .02 152 / .18) 62%, transparent 100%); }
+.gf3 .hero--full .hero-inner { position: relative; z-index: 1; max-width: 1120px; margin: 0 auto; padding-bottom: 4vh; }
+.gf3 .hero--full .eyebrow { color: oklch(80% .12 44); text-shadow: 0 1px 14px oklch(16% .02 152 / .7); }
+.gf3 .hero--full .hero-display { color: var(--on-dark); font-style: italic; font-weight: 400; font-size: clamp(2rem, 4.2vw, 3.6rem); line-height: 1.08; margin: var(--s-4) 0 var(--s-5); text-shadow: 0 1px 20px oklch(16% .02 152 / .4); }
 .gf3 .hero--full .hero-display em { color: inherit; font-style: italic; }
 .gf3 .hero--full .hero-sub { color: oklch(87% .015 130); }
 .gf3 .hero--full .hero-btns { margin-top: var(--s-7); justify-content: center; }
@@ -260,6 +261,18 @@ body.gf3 img, body.gf3 picture { max-width: 100%; display: block; }
 /* ── CTA section ──────────────────────────────────────── */
 .gf3 .cta { text-align: center; }
 .gf3 .cta .section-title { margin-bottom: var(--s-6); }
+
+/* Closing CTA band — dark, copy left + actions right (live-site style) */
+.gf3 .cta-band { background: var(--ink); padding: var(--s-9) 0; border-top: 1px solid oklch(100% 0 0 / .12); }
+.gf3 .cta-band .container { display: flex; align-items: center; justify-content: space-between; gap: var(--s-7); flex-wrap: wrap; text-align: left; }
+.gf3 .cta-band .eyebrow { color: var(--accent2-dk); }
+.gf3 .cta-band-copy { max-width: 620px; }
+.gf3 .cta-band .section-title { color: var(--on-dark); margin: var(--s-3) 0 0; }
+.gf3 .cta-band .lead { color: var(--muted-dk); margin: var(--s-4) 0 0; }
+.gf3 .cta-band-actions { display: flex; align-items: center; gap: var(--s-6); flex-shrink: 0; }
+.gf3 .cta-band-actions .link { color: var(--on-dark); }
+.gf3 .cta-band-actions .link::after { background: var(--accent2-dk); }
+@media (max-width: 700px) { .gf3 .cta-band .container { flex-direction: column; align-items: flex-start; } }
 
 /* ── Footer ───────────────────────────────────────────── */
 .gf3 .site-footer { background: var(--ink); color: var(--on-dark); padding: var(--s-9) 0 var(--s-7); }
@@ -484,8 +497,8 @@ body.gf3.modal-open { overflow: hidden; }
 .gf3 .gf-modal-intro { font-size: .9rem; color: var(--muted); margin: 0 0 var(--s-5); }
 @media (max-width: 560px) { .gf3 .gf-modal { padding: 0; } .gf3 .gf-modal-card { min-height: 100vh; border-radius: 0; } }
 
-/* ── Tinted section (soft sage) ───────────────────────── */
-.gf3 .section--tint { background: oklch(93% .022 145); }
+/* ── Tinted section (soft warm) ───────────────────────── */
+.gf3 .section--tint { background: oklch(94.5% .013 75); }
 
 /* ── Testimonial carousel ─────────────────────────────── */
 .gf3 .gf-carousel { margin-top: var(--s-7); }

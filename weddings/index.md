@@ -117,11 +117,17 @@ redirect_from:
   </div>
 </section>
 
-<section class="section cta">
+<section class="cta-band">
   <div class="container">
-    <span class="eyebrow">One wedding per date</span>
-    <h2 class="section-title">Let's find out if your<br>date is open.</h2>
-    <a href="{{ site.baseurl }}/consultation-form" class="btn btn--primary">Check your date →</a>
+    <div class="cta-band-copy">
+      <span class="eyebrow">One wedding per date</span>
+      <h2 class="section-title">Let's find out if your date is open.</h2>
+      <p class="lead">Tell us your date and vision. We reply within 48 hours.</p>
+    </div>
+    <div class="cta-band-actions">
+      <a href="{{ site.baseurl }}/portfolio" class="link link--action">View portfolio</a>
+      <a href="{{ site.baseurl }}/consultation-form" class="btn btn--primary" data-consult-open>Check your date →</a>
+    </div>
   </div>
 </section>
 

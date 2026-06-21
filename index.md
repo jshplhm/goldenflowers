@@ -13,7 +13,7 @@ canonical_url: https://goldenflorals.com/
   <div class="container">
     <div class="hero-inner">
       <span class="eyebrow">Lake Tahoe Wedding Florist</span>
-      <h1 class="hero-display">Grown for one day.<br><em>Designed to feel alive.</em></h1>
+      <h1 class="hero-display">Grown for one day. <em>Designed to feel alive.</em></h1>
       <p class="hero-sub">Farm-grown &amp; foam-free · One wedding per date</p>
       <div class="hero-btns">
         <a href="{{ site.baseurl }}/consultation-form" class="btn btn--primary" data-consult-open>Check your date →</a>
@@ -23,21 +23,6 @@ canonical_url: https://goldenflorals.com/
   </div>
 </section>
 
-<section class="trust">
-  <div class="container">
-    <div class="trust-inner">
-      <span class="trust-eyebrow">Trusted at the region's best venues</span>
-      <div class="trust-venues">
-        <span class="trust-chip">Edgewood Tahoe</span>
-        <span class="trust-chip">Ritz-Carlton</span>
-        <span class="trust-chip">Palisades</span>
-        <span class="trust-chip">Martis Camp</span>
-        <span class="trust-chip">National Exchange</span>
-      </div>
-      <p class="trust-reviews"><span class="stars" aria-hidden="true">★★★★★</span> Loved by couples across the Sierra</p>
-    </div>
-  </div>
-</section>
 
 <section class="section section--tight">
   <div class="container">
@@ -145,7 +130,7 @@ canonical_url: https://goldenflorals.com/
 
 <section class="panel-dark section">
   <div class="container">
-    <span class="eyebrow">Browse by venue</span>
+    <span class="eyebrow">Trusted at the region's best venues</span>
     <h2 class="section-title">Every venue is its own world.</h2>
     <div class="venue-grid" style="margin-top:48px;">
       <a href="{{ site.baseurl }}/venues/edgewood-tahoe" class="venue-card">
@@ -172,10 +157,16 @@ canonical_url: https://goldenflorals.com/
   </div>
 </section>
 
-<section class="section cta">
+<section class="cta-band">
   <div class="container">
-    <span class="eyebrow">One wedding per date</span>
-    <h2 class="section-title">Find out if your date<br>is still open.</h2>
-    <a href="{{ site.baseurl }}/consultation-form" class="btn btn--primary" data-consult-open>Check your date →</a>
+    <div class="cta-band-copy">
+      <span class="eyebrow">One wedding per date</span>
+      <h2 class="section-title">Find out if your date is still open.</h2>
+      <p class="lead">We take one wedding per date. Tell us yours and we'll reply within 48 hours.</p>
+    </div>
+    <div class="cta-band-actions">
+      <a href="{{ site.baseurl }}/portfolio" class="link link--action">View portfolio</a>
+      <a href="{{ site.baseurl }}/consultation-form" class="btn btn--primary" data-consult-open>Check your date →</a>
+    </div>
   </div>
 </section>

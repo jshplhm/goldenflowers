@@ -22,18 +22,23 @@ layout: default
 
 {{ content }}
 
-<section class="section cta">
+<section class="cta-band">
   <div class="container">
-    {% if page.worked %}
-    <span class="eyebrow">Get started</span>
-    <h2 class="section-title">Getting married at<br>{{ page.venue_name }}?</h2>
-    <p class="lead" style="margin:0 auto 32px;">Tell us your date and vision. We'll let you know if we're available and what the design process looks like from here.</p>
-    {% else %}
-    <span class="eyebrow">Be among our first</span>
-    <h2 class="section-title">Planning a wedding at<br>{{ page.venue_name }}?</h2>
-    <p class="lead" style="margin:0 auto 32px;">We haven't designed here yet, which means a clean canvas and our full attention. Tell us your date and what you're imagining. Full-service florals run $5,000–$25,000+.</p>
-    {% endif %}
-    <a href="{{ site.baseurl }}/consultation-form" class="btn btn--primary">Check your date →</a>
+    <div class="cta-band-copy">
+      {% if page.worked %}
+      <span class="eyebrow">Get started</span>
+      <h2 class="section-title">Getting married at {{ page.venue_name }}?</h2>
+      <p class="lead">Tell us your date and vision. We'll let you know if we're available and what the process looks like from here.</p>
+      {% else %}
+      <span class="eyebrow">Be among our first</span>
+      <h2 class="section-title">Planning a wedding at {{ page.venue_name }}?</h2>
+      <p class="lead">We haven't designed here yet, which means a clean canvas and our full attention. Full-service florals run $5,000–$25,000+.</p>
+      {% endif %}
+    </div>
+    <div class="cta-band-actions">
+      <a href="{{ site.baseurl }}/portfolio" class="link link--action">View portfolio</a>
+      <a href="{{ site.baseurl }}/consultation-form" class="btn btn--primary" data-consult-open>Check your date →</a>
+    </div>
   </div>
 </section>
 
