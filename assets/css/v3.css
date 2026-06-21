@@ -13,12 +13,15 @@ body.gf3 {
   --accent2:    oklch(56% .13 42);    /* terracotta — text accents only (eyebrows, stars), never buttons */
   --accent2-dk: oklch(72% .12 44);    /* light terracotta for dark panels */
   --paper:     oklch(96% .009 85);    /* warm off-white — page bg */
-  --surface:   oklch(99% .004 85);    /* raised cards / alt sections */
+  --surface:   oklch(99% .005 80);    /* raised cards / alt sections (warm) */
   --muted:     oklch(45% .018 150);   /* body-muted */
-  --muted-dk:  oklch(82% .015 130);   /* body text on dark panels */
+  --muted-dk:  oklch(83% .016 120);   /* body text on dark panels */
   --hair:      oklch(86% .012 130);   /* hairline borders */
   --hair-soft: oklch(90% .01 130);    /* inner dividers */
-  --on-dark:   oklch(96% .009 85);    /* text on ink panels */
+  --on-dark:   oklch(96% .009 85);    /* text on dark panels */
+  --panel:     oklch(25% .034 150);   /* v2: rich forest for dark panels (warmer than ink) */
+  --shadow:    0 2px 4px oklch(25% .03 150 / .05), 0 16px 34px oklch(25% .03 150 / .07);  /* soft tile shadow */
+  --shadow-hi: 0 4px 10px oklch(25% .03 150 / .07), 0 24px 50px oklch(25% .03 150 / .11); /* hover lift */
 
   /* type */
   --f-display: 'Cormorant Garamond', Georgia, serif;
@@ -29,7 +32,7 @@ body.gf3 {
   --s-3:12px; --s-4:16px; --s-5:24px; --s-6:32px;
   --s-7:48px; --s-8:64px; --s-9:96px; --s-10:120px;
 
-  --radius: 6px;        /* cards / images */
+  --radius: 8px;        /* cards / images (v2: softer) */
   --btn-radius: 2px;    /* buttons */
   --maxw: 1240px;
   --nav-h: 72px;
@@ -70,7 +73,7 @@ body.gf3 img, body.gf3 picture { max-width: 100%; display: block; }
   font-family: var(--f-display); font-weight: 400; font-style: normal;
   color: var(--ink); line-height: 1.04; letter-spacing: -.01em; margin: 0;
 }
-.gf3 .display em, .gf3 .accent { font-style: italic; color: var(--forest); }
+.gf3 .display em, .gf3 .accent, .gf3 .section-title em { font-style: italic; color: var(--accent2); }
 .gf3 .section-title {
   font-family: var(--f-display); font-weight: 400;
   font-size: clamp(2rem, 4vw, 3.4rem); line-height: 1.08; letter-spacing: -.01em;
@@ -190,7 +193,7 @@ body.gf3 img, body.gf3 picture { max-width: 100%; display: block; }
 .gf3 .moment-num { font-family: var(--f-mono); font-size: .72rem; letter-spacing: .18em; color: var(--action); }
 
 /* ── Dark feature panel ───────────────────────────────── */
-.gf3 .panel-dark { background: var(--ink); color: var(--on-dark); }
+.gf3 .panel-dark { background: var(--panel); color: var(--on-dark); }
 .gf3 .panel-dark .eyebrow { color: var(--accent2-dk); }
 .gf3 .panel-dark p { color: var(--muted-dk); }
 .gf3 .panel-dark .section-title, .gf3 .panel-dark .display { color: var(--on-dark); }
@@ -263,7 +266,7 @@ body.gf3 img, body.gf3 picture { max-width: 100%; display: block; }
 .gf3 .cta .section-title { margin-bottom: var(--s-6); }
 
 /* Closing CTA band — dark, copy left + actions right (live-site style) */
-.gf3 .cta-band { background: var(--ink); padding: var(--s-9) 0; border-top: 1px solid oklch(100% 0 0 / .12); }
+.gf3 .cta-band { background: var(--panel); padding: var(--s-9) 0; border-top: 1px solid oklch(100% 0 0 / .1); }
 .gf3 .cta-band .container { display: flex; align-items: center; justify-content: space-between; gap: var(--s-7); flex-wrap: wrap; text-align: left; }
 .gf3 .cta-band .eyebrow { color: var(--accent2-dk); }
 .gf3 .cta-band-copy { max-width: 620px; }
@@ -275,7 +278,7 @@ body.gf3 img, body.gf3 picture { max-width: 100%; display: block; }
 @media (max-width: 700px) { .gf3 .cta-band .container { flex-direction: column; align-items: flex-start; } }
 
 /* ── Footer ───────────────────────────────────────────── */
-.gf3 .site-footer { background: var(--ink); color: var(--on-dark); padding: var(--s-9) 0 var(--s-7); }
+.gf3 .site-footer { background: var(--panel); color: var(--on-dark); padding: var(--s-9) 0 var(--s-7); }
 .gf3 .footer-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: var(--s-7); }
 .gf3 .footer-brand { font-family: var(--f-display); font-size: 1.5rem; color: var(--on-dark); margin: 0 0 var(--s-4); }
 .gf3 .footer-tagline { color: var(--muted-dk); font-size: .92rem; max-width: 34ch; }
@@ -533,6 +536,25 @@ body.gf3.modal-open { overflow: hidden; }
   .gf3 .gf-sticky-text { font-family: var(--f-mono); font-size: .64rem; letter-spacing: .12em; text-transform: uppercase; color: oklch(82% .015 130); }
   .gf3 .gf-sticky-cta .btn { padding: 11px 18px; font-size: .78rem; white-space: nowrap; }
   body.gf3.modal-open .gf-sticky-cta, body.gf3.nav-menu-open .gf-sticky-cta { display: none !important; }
+}
+
+/* ── v2: soft tactile cards + button depth ────────────── */
+.gf3 .diff-card, .gf3 .lang-card, .gf3 .wedding-card, .gf3 .blog-card,
+.gf3 .vcta-card, .gf3 .philosophy-item, .gf3 .example-card, .gf3 .gf-testi,
+.gf3 .form-wrap {
+  border-color: var(--hair-soft); box-shadow: var(--shadow);
+}
+.gf3 .lang-card:hover, .gf3 .wedding-card:hover, .gf3 .blog-card:hover,
+.gf3 .vcta-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-hi); border-color: var(--hair-soft); }
+.gf3 .vcta-card { transition: transform .25s, box-shadow .25s; }
+.gf3 .btn--primary { box-shadow: 0 2px 10px oklch(34% .09 148 / .20); }
+.gf3 .btn--primary:hover { box-shadow: 0 4px 16px oklch(34% .09 148 / .28); }
+/* On dark forest panels a green fill blends, so the primary goes cream */
+.gf3 .cta-band .btn--primary, .gf3 .panel-dark .btn--primary, .gf3 .gf-sticky-cta .btn--primary {
+  background: var(--on-dark); color: var(--ink); box-shadow: none;
+}
+.gf3 .cta-band .btn--primary:hover, .gf3 .panel-dark .btn--primary:hover, .gf3 .gf-sticky-cta .btn--primary:hover {
+  background: oklch(89% .02 80); color: var(--ink);
 }
 
 /* old-CSS global elements suppressed on v3 pages */
