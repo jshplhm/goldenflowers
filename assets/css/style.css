@@ -1068,10 +1068,10 @@ h1.venue-title { font-family: var(--f-d); font-style: italic; font-weight: 300; 
        .venue-name);
    (3) the h2 margin §38 never sets. */
 h3, .diff-card h3, .value-item h3, .step h3, .philosophy-item h3,
-.faq-question h3, .cred-item h4, .include-text h4, .venue-cta-card h4 {
+.faq-question h3, .cred-item h4, .include-text h4 {
   font-family: var(--f-b);
   font-style: normal;
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: -0.015em;
 }
 h2, h2.section-head { margin-bottom: 22px; }              /* §38 owns size + line-height */
@@ -1461,7 +1461,7 @@ h2, h2.section-head, .cta-section h2 {
 }
 /* T5 · Card / sub headings */
 h3, .diff-card h3, .step h3, .faq-question h3, .value-item h3,
-.philosophy-item h3, .planner-text h3 {
+.philosophy-item h3 {
   font-size: 1.25rem; line-height: 1.3;
 }
 /* T5 · Serif gallery accents (couples / seasons) — same size, italic voice */
@@ -1699,21 +1699,14 @@ a.aesthetic-card { display: block; text-decoration: none; color: inherit; }
 .cta-section .btn-primary { background: var(--acc2); color: oklch(98% .005 85); }
 .cta-section .btn-primary:hover { opacity: 1; background: oklch(50% .12 44); }
 
-/* --- Sustainability pledge: dark forest panel, icon-left rows --- */
-.pledge { background: var(--forest-deep); }
-.pledge .label { color: oklch(74% .12 44); }
-.pledge-head h2 { color: oklch(96% .006 88); }
-.pledge-intro { color: oklch(85% .015 120); }
-.pledge-rule { border-top-color: oklch(100% 0 0 / .15); }
+/* --- Sustainability pledge: light icon-row list, two columns --- */
 .pledge-grid { grid-template-columns: repeat(2, 1fr); gap: 0 56px; margin-top: 36px; }
-.pledge-card { background: transparent; border: none; border-top: 1px solid oklch(100% 0 0 / .15); border-radius: 0; box-shadow: none; padding: 28px 0;
+.pledge-card { background: transparent; border: none; border-top: 1px solid var(--bor); border-radius: 0; box-shadow: none; padding: 28px 0;
   display: grid; grid-template-columns: 34px 1fr; grid-template-rows: auto 1fr; column-gap: 18px; }
-.pledge-card:hover { transform: none; box-shadow: none; border-color: oklch(100% 0 0 / .15); }
-.pledge-icon { grid-row: 1 / 3; margin-bottom: 0; color: oklch(74% .12 44); }
-.pledge-card h4 { grid-column: 2; color: oklch(96% .006 88); }
-.pledge-card p { grid-column: 2; color: oklch(83% .015 120); }
-.pledge-closing, .pledge-closing p { color: oklch(90% .012 110); }
-.pledge + .cta-section { border-top: 1px solid oklch(100% 0 0 / .14); }
+.pledge-card:hover { transform: none; box-shadow: none; border-color: var(--bor); }
+.pledge-icon { grid-row: 1 / 3; margin-bottom: 0; }
+.pledge-card h4 { grid-column: 2; }
+.pledge-card p { grid-column: 2; }
 @media (max-width: 700px) { .pledge-grid { grid-template-columns: 1fr; gap: 0; } }
 
 /* --- Seasonal availability: 2x2, italic display names, 2-col lists --- */
@@ -1748,3 +1741,8 @@ a.aesthetic-card { display: block; text-decoration: none; color: inherit; }
 
 /* --- Blog card titles: serif display, larger, not bold/italic --- */
 .blog-card-title { font-family: var(--f-d); font-style: normal; font-weight: 500; font-size: 1.45rem; letter-spacing: 0; line-height: 1.18; }
+
+/* --- Blog post figures (converted from old WordPress [caption] shortcodes) --- */
+.post-figure { margin: 32px 0; }
+.post-figure img { width: 100%; height: auto; display: block; border-radius: var(--radius); }
+.post-figure figcaption { margin-top: 10px; font-size: .8rem; font-style: italic; color: var(--fgm); line-height: 1.5; }

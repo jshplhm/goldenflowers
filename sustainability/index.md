@@ -8,18 +8,15 @@ canonical_url: https://goldenflorals.com/sustainability
 no_prefooter: true
 ---
 
-<section class="hero hero--interior">
-  <div class="hero-media">
-    <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1779132409797-K9BH7UUY32BCL87P6QI8/16.jpg?format=2500w" alt="Golden Flowers California-grown wedding florals" loading="eager">
-  </div>
-  <div class="hero-copy">
-    <span class="hero-eyebrow">Our commitment</span>
-    <h1 class="hero-display">Working toward something better.</h1>
-    <p class="hero-sub">Farm-grown · Foam-free · California-sourced</p>
+<section class="section venues-intro">
+  <div class="container">
+    <span class="label">Our commitment</span>
+    <h1 class="section-head">Working toward something better.</h1>
+    <p style="max-width:660px;font-size:1.05rem;color:var(--fg2);">The commitments that shape how we design, source, and grow. Some are already woven into every wedding; others we're actively working toward, with steady progress in the right direction.</p>
   </div>
 </section>
 
-{% include pledge.html %}
+{% include pledge.html hide_head=true %}
 
 <div class="cta-section">
   <div style="max-width:640px;margin:0 auto;">

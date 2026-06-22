@@ -18,7 +18,7 @@ featured_image: https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec
 
 
   
-       [caption id="" align="alignnone" width="1600"]<img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/66ccb266-89f4-4d16-b295-e5281c32c140/l-a-preview-0537.jpg?format=original" alt=" Ceremony floral installation at High Camp Palisades, Lake Tahoe "/>  Ceremony floral installation at High Camp Palisades, Lake Tahoe [/caption] 
+       <figure class="post-figure"><img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/66ccb266-89f4-4d16-b295-e5281c32c140/l-a-preview-0537.jpg?format=original" alt=" Ceremony floral installation at High Camp Palisades, Lake Tahoe "/ loading="lazy"><figcaption>Ceremony floral installation at High Camp Palisades, Lake Tahoe</figcaption></figure> 
   
 
 
@@ -39,7 +39,7 @@ featured_image: https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec
 
 
   
-       [caption id="" align="alignnone" width="1067"]<img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/762eaeca-1c71-4455-a3e5-c06b217c9b45/l-a-preview-6962.jpg?format=original" alt=" A Tahoe mountain modern bridal bouquet  "/>  A Tahoe mountain modern bridal bouquet  [/caption] 
+       <figure class="post-figure"><img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/762eaeca-1c71-4455-a3e5-c06b217c9b45/l-a-preview-6962.jpg?format=original" alt=" A Tahoe mountain modern bridal bouquet  "/ loading="lazy"><figcaption>A Tahoe mountain modern bridal bouquet</figcaption></figure> 
   
 
 
