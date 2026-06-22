@@ -1,27 +1,18 @@
 ---
 layout: default
 title: "Lake Tahoe Wedding Venues"
-seo_title: "Lake Tahoe Wedding Venues We Design For | Golden Flowers"
+seo_title: "Lake Tahoe Wedding Venues We Love | Golden Flowers"
 permalink: /venues
-description: "Golden Flowers designs wedding flowers for the Lake Tahoe and Sierra Nevada's best venues, from Edgewood Tahoe and the Ritz-Carlton to Palisades High Camp and Martis Camp. Venue-specific floral design that belongs to the landscape."
+description: "The Lake Tahoe and Sierra Nevada wedding venues Golden Flowers knows best, from Edgewood Tahoe and the Ritz-Carlton to Palisades High Camp and Martis Camp. Venue-specific, foam-free, California-grown floral design."
 canonical_url: https://goldenflorals.com/venues
 no_prefooter: true
 ---
 
-<section class="hero hero--interior">
-  <div class="hero-media">
-    <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1776975190166-PCFON7QIR65XK1VPLH3K/l-a-preview-8192.jpg?format=2500w" alt="Lakeside Lake Tahoe wedding venue with floral installation" loading="eager" style="object-position:center 42%;">
-  </div>
-  <div class="hero-copy">
-    <span class="hero-eyebrow">Venues</span>
-    <h1 class="hero-display">Where we work.</h1>
-    <p class="hero-sub">Lake Tahoe · Truckee · the Sierra Nevada</p>
-  </div>
-</section>
-
-<section class="section" style="padding-bottom:48px;">
-  <div class="container" style="max-width:760px;">
-    <p style="font-size:1.05rem;">Every venue has its own light, proportion, and palette. We design florals that belong to the place rather than fight it, and we know these spaces well enough to plan for the load-in, the sightlines, and the way the room reads at scale. Here are a few of the venues we design for most.</p>
+<section class="section venues-intro">
+  <div class="container">
+    <span class="label">Venues</span>
+    <h1 class="section-head">The venues we love.</h1>
+    <p style="max-width:660px;font-size:1.05rem;color:var(--fg2);">These are the Lake Tahoe and Sierra Nevada venues we know best and return to most. Find yours below to see how we think about the flowers there, or just tell us where you're getting married.</p>
   </div>
 </section>
 
@@ -45,9 +36,24 @@ no_prefooter: true
         <div class="venue-overlay"><p class="venue-name">Martis Camp</p><p class="venue-meta">Truckee · Private Community</p></div>
       </a>
     </div>
-    <div style="margin-top:40px;padding-top:32px;border-top:1px solid var(--bor);">
-      <p style="font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--fgm);margin-bottom:10px;">We've also designed weddings at</p>
-      <p style="font-size:.85rem;color:var(--fg2);line-height:2.1;">National Exchange Hotel &middot; Hellman-Ehrman Mansion &middot; Chateau at Incline Village &middot; Hyatt Regency Lake Tahoe &middot; Tahoe Mountain Club &middot; Olympic Valley Stables &middot; Valhalla Tahoe &middot; North Lake Tahoe Event Center &middot; Heavenly &middot; Miner's Foundry &middot; Harmony Ridge Estate &middot; River Highlands Ranch</p>
+
+    <div class="venues-more">
+      <p class="label">We also love designing at</p>
+      <ul class="venues-more-list">
+        <li>National Exchange</li>
+        <li>Hyatt Regency Lake Tahoe</li>
+        <li>Hellman-Ehrman Mansion</li>
+        <li>The Chateau, Incline Village</li>
+        <li>Tahoe Mountain Club</li>
+        <li>Olympic Valley Stables</li>
+        <li>Valhalla Tahoe</li>
+        <li>North Tahoe Event Center</li>
+        <li>Heavenly</li>
+        <li>Miner's Foundry</li>
+        <li>Harmony Ridge</li>
+        <li>River Highlands Ranch</li>
+      </ul>
+      <p class="venues-more-note">Not listed? We design across Lake Tahoe, Truckee, Nevada City, and the Sierra. Tell us your venue and we'll take it from there.</p>
     </div>
   </div>
 </section>
