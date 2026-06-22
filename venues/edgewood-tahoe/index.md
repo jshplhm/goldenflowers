@@ -39,20 +39,20 @@ canonical_url: https://goldenflorals.com/venues/edgewood-tahoe
     </div>
     <div class="facts-strip">
       <div class="fact">
-        <p class="fact-num">Preferred</p>
-        <p class="fact-label">We're a preferred floral vendor for Edgewood's wedding coordination team. The planners know our work.</p>
+        <p class="label">Multiple weddings</p>
+        <p class="fact-body">We've designed multiple Edgewood weddings across the lakeside lawn and the Pavilion. We know the load-in, the light, the proportions.</p>
       </div>
       <div class="fact">
-        <p class="fact-num">South Shore</p>
-        <p class="fact-label">Edgewood Tahoe sits on the Nevada side of South Shore, dramatic mountain backdrop, direct lake access.</p>
+        <p class="label">South Shore</p>
+        <p class="fact-body">Edgewood sits on the Nevada side of South Shore, dramatic mountain backdrop, direct lake access.</p>
       </div>
       <div class="fact">
-        <p class="fact-num">Lakeside</p>
-        <p class="fact-label">Ceremonies on the terrace or lawn look directly over Lake Tahoe. Arrangements must frame, not block, that view.</p>
+        <p class="label">Lakeside</p>
+        <p class="fact-body">Ceremonies on the terrace or lawn look straight over Lake Tahoe. Arrangements must frame that view, never block it.</p>
       </div>
       <div class="fact">
-        <p class="fact-num">Seasonal</p>
-        <p class="fact-label">We design around what's peak in the landscape: lupine in early summer, warm harvest tones in fall, alpine white in early season.</p>
+        <p class="label">Seasonal</p>
+        <p class="fact-body">We design around what's peak in the landscape: lupine in early summer, warm harvest tones in fall, alpine white early season.</p>
       </div>
     </div>
   </div>
@@ -128,7 +128,7 @@ canonical_url: https://goldenflorals.com/venues/edgewood-tahoe
           <h3>Have you worked at Edgewood before?</h3>
           <div class="faq-toggle">+</div>
         </div>
-        <div class="faq-answer">Yes. We've designed florals for multiple weddings at Edgewood Tahoe across their lakeside ceremony spaces and the Edgewood Pavilion. We're a preferred floral vendor for their wedding coordination team, which means we've worked directly with their planners and know the venue's logistics, load-in requirements, and space constraints.</div>
+        <div class="faq-answer">Yes. We've designed florals for multiple weddings at Edgewood Tahoe across their lakeside ceremony spaces and the Edgewood Pavilion. We've worked directly with their coordination team and know the venue's logistics, load-in requirements, and space constraints.</div>
       </div>
       <div class="faq-item">
         <div class="faq-question" onclick="toggleFaq(this)">
@@ -182,20 +182,6 @@ canonical_url: https://goldenflorals.com/venues/edgewood-tahoe
     </div>
   </div>
 </section>
-
-<!-- Planner Callout -->
-<div class="planner-strip">
-  <div class="container" style="max-width:1280px;display:flex;justify-content:space-between;align-items:center;gap:40px;flex-wrap:wrap;">
-    <div class="planner-text">
-      <h3>Planning at Edgewood?</h3>
-      <p>We work closely with Edgewood's preferred coordinator team. Ask your planner about us, or reach out directly.</p>
-    </div>
-    <div class="planner-logos">
-      <span class="planner-badge">Edgewood Tahoe Preferred</span>
-      <span class="planner-badge">One wedding per date</span>
-    </div>
-  </div>
-</div>
 
 <!-- CTA -->
 <div class="cta-section">

@@ -1750,3 +1750,7 @@ a.aesthetic-card { display: block; text-decoration: none; color: inherit; }
 .twoup { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
 .twoup h3 { font-family: var(--f-d); font-style: normal; font-weight: 500; font-size: 1.7rem; margin: 6px 0 14px; }
 @media (max-width: 800px) { .twoup { grid-template-columns: 1fr; gap: 36px; } }
+
+/* Venue facts: v2 eyebrow + body (was a large numeral heading) */
+.facts-strip .fact .label { display: block; margin-bottom: 10px; }
+.fact-body { font-size: .88rem; color: var(--fg2); line-height: 1.6; }
