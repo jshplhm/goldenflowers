@@ -167,22 +167,19 @@ canonical_url: https://goldenflorals.com/
         <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1776975190166-PCFON7QIR65XK1VPLH3K/l-a-preview-8192.jpg?format=750w" alt="Edgewood Tahoe" loading="lazy">
         <div class="venue-overlay"><p class="venue-name">Edgewood Tahoe</p><p class="venue-meta">South Shore · Lakeside</p></div>
       </a>
+      <a href="{{ site.baseurl }}/venues/ritz-carlton-lake-tahoe" class="venue-card">
+        <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1776975178999-V2BIKI0FVBMBXFKG8Z3I/l-a-preview-8139.jpg?format=750w" alt="The Ritz-Carlton, Lake Tahoe" loading="lazy">
+        <div class="venue-overlay"><p class="venue-name">The Ritz-Carlton, Lake Tahoe</p><p class="venue-meta">Northstar · Mountain Resort</p></div>
+      </a>
       <a href="{{ site.baseurl }}/venues/palisades-high-camp" class="venue-card">
         <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/4da65886-1655-4ecd-957b-8d48969ffc60/l-a-preview-0305.jpg?format=750w" alt="Palisades High Camp" loading="lazy">
         <div class="venue-overlay"><p class="venue-name">Palisades High Camp</p><p class="venue-meta">Olympic Valley · Alpine</p></div>
       </a>
-      <a href="{{ site.baseurl }}/portfolio?venue=national-exchange" class="venue-card">
-        <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/3ddf1f69-8e31-44e3-8204-d28d4797d6f7/NationalGothic--264.jpg?format=750w" alt="National Exchange Hotel" loading="lazy">
-        <div class="venue-overlay"><p class="venue-name">National Exchange Hotel</p><p class="venue-meta">Nevada City · Historic</p></div>
-      </a>
-      <a href="{{ site.baseurl }}/venues/ritz-carlton-lake-tahoe" class="venue-card">
-        <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1776975178999-V2BIKI0FVBMBXFKG8Z3I/l-a-preview-8139.jpg?format=750w" alt="Ritz-Carlton Lake Tahoe" loading="lazy">
-        <div class="venue-overlay"><p class="venue-name">Ritz-Carlton Lake Tahoe</p><p class="venue-meta">Northstar · Mountain Resort</p></div>
+      <a href="{{ site.baseurl }}/venues/thunderbird-lodge" class="venue-card">
+        <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/4685a495-c2ce-4b90-9fd1-f91ca0d6a135/K%2BJ-0962.jpg?format=750w" alt="Thunderbird Lodge" loading="lazy">
+        <div class="venue-overlay"><p class="venue-name">Thunderbird Lodge</p><p class="venue-meta">East Shore · Historic Estate</p></div>
       </a>
     </div>
-    <div style="margin-top:40px;padding-top:32px;border-top:1px solid var(--bor);">
-      <p style="font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--fgm);margin-bottom:10px;">We've also designed weddings at</p>
-      <p style="font-size:.85rem;color:var(--fg2);line-height:2.1;">Hellman-Ehrman Mansion &middot; Chateau at Incline Village &middot; Hyatt Regency Lake Tahoe &middot; Tahoe Mountain Club &middot; Olympic Valley Stables &middot; Martis Camp &middot; Valhalla Tahoe &middot; North Lake Tahoe Event Center &middot; Heavenly &middot; Miner's Foundry &middot; Harmony Ridge Estate &middot; River Highlands Ranch</p>
-    </div>
+    <p style="margin-top:36px;"><a href="{{ site.baseurl }}/venues" class="btn-ghost">View all venues &rarr;</a></p>
   </div>
 </section>

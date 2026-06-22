@@ -224,24 +224,9 @@ redirect_from:
 <div class="venue-ctas">
   <div class="container" style="max-width:1100px;">
     <span class="label">Browse by venue</span>
-    <h2 style="font-size:2rem;">Planning at a specific venue? We've been there.</h2>
-    <div class="venue-cta-grid">
-      <div class="venue-cta-card">
-        <h4>Edgewood Tahoe</h4>
-        <p>Full portfolio of our Edgewood work, venue-specific design philosophy, and FAQ.</p>
-        <a href="{{ site.baseurl }}/venues/edgewood-tahoe" class="venue-cta-link">See Edgewood weddings →</a>
-      </div>
-      <div class="venue-cta-card">
-        <h4>Palisades High Camp</h4>
-        <p>Alpine weddings at 8,200 feet. We know what works and what doesn't at altitude.</p>
-        <a href="{{ site.baseurl }}/portfolio?venue=palisades" class="venue-cta-link">See Palisades weddings →</a>
-      </div>
-      <div class="venue-cta-card">
-        <h4>National Exchange Hotel</h4>
-        <p>Historic Nevada City venue with stone walls, high ceilings, and dramatic ceremony spaces.</p>
-        <a href="{{ site.baseurl }}/portfolio?venue=national-exchange" class="venue-cta-link">See National Exchange weddings →</a>
-      </div>
-    </div>
+    <h2 style="font-size:2rem;">Planning at a specific venue?</h2>
+    <p style="max-width:660px;font-size:1.02rem;color:var(--fg2);margin:8px 0 28px;">We know the region's best venues, the load-in, the light, the proportions, from Edgewood's lakeside lawn to the mountaintop lodge at Schaffer's Camp. See how we think about the flowers at each, and find yours.</p>
+    <a href="{{ site.baseurl }}/venues" class="btn-ghost">Explore venues &rarr;</a>
   </div>
 </div>
 
