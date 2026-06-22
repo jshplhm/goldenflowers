@@ -1700,6 +1700,7 @@ a.aesthetic-card { display: block; text-decoration: none; color: inherit; }
 .cta-section .btn-primary:hover { opacity: 1; background: oklch(50% .12 44); }
 
 /* --- Sustainability pledge: light icon-row list, two columns --- */
+.pledge--flush { padding-top: 0; }  /* head hidden (page provides its own header) */
 .pledge-grid { grid-template-columns: repeat(2, 1fr); gap: 0 56px; margin-top: 36px; }
 .pledge-card { background: transparent; border: none; border-top: 1px solid var(--bor); border-radius: 0; box-shadow: none; padding: 28px 0;
   display: grid; grid-template-columns: 34px 1fr; grid-template-rows: auto 1fr; column-gap: 18px; }
