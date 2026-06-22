@@ -2,8 +2,9 @@
 layout: default
 title: "Edgewood Tahoe Wedding Florist"
 permalink: /venues/edgewood-tahoe
-description: "Golden Flowers is a preferred floral vendor at Edgewood Tahoe. Farm-grown, foam-free ceremony and reception florals for South Shore weddings."
+description: "Golden Flowers designs wedding flowers for Edgewood Tahoe. Farm-grown, foam-free ceremony and reception florals for South Shore weddings."
 canonical_url: https://goldenflorals.com/venues/edgewood-tahoe
+no_prefooter: true
 ---
 
 <!-- Hero -->
@@ -197,12 +198,11 @@ canonical_url: https://goldenflorals.com/venues/edgewood-tahoe
 <div class="venue-nav">
   <h4>Other venues we work at</h4>
   <div class="venue-links">
-    <a href="{{ site.baseurl }}/portfolio?venue=palisades" class="venue-link">Palisades High Camp</a>
-    <a href="{{ site.baseurl }}/portfolio?venue=national-exchange" class="venue-link">National Exchange Hotel</a>
-    <a href="{{ site.baseurl }}/portfolio?venue=ritz-carlton" class="venue-link">Ritz-Carlton Tahoe</a>
-    <a href="{{ site.baseurl }}/portfolio?venue=hellman-ehrman" class="venue-link">Hellman-Ehrman Mansion</a>
-    <a href="{{ site.baseurl }}/portfolio?venue=miners-foundry" class="venue-link">Miner's Foundry</a>
+    <a href="{{ site.baseurl }}/venues/palisades-high-camp" class="venue-link">Palisades High Camp</a>
+    <a href="{{ site.baseurl }}/venues/ritz-carlton-lake-tahoe" class="venue-link">The Ritz-Carlton, Lake Tahoe</a>
+    <a href="{{ site.baseurl }}/venues/martis-camp" class="venue-link">Martis Camp</a>
   </div>
+  <a href="{{ site.baseurl }}/venues" class="venue-link" style="display:inline-block;margin-top:16px;">All venues &rarr;</a>
 </div>
 
 <script>

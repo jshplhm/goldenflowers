@@ -353,18 +353,40 @@
       if (track.scrollLeft <= 4) track.scrollTo({ left: maxScroll(), behavior: 'smooth' });        // loop to end
       else track.scrollBy({ left: -step(), behavior: 'smooth' });
     }
-    if (next) next.addEventListener('click', goNext);
-    if (prev) prev.addEventListener('click', goPrev);
+    // Auto-advance with a visible countdown ring + a play/pause control.
+    const playBtn = carousel.querySelector('[data-testi-toggle]');
+    const ringBar = carousel.querySelector('.testi-ring-bar');
+    const DUR = 6500;
+    var timer = null, paused = false, hovering = false;
+    const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    // Gentle auto-advance; pauses on hover/focus and after manual interaction.
-    var timer = null;
-    function start() { stop(); timer = setInterval(goNext, 6500); }
-    function stop() { if (timer) { clearInterval(timer); timer = null; } }
-    carousel.addEventListener('mouseenter', stop);
-    carousel.addEventListener('mouseleave', start);
-    carousel.addEventListener('focusin', stop);
-    carousel.addEventListener('focusout', start);
-    if (!window.matchMedia || !window.matchMedia('(prefers-reduced-motion: reduce)').matches) start();
+    function restartRing() {
+      if (!ringBar) return;
+      ringBar.style.animation = 'none';
+      void ringBar.offsetWidth;            // force reflow so the animation restarts
+      ringBar.style.animation = 'testi-fill ' + DUR + 'ms linear';
+    }
+    function freezeRing() { if (ringBar) ringBar.style.animationPlayState = 'paused'; }
+    function tick() { goNext(); restartRing(); }
+    function run() {
+      if (timer) { clearInterval(timer); timer = null; }
+      if (paused || hovering || reduce) { freezeRing(); return; }
+      restartRing();
+      timer = setInterval(tick, DUR);
+    }
+    function stopTimer() { if (timer) { clearInterval(timer); timer = null; } }
+
+    if (next) next.addEventListener('click', function() { goNext(); if (!paused) run(); });
+    if (prev) prev.addEventListener('click', function() { goPrev(); if (!paused) run(); });
+    carousel.addEventListener('mouseenter', function() { hovering = true; stopTimer(); freezeRing(); });
+    carousel.addEventListener('mouseleave', function() { hovering = false; run(); });
+    if (playBtn) playBtn.addEventListener('click', function() {
+      paused = !paused;
+      playBtn.classList.toggle('is-paused', paused);
+      playBtn.setAttribute('aria-label', paused ? 'Resume auto-advance' : 'Pause auto-advance');
+      run();
+    });
+    run();
   });
 })();
 

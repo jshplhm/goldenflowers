@@ -53,12 +53,12 @@ canonical_url: https://goldenflorals.com/
       <div class="diff-card">
         <div class="diff-icon">{% include icon.html name="calendar-heart" %}</div>
         <h3>One wedding per date</h3>
-        <p>We never double-book. Your wedding day gets our complete attention, start to finish, from design through breakdown.</p>
+        <p>We never double-book. Your wedding day gets our complete attention, start to finish.</p>
       </div>
       <div class="diff-card">
         <div class="diff-icon">{% include icon.html name="flask" %}</div>
         <h3>Agronomist-founded</h3>
-        <p>Founder Brittany trained as an agronomist, a scientist specializing in soil health and how plants grow. That understanding informs every design decision.</p>
+        <p>Founder Brittany trained as an agronomist. Soil science shapes what we plant, source, and design.</p>
       </div>
     </div>
   </div>
@@ -180,7 +180,7 @@ canonical_url: https://goldenflorals.com/
         <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1776975190166-PCFON7QIR65XK1VPLH3K/l-a-preview-8192.jpg?format=750w" alt="Edgewood Tahoe" loading="lazy">
         <div class="venue-overlay"><p class="venue-name">Edgewood Tahoe</p><p class="venue-meta">South Shore · Lakeside</p></div>
       </a>
-      <a href="{{ site.baseurl }}/portfolio?venue=palisades" class="venue-card">
+      <a href="{{ site.baseurl }}/venues/palisades-high-camp" class="venue-card">
         <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/4da65886-1655-4ecd-957b-8d48969ffc60/l-a-preview-0305.jpg?format=750w" alt="Palisades High Camp" loading="lazy">
         <div class="venue-overlay"><p class="venue-name">Palisades High Camp</p><p class="venue-meta">Olympic Valley · Alpine</p></div>
       </a>
@@ -188,7 +188,7 @@ canonical_url: https://goldenflorals.com/
         <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/3ddf1f69-8e31-44e3-8204-d28d4797d6f7/NationalGothic--264.jpg?format=750w" alt="National Exchange Hotel" loading="lazy">
         <div class="venue-overlay"><p class="venue-name">National Exchange Hotel</p><p class="venue-meta">Nevada City · Historic</p></div>
       </a>
-      <a href="{{ site.baseurl }}/portfolio?venue=ritz-carlton" class="venue-card">
+      <a href="{{ site.baseurl }}/venues/ritz-carlton-lake-tahoe" class="venue-card">
         <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1776975178999-V2BIKI0FVBMBXFKG8Z3I/l-a-preview-8139.jpg?format=750w" alt="Ritz-Carlton Lake Tahoe" loading="lazy">
         <div class="venue-overlay"><p class="venue-name">Ritz-Carlton Lake Tahoe</p><p class="venue-meta">Northstar · Mountain Resort</p></div>
       </a>

@@ -1624,7 +1624,8 @@ form[hidden] { display: none; }
 .form-success p { font-size: .9rem; color: var(--fg2); line-height: var(--lh-ui); margin-bottom: 8px; max-width: 460px; margin-left: auto; margin-right: auto; }
 .form-success-next { margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--bor); }
 .form-success-next .label { margin-bottom: 8px; color: var(--fgm); }
-.form-success-next a { font-family: var(--f-b); font-size: .85rem; letter-spacing: .04em; color: var(--acc2); }
+.form-success-next a { display: block; font-family: var(--f-b); font-size: .85rem; letter-spacing: .04em; color: var(--acc2); padding: 8px 0; }
+.form-success-next a + a { border-top: 1px solid var(--bor); }
 .form-success:focus { outline: none; }
 /* Book-a-call handoff (Google Appointment Schedule) — secondary to the 48h reassurance */
 .form-success-book { margin: 32px 0 4px; }
@@ -1754,3 +1755,28 @@ a.aesthetic-card { display: block; text-decoration: none; color: inherit; }
 /* Venue facts: v2 eyebrow + body (was a large numeral heading) */
 .facts-strip .fact .label { display: block; margin-bottom: 10px; }
 .fact-body { font-size: .88rem; color: var(--fg2); line-height: 1.6; }
+
+/* Testimonials: play/pause control with countdown ring */
+.testi-play { position: relative; width: 44px; height: 44px; padding: 0; border-radius: 50%; border: 1px solid var(--bor); background: transparent; cursor: pointer; display: flex; align-items: center; justify-content: center; color: var(--fg2); transition: color .2s, border-color .2s; }
+.testi-play:hover { color: var(--acc); border-color: var(--acc); }
+.testi-ring { position: absolute; top: -1px; left: -1px; width: 44px; height: 44px; transform: rotate(-90deg); pointer-events: none; }
+.testi-ring-bar { fill: none; stroke: var(--acc); stroke-width: 2; stroke-dasharray: 125.66; stroke-dashoffset: 125.66; }
+@keyframes testi-fill { from { stroke-dashoffset: 125.66; } to { stroke-dashoffset: 0; } }
+.testi-play-icon { position: relative; display: inline-block; width: 9px; height: 11px; }
+.testi-play-icon::before, .testi-play-icon::after { content: ''; position: absolute; top: 0; width: 3px; height: 11px; background: currentColor; }
+.testi-play-icon::before { left: 0; }
+.testi-play-icon::after { right: 0; }
+.testi-play.is-paused .testi-play-icon { width: 0; height: 0; }
+.testi-play.is-paused .testi-play-icon::before { left: 0; top: -5px; width: 0; height: 0; background: transparent; border-style: solid; border-width: 5px 0 5px 9px; border-color: transparent transparent transparent currentColor; }
+.testi-play.is-paused .testi-play-icon::after { display: none; }
+
+/* Seasonal availability: v2 treatment (italic display season name, no toggle) */
+.season-card .season-name { font-family: var(--f-d); font-style: italic; font-weight: 400; font-size: 1.6rem; color: var(--fg); }
+.season-card .season-dates { font-family: var(--f-b); font-size: .66rem; letter-spacing: .12em; text-transform: uppercase; color: var(--fgm); }
+.season-card .season-toggle { display: none; }
+.season-card .season-note { font-style: italic; color: var(--fgm); }
+
+/* Mobile menu: secondary links (Sustainability, Blog); hidden on desktop */
+.nav-menu-secondary { display: flex; gap: 26px; margin-bottom: 16px; }
+.nav-menu-secondary a { font-size: .78rem; letter-spacing: .1em; text-transform: uppercase; color: var(--fgm); }
+.nav-menu-secondary a:hover { color: var(--acc); }

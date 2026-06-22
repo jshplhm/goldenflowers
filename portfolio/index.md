@@ -5,6 +5,7 @@ seo_title: "Lake Tahoe Wedding Floral Design | Golden Flowers Portfolio"
 permalink: /portfolio
 description: "Browse our wedding floral designs, wild, sustainable, editorial arrangements for Lake Tahoe, Nevada City, Truckee and the broader Sierras"
 canonical_url: https://goldenflorals.com/portfolio
+no_prefooter: true
 redirect_from:
   - /portfolio-1
   - /portfolio-1/lynn-and-aaron
@@ -237,7 +238,7 @@ redirect_from:
 })();
 </script>
 
-<section class="cta-section" style="background:var(--bg3);border-top:1px solid var(--bor);">
+<section class="cta-section">
   <div style="max-width:640px;margin:0 auto;">
     <span class="label">Something different in mind?</span>
     <h2>We work in every direction.</h2>

@@ -5,6 +5,7 @@ seo_title: "Sustainable & Eco-Friendly Lake Tahoe Wedding Florist | Golden Flowe
 permalink: /sustainability
 description: "Golden Flowers is a sustainable, foam-free Lake Tahoe wedding florist. Farm-grown and California-sourced flowers, no floral foam, composting, reuse, and a steady pull toward lower-impact wedding design."
 canonical_url: https://goldenflorals.com/sustainability
+no_prefooter: true
 ---
 
 <section class="hero hero--interior">
