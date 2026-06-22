@@ -139,7 +139,7 @@ body { padding-top: var(--nav-h); }
 }
 /* Desktop: logo in the display serif (matches the hero wordmark), a touch larger than the menu */
 @media (min-width: 1025px) {
-  .nav-logo { font-family: var(--f-d); font-style: italic; font-weight: 400; font-size: 1.65rem; letter-spacing: 0; text-transform: none; line-height: 1; }
+  .nav-logo { font-family: var(--f-d); font-style: italic; font-weight: 600; font-size: 1.65rem; letter-spacing: 0; text-transform: none; line-height: 1; }
 }
 .nav-menu { display: none; }
 .nav-links { display: flex; gap: 36px; }

@@ -234,18 +234,20 @@ redirect_from:
   document.querySelectorAll('.portfolio-filter-btn').forEach(function(btn) {
     btn.addEventListener('click', function() {
       setFilter(btn.dataset.filter);
-      // jump to the top of the filtered results, just below the sticky filter bar.
-      // (anchor off the first visible section — a stuck sticky element reports a misleading offsetTop)
+      // jump to the first visible section, landing it just below the sticky nav + filter bar.
       var fb = document.querySelector('.portfolio-filters');
-      var navH = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-real')) || 80;
+      var navReal = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--nav-real')) || 88;
       var first = Array.prototype.find.call(
         document.querySelectorAll('.port-section'),
         function(s) { return s.style.display !== 'none'; }
       );
-      if (first) {
-        var absTop = first.getBoundingClientRect().top + window.scrollY;
-        window.scrollTo(0, Math.max(0, Math.round(absTop - navH - fb.offsetHeight - 8)));
+      if (!first) return;
+      function go() {
+        var top = first.getBoundingClientRect().top + window.scrollY - navReal - fb.getBoundingClientRect().height - 4;
+        window.scrollTo(0, Math.max(0, Math.round(top)));
       }
+      go();
+      requestAnimationFrame(go); // re-correct after the relayout/lazy-images settle
     });
   });
   applyFilter(getFilter());

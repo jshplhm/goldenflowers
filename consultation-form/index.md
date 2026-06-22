@@ -28,7 +28,7 @@ canonical_url: https://goldenflorals.com/consultation-form
       <div class="form-step-1">
         <div class="field-full">
           <label for="date">Wedding date</label>
-          <input type="date" id="date" name="date">
+          <input type="text" id="date" name="date" placeholder="e.g. August 15, 2026" autocomplete="off">
         </div>
         <div>
           <label for="name">Your name</label>
