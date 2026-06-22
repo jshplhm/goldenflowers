@@ -66,7 +66,7 @@ no_prefooter: true
       </ul>
 
       <p class="label" style="margin-top:44px;">Other regional venues</p>
-      <p style="font-size:.92rem;color:var(--fg2);max-width:620px;margin-bottom:4px;">Closer to our Nevada City and Grass Valley home base, where our sister shop handles everyday flowers, we also design at:</p>
+      <p class="venues-more-intro">A bit further out, around our Nevada City and Grass Valley home base where our sister shop keeps everyday flowers flowing, we also design at:</p>
       <ul class="venues-more-list">
         <li>The National Exchange</li>
         <li>The Holbrooke</li>
@@ -75,6 +75,8 @@ no_prefooter: true
         <li>Harmony Ridge</li>
         <li>The North Star House</li>
         <li>Empire Mine</li>
+        <li>Lucchesi Vineyards</li>
+        <li>Nevada City Winery</li>
       </ul>
 
       <p class="venues-more-note">Some of our favorite work happens away from named venues entirely, at <strong>private residences and lakeside estates</strong>, from a backyard on the water to a family home in the pines. Don't see yours? We love adding new venues to the list. Tell us where you're getting married and we'll take it from there.</p>
