@@ -64,6 +64,8 @@ canonical_url: https://goldenflorals.com/
   </div>
 </section>
 
+<hr class="section-div">
+
 <section class="section">
   <div class="container">
     <span class="label">Find your aesthetic</span>

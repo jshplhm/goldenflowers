@@ -5,6 +5,7 @@ seo_title: "About Golden Flowers | Sustainable Lake Tahoe Wedding Florist"
 permalink: /about
 description: "Golden Flowers is a Lake Tahoe wedding florist specializing in bold, sustainable, artful floral design. Located in Incline Village, our studio creates seasonally grown arrangements, from editorial bouquets to full installations, for couples who want their wedding flowers to feel intentional, and unforgettable."
 canonical_url: https://goldenflorals.com/about
+no_prefooter: true
 # Paste a YouTube/Vimeo *embed* URL here to switch on the "Meet Brittany" video
 # section (e.g. https://www.youtube.com/embed/XXXXXXXX). Leave blank to hide it.
 founder_video: ""
@@ -48,34 +49,33 @@ founder_video: ""
 <!-- Agronomist Background -->
 <section class="section">
   <div class="container">
-    <div class="agro-grid">
-      <div class="agro-text">
+    <div class="agro-twocol">
+      <div>
         <span class="label">Background</span>
         <h2>Why agronomy changes everything.</h2>
-        <p>Most floral designers learn to arrange flowers. Brittany learned to grow them first. Agronomy, the science of soil, crops, and land management, informs the way she thinks about every material she works with.</p>
-        <p>When she sources from California growers, she's not just looking for pretty flowers. She's evaluating growing conditions, harvest timing, stem integrity, and how a flower will hold through a full wedding day. When she designs foam-free arrangements, she's applying the same rigor: understanding how stems take water, how structures hold without artificial support, and how to build something beautiful that also works.</p>
-        <p>It's not a marketing angle. It's a different way of knowing the material, and it shows in the work.</p>
-        <div class="agro-credentials">
-          <div class="cred-item">
-            <h4>Farm-grown</h4>
-            <p>Our own California farm plots, managed agronomically, not just grown.</p>
-          </div>
-          <div class="cred-item">
-            <h4>California-sourced</h4>
-            <p>Every flower we don't grow comes from California growers we know personally.</p>
-          </div>
-          <div class="cred-item">
-            <h4>Foam-free</h4>
-            <p>No floral foam, ever. The arrangement technique reflects the agronomic training.</p>
-          </div>
-          <div class="cred-item">
-            <h4>Seasonal</h4>
-            <p>We work with what's at its peak, not what's convenient to import.</p>
-          </div>
-        </div>
       </div>
-      <div class="agro-img">
-        <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/f77301d9-f890-451d-8bf8-c8d3a07d2bc4/Lake+Tahoe+Luxe+Boquet.jpg?format=1100w" alt="Golden Flowers luxe bouquet" loading="lazy">
+      <div>
+        <p>Most floral designers learn to arrange flowers. Brittany learned to grow them first. Agronomy, the science of soil, crops, and land management, informs the way she thinks about every material she works with.</p>
+        <p>When she sources from California growers, she's not just looking for pretty flowers. She's evaluating growing conditions, harvest timing, stem integrity, and how a flower will hold through a full wedding day. When she designs foam-free arrangements, she's applying the same rigor: understanding how stems take water, how structures hold without artificial support, and how to build something that also works.</p>
+        <p class="agro-kicker">Growing the flowers first changes how she reads every stem, and you can see it in the work.</p>
+      </div>
+    </div>
+    <div class="agro-credentials">
+      <div class="cred-item">
+        <h4>Farm-grown</h4>
+        <p>Our own California farm plots, managed agronomically, not just grown.</p>
+      </div>
+      <div class="cred-item">
+        <h4>California-sourced</h4>
+        <p>Every flower we don't grow comes from California growers we know personally.</p>
+      </div>
+      <div class="cred-item">
+        <h4>Foam-free</h4>
+        <p>No floral foam, ever. The arrangement technique reflects the agronomic training.</p>
+      </div>
+      <div class="cred-item">
+        <h4>Seasonal</h4>
+        <p>We work with what's at its peak, not what's convenient to import.</p>
       </div>
     </div>
   </div>
@@ -83,20 +83,22 @@ founder_video: ""
 
 <hr class="section-div">
 
-<!-- Farm & Sourcing -->
-<section class="section" style="padding-top:0;padding-bottom:0;">
-  <div class="farm-grid">
-    <div class="farm-text">
-      <span class="label">The farm</span>
-      <h3>Grown here, designed for here.</h3>
-      <p>We maintain our own farm plots in California, growing varieties that perform well in the Sierra Nevada climate and light. This isn't window dressing. It means that a meaningful portion of what goes into every arrangement was grown by us, from seed or cutting, with care for soil health and biodiversity.</p>
-      <p style="margin-top:16px;">What we don't grow ourselves, we source from California growers we've worked with for years. We know where our flowers come from. We know the soil. We know the season. That chain of custody is part of the product.</p>
-    </div>
-    <div class="farm-imgs">
-      <div class="farm-img"><img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/2b98245c-1230-4e50-847e-90c7d13f793b/Lake%2BTahoe%2BFloral%2BInstallation.jpeg?format=2500w" alt="Lake Tahoe floral installation" loading="lazy"></div>
-      <div class="farm-img"><img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1779132409797-K9BH7UUY32BCL87P6QI8/16.jpg?format=1100w" alt="Floral installation on Lake Tahoe" loading="lazy"></div>
-      <div class="farm-img"><img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/bc425f51-1b71-473f-815b-8c481fd5a5c1/8.jpg?format=1100w" alt="Reception table flowers" loading="lazy"></div>
-      <div class="farm-img"><img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1779129104888-WQHCD92BY6WE4CQZH8QU/14.jpg?format=1100w" alt="Bride holding bouquet" loading="lazy"></div>
+<!-- Where the flowers come from + the team -->
+<section class="section">
+  <div class="container">
+    <div class="twoup">
+      <div>
+        <span class="label">Where the flowers come from</span>
+        <h3>Grown here, designed for here.</h3>
+        <p>We maintain our own farm plots in California, growing varieties that perform well in the Sierra Nevada climate and light. A meaningful portion of what goes into every arrangement was grown by us, from seed or cutting, with care for soil health and biodiversity.</p>
+        <p style="margin-top:16px;">What we don't grow ourselves, we source from California growers we've worked with for years. We know the soil, the season, and exactly where every stem comes from. That chain of custody is part of the product.</p>
+      </div>
+      <div>
+        <span class="label">The team</span>
+        <h3>Never a one-woman show.</h3>
+        <p>Brittany designs alongside a select group of senior florists, several of whom run their own studios and farms. You get experienced hands at every table, never junior staff or an assembly line.</p>
+        <p style="margin-top:16px;">Because we take one wedding per date, the same team that designs your flowers is the team that sets them up and breaks them down at the end of the night.</p>
+      </div>
     </div>
   </div>
 </section>
