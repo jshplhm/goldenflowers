@@ -154,13 +154,11 @@ body { padding-top: var(--nav-h); }
   transition: width .25s ease;
 }
 .nav-links > a:hover::after, .nav-dd > a:hover::after { width: 100%; }
-/* current page: ink text + a short terracotta tick (distinct from the hover line) */
+/* current page: ink text + a full-width terracotta underline */
 .nav-links > a.active, .nav-dd > a.active { color: var(--fg); }
-.nav-links > a.active::after, .nav-dd > a.active::after {
-  width: 20px; height: 2px; left: 50%; transform: translateX(-50%); background: var(--acc2);
-}
-/* current venue inside the dropdown: subtle highlight, no underline */
-.nav-dd-menu a.active { background: var(--bg2); color: var(--fg); }
+.nav-links > a.active::after, .nav-dd > a.active::after { width: 100%; height: 2px; background: var(--acc2); }
+/* current venue inside the dropdown: subtle highlight (but not the "All venues" link) */
+.nav-dd-menu a.active:not(.nav-dd-all) { background: var(--bg2); color: var(--fg); }
 .nav-cta {
   font-family: var(--f-b); font-size: .76rem;
   letter-spacing: .08em; text-transform: uppercase;
@@ -1849,3 +1847,8 @@ a.aesthetic-card { display: block; text-decoration: none; color: inherit; }
 .testi-card::before { content: "\2605\2605\2605\2605\2605"; display: block; color: var(--acc2); font-size: .8rem; letter-spacing: 3px; margin-bottom: 14px; }
 .testi-count { text-align: center; margin-top: 16px; font-size: .72rem; letter-spacing: .18em; color: var(--fgm); font-variant-numeric: tabular-nums; }
 .nav-dd-menu a { text-transform: none; }
+
+/* Venues index: 6 featured cards in a 3x2 grid */
+.venue-grid--3 { grid-template-columns: repeat(3, 1fr); }
+@media (max-width: 900px) { .venue-grid--3 { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px) { .venue-grid--3 { grid-template-columns: 1fr; } }

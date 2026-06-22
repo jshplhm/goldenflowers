@@ -18,18 +18,26 @@ no_prefooter: true
 
 <section class="section" style="padding-top:0;">
   <div class="container">
-    <div class="venue-grid">
-      <a href="{{ site.baseurl }}/venues/edgewood-tahoe" class="venue-card">
-        <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1776975190166-PCFON7QIR65XK1VPLH3K/l-a-preview-8192.jpg?format=750w" alt="Edgewood Tahoe" loading="lazy">
-        <div class="venue-overlay"><p class="venue-name">Edgewood Tahoe</p><p class="venue-meta">South Shore · Lakeside</p></div>
-      </a>
-      <a href="{{ site.baseurl }}/venues/palisades-high-camp" class="venue-card">
-        <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/4da65886-1655-4ecd-957b-8d48969ffc60/l-a-preview-0305.jpg?format=750w" alt="Palisades High Camp" loading="lazy">
-        <div class="venue-overlay"><p class="venue-name">Palisades High Camp</p><p class="venue-meta">Olympic Valley · Alpine</p></div>
+    <div class="venue-grid venue-grid--3">
+      <a href="{{ site.baseurl }}/venues/thunderbird-lodge" class="venue-card">
+        <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/4685a495-c2ce-4b90-9fd1-f91ca0d6a135/K%2BJ-0962.jpg?format=750w" alt="Thunderbird Lodge" loading="lazy">
+        <div class="venue-overlay"><p class="venue-name">Thunderbird Lodge</p><p class="venue-meta">East Shore · Historic Estate</p></div>
       </a>
       <a href="{{ site.baseurl }}/venues/ritz-carlton-lake-tahoe" class="venue-card">
         <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1776975178999-V2BIKI0FVBMBXFKG8Z3I/l-a-preview-8139.jpg?format=750w" alt="The Ritz-Carlton, Lake Tahoe" loading="lazy">
         <div class="venue-overlay"><p class="venue-name">The Ritz-Carlton, Lake Tahoe</p><p class="venue-meta">Northstar · Mountain Resort</p></div>
+      </a>
+      <a href="{{ site.baseurl }}/venues/edgewood-tahoe" class="venue-card">
+        <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1776975190166-PCFON7QIR65XK1VPLH3K/l-a-preview-8192.jpg?format=750w" alt="Edgewood Tahoe" loading="lazy">
+        <div class="venue-overlay"><p class="venue-name">Edgewood Tahoe</p><p class="venue-meta">South Shore · Lakeside</p></div>
+      </a>
+      <a href="{{ site.baseurl }}/venues/schaffers-camp" class="venue-card">
+        <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1776975105426-4BAEXMVDBX6Q5ETZ1BVC/l-a-preview-6962.jpg?format=750w" alt="Schaffer's Camp" loading="lazy">
+        <div class="venue-overlay"><p class="venue-name">Schaffer's Camp</p><p class="venue-meta">Northstar · Mountaintop Lodge</p></div>
+      </a>
+      <a href="{{ site.baseurl }}/venues/palisades-high-camp" class="venue-card">
+        <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/4da65886-1655-4ecd-957b-8d48969ffc60/l-a-preview-0305.jpg?format=750w" alt="Palisades High Camp" loading="lazy">
+        <div class="venue-overlay"><p class="venue-name">Palisades High Camp</p><p class="venue-meta">Olympic Valley · Alpine</p></div>
       </a>
       <a href="{{ site.baseurl }}/venues/martis-camp" class="venue-card">
         <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1779129057432-Y8VGDRIHTV4BILCZVW27/MountainTimePhoto-48.jpg?format=750w" alt="Martis Camp" loading="lazy">
@@ -40,8 +48,6 @@ no_prefooter: true
     <div class="venues-more">
       <p class="label">We also love designing at</p>
       <ul class="venues-more-list">
-        <li>Thunderbird Lodge</li>
-        <li>Schaffer's Camp</li>
         <li>The HideOut</li>
         <li>Tahoe Blue Estate</li>
         <li>West Shore Cafe &amp; Inn</li>
@@ -58,7 +64,20 @@ no_prefooter: true
         <li>Tahoe Mountain Club</li>
         <li>Dancing Pines</li>
       </ul>
-      <p class="venues-more-note">Not listed? We design across Lake Tahoe, Truckee, Nevada City, and the Sierra. Tell us your venue and we'll take it from there.</p>
+
+      <p class="label" style="margin-top:44px;">Other regional venues</p>
+      <p style="font-size:.92rem;color:var(--fg2);max-width:620px;margin-bottom:4px;">Closer to our Nevada City and Grass Valley home base, where our sister shop handles everyday flowers, we also design at:</p>
+      <ul class="venues-more-list">
+        <li>The National Exchange</li>
+        <li>The Holbrooke</li>
+        <li>Miner's Foundry</li>
+        <li>The Stone House</li>
+        <li>Harmony Ridge</li>
+        <li>The North Star House</li>
+        <li>Empire Mine</li>
+      </ul>
+
+      <p class="venues-more-note">Some of our favorite work happens away from named venues entirely, at <strong>private residences and lakeside estates</strong>, from a backyard on the water to a family home in the pines. Don't see yours? We love adding new venues to the list. Tell us where you're getting married and we'll take it from there.</p>
     </div>
   </div>
 </section>
