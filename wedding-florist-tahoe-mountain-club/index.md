@@ -80,11 +80,11 @@ canonical_url: https://goldenflorals.com/wedding-florist-tahoe-mountain-club
   <h4>Other venues we work at</h4>
   <div class="venue-links">
     <a href="{{ site.baseurl }}/venues/edgewood-tahoe" class="venue-link">Edgewood Tahoe</a>
-    <a href="{{ site.baseurl }}/portfolio?venue=palisades" class="venue-link">Palisades High Camp</a>
-    <a href="{{ site.baseurl }}/portfolio?venue=national-exchange" class="venue-link">National Exchange Hotel</a>
-    <a href="{{ site.baseurl }}/portfolio?venue=ritz-carlton" class="venue-link">Ritz-Carlton Tahoe</a>
-    <a href="{{ site.baseurl }}/portfolio?venue=hellman-ehrman" class="venue-link">Hellman-Ehrman Mansion</a>
+    <a href="{{ site.baseurl }}/venues/palisades-high-camp" class="venue-link">Palisades High Camp</a>
+    <a href="{{ site.baseurl }}/venues" class="venue-link">National Exchange Hotel</a>
+    <a href="{{ site.baseurl }}/venues/ritz-carlton-lake-tahoe" class="venue-link">Ritz-Carlton Tahoe</a>
+    <a href="{{ site.baseurl }}/venues" class="venue-link">Hellman-Ehrman Mansion</a>
     <a href="{{ site.baseurl }}/wedding-florist-hyatt-regency-lake-tahoe" class="venue-link">Hyatt Regency Lake Tahoe</a>
-    <a href="{{ site.baseurl }}/portfolio?venue=miners-foundry" class="venue-link">Miner's Foundry</a>
+    <a href="{{ site.baseurl }}/venues" class="venue-link">Miner's Foundry</a>
   </div>
 </div>
