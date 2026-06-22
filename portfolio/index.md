@@ -232,7 +232,13 @@ redirect_from:
     applyFilter(filter);
   }
   document.querySelectorAll('.portfolio-filter-btn').forEach(function(btn) {
-    btn.addEventListener('click', function() { setFilter(btn.dataset.filter); });
+    btn.addEventListener('click', function() {
+      setFilter(btn.dataset.filter);
+      // land at the top of the filtered results, not wherever the shorter page leaves you
+      var fb = document.querySelector('.portfolio-filters');
+      var navH = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-real')) || 80;
+      window.scrollTo({ top: Math.max(0, fb.offsetTop - navH - 1), behavior: 'smooth' });
+    });
   });
   applyFilter(getFilter());
 })();

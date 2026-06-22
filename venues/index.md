@@ -63,6 +63,15 @@ no_prefooter: true
         <li>Valhalla Tahoe</li>
         <li>Tahoe Mountain Club</li>
         <li>Dancing Pines</li>
+        <li>Olympic Valley Events Center</li>
+        <li>PlumpJack at Palisades</li>
+        <li>The Lodge at Tahoe Donner</li>
+        <li>The Pavilion at Gray's Crossing</li>
+        <li>Lahontan Golf Club</li>
+        <li>North Tahoe Event Center</li>
+        <li>The Arch at Lakeside Beach</li>
+        <li>Gar Woods Grill &amp; Pier</li>
+        <li>Tahoe Ridge Resort</li>
       </ul>
 
       <p class="label" style="margin-top:44px;">Other regional venues</p>
@@ -77,6 +86,8 @@ no_prefooter: true
         <li>Empire Mine</li>
         <li>Lucchesi Vineyards</li>
         <li>Nevada City Winery</li>
+        <li>River Highlands Ranch</li>
+        <li>The Roth Estate</li>
       </ul>
 
       <p class="venues-more-note">Some of our favorite work happens away from named venues entirely, at <strong>private residences and lakeside estates</strong>, from a backyard on the water to a family home in the pines. Don't see yours? We love adding new venues to the list. Tell us where you're getting married and we'll take it from there.</p>

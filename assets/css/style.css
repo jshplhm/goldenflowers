@@ -178,10 +178,15 @@ body { padding-top: var(--nav-h); }
   border-top: 1px solid var(--bor);
 }
 .site-footer--full {
-  padding: 64px 48px;
-  display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 48px;
+  padding: 64px 48px; max-width: 1400px; margin: 0 auto;
+  display: flex; justify-content: space-between; align-items: flex-start; gap: 32px;
 }
-@media (max-width: 900px) { .site-footer--full { grid-template-columns: 1fr 1fr; } }
+.site-footer--full .footer-col { flex: 0 0 auto; }            /* content-width so inter-column gaps read equal */
+.site-footer--full .footer-col:first-child { flex: 0 1 340px; } /* brand paragraph wraps */
+@media (max-width: 900px) {
+  .site-footer--full { flex-direction: column; gap: 36px; max-width: none; }
+  .site-footer--full .footer-col, .site-footer--full .footer-col:first-child { flex: none; }
+}
 .site-footer--minimal {
   padding: 48px;
   display: flex; justify-content: space-between; align-items: center;
@@ -1000,7 +1005,7 @@ h1.venue-title { font-family: var(--f-d); font-style: italic; font-weight: 300; 
   .venue-links { gap: 6px; }
 
   /* --- Footer --- */
-  .site-footer--full { grid-template-columns: 1fr; padding: 40px 20px; gap: 32px; }
+  .site-footer--full { padding: 40px 20px; gap: 28px; }
   .site-footer--minimal { flex-direction: column; gap: 16px; padding: 32px 20px; text-align: center; }
   .foot-links { flex-wrap: wrap; justify-content: center; }
   .footer-bottom { padding: 16px 20px; flex-direction: column; gap: 8px; text-align: center; }
@@ -1756,8 +1761,9 @@ a.aesthetic-card { display: block; text-decoration: none; color: inherit; }
 
 /* Venue breadcrumb rides with the auto-hiding nav (mobile) instead of stranding over the hero */
 .venue-breadcrumb { transition: transform .35s ease; }
-body.chrome-hidden .venue-breadcrumb,
-body.chrome-hidden .portfolio-filters { transform: translateY(calc(-100% - var(--nav-real, 60px))); }
+body.chrome-hidden .venue-breadcrumb { transform: translateY(calc(-100% - var(--nav-real, 60px))); }
+/* filters stay accessible: when the nav auto-hides, pin them to the very top instead of hiding */
+body.chrome-hidden .portfolio-filters { top: 0; }
 
 /* Mobile menu: Venues sits inline like the other items; Home shows only here */
 .nav-home { display: none; }
