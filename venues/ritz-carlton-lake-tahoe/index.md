@@ -150,13 +150,3 @@ no_prefooter: true
     <a href="{{ site.baseurl }}/weddings#consultation" class="btn-primary" data-consult-open>Check your date &rarr;</a>
   </div>
 </div>
-
-<div class="venue-nav">
-  <h4>Other venues we work at</h4>
-  <div class="venue-links">
-    <a href="{{ site.baseurl }}/venues/edgewood-tahoe" class="venue-link">Edgewood Tahoe</a>
-    <a href="{{ site.baseurl }}/venues/palisades-high-camp" class="venue-link">Palisades High Camp</a>
-    <a href="{{ site.baseurl }}/venues/martis-camp" class="venue-link">Martis Camp</a>
-  </div>
-  <a href="{{ site.baseurl }}/venues" class="venue-link" style="display:inline-block;margin-top:16px;">All venues &rarr;</a>
-</div>

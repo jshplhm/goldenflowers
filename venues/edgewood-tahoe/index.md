@@ -163,17 +163,6 @@ no_prefooter: true
   </div>
 </div>
 
-<!-- Other Venues -->
-<div class="venue-nav">
-  <h4>Other venues we work at</h4>
-  <div class="venue-links">
-    <a href="{{ site.baseurl }}/venues/palisades-high-camp" class="venue-link">Palisades High Camp</a>
-    <a href="{{ site.baseurl }}/venues/ritz-carlton-lake-tahoe" class="venue-link">The Ritz-Carlton, Lake Tahoe</a>
-    <a href="{{ site.baseurl }}/venues/martis-camp" class="venue-link">Martis Camp</a>
-  </div>
-  <a href="{{ site.baseurl }}/venues" class="venue-link" style="display:inline-block;margin-top:16px;">All venues &rarr;</a>
-</div>
-
 <script>
 function toggleFaq(el) {
   const item = el.closest('.faq-item');
