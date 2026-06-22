@@ -143,16 +143,24 @@ body { padding-top: var(--nav-h); }
   font-family: var(--f-b); font-size: .82rem;
   letter-spacing: .05em; text-transform: uppercase;
   color: var(--fg2); transition: color .2s;
-  position: relative; padding-bottom: 3px;
+  position: relative;
 }
-.nav-links a::after {
+.nav-links a:hover { color: var(--fg); }
+/* underline indicator on top-level items only (not dropdown links) */
+.nav-links > a, .nav-dd > a { padding-bottom: 4px; }
+.nav-links > a::after, .nav-dd > a::after {
   content: ''; position: absolute; bottom: 0; left: 0;
   width: 0; height: 1px; background: currentColor;
   transition: width .25s ease;
 }
-.nav-links a:hover { color: var(--fg); }
-.nav-links a.active { color: var(--fg); }
-.nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+.nav-links > a:hover::after, .nav-dd > a:hover::after { width: 100%; }
+/* current page: ink text + a short terracotta tick (distinct from the hover line) */
+.nav-links > a.active, .nav-dd > a.active { color: var(--fg); }
+.nav-links > a.active::after, .nav-dd > a.active::after {
+  width: 20px; height: 2px; left: 50%; transform: translateX(-50%); background: var(--acc2);
+}
+/* current venue inside the dropdown: subtle highlight, no underline */
+.nav-dd-menu a.active { background: var(--bg2); color: var(--fg); }
 .nav-cta {
   font-family: var(--f-b); font-size: .76rem;
   letter-spacing: .08em; text-transform: uppercase;
@@ -390,6 +398,8 @@ hr.section-div { border: none; border-top: 1px solid var(--bor); display: block;
 .port-item { position: relative; aspect-ratio: 4/5; overflow: hidden; background: var(--bg2); }
 .port-item img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s; }
 .port-item:hover img { transform: scale(1.04); }
+/* wider tile keeps varying widths, but height is set by its row (no aspect of its own) */
+.port-item.wide { grid-column: span 2; aspect-ratio: auto; }
 
 /* ── 11. PRICING ──────────────────────────────────────── */
 .pricing-inner {
@@ -926,6 +936,7 @@ h1.venue-title { font-family: var(--f-d); font-style: italic; font-weight: 300; 
 
   /* --- Portfolio preview grid (homepage): uniform 2-up boxes on mobile --- */
   .port-grid { grid-template-columns: 1fr 1fr; }
+  .port-item.wide { grid-column: auto; aspect-ratio: 4/5; }
 
   /* --- Pricing --- */
   .pricing-inner {
@@ -1815,8 +1826,8 @@ a.aesthetic-card { display: block; text-decoration: none; color: inherit; }
   .nav-dd::after { content: ''; position: absolute; top: 100%; left: -10px; right: -10px; height: 34px; }
   .nav-dd-menu {
     display: flex; flex-direction: column; gap: 1px;
-    position: absolute; top: 100%; left: 50%; margin-top: 30px;
-    transform: translateX(-50%) translateY(8px);
+    position: absolute; top: 100%; left: 0; margin-top: 30px;
+    transform: translateY(8px);
     background: var(--bg); border: 1px solid var(--bor); border-radius: 10px;
     box-shadow: 0 16px 38px oklch(20% .02 148 / .14);
     padding: 8px; min-width: 250px;
@@ -1826,7 +1837,7 @@ a.aesthetic-card { display: block; text-decoration: none; color: inherit; }
   }
   .nav-dd:hover .nav-dd-menu, .nav-dd:focus-within .nav-dd-menu {
     opacity: 1; visibility: visible; pointer-events: auto;
-    transform: translateX(-50%) translateY(0);
+    transform: translateY(0);
   }
   .nav-dd-menu a { padding: 10px 16px; font-size: .92rem; color: var(--fg2); white-space: nowrap; border-radius: 6px; }
   .nav-dd-menu a:hover { background: var(--bg2); color: var(--fg); }
