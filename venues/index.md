@@ -40,18 +40,23 @@ no_prefooter: true
     <div class="venues-more">
       <p class="label">We also love designing at</p>
       <ul class="venues-more-list">
-        <li>National Exchange</li>
+        <li>Thunderbird Lodge</li>
+        <li>Schaffer's Camp</li>
+        <li>The HideOut</li>
+        <li>Tahoe Blue Estate</li>
+        <li>West Shore Cafe &amp; Inn</li>
+        <li>Everline Resort</li>
         <li>Hyatt Regency Lake Tahoe</li>
         <li>Hellman-Ehrman Mansion</li>
-        <li>The Chateau, Incline Village</li>
-        <li>Tahoe Mountain Club</li>
         <li>Olympic Valley Stables</li>
+        <li>Zephyr Lodge, Northstar</li>
+        <li>The Chateau, Incline Village</li>
+        <li>The Landing Resort</li>
+        <li>Lakeview Lodge, Heavenly</li>
+        <li>Sunnyside</li>
         <li>Valhalla Tahoe</li>
-        <li>North Tahoe Event Center</li>
-        <li>Heavenly</li>
-        <li>Miner's Foundry</li>
-        <li>Harmony Ridge</li>
-        <li>River Highlands Ranch</li>
+        <li>Tahoe Mountain Club</li>
+        <li>Dancing Pines</li>
       </ul>
       <p class="venues-more-note">Not listed? We design across Lake Tahoe, Truckee, Nevada City, and the Sierra. Tell us your venue and we'll take it from there.</p>
     </div>
