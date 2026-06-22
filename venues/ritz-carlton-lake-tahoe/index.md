@@ -8,6 +8,8 @@ canonical_url: https://goldenflorals.com/venues/ritz-carlton-lake-tahoe
 no_prefooter: true
 ---
 
+{% include venue-subnav.html name="Ritz-Carlton" %}
+
 <section class="hero hero--interior">
   <div class="hero-media">
     <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1776975178999-V2BIKI0FVBMBXFKG8Z3I/l-a-preview-8139.jpg?format=2500w" alt="Mountain resort wedding at the Ritz-Carlton, Lake Tahoe" loading="eager">
@@ -18,8 +20,6 @@ no_prefooter: true
     <p class="hero-sub">Mid-mountain weddings at Northstar</p>
   </div>
 </section>
-
-{% include venue-subnav.html %}
 
 <section class="section">
   <div class="container">
@@ -109,7 +109,7 @@ no_prefooter: true
           <h3>Can you design for a winter wedding here?</h3>
           <div class="faq-toggle">+</div>
         </div>
-        <div class="faq-answer">Absolutely. Winter at the Ritz-Carlton is one of our favorite design briefs, evergreen, candlelight, deep tones, and structural arrangements that work with the season instead of pretending it's summer.</div>
+        <div class="faq-answer">Absolutely. Winter here is a beautiful brief, evergreen, candlelight, deep tones, and structural arrangements that work with the season instead of pretending it's summer.</div>
       </div>
       <div class="faq-item">
         <div class="faq-question" onclick="toggleFaq(this)">

@@ -8,6 +8,8 @@ canonical_url: https://goldenflorals.com/venues/palisades-high-camp
 no_prefooter: true
 ---
 
+{% include venue-subnav.html name="Palisades High Camp" %}
+
 <section class="hero hero--interior">
   <div class="hero-media">
     <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/4da65886-1655-4ecd-957b-8d48969ffc60/l-a-preview-0305.jpg?format=2500w" alt="Alpine wedding at Palisades High Camp" loading="eager">
@@ -18,8 +20,6 @@ no_prefooter: true
     <p class="hero-sub">Wedding flowers at 8,200 feet</p>
   </div>
 </section>
-
-{% include venue-subnav.html %}
 
 <section class="section">
   <div class="container">

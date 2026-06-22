@@ -8,22 +8,18 @@ no_prefooter: true
 ---
 
 <!-- Hero -->
+{% include venue-subnav.html name="Edgewood Tahoe" %}
+
 <section class="hero hero--interior">
   <div class="hero-media">
     <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1776975190166-PCFON7QIR65XK1VPLH3K/l-a-preview-8192.jpg?format=2500w" alt="Edgewood Tahoe wedding flowers by Golden Flowers" loading="eager">
   </div>
   <div class="hero-copy">
-    <span class="hero-eyebrow">Venue</span>
-    <h1 class="hero-display">Edgewood Tahoe</h1>
-    <p class="hero-sub">South Shore, Lake Tahoe &nbsp;·&nbsp; Lakeside ceremonies &amp; receptions</p>
-    <div class="hero-btns">
-      <a href="#weddings" class="btn-primary">See our Edgewood work</a>
-      <a href="{{ site.baseurl }}/weddings#consultation" class="btn-ghost" data-consult-open>Book a consultation</a>
-    </div>
+    <span class="hero-eyebrow">South Shore · Lakeside</span>
+    <h1 class="hero-display">Edgewood Tahoe.</h1>
+    <p class="hero-sub">Lakeside weddings on Lake Tahoe</p>
   </div>
 </section>
-
-{% include venue-subnav.html %}
 
 <!-- Why Edgewood -->
 <section class="section">
@@ -34,7 +30,7 @@ no_prefooter: true
         <h2>Edgewood is unlike anywhere else on the lake.</h2>
         <p>The combination of lakefront access, the manicured grounds of a world-class golf course, and the dramatic Sierra Nevada backdrop means flowers here need to do something specific: belong.</p>
         <p>Arrangements that feel imported or generic read immediately against this landscape. We design florals that feel as though they came from the property itself, from the meadows at the course edge, the forested ridgeline, the Nevada-side light.</p>
-        <p>We've worked Edgewood ceremonies from the lakeside lawn to the Edgewood Pavilion. Every setting has its own light, its own proportion. We know the space.</p>
+        <p>Edgewood ceremonies range from the lakeside lawn to the Edgewood Pavilion, and each setting carries its own light and proportion. We design for the specific space you're using.</p>
       </div>
       <div class="two-col-img">
         <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/4685a495-c2ce-4b90-9fd1-f91ca0d6a135/K%2BJ-0962.jpg?format=1100w" alt="Ceremony flower arch at Lake Tahoe" loading="lazy">
@@ -42,8 +38,8 @@ no_prefooter: true
     </div>
     <div class="facts-strip">
       <div class="fact">
-        <p class="label">Multiple weddings</p>
-        <p class="fact-body">We've designed multiple Edgewood weddings across the lakeside lawn and the Pavilion. We know the load-in, the light, the proportions.</p>
+        <p class="label">Two settings</p>
+        <p class="fact-body">The lakeside lawn and the Edgewood Pavilion each call for a different scale, from open-air ceremony to a grand interior reception.</p>
       </div>
       <div class="fact">
         <p class="label">South Shore</p>
@@ -91,35 +87,6 @@ no_prefooter: true
 
 <hr class="section-div">
 
-<!-- Wedding Examples -->
-<section class="section" id="weddings">
-  <div class="container">
-    <span class="label">Our Edgewood work</span>
-    <h2>Recent weddings at this venue.</h2>
-    <p style="font-size:.85rem;color:var(--fgm);margin-bottom:36px;max-width:560px;">Both of our Edgewood weddings to date have leaned Elevated Minimalist, the clean lines work with the venue's architecture and the open lake view. All three of our aesthetics are available here.</p>
-    <div class="example-grid">
-      <div class="example-card">
-        <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1776975190166-PCFON7QIR65XK1VPLH3K/l-a-preview-8192.jpg?format=1100w" alt="Allie and Devin at Edgewood" loading="lazy">
-        <div class="example-info">
-          <p class="example-couple">Allie &amp; Devin</p>
-          <p class="example-meta">Edgewood Tahoe · Summer · Elevated Minimalist</p>
-          <p class="example-desc">A lakeside ceremony with an elevated minimalist arch of white and soft sage. Low cascading centerpieces on 20 reception tables, each slightly different. Brittany designed the whole event around the lake view visible through the Pavilion's floor-to-ceiling windows.</p>
-        </div>
-      </div>
-      <div class="example-card">
-        <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1776975178999-V2BIKI0FVBMBXFKG8Z3I/l-a-preview-8139.jpg?format=1100w" alt="Lynn and Aaron at Edgewood" loading="lazy">
-        <div class="example-info">
-          <p class="example-couple">Lynn &amp; Aaron</p>
-          <p class="example-meta">Edgewood Tahoe · Fall · Elevated Minimalist</p>
-          <p class="example-desc">Fall ceremony at Edgewood's outdoor terrace. We worked with the transition of the surrounding landscape, warm amber and deep amber harvest tones blending with the turning Sierra Nevada ridgeline. Ceremony arch and 16-table reception installation.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<hr class="section-div">
-
 <!-- FAQ -->
 <section class="section">
   <div class="container">
@@ -128,10 +95,10 @@ no_prefooter: true
     <div class="faq-list">
       <div class="faq-item">
         <div class="faq-question" onclick="toggleFaq(this)">
-          <h3>Have you worked at Edgewood before?</h3>
+          <h3>Do you design florals for Edgewood weddings?</h3>
           <div class="faq-toggle">+</div>
         </div>
-        <div class="faq-answer">Yes. We've designed florals for multiple weddings at Edgewood Tahoe across their lakeside ceremony spaces and the Edgewood Pavilion. We've worked directly with their coordination team and know the venue's logistics, load-in requirements, and space constraints.</div>
+        <div class="faq-answer">Yes. We design for Edgewood's lakeside ceremony spaces and the Edgewood Pavilion, and plan around the venue's logistics, load-in, and space constraints so setup runs cleanly on the day.</div>
       </div>
       <div class="faq-item">
         <div class="faq-question" onclick="toggleFaq(this)">
@@ -145,7 +112,7 @@ no_prefooter: true
           <h3>Do you work with Edgewood's preferred vendors?</h3>
           <div class="faq-toggle">+</div>
         </div>
-        <div class="faq-answer">Yes, we work closely with Edgewood's recommended coordinators and photographers. If you're already working with a planner, we'll coordinate directly with them. If not, we can recommend planners we've worked with successfully at this venue. A well-coordinated vendor team makes everything on your wedding day run cleanly.</div>
+        <div class="faq-answer">Yes. If you're already working with a planner, we'll coordinate directly with them and the venue's events team. If not, we can recommend planners we trust for Lake Tahoe weddings. A well-coordinated vendor team makes everything on your wedding day run cleanly.</div>
       </div>
       <div class="faq-item">
         <div class="faq-question" onclick="toggleFaq(this)">

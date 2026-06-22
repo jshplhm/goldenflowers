@@ -358,7 +358,7 @@
     const ringBar = carousel.querySelector('.testi-ring-bar');
     const DUR = 6500;
     const C = 2 * Math.PI * 20;           // ring circumference (r = 20)
-    var paused = false, hovering = false, startTime = 0, rafId = null;
+    var paused = false, startTime = 0, rafId = null;
     const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     function setRing(p) {                  // p = 0..1 elapsed
@@ -373,7 +373,7 @@
     function cancel() { if (rafId) { cancelAnimationFrame(rafId); rafId = null; } }
     function play() {                      // (re)start the countdown from zero
       cancel();
-      if (paused || hovering || reduce) return;
+      if (paused || reduce) return;
       startTime = performance.now();
       setRing(0);
       rafId = requestAnimationFrame(frame);
@@ -381,8 +381,6 @@
 
     if (next) next.addEventListener('click', function() { goNext(); play(); });
     if (prev) prev.addEventListener('click', function() { goPrev(); play(); });
-    carousel.addEventListener('mouseenter', function() { hovering = true; cancel(); });   // freeze ring where it is
-    carousel.addEventListener('mouseleave', function() { hovering = false; play(); });
     if (playBtn) playBtn.addEventListener('click', function() {
       paused = !paused;
       playBtn.classList.toggle('is-paused', paused);
@@ -392,6 +390,16 @@
     setRing(0);
     play();
   });
+})();
+
+// ── Expose the real nav height (it varies; --nav-h is only an estimate) ──
+(function() {
+  var nav = document.getElementById('site-nav');
+  if (!nav) return;
+  function set() { document.documentElement.style.setProperty('--nav-real', nav.offsetHeight + 'px'); }
+  set();
+  window.addEventListener('resize', set);
+  window.addEventListener('load', set);
 })();
 
 // ── Active nav state ───────────────────────────────────

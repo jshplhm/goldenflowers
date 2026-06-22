@@ -8,6 +8,8 @@ canonical_url: https://goldenflorals.com/venues/martis-camp
 no_prefooter: true
 ---
 
+{% include venue-subnav.html name="Martis Camp" %}
+
 <section class="hero hero--interior">
   <div class="hero-media">
     <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1779129057432-Y8VGDRIHTV4BILCZVW27/MountainTimePhoto-48.jpg?format=2500w" alt="Forest wedding at Martis Camp near Truckee" loading="eager">
@@ -18,8 +20,6 @@ no_prefooter: true
     <p class="hero-sub">Private High Sierra weddings</p>
   </div>
 </section>
-
-{% include venue-subnav.html %}
 
 <section class="section">
   <div class="container">
