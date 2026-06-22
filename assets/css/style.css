@@ -390,7 +390,6 @@ hr.section-div { border: none; border-top: 1px solid var(--bor); display: block;
 .port-item { position: relative; aspect-ratio: 4/5; overflow: hidden; background: var(--bg2); }
 .port-item img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s; }
 .port-item:hover img { transform: scale(1.04); }
-.port-item.wide { grid-column: span 2; aspect-ratio: 8/5; }
 
 /* ── 11. PRICING ──────────────────────────────────────── */
 .pricing-inner {
@@ -925,10 +924,8 @@ h1.venue-title { font-family: var(--f-d); font-style: italic; font-weight: 300; 
   .aesthetic-grid { grid-template-columns: 1fr; }
   .aesthetic-card { aspect-ratio: 4/5; }
 
-  /* --- Portfolio preview grid (homepage) — 1+2+2 editorial layout --- */
+  /* --- Portfolio preview grid (homepage): uniform 2-up boxes on mobile --- */
   .port-grid { grid-template-columns: 1fr 1fr; }
-  .port-item:first-child { grid-column: span 2; aspect-ratio: 16/9; }
-  .port-item.wide { grid-column: auto; aspect-ratio: 4/5; }
 
   /* --- Pricing --- */
   .pricing-inner {

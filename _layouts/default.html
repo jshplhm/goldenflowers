@@ -368,34 +368,41 @@
     const ringBar = carousel.querySelector('.testi-ring-bar');
     const DUR = 6500;
     const C = 2 * Math.PI * 20;           // ring circumference (r = 20)
-    var paused = false, startTime = 0, rafId = null;
+    var paused = false, startTime = 0, elapsed = 0, rafId = null;
     const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     function setRing(p) {                  // p = 0..1 elapsed
       if (ringBar) ringBar.style.strokeDashoffset = (C * (1 - Math.min(p, 1))).toFixed(2);
     }
     function frame(now) {
-      var p = (now - startTime) / DUR;
-      if (p >= 1) { goNext(); startTime = now; setRing(0); }
-      else setRing(p);
+      elapsed = now - startTime;
+      if (elapsed >= DUR) { goNext(); startTime = now; elapsed = 0; setRing(0); }
+      else setRing(elapsed / DUR);
       rafId = requestAnimationFrame(frame);
     }
     function cancel() { if (rafId) { cancelAnimationFrame(rafId); rafId = null; } }
-    function play() {                      // (re)start the countdown from zero
+    function run(fromElapsed) {             // start the loop continuing from a given elapsed offset
       cancel();
       if (paused || reduce) return;
-      startTime = performance.now();
-      setRing(0);
+      elapsed = fromElapsed;
+      startTime = performance.now() - fromElapsed;
+      setRing(elapsed / DUR);
       rafId = requestAnimationFrame(frame);
     }
+    function restart() { run(0); }          // countdown from the beginning
+    function resume() { run(elapsed); }     // continue from where it was paused
 
-    if (next) next.addEventListener('click', function() { goNext(); play(); });
-    if (prev) prev.addEventListener('click', function() { goPrev(); play(); });
-    if (playBtn) playBtn.addEventListener('click', function() {
-      paused = !paused;
+    if (next) next.addEventListener('click', function() { paused = false; setPlayBtn(); goNext(); restart(); });
+    if (prev) prev.addEventListener('click', function() { paused = false; setPlayBtn(); goPrev(); restart(); });
+    function setPlayBtn() {
+      if (!playBtn) return;
       playBtn.classList.toggle('is-paused', paused);
       playBtn.setAttribute('aria-label', paused ? 'Resume auto-advance' : 'Pause auto-advance');
-      if (paused) { cancel(); } else { play(); }
+    }
+    if (playBtn) playBtn.addEventListener('click', function() {
+      paused = !paused;
+      setPlayBtn();
+      if (paused) { cancel(); } else { resume(); }   // resume from where it stopped, not from zero
     });
     track.addEventListener('scroll', updateCount, { passive: true });
     setRing(0);
@@ -404,11 +411,11 @@
     // so the intended first review isn't auto-advanced past before it's seen.
     if ('IntersectionObserver' in window) {
       var io = new IntersectionObserver(function(entries) {
-        entries.forEach(function(e) { if (e.isIntersecting) { play(); io.disconnect(); } });
+        entries.forEach(function(e) { if (e.isIntersecting) { restart(); io.disconnect(); } });
       }, { threshold: 0.4 });
       io.observe(carousel);
     } else {
-      play();
+      restart();
     }
   });
 })();

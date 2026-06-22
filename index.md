@@ -122,19 +122,22 @@ canonical_url: https://goldenflorals.com/
     </div>
     <div class="port-grid">
       <div class="port-item">
-        <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1779129636646-VAQ2FSYB2YNR4O0UZFAA/K%252BJ-8434.jpg?format=750w" alt="Wedding at Miner's Foundry" loading="lazy">
+        <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1779129636646-VAQ2FSYB2YNR4O0UZFAA/K%252BJ-8434.jpg?format=750w" alt="Bride with bouquet at a Sierra wedding" loading="lazy">
       </div>
       <div class="port-item">
-        <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/4da65886-1655-4ecd-957b-8d48969ffc60/l-a-preview-0305.jpg?format=750w" alt="Wedding at Palisades High Camp" loading="lazy">
+        <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/bc425f51-1b71-473f-815b-8c481fd5a5c1/8.jpg?format=750w" alt="Reception dinner table with florals" loading="lazy">
       </div>
       <div class="port-item">
-        <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/bc425f51-1b71-473f-815b-8c481fd5a5c1/8.jpg?format=750w" alt="Reception dinner table" loading="lazy">
-      </div>
-      <div class="port-item wide">
-        <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/5854318e-a30f-4303-b4d9-38c510fdc75a/Lake+Tahoe+Floral+Installationn?format=1000w" alt="Outdoor floral arch" loading="lazy">
+        <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/4da65886-1655-4ecd-957b-8d48969ffc60/l-a-preview-0305.jpg?format=750w" alt="Lakeside reception tables at Lake Tahoe" loading="lazy">
       </div>
       <div class="port-item">
-        <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/4685a495-c2ce-4b90-9fd1-f91ca0d6a135/K%2BJ-0962.jpg?format=750w" alt="Ceremony flower arch" loading="lazy">
+        <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/5854318e-a30f-4303-b4d9-38c510fdc75a/Lake+Tahoe+Floral+Installationn?format=1000w" alt="Couple beneath a forest ceremony installation" loading="lazy">
+      </div>
+      <div class="port-item">
+        <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/4685a495-c2ce-4b90-9fd1-f91ca0d6a135/K%2BJ-0962.jpg?format=750w" alt="Ceremony at a floral arch" loading="lazy">
+      </div>
+      <div class="port-item">
+        <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1779132409797-K9BH7UUY32BCL87P6QI8/16.jpg?format=750w" alt="Lake Tahoe floral installation" loading="lazy">
       </div>
     </div>
   </div>
