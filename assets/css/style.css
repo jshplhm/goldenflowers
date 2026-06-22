@@ -137,6 +137,10 @@ body { padding-top: var(--nav-h); }
   letter-spacing: .2em; text-transform: uppercase;
   color: var(--fg); font-weight: 500;
 }
+/* Desktop: logo in the display serif (matches the hero wordmark), a touch larger than the menu */
+@media (min-width: 1025px) {
+  .nav-logo { font-family: var(--f-d); font-style: italic; font-weight: 400; font-size: 1.65rem; letter-spacing: 0; text-transform: none; line-height: 1; }
+}
 .nav-menu { display: none; }
 .nav-links { display: flex; gap: 36px; }
 .nav-links a {
@@ -531,7 +535,7 @@ hr.section-div { border: none; border-top: 1px solid var(--bor); display: block;
 .filter-chip:hover { border-color: var(--acc); color: var(--acc); }
 .filter-chip.active { background: var(--acc); border-color: var(--acc); color: oklch(95% .006 88); }
 .filter-sep { width: 1px; height: 20px; background: var(--bor); }
-.portfolio-filters { display: flex; gap: 8px; flex-wrap: wrap; padding: 16px 48px; position: sticky; top: var(--nav-real, var(--nav-h)); z-index: 80; background: var(--bg); border-bottom: 1px solid var(--bor); transition: transform .35s ease; }
+.portfolio-filters { display: flex; gap: 8px; flex-wrap: wrap; padding: 16px 48px; position: sticky; top: calc(var(--nav-real, var(--nav-h)) - 1px); z-index: 80; background: var(--bg); border-bottom: 1px solid var(--bor); transition: transform .35s ease; }
 .result-count { margin-left: auto; font-size: .72rem; color: var(--fgm); }
 
 /* ── 17. PORTFOLIO WEDDING CARDS ──────────────────────── */
@@ -1664,7 +1668,7 @@ a.aesthetic-card { display: block; text-decoration: none; color: inherit; }
 .venue-grid--3 { grid-template-columns: repeat(3, 1fr); }
 @media (max-width: 900px) { .venues-more-list { columns: 2; } .venue-grid--3 { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 560px) { .venue-grid--3 { grid-template-columns: 1fr; } }
-.venue-breadcrumb { position: sticky; top: var(--nav-real, var(--nav-h)); z-index: 80; background: var(--bg); border-bottom: 1px solid var(--bor); }
+.venue-breadcrumb { position: sticky; top: calc(var(--nav-real, var(--nav-h)) - 1px); z-index: 80; background: var(--bg); border-bottom: 1px solid var(--bor); }
 .venue-breadcrumb-inner { max-width: 1280px; margin: 0 auto; display: flex; align-items: center; gap: 10px; padding: 15px 48px; list-style: none; font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; line-height: 1; overflow-x: auto; scrollbar-width: none; }
 .venue-breadcrumb-inner::-webkit-scrollbar { display: none; }
 .venue-breadcrumb-inner li { white-space: nowrap; }
@@ -1761,9 +1765,8 @@ a.aesthetic-card { display: block; text-decoration: none; color: inherit; }
 
 /* Venue breadcrumb rides with the auto-hiding nav (mobile) instead of stranding over the hero */
 .venue-breadcrumb { transition: transform .35s ease; }
-body.chrome-hidden .venue-breadcrumb { transform: translateY(calc(-100% - var(--nav-real, 60px))); }
-/* filters stay accessible: when the nav auto-hides, pin them to the very top instead of hiding */
-body.chrome-hidden .portfolio-filters { top: 0; }
+body.chrome-hidden .venue-breadcrumb,
+body.chrome-hidden .portfolio-filters { transform: translateY(calc(-100% - var(--nav-real, 60px))); }
 
 /* Mobile menu: Venues sits inline like the other items; Home shows only here */
 .nav-home { display: none; }

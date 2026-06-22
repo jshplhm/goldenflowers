@@ -155,10 +155,10 @@ redirect_from:
     <span class="label">Frequently asked questions</span>
     <h2>What makes Golden Flowers different from other florists?</h2>
     <div class="faq-list">
-      <div class="faq-item open">
+      <div class="faq-item">
         <div class="faq-question" onclick="toggleFaq(this)">
           <h3>What actually makes you different?</h3>
-          <div class="faq-toggle">×</div>
+          <div class="faq-toggle">+</div>
         </div>
         <div class="faq-answer">
           <strong>Four specific things most florists can't say:</strong> We grow our own flowers on farm plots in California. We never use floral foam. We take one wedding per date, so your wedding day gets our full team, not a partial crew split between two events. And our founder Brittany trained as an agronomist, which means her design decisions are rooted in how plants actually grow, not just how they look in a Pinterest board.<br><br>
