@@ -1568,9 +1568,8 @@ a.aesthetic-card { display: block; text-decoration: none; color: inherit; }
 }
 @media (max-width: 640px) {
   .portfolio-note { padding: 0 20px; font-size: .98rem; }
-  .filter-chip { padding: 11px 16px; font-size: .7rem; }
-  .portfolio-filters { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; }
-  .portfolio-filters::-webkit-scrollbar { display: none; }
+  .filter-chip { padding: 10px 14px; font-size: .68rem; }
+  .portfolio-filters { flex-wrap: wrap; }
 }
 
 /* — (h) Focus-visible on interactive controls (a11y) — */
@@ -1747,3 +1746,27 @@ a.aesthetic-card { display: block; text-decoration: none; color: inherit; }
 .post-figure { margin: 32px 0; }
 .post-figure img { width: 100%; height: auto; display: block; border-radius: var(--radius); }
 .post-figure figcaption { margin-top: 10px; font-size: .8rem; font-style: italic; color: var(--fgm); line-height: 1.5; }
+
+/* ============================================================
+   Mobile refinements + no-hero page headline voice
+   ============================================================ */
+/* No-hero page titles read like the hero headlines (italic Cormorant), dark on light */
+.venues-intro h1 { font-family: var(--f-d); font-style: italic; font-weight: 300; font-size: clamp(2.8rem, 5vw, 4.6rem); line-height: 1.05; color: var(--fg); }
+
+/* Venue breadcrumb rides with the auto-hiding nav (mobile) instead of stranding over the hero */
+.venue-breadcrumb { transition: transform .35s ease; }
+body.chrome-hidden .venue-breadcrumb { transform: translateY(calc(-100% - var(--nav-real, 60px))); }
+
+/* Mobile menu: Venues sits inline like the other items; Home shows only here */
+.nav-home { display: none; }
+@media (max-width: 1024px) { .nav-dd { display: contents; } .nav-home { display: block; } }
+
+/* Tablet: 4-up pillar row eases to 2-up before stacking */
+@media (max-width: 900px) { .agro-credentials { grid-template-columns: 1fr 1fr; } }
+
+/* Phone: stack the multi-column card rows full width (no thin columns / sideways scroll) */
+@media (max-width: 640px) {
+  .facts-strip, .agro-credentials, .seasonal-grid { grid-template-columns: 1fr; }
+  /* Selected Work: the odd last tile spans full width so the grid reads complete */
+  .port-grid .port-item:last-child { grid-column: 1 / -1; aspect-ratio: 16 / 11; }
+}

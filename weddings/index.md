@@ -229,23 +229,3 @@ redirect_from:
     <a href="{{ site.baseurl }}/venues" class="btn-ghost">Explore venues &rarr;</a>
   </div>
 </div>
-
-<script>
-function toggleFaq(el) {
-  const item = el.closest('.faq-item');
-  const isOpen = item.classList.contains('open');
-  document.querySelectorAll('.faq-item').forEach(i => {
-    i.classList.remove('open');
-    i.querySelector('.faq-toggle').textContent = '+';
-    i.querySelector('.faq-toggle').removeAttribute('style');
-  });
-  if (!isOpen) {
-    item.classList.add('open');
-    const toggle = item.querySelector('.faq-toggle');
-    toggle.textContent = '×';
-    toggle.style.background = 'var(--acc)';
-    toggle.style.borderColor = 'var(--acc)';
-    toggle.style.color = 'var(--bg)';
-  }
-}
-</script>

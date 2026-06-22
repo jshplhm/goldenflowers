@@ -162,24 +162,3 @@ no_prefooter: true
     <a href="{{ site.baseurl }}/weddings#consultation" class="btn-primary">Schedule a Consultation</a>
   </div>
 </div>
-
-<script>
-function toggleFaq(el) {
-  const item = el.closest('.faq-item');
-  const isOpen = item.classList.contains('open');
-  document.querySelectorAll('.faq-item').forEach(i => {
-    i.classList.remove('open');
-    const t = i.querySelector('.faq-toggle');
-    t.textContent = '+';
-    t.removeAttribute('style');
-  });
-  if (!isOpen) {
-    item.classList.add('open');
-    const toggle = item.querySelector('.faq-toggle');
-    toggle.textContent = '×';
-    toggle.style.background = 'var(--acc)';
-    toggle.style.borderColor = 'var(--acc)';
-    toggle.style.color = 'var(--bg)';
-  }
-}
-</script>

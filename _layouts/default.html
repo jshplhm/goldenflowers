@@ -283,6 +283,20 @@
   if (moreBtn) moreBtn.addEventListener('click', function() { shown += BATCH; apply(); });
   apply();
 })();
+// ── FAQ accordions (global; used on venue + weddings pages) ──
+function toggleFaq(el) {
+  var item = el.closest('.faq-item');
+  var wasOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(function(i) {
+    i.classList.remove('open');
+    var t = i.querySelector('.faq-toggle'); if (t) t.textContent = '+';
+  });
+  if (!wasOpen) {
+    item.classList.add('open');
+    var t = item.querySelector('.faq-toggle'); if (t) t.textContent = '×';
+  }
+}
+
 // ── Scroll-reveal nav ──────────────────────────────────
 (function() {
   const nav = document.getElementById('site-nav');
@@ -309,6 +323,8 @@
           nav.classList.remove('nav-scrolled');
           nav.classList.remove('nav-hidden');
         }
+        // keep the venue breadcrumb in sync with the auto-hiding nav
+        document.body.classList.toggle('chrome-hidden', nav.classList.contains('nav-hidden'));
         lastY = y;
         ticking = false;
       });
