@@ -22,19 +22,6 @@ canonical_url: https://goldenflorals.com/
   </div>
 </section>
 
-<section class="trust-strip" aria-label="Trusted venues and reviews">
-  <div class="container">
-    <span class="trust-eyebrow">Trusted at the region's best venues</span>
-    <div class="trust-venues">
-      <span class="trust-chip">Edgewood Tahoe</span>
-      <span class="trust-chip">Ritz-Carlton</span>
-      <span class="trust-chip">Palisades</span>
-      <span class="trust-chip">Martis Camp</span>
-      <span class="trust-chip">National Exchange</span>
-    </div>
-  </div>
-</section>
-
 <section class="section">
   <div class="container">
     <span class="label">What sets us apart</span>
