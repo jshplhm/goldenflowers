@@ -10,7 +10,7 @@ no_prefooter: true
 
 <section class="section venues-intro">
   <div class="container">
-    <span class="label">Our commitment</span>
+    <span class="label">Sustainability pledge</span>
     <h1 class="section-head">Working toward something better.</h1>
     <p style="max-width:660px;font-size:1.05rem;color:var(--fg2);">The commitments that shape how we design, source, and grow. Some are already woven into every wedding; others we're actively working toward, with steady progress in the right direction.</p>
   </div>

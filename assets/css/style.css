@@ -616,8 +616,9 @@ select option { background: var(--bg2); }
 
 /* ── 20. FAQ (weddings + venue pages) ─────────────────── */
 .faq-section { padding: 90px 0; border-top: 1px solid var(--bor); }
-.faq-list { margin-top: 48px; border-top: 1px solid var(--bor); }
+.faq-list { margin-top: 48px; }
 .faq-item { border-bottom: 1px solid var(--bor); }
+.faq-item:last-child { border-bottom: none; }
 .faq-question { display: flex; justify-content: space-between; align-items: center; padding: 24px 0; cursor: pointer; }
 .faq-question h3 { font-family: var(--f-d); font-style: normal; font-weight: 500; color: var(--fg); }
 .faq-toggle { width: 28px; height: 28px; border: 1px solid var(--bor); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--fgm); font-size: 14px; flex-shrink: 0; transition: all .2s; }
@@ -1751,7 +1752,7 @@ a.aesthetic-card { display: block; text-decoration: none; color: inherit; }
    Mobile refinements + no-hero page headline voice
    ============================================================ */
 /* No-hero page titles read like the hero headlines (italic Cormorant), dark on light */
-.venues-intro h1 { font-family: var(--f-d); font-style: italic; font-weight: 300; font-size: clamp(2.8rem, 5vw, 4.6rem); line-height: 1.05; color: var(--fg); }
+.venues-intro h1 { font-family: var(--f-d); font-style: italic; font-weight: 300; font-size: clamp(2.8rem, 5vw, 4.6rem); line-height: 1.12; color: var(--fg); margin: 0 0 24px; }
 
 /* Venue breadcrumb rides with the auto-hiding nav (mobile) instead of stranding over the hero */
 .venue-breadcrumb { transition: transform .35s ease; }
