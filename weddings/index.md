@@ -29,12 +29,13 @@ redirect_from:
 <section class="section" style="padding-top:80px;padding-bottom:64px;">
   <div class="container" style="max-width:760px;">
     <p style="font-size:1.05rem;">We take one wedding per date, so every couple works directly with our founder, Brittany, from the first consultation through setup and breakdown. She designs alongside a team of seasoned florists, several of whom run their own studios and farms. No junior staff, no assembly line, no handoffs.</p>
-    <p style="margin-top:16px;font-size:.88rem;color:var(--fgm);">Available for weddings throughout Lake Tahoe, the Sierra Nevada, and the Gold Country foothills. <a href="{{ site.baseurl }}/about" style="color:var(--acc);">Meet Brittany &rarr;</a></p>
+    <p style="margin-top:16px;font-size:.88rem;color:var(--fgm);">Available for weddings throughout Lake Tahoe, the Sierra Nevada, and the Gold Country foothills.</p>
+    <p style="margin-top:14px;"><a href="{{ site.baseurl }}/about" style="color:var(--acc);font-weight:500;">Meet Brittany &rarr;</a></p>
   </div>
 </section>
 
 <!-- Process -->
-<section class="section section-tinted">
+<section class="section steps-dark">
   <div class="container">
     <span class="label">How it works</span>
     <h2>From first conversation to wedding day.</h2>
@@ -129,12 +130,7 @@ redirect_from:
 <section class="section">
   <div class="container">
     <span class="label">What couples say</span>
-    <h2>In their own words.</h2>
-    <figure class="testi-featured">
-      <div class="testi-featured-stars" aria-hidden="true">★★★★★</div>
-      <blockquote>"My wedding florals were everything I hoped for and more, and Brittany was an absolute dream to work with. I would choose Golden Flowers again and again over other competitors any day."</blockquote>
-      <figcaption><cite>Brooke</cite>, Lake Tahoe wedding</figcaption>
-    </figure>
+    <h2 class="section-head">Loved by couples across the Sierra.</h2>
     {% include testimonials.html %}
   </div>
 </section>

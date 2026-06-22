@@ -32,11 +32,10 @@ canonical_url: https://goldenflorals.com/
       <span class="trust-chip">Martis Camp</span>
       <span class="trust-chip">National Exchange</span>
     </div>
-    <p class="trust-reviews"><span class="trust-stars" aria-hidden="true">★★★★★</span> <span>Loved by couples across the Sierra</span></p>
   </div>
 </section>
 
-<section class="section section-warm">
+<section class="section">
   <div class="container">
     <span class="label">What sets us apart</span>
     <h2 class="section-head">Designed to be unlike anything else.</h2>
@@ -69,6 +68,7 @@ canonical_url: https://goldenflorals.com/
   <div class="container">
     <span class="label">Find your aesthetic</span>
     <h2 class="section-head">Three distinct design languages.</h2>
+    <p style="max-width:560px;margin-bottom:8px;font-size:1.02rem;color:var(--fg2);">Three directions we return to most. Explore each in the portfolio.</p>
     <div class="aesthetic-grid">
       <a class="aesthetic-card" href="{{ site.baseurl }}/portfolio?filter=dark-romance">
         <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1770534306889-NSEB5HC1TYWMEPG4WSCI/NationalGothic--268.jpg?format=750w" alt="Lush and Romantic floral design" loading="lazy">
@@ -113,7 +113,7 @@ canonical_url: https://goldenflorals.com/
   <div class="container">
     <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap;margin-bottom:56px;">
       <div>
-        <span class="label">Recent work</span>
+        <span class="label">Selected work</span>
         <h2 class="section-head" style="margin-bottom:0;">A few favorites.</h2>
       </div>
       <a href="{{ site.baseurl }}/portfolio" class="btn-ghost" style="white-space:nowrap;">Browse the portfolio →</a>
@@ -144,7 +144,7 @@ canonical_url: https://goldenflorals.com/
   <div class="container">
     <span class="label">Investment</span>
     <h2 class="section-head">Transparent pricing.</h2>
-    <div class="pricing-inner">
+    <div class="pricing-inner pricing-inner--solo">
       <div>
         <p class="price-num">$5,000–$25,000+</p>
         <p class="price-sub">Full-service wedding florals</p>
@@ -155,9 +155,6 @@ canonical_url: https://goldenflorals.com/
         </ul>
         <p class="price-tagline">No floral foam. No imported filler. Just intentional design.</p>
       </div>
-      <div>
-        <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/f77301d9-f890-451d-8bf8-c8d3a07d2bc4/Lake+Tahoe+Luxe+Boquet.jpg?format=750w" alt="Luxe bouquet" loading="lazy" style="width:100%;aspect-ratio:4/5;object-fit:cover;display:block;">
-      </div>
     </div>
   </div>
 </section>
@@ -167,12 +164,8 @@ canonical_url: https://goldenflorals.com/
 <section class="section">
   <div class="container">
     <span class="label">What couples say</span>
-    <h2 class="section-head">Words from our couples.</h2>
-    <figure class="testi-featured">
-      <div class="testi-featured-stars" aria-hidden="true">★★★★★</div>
-      <blockquote>"Brittany had ideas that helped me achieve the luxe look I wanted while staying in budget. Working with her was effortless, and the flowers were exactly what I'd pictured."</blockquote>
-      <figcaption><cite>Sara</cite>, The Ritz-Carlton, Truckee</figcaption>
-    </figure>
+    <h2 class="section-head">Loved by couples across the Sierra.</h2>
+    {% include testimonials.html %}
   </div>
 </section>
 

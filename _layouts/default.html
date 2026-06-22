@@ -344,16 +344,27 @@
       const gap = parseFloat(getComputedStyle(track).columnGap) || 0;
       return card ? card.getBoundingClientRect().width + gap : track.clientWidth;
     }
-    function update() {
-      const max = track.scrollWidth - track.clientWidth;
-      if (prev) prev.disabled = track.scrollLeft <= 4;
-      if (next) next.disabled = track.scrollLeft >= max - 4;
+    function maxScroll() { return track.scrollWidth - track.clientWidth; }
+    function goNext() {
+      if (track.scrollLeft >= maxScroll() - 4) track.scrollTo({ left: 0, behavior: 'smooth' });   // loop to start
+      else track.scrollBy({ left: step(), behavior: 'smooth' });
     }
-    if (prev) prev.addEventListener('click', function() { track.scrollBy({ left: -step(), behavior: 'smooth' }); });
-    if (next) next.addEventListener('click', function() { track.scrollBy({ left: step(), behavior: 'smooth' }); });
-    track.addEventListener('scroll', update, { passive: true });
-    window.addEventListener('resize', update);
-    update();
+    function goPrev() {
+      if (track.scrollLeft <= 4) track.scrollTo({ left: maxScroll(), behavior: 'smooth' });        // loop to end
+      else track.scrollBy({ left: -step(), behavior: 'smooth' });
+    }
+    if (next) next.addEventListener('click', goNext);
+    if (prev) prev.addEventListener('click', goPrev);
+
+    // Gentle auto-advance; pauses on hover/focus and after manual interaction.
+    var timer = null;
+    function start() { stop(); timer = setInterval(goNext, 6500); }
+    function stop() { if (timer) { clearInterval(timer); timer = null; } }
+    carousel.addEventListener('mouseenter', stop);
+    carousel.addEventListener('mouseleave', start);
+    carousel.addEventListener('focusin', stop);
+    carousel.addEventListener('focusout', start);
+    if (!window.matchMedia || !window.matchMedia('(prefers-reduced-motion: reduce)').matches) start();
   });
 })();
 

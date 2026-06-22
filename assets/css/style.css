@@ -172,8 +172,9 @@ body { padding-top: var(--nav-h); }
 }
 .site-footer--full {
   padding: 64px 48px;
-  display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 48px;
+  display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 48px;
 }
+@media (max-width: 900px) { .site-footer--full { grid-template-columns: 1fr 1fr; } }
 .site-footer--minimal {
   padding: 48px;
   display: flex; justify-content: space-between; align-items: center;
@@ -254,7 +255,7 @@ h3 {
 p { font-size: 1rem; line-height: 1.75; color: var(--fg2); }
 hr.div { border: none; border-top: 1px solid var(--bor); display: block; width: 48px; margin: 0 auto; }
 hr.section-div { border: none; border-top: 1px solid var(--bor); display: block; width: 100%; margin: 0; }
-.section-tinted { background: var(--bg2); }
+.section-tinted { background: var(--bg3); }
 .section-warm { background: var(--bg-warm); }
 
 /* Full-bleed editorial moment — breaks the centered label→headline→grid cadence */
@@ -334,7 +335,7 @@ hr.section-div { border: none; border-top: 1px solid var(--bor); display: block;
   display: grid; grid-template-columns: repeat(4, 1fr);
   gap: 1px; background: var(--bor); margin-top: 56px;
 }
-.diff-card { background: var(--bg-warm); padding: 40px 32px; }
+.diff-card { background: var(--bg-warm); padding: 32px 28px; }
 .diff-icon {
   display: flex; align-items: center; justify-content: center;
   width: 30px; height: 30px; color: var(--acc); margin-bottom: 18px;
@@ -395,6 +396,7 @@ hr.section-div { border: none; border-top: 1px solid var(--bor); display: block;
   background: var(--bg2); border: 1px solid var(--bor); padding: 70px 80px;
   display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
 }
+.pricing-inner--solo { grid-template-columns: 1fr; max-width: 760px; }
 .price-num {
   font-family: var(--f-d); font-style: italic;
   font-size: clamp(2.8rem, 5vw, 5rem);
@@ -452,7 +454,7 @@ hr.section-div { border: none; border-top: 1px solid var(--bor); display: block;
   font-size: .66rem; letter-spacing: .16em; text-transform: uppercase;
   color: var(--acc); border: 1px solid oklch(34% .09 148 / .3); padding: 4px 9px;
 }
-.testi-controls { display: flex; justify-content: flex-end; gap: 10px; margin-top: 28px; }
+.testi-controls { display: flex; justify-content: center; gap: 14px; margin-top: 36px; }
 .testi-arrow {
   width: 44px; height: 44px; border: 1px solid var(--bor); border-radius: 50%;
   background: transparent; color: var(--fg2); cursor: pointer;
@@ -550,7 +552,20 @@ hr.section-div { border: none; border-top: 1px solid var(--bor); display: block;
 .step-num { font-family: var(--f-d); font-style: italic; font-size: 3.6rem; color: var(--acc2); line-height: 1; margin-bottom: 16px; }
 .step h3 { font-family: var(--f-d); font-style: normal; font-weight: 500; color: var(--fg); margin-bottom: 10px; }
 .step p { font-size: .82rem; color: var(--fg2); line-height: var(--lh-ui); }
-.includes-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--bor); margin-top: 48px; }
+.includes-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--bor); margin-top: 48px; }
+@media (max-width: 900px) { .includes-grid { grid-template-columns: 1fr 1fr; } }
+
+/* Dark "how it works" panel (steps as columns, not tiles) */
+.steps-dark { background: oklch(25% .04 150); }
+.steps-dark .label { color: oklch(74% .12 44); }
+.steps-dark h2 { color: oklch(96% .006 88); }
+.steps-dark > .container > p { color: oklch(83% .015 128); }
+.steps-dark .process-steps { background: transparent; gap: 32px; }
+.steps-dark .step { background: transparent; border: none; border-top: 1px solid oklch(100% 0 0 / .18); border-radius: 0; box-shadow: none; padding: 24px 0 0; }
+.steps-dark .step:hover { transform: none; box-shadow: none; border-color: oklch(100% 0 0 / .18); }
+.steps-dark .step-num { color: oklch(74% .12 44); }
+.steps-dark .step h3 { color: oklch(96% .006 88); }
+.steps-dark .step p { color: oklch(83% .015 128); }
 .include-item { background: var(--bg-warm); padding: 28px 32px; display: flex; gap: 16px; align-items: flex-start; }
 .include-icon { width: 28px; height: 28px; color: var(--acc); flex-shrink: 0; margin-top: 0; display: flex; align-items: center; justify-content: center; }
 .include-icon svg { width: 24px; height: 24px; }
@@ -1161,8 +1176,8 @@ details.season-card, .season-card {
 .modal-overlay {
   position: fixed; inset: 0; z-index: 1000;
   background: oklch(20% .023 148 / .55);
-  display: flex; align-items: flex-start; justify-content: center;
-  padding: 6vh 20px; overflow-y: auto;
+  display: flex; align-items: center; justify-content: center;
+  padding: 4vh 20px; overflow-y: auto;
   opacity: 0; visibility: hidden;
   transition: opacity .25s ease, visibility .25s ease;
 }
@@ -1434,7 +1449,7 @@ input, select { min-height: 50px; }
 @media (max-width: 640px) { .testi-featured { margin-bottom: 32px; } }
 
 /* — Pre-footer CTA strip (dark green; one consistent close site-wide) — */
-.prefooter-cta { background: var(--fg); padding: 80px 48px; }
+.prefooter-cta { background: oklch(25% .04 150); padding: 80px 48px; }
 .prefooter-inner { max-width: 1280px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 36px; flex-wrap: wrap; }
 .prefooter-head { font-family: var(--f-d); font-style: italic; font-weight: 300; font-size: clamp(2.4rem, 4vw, 3.4rem); line-height: 1.06; color: oklch(96% .006 88); }
 .prefooter-sub { font-family: var(--f-b); font-size: .95rem; line-height: 1.6; color: oklch(83% .015 128); margin-top: 14px; max-width: 480px; }
