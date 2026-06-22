@@ -23,6 +23,8 @@ no_prefooter: true
   </div>
 </section>
 
+{% include venue-subnav.html %}
+
 <!-- Why Edgewood -->
 <section class="section">
   <div class="container">

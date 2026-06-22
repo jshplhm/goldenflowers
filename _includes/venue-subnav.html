@@ -1,0 +1,12 @@
+<nav class="venue-subnav" aria-label="Venue navigation">
+  <div class="venue-subnav-inner">
+    <a href="{{ site.baseurl }}/venues" class="venue-subnav-label">Venues</a>
+    <span class="venue-subnav-sep" aria-hidden="true">/</span>
+    <div class="venue-subnav-tabs">
+      <a href="{{ site.baseurl }}/venues/edgewood-tahoe"{% if page.url contains 'edgewood' %} class="is-current" aria-current="page"{% endif %}>Edgewood Tahoe</a>
+      <a href="{{ site.baseurl }}/venues/palisades-high-camp"{% if page.url contains 'palisades' %} class="is-current" aria-current="page"{% endif %}>Palisades High Camp</a>
+      <a href="{{ site.baseurl }}/venues/ritz-carlton-lake-tahoe"{% if page.url contains 'ritz' %} class="is-current" aria-current="page"{% endif %}>Ritz-Carlton</a>
+      <a href="{{ site.baseurl }}/venues/martis-camp"{% if page.url contains 'martis' %} class="is-current" aria-current="page"{% endif %}>Martis Camp</a>
+    </div>
+  </div>
+</nav>

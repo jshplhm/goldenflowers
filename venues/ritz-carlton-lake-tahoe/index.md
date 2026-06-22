@@ -19,6 +19,8 @@ no_prefooter: true
   </div>
 </section>
 
+{% include venue-subnav.html %}
+
 <section class="section">
   <div class="container">
     <div class="two-col">

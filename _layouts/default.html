@@ -353,40 +353,44 @@
       if (track.scrollLeft <= 4) track.scrollTo({ left: maxScroll(), behavior: 'smooth' });        // loop to end
       else track.scrollBy({ left: -step(), behavior: 'smooth' });
     }
-    // Auto-advance with a visible countdown ring + a play/pause control.
+    // Auto-advance with a countdown ring, driven by requestAnimationFrame.
     const playBtn = carousel.querySelector('[data-testi-toggle]');
     const ringBar = carousel.querySelector('.testi-ring-bar');
     const DUR = 6500;
-    var timer = null, paused = false, hovering = false;
+    const C = 2 * Math.PI * 20;           // ring circumference (r = 20)
+    var paused = false, hovering = false, startTime = 0, rafId = null;
     const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    function restartRing() {
-      if (!ringBar) return;
-      ringBar.style.animation = 'none';
-      void ringBar.offsetWidth;            // force reflow so the animation restarts
-      ringBar.style.animation = 'testi-fill ' + DUR + 'ms linear';
+    function setRing(p) {                  // p = 0..1 elapsed
+      if (ringBar) ringBar.style.strokeDashoffset = (C * (1 - Math.min(p, 1))).toFixed(2);
     }
-    function freezeRing() { if (ringBar) ringBar.style.animationPlayState = 'paused'; }
-    function tick() { goNext(); restartRing(); }
-    function run() {
-      if (timer) { clearInterval(timer); timer = null; }
-      if (paused || hovering || reduce) { freezeRing(); return; }
-      restartRing();
-      timer = setInterval(tick, DUR);
+    function frame(now) {
+      var p = (now - startTime) / DUR;
+      if (p >= 1) { goNext(); startTime = now; setRing(0); }
+      else setRing(p);
+      rafId = requestAnimationFrame(frame);
     }
-    function stopTimer() { if (timer) { clearInterval(timer); timer = null; } }
+    function cancel() { if (rafId) { cancelAnimationFrame(rafId); rafId = null; } }
+    function play() {                      // (re)start the countdown from zero
+      cancel();
+      if (paused || hovering || reduce) return;
+      startTime = performance.now();
+      setRing(0);
+      rafId = requestAnimationFrame(frame);
+    }
 
-    if (next) next.addEventListener('click', function() { goNext(); if (!paused) run(); });
-    if (prev) prev.addEventListener('click', function() { goPrev(); if (!paused) run(); });
-    carousel.addEventListener('mouseenter', function() { hovering = true; stopTimer(); freezeRing(); });
-    carousel.addEventListener('mouseleave', function() { hovering = false; run(); });
+    if (next) next.addEventListener('click', function() { goNext(); play(); });
+    if (prev) prev.addEventListener('click', function() { goPrev(); play(); });
+    carousel.addEventListener('mouseenter', function() { hovering = true; cancel(); });   // freeze ring where it is
+    carousel.addEventListener('mouseleave', function() { hovering = false; play(); });
     if (playBtn) playBtn.addEventListener('click', function() {
       paused = !paused;
       playBtn.classList.toggle('is-paused', paused);
       playBtn.setAttribute('aria-label', paused ? 'Resume auto-advance' : 'Pause auto-advance');
-      run();
+      if (paused) { cancel(); } else { play(); }
     });
-    run();
+    setRing(0);
+    play();
   });
 })();
 
