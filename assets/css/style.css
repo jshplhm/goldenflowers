@@ -1574,8 +1574,9 @@ form[hidden] { display: none; }
 .form-success-next a { display: block; font-family: var(--f-b); font-size: .85rem; letter-spacing: .04em; color: var(--acc2); padding: 6px 0; }
 .form-success:focus { outline: none; }
 /* Book-a-call handoff (Google Appointment Schedule) — secondary to the 48h reassurance */
-.form-success-book { margin: 32px 0 4px; }
-.form-success p.form-success-book-prompt { font-size: .85rem; color: var(--fg2); margin: 0 auto 16px; max-width: 360px; }
+/* "Skip the wait / book a call" — soft sage callout card so the shortcut stands apart */
+.form-success-book { margin: 28px 0 4px; padding: 22px 24px 24px; background: oklch(94% .022 150); border-radius: var(--radius); }
+.form-success p.form-success-book-prompt { font-size: .85rem; color: var(--fg2); margin: 0 auto 14px; max-width: 340px; }
 .form-success-book .btn-primary { display: inline-block; }
 
 /* — (g) Tap targets & self-select cards — */
