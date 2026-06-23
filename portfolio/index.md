@@ -234,22 +234,36 @@ redirect_from:
   document.querySelectorAll('.portfolio-filter-btn').forEach(function(btn) {
     btn.addEventListener('click', function() {
       setFilter(btn.dataset.filter);
-      // jump to the first visible section, landing it just below the sticky nav + filter bar.
+      // jump to the top of the gallery (the intro note), landing it just below the sticky nav + filter bar.
       var fb = document.querySelector('.portfolio-filters');
       var navReal = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--nav-real')) || 88;
-      var first = Array.prototype.find.call(
-        document.querySelectorAll('.port-section'),
-        function(s) { return s.style.display !== 'none'; }
-      );
-      if (!first) return;
+      var anchor = document.querySelector('.portfolio-note') ||
+        Array.prototype.find.call(document.querySelectorAll('.port-section'), function(s) { return s.style.display !== 'none'; });
+      if (!anchor) return;
       function go() {
-        var top = first.getBoundingClientRect().top + window.scrollY - navReal - fb.getBoundingClientRect().height - 4;
+        var top = anchor.getBoundingClientRect().top + window.scrollY - navReal - fb.getBoundingClientRect().height - 16;
         window.scrollTo(0, Math.max(0, Math.round(top)));
       }
       go();
       requestAnimationFrame(go); // re-correct after the relayout/lazy-images settle
     });
   });
+
+  // Let the filter bar hide with the nav only once it's actually stuck to the top,
+  // so it rides up naturally through the hero instead of jumping when the nav auto-hides.
+  if ('IntersectionObserver' in window) {
+    var fbEl = document.querySelector('.portfolio-filters');
+    if (fbEl) {
+      var sentinel = document.createElement('div');
+      sentinel.setAttribute('aria-hidden', 'true');
+      sentinel.style.cssText = 'height:1px;';
+      fbEl.parentNode.insertBefore(sentinel, fbEl);
+      var nr = Math.round(parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--nav-real')) || 88);
+      new IntersectionObserver(function(entries) {
+        fbEl.classList.toggle('is-stuck', !entries[0].isIntersecting);
+      }, { rootMargin: '-' + nr + 'px 0px 0px 0px', threshold: 0 }).observe(sentinel);
+    }
+  }
   applyFilter(getFilter());
 })();
 </script>

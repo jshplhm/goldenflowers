@@ -2,7 +2,13 @@
 layout: default
 ---
 
-<div style="padding:20px 48px 0;"><a href="{{ site.baseurl }}/blog" style="font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--fgm);text-decoration:none;">← Back to Blog</a></div>
+<nav class="venue-breadcrumb" aria-label="Breadcrumb">
+  <ol class="venue-breadcrumb-inner">
+    <li><a href="{{ site.baseurl }}/blog">Blog</a></li>
+    <li class="sep" aria-hidden="true">/</li>
+    <li class="current">{{ page.title }}</li>
+  </ol>
+</nav>
 
 <!-- Blog Post Header -->
 <header class="blog-header">

@@ -137,9 +137,9 @@ body { padding-top: var(--nav-h); }
   letter-spacing: .2em; text-transform: uppercase;
   color: var(--fg); font-weight: 500;
 }
-/* Desktop: logo in the display serif (matches the hero wordmark), a touch larger than the menu */
+/* Desktop: logo matches the menu (uppercase sans) but larger and bold */
 @media (min-width: 1025px) {
-  .nav-logo { font-family: var(--f-d); font-style: italic; font-weight: 600; font-size: 1.65rem; letter-spacing: 0; text-transform: none; line-height: 1; }
+  .nav-logo { font-family: var(--f-b); font-style: normal; font-weight: 600; font-size: 1.15rem; letter-spacing: .12em; text-transform: uppercase; line-height: 1; }
 }
 .nav-menu { display: none; }
 .nav-links { display: flex; gap: 36px; }
@@ -1677,6 +1677,8 @@ a.aesthetic-card { display: block; text-decoration: none; color: inherit; }
 .venue-breadcrumb-inner .sep { color: var(--bor); }
 .venue-breadcrumb-inner .current { color: var(--fg); }
 @media (max-width: 700px) { .venue-breadcrumb-inner { padding: 13px 20px; } }
+/* keep long titles (e.g. blog posts) from overflowing the breadcrumb */
+.venue-breadcrumb-inner .current { overflow: hidden; text-overflow: ellipsis; max-width: 62vw; }
 
 /* --- Venue facts: eyebrow + body (replaced the old numeral heading) --- */
 .facts-strip .fact .label { display: block; margin-bottom: 10px; }
@@ -1766,7 +1768,7 @@ a.aesthetic-card { display: block; text-decoration: none; color: inherit; }
 /* Venue breadcrumb rides with the auto-hiding nav (mobile) instead of stranding over the hero */
 .venue-breadcrumb { transition: transform .35s ease; }
 body.chrome-hidden .venue-breadcrumb,
-body.chrome-hidden .portfolio-filters { transform: translateY(calc(-100% - var(--nav-real, 60px))); }
+body.chrome-hidden .portfolio-filters.is-stuck { transform: translateY(calc(-100% - var(--nav-real, 60px))); }
 
 /* Mobile menu: Venues sits inline like the other items; Home shows only here */
 .nav-home { display: none; }
