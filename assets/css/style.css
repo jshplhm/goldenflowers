@@ -73,7 +73,8 @@
   --lh-read: 1.85;                /* article-length prose (blog, founder, agro) */
 
   /* Tile system — the rounded, spaced-tile direction (June 2026 redesign) */
-  --radius:    16px;              /* content tiles */
+  --radius:    8px;               /* content tiles (sharper corners) */
+  --radius-btn: 3px;              /* buttons / controls — one slightly-rounded value */
   --tile-bg:     oklch(99% .003 90);               /* crisp near-white tile face */
   --tile-border: oklch(82% .014 120 / .8);         /* clean visible hairline — crisp, not floaty */
   --tile-border-hover: oklch(74% .03 120);
@@ -167,7 +168,7 @@ body { padding-top: var(--nav-h); }
   font-family: var(--f-b); font-size: .76rem;
   letter-spacing: .08em; text-transform: uppercase;
   border: 1px solid var(--bor); color: var(--fg2);
-  padding: 10px 22px; transition: all .2s; border-radius: 2px;
+  padding: 10px 22px; transition: all .2s; border-radius: var(--radius-btn);
 }
 .nav-cta:hover { border-color: var(--acc); color: var(--acc); }
 .nav-cta-short { display: none; } /* short label shown only on phones (see mobile block) */
@@ -214,9 +215,9 @@ body { padding-top: var(--nav-h); }
 .footer-col a:hover { color: var(--acc); }
 .footer-info p { font-size: .82rem; color: var(--fg2); line-height: 1.8; }
 .footer-info a { color: var(--acc); }
-/* regions served: 2 per row × 3 rows; stays narrow so it doesn't blow out the footer columns */
-.footer-regions { display: grid; grid-template-columns: 1fr 1fr; gap: 2px 18px; list-style: none; margin: 8px 0 0; padding: 0; }
-.footer-regions li { font-size: .8rem; color: var(--fg2); line-height: 1.8; white-space: nowrap; }
+/* regions served: paired "City · City" over 3 rows; stays narrow, won't blow out columns */
+.footer-regions { list-style: none; margin: 8px 0 0; padding: 0; }
+.footer-regions li { font-size: .8rem; color: var(--fg2); line-height: 1.85; white-space: nowrap; }
 .foot-links { display: flex; gap: 24px; }
 .foot-links a {
   font-size: .72rem; letter-spacing: .08em; text-transform: uppercase;
@@ -235,7 +236,7 @@ body { padding-top: var(--nav-h); }
   font-family: var(--f-b); font-size: .72rem;
   letter-spacing: .12em; text-transform: uppercase;
   background: var(--acc); color: oklch(95% .006 88);
-  padding: 14px 28px; border: none; cursor: pointer;
+  padding: 14px 28px; border: none; cursor: pointer; border-radius: var(--radius-btn);
   display: inline-block; transition: opacity .2s;
 }
 .btn-primary:hover { opacity: .85; }
@@ -449,7 +450,7 @@ hr.section-div { border: none; border-top: 1px solid var(--bor); display: block;
   min-height: 44px; padding: 0 20px;
   background: var(--acc); color: oklch(95% .006 88);
   font-family: var(--f-b); font-size: .68rem; letter-spacing: .1em;
-  text-transform: uppercase; border-radius: 2px; white-space: nowrap;
+  text-transform: uppercase; border-radius: var(--radius-btn); white-space: nowrap;
 }
 
 /* ── 12. TESTIMONIALS (carousel) ──────────────────────── */
@@ -533,7 +534,7 @@ hr.section-div { border: none; border-top: 1px solid var(--bor); display: block;
 .filter-chip {
   font-size: .68rem; letter-spacing: .1em; text-transform: uppercase;
   padding: 6px 14px; border: 1px solid var(--bor);
-  background: transparent; color: var(--fg2); cursor: pointer; transition: all .18s; border-radius: 2px;
+  background: transparent; color: var(--fg2); cursor: pointer; transition: all .18s; border-radius: var(--radius-btn);
 }
 .filter-chip:hover { border-color: var(--acc); color: var(--acc); }
 .filter-chip.active { background: var(--acc); border-color: var(--acc); color: oklch(95% .006 88); }
@@ -551,12 +552,13 @@ hr.section-div { border: none; border-top: 1px solid var(--bor); display: block;
 .wedding-card-img { aspect-ratio: 4/5; overflow: hidden; }
 .wedding-card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s ease; }
 .wedding-card:hover .wedding-card-img img { transform: scale(1.04); }
-.wedding-card-info { padding: 24px; border-top: 1px solid var(--bor); }
-.wedding-couple { font-family: var(--f-d); font-style: italic; color: var(--fg); margin-bottom: 4px; }
+.wedding-card-info { padding: 20px 22px 22px; border-top: 1px solid var(--bor); }
+.wedding-head { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-bottom: 7px; }
+.wedding-couple { font-family: var(--f-d); font-style: italic; color: var(--fg); margin-bottom: 0; min-width: 0; }
 .wedding-meta { display: flex; gap: 12px; align-items: center; margin-bottom: 10px; }
-.wedding-venue { font-size: .7rem; letter-spacing: .08em; text-transform: uppercase; color: var(--fg2); }
-.wedding-tag { font-size: .62rem; letter-spacing: .14em; text-transform: uppercase; color: var(--acc); border: 1px solid oklch(34% .09 148 / .3); padding: 3px 10px; border-radius: 100px; white-space: nowrap; }
-.wedding-desc { font-size: .82rem; color: var(--fgm); line-height: 1.6; margin-bottom: 14px; }
+.wedding-venue { display: block; font-size: .7rem; letter-spacing: .08em; text-transform: uppercase; color: var(--fg2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-bottom: 12px; }
+.wedding-tag { font-size: .58rem; letter-spacing: .12em; text-transform: uppercase; color: var(--acc); border: 1px solid oklch(34% .09 148 / .3); padding: 3px 8px; border-radius: var(--radius-btn); white-space: nowrap; flex-shrink: 0; }
+.wedding-desc { font-size: .82rem; color: var(--fgm); line-height: 1.6; margin-bottom: 14px; display: -webkit-box; -webkit-line-clamp: 5; line-clamp: 5; -webkit-box-orient: vertical; overflow: hidden; }
 .wedding-cta { font-size: .68rem; letter-spacing: .12em; text-transform: uppercase; color: var(--acc); border-bottom: 1px solid oklch(34% .09 148 / .3); padding-bottom: 2px; display: inline-block; }
 .see-more { display: block; text-align: center; padding: 28px; font-size: .7rem; letter-spacing: .14em; text-transform: uppercase; color: var(--fgm); border-top: 1px solid var(--bor); cursor: pointer; transition: color .2s; }
 .see-more:hover { color: var(--acc); }
@@ -1208,7 +1210,7 @@ body.modal-open { overflow: hidden; }
   max-width: 360px; width: 100%; flex: 1 1 auto; min-width: 0;
   background: var(--bg3) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23948f86' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cline x1='21' y1='21' x2='16.65' y2='16.65'/%3E%3C/svg%3E") no-repeat 16px center;
   background-size: 16px 16px;
-  border: 1px solid var(--bor); border-radius: 2px;
+  border: 1px solid var(--bor); border-radius: var(--radius-btn);
   padding: 12px 20px 12px 44px; font-family: var(--f-b); font-size: .9rem; color: var(--fg);
   transition: border-color .2s;
 }
@@ -1247,7 +1249,7 @@ body.modal-open { overflow: hidden; }
   display: block; margin: 44px auto 0;
   font-family: var(--f-b); font-size: .72rem; letter-spacing: .12em; text-transform: uppercase;
   color: var(--fg2); background: transparent; border: 1px solid var(--bor);
-  border-radius: 2px; padding: 13px 30px; cursor: pointer; transition: all .2s;
+  border-radius: var(--radius-btn); padding: 13px 30px; cursor: pointer; transition: all .2s;
 }
 .blog-more:hover { border-color: var(--acc); color: var(--acc); }
 
@@ -1416,7 +1418,7 @@ input, select { min-height: 50px; }
 .prefooter-actions { display: flex; align-items: center; gap: 28px; }
 .prefooter-link { font-family: var(--f-b); font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; color: oklch(83% .015 128); white-space: nowrap; transition: color .2s; }
 .prefooter-link:hover { color: oklch(96% .006 88); }
-.prefooter-btn { background: var(--acc2); color: oklch(96% .006 88); font-family: var(--f-b); font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; padding: 16px 30px; border-radius: 2px; white-space: nowrap; transition: opacity .2s; }
+.prefooter-btn { background: var(--acc2); color: oklch(96% .006 88); font-family: var(--f-b); font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; padding: 16px 30px; border-radius: var(--radius-btn); white-space: nowrap; transition: opacity .2s; }
 .prefooter-btn:hover { opacity: .9; }
 @media (max-width: 640px) {
   .prefooter-cta { padding: 40px 20px; }
@@ -1797,6 +1799,7 @@ body.chrome-hidden .venue-breadcrumb { transform: translateY(calc(-100% - var(--
    drops BELOW the nav (animated) when the nav is actually showing (top of page / scroll-up). */
 @media (max-width: 1024px) {
   .portfolio-filters { top: -1px; }
+  .portfolio-filters:not(.is-stuck) { transition: none; }  /* lands in its home spot instantly, no slide */
   body:not(.chrome-hidden) .portfolio-filters.is-stuck { transform: translateY(var(--nav-real, 60px)); }
 }
 

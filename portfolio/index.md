@@ -58,11 +58,11 @@ redirect_from:
         <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1779129636646-VAQ2FSYB2YNR4O0UZFAA/K%252BJ-8434.jpg?format=1100w" alt="Katie and James" loading="lazy">
       </div>
       <div class="wedding-card-info">
-        <p class="wedding-couple">Katie &amp; James</p>
-        <div class="wedding-meta">
-          <span class="wedding-venue">Miner's Foundry · Nevada City</span>
+        <div class="wedding-head">
+          <p class="wedding-couple">Katie &amp; James</p>
           <span class="wedding-tag">Lush &amp; Romantic</span>
         </div>
+        <span class="wedding-venue">Miner's Foundry · Nevada City</span>
         <p class="wedding-desc">Stone walls, candlelight, and a dramatic arch of deep burgundy and plum blooms. A theatrical installation designed around the Foundry's historic stonework.</p>
       </div>
     </div>
@@ -71,11 +71,11 @@ redirect_from:
         <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1770534306889-NSEB5HC1TYWMEPG4WSCI/NationalGothic--268.jpg?format=1100w" alt="Niamh and Nick" loading="lazy">
       </div>
       <div class="wedding-card-info">
-        <p class="wedding-couple">Niamh &amp; Nick</p>
-        <div class="wedding-meta">
-          <span class="wedding-venue">National Exchange Hotel · Nevada City</span>
+        <div class="wedding-head">
+          <p class="wedding-couple">Niamh &amp; Nick</p>
           <span class="wedding-tag">Lush &amp; Romantic</span>
         </div>
+        <span class="wedding-venue">National Exchange Hotel · Nevada City</span>
         <p class="wedding-desc">A richly composed bridal bouquet with trailing stems and a deep jewel-toned palette. One of the most editorial pieces we've ever created.</p>
       </div>
     </div>
@@ -84,11 +84,11 @@ redirect_from:
         <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/3ddf1f69-8e31-44e3-8204-d28d4797d6f7/NationalGothic--264.jpg?format=1100w" alt="Dylan and Josh" loading="lazy">
       </div>
       <div class="wedding-card-info">
-        <p class="wedding-couple">Dylan &amp; Josh</p>
-        <div class="wedding-meta">
-          <span class="wedding-venue">National Exchange Hotel · Nevada City</span>
+        <div class="wedding-head">
+          <p class="wedding-couple">Dylan &amp; Josh</p>
           <span class="wedding-tag">Lush &amp; Romantic</span>
         </div>
+        <span class="wedding-venue">National Exchange Hotel · Nevada City</span>
         <p class="wedding-desc">A romantic evening wedding in Nevada City's historic hotel ballroom. Arrangements in midnight plum, forest green, and warm amber candlelight tones.</p>
       </div>
     </div>
@@ -112,11 +112,11 @@ redirect_from:
         <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1776975105426-4BAEXMVDBX6Q5ETZ1BVC/l-a-preview-6962.jpg?format=1100w" alt="Jacqueline and Brandon" loading="lazy">
       </div>
       <div class="wedding-card-info">
-        <p class="wedding-couple">Jacqueline &amp; Brandon</p>
-        <div class="wedding-meta">
-          <span class="wedding-venue">Ritz-Carlton Tahoe · Northstar</span>
+        <div class="wedding-head">
+          <p class="wedding-couple">Jacqueline &amp; Brandon</p>
           <span class="wedding-tag">Elevated Minimalist</span>
         </div>
+        <span class="wedding-venue">Ritz-Carlton Tahoe · Northstar</span>
         <p class="wedding-desc">Modern bridal bouquet in ivory and white with textural greenery. Restrained, refined, and impeccably composed.</p>
       </div>
     </div>
@@ -125,11 +125,11 @@ redirect_from:
         <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/4da65886-1655-4ecd-957b-8d48969ffc60/l-a-preview-0305.jpg?format=1100w" alt="Lynn and Aaron" loading="lazy">
       </div>
       <div class="wedding-card-info">
-        <p class="wedding-couple">Lynn &amp; Aaron</p>
-        <div class="wedding-meta">
-          <span class="wedding-venue">Palisades High Camp · Olympic Valley</span>
+        <div class="wedding-head">
+          <p class="wedding-couple">Lynn &amp; Aaron</p>
           <span class="wedding-tag">Elevated Minimalist</span>
         </div>
+        <span class="wedding-venue">Palisades High Camp · Olympic Valley</span>
         <p class="wedding-desc">High-altitude table arrangements at 8,200 feet. Low-profile centerpieces in cream and ivory designed to preserve the panoramic mountain view.</p>
       </div>
     </div>
@@ -138,11 +138,11 @@ redirect_from:
         <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1776975190166-PCFON7QIR65XK1VPLH3K/l-a-preview-8192.jpg?format=1100w" alt="Allie and Devin" loading="lazy">
       </div>
       <div class="wedding-card-info">
-        <p class="wedding-couple">Allie &amp; Devin</p>
-        <div class="wedding-meta">
-          <span class="wedding-venue">Edgewood Tahoe · South Shore</span>
+        <div class="wedding-head">
+          <p class="wedding-couple">Allie &amp; Devin</p>
           <span class="wedding-tag">Elevated Minimalist</span>
         </div>
+        <span class="wedding-venue">Edgewood Tahoe · South Shore</span>
         <p class="wedding-desc">Ceremony arch and reception florals at Edgewood's lakeside terrace. Airy whites and soft sage framing the lake beyond.</p>
       </div>
     </div>
@@ -166,11 +166,11 @@ redirect_from:
         <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1779129057432-Y8VGDRIHTV4BILCZVW27/MountainTimePhoto-48.jpg?format=1100w" alt="Camille and Max" loading="lazy">
       </div>
       <div class="wedding-card-info">
-        <p class="wedding-couple">Camille &amp; Max</p>
-        <div class="wedding-meta">
-          <span class="wedding-venue">Hellman-Ehrman Mansion · Lake Tahoe</span>
+        <div class="wedding-head">
+          <p class="wedding-couple">Camille &amp; Max</p>
           <span class="wedding-tag">Wildflower Modern</span>
         </div>
+        <span class="wedding-venue">Hellman-Ehrman Mansion · Lake Tahoe</span>
         <p class="wedding-desc">A Sierra Nevada outdoor ceremony with a wooden arch wrapped in native wildflowers, grasses, and trailing foliage. The lake visible through the arrangement.</p>
       </div>
     </div>
@@ -179,11 +179,11 @@ redirect_from:
         <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1779129078871-L0C6RZWY0OFNYM1EF93C/MountainTimePhoto-64.jpg?format=1100w" alt="Tori and Tucker" loading="lazy">
       </div>
       <div class="wedding-card-info">
-        <p class="wedding-couple">Tori &amp; Tucker</p>
-        <div class="wedding-meta">
-          <span class="wedding-venue">Hellman-Ehrman Mansion · Lake Tahoe</span>
+        <div class="wedding-head">
+          <p class="wedding-couple">Tori &amp; Tucker</p>
           <span class="wedding-tag">Wildflower Modern</span>
         </div>
+        <span class="wedding-venue">Hellman-Ehrman Mansion · Lake Tahoe</span>
         <p class="wedding-desc">An outdoor summer wedding on the Hellman-Ehrman grounds with arrangements of meadow-foraged and farm-grown California wildflowers.</p>
       </div>
     </div>
@@ -192,11 +192,11 @@ redirect_from:
         <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/5854318e-a30f-4303-b4d9-38c510fdc75a/Lake+Tahoe+Floral+Installationn?format=1100w" alt="Sam and Matt" loading="lazy">
       </div>
       <div class="wedding-card-info">
-        <p class="wedding-couple">Sam &amp; Matt</p>
-        <div class="wedding-meta">
-          <span class="wedding-venue">Lake Tahoe Shoreline · Outdoor</span>
+        <div class="wedding-head">
+          <p class="wedding-couple">Sam &amp; Matt</p>
           <span class="wedding-tag">Wildflower Modern</span>
         </div>
+        <span class="wedding-venue">Lake Tahoe Shoreline · Outdoor</span>
         <p class="wedding-desc">Lakeside ceremony with a sprawling floral installation. Native shrubs and seasonal blooms blending seamlessly into the Tahoe shoreline landscape.</p>
       </div>
     </div>
@@ -240,17 +240,23 @@ redirect_from:
       var anchor = document.querySelector('.portfolio-note') ||
         Array.prototype.find.call(document.querySelectorAll('.port-section'), function(s) { return s.style.display !== 'none'; });
       if (!anchor) return;
-      // freeze the nav during the jump so it doesn't reveal/hide and bounce the bar
-      window.__navLock = true;
-      // if the nav is currently hidden the bar is pinned to the very top, so no nav offset
-      var navOffset = document.body.classList.contains('chrome-hidden') ? 0 : navReal;
+      window.__navLock = true;          // freeze the nav so the jump doesn't reveal/hide it
+      fb.style.transition = 'none';     // snap, no bounce, during the jump
+      // if we're already in the gallery, pin the bar flush to the very top (nav hidden, no offset)
+      var pinTop = fb.classList.contains('is-stuck');
+      if (pinTop) {
+        document.body.classList.add('chrome-hidden');
+        var nav = document.getElementById('site-nav');
+        if (nav) nav.classList.add('nav-hidden');
+      }
+      var navOffset = pinTop ? 0 : navReal;
       function go() {
-        var top = anchor.getBoundingClientRect().top + window.scrollY - navOffset - fb.getBoundingClientRect().height - 16;
+        var top = anchor.getBoundingClientRect().top + window.scrollY - navOffset - fb.getBoundingClientRect().height - 12;
         window.scrollTo(0, Math.max(0, Math.round(top)));
       }
       go();
-      requestAnimationFrame(go); // re-correct after the relayout/lazy-images settle
-      setTimeout(function() { window.__navLock = false; }, 500);
+      requestAnimationFrame(function() { go(); requestAnimationFrame(function() { fb.style.transition = ''; }); });
+      setTimeout(function() { window.__navLock = false; }, 450);
     });
   });
 
