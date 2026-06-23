@@ -1802,9 +1802,11 @@ body.chrome-hidden .venue-breadcrumb { transform: translateY(calc(-100% - var(--
      (no early jump). When the nav is SHOWING it sits below the nav and rides in concert with
      it (slides up/down together as the nav hides/reveals). Trade-off: scrolling all the way
      back to the top makes it slide down by the nav height as it un-sticks. */
-  .portfolio-filters { top: -1px; transition: transform .35s ease; }
-  .portfolio-filters:not(.is-stuck) { transition: none; }  /* un-stick: snap/grab into the flow, don't animate */
-  body:not(.chrome-hidden) .portfolio-filters.is-stuck { transform: translateY(var(--nav-real, 60px)); }
+  /* "breathing-room" trial: the bar's in-flow home sits a nav-height below the hero, so its
+     flow spot matches its stuck spot (just below the nav) → un-sticking is seamless. It rides
+     up to the very top in concert with the hiding nav. */
+  .portfolio-filters { margin-top: var(--nav-real, 60px); transition: transform .35s ease; }
+  body.chrome-hidden .portfolio-filters.is-stuck { transform: translateY(calc(-1 * var(--nav-real, 60px))); }
 }
 
 /* Mobile menu: Venues sits inline like the other items; Home shows only here */
