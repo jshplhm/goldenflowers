@@ -1767,8 +1767,10 @@ a.aesthetic-card { display: block; text-decoration: none; color: inherit; }
 
 /* Venue breadcrumb rides with the auto-hiding nav (mobile) instead of stranding over the hero */
 .venue-breadcrumb { transition: transform .35s ease; }
-body.chrome-hidden .venue-breadcrumb,
-body.chrome-hidden .portfolio-filters.is-stuck { transform: translateY(calc(-100% - var(--nav-real, 60px))); }
+/* breadcrumb hides entirely with the nav */
+body.chrome-hidden .venue-breadcrumb { transform: translateY(calc(-100% - var(--nav-real, 60px))); }
+/* filter bar STAYS visible: slides up by the nav height to sit at the very top when the nav hides */
+body.chrome-hidden .portfolio-filters.is-stuck { transform: translateY(calc(-1 * var(--nav-real, 60px))); }
 
 /* Mobile menu: Venues sits inline like the other items; Home shows only here */
 .nav-home { display: none; }
