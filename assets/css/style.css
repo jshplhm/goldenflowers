@@ -1788,11 +1788,14 @@ a.aesthetic-card { display: block; text-decoration: none; color: inherit; }
 .venue-breadcrumb { transition: transform .35s ease; }
 /* breadcrumb hides entirely with the nav */
 body.chrome-hidden .venue-breadcrumb { transform: translateY(calc(-100% - var(--nav-real, 60px))); }
-/* filter bar STAYS visible: once stuck, it sits at the very top when the nav hides.
-   transition:none here so the catch on the way DOWN is instant (no animated rise — that
-   read as a jump when scrolling fast). The base .35s transition still animates it back
-   DOWN below the nav on scroll-up, when this rule no longer applies. */
-body.chrome-hidden .portfolio-filters.is-stuck { transform: translateY(calc(-1 * var(--nav-real, 60px))); transition: none; }
+/* Filter bar (mobile, where the nav auto-hides): the bar's sticky top is the very top of
+   the screen, so on the way DOWN it just scrolls up and catches there — no jump. It only
+   drops BELOW the nav (animated) when the nav is actually showing (top of page / scroll-up). */
+@media (max-width: 1024px) {
+  .portfolio-filters { top: -1px; }
+  body:not(.chrome-hidden) .portfolio-filters.is-stuck { transform: translateY(var(--nav-real, 60px)); }
+  body.chrome-hidden .portfolio-filters { transition: none; }  /* instant on the way down */
+}
 
 /* Mobile menu: Venues sits inline like the other items; Home shows only here */
 .nav-home { display: none; }
