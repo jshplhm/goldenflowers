@@ -249,6 +249,27 @@ redirect_from:
     });
   });
 
+  // Mark the filter bar "stuck" the instant it reaches the top — synchronous with scroll
+  // (no observer lag) so it can rise with the auto-hiding nav and catch at the very top.
+  // We offset with transform (not top) because iOS won't re-stick a sticky element on a top change.
+  var fbEl = document.querySelector('.portfolio-filters');
+  if (fbEl) {
+    var sentinel = document.createElement('div');
+    sentinel.setAttribute('aria-hidden', 'true');
+    sentinel.style.cssText = 'height:0;';
+    fbEl.parentNode.insertBefore(sentinel, fbEl);
+    var stickTick = false;
+    function checkStuck() {
+      var navReal = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--nav-real')) || 88;
+      fbEl.classList.toggle('is-stuck', sentinel.getBoundingClientRect().top <= navReal);
+    }
+    window.addEventListener('scroll', function() {
+      if (stickTick) return;
+      stickTick = true;
+      requestAnimationFrame(function() { checkStuck(); stickTick = false; });
+    }, { passive: true });
+    checkStuck();
+  }
   applyFilter(getFilter());
 })();
 </script>
