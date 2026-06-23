@@ -241,9 +241,9 @@ redirect_from:
         Array.prototype.find.call(document.querySelectorAll('.port-section'), function(s) { return s.style.display !== 'none'; });
       if (!anchor) return;
       window.__navLock = true;          // freeze the nav so the jump doesn't reveal/hide it
-      fb.style.transition = 'none';     // snap, no bounce, during the jump
-      // if we're already in the gallery, pin the bar flush to the very top (nav hidden, no offset)
-      var pinTop = fb.classList.contains('is-stuck');
+      // on MOBILE (where the nav auto-hides) pin the bar flush to the very top; on desktop the
+      // nav is static, so keep the bar below it (don't hide the desktop nav!)
+      var pinTop = fb.classList.contains('is-stuck') && window.innerWidth <= 1024;
       if (pinTop) {
         document.body.classList.add('chrome-hidden');
         var nav = document.getElementById('site-nav');
@@ -255,7 +255,7 @@ redirect_from:
         window.scrollTo(0, Math.max(0, Math.round(top)));
       }
       go();
-      requestAnimationFrame(function() { go(); requestAnimationFrame(function() { fb.style.transition = ''; }); });
+      requestAnimationFrame(go); // re-correct after the relayout settles
       setTimeout(function() { window.__navLock = false; }, 450);
     });
   });

@@ -244,7 +244,7 @@ body { padding-top: var(--nav-h); }
   font-family: var(--f-b); font-size: .72rem;
   letter-spacing: .12em; text-transform: uppercase;
   background: transparent; color: var(--fg2);
-  padding: 14px 28px; border: 1px solid var(--bor);
+  padding: 14px 28px; border: 1px solid var(--bor); border-radius: var(--radius-btn);
   cursor: pointer; display: inline-block; transition: all .2s;
 }
 .btn-ghost:hover { border-color: var(--acc); color: var(--acc); }
@@ -539,7 +539,7 @@ hr.section-div { border: none; border-top: 1px solid var(--bor); display: block;
 .filter-chip:hover { border-color: var(--acc); color: var(--acc); }
 .filter-chip.active { background: var(--acc); border-color: var(--acc); color: oklch(95% .006 88); }
 .filter-sep { width: 1px; height: 20px; background: var(--bor); }
-.portfolio-filters { display: flex; gap: 8px; flex-wrap: wrap; padding: 16px 48px; position: sticky; top: calc(var(--nav-real, var(--nav-h)) - 1px); z-index: 80; background: var(--bg); border-bottom: 1px solid var(--bor); transition: transform .35s ease; }
+.portfolio-filters { display: flex; gap: 8px; flex-wrap: wrap; padding: 16px 48px; position: sticky; top: calc(var(--nav-real, var(--nav-h)) - 1px); z-index: 80; background: var(--bg); border-bottom: 1px solid var(--bor); }
 .result-count { margin-left: auto; font-size: .72rem; color: var(--fgm); }
 
 /* ── 17. PORTFOLIO WEDDING CARDS ──────────────────────── */
@@ -1798,8 +1798,7 @@ body.chrome-hidden .venue-breadcrumb { transform: translateY(calc(-100% - var(--
    the screen, so on the way DOWN it just scrolls up and catches there — no jump. It only
    drops BELOW the nav (animated) when the nav is actually showing (top of page / scroll-up). */
 @media (max-width: 1024px) {
-  .portfolio-filters { top: -1px; }
-  .portfolio-filters:not(.is-stuck) { transition: none; }  /* lands in its home spot instantly, no slide */
+  .portfolio-filters { top: -1px; }  /* catches flush at the very top; no transition = snaps into place, no bounce */
   body:not(.chrome-hidden) .portfolio-filters.is-stuck { transform: translateY(var(--nav-real, 60px)); }
 }
 
