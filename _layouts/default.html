@@ -13,7 +13,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/style.css?v=32">
+  <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/style.css?v=33">
   
   {% seo %}
 </head>
@@ -380,6 +380,9 @@ function toggleFaq(el) {
     if (!ticking) {
       window.requestAnimationFrame(function() {
         const y = window.scrollY;
+        // a programmatic jump (e.g. portfolio filter) freezes the nav so it doesn't
+        // reveal/hide mid-scroll and bounce the sticky sub-bar
+        if (window.__navLock) { lastY = y; ticking = false; return; }
         if (y > 80) {
           nav.classList.add('nav-scrolled');
           // Desktop: always visible. Mobile (≤1024): auto-hide on scroll-down.

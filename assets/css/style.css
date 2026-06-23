@@ -214,6 +214,9 @@ body { padding-top: var(--nav-h); }
 .footer-col a:hover { color: var(--acc); }
 .footer-info p { font-size: .82rem; color: var(--fg2); line-height: 1.8; }
 .footer-info a { color: var(--acc); }
+/* regions served: 2 per row × 3 rows; stays narrow so it doesn't blow out the footer columns */
+.footer-regions { display: grid; grid-template-columns: 1fr 1fr; gap: 2px 18px; list-style: none; margin: 8px 0 0; padding: 0; }
+.footer-regions li { font-size: .8rem; color: var(--fg2); line-height: 1.8; white-space: nowrap; }
 .foot-links { display: flex; gap: 24px; }
 .foot-links a {
   font-size: .72rem; letter-spacing: .08em; text-transform: uppercase;
@@ -1575,7 +1578,7 @@ form[hidden] { display: none; }
 .form-success:focus { outline: none; }
 /* Book-a-call handoff (Google Appointment Schedule) — secondary to the 48h reassurance */
 /* "Skip the wait / book a call" — soft sage callout card so the shortcut stands apart */
-.form-success-book { margin: 28px 0 4px; padding: 22px 24px 24px; background: oklch(94% .022 150); border-radius: var(--radius); }
+.form-success-book { margin: 28px 0 4px; padding: 22px 24px 24px; background: var(--bg2); border-radius: var(--radius); }
 .form-success p.form-success-book-prompt { font-size: .85rem; color: var(--fg2); margin: 0 auto 14px; max-width: 340px; }
 .form-success-book .btn-primary { display: inline-block; }
 
@@ -1795,7 +1798,6 @@ body.chrome-hidden .venue-breadcrumb { transform: translateY(calc(-100% - var(--
 @media (max-width: 1024px) {
   .portfolio-filters { top: -1px; }
   body:not(.chrome-hidden) .portfolio-filters.is-stuck { transform: translateY(var(--nav-real, 60px)); }
-  body.chrome-hidden .portfolio-filters { transition: none; }  /* instant on the way down */
 }
 
 /* Mobile menu: Venues sits inline like the other items; Home shows only here */

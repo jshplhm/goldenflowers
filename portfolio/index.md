@@ -234,18 +234,23 @@ redirect_from:
   document.querySelectorAll('.portfolio-filter-btn').forEach(function(btn) {
     btn.addEventListener('click', function() {
       setFilter(btn.dataset.filter);
-      // jump to the top of the gallery (the intro note), landing it just below the sticky nav + filter bar.
+      // jump to the top of the gallery (the intro note), landing it just below the sticky bar.
       var fb = document.querySelector('.portfolio-filters');
       var navReal = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--nav-real')) || 88;
       var anchor = document.querySelector('.portfolio-note') ||
         Array.prototype.find.call(document.querySelectorAll('.port-section'), function(s) { return s.style.display !== 'none'; });
       if (!anchor) return;
+      // freeze the nav during the jump so it doesn't reveal/hide and bounce the bar
+      window.__navLock = true;
+      // if the nav is currently hidden the bar is pinned to the very top, so no nav offset
+      var navOffset = document.body.classList.contains('chrome-hidden') ? 0 : navReal;
       function go() {
-        var top = anchor.getBoundingClientRect().top + window.scrollY - navReal - fb.getBoundingClientRect().height - 16;
+        var top = anchor.getBoundingClientRect().top + window.scrollY - navOffset - fb.getBoundingClientRect().height - 16;
         window.scrollTo(0, Math.max(0, Math.round(top)));
       }
       go();
       requestAnimationFrame(go); // re-correct after the relayout/lazy-images settle
+      setTimeout(function() { window.__navLock = false; }, 500);
     });
   });
 
