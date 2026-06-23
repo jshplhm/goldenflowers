@@ -1663,19 +1663,20 @@ a.aesthetic-card { display: block; text-decoration: none; color: inherit; }
 /* --- Venues: index header/lists, 3x2 featured grid, breadcrumb --- */
 .venues-intro { padding-top: 56px; padding-bottom: 40px; }
 .venues-more { margin-top: 56px; padding-top: 32px; border-top: 1px solid var(--bor); }
-.venues-more-list { columns: 3; column-gap: 36px; list-style: none; margin: 16px 0 0; padding: 0; }
-.venues-more-list li { font-size: .95rem; color: var(--fg2); padding: 7px 0; break-inside: avoid; }
+/* grid (not CSS multi-column) so items sit in real rows that line up left-to-right */
+.venues-more-list { display: grid; grid-template-columns: repeat(3, 1fr); column-gap: 36px; list-style: none; margin: 16px 0 0; padding: 0; }
+.venues-more-list li { font-size: .95rem; color: var(--fg2); padding: 7px 0; }
 .venues-more-intro { font-size: .92rem; color: var(--fg2); margin: 0 0 6px; line-height: 1.6; }
 .venues-more-note { margin-top: 22px; font-size: .85rem; color: var(--fgm); line-height: 1.6; }
 .venue-grid--3 { grid-template-columns: repeat(3, 1fr); }
 @media (max-width: 900px) {
   .venue-grid--3 { grid-template-columns: 1fr 1fr; }
-  /* drop the ragged columns; flow the names inline so there's nothing to misalign */
-  .venues-more-list { columns: auto; line-height: 2.1; }
-  .venues-more-list li { display: inline; padding: 0; }
-  .venues-more-list li:not(:last-child)::after { content: '·'; margin: 0 .5em; color: var(--fgm); }
+  .venues-more-list { grid-template-columns: 1fr 1fr; }
 }
-@media (max-width: 560px) { .venue-grid--3 { grid-template-columns: 1fr; } }
+@media (max-width: 560px) {
+  .venue-grid--3 { grid-template-columns: 1fr; }
+  .venues-more-list { grid-template-columns: 1fr; }   /* one clean column on phones */
+}
 .venue-breadcrumb { position: sticky; top: calc(var(--nav-real, var(--nav-h)) - 1px); z-index: 80; background: var(--bg); border-bottom: 1px solid var(--bor); }
 .venue-breadcrumb-inner { max-width: 1280px; margin: 0 auto; display: flex; align-items: center; gap: 10px; padding: 15px 48px; list-style: none; font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; line-height: 1; overflow-x: auto; scrollbar-width: none; }
 .venue-breadcrumb-inner::-webkit-scrollbar { display: none; }
@@ -1777,9 +1778,11 @@ a.aesthetic-card { display: block; text-decoration: none; color: inherit; }
 .venue-breadcrumb { transition: transform .35s ease; }
 /* breadcrumb hides entirely with the nav */
 body.chrome-hidden .venue-breadcrumb { transform: translateY(calc(-100% - var(--nav-real, 60px))); }
-/* filter bar STAYS visible: once stuck, it slides up by the nav height to the very top
-   when the nav hides (transform, gated on .is-stuck so it doesn't shift while in the flow) */
-body.chrome-hidden .portfolio-filters.is-stuck { transform: translateY(calc(-1 * var(--nav-real, 60px))); }
+/* filter bar STAYS visible: once stuck, it sits at the very top when the nav hides.
+   transition:none here so the catch on the way DOWN is instant (no animated rise — that
+   read as a jump when scrolling fast). The base .35s transition still animates it back
+   DOWN below the nav on scroll-up, when this rule no longer applies. */
+body.chrome-hidden .portfolio-filters.is-stuck { transform: translateY(calc(-1 * var(--nav-real, 60px))); transition: none; }
 
 /* Mobile menu: Venues sits inline like the other items; Home shows only here */
 .nav-home { display: none; }
