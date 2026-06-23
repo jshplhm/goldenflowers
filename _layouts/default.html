@@ -13,7 +13,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/style.css?v=27">
+  <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/style.css?v=28">
   
   {% seo %}
 </head>
@@ -178,12 +178,58 @@
     });
   });
 
+  // ── Wedding-date field: smart mm/dd/yyyy mask ──────────
+  (function() {
+    function mask(value, advance) {
+      var d = value.replace(/\D/g, '').slice(0, 8);
+      if (!d) return '';
+      var out = '', i = 0, a = d[0];
+      // month: 2-9 -> 0X and advance; 1 -> wait for 0/1/2; 0 -> wait
+      if (a >= '2') { out = '0' + a; i = 1; }
+      else if (a === '1') {
+        if (d.length < 2) return '1';
+        if (d[1] <= '2') { out = '1' + d[1]; i = 2; } else { out = '01'; i = 1; }
+      } else {
+        if (d.length < 2) return '0';
+        if (d[1] === '0') return '0';
+        out = '0' + d[1]; i = 2;
+      }
+      if (i >= d.length) return advance ? out + '/' : out;
+      out += '/';
+      // day: 4-9 -> 0X; 3 -> wait for 0/1; 0 -> wait; 1/2 -> take next
+      var b = d[i];
+      if (b >= '4') { out += '0' + b; i += 1; }
+      else if (b === '3') {
+        if (i + 1 >= d.length) return out + '3';
+        if (d[i + 1] <= '1') { out += '3' + d[i + 1]; i += 2; } else { out += '03'; i += 1; }
+      } else if (b === '0') {
+        if (i + 1 >= d.length) return out + '0';
+        if (d[i + 1] === '0') return out + '0';
+        out += '0' + d[i + 1]; i += 2;
+      } else {
+        if (i + 1 >= d.length) return out + b;
+        out += b + d[i + 1]; i += 2;
+      }
+      if (i >= d.length) return advance ? out + '/' : out;
+      return out + '/' + d.slice(i, i + 4);
+    }
+    document.querySelectorAll('[data-date-mask]').forEach(function(el) {
+      el.addEventListener('input', function(e) {
+        var deleting = e.inputType && e.inputType.indexOf('delete') === 0;
+        el.value = mask(el.value, !deleting);
+      });
+    });
+  })();
+
   // AJAX submit → show success in place (falls back to native POST on failure)
   function fmtDate(v) {
     if (!v) return '';
-    const d = new Date(v + 'T00:00');
-    if (isNaN(d)) return v;
-    return d.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+    const m = v.match(/^(\d{2})\/(\d{2})\/(\d{4})$/);
+    if (m) {
+      const d = new Date(+m[3], +m[1] - 1, +m[2]);
+      if (!isNaN(d)) return d.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+    }
+    return v;
   }
   document.querySelectorAll('form[data-ajax]').forEach(function(form) {
     form.addEventListener('submit', function(e) {
