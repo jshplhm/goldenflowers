@@ -13,7 +13,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/style.css?v=29">
+  <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/style.css?v=30">
   
   {% seo %}
 </head>
@@ -214,10 +214,31 @@
       return out + '/' + d.slice(i, i + 4);
     }
     document.querySelectorAll('[data-date-mask]').forEach(function(el) {
+      // wrap the input and lay a faint "mm/dd/yyyy" ghost behind/after what's typed
+      var field = document.createElement('span');
+      field.className = 'date-field';
+      el.parentNode.insertBefore(field, el);
+      field.appendChild(el);
+      var ghost = document.createElement('span');
+      ghost.className = 'date-ghost';
+      ghost.setAttribute('aria-hidden', 'true');
+      var gt = document.createElement('span');
+      gt.className = 'gt';
+      var rest = document.createTextNode('');
+      ghost.appendChild(gt);
+      ghost.appendChild(rest);
+      field.appendChild(ghost);
+      el.removeAttribute('placeholder');           // the ghost is the placeholder now
+      function render() {
+        gt.textContent = el.value;                 // invisible: reserves the typed width
+        rest.nodeValue = 'mm/dd/yyyy'.slice(el.value.length);
+      }
       el.addEventListener('input', function(e) {
         var deleting = e.inputType && e.inputType.indexOf('delete') === 0;
         el.value = mask(el.value, !deleting);
+        render();
       });
+      render();
     });
   })();
 

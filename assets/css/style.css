@@ -602,6 +602,16 @@ input, textarea, select {
   color: var(--fg); font-family: var(--f-b); font-size: .88rem; font-weight: 300;
   padding: 13px 16px; outline: none; transition: border-color .2s; appearance: none;
 }
+/* Wedding-date field: shows the faint mm/dd/yyyy completion right after what's typed */
+.date-field { position: relative; display: block; }
+.date-ghost {
+  position: absolute; inset: 0; pointer-events: none;
+  display: flex; align-items: center; padding-left: 17px;
+  font-family: var(--f-b); font-size: .88rem; font-weight: 300;
+  color: var(--fgm); white-space: pre; overflow: hidden;
+}
+.date-ghost .gt { visibility: hidden; }
+@media (max-width: 640px) { .date-ghost { font-size: 16px; } }
 select {
   background-image: url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23888'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
