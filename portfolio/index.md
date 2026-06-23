@@ -249,21 +249,6 @@ redirect_from:
     });
   });
 
-  // Let the filter bar hide with the nav only once it's actually stuck to the top,
-  // so it rides up naturally through the hero instead of jumping when the nav auto-hides.
-  if ('IntersectionObserver' in window) {
-    var fbEl = document.querySelector('.portfolio-filters');
-    if (fbEl) {
-      var sentinel = document.createElement('div');
-      sentinel.setAttribute('aria-hidden', 'true');
-      sentinel.style.cssText = 'height:1px;';
-      fbEl.parentNode.insertBefore(sentinel, fbEl);
-      var nr = Math.round(parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--nav-real')) || 88);
-      new IntersectionObserver(function(entries) {
-        fbEl.classList.toggle('is-stuck', !entries[0].isIntersecting);
-      }, { rootMargin: '-' + nr + 'px 0px 0px 0px', threshold: 0 }).observe(sentinel);
-    }
-  }
   applyFilter(getFilter());
 })();
 </script>
