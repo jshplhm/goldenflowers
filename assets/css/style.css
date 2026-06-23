@@ -1798,11 +1798,12 @@ body.chrome-hidden .venue-breadcrumb { transform: translateY(calc(-100% - var(--
    the screen, so on the way DOWN it just scrolls up and catches there — no jump. It only
    drops BELOW the nav (animated) when the nav is actually showing (top of page / scroll-up). */
 @media (max-width: 1024px) {
-  /* Bar's home/stuck spot is just below the nav (matches the flow, so un-sticking is seamless
-     — no bounce). When the nav HIDES it rides up to the very top (instant, so the catch snaps);
-     when the nav SHOWS it slides back down below it, in step with the nav. */
-  .portfolio-filters.is-stuck { transition: transform .35s ease; }
-  body.chrome-hidden .portfolio-filters.is-stuck { transform: translateY(calc(-1 * var(--nav-real, 60px))); transition: none; }
+  /* Bar's home/stuck spot is the very top, so it scrolls naturally up and sticks at the top
+     (no early jump). When the nav is SHOWING it sits below the nav and rides in concert with
+     it (slides up/down together as the nav hides/reveals). Trade-off: scrolling all the way
+     back to the top makes it slide down by the nav height as it un-sticks. */
+  .portfolio-filters { top: -1px; transition: transform .35s ease; }
+  body:not(.chrome-hidden) .portfolio-filters.is-stuck { transform: translateY(var(--nav-real, 60px)); }
 }
 
 /* Mobile menu: Venues sits inline like the other items; Home shows only here */
