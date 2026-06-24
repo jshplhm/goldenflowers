@@ -136,9 +136,9 @@ content:
         type: string
       - name: paymentNote
         label: Payment note (how the retainer & balance are paid)
-        description: 'Shown under the Reserve buttons. Leave default to steer couples to fee-free bank transfer.'
+        description: 'Shown under the Reserve buttons. Steers couples to bank transfer without surcharging cards (NV restricts card surcharges).'
         type: text
-        default: 'Your retainer and balance are invoiced through QuickBooks — pay by bank transfer, check, Venmo, or Zelle at no added fee; card payments include a 3% processing fee.'
+        default: "Your retainer and balance are invoiced through QuickBooks. We're glad to take bank transfer, check, Venmo, Zelle, or card — bank transfer is quickest and our preferred method."
 
       - name: estimateTotal
         label: Estimated investment (range, shown as-is)
