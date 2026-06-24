@@ -1,0 +1,12 @@
+---
+permalink: /robots.txt
+sitemap: false
+---
+User-agent: *
+Allow: /
+
+# Private client proposals — keep out of search engines.
+Disallow: /p/
+Disallow: {{ site.baseurl }}/p/
+
+Sitemap: {{ site.url }}{{ site.baseurl }}/sitemap.xml

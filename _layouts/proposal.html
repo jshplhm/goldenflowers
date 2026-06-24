@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>{% if page.coupleNames %}Proposal · {{ page.coupleNames }}{% else %}Floral Proposal{% endif %} · Golden Flowers</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="{{ site.baseurl }}/assets/favicon-32.png">
+  <link rel="apple-touch-icon" href="{{ site.baseurl }}/assets/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    /* ── Proposal (self-contained; isolated from site style.css) ── */
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{background:#f2f0eb;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+    ::selection{background:#a6552d;color:#fff}
+    @keyframes gf-rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+    .gf-doc{font-family:'DM Sans',Helvetica,Arial,sans-serif;color:#15211a;line-height:1.7;background:#f2f0eb}
+    .gf-disp{font-family:'Cormorant Garamond',Georgia,serif}
+    .gf-mono{font-family:'DM Mono',monospace}
+
+    /* shared building blocks */
+    .gf-section{max-width:1180px;margin:0 auto;padding:96px 40px}
+    .gf-band{border-top:1px solid rgba(110,118,108,.18);border-bottom:1px solid rgba(110,118,108,.18)}
+    .gf-eyebrow{display:block;font-weight:600;font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:#a6552d;margin-bottom:18px}
+    .gf-eyebrow--dark{color:#e0a07e}
+    .gf-h2{font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-weight:400;font-size:clamp(2rem,3.6vw,2.9rem);line-height:1.12;color:#0f1910}
+    .gf-slot{border-radius:8px;border:1px solid rgba(110,118,108,.2);display:flex;align-items:center;justify-content:center;overflow:hidden;background:linear-gradient(135deg,#f5e7db,#ece4d6)}
+    .gf-slot--cool{background:linear-gradient(135deg,#eef0ea,#e4e7df)}
+    .gf-slot-label{font-family:'DM Mono',monospace;font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:#a98c6f}
+    .gf-slot--cool .gf-slot-label{color:#9aa295}
+
+    /* ── access gate ── */
+    .gf-gate{position:fixed;inset:0;z-index:1000;background:#132717;display:flex;align-items:center;justify-content:center;padding:24px}
+    .gf-gate__glow{position:absolute;inset:0;background:radial-gradient(120% 80% at 50% -10%, rgba(166,85,45,.16), transparent 60%);pointer-events:none}
+    .gf-gate__card{position:relative;width:100%;max-width:430px;background:#f6f4ef;border-radius:10px;padding:48px 44px 40px;box-shadow:0 30px 80px rgba(0,0,0,.4);text-align:center;animation:gf-rise .6s ease both}
+    .gf-gate__mark{display:block;font-weight:600;font-size:.7rem;letter-spacing:.34em;text-transform:uppercase;color:#a6552d;margin-bottom:30px}
+    .gf-gate__title{font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-weight:400;font-size:2rem;line-height:1.18;color:#15211a;margin-bottom:14px}
+    .gf-gate__sub{font-size:.9rem;color:#5b635a;line-height:1.6;margin-bottom:28px;max-width:30ch;margin-left:auto;margin-right:auto}
+    .gf-gate__form{display:flex;flex-direction:column;gap:10px}
+    .gf-gate__input{width:100%;height:52px;border:1px solid rgba(110,118,108,.45);border-radius:4px;background:#fff;padding:0 18px;font-family:'DM Sans',sans-serif;font-size:1rem;color:#15211a;text-align:center;letter-spacing:.04em;outline:none}
+    .gf-gate__input:focus{border-color:#a6552d;box-shadow:0 0 0 3px rgba(166,85,45,.14)}
+    .gf-gate__btn{width:100%;height:52px;border:none;border-radius:4px;background:#a6552d;color:#fff;font-family:'DM Sans',sans-serif;font-weight:600;font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;transition:background .2s}
+    .gf-gate__btn:hover{background:#90471f}
+    .gf-gate__error{font-size:.82rem;color:#a6552d;margin-top:14px}
+    .gf-gate__error[hidden]{display:none}
+    .gf-gate__fine{font-size:.72rem;color:#9a9388;margin-top:30px;letter-spacing:.02em}
+
+    /* ── top bar ── */
+    .gf-topbar{position:sticky;top:0;z-index:40;background:rgba(242,240,235,.85);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid rgba(110,118,108,.2)}
+    .gf-topbar__inner{max-width:1180px;margin:0 auto;padding:14px 40px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+    .gf-topbar__mark{font-weight:600;font-size:.72rem;letter-spacing:.26em;text-transform:uppercase}
+    .gf-topbar__right{display:flex;align-items:center;gap:22px}
+    .gf-topbar__meta{font-family:'DM Mono',monospace;font-size:.7rem;letter-spacing:.04em;color:#5b635a}
+    .gf-topbar__pdf{border:1px solid rgba(110,118,108,.45);background:transparent;border-radius:3px;padding:8px 16px;font-family:'DM Sans',sans-serif;font-weight:600;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:#15211a;cursor:pointer;transition:all .2s}
+    .gf-topbar__pdf:hover{border-color:#15211a;background:#15211a;color:#f2f0eb}
+
+    /* ── cover ── */
+    .gf-cover{padding:80px 40px 70px}
+    .gf-cover__head{text-align:center;margin-bottom:54px}
+    .gf-cover__eyebrow{display:block;font-weight:600;font-size:.72rem;letter-spacing:.3em;text-transform:uppercase;color:#a6552d;margin-bottom:26px}
+    .gf-cover__name{font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-weight:400;font-size:clamp(3rem,7vw,5.8rem);line-height:1.02;letter-spacing:-.01em;color:#0f1910;margin-bottom:24px}
+    .gf-cover__meta{display:inline-flex;align-items:center;gap:16px;font-size:.92rem;letter-spacing:.04em;color:#3b453c}
+    .gf-cover__dot{width:5px;height:5px;border-radius:50%;background:#a6552d}
+    .gf-cover__hero{aspect-ratio:21/9;border-radius:10px;border:1px solid rgba(110,118,108,.22)}
+
+    /* ── about ── */
+    .gf-about{display:grid;grid-template-columns:.9fr 1.1fr;gap:64px;align-items:center}
+    .gf-about__eyebrow{letter-spacing:.22em;margin-bottom:20px}
+    .gf-about__lead{font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-weight:400;font-size:clamp(1.6rem,2.8vw,2.25rem);line-height:1.32;color:#15211a;text-wrap:pretty}
+    .gf-about__img{aspect-ratio:4/5}
+
+    /* ── philosophy ── */
+    .gf-center{text-align:center;margin-bottom:56px}
+    .gf-center .gf-h2{max-width:20ch;margin:0 auto}
+    .gf-cards-3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+    .gf-card{background:#fcfcf9;border:1px solid rgba(110,118,108,.26);border-radius:8px;padding:38px 32px;box-shadow:0 1px 2px rgba(15,25,16,.04)}
+    .gf-card__num{font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-size:2rem;color:#a6552d;display:block;margin-bottom:18px}
+    .gf-card__head{font-weight:600;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:#0a441a;margin-bottom:14px}
+    .gf-card__body{font-size:.98rem;color:#3b453c;line-height:1.7}
+
+    /* ── dark feature bands ── */
+    .gf-dark{background:#132717;color:#f1f0ea}
+    .gf-vision{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center;padding-top:104px;padding-bottom:104px}
+    .gf-vision__statement{font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-weight:300;font-size:clamp(1.7rem,3vw,2.5rem);line-height:1.34;color:#f6f4ef;text-wrap:pretty}
+    .gf-facts{display:flex;flex-direction:column}
+    .gf-fact{display:flex;justify-content:space-between;align-items:baseline;padding:20px 0;border-bottom:1px solid rgba(255,255,255,.14)}
+    .gf-fact:last-child{border-bottom:none}
+    .gf-fact__label{font-family:'DM Mono',monospace;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:#9fb0a3}
+    .gf-fact__value{font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-size:1.5rem;color:#f6f4ef}
+    .gf-fact__value--accent{color:#e0a07e}
+
+    /* ── moodboard ── */
+    .gf-mood__head{margin-bottom:48px;max-width:54ch}
+    .gf-mood__head .gf-h2{margin-bottom:16px}
+    .gf-mood__intro{font-size:1.02rem;color:#3b453c;line-height:1.72}
+    .gf-mood__grid{display:grid;grid-template-columns:repeat(6,1fr);grid-auto-rows:130px;gap:16px}
+    .gf-mood__grid .gf-slot-label{font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:#9aa295}
+    .gf-mood__grid .gf-slot:not(.gf-slot--cool) .gf-slot-label{color:#b39377}
+    .gf-mood__hero{grid-column:span 4;grid-row:span 2}
+    .gf-mood__hero .gf-slot-label{font-size:.66rem;letter-spacing:.14em}
+    .gf-span2{grid-column:span 2}
+
+    /* ── color theory ── */
+    .gf-swatches{display:grid;grid-template-columns:repeat(6,1fr);gap:18px}
+    .gf-swatch__chip{aspect-ratio:1;border-radius:8px;border:1px solid rgba(0,0,0,.06)}
+    .gf-swatch__label{display:block;text-align:center;font-family:'DM Mono',monospace;font-size:.66rem;letter-spacing:.04em;color:#5b635a;margin-top:12px}
+
+    /* ── flower guide ── */
+    .gf-flowers{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+    .gf-flowers__imgs{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    .gf-flowers__imgs .gf-slot{aspect-ratio:3/4}
+    .gf-flowers__imgs .gf-slot:nth-child(2){margin-top:32px}
+    .gf-flowers__imgs .gf-slot-label{font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:#b39377}
+    .gf-flowers__imgs .gf-slot--cool .gf-slot-label{color:#9aa295}
+    .gf-flowers__head .gf-h2{font-size:clamp(2rem,3.4vw,2.7rem);line-height:1.14;margin-bottom:22px}
+    .gf-flowers__intro{font-size:1.02rem;color:#3b453c;line-height:1.72;margin-bottom:24px}
+    .gf-pills{display:flex;flex-wrap:wrap;gap:10px}
+    .gf-pill{font-size:.84rem;color:#15211a;background:#f5e7db;border:1px solid rgba(166,85,45,.2);border-radius:100px;padding:8px 16px}
+
+    /* ── pricing ── */
+    .gf-pricing__head{text-align:center;margin-bottom:18px}
+    .gf-pricing__head .gf-h2{color:#f6f4ef}
+    .gf-pricing__intro{text-align:center;font-size:.95rem;color:#b9c4ba;max-width:54ch;margin:0 auto 56px;line-height:1.7}
+    .gf-price-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+    .gf-price-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);border-radius:8px;padding:32px 28px}
+    .gf-price-card__head{font-weight:600;font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:#e0a07e;margin-bottom:24px}
+    .gf-price-list{display:flex;flex-direction:column}
+    .gf-row{display:flex;align-items:baseline;gap:8px;padding:11px 0;border-bottom:1px solid rgba(255,255,255,.1)}
+    .gf-row:last-child{border-bottom:none}
+    .gf-row__label{font-size:.92rem;color:#f1f0ea}
+    .gf-row__lead{flex:1;border-bottom:1px dotted rgba(255,255,255,.28);transform:translateY(-3px)}
+    .gf-row__price{font-family:'DM Mono',monospace;font-size:.82rem;color:#c9d2c9;white-space:nowrap}
+    .gf-row--note{flex-direction:column;align-items:stretch;gap:0}
+    .gf-row--note .gf-row__line{display:flex;align-items:baseline;gap:8px}
+    .gf-row__note{font-size:.78rem;color:#9fb0a3;line-height:1.5;margin-top:5px}
+    .gf-terms{margin-top:22px;background:rgba(224,160,126,.1);border:1px solid rgba(224,160,126,.28);border-radius:8px;padding:28px 32px;display:grid;grid-template-columns:1fr 1fr;gap:14px 48px}
+    .gf-terms__lead{font-size:.88rem;color:#e8ddd2;line-height:1.6;grid-column:1 / -1}
+    .gf-terms__lead strong{font-weight:600;color:#f0c9b2}
+    .gf-terms__col{font-size:.84rem;color:#b9c4ba;line-height:1.6}
+
+    /* ── next steps ── */
+    .gf-next{text-align:center;padding-top:104px;padding-bottom:104px}
+    .gf-next .gf-h2{font-size:clamp(2.2rem,4.4vw,3.4rem);line-height:1.08;max-width:18ch;margin:0 auto 26px}
+    .gf-next__body{font-size:1.05rem;color:#3b453c;line-height:1.72;max-width:52ch;margin:0 auto 38px}
+    .gf-next__actions{display:flex;flex-wrap:wrap;gap:14px;justify-content:center}
+    .gf-btn{display:inline-flex;align-items:center;height:52px;padding:0 32px;text-decoration:none;font-family:'DM Sans',sans-serif;font-weight:600;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;border-radius:3px;transition:all .2s}
+    .gf-btn--primary{background:#a6552d;color:#fff}
+    .gf-btn--primary:hover{background:#90471f}
+    .gf-btn--ghost{background:transparent;color:#15211a;border:1px solid rgba(110,118,108,.5)}
+    .gf-btn--ghost:hover{border-color:#15211a;background:#15211a;color:#f2f0eb}
+
+    /* ── footer ── */
+    .gf-footer{background:#0f1910;color:#9fb0a3}
+    .gf-footer__inner{max-width:1180px;margin:0 auto;padding:48px 40px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:18px}
+    .gf-footer__mark{font-weight:600;font-size:.72rem;letter-spacing:.26em;text-transform:uppercase;color:#f1f0ea}
+    .gf-footer__meta{font-family:'DM Mono',monospace;font-size:.72rem;letter-spacing:.04em}
+    .gf-footer__site{font-size:.78rem}
+
+    /* ── responsive (site breakpoints: 1024 / 640) ── */
+    @media (max-width:1024px){
+      .gf-section{padding:72px 28px}
+      .gf-cover{padding:64px 28px 56px}
+      .gf-about,.gf-vision,.gf-flowers{grid-template-columns:1fr;gap:40px}
+      .gf-vision,.gf-next{padding-top:80px;padding-bottom:80px}
+      .gf-mood__grid{grid-template-columns:repeat(4,1fr)}
+      .gf-mood__hero{grid-column:span 4}
+    }
+    @media (max-width:640px){
+      .gf-section{padding:60px 20px}
+      .gf-cover{padding:52px 20px 44px}
+      .gf-topbar__inner,.gf-footer__inner{padding-left:20px;padding-right:20px}
+      .gf-topbar__meta{display:none}
+      .gf-cards-3,.gf-price-cards{grid-template-columns:1fr}
+      .gf-swatches{grid-template-columns:repeat(3,1fr)}
+      .gf-mood__grid{grid-template-columns:repeat(2,1fr)}
+      .gf-mood__hero{grid-column:span 2}
+      .gf-terms{grid-template-columns:1fr}
+      .gf-gate__card{padding:40px 26px 34px}
+    }
+
+    /* ── print (Save PDF) ── */
+    @media print{
+      .gf-noprint{display:none !important}
+      .gf-gate{display:none !important}
+      body,.gf-doc{background:#fff !important}
+      .gf-section,.gf-band,.gf-dark{break-inside:avoid}
+      @page{margin:14mm}
+    }
+  </style>
+</head>
+<body>
+<div class="gf-doc">
+
+  {% comment %} ════════ ACCESS GATE ════════ {% endcomment %}
+  <div class="gf-gate gf-noprint" id="gf-gate" data-access-code="{{ page.accessCode | default: 'golden' }}">
+    <div class="gf-gate__glow"></div>
+    <div class="gf-gate__card">
+      <span class="gf-gate__mark">Golden&nbsp;Flowers</span>
+      <h1 class="gf-gate__title">A proposal prepared <br>for {{ page.coupleNames }}</h1>
+      <p class="gf-gate__sub">This page is private. Enter the access code we shared with you to view it.</p>
+      <form class="gf-gate__form" id="gf-gate-form">
+        <input type="password" class="gf-gate__input" id="gf-gate-input" placeholder="Access code" aria-label="Access code" autocomplete="off">
+        <button type="submit" class="gf-gate__btn">Enter</button>
+      </form>
+      <p class="gf-gate__error" id="gf-gate-error" hidden>That code didn't match. Please try again.</p>
+      <p class="gf-gate__fine">Prepared exclusively for you · please don't share</p>
+    </div>
+  </div>
+
+  {% comment %} ════════ TOP BAR ════════ {% endcomment %}
+  <div class="gf-topbar gf-noprint">
+    <div class="gf-topbar__inner">
+      <span class="gf-topbar__mark">Golden Flowers</span>
+      <div class="gf-topbar__right">
+        <span class="gf-topbar__meta">Proposal · {{ page.coupleNames }}</span>
+        <button type="button" class="gf-topbar__pdf" onclick="window.print()">Save PDF</button>
+      </div>
+    </div>
+  </div>
+
+  {% comment %} ════════ COVER ════════ {% endcomment %}
+  <section class="gf-section gf-cover">
+    <div class="gf-cover__head">
+      <span class="gf-cover__eyebrow">A Floral Proposal</span>
+      <h1 class="gf-cover__name">{{ page.coupleNames }}</h1>
+      <div class="gf-cover__meta">
+        <span>{{ page.venue }}</span>
+        <span class="gf-cover__dot"></span>
+        <span>{{ page.weddingDate }}</span>
+      </div>
+    </div>
+    <div class="gf-slot gf-cover__hero">
+      <span class="gf-slot-label">Signature image · couple or florals</span>
+    </div>
+  </section>
+
+  {% comment %} ════════ ABOUT GOLDEN ════════ {% endcomment %}
+  <section class="gf-band" style="background:#fbfaf6">
+    <div class="gf-section gf-about">
+      <div>
+        <span class="gf-eyebrow gf-about__eyebrow">About Golden</span>
+        <p class="gf-about__lead">We're floral designers dedicated to creating artful arrangements in line with nature's cadence. By weaving local and seasonal flowers into our work, we celebrate each couple in a way that carries the unique beauty of every passing season.</p>
+      </div>
+      <div class="gf-slot gf-slot--cool gf-about__img">
+        <span class="gf-slot-label">Portrait · studio or Brittany</span>
+      </div>
+    </div>
+  </section>
+
+  {% comment %} ════════ PHILOSOPHY ════════ {% endcomment %}
+  <section class="gf-section">
+    <div class="gf-center">
+      <span class="gf-eyebrow">Our Floral Philosophy</span>
+      <h2 class="gf-h2">Three commitments behind every wedding</h2>
+    </div>
+    <div class="gf-cards-3">
+      <div class="gf-card">
+        <span class="gf-card__num">01</span>
+        <h3 class="gf-card__head">As designers</h3>
+        <p class="gf-card__body">We prioritize style, color theory, and the details that make an arrangement feel considered rather than assembled.</p>
+      </div>
+      <div class="gf-card">
+        <span class="gf-card__num">02</span>
+        <h3 class="gf-card__head">As growers</h3>
+        <p class="gf-card__body">We prioritize regenerative farming — much of what we design with is grown by our own hands, foam-free and in season.</p>
+      </div>
+      <div class="gf-card">
+        <span class="gf-card__num">03</span>
+        <h3 class="gf-card__head">As a vendor</h3>
+        <p class="gf-card__body">We prioritize excellence and professionalism — clear communication, reliable timelines, and a seamless wedding day.</p>
+      </div>
+    </div>
+  </section>
+
+  {% comment %} ════════ YOUR WEDDING (dark) ════════ {% endcomment %}
+  <section class="gf-dark">
+    <div class="gf-section gf-vision">
+      <div>
+        <span class="gf-eyebrow gf-eyebrow--dark">Your Wedding with Golden</span>
+        <p class="gf-vision__statement">{{ page.visionStatement }}</p>
+      </div>
+      <div class="gf-facts">
+        <div class="gf-fact">
+          <span class="gf-fact__label">Couple</span>
+          <span class="gf-fact__value">{{ page.coupleNames }}</span>
+        </div>
+        <div class="gf-fact">
+          <span class="gf-fact__label">Venue</span>
+          <span class="gf-fact__value">{{ page.venue }}</span>
+        </div>
+        <div class="gf-fact">
+          <span class="gf-fact__label">Date</span>
+          <span class="gf-fact__value">{{ page.weddingDate }}</span>
+        </div>
+        <div class="gf-fact">
+          <span class="gf-fact__label">Reserved</span>
+          <span class="gf-fact__value gf-fact__value--accent">One wedding this day</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {% comment %} ════════ MOODBOARD ════════ {% endcomment %}
+  <section class="gf-section">
+    <div class="gf-mood__head">
+      <span class="gf-eyebrow">The Vision</span>
+      <h2 class="gf-h2">A wild, romantic garden</h2>
+      <p class="gf-mood__intro">This curated direction balances high-impact warmth with delicate, airy neutrals — designed to feel both grounded and ethereal, abundant yet intentional.</p>
+    </div>
+    <div class="gf-mood__grid">
+      <div class="gf-slot gf-mood__hero"><span class="gf-slot-label">Hero arrangement</span></div>
+      <div class="gf-slot gf-slot--cool gf-span2"><span class="gf-slot-label">Detail</span></div>
+      <div class="gf-slot gf-span2"><span class="gf-slot-label">Texture</span></div>
+      <div class="gf-slot gf-slot--cool gf-span2"><span class="gf-slot-label">Ceremony</span></div>
+      <div class="gf-slot gf-span2"><span class="gf-slot-label">Tablescape</span></div>
+      <div class="gf-slot gf-slot--cool gf-span2"><span class="gf-slot-label">Bouquet</span></div>
+    </div>
+  </section>
+
+  {% comment %} ════════ COLOR THEORY ════════ {% endcomment %}
+  <section class="gf-band" style="background:#fbfaf6">
+    <div class="gf-section">
+      <div class="gf-center" style="max-width:56ch;margin-left:auto;margin-right:auto">
+        <span class="gf-eyebrow">Color Theory</span>
+        <h2 class="gf-h2">A palette of warmth &amp; air</h2>
+      </div>
+      <div class="gf-swatches">
+        {% if page.swatches %}
+          {% for s in page.swatches %}
+            <div class="gf-swatch"><div class="gf-swatch__chip" style="background:{{ s.hex }}"></div><span class="gf-swatch__label">{{ s.name }}</span></div>
+          {% endfor %}
+        {% else %}
+          <div class="gf-swatch"><div class="gf-swatch__chip" style="background:#b5552f"></div><span class="gf-swatch__label">Terracotta</span></div>
+          <div class="gf-swatch"><div class="gf-swatch__chip" style="background:#cd8a80"></div><span class="gf-swatch__label">Dusty Rose</span></div>
+          <div class="gf-swatch"><div class="gf-swatch__chip" style="background:#e7b692"></div><span class="gf-swatch__label">Soft Peach</span></div>
+          <div class="gf-swatch"><div class="gf-swatch__chip" style="background:#f0e6d5"></div><span class="gf-swatch__label">Antique Cream</span></div>
+          <div class="gf-swatch"><div class="gf-swatch__chip" style="background:#9aa886"></div><span class="gf-swatch__label">Garden Sage</span></div>
+          <div class="gf-swatch"><div class="gf-swatch__chip" style="background:#6e2c38"></div><span class="gf-swatch__label">Deep Burgundy</span></div>
+        {% endif %}
+      </div>
+    </div>
+  </section>
+
+  {% comment %} ════════ FLOWER GUIDE ════════ {% endcomment %}
+  <section class="gf-section gf-flowers">
+    <div class="gf-flowers__imgs">
+      <div class="gf-slot"><span class="gf-slot-label">Bloom</span></div>
+      <div class="gf-slot gf-slot--cool"><span class="gf-slot-label">Bloom</span></div>
+    </div>
+    <div class="gf-flowers__head">
+      <span class="gf-eyebrow">Flower Guide</span>
+      <h2 class="gf-h2">The blooms we have in mind</h2>
+      <p class="gf-flowers__intro">A working palette of seasonal stems, refined together at your design consultation as availability is confirmed closer to the date.</p>
+      <div class="gf-pills">
+        {% if page.flowers %}
+          {% for f in page.flowers %}<span class="gf-pill">{{ f }}</span>{% endfor %}
+        {% else %}
+          <span class="gf-pill">Garden Roses</span>
+          <span class="gf-pill">Ranunculus</span>
+          <span class="gf-pill">Dahlias</span>
+          <span class="gf-pill">Sweet Peas</span>
+          <span class="gf-pill">Delphinium</span>
+          <span class="gf-pill">Trailing Greenery</span>
+        {% endif %}
+      </div>
+    </div>
+  </section>
+
+  {% comment %} ════════ PRICING (dark) ════════ {% endcomment %}
+  <section class="gf-dark">
+    <div class="gf-section">
+      <div class="gf-pricing__head">
+        <span class="gf-eyebrow gf-eyebrow--dark">Our Pricing</span>
+        <h2 class="gf-h2">Full-service investment</h2>
+      </div>
+      <p class="gf-pricing__intro">A guide to the elements we'd bring to your day. Your final proposal is tailored to the designs you choose together at consultation.</p>
+
+      <div class="gf-price-cards">
+        <div class="gf-price-card">
+          <h3 class="gf-price-card__head">Personal Flowers</h3>
+          <div class="gf-price-list">
+            <div class="gf-row"><span class="gf-row__label">Bridal bouquet</span><span class="gf-row__lead"></span><span class="gf-row__price">$100–500</span></div>
+            <div class="gf-row"><span class="gf-row__label">Bridesmaid bouquet</span><span class="gf-row__lead"></span><span class="gf-row__price">$125</span></div>
+            <div class="gf-row"><span class="gf-row__label">Boutonnière</span><span class="gf-row__lead"></span><span class="gf-row__price">$65</span></div>
+            <div class="gf-row"><span class="gf-row__label">Corsage</span><span class="gf-row__lead"></span><span class="gf-row__price">$100</span></div>
+            <div class="gf-row"><span class="gf-row__label">Flower girl petals</span><span class="gf-row__lead"></span><span class="gf-row__price">$50</span></div>
+          </div>
+        </div>
+        <div class="gf-price-card">
+          <h3 class="gf-price-card__head">Ceremony Flowers</h3>
+          <div class="gf-price-list">
+            <div class="gf-row"><span class="gf-row__label">Arch installation</span><span class="gf-row__lead"></span><span class="gf-row__price">$1,000–6,000</span></div>
+            <div class="gf-row"><span class="gf-row__label">Statement install</span><span class="gf-row__lead"></span><span class="gf-row__price">$3,000–5,000</span></div>
+            <div class="gf-row"><span class="gf-row__label">Aisle markers</span><span class="gf-row__lead"></span><span class="gf-row__price">$325</span></div>
+            <div class="gf-row"><span class="gf-row__label">Welcome arrangement</span><span class="gf-row__lead"></span><span class="gf-row__price">$150–300</span></div>
+          </div>
+        </div>
+        <div class="gf-price-card">
+          <h3 class="gf-price-card__head">Reception Flowers</h3>
+          <div class="gf-price-list">
+            <div class="gf-row gf-row--note">
+              <div class="gf-row__line"><span class="gf-row__label">Low &amp; lush centerpiece</span><span class="gf-row__lead"></span><span class="gf-row__price">$300 / table</span></div>
+              <p class="gf-row__note">Lush but low to keep sightlines open, with height for depth. Best for round tables.</p>
+            </div>
+            <div class="gf-row gf-row--note">
+              <div class="gf-row__line"><span class="gf-row__label">Bud vases</span><span class="gf-row__lead"></span><span class="gf-row__price">$25–35 each</span></div>
+              <p class="gf-row__note">Lining the table, spaced 6–12 inches apart. Best for long, rectangular tables.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="gf-terms">
+        <p class="gf-terms__lead"><strong>Full-service weddings over $8,000</strong> include delivery, setup, repurposing of florals after the ceremony, and end-of-night strike — handled entirely by our team.</p>
+        <p class="gf-terms__col">For weddings under $8,000, these are itemized: delivery $200, repurposing $200, strike $600.</p>
+        <p class="gf-terms__col">Sales tax is added to the total cost of goods. Every figure here is a starting guide, refined in your proposal.</p>
+      </div>
+    </div>
+  </section>
+
+  {% comment %} ════════ NEXT STEPS ════════ {% endcomment %}
+  <section class="gf-section gf-next">
+    <span class="gf-eyebrow">Next Steps</span>
+    <h2 class="gf-h2">Shall we hold your date?</h2>
+    <p class="gf-next__body">We take a single wedding per day, so dates are reserved with a signed agreement and deposit. Whenever you're ready, we'll send the formal proposal and contract to make it official.</p>
+    <div class="gf-next__actions">
+      <a href="mailto:hello@goldenflorals.com?subject=Reserving our date · {{ page.coupleNames | uri_escape }}" class="gf-btn gf-btn--primary">Reserve our date</a>
+      <a href="mailto:hello@goldenflorals.com?subject=A question about our proposal · {{ page.coupleNames | uri_escape }}" class="gf-btn gf-btn--ghost">Ask a question</a>
+    </div>
+  </section>
+
+  {% comment %} ════════ FOOTER ════════ {% endcomment %}
+  <footer class="gf-footer">
+    <div class="gf-footer__inner">
+      <span class="gf-footer__mark">Golden Flowers</span>
+      <span class="gf-footer__meta">Prepared for {{ page.coupleNames }} · {{ page.weddingDate }}</span>
+      <span class="gf-footer__site">goldenflorals.com</span>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+// ── Access gate (prototype-grade, client-side soft gate) ──────────────
+(function () {
+  var KEY = 'gf-proposal-unlocked';
+  var gate = document.getElementById('gf-gate');
+  if (!gate) return;
+  var form = document.getElementById('gf-gate-form');
+  var input = document.getElementById('gf-gate-input');
+  var error = document.getElementById('gf-gate-error');
+  var code = (gate.getAttribute('data-access-code') || '').trim().toLowerCase();
+
+  function unlock() {
+    try { sessionStorage.setItem(KEY, '1'); } catch (e) {}
+    gate.style.display = 'none';
+    document.documentElement.style.overflow = '';
+  }
+
+  // Skip the gate if already unlocked this session.
+  var already = false;
+  try { already = sessionStorage.getItem(KEY) === '1'; } catch (e) {}
+  if (already) {
+    unlock();
+  } else {
+    // Lock scroll behind the gate until unlocked.
+    document.documentElement.style.overflow = 'hidden';
+    setTimeout(function () { input.focus(); }, 80);
+  }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (input.value.trim().toLowerCase() === code) {
+      unlock();
+    } else {
+      error.hidden = false;
+    }
+  });
+  // Clear the error as soon as the field is edited.
+  input.addEventListener('input', function () { error.hidden = true; });
+})();
+</script>
+</body>
+</html>
