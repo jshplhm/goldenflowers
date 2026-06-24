@@ -134,22 +134,45 @@ content:
       - name: zelle
         label: Zelle email/phone (optional)
         type: string
+      - name: paymentNote
+        label: Payment note (how the retainer & balance are paid)
+        description: 'Shown under the Reserve buttons. Leave default to steer couples to fee-free bank transfer.'
+        type: text
+        default: 'Your retainer and balance are invoiced through QuickBooks — pay by bank transfer, check, Venmo, or Zelle at no added fee; card payments include a 3% processing fee.'
 
       - name: estimateTotal
         label: Estimated investment (range, shown as-is)
-        description: 'e.g. $9,500–11,000 — leave blank to hide the estimate section'
+        description: 'e.g. $8,500–12,000 — leave blank to hide the estimate section'
         type: string
-      - name: estimate
-        label: Estimate line items
+      - name: taxNote
+        label: Tax note (shown under the estimate total)
+        type: string
+        default: 'Sales tax is added to the florals at the local rate on your final invoice.'
+      - name: estimateGroups
+        label: Estimate sections (e.g. Personal / Ceremony / Reception)
         type: object
         list: true
         fields:
-          - name: item
-            label: Item
+          - name: title
+            label: Section title
             type: string
-          - name: price
-            label: Price
+          - name: subtotal
+            label: Section subtotal (range)
             type: string
+          - name: items
+            label: Line items
+            type: object
+            list: true
+            fields:
+              - name: item
+                label: Item
+                type: string
+              - name: detail
+                label: Detail (count × unit price, or a short descriptor)
+                type: string
+              - name: amount
+                label: Line investment (range)
+                type: string
 
       - name: heroImage
         label: Cover hero image

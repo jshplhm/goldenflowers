@@ -27,21 +27,35 @@ note: >
 
 # Reservation / deposit
 depositAmount: "$1,500"
-# depositLink: "https://link.quickbooks.com/..."   # QBO deposit invoice (Reserve button → here)
+# # depositLink: "https://link.quickbooks.com/..."   # QBO deposit invoice (Reserve button → here)
 venmo: "@golden-flowers"
 zelle: "brittany@goldenflorals.com"
+paymentNote: "Your retainer and balance are invoiced through QuickBooks — pay by bank transfer, check, Venmo, or Zelle at no added fee; card payments include a 3% processing fee."
 
-# Per-couple estimate (optional; omit to hide the section)
-estimateTotal: "$9,500–11,000"
-estimate:
-  - { item: "Bridal bouquet", price: "$450" }
-  - { item: "Bridesmaid bouquets (4)", price: "$500" }
-  - { item: "Boutonnières & corsages", price: "$560" }
-  - { item: "Ceremony arch installation", price: "$3,500" }
-  - { item: "Aisle markers & welcome arrangement", price: "$575" }
-  - { item: "Reception centerpieces (12 tables)", price: "$3,600" }
-  - { item: "Bud vases & accent stems", price: "$400" }
-  - { item: "Delivery, setup, repurposing & strike", price: "Included" }
+# ── Per-couple estimate ──────────────────────────────────────────
+# Grouped, with per-line ranges + section subtotals. Omit to hide the section.
+estimateTotal: "$8,500–12,000"
+taxNote: "Sales tax is added to the florals at the local rate on your final invoice."
+estimateGroups:
+  - title: "Personal Flowers"
+    subtotal: "$1,600–2,210"
+    items:
+      - { item: "Bridal bouquet", detail: "garden-gathered, loosely composed", amount: "$450–650" }
+      - { item: "Bridesmaid bouquets", detail: "4 × $125–175 each", amount: "$500–700" }
+      - { item: "Boutonnières & corsages", detail: "6 boutonnières · 4 corsages", amount: "$560–740" }
+      - { item: "Flower girl petals", detail: "2 cones", amount: "$90–120" }
+  - title: "Ceremony Flowers"
+    subtotal: "$3,460–5,225"
+    items:
+      - { item: "Arch installation", detail: "asymmetric, focal corner emphasis", amount: "$3,000–4,500" }
+      - { item: "Aisle markers", detail: "8 markers", amount: "$260–400" }
+      - { item: "Welcome arrangement", detail: "1 statement piece at the entrance", amount: "$200–325" }
+  - title: "Reception Flowers"
+    subtotal: "$3,500–4,650"
+    items:
+      - { item: "Low & lush centerpieces", detail: "10 round tables · $275–350 each", amount: "$2,750–3,500" }
+      - { item: "Head table garland", detail: "≈12 ft, loose and trailing", amount: "$450–700" }
+      - { item: "Bud vases & accent stems", detail: "scattered along the longer tables", amount: "$300–450" }
 
 # Imagery (drop in the couple's real photos; omit for labeled placeholders)
 heroImage: "https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/2b98245c-1230-4e50-847e-90c7d13f793b/Lake%2BTahoe%2BFloral%2BInstallation.jpeg?format=2500w"

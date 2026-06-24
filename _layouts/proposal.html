@@ -153,17 +153,25 @@
     .gf-terms__col{font-size:.84rem;color:#b9c4ba;line-height:1.6}
 
     /* ── per-couple estimate ── */
-    .gf-est__inner{max-width:760px;margin:0 auto}
-    .gf-est__head{text-align:center;margin-bottom:44px}
-    .gf-est-list{display:flex;flex-direction:column;margin-bottom:30px}
-    .gf-est-row{display:flex;align-items:baseline;gap:10px;padding:14px 0;border-bottom:1px solid rgba(110,118,108,.2)}
+    .gf-est__inner{max-width:780px;margin:0 auto}
+    .gf-est__head{text-align:center;margin-bottom:40px}
+    .gf-est__sub{font-size:1rem;color:#3b453c;line-height:1.7;max-width:58ch;margin:14px auto 0}
+    .gf-est-group{margin-bottom:30px}
+    .gf-est-group__head{display:flex;justify-content:space-between;align-items:baseline;gap:16px;border-bottom:1px solid rgba(110,118,108,.32);padding-bottom:10px;margin-bottom:4px}
+    .gf-est-group__title{font-weight:600;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:#a6552d}
+    .gf-est-group__sub{font-family:'DM Mono',monospace;font-size:.78rem;color:#5b635a;white-space:nowrap}
+    .gf-est-row{display:flex;align-items:baseline;gap:12px;padding:13px 0;border-bottom:1px solid rgba(110,118,108,.16)}
+    .gf-est-row:last-child{border-bottom:none}
+    .gf-est-row__main{display:flex;flex-direction:column;gap:3px;min-width:0}
     .gf-est-row__label{font-size:1rem;color:#15211a}
-    .gf-est-row__lead{flex:1;border-bottom:1px dotted rgba(110,118,108,.45);transform:translateY(-3px)}
+    .gf-est-row__detail{font-size:.8rem;color:#5b635a;line-height:1.5}
+    .gf-est-row__lead{flex:1;border-bottom:1px dotted rgba(110,118,108,.42);transform:translateY(-3px);min-width:20px}
     .gf-est-row__price{font-family:'DM Mono',monospace;font-size:.9rem;color:#3b453c;white-space:nowrap}
-    .gf-est-total{display:flex;justify-content:space-between;align-items:baseline;padding:20px 0;border-top:2px solid #15211a;gap:16px}
+    .gf-est-total{display:flex;justify-content:space-between;align-items:baseline;padding:22px 0 0;border-top:2px solid #15211a;margin-top:8px;gap:16px}
     .gf-est-total__label{font-weight:600;font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:#15211a}
-    .gf-est-total__val{font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-size:1.7rem;color:#a6552d}
-    .gf-est__fine{font-size:.84rem;color:#5b635a;line-height:1.6;margin-top:18px;text-align:center}
+    .gf-est-total__val{font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-size:1.8rem;color:#a6552d;white-space:nowrap}
+    .gf-est-notes{margin-top:26px;display:flex;flex-direction:column;gap:8px;text-align:center}
+    .gf-est-notes p{font-size:.82rem;color:#5b635a;line-height:1.55}
 
     /* ── reserve / hold ── */
     .gf-reserve{text-align:center;padding-top:104px;padding-bottom:104px}
@@ -482,26 +490,59 @@
     </div>
   </section>
 
-  {% if page.estimate %}
+  {% if page.estimateGroups or page.estimate %}
   {% comment %} ════════ YOUR ESTIMATE (per-couple) ════════ {% endcomment %}
   <section class="gf-band" style="background:#fbfaf6">
     <div class="gf-section gf-est__inner">
       <div class="gf-est__head">
         <span class="gf-eyebrow">Your Estimate</span>
         <h2 class="gf-h2">Tailored to your day</h2>
+        <p class="gf-est__sub">A working estimate built around what we discussed. Ranges reflect final stem counts, varieties, and sizing — refined together at your design consultation.</p>
       </div>
-      <div class="gf-est-list">
-        {% for e in page.estimate %}
-          <div class="gf-est-row"><span class="gf-est-row__label">{{ e.item }}</span><span class="gf-est-row__lead"></span><span class="gf-est-row__price">{{ e.price }}</span></div>
+
+      {% if page.estimateGroups %}
+        {% for g in page.estimateGroups %}
+        <div class="gf-est-group">
+          <div class="gf-est-group__head">
+            <span class="gf-est-group__title">{{ g.title }}</span>
+            {% if g.subtotal %}<span class="gf-est-group__sub">{{ g.subtotal }}</span>{% endif %}
+          </div>
+          {% for it in g.items %}
+          <div class="gf-est-row">
+            <div class="gf-est-row__main">
+              <span class="gf-est-row__label">{{ it.item }}</span>
+              {% if it.detail %}<span class="gf-est-row__detail">{{ it.detail }}</span>{% endif %}
+            </div>
+            <span class="gf-est-row__lead"></span>
+            <span class="gf-est-row__price">{{ it.amount }}</span>
+          </div>
+          {% endfor %}
+        </div>
         {% endfor %}
-      </div>
+      {% else %}
+        <div class="gf-est-group">
+          {% for e in page.estimate %}
+          <div class="gf-est-row">
+            <div class="gf-est-row__main"><span class="gf-est-row__label">{{ e.item }}</span></div>
+            <span class="gf-est-row__lead"></span>
+            <span class="gf-est-row__price">{{ e.price }}</span>
+          </div>
+          {% endfor %}
+        </div>
+      {% endif %}
+
       {% if page.estimateTotal %}
       <div class="gf-est-total">
         <span class="gf-est-total__label">Estimated investment</span>
         <span class="gf-est-total__val">{{ page.estimateTotal }}</span>
       </div>
       {% endif %}
-      <p class="gf-est__fine">A working estimate, refined together at your design consultation. Final pricing is confirmed in your contract; sales tax is added to the total cost of goods.</p>
+
+      <div class="gf-est-notes">
+        <p>Full-service — delivery, setup, repurposing of florals after the ceremony, and end-of-night strike are included.</p>
+        <p>{{ page.taxNote | default: "Sales tax is added to the florals at the local rate on your final invoice." }}</p>
+        {% if page.paymentNote %}<p>{{ page.paymentNote }}</p>{% endif %}
+      </div>
     </div>
   </section>
   {% endif %}
@@ -534,8 +575,9 @@
       <a href="mailto:brittany@goldenflorals.com?subject=A question about our proposal · {{ page.coupleNames | uri_escape }}" class="gf-btn gf-btn--ghost">Ask a question</a>
     </div>
 
+    {% if page.paymentNote %}<p class="gf-reserve__fine">{{ page.paymentNote }}</p>{% endif %}
     {% if page.venmo or page.zelle %}
-      <p class="gf-reserve__fine">Prefer to send it directly?{% if page.venmo %} Venmo <strong>{{ page.venmo }}</strong>{% endif %}{% if page.venmo and page.zelle %} ·{% endif %}{% if page.zelle %} Zelle <strong>{{ page.zelle }}</strong>{% endif %}</p>
+      <p class="gf-reserve__fine">{% if page.venmo %}Venmo <strong>{{ page.venmo }}</strong>{% endif %}{% if page.venmo and page.zelle %} · {% endif %}{% if page.zelle %}Zelle <strong>{{ page.zelle }}</strong>{% endif %}</p>
     {% endif %}
   </section>
 
