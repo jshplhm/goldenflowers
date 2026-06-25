@@ -152,26 +152,25 @@
     .gf-terms__lead strong{font-weight:600;color:#f0c9b2}
     .gf-terms__col{font-size:.84rem;color:#b9c4ba;line-height:1.6}
 
-    /* ── per-couple estimate ── */
-    .gf-est__inner{max-width:780px;margin:0 auto}
-    .gf-est__head{text-align:center;margin-bottom:40px}
-    .gf-est__sub{font-size:1rem;color:#3b453c;line-height:1.7;max-width:58ch;margin:14px auto 0}
-    .gf-est-group{margin-bottom:30px}
-    .gf-est-group__head{display:flex;justify-content:space-between;align-items:baseline;gap:16px;border-bottom:1px solid rgba(110,118,108,.32);padding-bottom:10px;margin-bottom:4px}
-    .gf-est-group__title{font-weight:600;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:#a6552d}
-    .gf-est-group__sub{font-family:'DM Mono',monospace;font-size:.78rem;color:#5b635a;white-space:nowrap}
-    .gf-est-row{display:flex;align-items:baseline;gap:12px;padding:13px 0;border-bottom:1px solid rgba(110,118,108,.16)}
+    /* ── per-couple estimate (compact) ── */
+    .gf-est__inner{max-width:680px;margin:0 auto}
+    .gf-est__head{text-align:center;margin-bottom:26px}
+    .gf-est__sub{font-size:.95rem;color:#3b453c;line-height:1.6;max-width:50ch;margin:10px auto 0}
+    .gf-est-group{margin-top:20px}
+    .gf-est-group:first-of-type{margin-top:0}
+    .gf-est-group__head{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding-bottom:7px;border-bottom:1px solid rgba(110,118,108,.3)}
+    .gf-est-group__title{font-weight:600;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:#a6552d}
+    .gf-est-group__sub{font-family:'DM Mono',monospace;font-size:.74rem;color:#5b635a;white-space:nowrap}
+    .gf-est-row{display:flex;align-items:baseline;gap:10px;padding:8px 0;border-bottom:1px solid rgba(110,118,108,.12)}
     .gf-est-row:last-child{border-bottom:none}
-    .gf-est-row__main{display:flex;flex-direction:column;gap:3px;min-width:0}
-    .gf-est-row__label{font-size:1rem;color:#15211a}
-    .gf-est-row__detail{font-size:.8rem;color:#5b635a;line-height:1.5}
-    .gf-est-row__lead{flex:1;border-bottom:1px dotted rgba(110,118,108,.42);transform:translateY(-3px);min-width:20px}
-    .gf-est-row__price{font-family:'DM Mono',monospace;font-size:.9rem;color:#3b453c;white-space:nowrap}
-    .gf-est-total{display:flex;justify-content:space-between;align-items:baseline;padding:22px 0 0;border-top:2px solid #15211a;margin-top:8px;gap:16px}
-    .gf-est-total__label{font-weight:600;font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:#15211a}
-    .gf-est-total__val{font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-size:1.8rem;color:#a6552d;white-space:nowrap}
-    .gf-est-notes{margin-top:26px;display:flex;flex-direction:column;gap:8px;text-align:center}
-    .gf-est-notes p{font-size:.82rem;color:#5b635a;line-height:1.55}
+    .gf-est-row__label{font-size:.95rem;color:#15211a}
+    .gf-est-row__detail{font-size:.78rem;color:#9a9388}
+    .gf-est-row__lead{flex:1;border-bottom:1px dotted rgba(110,118,108,.4);transform:translateY(-3px);min-width:18px}
+    .gf-est-row__price{font-family:'DM Mono',monospace;font-size:.84rem;color:#3b453c;white-space:nowrap}
+    .gf-est-total{display:flex;justify-content:space-between;align-items:baseline;padding-top:16px;margin-top:14px;border-top:2px solid #15211a;gap:16px}
+    .gf-est-total__label{font-weight:600;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:#15211a}
+    .gf-est-total__val{font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-size:1.7rem;color:#a6552d;white-space:nowrap}
+    .gf-est-note{margin:18px auto 0;font-size:.78rem;color:#5b635a;line-height:1.55;text-align:center;max-width:62ch}
 
     /* ── reserve / hold ── */
     .gf-reserve{text-align:center;padding-top:104px;padding-bottom:104px}
@@ -493,11 +492,11 @@
   {% if page.estimateGroups or page.estimate %}
   {% comment %} ════════ YOUR ESTIMATE (per-couple) ════════ {% endcomment %}
   <section class="gf-band" style="background:#fbfaf6">
-    <div class="gf-section gf-est__inner">
+    <div class="gf-section gf-est__inner" style="padding-top:74px;padding-bottom:74px">
       <div class="gf-est__head">
         <span class="gf-eyebrow">Your Estimate</span>
         <h2 class="gf-h2">Tailored to your day</h2>
-        <p class="gf-est__sub">A working estimate built around what we discussed. Ranges reflect final stem counts, varieties, and sizing — refined together at your design consultation.</p>
+        <p class="gf-est__sub">A working estimate built around what we discussed — ranges firm up at your design consultation.</p>
       </div>
 
       {% if page.estimateGroups %}
@@ -509,10 +508,7 @@
           </div>
           {% for it in g.items %}
           <div class="gf-est-row">
-            <div class="gf-est-row__main">
-              <span class="gf-est-row__label">{{ it.item }}</span>
-              {% if it.detail %}<span class="gf-est-row__detail">{{ it.detail }}</span>{% endif %}
-            </div>
+            <span class="gf-est-row__label">{{ it.item }}{% if it.detail %} <span class="gf-est-row__detail">{{ it.detail }}</span>{% endif %}</span>
             <span class="gf-est-row__lead"></span>
             <span class="gf-est-row__price">{{ it.amount }}</span>
           </div>
@@ -523,7 +519,7 @@
         <div class="gf-est-group">
           {% for e in page.estimate %}
           <div class="gf-est-row">
-            <div class="gf-est-row__main"><span class="gf-est-row__label">{{ e.item }}</span></div>
+            <span class="gf-est-row__label">{{ e.item }}</span>
             <span class="gf-est-row__lead"></span>
             <span class="gf-est-row__price">{{ e.price }}</span>
           </div>
@@ -538,11 +534,7 @@
       </div>
       {% endif %}
 
-      <div class="gf-est-notes">
-        <p>Full-service — delivery, setup, repurposing of florals after the ceremony, and end-of-night strike are included.</p>
-        <p>{{ page.taxNote | default: "Sales tax is added to the florals at the local rate on your final invoice." }}</p>
-        {% if page.paymentNote %}<p>{{ page.paymentNote }}</p>{% endif %}
-      </div>
+      <p class="gf-est-note">Full-service delivery, setup, repurposing &amp; strike included. {{ page.taxNote | default: "Sales tax added at the local rate on your final invoice." }}</p>
     </div>
   </section>
   {% endif %}
