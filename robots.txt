@@ -5,7 +5,7 @@ sitemap: false
 User-agent: *
 Allow: /
 
-# Private client proposals — keep out of search engines.
+# Private client proposals - keep out of search engines.
 Disallow: /p/
 Disallow: {{ site.baseurl }}/p/
 

@@ -241,7 +241,7 @@ redirect_from:
         Array.prototype.find.call(document.querySelectorAll('.port-section'), function(s) { return s.style.display !== 'none'; });
       if (!anchor) return;
       window.__navLock = true;          // freeze the nav so the jump doesn't reveal/hide it
-      // on MOBILE (where the nav auto-hides) pin the bar flush to the very top — hide the nav so
+      // on MOBILE (where the nav auto-hides) pin the bar flush to the very top - hide the nav so
       // it sits at the top regardless of whether it was stuck yet. On desktop the nav is static,
       // so keep the bar below it (don't hide the desktop nav!)
       var pinTop = window.innerWidth <= 1024;
@@ -261,7 +261,7 @@ redirect_from:
     });
   });
 
-  // Mark the filter bar "stuck" the instant it reaches the top — synchronous with scroll
+  // Mark the filter bar "stuck" the instant it reaches the top - synchronous with scroll
   // (no observer lag) so it can rise with the auto-hiding nav and catch at the very top.
   // We offset with transform (not top) because iOS won't re-stick a sticky element on a top change.
   var fbEl = document.querySelector('.portfolio-filters');

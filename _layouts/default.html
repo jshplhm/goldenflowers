@@ -167,14 +167,14 @@
       if (advance) advance.hidden = true;
       step2.hidden = false;
       if (indicator) indicator.textContent = 'Step 2 of 2';
-      toTop();                                  // no auto-focus — avoids opening pickers
+      toTop();                                  // no auto-focus - avoids opening pickers
     });
     if (backBtn) backBtn.addEventListener('click', function() {
       step2.hidden = true;
       if (step1) step1.hidden = false;
       if (advance) advance.hidden = false;
       if (indicator) indicator.textContent = 'Step 1 of 2';
-      toTop();                                  // no auto-focus — avoids opening the date picker
+      toTop();                                  // no auto-focus - avoids opening the date picker
     });
   });
 
@@ -311,7 +311,7 @@
   });
 })();
 
-// ── (removed) testimonials reveal — all reviews now swipeable ──
+// ── (removed) testimonials reveal - all reviews now swipeable ──
 (function() {
   document.querySelectorAll('[data-testi-more]').forEach(function(btn) {
     const carousel = btn.closest('[data-testi]');
