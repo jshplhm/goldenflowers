@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
-    /* ── Proposal (self-contained; isolated from site style.css) ── */
+    /* Proposal (self-contained; isolated from site style.css) */
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     html{scroll-behavior:smooth}
     body{background:#f2f0eb;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
@@ -20,25 +20,21 @@
 
     .gf-doc{font-family:'DM Sans',Helvetica,Arial,sans-serif;color:#15211a;line-height:1.7;background:#f2f0eb}
     img.gf-img{width:100%;height:100%;object-fit:cover;display:block}
-
-    /* shared building blocks */
     .gf-section{max-width:1180px;margin:0 auto;padding:96px 40px}
     .gf-band{border-top:1px solid rgba(110,118,108,.18);border-bottom:1px solid rgba(110,118,108,.18)}
     .gf-eyebrow{display:block;font-weight:600;font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:#a6552d;margin-bottom:18px}
     .gf-eyebrow--dark{color:#e0a07e}
     .gf-h2{font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-weight:400;font-size:clamp(2rem,3.6vw,2.9rem);line-height:1.12;color:#0f1910}
     .gf-slot{border-radius:8px;border:1px solid rgba(110,118,108,.2);display:flex;align-items:center;justify-content:center;overflow:hidden;background:linear-gradient(135deg,#f5e7db,#ece4d6)}
-    .gf-slot--cool{background:linear-gradient(135deg,#eef0ea,#e4e7df)}
     .gf-slot-label{font-family:'DM Mono',monospace;font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:#a98c6f;padding:8px}
-    .gf-slot--cool .gf-slot-label{color:#9aa295}
 
-    /* ── access gate ── */
+    /* access gate */
     .gf-gate{position:fixed;inset:0;z-index:1000;background:#132717;display:flex;align-items:center;justify-content:center;padding:24px}
     .gf-gate__glow{position:absolute;inset:0;background:radial-gradient(120% 80% at 50% -10%, rgba(166,85,45,.16), transparent 60%);pointer-events:none}
     .gf-gate__card{position:relative;width:100%;max-width:430px;background:#f6f4ef;border-radius:10px;padding:48px 44px 40px;box-shadow:0 30px 80px rgba(0,0,0,.4);text-align:center;animation:gf-rise .6s ease both}
     .gf-gate__mark{display:block;font-weight:600;font-size:.7rem;letter-spacing:.34em;text-transform:uppercase;color:#a6552d;margin-bottom:30px}
     .gf-gate__title{font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-weight:400;font-size:2rem;line-height:1.18;color:#15211a;margin-bottom:14px}
-    .gf-gate__sub{font-size:.9rem;color:#5b635a;line-height:1.6;margin-bottom:28px;max-width:30ch;margin-left:auto;margin-right:auto}
+    .gf-gate__sub{font-size:.9rem;color:#5b635a;line-height:1.6;max-width:30ch;margin:0 auto 28px}
     .gf-gate__form{display:flex;flex-direction:column;gap:10px}
     .gf-gate__input{width:100%;height:52px;border:1px solid rgba(110,118,108,.45);border-radius:4px;background:#fff;padding:0 18px;font-family:'DM Sans',sans-serif;font-size:1rem;color:#15211a;text-align:center;letter-spacing:.04em;outline:none}
     .gf-gate__input:focus{border-color:#a6552d;box-shadow:0 0 0 3px rgba(166,85,45,.14)}
@@ -48,7 +44,7 @@
     .gf-gate__error[hidden]{display:none}
     .gf-gate__fine{font-size:.72rem;color:#9a9388;margin-top:30px;letter-spacing:.02em}
 
-    /* ── top bar ── */
+    /* top bar */
     .gf-topbar{position:sticky;top:0;z-index:40;background:rgba(242,240,235,.85);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid rgba(110,118,108,.2)}
     .gf-topbar__inner{max-width:1180px;margin:0 auto;padding:14px 40px;display:flex;align-items:center;justify-content:space-between;gap:24px}
     .gf-topbar__mark{font-weight:600;font-size:.72rem;letter-spacing:.26em;text-transform:uppercase}
@@ -57,81 +53,72 @@
     .gf-topbar__pdf{border:1px solid rgba(110,118,108,.45);background:transparent;border-radius:3px;padding:8px 16px;font-family:'DM Sans',sans-serif;font-weight:600;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:#15211a;cursor:pointer;transition:all .2s}
     .gf-topbar__pdf:hover{border-color:#15211a;background:#15211a;color:#f2f0eb}
 
-    /* ── cover (forest-green botanical) ── */
+    /* cover (forest-green botanical) */
     .gf-cover{background:#132717;position:relative;overflow:hidden}
     .gf-cover::before{content:"";position:absolute;inset:0;background:radial-gradient(120% 90% at 50% -20%, rgba(166,85,45,.18), transparent 62%);pointer-events:none}
     .gf-cover__inner{position:relative;max-width:1180px;margin:0 auto;padding:88px 40px 80px;text-align:center}
     .gf-cover__wordmark{display:block;font-weight:600;font-size:.72rem;letter-spacing:.34em;text-transform:uppercase;color:#e0a07e;margin-bottom:34px}
     .gf-cover__eyebrow{display:block;font-weight:600;font-size:.72rem;letter-spacing:.3em;text-transform:uppercase;color:#cdaf9b;margin-bottom:22px}
     .gf-cover__name{font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-weight:400;font-size:clamp(3rem,7vw,5.8rem);line-height:1.02;letter-spacing:-.01em;color:#f6f4ef;margin-bottom:22px}
-    .gf-cover__meta{display:inline-flex;align-items:center;gap:16px;font-size:.92rem;letter-spacing:.04em;color:#cfd8ce;margin-bottom:20px}
+    .gf-cover__meta{display:inline-flex;align-items:center;gap:14px;flex-wrap:wrap;justify-content:center;font-size:.92rem;letter-spacing:.04em;color:#cfd8ce}
     .gf-cover__dot{width:5px;height:5px;border-radius:50%;background:#e0a07e}
-    .gf-cover__tag{display:inline-block;font-family:'DM Mono',monospace;font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;color:#e0a07e;border:1px solid rgba(224,160,126,.45);border-radius:100px;padding:6px 16px}
-    .gf-cover__hero{margin-top:48px;aspect-ratio:21/9;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:linear-gradient(135deg,#1c3622,#16291b)}
+    .gf-cover__tag{font-family:'DM Mono',monospace;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:#e0a07e}
+    .gf-cover__hero{margin-top:48px;aspect-ratio:21/9;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:linear-gradient(135deg,#1c3622,#16291b);overflow:hidden}
     .gf-cover__hero .gf-slot-label{color:#7e9382}
 
-    /* ── about ── */
-    .gf-about{display:grid;grid-template-columns:.9fr 1.1fr;gap:64px;align-items:center}
-    .gf-about__eyebrow{letter-spacing:.22em;margin-bottom:20px}
-    .gf-about__lead{font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-weight:400;font-size:clamp(1.6rem,2.8vw,2.25rem);line-height:1.32;color:#15211a;text-wrap:pretty}
-    .gf-about__img{aspect-ratio:4/5}
+    /* a note for you */
+    .gf-note{background:#fbfaf6}
+    .gf-note__inner{max-width:760px;margin:0 auto;padding:88px 40px;text-align:center}
+    .gf-note__body{font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-weight:400;font-size:clamp(1.5rem,2.7vw,2.05rem);line-height:1.5;color:#1c2a20;text-wrap:pretty}
+    .gf-note__body p{margin-bottom:.6em}
+    .gf-note__body p:last-child{margin-bottom:0}
+    .gf-note__sign{display:block;margin-top:30px;font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-size:1.5rem;color:#a6552d}
 
-    /* ── pillars (what sets Golden apart) ── */
-    .gf-center{text-align:center;margin-bottom:56px}
-    .gf-center .gf-h2{max-width:22ch;margin:0 auto}
-    .gf-pillars{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
-    .gf-pillar{background:#fcfcf9;border:1px solid rgba(110,118,108,.26);border-radius:8px;padding:32px 26px;box-shadow:0 1px 2px rgba(15,25,16,.04)}
-    .gf-pillar__head{font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-size:1.5rem;color:#0a441a;margin-bottom:12px}
-    .gf-pillar__body{font-size:.92rem;color:#3b453c;line-height:1.65}
-
-    /* ── dark feature bands ── */
+    /* your wedding (dark) */
     .gf-dark{background:#132717;color:#f1f0ea}
-    .gf-vision{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center;padding-top:104px;padding-bottom:104px}
+    .gf-vision{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center}
     .gf-vision__statement{font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-weight:300;font-size:clamp(1.7rem,3vw,2.5rem);line-height:1.34;color:#f6f4ef;text-wrap:pretty}
     .gf-facts{display:flex;flex-direction:column}
-    .gf-fact{display:flex;justify-content:space-between;align-items:baseline;padding:20px 0;border-bottom:1px solid rgba(255,255,255,.14);gap:16px}
+    .gf-fact{display:flex;justify-content:space-between;align-items:baseline;padding:18px 0;border-bottom:1px solid rgba(255,255,255,.14);gap:16px}
     .gf-fact:last-child{border-bottom:none}
     .gf-fact__label{font-family:'DM Mono',monospace;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:#9fb0a3}
     .gf-fact__value{font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-size:1.5rem;color:#f6f4ef;text-align:right}
     .gf-fact__value--accent{color:#e0a07e}
 
-    /* ── note from Brittany ── */
-    .gf-note{background:#fbfaf6}
-    .gf-note__inner{max-width:760px;margin:0 auto;padding:88px 40px;text-align:center}
-    .gf-note__body{font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-weight:400;font-size:clamp(1.35rem,2.4vw,1.9rem);line-height:1.5;color:#15211a;text-wrap:pretty}
-    .gf-note__body p{margin-bottom:.6em}
-    .gf-note__body p:last-child{margin-bottom:0}
-    .gf-note__sign{display:block;margin-top:26px;font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-size:1.5rem;color:#a6552d}
-
-    /* ── moodboard ── */
-    .gf-mood__head{margin-bottom:48px;max-width:54ch}
+    /* moodboard */
+    .gf-mood__head{margin-bottom:44px;max-width:54ch}
     .gf-mood__head .gf-h2{margin-bottom:16px}
     .gf-mood__intro{font-size:1.02rem;color:#3b453c;line-height:1.72}
-    .gf-mood__grid{display:grid;grid-template-columns:repeat(6,1fr);grid-auto-rows:130px;gap:16px}
-    .gf-mood__grid .gf-slot-label{font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:#9aa295}
-    .gf-mood__grid .gf-slot:not(.gf-slot--cool) .gf-slot-label{color:#b39377}
+    .gf-mood__grid{display:grid;grid-template-columns:repeat(6,1fr);grid-auto-rows:150px;gap:16px}
+    .gf-mood__fig{border-radius:8px;overflow:hidden;border:1px solid rgba(110,118,108,.2);background:linear-gradient(135deg,#f5e7db,#ece4d6)}
     .gf-mood__hero{grid-column:span 4;grid-row:span 2}
-    .gf-mood__hero .gf-slot-label{font-size:.66rem;letter-spacing:.14em}
     .gf-span2{grid-column:span 2}
 
-    /* ── color theory (circular swatches, per PDF) ── */
+    /* color theory (circular swatches) */
+    .gf-center{text-align:center;margin-bottom:52px}
+    .gf-center .gf-h2{max-width:22ch;margin:0 auto}
     .gf-swatches{display:grid;grid-template-columns:repeat(6,1fr);gap:24px;max-width:920px;margin:0 auto}
     .gf-swatch{text-align:center}
     .gf-swatch__chip{aspect-ratio:1;border-radius:50%;border:1px solid rgba(0,0,0,.06);box-shadow:0 1px 3px rgba(15,25,16,.08)}
     .gf-swatch__label{display:block;text-align:center;font-family:'DM Mono',monospace;font-size:.66rem;letter-spacing:.04em;color:#5b635a;margin-top:14px}
 
-    /* ── flower guide (circular thumbnails, per PDF) ── */
-    .gf-flowers{display:grid;grid-template-columns:1.05fr .95fr;gap:64px;align-items:center}
-    .gf-flowers__thumbs{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-    .gf-thumb{text-align:center}
-    .gf-thumb__circ{aspect-ratio:1;border-radius:50%;overflow:hidden;border:1px solid rgba(110,118,108,.2);background:linear-gradient(135deg,#f5e7db,#ece4d6);display:flex;align-items:center;justify-content:center}
-    .gf-thumb__name{display:block;font-family:'DM Mono',monospace;font-size:.62rem;letter-spacing:.04em;color:#5b635a;margin-top:10px}
-    .gf-flowers__head .gf-h2{font-size:clamp(2rem,3.4vw,2.7rem);line-height:1.14;margin-bottom:22px}
-    .gf-flowers__intro{font-size:1.02rem;color:#3b453c;line-height:1.72;margin-bottom:24px}
-    .gf-pills{display:flex;flex-wrap:wrap;gap:10px}
-    .gf-pill{font-size:.84rem;color:#15211a;background:#f5e7db;border:1px solid rgba(166,85,45,.2);border-radius:100px;padding:8px 16px}
+    /* flower guide (flat circles) */
+    .gf-flowers__head{text-align:center;max-width:760px;margin:0 auto 48px}
+    .gf-flowers__intro{font-size:1rem;color:#3b453c;line-height:1.7;max-width:50ch;margin:0 auto}
+    .gf-flowers__row{display:flex;flex-wrap:wrap;gap:28px 36px;justify-content:center}
+    .gf-flower{display:flex;flex-direction:column;align-items:center;gap:12px;width:108px}
+    .gf-flower__circ{width:84px;height:84px;border-radius:50%;background:#f1e4d6;border:1px solid rgba(166,85,45,.18);overflow:hidden;display:flex;align-items:center;justify-content:center}
+    .gf-flower__circ--sage{background:#e2e7da;border-color:rgba(110,118,108,.18)}
+    .gf-flower__circ .gf-slot-label{font-family:'DM Mono',monospace;font-size:.58rem;letter-spacing:.06em;text-transform:uppercase;color:#b39377;text-align:center;padding:4px}
+    .gf-flower__name{font-family:'DM Sans',sans-serif;font-size:.84rem;color:#15211a}
 
-    /* ── pricing ── */
+    /* why Golden (pillars) */
+    .gf-pillars{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+    .gf-pillar{background:#fcfcf9;border:1px solid rgba(110,118,108,.26);border-radius:8px;padding:32px 26px;box-shadow:0 1px 2px rgba(15,25,16,.04)}
+    .gf-pillar__head{font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-size:1.5rem;color:#0a441a;margin-bottom:12px}
+    .gf-pillar__body{font-size:.92rem;color:#3b453c;line-height:1.65}
+
+    /* pricing menu (dark; only when no tailored estimate) */
     .gf-pricing__head{text-align:center;margin-bottom:18px}
     .gf-pricing__head .gf-h2{color:#f6f4ef}
     .gf-pricing__intro{text-align:center;font-size:.95rem;color:#b9c4ba;max-width:54ch;margin:0 auto 56px;line-height:1.7}
@@ -152,59 +139,64 @@
     .gf-terms__lead strong{font-weight:600;color:#f0c9b2}
     .gf-terms__col{font-size:.84rem;color:#b9c4ba;line-height:1.6}
 
-    /* ── per-couple estimate (compact, reconciling) ── */
-    .gf-est__inner{max-width:640px;margin:0 auto}
-    .gf-est__head{text-align:center;margin-bottom:26px}
-    .gf-est__sub{font-size:.95rem;color:#3b453c;line-height:1.6;max-width:50ch;margin:10px auto 0}
-    .gf-est-group{margin-top:26px}
-    .gf-est-group:first-of-type{margin-top:0}
-    .gf-est-group__title{display:block;font-weight:600;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:#a6552d;padding-bottom:8px;border-bottom:1px solid rgba(110,118,108,.28)}
-    .gf-est-row{display:flex;align-items:baseline;gap:10px;padding:8px 0;border-bottom:1px solid rgba(110,118,108,.1)}
-    .gf-est-row__label{font-size:.95rem;color:#15211a}
-    .gf-est-row__detail{font-size:.76rem;color:#9a9388}
-    .gf-est-row__lead{flex:1;border-bottom:1px dotted rgba(110,118,108,.38);transform:translateY(-3px);min-width:18px}
-    .gf-est-row__price{font-family:'DM Mono',monospace;font-size:.84rem;color:#3b453c;white-space:nowrap}
-    .gf-est-subtotal{display:flex;justify-content:flex-end;align-items:baseline;gap:14px;padding-top:9px}
-    .gf-est-subtotal__label{font-size:.64rem;letter-spacing:.18em;text-transform:uppercase;color:#9a9388}
-    .gf-est-subtotal__val{font-family:'DM Mono',monospace;font-size:.78rem;color:#5b635a;white-space:nowrap}
-    .gf-est-total{display:flex;justify-content:space-between;align-items:baseline;padding-top:18px;margin-top:18px;border-top:2px solid #15211a;gap:16px}
-    .gf-est-total__label{font-weight:600;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:#15211a}
-    .gf-est-total__val{font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-size:1.75rem;color:#a6552d;white-space:nowrap}
-    .gf-est-note{margin:18px auto 0;font-size:.78rem;color:#5b635a;line-height:1.55;text-align:center;max-width:62ch}
+    /* estimate (dark cards, big total) */
+    .gf-est__head{text-align:center;margin-bottom:18px}
+    .gf-est__head .gf-h2{color:#f6f4ef}
+    .gf-est__intro{text-align:center;font-size:.95rem;color:#b9c4ba;max-width:60ch;margin:0 auto 54px;line-height:1.7}
+    .gf-est-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;align-items:stretch}
+    .gf-est-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);border-radius:8px;padding:30px 26px;display:flex;flex-direction:column}
+    .gf-est-card__head{font-weight:600;font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:#e0a07e;margin-bottom:22px}
+    .gf-est-list{display:flex;flex-direction:column}
+    .gf-est-item{padding:11px 0;border-bottom:1px solid rgba(255,255,255,.1)}
+    .gf-est-item:last-child{border-bottom:none}
+    .gf-est-line{display:flex;align-items:baseline;gap:8px}
+    .gf-est-line__label{font-size:.92rem;color:#f1f0ea}
+    .gf-est-line__lead{flex:1;border-bottom:1px dotted rgba(255,255,255,.28);transform:translateY(-3px)}
+    .gf-est-line__price{font-family:'DM Mono',monospace;font-size:.82rem;color:#e7ddd1;white-space:nowrap}
+    .gf-est-detail{display:block;font-family:'DM Mono',monospace;font-size:.7rem;color:#9fb0a3;margin-top:4px}
+    .gf-est-detail--range{color:#e0a07e}
+    .gf-est-sub{display:flex;justify-content:space-between;align-items:baseline;margin-top:auto;padding-top:14px;border-top:1px solid rgba(224,160,126,.4)}
+    .gf-est-sub__label{font-weight:600;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:#9fb0a3}
+    .gf-est-sub__val{font-family:'DM Mono',monospace;font-size:.92rem;color:#f6f4ef}
+    .gf-est-total{margin-top:36px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:20px;background:rgba(224,160,126,.1);border:1px solid rgba(224,160,126,.3);border-radius:8px;padding:32px 40px}
+    .gf-est-total__label{display:block;font-weight:600;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:#e0a07e;margin-bottom:8px}
+    .gf-est-total__tax{font-family:'DM Mono',monospace;font-size:.78rem;color:#9fb0a3}
+    .gf-est-total__val{font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-weight:500;font-size:clamp(2.6rem,5vw,3.6rem);line-height:1;color:#f6f4ef}
+    .gf-est-total__check{font-family:'DM Mono',monospace;font-size:.34em;color:#9fb0a3;font-style:normal}
 
-    /* ── reserve / hold ── */
-    .gf-reserve{text-align:center;padding-top:104px;padding-bottom:104px}
-    .gf-reserve .gf-h2{font-size:clamp(2.2rem,4.4vw,3.4rem);line-height:1.08;max-width:18ch;margin:0 auto 22px}
-    .gf-reserve__body{font-size:1.05rem;color:#3b453c;line-height:1.72;max-width:52ch;margin:0 auto 36px}
-    .gf-hold{max-width:600px;margin:0 auto 38px;background:rgba(166,85,45,.07);border:1px solid rgba(166,85,45,.26);border-radius:10px;padding:30px 34px;text-align:left}
-    .gf-hold__line{font-size:1rem;color:#15211a;line-height:1.6;margin-bottom:16px}
-    .gf-hold__line strong{font-weight:600;color:#a6552d}
-    .gf-terms-list{list-style:none;display:flex;flex-direction:column;gap:12px}
-    .gf-terms-list li{position:relative;padding-left:22px;font-size:.94rem;color:#3b453c;line-height:1.6}
-    .gf-terms-list li::before{content:"";position:absolute;left:0;top:.62em;width:6px;height:6px;border-radius:50%;background:#a6552d}
-    .gf-terms-list li strong{font-weight:600;color:#15211a}
-    .gf-actions{display:flex;flex-wrap:wrap;gap:14px;justify-content:center}
+    /* reserve + paycard */
+    .gf-reserve{display:grid;grid-template-columns:1.05fr .95fr;gap:60px;align-items:center}
+    .gf-reserve__h2{font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-weight:400;font-size:clamp(2.2rem,4vw,3.1rem);line-height:1.08;color:#0f1910;margin-bottom:22px;max-width:16ch}
+    .gf-reserve__body{font-size:1.02rem;color:#3b453c;line-height:1.72;margin-bottom:18px}
+    .gf-reserve__body strong{font-weight:600;color:#15211a}
+    .gf-reserve__pay{font-size:.92rem;color:#5b635a;line-height:1.66;margin-bottom:30px}
+    .gf-actions{display:flex;flex-wrap:wrap;gap:14px}
     .gf-btn{display:inline-flex;align-items:center;height:52px;padding:0 32px;text-decoration:none;font-family:'DM Sans',sans-serif;font-weight:600;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;border-radius:3px;transition:all .2s}
     .gf-btn--primary{background:#a6552d;color:#fff}
     .gf-btn--primary:hover{background:#90471f}
     .gf-btn--ghost{background:transparent;color:#15211a;border:1px solid rgba(110,118,108,.5)}
     .gf-btn--ghost:hover{border-color:#15211a;background:#15211a;color:#f2f0eb}
-    .gf-reserve__fine{font-size:.8rem;color:#9a9388;margin-top:22px}
-    .gf-reserve__fine a{color:#a6552d;text-decoration:none;border-bottom:1px solid rgba(166,85,45,.35)}
+    .gf-paycard{background:#fcfcf9;border:1px solid rgba(110,118,108,.26);border-radius:8px;padding:34px;box-shadow:0 1px 2px rgba(15,25,16,.04)}
+    .gf-paycard__eyebrow{display:block;font-weight:600;font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:#a6552d;margin-bottom:20px}
+    .gf-paycard__deposit{font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-size:2.4rem;color:#0f1910;line-height:1;margin-bottom:6px}
+    .gf-paycard__depositcap{font-size:.84rem;color:#5b635a;margin-bottom:24px}
+    .gf-payrow{display:flex;justify-content:space-between;align-items:baseline;padding:14px 0;border-bottom:1px solid rgba(110,118,108,.16);gap:16px}
+    .gf-payrow:last-child{border-bottom:none}
+    .gf-payrow__k{font-family:'DM Mono',monospace;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:#5b635a}
+    .gf-payrow__v{font-size:.92rem;color:#15211a;font-weight:500}
 
-    /* ── footer ── */
+    /* footer */
     .gf-footer{background:#0f1910;color:#9fb0a3}
     .gf-footer__inner{max-width:1180px;margin:0 auto;padding:48px 40px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:18px}
     .gf-footer__mark{font-weight:600;font-size:.72rem;letter-spacing:.26em;text-transform:uppercase;color:#f1f0ea}
     .gf-footer__meta{font-family:'DM Mono',monospace;font-size:.72rem;letter-spacing:.04em}
     .gf-footer__site{font-size:.78rem}
 
-    /* ── responsive (site breakpoints: 1024 / 640) ── */
+    /* responsive (site breakpoints: 1024 / 640) */
     @media (max-width:1024px){
       .gf-section{padding:72px 28px}
       .gf-cover__inner{padding:64px 28px 56px}
-      .gf-about,.gf-vision,.gf-flowers{grid-template-columns:1fr;gap:40px}
-      .gf-vision,.gf-reserve{padding-top:80px;padding-bottom:80px}
+      .gf-vision,.gf-reserve{grid-template-columns:1fr;gap:40px}
       .gf-pillars{grid-template-columns:repeat(2,1fr)}
       .gf-mood__grid{grid-template-columns:repeat(4,1fr)}
       .gf-mood__hero{grid-column:span 4}
@@ -215,15 +207,16 @@
       .gf-topbar__inner,.gf-footer__inner{padding-left:20px;padding-right:20px}
       .gf-topbar__meta{display:none}
       .gf-pillars,.gf-price-cards{grid-template-columns:1fr}
+      .gf-est-cards{grid-template-columns:1fr;align-items:start}
+      .gf-est-sub{margin-top:14px}
       .gf-swatches{grid-template-columns:repeat(3,1fr)}
       .gf-mood__grid{grid-template-columns:repeat(2,1fr)}
       .gf-mood__hero{grid-column:span 2}
       .gf-terms{grid-template-columns:1fr}
       .gf-gate__card{padding:40px 26px 34px}
-      .gf-hold{padding:24px 22px}
     }
 
-    /* ── print (Save PDF) ── */
+    /* print (Save PDF) */
     @media print{
       .gf-noprint{display:none !important}
       .gf-gate{display:none !important}
@@ -236,7 +229,7 @@
 <body>
 <div class="gf-doc">
 
-  {% comment %} ════════ ACCESS GATE ════════ {% endcomment %}
+  {% comment %} ACCESS GATE {% endcomment %}
   <div class="gf-gate gf-noprint" id="gf-gate" data-access-code="{{ page.accessCode | default: 'golden' }}">
     <div class="gf-gate__glow"></div>
     <div class="gf-gate__card">
@@ -252,7 +245,7 @@
     </div>
   </div>
 
-  {% comment %} ════════ TOP BAR ════════ {% endcomment %}
+  {% comment %} TOP BAR {% endcomment %}
   <div class="gf-topbar gf-noprint">
     <div class="gf-topbar__inner">
       <span class="gf-topbar__mark">Golden Flowers</span>
@@ -263,7 +256,7 @@
     </div>
   </div>
 
-  {% comment %} ════════ COVER (forest-green botanical) ════════ {% endcomment %}
+  {% comment %} COVER {% endcomment %}
   <section class="gf-cover">
     <div class="gf-cover__inner">
       <span class="gf-cover__wordmark">Golden&nbsp;Flowers</span>
@@ -273,89 +266,16 @@
         <span>{{ page.venue }}</span>
         <span class="gf-cover__dot"></span>
         <span>{{ page.weddingDate }}</span>
+        {% if page.designLanguage %}<span class="gf-cover__dot"></span><span class="gf-cover__tag">{{ page.designLanguage }}</span>{% endif %}
       </div>
-      {% if page.designLanguage %}<div><span class="gf-cover__tag">{{ page.designLanguage }}</span></div>{% endif %}
-      <div class="gf-slot gf-cover__hero">
-        {% if page.heroImage %}<img class="gf-img" src="{{ page.heroImage }}" alt="Signature florals for {{ page.coupleNames }}">{% else %}<span class="gf-slot-label">Signature image · couple or florals</span>{% endif %}
-      </div>
-    </div>
-  </section>
-
-  {% comment %} ════════ ABOUT GOLDEN ════════ {% endcomment %}
-  <section class="gf-band" style="background:#fbfaf6">
-    <div class="gf-section gf-about">
-      <div>
-        <span class="gf-eyebrow gf-about__eyebrow">About Golden</span>
-        <p class="gf-about__lead">We're floral designers dedicated to creating artful arrangements in line with nature's cadence. By weaving local and seasonal flowers into our work, we celebrate each couple in a way that carries the unique beauty of every passing season.</p>
-      </div>
-      <div class="gf-slot gf-slot--cool gf-about__img">
-        {% if page.portraitImage %}<img class="gf-img" src="{{ page.portraitImage }}" alt="Golden Flowers studio">{% else %}<span class="gf-slot-label">Portrait · studio or Brittany</span>{% endif %}
-      </div>
-    </div>
-  </section>
-
-  {% comment %} ════════ WHAT SETS US APART (four pillars) ════════ {% endcomment %}
-  <section class="gf-section">
-    <div class="gf-center">
-      <span class="gf-eyebrow">What Sets Golden Apart</span>
-      <h2 class="gf-h2">Why couples choose us</h2>
-    </div>
-    <div class="gf-pillars">
-      <div class="gf-pillar">
-        <h3 class="gf-pillar__head">Farm-grown</h3>
-        <p class="gf-pillar__body">We grow on our own plots in California and source exclusively from growers we trust. No flowers flown in from across the world.</p>
-      </div>
-      <div class="gf-pillar">
-        <h3 class="gf-pillar__head">Foam-free</h3>
-        <p class="gf-pillar__body">Every arrangement we make is built without floral foam. Intentional, sustainable, and better for the environment.</p>
-      </div>
-      <div class="gf-pillar">
-        <h3 class="gf-pillar__head">One wedding per date</h3>
-        <p class="gf-pillar__body">We never double-book. Your wedding day gets our complete attention, start to finish.</p>
-      </div>
-      <div class="gf-pillar">
-        <h3 class="gf-pillar__head">Agronomist-founded</h3>
-        <p class="gf-pillar__body">Founder Brittany trained as an agronomist. Soil science shapes what we plant, source, and design.</p>
-      </div>
-    </div>
-  </section>
-
-  {% comment %} ════════ YOUR WEDDING (dark) ════════ {% endcomment %}
-  <section class="gf-dark">
-    <div class="gf-section gf-vision">
-      <div>
-        <span class="gf-eyebrow gf-eyebrow--dark">Your Wedding with Golden</span>
-        <p class="gf-vision__statement">{{ page.visionStatement }}</p>
-      </div>
-      <div class="gf-facts">
-        <div class="gf-fact">
-          <span class="gf-fact__label">Couple</span>
-          <span class="gf-fact__value">{{ page.coupleNames }}</span>
-        </div>
-        <div class="gf-fact">
-          <span class="gf-fact__label">Venue</span>
-          <span class="gf-fact__value">{{ page.venue }}</span>
-        </div>
-        <div class="gf-fact">
-          <span class="gf-fact__label">Date</span>
-          <span class="gf-fact__value">{{ page.weddingDate }}</span>
-        </div>
-        {% if page.designLanguage %}
-        <div class="gf-fact">
-          <span class="gf-fact__label">Direction</span>
-          <span class="gf-fact__value gf-fact__value--accent">{{ page.designLanguage }}</span>
-        </div>
-        {% endif %}
-        <div class="gf-fact">
-          <span class="gf-fact__label">Reserved</span>
-          <span class="gf-fact__value gf-fact__value--accent">One wedding this day</span>
-        </div>
+      <div class="gf-cover__hero">
+        {% if page.heroImage %}<img class="gf-img" src="{{ page.heroImage }}" alt="{{ page.heroAlt | default: 'Signature florals for' | append: ' ' | append: page.coupleNames }}" loading="lazy">{% else %}<span class="gf-slot-label">Signature image · couple or florals</span>{% endif %}
       </div>
     </div>
   </section>
 
   {% if page.note %}
-  {% comment %} ════════ A NOTE FROM BRITTANY ════════ {% endcomment %}
+  {% comment %} A NOTE FOR YOU (leads the page) {% endcomment %}
   <section class="gf-note gf-band">
     <div class="gf-note__inner">
       <span class="gf-eyebrow">A Note for You</span>
@@ -365,30 +285,47 @@
   </section>
   {% endif %}
 
-  {% comment %} ════════ MOODBOARD ════════ {% endcomment %}
+  {% comment %} YOUR WEDDING (dark) {% endcomment %}
+  <section class="gf-dark">
+    <div class="gf-section gf-vision">
+      <div>
+        <span class="gf-eyebrow gf-eyebrow--dark">Your Wedding with Golden</span>
+        <p class="gf-vision__statement">{{ page.visionStatement }}</p>
+      </div>
+      <div class="gf-facts">
+        <div class="gf-fact"><span class="gf-fact__label">Couple</span><span class="gf-fact__value">{{ page.coupleNames }}</span></div>
+        <div class="gf-fact"><span class="gf-fact__label">Venue</span><span class="gf-fact__value">{{ page.venue }}</span></div>
+        <div class="gf-fact"><span class="gf-fact__label">Date</span><span class="gf-fact__value">{{ page.weddingDate }}</span></div>
+        {% if page.designLanguage %}<div class="gf-fact"><span class="gf-fact__label">Direction</span><span class="gf-fact__value gf-fact__value--accent">{{ page.designLanguage }}</span></div>{% endif %}
+        <div class="gf-fact"><span class="gf-fact__label">Reserved</span><span class="gf-fact__value gf-fact__value--accent">One wedding this day</span></div>
+      </div>
+    </div>
+  </section>
+
+  {% comment %} MOODBOARD {% endcomment %}
   <section class="gf-section">
     <div class="gf-mood__head">
       <span class="gf-eyebrow">The Vision</span>
       <h2 class="gf-h2">A wild, romantic garden</h2>
-      <p class="gf-mood__intro">This curated direction balances high-impact warmth with delicate, airy neutrals, designed to feel both grounded and ethereal, abundant yet intentional.</p>
+      <p class="gf-mood__intro">A curated direction that balances high-impact warmth with delicate, airy neutrals, grounded yet ethereal, abundant yet intentional.</p>
     </div>
     <div class="gf-mood__grid">
       {% if page.moodboard %}
         {% for m in page.moodboard %}
-          <div class="gf-slot {% if forloop.first %}gf-mood__hero{% else %}gf-span2{% endif %}"><img class="gf-img" src="{{ m.image }}" alt="{{ m.label | default: 'Moodboard reference' }}"></div>
+          <figure class="gf-mood__fig {% if forloop.first %}gf-mood__hero{% else %}gf-span2{% endif %}"><img class="gf-img" src="{{ m.image }}" alt="{{ m.label | default: 'Moodboard reference' }}" loading="lazy"></figure>
         {% endfor %}
       {% else %}
-        <div class="gf-slot gf-mood__hero"><span class="gf-slot-label">Hero arrangement</span></div>
-        <div class="gf-slot gf-slot--cool gf-span2"><span class="gf-slot-label">Detail</span></div>
-        <div class="gf-slot gf-span2"><span class="gf-slot-label">Texture</span></div>
-        <div class="gf-slot gf-slot--cool gf-span2"><span class="gf-slot-label">Ceremony</span></div>
-        <div class="gf-slot gf-span2"><span class="gf-slot-label">Tablescape</span></div>
-        <div class="gf-slot gf-slot--cool gf-span2"><span class="gf-slot-label">Bouquet</span></div>
+        <figure class="gf-mood__fig gf-mood__hero"><span class="gf-slot-label">Hero arrangement</span></figure>
+        <figure class="gf-mood__fig gf-span2"><span class="gf-slot-label">Detail</span></figure>
+        <figure class="gf-mood__fig gf-span2"><span class="gf-slot-label">Texture</span></figure>
+        <figure class="gf-mood__fig gf-span2"><span class="gf-slot-label">Ceremony</span></figure>
+        <figure class="gf-mood__fig gf-span2"><span class="gf-slot-label">Tablescape</span></figure>
+        <figure class="gf-mood__fig gf-span2"><span class="gf-slot-label">Bouquet</span></figure>
       {% endif %}
     </div>
   </section>
 
-  {% comment %} ════════ COLOR THEORY (circular swatches) ════════ {% endcomment %}
+  {% comment %} COLOR THEORY {% endcomment %}
   <section class="gf-band" style="background:#fbfaf6">
     <div class="gf-section">
       <div class="gf-center" style="max-width:56ch;margin-left:auto;margin-right:auto">
@@ -397,9 +334,7 @@
       </div>
       <div class="gf-swatches">
         {% if page.swatches %}
-          {% for s in page.swatches %}
-            <div class="gf-swatch"><div class="gf-swatch__chip" style="background:{{ s.hex }}"></div><span class="gf-swatch__label">{{ s.name }}</span></div>
-          {% endfor %}
+          {% for s in page.swatches %}<div class="gf-swatch"><div class="gf-swatch__chip" style="background:{{ s.hex }}"></div><span class="gf-swatch__label">{{ s.name }}</span></div>{% endfor %}
         {% else %}
           <div class="gf-swatch"><div class="gf-swatch__chip" style="background:#b5552f"></div><span class="gf-swatch__label">Terracotta</span></div>
           <div class="gf-swatch"><div class="gf-swatch__chip" style="background:#e2962f"></div><span class="gf-swatch__label">Marigold</span></div>
@@ -412,32 +347,45 @@
     </div>
   </section>
 
-  {% comment %} ════════ FLOWER GUIDE (circular thumbnails) ════════ {% endcomment %}
-  <section class="gf-section gf-flowers">
-    <div class="gf-flowers__thumbs">
-      {% if page.flowerImages %}
-        {% for f in page.flowerImages %}
-          <div class="gf-thumb"><div class="gf-thumb__circ"><img class="gf-img" src="{{ f.image }}" alt="{{ f.name }}"></div>{% if f.name %}<span class="gf-thumb__name">{{ f.name }}</span>{% endif %}</div>
-        {% endfor %}
-      {% else %}
-        {% assign stems = page.flowers | default: "Garden Roses,Ranunculus,Dahlias,Sweet Peas,Delphinium,Trailing Greenery" | split: "," %}
-        {% for stem in stems %}
-          <div class="gf-thumb"><div class="gf-thumb__circ"><span class="gf-slot-label">{{ stem | strip }}</span></div></div>
-        {% endfor %}
-      {% endif %}
-    </div>
+  {% comment %} FLOWER GUIDE (flat circles) {% endcomment %}
+  <section class="gf-section">
     <div class="gf-flowers__head">
       <span class="gf-eyebrow">Flower Guide</span>
       <h2 class="gf-h2">The blooms we have in mind</h2>
-      <p class="gf-flowers__intro">A working palette of seasonal stems, refined together at your design consultation as availability is confirmed closer to the date.</p>
-      <div class="gf-pills">
-        {% assign stems2 = page.flowers | default: "Garden Roses,Ranunculus,Dahlias,Sweet Peas,Delphinium,Trailing Greenery" | split: "," %}
-        {% for stem in stems2 %}<span class="gf-pill">{{ stem | strip }}</span>{% endfor %}
+      <p class="gf-flowers__intro">A working palette of seasonal stems, refined together as availability is confirmed closer to your date.</p>
+    </div>
+    <div class="gf-flowers__row">
+      {% if page.flowerImages %}
+        {% for f in page.flowerImages %}
+          <div class="gf-flower"><div class="gf-flower__circ"><img class="gf-img" src="{{ f.image }}" alt="{{ f.name }}" loading="lazy"></div>{% if f.name %}<span class="gf-flower__name">{{ f.name }}</span>{% endif %}</div>
+        {% endfor %}
+      {% else %}
+        {% assign stems = page.flowers | default: "Garden Roses,Dahlias,Ranunculus,Marigold,Amaranthus,Trailing Greenery" | join: "," | split: "," %}
+        {% for stem in stems %}
+          {% assign nm = stem | strip %}
+          <div class="gf-flower"><div class="gf-flower__circ{% if nm contains 'Green' %} gf-flower__circ--sage{% endif %}"><span class="gf-slot-label">photo</span></div><span class="gf-flower__name">{{ nm }}</span></div>
+        {% endfor %}
+      {% endif %}
+    </div>
+  </section>
+
+  {% comment %} WHY GOLDEN (pillars, placed just before the investment) {% endcomment %}
+  <section class="gf-band" style="background:#fbfaf6">
+    <div class="gf-section">
+      <div class="gf-center">
+        <span class="gf-eyebrow">Why Golden</span>
+        <h2 class="gf-h2">What your investment is built on</h2>
+      </div>
+      <div class="gf-pillars">
+        <div class="gf-pillar"><h3 class="gf-pillar__head">Farm-grown</h3><p class="gf-pillar__body">We grow on our own plots in California and source exclusively from growers we trust. No flowers flown in from across the world.</p></div>
+        <div class="gf-pillar"><h3 class="gf-pillar__head">Foam-free</h3><p class="gf-pillar__body">Every arrangement we make is built without floral foam. Intentional, sustainable, and better for the environment.</p></div>
+        <div class="gf-pillar"><h3 class="gf-pillar__head">One wedding per date</h3><p class="gf-pillar__body">We never double-book. Your wedding day gets our complete attention, start to finish.</p></div>
+        <div class="gf-pillar"><h3 class="gf-pillar__head">Agronomist-founded</h3><p class="gf-pillar__body">Founder Brittany trained as an agronomist. Soil science shapes what we plant, source, and design.</p></div>
       </div>
     </div>
   </section>
 
-  {% comment %} ════════ PRICING (dark): shown only when there's no tailored estimate ════════ {% endcomment %}
+  {% comment %} PRICING MENU (dark): shown only when there's no tailored estimate {% endcomment %}
   {% unless page.estimateGroups or page.estimate %}
   <section class="gf-dark">
     <div class="gf-section">
@@ -446,7 +394,6 @@
         <h2 class="gf-h2">Full-service investment</h2>
       </div>
       <p class="gf-pricing__intro">A guide to the elements we'd bring to your day. Your final proposal is tailored to the designs you choose together at consultation.</p>
-
       <div class="gf-price-cards">
         <div class="gf-price-card">
           <h3 class="gf-price-card__head">Personal Flowers</h3>
@@ -470,18 +417,11 @@
         <div class="gf-price-card">
           <h3 class="gf-price-card__head">Reception Flowers</h3>
           <div class="gf-price-list">
-            <div class="gf-row gf-row--note">
-              <div class="gf-row__line"><span class="gf-row__label">Low &amp; lush centerpiece</span><span class="gf-row__lead"></span><span class="gf-row__price">$300 / table</span></div>
-              <p class="gf-row__note">Lush but low to keep sightlines open, with height for depth. Best for round tables.</p>
-            </div>
-            <div class="gf-row gf-row--note">
-              <div class="gf-row__line"><span class="gf-row__label">Bud vases</span><span class="gf-row__lead"></span><span class="gf-row__price">$25–35 each</span></div>
-              <p class="gf-row__note">Lining the table, spaced 6–12 inches apart. Best for long, rectangular tables.</p>
-            </div>
+            <div class="gf-row gf-row--note"><div class="gf-row__line"><span class="gf-row__label">Low &amp; lush centerpiece</span><span class="gf-row__lead"></span><span class="gf-row__price">$300 / table</span></div><p class="gf-row__note">Lush but low to keep sightlines open, with height for depth. Best for round tables.</p></div>
+            <div class="gf-row gf-row--note"><div class="gf-row__line"><span class="gf-row__label">Bud vases</span><span class="gf-row__lead"></span><span class="gf-row__price">$25–35 each</span></div><p class="gf-row__note">Lining the table, spaced 6–12 inches apart. Best for long, rectangular tables.</p></div>
           </div>
         </div>
       </div>
-
       <div class="gf-terms">
         <p class="gf-terms__lead"><strong>Full-service weddings over $8,000</strong> include delivery, setup, repurposing of florals after the ceremony, and end-of-night strike, handled entirely by our team.</p>
         <p class="gf-terms__col">For weddings under $8,000, these are itemized: delivery $200, repurposing $200, strike $600.</p>
@@ -492,101 +432,95 @@
   {% endunless %}
 
   {% if page.estimateGroups or page.estimate %}
-  {% comment %} ════════ YOUR ESTIMATE (per-couple) ════════ {% endcomment %}
-  <section class="gf-band" style="background:#fbfaf6">
-    <div class="gf-section gf-est__inner" style="padding-top:74px;padding-bottom:74px">
+  {% comment %} YOUR ESTIMATE (dark cards, computed subtotals + total) {% endcomment %}
+  <section class="gf-dark">
+    <div class="gf-section">
       <div class="gf-est__head">
-        <span class="gf-eyebrow">Your Estimate</span>
-        <h2 class="gf-h2">Tailored to your day</h2>
-        <p class="gf-est__sub">Designed around a single investment for your day. A few still-open pieces are shown as ranges, and we finalize the exact figure together at your consultation.</p>
+        <span class="gf-eyebrow gf-eyebrow--dark">Your Estimate</span>
+        <h2 class="gf-h2">Prepared for your day</h2>
       </div>
+      <p class="gf-est__intro">Most lines are firm; a range appears only where the final scale is genuinely yours to choose. Delivery, setup, repurposing, and strike are included, and everything is refined together before you sign.</p>
 
       {% if page.estimateGroups %}
         {% assign grand = 0 %}
-        {% for g in page.estimateGroups %}
-          {%- assign sub = 0 -%}
-          {%- for it in g.items -%}
-            {%- assign n = it.amount | remove: "$" | remove: "," | remove: " " | plus: 0 -%}
-            {%- assign sub = sub | plus: n -%}
-          {%- endfor -%}
-          {%- assign grand = grand | plus: sub -%}
-          <div class="gf-est-group">
-            <span class="gf-est-group__title">{{ g.title }}</span>
-            {% for it in g.items %}
-            <div class="gf-est-row">
-              <span class="gf-est-row__label">{{ it.item }}{% if it.detail %} <span class="gf-est-row__detail">{{ it.detail }}</span>{% endif %}</span>
-              <span class="gf-est-row__lead"></span>
-              <span class="gf-est-row__price">{{ it.amount }}</span>
+        <div class="gf-est-cards">
+          {% for g in page.estimateGroups %}
+            {%- assign sub = 0 -%}
+            {%- for it in g.items -%}{%- assign n = it.amount | remove: "$" | remove: "," | remove: " " | plus: 0 -%}{%- assign sub = sub | plus: n -%}{%- endfor -%}
+            {%- assign grand = grand | plus: sub -%}
+            <div class="gf-est-card">
+              <h3 class="gf-est-card__head">{{ g.title }}</h3>
+              <div class="gf-est-list">
+                {% for it in g.items %}
+                <div class="gf-est-item">
+                  <div class="gf-est-line"><span class="gf-est-line__label">{{ it.item }}</span><span class="gf-est-line__lead"></span><span class="gf-est-line__price">{{ it.amount }}</span></div>
+                  {% if it.detail %}<span class="gf-est-detail{% if it.detail contains '–' %} gf-est-detail--range{% endif %}">{{ it.detail }}</span>{% endif %}
+                </div>
+                {% endfor %}
+              </div>
+              <div class="gf-est-sub"><span class="gf-est-sub__label">Subtotal</span><span class="gf-est-sub__val">{% include money.html n=sub %}</span></div>
             </div>
-            {% endfor %}
-            <div class="gf-est-subtotal">
-              <span class="gf-est-subtotal__label">Subtotal</span>
-              <span class="gf-est-subtotal__val">{% include money.html n=sub %}</span>
-            </div>
-          </div>
-        {% endfor %}
+          {% endfor %}
+        </div>
         <div class="gf-est-total">
-          <span class="gf-est-total__label">Estimated investment</span>
-          <span class="gf-est-total__val">{% include money.html n=grand %}{% if page.estimateTotal %} <span style="font-family:'DM Mono',monospace;font-size:.6em;color:#9a9388;">({{ page.estimateTotal }})</span>{% endif %}</span>
+          <div>
+            <span class="gf-est-total__label">Estimated Total</span>
+            <span class="gf-est-total__tax">{{ page.taxNote | default: "Sales tax is added to the florals at the local rate on your final invoice." }}</span>
+          </div>
+          <span class="gf-est-total__val">{% include money.html n=grand %}{% if page.estimateTotal %} <span class="gf-est-total__check">({{ page.estimateTotal }})</span>{% endif %}</span>
         </div>
       {% else %}
-        <div class="gf-est-group">
-          {% for e in page.estimate %}
-          <div class="gf-est-row">
-            <span class="gf-est-row__label">{{ e.item }}</span>
-            <span class="gf-est-row__lead"></span>
-            <span class="gf-est-row__price">{{ e.price }}</span>
+        <div class="gf-est-cards" style="grid-template-columns:1fr;max-width:640px;margin:0 auto">
+          <div class="gf-est-card">
+            <div class="gf-est-list">
+              {% for e in page.estimate %}
+              <div class="gf-est-item"><div class="gf-est-line"><span class="gf-est-line__label">{{ e.item }}</span><span class="gf-est-line__lead"></span><span class="gf-est-line__price">{{ e.price }}</span></div></div>
+              {% endfor %}
+            </div>
           </div>
-          {% endfor %}
         </div>
         {% if page.estimateTotal %}
         <div class="gf-est-total">
-          <span class="gf-est-total__label">Estimated investment</span>
+          <div><span class="gf-est-total__label">Estimated Total</span><span class="gf-est-total__tax">{{ page.taxNote | default: "Sales tax is added to the florals at the local rate on your final invoice." }}</span></div>
           <span class="gf-est-total__val">{{ page.estimateTotal }}</span>
         </div>
         {% endif %}
       {% endif %}
-
-      <p class="gf-est-note">Full-service delivery, setup, repurposing &amp; strike included. {{ page.taxNote | default: "Sales tax added at the local rate on your final invoice." }}</p>
     </div>
   </section>
   {% endif %}
 
-  {% comment %} ════════ RESERVE YOUR DATE ════════ {% endcomment %}
-  <section class="gf-section gf-reserve">
-    <span class="gf-eyebrow">Next Steps</span>
-    <h2 class="gf-h2">Shall we hold your date?</h2>
-    <p class="gf-reserve__body">We take a single wedding per day, so dates are reserved with a retainer. Once it's in, your date is officially ours to design.</p>
-
-    <div class="gf-hold">
-      {% if page.dateSent %}
-        {% assign hold_until = page.dateSent | append: " 12:00:00" | date: "%s" | plus: 604800 | date: "%B %-d, %Y" %}
-        <p class="gf-hold__line">We've reserved <strong>{{ page.weddingDate }}</strong> for you through <strong>{{ hold_until }}</strong>. To keep it beyond then, we just need your retainer.</p>
-      {% else %}
-        <p class="gf-hold__line">We've reserved <strong>{{ page.weddingDate }}</strong> for you. To secure it, we just need your retainer.</p>
-      {% endif %}
-      <ul class="gf-terms-list">
-        <li>A non-refundable retainer of <strong>{{ page.depositAmount | default: "$1,000" }}</strong> reserves your date and is applied toward your final balance.</li>
-        <li>The remaining balance is due <strong>30 days before your wedding</strong>.</li>
-      </ul>
+  {% comment %} RESERVE + PAYCARD {% endcomment %}
+  <section class="gf-section">
+    <div class="gf-reserve">
+      <div>
+        <span class="gf-eyebrow">Reserve Your Date</span>
+        <h2 class="gf-reserve__h2">Shall we hold your date?</h2>
+        {% if page.dateSent %}{% assign hold_until = page.dateSent | append: " 12:00:00" | date: "%s" | plus: 604800 | date: "%B %-d, %Y" %}{% endif %}
+        <p class="gf-reserve__body">We take a single wedding per day. {% if page.dateSent %}We've held <strong>{{ page.weddingDate }}</strong> for you through <strong>{{ hold_until }}</strong>; a {% else %}A {% endif %}<strong>{{ page.depositAmount | default: "$1,000" }} retainer</strong> and a signed agreement secure it, with the balance due 30 days before the wedding.</p>
+        <p class="gf-reserve__pay">{{ page.paymentNote | default: "Your retainer and balance are invoiced through QuickBooks. Bank transfer, check, Venmo, Zelle, or card are all welcome; bank transfer is quickest and our preferred method." }}</p>
+        <div class="gf-actions">
+          {% if page.depositLink %}
+            <a href="{{ page.depositLink }}" target="_blank" rel="noopener" class="gf-btn gf-btn--primary">Reserve our date</a>
+          {% else %}
+            <a href="mailto:brittany@goldenflorals.com?subject=Reserving our date · {{ page.coupleNames | uri_escape }}" class="gf-btn gf-btn--primary">Reserve our date</a>
+          {% endif %}
+          <a href="mailto:brittany@goldenflorals.com?subject=A question about our proposal · {{ page.coupleNames | uri_escape }}" class="gf-btn gf-btn--ghost">Ask a question</a>
+        </div>
+      </div>
+      <div class="gf-paycard">
+        <span class="gf-paycard__eyebrow">To hold {{ page.weddingDate }}{% if page.dateSent %} through {{ hold_until }}{% endif %}</span>
+        <div class="gf-paycard__deposit">{{ page.depositAmount | default: "$1,000" }}</div>
+        <p class="gf-paycard__depositcap">Non-refundable retainer, applied to your final balance.</p>
+        <div class="gf-payrow"><span class="gf-payrow__k">Invoicing</span><span class="gf-payrow__v">QuickBooks</span></div>
+        {% if page.venmo %}<div class="gf-payrow"><span class="gf-payrow__k">Venmo</span><span class="gf-payrow__v">{{ page.venmo }}</span></div>{% endif %}
+        {% if page.zelle %}<div class="gf-payrow"><span class="gf-payrow__k">Zelle</span><span class="gf-payrow__v">{{ page.zelle }}</span></div>{% endif %}
+        <div class="gf-payrow"><span class="gf-payrow__k">Balance due</span><span class="gf-payrow__v">30 days before</span></div>
+      </div>
     </div>
-
-    <div class="gf-actions">
-      {% if page.depositLink %}
-        <a href="{{ page.depositLink }}" target="_blank" rel="noopener" class="gf-btn gf-btn--primary">Reserve our date</a>
-      {% else %}
-        <a href="mailto:brittany@goldenflorals.com?subject=Reserving our date · {{ page.coupleNames | uri_escape }}" class="gf-btn gf-btn--primary">Reserve our date</a>
-      {% endif %}
-      <a href="mailto:brittany@goldenflorals.com?subject=A question about our proposal · {{ page.coupleNames | uri_escape }}" class="gf-btn gf-btn--ghost">Ask a question</a>
-    </div>
-
-    {% if page.paymentNote %}<p class="gf-reserve__fine">{{ page.paymentNote }}</p>{% endif %}
-    {% if page.venmo or page.zelle %}
-      <p class="gf-reserve__fine">{% if page.venmo %}Venmo <strong>{{ page.venmo }}</strong>{% endif %}{% if page.venmo and page.zelle %} · {% endif %}{% if page.zelle %}Zelle <strong>{{ page.zelle }}</strong>{% endif %}</p>
-    {% endif %}
   </section>
 
-  {% comment %} ════════ FOOTER ════════ {% endcomment %}
+  {% comment %} FOOTER {% endcomment %}
   <footer class="gf-footer">
     <div class="gf-footer__inner">
       <span class="gf-footer__mark">Golden Flowers</span>
@@ -598,7 +532,7 @@
 </div>
 
 <script>
-// ── Access gate (prototype-grade, client-side soft gate) ──────────────
+// Access gate (prototype-grade, client-side soft gate)
 (function () {
   var KEY = 'gf-proposal-unlocked';
   var gate = document.getElementById('gf-gate');
@@ -614,7 +548,6 @@
     document.documentElement.style.overflow = '';
   }
 
-  // Skip the gate if already unlocked this session.
   var already = false;
   try { already = sessionStorage.getItem(KEY) === '1'; } catch (e) {}
   if (already) {
@@ -626,11 +559,8 @@
 
   form.addEventListener('submit', function (e) {
     e.preventDefault();
-    if (input.value.trim().toLowerCase() === code) {
-      unlock();
-    } else {
-      error.hidden = false;
-    }
+    if (input.value.trim().toLowerCase() === code) { unlock(); }
+    else { error.hidden = false; }
   });
   input.addEventListener('input', function () { error.hidden = true; });
 })();
