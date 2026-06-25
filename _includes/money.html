@@ -1,0 +1,2 @@
+{%- assign s = include.n | append: "" -%}{%- assign len = s | size -%}
+{%- if len > 3 -%}{%- assign cut = len | minus: 3 -%}${{ s | slice: 0, cut }},{{ s | slice: cut, 3 }}{%- else -%}${{ s }}{%- endif -%}

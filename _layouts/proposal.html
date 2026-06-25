@@ -241,13 +241,13 @@
     <div class="gf-gate__glow"></div>
     <div class="gf-gate__card">
       <span class="gf-gate__mark">Golden&nbsp;Flowers</span>
-      <h1 class="gf-gate__title">A proposal prepared <br>for {{ page.coupleNames }}</h1>
+      <p class="gf-gate__title">A proposal prepared <br>for {{ page.coupleNames }}</p>
       <p class="gf-gate__sub">This page is private. Enter the access code we shared with you to view it.</p>
       <form class="gf-gate__form" id="gf-gate-form">
         <input type="password" class="gf-gate__input" id="gf-gate-input" placeholder="Access code" aria-label="Access code" autocomplete="off">
         <button type="submit" class="gf-gate__btn">Enter</button>
       </form>
-      <p class="gf-gate__error" id="gf-gate-error" hidden>That code didn't match. Please try again.</p>
+      <p class="gf-gate__error" id="gf-gate-error" aria-live="polite" hidden>That code didn't match. Please try again.</p>
       <p class="gf-gate__fine">Prepared exclusively for you · please don't share</p>
     </div>
   </div>
@@ -502,24 +502,33 @@
       </div>
 
       {% if page.estimateGroups %}
+        {% assign grand = 0 %}
         {% for g in page.estimateGroups %}
-        <div class="gf-est-group">
-          <span class="gf-est-group__title">{{ g.title }}</span>
-          {% for it in g.items %}
-          <div class="gf-est-row">
-            <span class="gf-est-row__label">{{ it.item }}{% if it.detail %} <span class="gf-est-row__detail">{{ it.detail }}</span>{% endif %}</span>
-            <span class="gf-est-row__lead"></span>
-            <span class="gf-est-row__price">{{ it.amount }}</span>
+          {%- assign sub = 0 -%}
+          {%- for it in g.items -%}
+            {%- assign n = it.amount | remove: "$" | remove: "," | remove: " " | plus: 0 -%}
+            {%- assign sub = sub | plus: n -%}
+          {%- endfor -%}
+          {%- assign grand = grand | plus: sub -%}
+          <div class="gf-est-group">
+            <span class="gf-est-group__title">{{ g.title }}</span>
+            {% for it in g.items %}
+            <div class="gf-est-row">
+              <span class="gf-est-row__label">{{ it.item }}{% if it.detail %} <span class="gf-est-row__detail">{{ it.detail }}</span>{% endif %}</span>
+              <span class="gf-est-row__lead"></span>
+              <span class="gf-est-row__price">{{ it.amount }}</span>
+            </div>
+            {% endfor %}
+            <div class="gf-est-subtotal">
+              <span class="gf-est-subtotal__label">Subtotal</span>
+              <span class="gf-est-subtotal__val">{% include money.html n=sub %}</span>
+            </div>
           </div>
-          {% endfor %}
-          {% if g.subtotal %}
-          <div class="gf-est-subtotal">
-            <span class="gf-est-subtotal__label">Subtotal</span>
-            <span class="gf-est-subtotal__val">{{ g.subtotal }}</span>
-          </div>
-          {% endif %}
-        </div>
         {% endfor %}
+        <div class="gf-est-total">
+          <span class="gf-est-total__label">Estimated investment</span>
+          <span class="gf-est-total__val">{% include money.html n=grand %}{% if page.estimateTotal %} <span style="font-family:'DM Mono',monospace;font-size:.6em;color:#9a9388;">({{ page.estimateTotal }})</span>{% endif %}</span>
+        </div>
       {% else %}
         <div class="gf-est-group">
           {% for e in page.estimate %}
@@ -530,13 +539,12 @@
           </div>
           {% endfor %}
         </div>
-      {% endif %}
-
-      {% if page.estimateTotal %}
-      <div class="gf-est-total">
-        <span class="gf-est-total__label">Estimated investment</span>
-        <span class="gf-est-total__val">{{ page.estimateTotal }}</span>
-      </div>
+        {% if page.estimateTotal %}
+        <div class="gf-est-total">
+          <span class="gf-est-total__label">Estimated investment</span>
+          <span class="gf-est-total__val">{{ page.estimateTotal }}</span>
+        </div>
+        {% endif %}
       {% endif %}
 
       <p class="gf-est-note">Full-service delivery, setup, repurposing &amp; strike included. {{ page.taxNote | default: "Sales tax added at the local rate on your final invoice." }}</p>

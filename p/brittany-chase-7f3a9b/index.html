@@ -33,11 +33,10 @@ zelle: "brittany@goldenflorals.com"
 paymentNote: "Your retainer and balance are invoiced through QuickBooks. We're glad to take bank transfer, check, Venmo, Zelle, or card. Bank transfer is quickest and our preferred method."
 
 # ── Per-couple estimate ──────────────────────────────────────────
-# Grouped, with per-line ranges + section subtotals. Omit to hide the section.
-estimateTotal: "$10,930"
+# Subtotals and the grand total are computed from the line amounts, so there
+# is nothing to keep in sync by hand. Keep each `amount` a single committed
+# number; put any range in `detail` (the sum reads `amount` only).
 taxNote: "Sales tax is added to the florals at the local rate on your final invoice."
-# Most lines are committed single prices; ranges are used only where the
-# final scale is genuinely still yours to choose (e.g. the arch).
 estimateGroups:
   - title: "Personal Flowers"
     items:

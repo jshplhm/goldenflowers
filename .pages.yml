@@ -141,23 +141,20 @@ content:
         default: "Your retainer and balance are invoiced through QuickBooks. We're glad to take bank transfer, check, Venmo, Zelle, or card. Bank transfer is quickest and our preferred method."
 
       - name: estimateTotal
-        label: Estimated investment (range, shown as-is)
-        description: 'e.g. $10,930 (a single confident figure), or a range. Leave blank to hide the estimate section'
+        label: Estimated investment (optional check figure)
+        description: 'Optional. Subtotals and the total are computed from the line amounts automatically. Fill this only to show a small check figure beside the total while verifying.'
         type: string
       - name: taxNote
         label: Tax note (shown under the estimate total)
         type: string
         default: 'Sales tax is added to the florals at the local rate on your final invoice.'
       - name: estimateGroups
-        label: Estimate sections (e.g. Personal / Ceremony / Reception)
+        label: Estimate sections (e.g. Personal / Ceremony / Reception). The estimate section shows when this has at least one group.
         type: object
         list: true
         fields:
           - name: title
             label: Section title
-            type: string
-          - name: subtotal
-            label: Section subtotal (range)
             type: string
           - name: items
             label: Line items
