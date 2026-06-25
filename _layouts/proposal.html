@@ -437,7 +437,8 @@
     </div>
   </section>
 
-  {% comment %} ════════ PRICING (dark) ════════ {% endcomment %}
+  {% comment %} ════════ PRICING (dark) — shown only when there's no tailored estimate ════════ {% endcomment %}
+  {% unless page.estimateGroups or page.estimate %}
   <section class="gf-dark">
     <div class="gf-section">
       <div class="gf-pricing__head">
@@ -488,6 +489,7 @@
       </div>
     </div>
   </section>
+  {% endunless %}
 
   {% if page.estimateGroups or page.estimate %}
   {% comment %} ════════ YOUR ESTIMATE (per-couple) ════════ {% endcomment %}
@@ -550,7 +552,7 @@
 
     <div class="gf-hold">
       {% if page.dateSent %}
-        {% assign hold_until = page.dateSent | append: " 12:00:00" | date: "%s" | plus: 432000 | date: "%B %-d, %Y" %}
+        {% assign hold_until = page.dateSent | append: " 12:00:00" | date: "%s" | plus: 604800 | date: "%B %-d, %Y" %}
         <p class="gf-hold__line">We've reserved <strong>{{ page.weddingDate }}</strong> for you through <strong>{{ hold_until }}</strong>. To keep it beyond then, we just need your retainer.</p>
       {% else %}
         <p class="gf-hold__line">We've reserved <strong>{{ page.weddingDate }}</strong> for you. To secure it, we just need your retainer.</p>

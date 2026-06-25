@@ -589,6 +589,24 @@ hr.section-div { border: none; border-top: 1px solid var(--bor); display: block;
 .steps-dark .step-num { color: oklch(74% .12 44); }
 .steps-dark .step h3 { color: oklch(96% .006 88); }
 .steps-dark .step p { color: oklch(83% .015 128); }
+
+/* Process timeline (vertical, used in the dark "How it works" section) */
+.process-timeline { margin-top: 48px; }
+.tl-step { display: grid; grid-template-columns: 60px 1fr; gap: 26px; }
+.tl-rail { position: relative; display: flex; justify-content: center; }
+.tl-num { font-family: var(--f-d); font-style: italic; font-size: 1.9rem; line-height: 1; color: oklch(74% .12 44); }
+.tl-rail::after { content: ""; position: absolute; top: 2.5rem; bottom: -4px; left: 50%; width: 1px; background: oklch(100% 0 0 / .18); }
+.tl-step:last-child .tl-rail::after { display: none; }
+.tl-body { padding-bottom: 38px; }
+.tl-step:last-child .tl-body { padding-bottom: 0; }
+.tl-when { display: block; font-size: .64rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: oklch(74% .12 44); margin-bottom: 9px; }
+.tl-body h3 { font-family: var(--f-d); font-style: normal; font-weight: 500; font-size: 1.4rem; color: oklch(96% .006 88); margin-bottom: 9px; }
+.tl-body p { font-size: .9rem; color: oklch(83% .015 128); line-height: 1.7; max-width: 62ch; }
+@media (max-width: 640px) {
+  .tl-step { grid-template-columns: 42px 1fr; gap: 18px; }
+  .tl-num { font-size: 1.5rem; }
+}
+
 .include-item { background: var(--bg-warm); padding: 28px 32px; display: flex; gap: 16px; align-items: flex-start; }
 .include-icon { width: 28px; height: 28px; color: var(--acc); flex-shrink: 0; margin-top: 0; display: flex; align-items: center; justify-content: center; }
 .include-icon svg { width: 24px; height: 24px; }

@@ -38,28 +38,64 @@ redirect_from:
 <section class="section steps-dark">
   <div class="container">
     <span class="label">How it works</span>
-    <h2>From first conversation to wedding day.</h2>
+    <h2>From first conversation to the end of the night.</h2>
     <p style="max-width:620px;margin-bottom:8px;font-size:1.02rem;">You work with Brittany from the first call to the last centerpiece. One couple, one date, complete attention, and a process built around feeling heard rather than handed a catalog.</p>
-    <div class="process-steps">
-      <div class="step">
-        <p class="step-num">01</p>
-        <h3>Consultation</h3>
-        <p>We learn about your venue, vision, and aesthetic. You leave with a clear sense of what's possible, and we leave with everything we need to build a proposal.</p>
+    <div class="process-timeline">
+      <div class="tl-step">
+        <div class="tl-rail"><span class="tl-num">01</span></div>
+        <div class="tl-body">
+          <span class="tl-when">Today · no commitment</span>
+          <h3>Check your date</h3>
+          <p>Tell us your date and venue and we'll confirm it's still open — we book one wedding per date, so availability is the first thing to ask. It takes a minute and asks nothing of you.</p>
+        </div>
       </div>
-      <div class="step">
-        <p class="step-num">02</p>
-        <h3>Proposal &amp; Design</h3>
-        <p>Brittany builds a custom proposal with a mood board, itemized quote, and seasonal sourcing plan. No boilerplate packages. If the first direction isn't quite right, we keep shaping it together until it's unmistakably yours.</p>
+      <div class="tl-step">
+        <div class="tl-rail"><span class="tl-num">02</span></div>
+        <div class="tl-body">
+          <span class="tl-when">Complimentary</span>
+          <h3>The consultation</h3>
+          <p>If your date is open, we sit down — by call or studio visit — to learn your venue, vision, palette, and guest count. It's free and there's no obligation; we both want to know it's the right fit.</p>
+        </div>
       </div>
-      <div class="step">
-        <p class="step-num">03</p>
-        <h3>Seasonal Refinement</h3>
-        <p>As your date approaches, we refine the design around what's at peak in the season. California-grown flowers, sourced at their best, not substituted with whatever's available.</p>
+      <div class="tl-step">
+        <div class="tl-rail"><span class="tl-num">03</span></div>
+        <div class="tl-body">
+          <span class="tl-when">If we're a fit · held 7 days</span>
+          <h3>Proposal &amp; a held date</h3>
+          <p>When it feels mutual, Brittany builds a custom proposal — mood board, itemized estimate, and seasonal sourcing plan. We hold your date for 7 days while you review, so you can take it in and decide without losing it.</p>
+        </div>
       </div>
-      <div class="step">
-        <p class="step-num">04</p>
-        <h3>Wedding Day</h3>
-        <p>We handle everything: setup, installation, coordination with your venue and planner, and full breakdown at the end of the night. You won't think about the flowers. They'll just be perfect.</p>
+      <div class="tl-step">
+        <div class="tl-rail"><span class="tl-num">04</span></div>
+        <div class="tl-body">
+          <span class="tl-when">To lock it in</span>
+          <h3>Deposit to secure your date</h3>
+          <p>Ready to proceed? A signed agreement and a non-refundable retainer — applied toward your balance — secure your date in full. From here it's officially yours, and ours.</p>
+        </div>
+      </div>
+      <div class="tl-step">
+        <div class="tl-rail"><span class="tl-num">05</span></div>
+        <div class="tl-body">
+          <span class="tl-when">30–60 days out</span>
+          <h3>Refinement</h3>
+          <p>As your details settle — final guest count, layout, timeline — we refine the design and lock your stem list around what's at peak that week. California-grown and sourced at its best. Your remaining balance is due 30 days before the wedding.</p>
+        </div>
+      </div>
+      <div class="tl-step">
+        <div class="tl-rail"><span class="tl-num">06</span></div>
+        <div class="tl-body">
+          <span class="tl-when">Wedding week &amp; day</span>
+          <h3>Delivery, setup &amp; install</h3>
+          <p>We grow, gather, and design in the days before, then deliver, set, and install on-site — coordinating with your venue and planner so the timeline runs without you lifting a finger. From your bouquet to the arch, everything arrives finished.</p>
+        </div>
+      </div>
+      <div class="tl-step">
+        <div class="tl-rail"><span class="tl-num">07</span></div>
+        <div class="tl-body">
+          <span class="tl-when">End of the night</span>
+          <h3>Repurposing &amp; strike</h3>
+          <p>After the ceremony we can repurpose pieces from the aisle to the reception, and at the end of the night our team returns for a full strike — breakdown, removal, and cleanup. Full-service weddings include delivery, setup, repurposing, and strike.</p>
+        </div>
       </div>
     </div>
   </div>
