@@ -377,10 +377,10 @@
         <h2 class="gf-h2">What your investment is built on</h2>
       </div>
       <div class="gf-pillars">
-        <div class="gf-pillar"><h3 class="gf-pillar__head">Farm-grown</h3><p class="gf-pillar__body">We grow on our own plots in California and source exclusively from growers we trust. No flowers flown in from across the world.</p></div>
-        <div class="gf-pillar"><h3 class="gf-pillar__head">Foam-free</h3><p class="gf-pillar__body">Every arrangement we make is built without floral foam. Intentional, sustainable, and better for the environment.</p></div>
-        <div class="gf-pillar"><h3 class="gf-pillar__head">One wedding per date</h3><p class="gf-pillar__body">We never double-book. Your wedding day gets our complete attention, start to finish.</p></div>
-        <div class="gf-pillar"><h3 class="gf-pillar__head">Agronomist-founded</h3><p class="gf-pillar__body">Founder Brittany trained as an agronomist. Soil science shapes what we plant, source, and design.</p></div>
+        <div class="gf-pillar"><h3 class="gf-pillar__head">Designed by Brittany</h3><p class="gf-pillar__body">You work directly with our founder from the first consultation through setup and strike. No junior staff, no assembly line, no handoffs.</p></div>
+        <div class="gf-pillar"><h3 class="gf-pillar__head">Farm-grown</h3><p class="gf-pillar__body">We grow much of your palette on our own California plots and source the rest from growers we trust, never flown in from across the world.</p></div>
+        <div class="gf-pillar"><h3 class="gf-pillar__head">Foam-free, by hand</h3><p class="gf-pillar__body">Every arrangement is built by hand without floral foam. Better for your flowers, and for the landscape they came from.</p></div>
+        <div class="gf-pillar"><h3 class="gf-pillar__head">Agronomist-founded</h3><p class="gf-pillar__body">Brittany trained as an agronomist. Soil science shapes what we plant, source, and design.</p></div>
       </div>
     </div>
   </section>
@@ -497,7 +497,7 @@
         <span class="gf-eyebrow">Reserve Your Date</span>
         <h2 class="gf-reserve__h2">Shall we hold your date?</h2>
         {% if page.dateSent %}{% assign hold_until = page.dateSent | append: " 12:00:00" | date: "%s" | plus: 604800 | date: "%B %-d, %Y" %}{% endif %}
-        <p class="gf-reserve__body">We take a single wedding per day. {% if page.dateSent %}We've held <strong>{{ page.weddingDate }}</strong> for you through <strong>{{ hold_until }}</strong>; a {% else %}A {% endif %}<strong>{{ page.depositAmount | default: "$1,000" }} retainer</strong> and a signed agreement secure it, with the balance due 30 days before the wedding.</p>
+        <p class="gf-reserve__body">{% if page.dateSent %}Your date is held for you for the next 7 days, through <strong>{{ hold_until }}</strong>. To keep it beyond then, all we need is a <strong>{{ page.depositAmount | default: "$1,000" }} retainer</strong> and a signed agreement, and the day is yours.{% else %}To secure your date, all we need is a <strong>{{ page.depositAmount | default: "$1,000" }} retainer</strong> and a signed agreement, and the day is yours.{% endif %} The balance follows 30 days before the wedding.</p>
         <p class="gf-reserve__pay">{{ page.paymentNote | default: "Your retainer and balance are invoiced through QuickBooks. Bank transfer, check, Venmo, Zelle, or card are all welcome; bank transfer is quickest and our preferred method." }}</p>
         <div class="gf-actions">
           {% if page.depositLink %}
@@ -509,7 +509,7 @@
         </div>
       </div>
       <div class="gf-paycard">
-        <span class="gf-paycard__eyebrow">To hold {{ page.weddingDate }}{% if page.dateSent %} through {{ hold_until }}{% endif %}</span>
+        <span class="gf-paycard__eyebrow">{% if page.dateSent %}Held for you through {{ hold_until }}{% else %}To secure your date{% endif %}</span>
         <div class="gf-paycard__deposit">{{ page.depositAmount | default: "$1,000" }}</div>
         <p class="gf-paycard__depositcap">Non-refundable retainer, applied to your final balance.</p>
         <div class="gf-payrow"><span class="gf-payrow__k">Invoicing</span><span class="gf-payrow__v">QuickBooks</span></div>
