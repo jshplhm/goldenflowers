@@ -1,4 +1,4 @@
-# Pages CMS config (pagescms.org) — a hosted, modern, self-serve editor.
+# Pages CMS config (pagescms.org): a hosted, modern, self-serve editor.
 # Brittany signs in at app.pagescms.org with GitHub (one-time), picks this repo,
 # and gets a clean UI to write blog posts and build client proposals.
 # No Netlify / serverless backend required.
@@ -75,8 +75,8 @@ content:
         hidden: true
 
       - name: urlSlug
-        label: URL slug (add random characters — this is the real privacy)
-        description: 'e.g. brittany-chase-7f3a9b — the page lives at /p/<slug>/'
+        label: URL slug (add random characters; this is the real privacy)
+        description: 'e.g. brittany-chase-7f3a9b. The page lives at /p/<slug>/'
         type: string
         required: true
         pattern: '^[a-z0-9-]+$'
@@ -116,7 +116,7 @@ content:
         default: Brittany
 
       - name: dateSent
-        label: Date sent (YYYY-MM-DD) — the hold runs 5 days from this
+        label: Date sent (YYYY-MM-DD). The hold runs 7 days from this
         type: string
         pattern: '^\d{4}-\d{2}-\d{2}$'
       - name: depositAmount
@@ -125,7 +125,7 @@ content:
         type: string
         default: '$1,000'
       - name: depositLink
-        label: Reserve button link (QuickBooks deposit invoice URL — optional)
+        label: Reserve button link (QuickBooks deposit invoice URL, optional)
         description: 'Leave blank to fall back to an email to brittany@goldenflorals.com'
         type: string
       - name: venmo
@@ -138,11 +138,11 @@ content:
         label: Payment note (how the retainer & balance are paid)
         description: 'Shown under the Reserve buttons. Steers couples to bank transfer without surcharging cards (NV restricts card surcharges).'
         type: text
-        default: "Your retainer and balance are invoiced through QuickBooks. We're glad to take bank transfer, check, Venmo, Zelle, or card — bank transfer is quickest and our preferred method."
+        default: "Your retainer and balance are invoiced through QuickBooks. We're glad to take bank transfer, check, Venmo, Zelle, or card. Bank transfer is quickest and our preferred method."
 
       - name: estimateTotal
         label: Estimated investment (range, shown as-is)
-        description: 'e.g. $8,500–12,000 — leave blank to hide the estimate section'
+        description: 'e.g. $10,930 (a single confident figure), or a range. Leave blank to hide the estimate section'
         type: string
       - name: taxNote
         label: Tax note (shown under the estimate total)
@@ -171,7 +171,7 @@ content:
                 label: 'For multiples: "N × $low–high" (e.g. 4 × $125–175). Leave blank for single items.'
                 type: string
               - name: amount
-                label: 'Line total range — for multiples = N × the unit range (e.g. $500–700)'
+                label: 'Line total. For multiples = N × the unit price (e.g. 4 × $150 = $600)'
                 type: string
 
       - name: heroImage

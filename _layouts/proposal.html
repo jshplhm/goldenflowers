@@ -360,7 +360,7 @@
     <div class="gf-note__inner">
       <span class="gf-eyebrow">A Note for You</span>
       <div class="gf-note__body">{{ page.note | markdownify }}</div>
-      <span class="gf-note__sign">— {{ page.noteSignature | default: "Brittany" }}</span>
+      <span class="gf-note__sign">With love, {{ page.noteSignature | default: "Brittany" }}</span>
     </div>
   </section>
   {% endif %}
@@ -370,7 +370,7 @@
     <div class="gf-mood__head">
       <span class="gf-eyebrow">The Vision</span>
       <h2 class="gf-h2">A wild, romantic garden</h2>
-      <p class="gf-mood__intro">This curated direction balances high-impact warmth with delicate, airy neutrals — designed to feel both grounded and ethereal, abundant yet intentional.</p>
+      <p class="gf-mood__intro">This curated direction balances high-impact warmth with delicate, airy neutrals, designed to feel both grounded and ethereal, abundant yet intentional.</p>
     </div>
     <div class="gf-mood__grid">
       {% if page.moodboard %}
@@ -437,7 +437,7 @@
     </div>
   </section>
 
-  {% comment %} ════════ PRICING (dark) — shown only when there's no tailored estimate ════════ {% endcomment %}
+  {% comment %} ════════ PRICING (dark): shown only when there's no tailored estimate ════════ {% endcomment %}
   {% unless page.estimateGroups or page.estimate %}
   <section class="gf-dark">
     <div class="gf-section">
@@ -483,7 +483,7 @@
       </div>
 
       <div class="gf-terms">
-        <p class="gf-terms__lead"><strong>Full-service weddings over $8,000</strong> include delivery, setup, repurposing of florals after the ceremony, and end-of-night strike — handled entirely by our team.</p>
+        <p class="gf-terms__lead"><strong>Full-service weddings over $8,000</strong> include delivery, setup, repurposing of florals after the ceremony, and end-of-night strike, handled entirely by our team.</p>
         <p class="gf-terms__col">For weddings under $8,000, these are itemized: delivery $200, repurposing $200, strike $600.</p>
         <p class="gf-terms__col">Sales tax is added to the total cost of goods. Every figure here is a starting guide, refined in your proposal.</p>
       </div>
@@ -498,7 +498,7 @@
       <div class="gf-est__head">
         <span class="gf-eyebrow">Your Estimate</span>
         <h2 class="gf-h2">Tailored to your day</h2>
-        <p class="gf-est__sub">Designed around a single investment for your day. A few still-open pieces are shown as ranges — we finalize the exact figure together at your consultation.</p>
+        <p class="gf-est__sub">Designed around a single investment for your day. A few still-open pieces are shown as ranges, and we finalize the exact figure together at your consultation.</p>
       </div>
 
       {% if page.estimateGroups %}
