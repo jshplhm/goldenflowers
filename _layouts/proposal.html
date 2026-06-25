@@ -152,24 +152,24 @@
     .gf-terms__lead strong{font-weight:600;color:#f0c9b2}
     .gf-terms__col{font-size:.84rem;color:#b9c4ba;line-height:1.6}
 
-    /* ── per-couple estimate (compact) ── */
-    .gf-est__inner{max-width:680px;margin:0 auto}
+    /* ── per-couple estimate (compact, reconciling) ── */
+    .gf-est__inner{max-width:640px;margin:0 auto}
     .gf-est__head{text-align:center;margin-bottom:26px}
     .gf-est__sub{font-size:.95rem;color:#3b453c;line-height:1.6;max-width:50ch;margin:10px auto 0}
-    .gf-est-group{margin-top:20px}
+    .gf-est-group{margin-top:26px}
     .gf-est-group:first-of-type{margin-top:0}
-    .gf-est-group__head{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding-bottom:7px;border-bottom:1px solid rgba(110,118,108,.3)}
-    .gf-est-group__title{font-weight:600;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:#a6552d}
-    .gf-est-group__sub{font-family:'DM Mono',monospace;font-size:.74rem;color:#5b635a;white-space:nowrap}
-    .gf-est-row{display:flex;align-items:baseline;gap:10px;padding:8px 0;border-bottom:1px solid rgba(110,118,108,.12)}
-    .gf-est-row:last-child{border-bottom:none}
+    .gf-est-group__title{display:block;font-weight:600;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:#a6552d;padding-bottom:8px;border-bottom:1px solid rgba(110,118,108,.28)}
+    .gf-est-row{display:flex;align-items:baseline;gap:10px;padding:8px 0;border-bottom:1px solid rgba(110,118,108,.1)}
     .gf-est-row__label{font-size:.95rem;color:#15211a}
-    .gf-est-row__detail{font-size:.78rem;color:#9a9388}
-    .gf-est-row__lead{flex:1;border-bottom:1px dotted rgba(110,118,108,.4);transform:translateY(-3px);min-width:18px}
+    .gf-est-row__detail{font-size:.76rem;color:#9a9388}
+    .gf-est-row__lead{flex:1;border-bottom:1px dotted rgba(110,118,108,.38);transform:translateY(-3px);min-width:18px}
     .gf-est-row__price{font-family:'DM Mono',monospace;font-size:.84rem;color:#3b453c;white-space:nowrap}
-    .gf-est-total{display:flex;justify-content:space-between;align-items:baseline;padding-top:16px;margin-top:14px;border-top:2px solid #15211a;gap:16px}
+    .gf-est-subtotal{display:flex;justify-content:flex-end;align-items:baseline;gap:14px;padding-top:9px}
+    .gf-est-subtotal__label{font-size:.64rem;letter-spacing:.18em;text-transform:uppercase;color:#9a9388}
+    .gf-est-subtotal__val{font-family:'DM Mono',monospace;font-size:.78rem;color:#5b635a;white-space:nowrap}
+    .gf-est-total{display:flex;justify-content:space-between;align-items:baseline;padding-top:18px;margin-top:18px;border-top:2px solid #15211a;gap:16px}
     .gf-est-total__label{font-weight:600;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:#15211a}
-    .gf-est-total__val{font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-size:1.7rem;color:#a6552d;white-space:nowrap}
+    .gf-est-total__val{font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-size:1.75rem;color:#a6552d;white-space:nowrap}
     .gf-est-note{margin:18px auto 0;font-size:.78rem;color:#5b635a;line-height:1.55;text-align:center;max-width:62ch}
 
     /* ── reserve / hold ── */
@@ -502,10 +502,7 @@
       {% if page.estimateGroups %}
         {% for g in page.estimateGroups %}
         <div class="gf-est-group">
-          <div class="gf-est-group__head">
-            <span class="gf-est-group__title">{{ g.title }}</span>
-            {% if g.subtotal %}<span class="gf-est-group__sub">{{ g.subtotal }}</span>{% endif %}
-          </div>
+          <span class="gf-est-group__title">{{ g.title }}</span>
           {% for it in g.items %}
           <div class="gf-est-row">
             <span class="gf-est-row__label">{{ it.item }}{% if it.detail %} <span class="gf-est-row__detail">{{ it.detail }}</span>{% endif %}</span>
@@ -513,6 +510,12 @@
             <span class="gf-est-row__price">{{ it.amount }}</span>
           </div>
           {% endfor %}
+          {% if g.subtotal %}
+          <div class="gf-est-subtotal">
+            <span class="gf-est-subtotal__label">Subtotal</span>
+            <span class="gf-est-subtotal__val">{{ g.subtotal }}</span>
+          </div>
+          {% endif %}
         </div>
         {% endfor %}
       {% else %}

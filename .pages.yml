@@ -168,10 +168,10 @@ content:
                 label: Item
                 type: string
               - name: detail
-                label: Detail (count × unit price, or a short descriptor)
+                label: 'For multiples: "N × $low–high" (e.g. 4 × $125–175). Leave blank for single items.'
                 type: string
               - name: amount
-                label: Line investment (range)
+                label: 'Line total range — for multiples = N × the unit range (e.g. $500–700)'
                 type: string
 
       - name: heroImage
