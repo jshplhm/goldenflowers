@@ -134,19 +134,19 @@ summary:focus-visible, [tabindex]:focus-visible {
 /* Push page content below fixed nav */
 body { padding-top: var(--nav-h); }
 .nav-logo {
-  font-family: var(--f-b); font-size: .78rem;
-  letter-spacing: .2em; text-transform: uppercase;
+  font-family: var(--f-d); font-size: .95rem;
+  letter-spacing: normal; text-transform: uppercase;
   color: var(--fg); font-weight: 500;
 }
 /* Desktop: logo matches the menu (uppercase sans) but larger and bold */
 @media (min-width: 1025px) {
-  .nav-logo { font-family: var(--f-b); font-style: normal; font-weight: 600; font-size: 1.15rem; letter-spacing: .12em; text-transform: uppercase; line-height: 1; }
+  .nav-logo { font-family: var(--f-d); font-style: normal; font-weight: 500; font-size: 1.5rem; letter-spacing: normal; text-transform: uppercase; line-height: 1; }
 }
 .nav-menu { display: none; }
 .nav-links { display: flex; gap: 36px; }
 .nav-links a {
-  font-family: var(--f-d); font-size: 1.05rem; font-weight: 500;
-  letter-spacing: normal; text-transform: uppercase;
+  font-family: var(--f-b); font-size: .82rem;
+  letter-spacing: .05em; text-transform: uppercase;
   line-height: 1;
   color: var(--fg2); transition: color .2s;
   position: relative;
