@@ -146,7 +146,7 @@ body { padding-top: var(--nav-h); }
 .nav-links { display: flex; gap: 36px; }
 .nav-links a {
   font-family: var(--f-b); font-size: .82rem;
-  letter-spacing: .05em; text-transform: uppercase;
+  letter-spacing: .1em; text-transform: uppercase;
   color: var(--fg2); transition: color .2s;
   position: relative;
 }
