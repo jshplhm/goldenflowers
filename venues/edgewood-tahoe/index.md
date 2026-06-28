@@ -94,43 +94,7 @@ redirect_from:
   <div class="container">
     <span class="label">Questions about Edgewood</span>
     <h2>What planning at Edgewood looks like.</h2>
-    <div class="faq-list">
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFaq(this)">
-          <h3>Do you design florals for Edgewood weddings?</h3>
-          <div class="faq-toggle">+</div>
-        </div>
-        <div class="faq-answer">Yes. We design for Edgewood's lakeside ceremony spaces and the Edgewood Pavilion, and plan around the venue's logistics, load-in, and space constraints so setup runs cleanly on the day.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFaq(this)">
-          <h3>What does a typical Edgewood wedding budget look like?</h3>
-          <div class="faq-toggle">+</div>
-        </div>
-        <div class="faq-answer">Edgewood weddings typically range from <strong>$12,000–$22,000+</strong> for full-service florals. This covers consultation through day-of breakdown, ceremony installation, bridal party florals, and reception centerpieces. The range depends on table count, installation scale, and aesthetic complexity. We'll build a custom proposal after your consultation, nothing is boilerplate.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFaq(this)">
-          <h3>Do you work with Edgewood's preferred vendors?</h3>
-          <div class="faq-toggle">+</div>
-        </div>
-        <div class="faq-answer">Yes. If you're already working with a planner, we'll coordinate directly with them and the venue's events team. If not, we can recommend planners we trust for Lake Tahoe weddings. A well-coordinated vendor team makes everything on your wedding day run cleanly.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFaq(this)">
-          <h3>What aesthetics work best at Edgewood?</h3>
-          <div class="faq-toggle">+</div>
-        </div>
-        <div class="faq-answer">All three of our aesthetics work beautifully at Edgewood, for different reasons. <strong>Elevated Minimalist</strong> is the most popular, the clean lines work with the venue's architecture and the open lake view. <strong>Wildflower Modern</strong> works especially well for outdoor ceremonies on the lawn. Rich, lush arrangements come alive in the Pavilion's interior evening reception settings, deep tones and candlelight work beautifully there. We'll design around the specific spaces you're using.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFaq(this)">
-          <h3>How far in advance should I reach out?</h3>
-          <div class="faq-toggle">+</div>
-        </div>
-        <div class="faq-answer">Edgewood dates book up fast, especially Saturday summer dates. We take one wedding per date, so we recommend reaching out <strong>12–18 months in advance</strong> if possible. If your date is sooner, reach out anyway and we'll let you know availability. We occasionally have late-availability openings.</div>
-      </div>
-    </div>
+    {% include faq.html %}
   </div>
 </section>
 

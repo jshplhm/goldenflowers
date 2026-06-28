@@ -1,0 +1,38 @@
+{%- comment -%}
+Renders a page's FAQ as BOTH the visible accordion and FAQPage structured data,
+from a single source: _data/faqs.yml (matched to this page by `url`). Edited in
+Pages CMS ("Page FAQs"). Answers may contain basic HTML (<strong>, <br>, <a>);
+root-relative links get site.baseurl injected so they work on staging + prod.
+{%- endcomment -%}
+{%- assign faq_entry = site.data.faqs.pages | where: "url", page.url | first -%}
+{%- if faq_entry and faq_entry.faqs -%}
+<div class="faq-list">
+  {%- for faq in faq_entry.faqs %}
+  <div class="faq-item">
+    <div class="faq-question" onclick="toggleFaq(this)">
+      <h3>{{ faq.q }}</h3>
+      <div class="faq-toggle">+</div>
+    </div>
+    <div class="faq-answer">{{ faq.a | replace: 'href="/', 'href="@@B@@/' | replace: '@@B@@', site.baseurl }}</div>
+  </div>
+  {%- endfor %}
+</div>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {%- for faq in faq_entry.faqs %}
+    {
+      "@type": "Question",
+      "name": {{ faq.q | strip_html | normalize_whitespace | jsonify }},
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": {{ faq.a | strip_html | normalize_whitespace | jsonify }}
+      }
+    }{% unless forloop.last %},{% endunless %}
+    {%- endfor %}
+  ]
+}
+</script>
+{%- endif -%}

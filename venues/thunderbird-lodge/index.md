@@ -89,36 +89,7 @@ no_prefooter: true
   <div class="container">
     <span class="label">Questions about Thunderbird Lodge</span>
     <h2>What planning at Thunderbird Lodge looks like.</h2>
-    <div class="faq-list">
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFaq(this)">
-          <h3>Do you design florals for Thunderbird Lodge weddings?</h3>
-          <div class="faq-toggle">+</div>
-        </div>
-        <div class="faq-answer">Yes. We design for the estate's lawns, stone terraces, and the Old Lodge, and we plan around the site's access and historic-property guidelines so setup and breakdown stay smooth and respectful of the grounds.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFaq(this)">
-          <h3>What does a typical Thunderbird Lodge wedding budget look like?</h3>
-          <div class="faq-toggle">+</div>
-        </div>
-        <div class="faq-answer">Full-service florals here typically start around <strong>$18,000</strong> and rise with installation scale and guest count, reflecting the estate's level and logistics. Every proposal is custom, built around your vision, table count, and the spaces you're using.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFaq(this)">
-          <h3>How does access to the estate work?</h3>
-          <div class="faq-toggle">+</div>
-        </div>
-        <div class="faq-answer">Thunderbird Lodge has limited road and boat access along the east shore, so load-in is coordinated carefully with the venue and your planner. We build and stage with that in mind from the start.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFaq(this)">
-          <h3>How far in advance should I reach out?</h3>
-          <div class="faq-toggle">+</div>
-        </div>
-        <div class="faq-answer">We take one wedding per date, so we recommend reaching out <strong>12–18 months ahead</strong> when you can. If your date is sooner, reach out anyway and we'll let you know availability.</div>
-      </div>
-    </div>
+    {% include faq.html %}
   </div>
 </section>
 

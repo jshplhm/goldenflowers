@@ -89,36 +89,7 @@ no_prefooter: true
   <div class="container">
     <span class="label">Questions about Palisades High Camp</span>
     <h2>What planning at High Camp looks like.</h2>
-    <div class="faq-list">
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFaq(this)">
-          <h3>Do you design for alpine venues like High Camp?</h3>
-          <div class="faq-toggle">+</div>
-        </div>
-        <div class="faq-answer">Yes. High-elevation venues are some of our favorites to design for, and they take specific know-how, conditioning for thin dry air, hardy stem selection, and a load-in planned around the tram. We'll walk you through exactly how we'd approach your ceremony and reception spaces.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFaq(this)">
-          <h3>What does a typical High Camp wedding budget look like?</h3>
-          <div class="faq-toggle">+</div>
-        </div>
-        <div class="faq-answer">Full-service florals at venues like High Camp typically range from <strong>$12,000–$22,000+</strong>. That covers consultation through day-of breakdown, ceremony installation, bridal party florals, and reception centerpieces. The range depends on table count, installation scale, and aesthetic. Every proposal is custom, nothing is boilerplate.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFaq(this)">
-          <h3>How does the tram affect setup?</h3>
-          <div class="faq-toggle">+</div>
-        </div>
-        <div class="faq-answer">Everything travels up by tram, so we build and pack with that in mind and coordinate load-in timing with your planner and the venue. It's a logistics question we plan for from the start, not a surprise on the day.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFaq(this)">
-          <h3>How far in advance should I reach out?</h3>
-          <div class="faq-toggle">+</div>
-        </div>
-        <div class="faq-answer">We take one wedding per date, so we recommend reaching out <strong>12–18 months ahead</strong> when you can. If your date is sooner, reach out anyway and we'll let you know availability.</div>
-      </div>
-    </div>
+    {% include faq.html %}
   </div>
 </section>
 

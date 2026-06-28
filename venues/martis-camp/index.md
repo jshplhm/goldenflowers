@@ -91,36 +91,7 @@ redirect_from:
   <div class="container">
     <span class="label">Questions about Martis Camp</span>
     <h2>What planning at Martis Camp looks like.</h2>
-    <div class="faq-list">
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFaq(this)">
-          <h3>How does access to a private community work?</h3>
-          <div class="faq-toggle">+</div>
-        </div>
-        <div class="faq-answer">Entry, timing, and vendor load-in at Martis Camp are coordinated through the community and your hosts. We plan around those guidelines from the start and work closely with your planner so setup and breakdown stay smooth and discreet.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFaq(this)">
-          <h3>What does a typical Martis Camp wedding budget look like?</h3>
-          <div class="faq-toggle">+</div>
-        </div>
-        <div class="faq-answer">Full-service florals here typically range from <strong>$14,000–$25,000+</strong>. That covers consultation through day-of breakdown, ceremony installation, bridal party florals, and reception centerpieces. The range depends on table count, installation scale, and aesthetic. Every proposal is custom.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFaq(this)">
-          <h3>Which spaces do you design for?</h3>
-          <div class="faq-toggle">+</div>
-        </div>
-        <div class="faq-answer">We design for the spaces you're using, the lodge, the family barn, and the outdoor lawns, carrying one cohesive palette and language across the ceremony and reception so the day reads as a single designed event.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFaq(this)">
-          <h3>How far in advance should I reach out?</h3>
-          <div class="faq-toggle">+</div>
-        </div>
-        <div class="faq-answer">We take one wedding per date, so we recommend reaching out <strong>12–18 months ahead</strong> when you can. If your date is sooner, reach out anyway and we'll let you know availability.</div>
-      </div>
-    </div>
+    {% include faq.html %}
   </div>
 </section>
 

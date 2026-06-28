@@ -95,43 +95,7 @@ redirect_from:
   <div class="container">
     <span class="label">Questions about the North Tahoe Event Center</span>
     <h2>What planning here looks like.</h2>
-    <div class="faq-list">
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFaq(this)">
-          <h3>Do you design florals for North Tahoe Event Center weddings?</h3>
-          <div class="faq-toggle">+</div>
-        </div>
-        <div class="faq-answer">Yes. We design for the lakefront ceremony and the indoor hall reception, and we plan around the venue's load-in windows and setup access so the day runs cleanly.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFaq(this)">
-          <h3>It's a pretty open, plain hall, can flowers really change that?</h3>
-          <div class="faq-toggle">+</div>
-        </div>
-        <div class="faq-answer">That's exactly where florals earn their keep. A blank-canvas space lets us set the entire mood, palette, scale, and focal points, with installations and centerpieces instead of working around fixed decor. Couples are often surprised how completely the room transforms.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFaq(this)">
-          <h3>What does a typical wedding budget look like here?</h3>
-          <div class="faq-toggle">+</div>
-        </div>
-        <div class="faq-answer">Full-service florals at the North Tahoe Event Center typically range from <strong>$12,000–$22,000+</strong>. Because it's a blank-canvas space, more of the wedding's look comes from flowers, so the floral budget often does more of the design work. Every proposal is custom, built after your consultation.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFaq(this)">
-          <h3>What aesthetics work best here?</h3>
-          <div class="faq-toggle">+</div>
-        </div>
-        <div class="faq-answer">All three of our directions work, since the room is yours to define. <strong>Wildflower Modern</strong> brings the lakefront feeling indoors; <strong>Elevated Minimalist</strong> gives the open space clean structure; and rich, lush installations turn the hall into something dramatic for an evening reception.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFaq(this)">
-          <h3>How far in advance should I reach out?</h3>
-          <div class="faq-toggle">+</div>
-        </div>
-        <div class="faq-answer">We take one wedding per date, and North Shore summer and fall dates book early, so reach out <strong>12–18 months ahead</strong> if you can. If your date is sooner, ask anyway and we'll let you know our availability.</div>
-      </div>
-    </div>
+    {% include faq.html %}
   </div>
 </section>
 

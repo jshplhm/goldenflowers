@@ -91,36 +91,7 @@ redirect_from:
   <div class="container">
     <span class="label">Questions about the Ritz-Carlton</span>
     <h2>What planning at the Ritz-Carlton looks like.</h2>
-    <div class="faq-list">
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFaq(this)">
-          <h3>Do you work with the Ritz-Carlton's planning team?</h3>
-          <div class="faq-toggle">+</div>
-        </div>
-        <div class="faq-answer">Yes. We coordinate directly with your planner and the venue's events team on timing, load-in, and setup. If you don't have a planner yet, we can recommend coordinators we've worked with successfully at mountain resort venues.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFaq(this)">
-          <h3>What does a typical Ritz-Carlton wedding budget look like?</h3>
-          <div class="faq-toggle">+</div>
-        </div>
-        <div class="faq-answer">Full-service florals here typically range from <strong>$14,000–$25,000+</strong>, reflecting the scale and finish the venue calls for. That covers consultation through day-of breakdown, ceremony installation, bridal party florals, and reception centerpieces. Every proposal is custom.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFaq(this)">
-          <h3>Can you design for a winter wedding here?</h3>
-          <div class="faq-toggle">+</div>
-        </div>
-        <div class="faq-answer">Absolutely. Winter here is a beautiful brief, evergreen, candlelight, deep tones, and structural arrangements that work with the season instead of pretending it's summer.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFaq(this)">
-          <h3>How far in advance should I reach out?</h3>
-          <div class="faq-toggle">+</div>
-        </div>
-        <div class="faq-answer">We take one wedding per date, so we recommend reaching out <strong>12–18 months ahead</strong> when you can. If your date is sooner, reach out anyway and we'll let you know availability.</div>
-      </div>
-    </div>
+    {% include faq.html %}
   </div>
 </section>
 

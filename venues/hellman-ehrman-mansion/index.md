@@ -95,43 +95,7 @@ redirect_from:
   <div class="container">
     <span class="label">Questions about Hellman-Ehrman</span>
     <h2>What planning at Sugar Pine Point looks like.</h2>
-    <div class="faq-list">
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFaq(this)">
-          <h3>Do you design florals for Hellman-Ehrman Mansion weddings?</h3>
-          <div class="faq-toggle">+</div>
-        </div>
-        <div class="faq-answer">Yes. We design for the lakefront ceremony site and the lawn reception at Sugar Pine Point, and we plan around the park's access, load-in windows, and leave-no-trace rules so setup and strike run cleanly.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFaq(this)">
-          <h3>Does a state park venue limit what's possible with flowers?</h3>
-          <div class="faq-toggle">+</div>
-        </div>
-        <div class="faq-answer">Not creatively, only materially. Floral foam and anything that can shed into the lake or forest are out, which suits us, since we've always worked foam-free. We use water sources, reusable mechanics, and compostable materials, so the design ambition stays high while the footprint stays at zero.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFaq(this)">
-          <h3>What does a typical wedding budget look like here?</h3>
-          <div class="faq-toggle">+</div>
-        </div>
-        <div class="faq-answer">Full-service florals at Hellman-Ehrman typically range from <strong>$10,000–$18,000+</strong>, depending on guest count, ceremony installation, and reception scale. Every proposal is custom, built after your consultation, nothing is boilerplate.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFaq(this)">
-          <h3>What aesthetics work best at Sugar Pine Point?</h3>
-          <div class="faq-toggle">+</div>
-        </div>
-        <div class="faq-answer">The wooded, lakefront setting is made for natural, gathered design, our <strong>Wildflower Modern</strong> direction especially. Cleaner, <strong>Elevated Minimalist</strong> arrangements also look striking against the historic mansion and the water. We design around the specific spots you're using.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFaq(this)">
-          <h3>How far in advance should I reach out?</h3>
-          <div class="faq-toggle">+</div>
-        </div>
-        <div class="faq-answer">State-park dates are limited and reserved through California State Parks, so they go early. We take one wedding per date, so reach out <strong>12–18 months ahead</strong> if you can. If your date is sooner, ask anyway and we'll let you know our availability.</div>
-      </div>
-    </div>
+    {% include faq.html %}
   </div>
 </section>
 

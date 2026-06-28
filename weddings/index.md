@@ -190,69 +190,7 @@ redirect_from:
   <div class="container" style="max-width:1100px;">
     <span class="label">Frequently asked questions</span>
     <h2>What makes Golden Flowers different from other florists?</h2>
-    <div class="faq-list">
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFaq(this)">
-          <h3>What actually makes you different?</h3>
-          <div class="faq-toggle">+</div>
-        </div>
-        <div class="faq-answer">
-          <strong>Four specific things most florists can't say:</strong> We grow our own flowers on farm plots in California. We never use floral foam. We take one wedding per date, so your wedding day gets our full team, not a partial crew split between two events. And our founder Brittany trained as an agronomist, which means her design decisions are rooted in how plants actually grow, not just how they look in a Pinterest board.<br><br>
-          Most florists source from the same wholesale importers and build the same kinds of arrangements. We work with what the California land is producing at peak, and we design around that. The result is florals that feel grounded, seasonal, and specific to the Sierra Nevada landscape where your wedding is happening.
-        </div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFaq(this)">
-          <h3>What does "one wedding per date" actually mean?</h3>
-          <div class="faq-toggle">+</div>
-        </div>
-        <div class="faq-answer">It means we never double-book. When you book with us, Brittany and the whole Golden Flowers team is dedicated to your wedding, full stop. We won't be splitting time or attention with another couple on your day. Setup starts at the right time, nothing gets rushed, and the design you approved is what actually shows up. This is non-negotiable for us.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFaq(this)">
-          <h3>Why does it matter that you're foam-free?</h3>
-          <div class="faq-toggle">+</div>
-        </div>
-        <div class="faq-answer">Floral foam is a plastic-based product that sheds microplastics into water and soil and never biodegrades. Most florists use it because it's easier and faster. We don't use it because it contradicts everything we care about, the environmental ethic of our farm-grown sourcing, the integrity of the flowers, and the land where your wedding is happening. Foam-free arrangements require more skill to build. We've invested in that skill. Your flowers will look better for it and leave less impact on the place you love.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFaq(this)">
-          <h3>How far in advance should I reach out?</h3>
-          <div class="faq-toggle">+</div>
-        </div>
-        <div class="faq-answer">For popular summer and fall Saturday dates at venues like Edgewood, Palisades, or the National Exchange Hotel, we recommend reaching out <strong>12–18 months in advance</strong>. Because we only take one wedding per date, our calendar fills from the back forward, peak dates go first. If your date is closer than 12 months away, reach out anyway. We'll tell you honestly what's available. We occasionally have openings for mid-week, off-season, or non-peak dates.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFaq(this)">
-          <h3>What does a full-service wedding florals investment typically look like?</h3>
-          <div class="faq-toggle">+</div>
-        </div>
-        <div class="faq-answer">Our full-service weddings typically range from <strong>$5,000–$25,000+</strong>, depending on scale. A typical 100-person Lake Tahoe wedding runs <strong>$12,000–$18,000</strong>. That includes everything: consultation, design proposal and mood board, ceremony installation, bridal and party florals, reception centerpieces, environmental florals, and full day-of setup and breakdown.<br><br>
-        We build every proposal from scratch around your specific wedding, no packages, no minimums for imported filler. After your consultation, you'll receive an itemized quote so you know exactly what you're paying for.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFaq(this)">
-          <h3>Can you work with my existing coordinator or planner?</h3>
-          <div class="faq-toggle">+</div>
-        </div>
-        <div class="faq-answer">Yes, always. We work closely with coordinators and planners at all the venues we serve. If you're working with a planner, they'll be looped in from the proposal stage so timeline, logistics, and setup are coordinated. We're experienced working within planner-led events and take our cues from whoever is running point on the day.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFaq(this)">
-          <h3>Do you travel outside of Lake Tahoe?</h3>
-          <div class="faq-toggle">+</div>
-        </div>
-        <div class="faq-answer">Yes. We work throughout the Sierra Nevada foothills and Gold Country, from Nevada City and Grass Valley to private estates across the region. The National Exchange Hotel, Miner's Foundry, and private ranches in the foothills are all part of our regular service area. Travel outside our primary service area may involve a travel fee, which we'll include in your proposal.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFaq(this)">
-          <h3>What if I'm not sure which aesthetic I want?</h3>
-          <div class="faq-toggle">+</div>
-        </div>
-        <div class="faq-answer">That's what the consultation is for. Bring whatever references you have, Pinterest boards, photos, a vibe description, an outfit. We're very good at translating what someone means from what they show us. We'll help you identify the aesthetic direction and show you examples of our work in that register. Many couples come in with "I like moody but also clean?" and leave with a crystal-clear vision.<br><br>
-        You can also <a href="{{ site.baseurl }}/portfolio">browse the portfolio by aesthetic</a> before your consultation to get your bearings.</div>
-      </div>
-    </div>
+    {% include faq.html %}
   </div>
 </div>
 

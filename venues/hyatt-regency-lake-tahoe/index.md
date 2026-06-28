@@ -95,43 +95,7 @@ redirect_from:
   <div class="container">
     <span class="label">Questions about the Hyatt Regency</span>
     <h2>What planning a Hyatt wedding looks like.</h2>
-    <div class="faq-list">
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFaq(this)">
-          <h3>Do you design florals for Hyatt Regency Lake Tahoe weddings?</h3>
-          <div class="faq-toggle">+</div>
-        </div>
-        <div class="faq-answer">Yes. We're based in Incline Village, the same town as the resort, so we coordinate directly with the venue's events team and plan around load-in, ceremony, and reception spaces. Confirm your specific spaces with the resort, and we'll design for them.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFaq(this)">
-          <h3>Does being local actually make a difference?</h3>
-          <div class="faq-toggle">+</div>
-        </div>
-        <div class="faq-answer">A real one. Site visits are a short drive, not a project. We can install early, adjust on the day, and come back for strike without a long haul over the pass, which keeps your timeline calm and your costs down.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFaq(this)">
-          <h3>What does a typical Hyatt wedding budget look like?</h3>
-          <div class="faq-toggle">+</div>
-        </div>
-        <div class="faq-answer">Full-service resort florals typically range from <strong>$12,000–$22,000+</strong>, depending on guest count, ceremony installation, and reception scale. Every proposal is custom, built after your consultation, nothing is boilerplate.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFaq(this)">
-          <h3>What aesthetics work best here?</h3>
-          <div class="faq-toggle">+</div>
-        </div>
-        <div class="faq-answer">All three of our directions translate well to a resort. <strong>Elevated Minimalist</strong> suits ballroom architecture; <strong>Wildflower Modern</strong> brings the outdoors into an indoor space; and rich, lush arrangements come alive under evening light. We'll match the design to your spaces and season.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFaq(this)">
-          <h3>How far in advance should I reach out?</h3>
-          <div class="faq-toggle">+</div>
-        </div>
-        <div class="faq-answer">We take one wedding per date, and North Shore summer and fall dates book early, so reach out <strong>12–18 months ahead</strong> if you can. If your date is sooner, ask anyway, we occasionally have late-availability openings.</div>
-      </div>
-    </div>
+    {% include faq.html %}
   </div>
 </section>
 

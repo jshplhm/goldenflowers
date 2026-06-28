@@ -91,36 +91,7 @@ redirect_from:
   <div class="container">
     <span class="label">Questions about Schaffer's Camp</span>
     <h2>What planning at Schaffer's Camp looks like.</h2>
-    <div class="faq-list">
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFaq(this)">
-          <h3>Do you design florals for Schaffer's Camp weddings?</h3>
-          <div class="faq-toggle">+</div>
-        </div>
-        <div class="faq-answer">Yes. Mountaintop lodges like Schaffer's Camp are some of our favorites to design for. We plan around the altitude, the glass-and-fire interior, the deck, and a gondola load-in, and walk you through exactly how we'd approach your spaces.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFaq(this)">
-          <h3>What does a typical Schaffer's Camp wedding budget look like?</h3>
-          <div class="faq-toggle">+</div>
-        </div>
-        <div class="faq-answer">Full-service florals here typically range from <strong>$15,000–$26,000+</strong>. That covers consultation through day-of breakdown, ceremony installation, bridal party florals, and reception centerpieces. Every proposal is custom.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFaq(this)">
-          <h3>How does the gondola affect setup?</h3>
-          <div class="faq-toggle">+</div>
-        </div>
-        <div class="faq-answer">Everything travels up by gondola, so we build and pack with that in mind and coordinate load-in timing with the venue and your planner. It's a logistics question we plan for from the start, not a surprise on the day.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFaq(this)">
-          <h3>How far in advance should I reach out?</h3>
-          <div class="faq-toggle">+</div>
-        </div>
-        <div class="faq-answer">We take one wedding per date, so we recommend reaching out <strong>12–18 months ahead</strong> when you can. If your date is sooner, reach out anyway and we'll let you know availability.</div>
-      </div>
-    </div>
+    {% include faq.html %}
   </div>
 </section>
 
