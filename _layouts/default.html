@@ -295,61 +295,61 @@ modal or the sticky date-check bar. Opt out with hide_consult_cta: true in front
     }
     return v;
   }
+  function showSuccess(form, data) {
+    const wrap = form.closest('[data-form-wrap]') || form.parentNode;
+    const success = wrap.querySelector('[data-form-success]');
+    if (!success) { window.location = form.querySelector('[name="_next"]') ? form.querySelector('[name="_next"]').value : '/'; return; }
+    const dateVal = data.get('date');
+    const dateLine = success.querySelector('[data-success-date-line]');
+    const dateEl = success.querySelector('[data-success-date]');
+    const dflt = success.querySelector('[data-success-default]');
+    if (dateVal && dateEl && dateLine) {
+      dateEl.textContent = fmtDate(dateVal);
+      dateLine.hidden = false;
+      if (dflt) dflt.hidden = true;
+    }
+    // Restate their selections as chips (mockup Frame 7)
+    const tagWrap = success.querySelector('[data-success-tags]');
+    if (tagWrap) {
+      tagWrap.innerHTML = '';
+      const chips = [];
+      if (dateVal) chips.push(fmtDate(dateVal));
+      ['aesthetic', 'budget'].forEach(function(name) {
+        let v = data.get(name);
+        if (!v || /not sure/i.test(v)) return;
+        if (name === 'aesthetic') v = v.split(',')[0];
+        chips.push(v);
+      });
+      chips.forEach(function(t) {
+        const s = document.createElement('span');
+        s.className = 'stag';
+        s.textContent = t;
+        tagWrap.appendChild(s);
+      });
+    }
+    form.hidden = true;
+    // Hide the form header (label / heading / intro) so the confirmation is its own clean view
+    Array.prototype.forEach.call(wrap.children, function(el) {
+      if (el !== success && !el.classList.contains('modal-close')) el.classList.add('is-gone');
+    });
+    success.hidden = false;
+    success.setAttribute('tabindex', '-1');
+    success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    success.focus();
+  }
   document.querySelectorAll('form[data-ajax]').forEach(function(form) {
     form.addEventListener('submit', function(e) {
       e.preventDefault();
       const btn = form.querySelector('[type="submit"]');
       if (btn) { btn.dataset.label = btn.textContent; btn.disabled = true; btn.textContent = 'Sending…'; }
       const data = new FormData(form);
+      // The POST is fired either way; the visitor always lands on the on-page
+      // confirmation. A Formspree hiccup (e.g. an unconfirmed form or a transient
+      // error) must never bounce them to a raw Formspree page or leave a blank
+      // screen. The success view also offers a direct "Book a call" link.
       fetch(form.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } })
-        .then(function(r) {
-          if (!r.ok) throw new Error('bad response');
-          const wrap = form.closest('[data-form-wrap]') || form.parentNode;
-          const success = wrap.querySelector('[data-form-success]');
-          if (!success) { window.location = form.querySelector('[name="_next"]') ? form.querySelector('[name="_next"]').value : '/'; return; }
-          const dateVal = data.get('date');
-          const dateLine = success.querySelector('[data-success-date-line]');
-          const dateEl = success.querySelector('[data-success-date]');
-          const dflt = success.querySelector('[data-success-default]');
-          if (dateVal && dateEl && dateLine) {
-            dateEl.textContent = fmtDate(dateVal);
-            dateLine.hidden = false;
-            if (dflt) dflt.hidden = true;
-          }
-          // Restate their selections as chips (mockup Frame 7)
-          const tagWrap = success.querySelector('[data-success-tags]');
-          if (tagWrap) {
-            tagWrap.innerHTML = '';
-            const chips = [];
-            if (dateVal) chips.push(fmtDate(dateVal));
-            ['aesthetic', 'budget'].forEach(function(name) {
-              let v = data.get(name);
-              if (!v || /not sure/i.test(v)) return;
-              if (name === 'aesthetic') v = v.split(',')[0];
-              chips.push(v);
-            });
-            chips.forEach(function(t) {
-              const s = document.createElement('span');
-              s.className = 'stag';
-              s.textContent = t;
-              tagWrap.appendChild(s);
-            });
-          }
-          form.hidden = true;
-          // Hide the form header (label / heading / intro) so the confirmation is its own clean view
-          Array.prototype.forEach.call(wrap.children, function(el) {
-            if (el !== success && !el.classList.contains('modal-close')) el.classList.add('is-gone');
-          });
-          success.hidden = false;
-          success.setAttribute('tabindex', '-1');
-          success.scrollIntoView({ behavior: 'smooth', block: 'center' });
-          success.focus();
-        })
-        .catch(function() {
-          // Network/Formspree error → let the browser submit normally (uses _next redirect)
-          if (btn) { btn.disabled = false; btn.textContent = btn.dataset.label || 'Send'; }
-          form.submit();
-        });
+        .catch(function() {})
+        .then(function() { showSuccess(form, data); });
     });
   });
 })();
