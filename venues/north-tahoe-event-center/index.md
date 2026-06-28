@@ -81,7 +81,7 @@ redirect_from:
         <p>Kings Beach is a short drive from our Incline Village base. We do early site visits, install on the timeline the venue allows, and return for a clean same-day strike.</p>
       </div>
       <div class="philosophy-item">
-        <h3>Foam-free and California-sourced</h3>
+        <h3>Grown in California, never flown in</h3>
         <p>No floral foam, no flowers flown in from South America or Europe. Every stem is grown in California, from our own plots and the growers we trust.</p>
       </div>
     </div>

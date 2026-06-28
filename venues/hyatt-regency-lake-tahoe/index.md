@@ -81,7 +81,7 @@ redirect_from:
         <p>Because we're in Incline Village, we can do early site visits, coordinate directly with the resort's events team, install on tight timelines, and return for a clean same-day strike.</p>
       </div>
       <div class="philosophy-item">
-        <h3>Foam-free and California-sourced</h3>
+        <h3>Foam-free, even at a full-service resort</h3>
         <p>No floral foam, no flowers flown in from South America or Europe. Every stem is grown in California, from our own plots and the growers we trust, even inside a full-service resort wedding.</p>
       </div>
     </div>
