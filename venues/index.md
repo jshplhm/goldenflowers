@@ -43,6 +43,19 @@ no_prefooter: true
         <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1779129057432-Y8VGDRIHTV4BILCZVW27/MountainTimePhoto-48.jpg?format=750w" alt="Martis Camp" loading="lazy">
         <div class="venue-overlay"><p class="venue-name">Martis Camp</p><p class="venue-meta">Truckee · Private Community</p></div>
       </a>
+      <!-- TODO: swap in real Hyatt + Hellman-Ehrman photos during portfolio build -->
+      <a href="{{ site.baseurl }}/venues/hyatt-regency-lake-tahoe" class="venue-card">
+        <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1776975178999-V2BIKI0FVBMBXFKG8Z3I/l-a-preview-8139.jpg?format=750w" alt="Hyatt Regency Lake Tahoe" loading="lazy">
+        <div class="venue-overlay"><p class="venue-name">Hyatt Regency Lake Tahoe</p><p class="venue-meta">Incline Village · North Shore</p></div>
+      </a>
+      <a href="{{ site.baseurl }}/venues/hellman-ehrman-mansion" class="venue-card">
+        <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/4685a495-c2ce-4b90-9fd1-f91ca0d6a135/K%2BJ-0962.jpg?format=750w" alt="Hellman-Ehrman Mansion" loading="lazy">
+        <div class="venue-overlay"><p class="venue-name">Hellman-Ehrman Mansion</p><p class="venue-meta">West Shore · State Park</p></div>
+      </a>
+      <a href="{{ site.baseurl }}/venues/north-tahoe-event-center" class="venue-card">
+        <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1776975105426-4BAEXMVDBX6Q5ETZ1BVC/l-a-preview-6962.jpg?format=750w" alt="North Tahoe Event Center" loading="lazy">
+        <div class="venue-overlay"><p class="venue-name">North Tahoe Event Center</p><p class="venue-meta">Kings Beach · Lakefront</p></div>
+      </a>
     </div>
 
     <div class="venues-more">
@@ -52,8 +65,6 @@ no_prefooter: true
         <li>Tahoe Blue Estate</li>
         <li>West Shore Cafe &amp; Inn</li>
         <li>Everline Resort</li>
-        <li>Hyatt Regency Lake Tahoe</li>
-        <li>Hellman-Ehrman Mansion</li>
         <li>Olympic Valley Stables</li>
         <li>Zephyr Lodge, Northstar</li>
         <li>The Chateau, Incline Village</li>
@@ -68,7 +79,6 @@ no_prefooter: true
         <li>The Lodge at Tahoe Donner</li>
         <li>The Pavilion at Gray's Crossing</li>
         <li>Lahontan Golf Club</li>
-        <li>North Tahoe Event Center</li>
         <li>The Arch at Lakeside Beach</li>
         <li>Gar Woods Grill &amp; Pier</li>
         <li>Tahoe Ridge Resort</li>

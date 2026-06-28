@@ -14,8 +14,47 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/style.css?v=42">
-  
-  {% seo %}
+
+  {% seo title=false %}
+
+  {% comment %} Business identity for search + AI answer engines. Brand domain is hardcoded
+  so it stays correct regardless of site.url (staging vs production). {% endcomment %}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Florist",
+    "@id": "https://goldenflorals.com/#business",
+    "name": "Golden Flowers",
+    "alternateName": "Golden Flowers Floral Design",
+    "url": "https://goldenflorals.com/",
+    "image": "https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1776975190166-PCFON7QIR65XK1VPLH3K/l-a-preview-8192.jpg?format=1200w",
+    "description": "Lake Tahoe wedding florist designing sustainable, locally-grown, foam-free floral design for weddings across Lake Tahoe, Truckee, Incline Village and the Sierra Nevada.",
+    "telephone": "+1-530-557-7689",
+    "email": "brittany@goldenflorals.com",
+    "priceRange": "$$$",
+    "founder": { "@type": "Person", "name": "Brittany", "jobTitle": "Floral Designer & Agronomist" },
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "885 Tahoe Blvd",
+      "addressLocality": "Incline Village",
+      "addressRegion": "NV",
+      "postalCode": "89451",
+      "addressCountry": "US"
+    },
+    "hasMap": "https://maps.app.goo.gl/iSNwv732pnkZUF3N7",
+    "areaServed": [
+      "Lake Tahoe", "Incline Village", "Truckee", "Olympic Valley", "Tahoe City",
+      "South Lake Tahoe", "Northstar", "Sierra Nevada", "Nevada City", "Grass Valley"
+    ],
+    "sameAs": [
+      "https://www.instagram.com/goldenflowersfloraldesign/"
+    ],
+    "knowsAbout": [
+      "wedding flowers", "foam-free floral design", "sustainable floristry",
+      "locally-grown flowers", "Lake Tahoe weddings"
+    ]
+  }
+  </script>
 </head>
 <body>
 
@@ -25,6 +64,9 @@
 
 {% include footer.html %}
 
+{% comment %} Pages that ARE the consultation form don't need the redundant "Is your date open?"
+modal or the sticky date-check bar. Opt out with hide_consult_cta: true in front matter. {% endcomment %}
+{% unless page.hide_consult_cta %}
 <div class="sticky-cta">
   <div class="sticky-cta-text">
     <strong>One wedding per date</strong>
@@ -33,6 +75,7 @@
 </div>
 
 {% include consult-modal.html %}
+{% endunless %}
 
 <script>
 // ── Consultation modal (lightbox CTAs) ─────────────────

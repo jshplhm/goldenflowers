@@ -6,6 +6,8 @@ permalink: /venues/ritz-carlton-lake-tahoe
 description: "Wedding flowers for The Ritz-Carlton, Lake Tahoe at Northstar. Golden Flowers designs refined, foam-free, California-grown florals for the resort's mid-mountain terrace and ballroom, year-round."
 canonical_url: https://goldenflorals.com/venues/ritz-carlton-lake-tahoe
 no_prefooter: true
+redirect_from:
+  - /wedding-florist-ritz-carlton-lake-tahoe
 ---
 
 {% include venue-subnav.html name="Ritz-Carlton" %}

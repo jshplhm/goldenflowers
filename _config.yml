@@ -1,6 +1,12 @@
 title: "Golden Flowers"
 description: "Lake Tahoe wedding florist specializing in sustainable, locally-grown, foam-free floral design"
 
+# ⚠️ CUTOVER STEP — when pointing goldenflorals.com DNS at this repo, change to:
+#   url: "https://goldenflorals.com"
+#   baseurl: ""
+# This is what makes the home page, blog index, and all 35 posts canonicalize to the
+# production domain (interior pages already pin canonical_url in their front matter).
+# Do NOT flip until cutover — it breaks the jshplhm.github.io/goldenflowers staging URL.
 url: "https://jshplhm.github.io"
 baseurl: "/goldenflowers"
 
@@ -40,6 +46,11 @@ exclude:
 
 # Front matter defaults
 defaults:
+  - scope:
+      path: ""
+    values:
+      # Default social-share / og:image (pages may override with their own `image:`)
+      image: "https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1776975190166-PCFON7QIR65XK1VPLH3K/l-a-preview-8192.jpg?format=1200w"
   - scope:
       path: ""
       type: "posts"

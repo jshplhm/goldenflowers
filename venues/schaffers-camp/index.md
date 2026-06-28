@@ -6,6 +6,8 @@ permalink: /venues/schaffers-camp
 description: "Wedding flowers for Schaffer's Camp at Northstar. Golden Flowers designs alpine, foam-free, California-grown florals for the Tahoe Mountain Club's mountaintop lodge at 7,900 feet."
 canonical_url: https://goldenflorals.com/venues/schaffers-camp
 no_prefooter: true
+redirect_from:
+  - /wedding-florist-tahoe-mountain-club
 ---
 
 {% include venue-subnav.html name="Schaffer's Camp" %}

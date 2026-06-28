@@ -3,8 +3,10 @@ layout: default
 title: "Schedule a Consultation"
 seo_title: "Schedule a Wedding Floral Consultation | Golden Flowers"
 permalink: /consultation-form
-description: "Schedule a free consultation with Golden Flowers, Lake Tahoe's preferred wedding florist. We respond within 48 hours."
+description: "Schedule a free consultation with Golden Flowers, a Lake Tahoe wedding florist. We respond within 48 hours."
 canonical_url: https://goldenflorals.com/consultation-form
+hide_consult_cta: true
+no_prefooter: true
 ---
 
 <section class="hero hero--interior">

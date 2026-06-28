@@ -5,6 +5,8 @@ permalink: /venues/edgewood-tahoe
 description: "Golden Flowers designs wedding flowers for Edgewood Tahoe. Farm-grown, foam-free ceremony and reception florals for South Shore weddings."
 canonical_url: https://goldenflorals.com/venues/edgewood-tahoe
 no_prefooter: true
+redirect_from:
+  - /wedding-florist-edgewood-tahoe
 ---
 
 <!-- Hero -->
