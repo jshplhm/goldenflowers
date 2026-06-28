@@ -1327,6 +1327,16 @@ h1.venue-title, .page-header h1, .founder-copy h1, .blog-title,
   font-weight: 300;
   letter-spacing: 0;
 }
+/* Structural headings sit UPRIGHT so italic becomes a deliberate accent, not
+   the default register for every heading. Italic intentionally kept on the
+   hero H1, interior .page-header h1, the dark-CTA headline (.cta-section h2 —
+   higher specificity wins), pull-quotes, and numerals. Same family + sizes;
+   only font-style + weight flip. (Bare h2 = the page section heads; the
+   .cta-section h2 / .modal h2 keep italic via their own specificity.) */
+h2, h2.section-head, .venue-name, .aesthetic-card h3 {
+  font-style: normal;
+  font-weight: 500;
+}
 /* Pull-quotes read as voice, not UI */
 .testi-quote, .blog-body blockquote, .price-tagline {
   font-family: var(--f-d);
