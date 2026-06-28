@@ -101,6 +101,21 @@ redirect_from:
   </div>
 </section>
 
+<!-- Execution-certainty proof: the strongest reassurance, surfaced out of the slider -->
+<section class="section">
+  <div class="container" style="max-width:820px;">
+    <div style="background:var(--bg2);border:1px solid var(--bor);border-radius:var(--radius);padding:48px 40px;text-align:center;">
+      <span class="label" style="display:block;">When it matters most</span>
+      <h2 class="section-head" style="margin-bottom:14px;">What happens if something goes wrong?</h2>
+      <p style="max-width:540px;margin:0 auto 26px;font-size:1.02rem;color:var(--fg2);">A wedding day has no do-overs. The real test of a florist isn't the proposal, it's the morning something doesn't go to plan.</p>
+      <blockquote class="testi-quote" style="font-size:1.5rem;margin:0 auto 16px;max-width:600px;">"We had a floral emergency on the morning of the wedding. Without any prior consultation, they nailed it. Our bouquets were exactly what the bride wanted. 10/10."</blockquote>
+      <p class="label" style="color:var(--fgm);margin:0;">Janelle &middot; National Exchange Hotel, Nevada City</p>
+    </div>
+  </div>
+</section>
+
+<hr class="section-div">
+
 <!-- What's Included -->
 <section class="section">
   <div class="container">

@@ -12,7 +12,7 @@ no_prefooter: true
   <div class="container">
     <span class="label">Venues</span>
     <h1 class="section-head">The venues we love.</h1>
-    <p style="max-width:660px;font-size:1.05rem;color:var(--fg2);">These are the Lake Tahoe and Sierra Nevada venues we know best and return to most. Find yours below to see how we think about the flowers there, or just tell us where you're getting married.</p>
+    <p style="max-width:660px;font-size:1.05rem;color:var(--fg2);">We work a deliberately small set of Tahoe and Sierra Nevada venues, in depth and across every season, instead of trying to cover the whole basin. These are the ones we know best and return to most. Find yours below to see how we think about the flowers there, or just tell us where you're getting married.</p>
   </div>
 </section>
 
