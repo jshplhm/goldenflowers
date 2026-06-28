@@ -145,14 +145,17 @@ body { padding-top: var(--nav-h); }
 .nav-menu { display: none; }
 .nav-links { display: flex; gap: 36px; }
 .nav-links a {
-  font-family: var(--f-b); font-size: .82rem;
-  letter-spacing: .1em; text-transform: uppercase;
+  font-family: var(--f-d); font-size: 1.05rem; font-weight: 500;
+  letter-spacing: normal; text-transform: uppercase;
+  line-height: 1;
   color: var(--fg2); transition: color .2s;
   position: relative;
 }
 .nav-links a:hover { color: var(--fg); }
-/* underline indicator on top-level items only (not dropdown links) */
-.nav-links > a, .nav-dd > a { padding-bottom: 4px; }
+/* underline indicator on top-level items only (not dropdown links).
+   Symmetric vertical padding so the link text stays optically centered
+   against the logo + CTA (align-items:center centers the box, not the text). */
+.nav-links > a, .nav-dd > a { padding-top: 4px; padding-bottom: 4px; }
 .nav-links > a::after, .nav-dd > a::after {
   content: ''; position: absolute; bottom: 0; left: 0;
   width: 0; height: 1px; background: currentColor;
@@ -165,7 +168,7 @@ body { padding-top: var(--nav-h); }
 /* current venue inside the dropdown: subtle highlight (but not the "All venues" link) */
 .nav-dd-menu a.active:not(.nav-dd-all) { background: var(--bg2); color: var(--fg); }
 .nav-cta {
-  font-family: var(--f-b); font-size: .76rem;
+  font-family: var(--f-b); font-size: .76rem; line-height: 1;
   letter-spacing: .08em; text-transform: uppercase;
   border: 1px solid var(--bor); color: var(--fg2);
   padding: 10px 22px; transition: all .2s; border-radius: var(--radius-btn);
