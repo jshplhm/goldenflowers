@@ -161,6 +161,29 @@ body.menu-open .mobile-menu{transform:none;}
 .foot-cols a:hover{color:var(--paper);}
 .foot-bottom{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-top:28px;font-size:.8rem;color:oklch(70% .02 130);}
 
+/* ---------- INTERIOR HERO (shorter) ---------- */
+.hero.hero-sm{height:64vh;min-height:460px;}
+
+/* ---------- PORTFOLIO ---------- */
+.pf-filters{position:sticky;top:0;z-index:15;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;background:var(--bg);padding:18px var(--pad);border-bottom:1px solid var(--line);}
+.pf-filters .chip{font-family:var(--b);border:1px solid var(--line);border-radius:100px;padding:9px 18px;font-size:.78rem;letter-spacing:.03em;background:transparent;color:var(--ink);cursor:pointer;transition:.2s;}
+.pf-filters .chip:hover{border-color:var(--ink);}
+.pf-filters .chip.active{background:var(--terra);color:var(--paper);border-color:var(--terra);}
+.pf-note{text-align:center;color:var(--mute);font-size:.95rem;padding:26px var(--pad) 0;}
+.pf-note a{color:var(--forest);border-bottom:1px solid var(--terra);padding-bottom:2px;}
+.pf-wrap{max-width:1500px;margin:0 auto;padding:clamp(36px,5vw,64px) var(--pad) clamp(60px,8vw,110px);}
+.pf-grid{column-count:3;column-gap:16px;}
+.pf-card{break-inside:avoid;margin-bottom:16px;position:relative;border-radius:3px;overflow:hidden;display:block;}
+.pf-card img{width:100%;transition:transform 1s cubic-bezier(.2,.7,.2,1);}
+.pf-card:hover img{transform:scale(1.04);}
+.pf-card::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,oklch(13% .03 150/.72));pointer-events:none;}
+.pf-cap{position:absolute;left:20px;right:20px;bottom:18px;z-index:2;color:var(--paper);}
+.pf-cap b{font-family:var(--d);font-size:1.45rem;display:block;font-weight:430;letter-spacing:-.01em;}
+.pf-cap .v{font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;opacity:.92;display:block;margin-top:3px;}
+.pf-cap .tag{display:inline-block;margin-top:10px;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;border:1px solid oklch(100% 0 0/.5);border-radius:100px;padding:4px 11px;}
+@media(max-width:1024px){.pf-grid{column-count:2;}}
+@media(max-width:600px){.pf-grid{column-count:1;}}
+
 @media(max-width:860px){
   .nav-r{display:none;}
   .nav-toggle{display:flex;}
