@@ -40,8 +40,7 @@ nav.site-nav.up{transform:translateY(-100%);}
 .nav-r a:not(.pill):hover{opacity:1;}
 .nav-r a.active{opacity:1;}
 .nav-r a.active::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:1.5px;background:var(--terra);}
-.pill{border:1px solid currentColor;border-radius:100px;padding:11px 22px;font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;transition:opacity .3s ease,background .25s,color .25s,border-color .25s;opacity:0;pointer-events:none;}
-nav.site-nav.solid .pill{opacity:1;pointer-events:auto;}
+.pill{border:1px solid currentColor;border-radius:100px;padding:11px 22px;font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;transition:background .25s,color .25s,border-color .25s;}
 .pill:hover{background:var(--terra);color:var(--paper);border-color:var(--terra);}
 
 /* mobile menu */
@@ -76,6 +75,18 @@ body.menu-open .mobile-menu{transform:none;}
 .hero-sub{font-size:1.02rem;max-width:32ch;opacity:.95;line-height:1.5;}
 .hero-btns{display:flex;gap:14px;flex-wrap:wrap;}
 .side-label{position:absolute;right:calc(var(--pad) - 6px);top:50%;transform:rotate(90deg);transform-origin:right center;z-index:3;font-size:.72rem;letter-spacing:.3em;text-transform:uppercase;opacity:.8;}
+
+/* ---------- SPLIT HERO (Our Story — deliberately not full-bleed) ---------- */
+.studio-hero{display:grid;grid-template-columns:1.02fr .98fr;gap:clamp(32px,5vw,72px);align-items:center;max-width:1400px;margin:0 auto;padding:clamp(120px,15vw,180px) var(--pad) clamp(50px,7vw,90px);}
+.studio-hero h1{font-family:var(--d);font-weight:430;font-optical-sizing:auto;font-size:clamp(2.6rem,6vw,5rem);line-height:1.02;letter-spacing:-.02em;margin:18px 0 22px;}
+.studio-hero h1 em{color:var(--forest);}
+.studio-hero .sh-sub{font-size:1.08rem;color:var(--fg2);line-height:1.62;max-width:46ch;}
+.studio-hero .sh-img img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:6px;}
+@media(max-width:860px){
+  .studio-hero{grid-template-columns:1fr;gap:32px;padding-top:clamp(100px,24vw,130px);}
+  .studio-hero .sh-img{order:-1;}
+  .studio-hero .sh-img img{aspect-ratio:4/3;}
+}
 
 /* ---------- CREDO ---------- */
 .credo{padding:clamp(80px,11vw,150px) var(--pad) clamp(60px,7vw,90px);max-width:1500px;margin:0 auto;}

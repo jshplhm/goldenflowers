@@ -1,52 +1,47 @@
 ---
-layout: default
+layout: redesign
 permalink: /404.html
 title: "Page Not Found"
 seo_title: "Page Not Found | Golden Flowers"
 sitemap: false
-no_prefooter: true
 ---
 
-<section class="section" style="padding-top:calc(var(--nav-real, 80px) + 56px);">
-  <div class="container" style="max-width:920px;text-align:center;">
-    <span class="label" style="display:block;">Error 404</span>
-    <h1 class="section-head">This page wandered off the trail.</h1>
-    <p style="max-width:720px;margin:0 auto 44px;font-size:1.05rem;color:var(--fg2);line-height:1.6;">The link may be old or mistyped. Here's where to pick the path back up.</p>
+<section class="block" style="text-align:center;padding-top:clamp(130px,16vw,190px);">
+  <span class="lab">Error 404</span>
+  <h1 class="h-lg" style="margin-bottom:16px;">This page wandered off the trail.</h1>
+  <p style="max-width:560px;margin:0 auto;color:var(--fg2);line-height:1.6;font-size:1.05rem;">The link may be old or mistyped. Here's where to pick the path back up.</p>
 
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;text-align:left;">
-      <a href="{{ site.baseurl }}/weddings" style="display:block;padding:24px;border:1px solid var(--bor);border-radius:var(--radius);background:var(--bg2);text-decoration:none;">
-        <span style="display:block;font-family:var(--f-b);font-weight:600;color:var(--fg);margin-bottom:6px;">Wedding flowers &rarr;</span>
-        <span style="display:block;font-size:.92rem;color:var(--fg2);line-height:1.5;">Full-service, foam-free florals designed for your Tahoe wedding.</span>
-      </a>
-      <a href="{{ site.baseurl }}/venues" style="display:block;padding:24px;border:1px solid var(--bor);border-radius:var(--radius);background:var(--bg2);text-decoration:none;">
-        <span style="display:block;font-family:var(--f-b);font-weight:600;color:var(--fg);margin-bottom:6px;">The venues we love &rarr;</span>
-        <span style="display:block;font-size:.92rem;color:var(--fg2);line-height:1.5;">How we design at Edgewood, the Ritz-Carlton, and across the Sierra.</span>
-      </a>
-      <a href="{{ site.baseurl }}/portfolio" style="display:block;padding:24px;border:1px solid var(--bor);border-radius:var(--radius);background:var(--bg2);text-decoration:none;">
-        <span style="display:block;font-family:var(--f-b);font-weight:600;color:var(--fg);margin-bottom:6px;">Portfolio &rarr;</span>
-        <span style="display:block;font-size:.92rem;color:var(--fg2);line-height:1.5;">Real weddings, wild and editorial, grown in California.</span>
-      </a>
-      <a href="{{ site.baseurl }}/blog" style="display:block;padding:24px;border:1px solid var(--bor);border-radius:var(--radius);background:var(--bg2);text-decoration:none;">
-        <span style="display:block;font-family:var(--f-b);font-weight:600;color:var(--fg);margin-bottom:6px;">Read our blog &rarr;</span>
-        <span style="display:block;font-size:.92rem;color:var(--fg2);line-height:1.5;">Notes on flowers, farming, and Sierra Nevada weddings.</span>
-      </a>
-      <a href="{{ site.baseurl }}/sustainability" style="display:block;padding:24px;border:1px solid var(--bor);border-radius:var(--radius);background:var(--bg2);text-decoration:none;">
-        <span style="display:block;font-family:var(--f-b);font-weight:600;color:var(--fg);margin-bottom:6px;">Sustainability pledge &rarr;</span>
-        <span style="display:block;font-size:.92rem;color:var(--fg2);line-height:1.5;">Foam-free, farm-grown, and our commitment to the land.</span>
-      </a>
-      <a href="{{ site.baseurl }}/about" style="display:block;padding:24px;border:1px solid var(--bor);border-radius:var(--radius);background:var(--bg2);text-decoration:none;">
-        <span style="display:block;font-family:var(--f-b);font-weight:600;color:var(--fg);margin-bottom:6px;">Meet Brittany &rarr;</span>
-        <span style="display:block;font-size:.92rem;color:var(--fg2);line-height:1.5;">The agronomist-florist behind Golden Flowers.</span>
-      </a>
-    </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px;text-align:left;max-width:1100px;margin:clamp(40px,5vw,60px) auto 0;">
+    <a href="{{ site.baseurl }}/portfolio" style="display:block;padding:26px;border:1px solid var(--line);border-radius:8px;background:var(--bg2);">
+      <span style="display:block;font-family:var(--d);font-size:1.3rem;color:var(--ink);margin-bottom:6px;">Portfolio &rarr;</span>
+      <span style="display:block;font-size:.92rem;color:var(--fg2);line-height:1.5;">Real weddings — wild and editorial, grown in California.</span>
+    </a>
+    <a href="{{ site.baseurl }}/venues" style="display:block;padding:26px;border:1px solid var(--line);border-radius:8px;background:var(--bg2);">
+      <span style="display:block;font-family:var(--d);font-size:1.3rem;color:var(--ink);margin-bottom:6px;">The venues we love &rarr;</span>
+      <span style="display:block;font-size:.92rem;color:var(--fg2);line-height:1.5;">How we design at Edgewood, the Ritz-Carlton, and across the Sierra.</span>
+    </a>
+    <a href="{{ site.baseurl }}/weddings" style="display:block;padding:26px;border:1px solid var(--line);border-radius:8px;background:var(--bg2);">
+      <span style="display:block;font-family:var(--d);font-size:1.3rem;color:var(--ink);margin-bottom:6px;">Process &amp; Pricing &rarr;</span>
+      <span style="display:block;font-size:.92rem;color:var(--fg2);line-height:1.5;">Full-service, foam-free florals — and what they cost.</span>
+    </a>
+    <a href="{{ site.baseurl }}/about" style="display:block;padding:26px;border:1px solid var(--line);border-radius:8px;background:var(--bg2);">
+      <span style="display:block;font-family:var(--d);font-size:1.3rem;color:var(--ink);margin-bottom:6px;">Our Story &rarr;</span>
+      <span style="display:block;font-size:.92rem;color:var(--fg2);line-height:1.5;">The agronomist-florist behind Golden Flowers.</span>
+    </a>
+    <a href="{{ site.baseurl }}/blog" style="display:block;padding:26px;border:1px solid var(--line);border-radius:8px;background:var(--bg2);">
+      <span style="display:block;font-family:var(--d);font-size:1.3rem;color:var(--ink);margin-bottom:6px;">Journal &rarr;</span>
+      <span style="display:block;font-size:.92rem;color:var(--fg2);line-height:1.5;">Notes on flowers, farming, and Sierra Nevada weddings.</span>
+    </a>
+    <a href="{{ site.baseurl }}/sustainability" style="display:block;padding:26px;border:1px solid var(--line);border-radius:8px;background:var(--bg2);">
+      <span style="display:block;font-family:var(--d);font-size:1.3rem;color:var(--ink);margin-bottom:6px;">Sustainability pledge &rarr;</span>
+      <span style="display:block;font-size:.92rem;color:var(--fg2);line-height:1.5;">Foam-free, farm-grown, and our commitment to the land.</span>
+    </a>
   </div>
 </section>
 
-<div class="cta-section">
-  <div style="max-width:640px;margin:0 auto;">
-    <span class="label" style="display:block;text-align:center">Still here?</span>
-    <h2>Let's talk about your wedding.</h2>
-    <p>Tell us your date and vision. We take one wedding per date and reply within 48 hours.</p>
-    <a href="{{ site.baseurl }}/weddings#consultation" class="btn-primary" data-consult-open>Check your date &rarr;</a>
-  </div>
-</div>
+<section class="cta">
+  <span class="lab">Still here?</span>
+  <h2 class="disp">Let's talk about <em>your wedding.</em></h2>
+  <p>Tell us your date and vision. We take one wedding per date and reply within 48 hours.</p>
+  <a class="btn btn-ink" href="{{ site.baseurl }}/consultation-form">Check your date <span>&rarr;</span></a>
+</section>

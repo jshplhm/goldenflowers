@@ -7,17 +7,17 @@ description: "Golden Flowers is a Lake Tahoe wedding florist specializing in bol
 canonical_url: https://goldenflorals.com/about
 ---
 
-<!-- FOUNDER HERO -->
-<header class="hero hero-sm">
-  <img class="bg" src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/50ef2005-58af-4984-811f-1db29027b87c/bride+and+groom+with+bouquet+and+airplane.jpg?format=2500w" alt="Brittany, founder of Golden Flowers" style="object-position:center 40%;">
-  <div class="hero-in">
-    <p class="ey lab">Founded by Brittany</p>
-    <h1 class="disp">Designed by an <em>agronomist.</em></h1>
-    <div class="hero-foot">
-      <p class="hero-sub">Agronomist · Floral Designer · Incline Village, Lake Tahoe</p>
-    </div>
+<!-- FOUNDER HERO (split — deliberately not full-bleed) -->
+<section class="studio-hero">
+  <div class="sh-text">
+    <p class="ey lab">Our Story</p>
+    <h1>Designed by an <em>agronomist.</em></h1>
+    <p class="sh-sub">Brittany is an agronomist turned floral designer. Golden Flowers is her studio — farm-grown, foam-free, and rooted in the Sierra Nevada.</p>
   </div>
-</header>
+  <div class="sh-img">
+    <img src="{{ site.baseurl }}/assets/images/studio-hero.jpg" alt="Brittany of Golden Flowers beside a spring installation" loading="eager">
+  </div>
+</section>
 
 <!-- FOUNDER STORY -->
 <section class="block-narrow prose">
