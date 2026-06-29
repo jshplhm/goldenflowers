@@ -31,7 +31,8 @@ em{font-style:italic;}
 :focus-visible{outline:2px solid var(--terra);outline-offset:3px;}
 
 /* ---------- NAV ---------- */
-nav.site-nav{position:fixed;top:0;left:0;right:0;z-index:40;display:flex;align-items:center;justify-content:space-between;padding:26px var(--pad);color:var(--paper);border-bottom:1px solid transparent;transition:transform .4s ease,background .3s ease,color .3s ease,border-color .3s ease,padding .3s ease;}
+nav.site-nav{position:fixed;top:0;left:0;right:0;z-index:55;display:flex;align-items:center;justify-content:space-between;padding:26px var(--pad);color:var(--paper);border-bottom:1px solid transparent;transition:transform .4s ease,background .3s ease,color .3s ease,border-color .3s ease,padding .3s ease;}
+body.menu-open nav.site-nav{background:transparent;border-bottom-color:transparent;color:var(--paper);transform:none;}
 nav.site-nav.solid{background:var(--bg);color:var(--ink);border-bottom-color:var(--line);padding-top:18px;padding-bottom:18px;}
 nav.site-nav.up{transform:translateY(-100%);}
 .brand{font-family:var(--d);font-size:1.5rem;letter-spacing:-.01em;}
@@ -44,14 +45,22 @@ nav.site-nav.up{transform:translateY(-100%);}
 .pill:hover{background:var(--terra);color:var(--paper);border-color:var(--terra);}
 
 /* mobile menu */
-.nav-toggle{display:none;flex-direction:column;gap:5px;background:none;border:0;cursor:pointer;padding:6px;z-index:50;}
-.nav-toggle span{display:block;width:26px;height:1.5px;background:currentColor;transition:.3s;}
-.mobile-menu{position:fixed;inset:0;z-index:45;background:var(--forest-deep);color:var(--paper);transform:translateX(100%);transition:transform .45s cubic-bezier(.6,0,.2,1);display:flex;flex-direction:column;justify-content:center;padding:var(--pad);gap:6px;}
-.mobile-menu a{font-family:var(--d);font-size:2.4rem;letter-spacing:-.01em;padding:8px 0;}
-.mobile-menu a.m-cta{margin-top:24px;font-family:var(--b);font-size:.85rem;letter-spacing:.06em;text-transform:uppercase;background:var(--terra);color:var(--paper);border-radius:100px;padding:16px 28px;align-self:flex-start;}
-.mobile-menu .m-meta{margin-top:28px;font-family:var(--b);font-size:.85rem;color:oklch(82% .02 130);line-height:1.7;}
-.mobile-menu .m-meta a{font-family:var(--b);font-size:.85rem;letter-spacing:0;padding:0;display:inline;color:inherit;}
-.mobile-menu .m-meta a:hover{color:var(--paper);}
+a,button{-webkit-tap-highlight-color:transparent;}
+.nav-toggle{display:none;flex-direction:column;gap:5px;background:none;border:0;cursor:pointer;padding:6px;z-index:60;color:inherit;-webkit-tap-highlight-color:transparent;}
+.nav-toggle span{display:block;width:26px;height:1.5px;background:currentColor;transition:transform .3s,opacity .2s,background .3s;}
+body.menu-open .nav-toggle span{background:var(--paper);}
+body.menu-open .nav-toggle span:nth-child(1){transform:translateY(6.5px) rotate(45deg);}
+body.menu-open .nav-toggle span:nth-child(2){opacity:0;}
+body.menu-open .nav-toggle span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg);}
+.mobile-menu{position:fixed;inset:0;z-index:45;background:var(--forest-deep);color:var(--paper);transform:translateX(100%);transition:transform .45s cubic-bezier(.6,0,.2,1);display:flex;flex-direction:column;justify-content:center;padding:clamp(28px,8vw,64px);overflow-y:auto;}
+.mm-links{display:flex;flex-direction:column;}
+.mm-links a{font-family:var(--d);font-size:clamp(2rem,9vw,2.6rem);letter-spacing:-.01em;padding:7px 0;}
+.mobile-menu .m-cta{margin-top:26px;font-family:var(--b);font-size:.82rem;letter-spacing:.06em;text-transform:uppercase;background:var(--terra);color:var(--paper);border-radius:100px;padding:16px 28px;align-self:flex-start;}
+.mm-secondary{display:flex;gap:22px;margin-top:30px;flex-wrap:wrap;}
+.mm-secondary a{font-family:var(--b);font-size:.95rem;color:oklch(83% .02 130);border-bottom:1px solid oklch(100% 0 0/.25);padding-bottom:2px;}
+.mm-secondary a:hover{color:var(--paper);}
+.mobile-menu .m-meta{margin-top:26px;font-family:var(--b);font-size:.85rem;color:oklch(83% .02 130);line-height:1.7;}
+.mobile-menu .m-meta a{color:inherit;border-bottom:1px solid oklch(100% 0 0/.25);}
 body.menu-open{overflow:hidden;}
 body.menu-open .mobile-menu{transform:none;}
 
@@ -240,6 +249,11 @@ body.menu-open .mobile-menu{transform:none;}
 .flower-list li::before{content:"";position:absolute;left:0;top:13px;width:5px;height:5px;border-radius:50%;background:var(--terra);}
 .season-note{font-size:.9rem;color:var(--mute);font-style:italic;line-height:1.55;border-top:1px solid var(--line);padding-top:14px;}
 .season-foot{font-size:.8rem;color:var(--mute);font-style:italic;margin-top:22px;}
+/* Desktop: seasons are always open, not collapsible. Mobile: collapsible (JS collapses by default). */
+@media(min-width:861px){
+  .season-card .season-toggle{display:none;}
+  .season-card summary{cursor:default;}
+}
 
 /* sustainability pledge */
 .pledge{background:var(--bg2);}
@@ -439,6 +453,27 @@ body.menu-open .mobile-menu{transform:none;}
 .btn-primary{display:inline-flex;align-items:center;gap:9px;background:var(--terra);color:var(--paper);padding:16px 30px;border-radius:100px;font-size:.85rem;letter-spacing:.03em;font-weight:500;transition:.25s;}
 .btn-primary:hover{transform:translateY(-2px);filter:brightness(1.07);}
 
+/* ---------- VENUES MAP ---------- */
+.venue-map-wrap{max-width:1500px;margin:0 auto;padding:clamp(8px,2vw,24px) var(--pad) 0;}
+.venue-map-legend{display:flex;gap:22px;flex-wrap:wrap;align-items:center;font-size:.82rem;color:var(--mute);margin-bottom:16px;}
+.venue-map-legend b{display:inline-flex;align-items:center;gap:9px;font-weight:400;}
+.lg-dot{width:15px;height:15px;border-radius:50%;background:var(--terra);border:2px solid var(--paper);box-shadow:0 1px 4px oklch(20% .05 40/.4);}
+.lg-dot.sm{width:10px;height:10px;background:oklch(57% .15 45/.6);}
+.venue-map{height:clamp(440px,62vh,660px);border-radius:10px;overflow:hidden;border:1px solid var(--line);background:var(--bg2);}
+.region-split{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(28px,4vw,56px);align-items:center;}
+.region-map{height:clamp(300px,40vh,420px);border-radius:10px;overflow:hidden;border:1px solid var(--line);background:var(--bg2);}
+.venue-list{display:grid;grid-template-columns:repeat(3,1fr);gap:0 clamp(30px,4vw,60px);margin-top:clamp(28px,4vw,44px);}
+.venue-list a{display:flex;align-items:baseline;gap:12px;padding:18px 2px;border-top:1px solid var(--line);}
+.venue-list .vl-name{font-family:var(--d);font-size:1.3rem;letter-spacing:-.01em;transition:color .2s;}
+.venue-list a:hover .vl-name{color:var(--forest);}
+.venue-list .vl-region{font-size:.74rem;letter-spacing:.07em;text-transform:uppercase;color:var(--mute);margin-left:auto;white-space:nowrap;}
+/* Leaflet markers/tooltips (global — injected into the map pane) */
+.v-dot{display:block;width:18px;height:18px;border-radius:50%;background:var(--terra);border:2px solid var(--paper);box-shadow:0 1px 6px oklch(20% .05 40/.5);cursor:pointer;transition:transform .2s;}
+.v-dot.sm{width:11px;height:11px;background:oklch(57% .15 45/.7);box-shadow:0 1px 4px oklch(20% .05 40/.4);}
+.v-pin:hover .v-dot{transform:scale(1.3);}
+.leaflet-tooltip.v-tip{background:var(--ink);color:var(--paper);border:0;border-radius:6px;font-family:var(--b);font-size:.8rem;font-weight:500;padding:6px 11px;box-shadow:0 4px 14px oklch(20% 0 0/.28);}
+.leaflet-tooltip.v-tip.leaflet-tooltip-top::before{border-top-color:var(--ink);}
+
 /* ---------- MINI CTA (seasonal / venue callouts) ---------- */
 .mini{max-width:1500px;margin:0 auto;padding:clamp(56px,7vw,90px) var(--pad);}
 .mini h2{font-family:var(--d);font-weight:430;font-optical-sizing:auto;font-size:clamp(1.8rem,3.6vw,2.8rem);letter-spacing:-.02em;margin:16px 0 12px;}
@@ -456,6 +491,8 @@ body.menu-open .mobile-menu{transform:none;}
   .facts-strip{grid-template-columns:1fr 1fr;}
   .blog-grid{grid-template-columns:1fr;}
   .form-step-1{grid-template-columns:1fr;}
+  .region-split{grid-template-columns:1fr;gap:24px;}
+  .venue-list{grid-template-columns:1fr;}
   .cred-grid{grid-template-columns:repeat(2,1fr);}
   .values-grid{grid-template-columns:1fr;}
   .season-grid,.pledge-grid{grid-template-columns:1fr;}

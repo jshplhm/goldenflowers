@@ -142,3 +142,24 @@ canonical_url: https://goldenflorals.com/about
   <p>Reach out with your date and venue — we'll let you know if we're available.</p>
   <a class="btn btn-ink" href="{{ site.baseurl }}/consultation-form">Schedule a consultation <span>&rarr;</span></a>
 </section>
+
+<script>
+/* Seasonal availability: desktop = always open & not collapsible; mobile = collapsed, expandable. */
+(function(){
+  var cards=[].slice.call(document.querySelectorAll('.season-card'));
+  if(!cards.length) return;
+  var mq=window.matchMedia('(min-width:861px)');
+  function apply(){
+    cards.forEach(function(d){
+      if(mq.matches){ d.open=true; d.dataset.lock='1'; }
+      else { d.dataset.lock=''; }
+    });
+  }
+  cards.forEach(function(d){
+    d.querySelector('summary').addEventListener('click', function(e){ if(d.dataset.lock==='1') e.preventDefault(); });
+  });
+  if(!mq.matches) cards.forEach(function(d){ d.open=false; });  // mobile: start collapsed
+  apply();
+  mq.addEventListener('change', apply);
+})();
+</script>

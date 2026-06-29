@@ -7,46 +7,67 @@ description: "The Lake Tahoe and Sierra Nevada wedding venues Golden Flowers kno
 canonical_url: https://goldenflorals.com/venues
 ---
 
-<!-- HERO -->
-<header class="hero hero-sm">
-  <img class="bg" src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/4da65886-1655-4ecd-957b-8d48969ffc60/l-a-preview-0305.jpg?format=2500w" alt="Lakeside reception tables at a Lake Tahoe wedding venue" style="object-position:center 45%;">
-  <div class="hero-in">
-    <p class="ey lab">Venues</p>
-    <h1 class="disp">The venues we <em>love.</em></h1>
-    <div class="hero-foot">
-      <p class="hero-sub">We work a deliberately small set of Tahoe and Sierra venues — in depth, across every season.</p>
-    </div>
-  </div>
-</header>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 
+<!-- HEADER (no full-bleed photo — the map is the visual) -->
+<section class="block venues-head" style="padding-top:clamp(120px,15vw,180px);padding-bottom:clamp(30px,4vw,44px);">
+  <span class="lab">Venues</span>
+  <h1 class="h-lg">The venues we love.</h1>
+  <p style="max-width:640px;color:var(--fg2);font-size:1.06rem;line-height:1.6;margin-top:14px;">We work a deliberately small set of Tahoe and Sierra venues — in depth, across every season — rather than trying to cover the whole basin. Find yours on the map, or tell us where you're getting married.</p>
+</section>
+
+<!-- INTERACTIVE MAP -->
+<section class="venue-map-wrap">
+  <div class="venue-map-legend">
+    <b><span class="lg-dot"></span> Venues we know intimately — tap to explore</b>
+    <b><span class="lg-dot sm"></span> More venues we love to design at</b>
+  </div>
+  <div id="venue-map" class="venue-map" role="img" aria-label="Map of Lake Tahoe wedding venues"></div>
+</section>
+
+<!-- THE NINE (text links — SEO + no-JS fallback) -->
+<section class="block" style="padding-top:clamp(40px,5vw,60px);">
+  <span class="lab">The nine we know best</span>
+  <div class="venue-list">
+    <a href="{{ site.baseurl }}/venues/edgewood-tahoe"><span class="vl-name">Edgewood Tahoe</span><span class="vl-region">South Shore</span></a>
+    <a href="{{ site.baseurl }}/venues/ritz-carlton-lake-tahoe"><span class="vl-name">The Ritz-Carlton</span><span class="vl-region">Northstar</span></a>
+    <a href="{{ site.baseurl }}/venues/thunderbird-lodge"><span class="vl-name">Thunderbird Lodge</span><span class="vl-region">East Shore</span></a>
+    <a href="{{ site.baseurl }}/venues/schaffers-camp"><span class="vl-name">Schaffer's Camp</span><span class="vl-region">Northstar</span></a>
+    <a href="{{ site.baseurl }}/venues/palisades-high-camp"><span class="vl-name">Palisades High Camp</span><span class="vl-region">Olympic Valley</span></a>
+    <a href="{{ site.baseurl }}/venues/martis-camp"><span class="vl-name">Martis Camp</span><span class="vl-region">Truckee</span></a>
+    <a href="{{ site.baseurl }}/venues/hyatt-regency-lake-tahoe"><span class="vl-name">Hyatt Regency</span><span class="vl-region">Incline Village</span></a>
+    <a href="{{ site.baseurl }}/venues/hellman-ehrman-mansion"><span class="vl-name">Hellman-Ehrman Mansion</span><span class="vl-region">West Shore</span></a>
+    <a href="{{ site.baseurl }}/venues/north-tahoe-event-center"><span class="vl-name">North Tahoe Event Center</span><span class="vl-region">Kings Beach</span></a>
+  </div>
+</section>
+
+<hr class="hr-line">
+
+<!-- GOLD COUNTRY INSET -->
 <section class="block">
-  <p class="prose" style="max-width:660px;"><span style="font-size:1.05rem;color:var(--fg2);">Rather than try to cover the whole basin, we return to the venues we know best — the load-in, the light, the proportions. Find yours below to see how we think about the flowers there, or just tell us where you're getting married.</span></p>
-
-  <div class="venue-grid">
-    <a href="{{ site.baseurl }}/venues/thunderbird-lodge" class="venue-card"><img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/4685a495-c2ce-4b90-9fd1-f91ca0d6a135/K%2BJ-0962.jpg?format=900w" alt="Thunderbird Lodge" loading="lazy"><div class="venue-overlay"><p class="venue-name">Thunderbird Lodge</p><p class="venue-meta">East Shore · Historic Estate</p></div></a>
-    <a href="{{ site.baseurl }}/venues/ritz-carlton-lake-tahoe" class="venue-card"><img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1776975178999-V2BIKI0FVBMBXFKG8Z3I/l-a-preview-8139.jpg?format=900w" alt="The Ritz-Carlton, Lake Tahoe" loading="lazy"><div class="venue-overlay"><p class="venue-name">The Ritz-Carlton, Lake Tahoe</p><p class="venue-meta">Northstar · Mountain Resort</p></div></a>
-    <a href="{{ site.baseurl }}/venues/edgewood-tahoe" class="venue-card"><img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1776975190166-PCFON7QIR65XK1VPLH3K/l-a-preview-8192.jpg?format=900w" alt="Edgewood Tahoe" loading="lazy"><div class="venue-overlay"><p class="venue-name">Edgewood Tahoe</p><p class="venue-meta">South Shore · Lakeside</p></div></a>
-    <a href="{{ site.baseurl }}/venues/schaffers-camp" class="venue-card"><img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1776975105426-4BAEXMVDBX6Q5ETZ1BVC/l-a-preview-6962.jpg?format=900w" alt="Schaffer's Camp" loading="lazy"><div class="venue-overlay"><p class="venue-name">Schaffer's Camp</p><p class="venue-meta">Northstar · Mountaintop Lodge</p></div></a>
-    <a href="{{ site.baseurl }}/venues/palisades-high-camp" class="venue-card"><img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/4da65886-1655-4ecd-957b-8d48969ffc60/l-a-preview-0305.jpg?format=900w" alt="Palisades High Camp" loading="lazy"><div class="venue-overlay"><p class="venue-name">Palisades High Camp</p><p class="venue-meta">Olympic Valley · Alpine</p></div></a>
-    <a href="{{ site.baseurl }}/venues/martis-camp" class="venue-card"><img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1779129057432-Y8VGDRIHTV4BILCZVW27/MountainTimePhoto-48.jpg?format=900w" alt="Martis Camp" loading="lazy"><div class="venue-overlay"><p class="venue-name">Martis Camp</p><p class="venue-meta">Truckee · Private Community</p></div></a>
-    <a href="{{ site.baseurl }}/venues/hyatt-regency-lake-tahoe" class="venue-card"><img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1776975178999-V2BIKI0FVBMBXFKG8Z3I/l-a-preview-8139.jpg?format=900w" alt="Hyatt Regency Lake Tahoe" loading="lazy"><div class="venue-overlay"><p class="venue-name">Hyatt Regency Lake Tahoe</p><p class="venue-meta">Incline Village · North Shore</p></div></a>
-    <a href="{{ site.baseurl }}/venues/hellman-ehrman-mansion" class="venue-card"><img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/4685a495-c2ce-4b90-9fd1-f91ca0d6a135/K%2BJ-0962.jpg?format=900w" alt="Hellman-Ehrman Mansion" loading="lazy"><div class="venue-overlay"><p class="venue-name">Hellman-Ehrman Mansion</p><p class="venue-meta">West Shore · State Park</p></div></a>
-    <a href="{{ site.baseurl }}/venues/north-tahoe-event-center" class="venue-card"><img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1776975105426-4BAEXMVDBX6Q5ETZ1BVC/l-a-preview-6962.jpg?format=900w" alt="North Tahoe Event Center" loading="lazy"><div class="venue-overlay"><p class="venue-name">North Tahoe Event Center</p><p class="venue-meta">Kings Beach · Lakefront</p></div></a>
+  <div class="region-split">
+    <div>
+      <span class="lab">Gold Country</span>
+      <h2>Our Nevada City &amp; Grass Valley home base.</h2>
+      <p style="color:var(--fg2);line-height:1.65;margin-top:10px;">About an hour west of the lake, around our home base, our sister shop keeps everyday flowers flowing — and we design weddings at the historic venues of the Sierra foothills, too.</p>
+    </div>
+    <div id="region-map" class="region-map" role="img" aria-label="Map of Nevada City and Grass Valley wedding venues"></div>
   </div>
+</section>
 
+<!-- ALSO LOVE -->
+<section class="block" style="padding-top:0;">
   <div class="venues-more">
     <p class="lab">We also love designing at</p>
     <ul class="venues-more-list">
-      <li>The HideOut</li><li>Tahoe Blue Estate</li><li>West Shore Cafe &amp; Inn</li><li>Everline Resort</li><li>Olympic Valley Stables</li><li>Zephyr Lodge, Northstar</li><li>The Chateau, Incline Village</li><li>The Landing Resort</li><li>Lakeview Lodge, Heavenly</li><li>Sunnyside</li><li>Valhalla Tahoe</li><li>Tahoe Mountain Club</li><li>Dancing Pines</li><li>Olympic Valley Events Center</li><li>PlumpJack at Palisades</li><li>The Lodge at Tahoe Donner</li><li>The Pavilion at Gray's Crossing</li><li>Lahontan Golf Club</li><li>The Arch at Lakeside Beach</li><li>Gar Woods Grill &amp; Pier</li><li>Tahoe Ridge Resort</li>
+      <li>The HideOut</li><li>Tahoe Blue Estate</li><li>West Shore Cafe &amp; Inn</li><li>Everline Resort</li><li>Olympic Valley Stables</li><li>Zephyr Lodge, Northstar</li><li>The Chateau, Incline Village</li><li>The Landing Resort</li><li>Lakeview Lodge, Heavenly</li><li>Sunnyside</li><li>Valhalla Tahoe</li><li>Tahoe Mountain Club</li><li>PlumpJack at Palisades</li><li>Gar Woods Grill &amp; Pier</li><li>Lahontan Golf Club</li>
     </ul>
-
-    <p class="lab" style="margin-top:44px;">Other regional venues</p>
-    <p class="venues-more-intro">A bit further out, around our Nevada City and Grass Valley home base where our sister shop keeps everyday flowers flowing, we also design at:</p>
+    <p class="lab" style="margin-top:40px;">In the foothills</p>
     <ul class="venues-more-list">
       <li>The National Exchange</li><li>The Holbrooke</li><li>Miner's Foundry</li><li>The Stone House</li><li>Harmony Ridge</li><li>The North Star House</li><li>Empire Mine</li><li>Lucchesi Vineyards</li><li>Nevada City Winery</li><li>River Highlands Ranch</li><li>The Roth Estate</li>
     </ul>
-
-    <p class="venues-more-note">Some of our favorite work happens away from named venues entirely, at <strong>private residences and lakeside estates</strong> — from a backyard on the water to a family home in the pines. Don't see yours? We love adding new venues. Tell us where you're getting married and we'll take it from there.</p>
+    <p class="venues-more-note">Some of our favorite work happens away from named venues entirely, at <strong>private residences and lakeside estates</strong>. Don't see yours? We love adding new venues — tell us where you're getting married and we'll take it from there.</p>
   </div>
 </section>
 
@@ -57,3 +78,61 @@ canonical_url: https://goldenflorals.com/venues
   <p>Tell us your venue and date. We'll let you know if we're available and how we'd approach the design.</p>
   <a class="btn btn-ink" href="{{ site.baseurl }}/consultation-form">Check your date <span>&rarr;</span></a>
 </section>
+
+<script>
+(function(){
+  if (typeof L === 'undefined') return;
+  var BASE='{{ site.baseurl }}';
+  var TILES='https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png';
+  var TOPTS={subdomains:'abcd',maxZoom:18,attribution:'&copy; OpenStreetMap &copy; CARTO'};
+  function dot(cls){ return L.divIcon({className:'v-pin',html:'<span class="v-dot'+(cls||'')+'"></span>',iconSize:cls?[11,11]:[18,18],iconAnchor:cls?[5,5]:[9,9]}); }
+
+  // Big = has a page (click-through); small = named only
+  var big=[
+    [38.961,-119.939,"Edgewood Tahoe","edgewood-tahoe"],
+    [39.274,-120.124,"The Ritz-Carlton, Lake Tahoe","ritz-carlton-lake-tahoe"],
+    [39.236,-119.931,"Thunderbird Lodge","thunderbird-lodge"],
+    [39.273,-120.130,"Schaffer's Camp","schaffers-camp"],
+    [39.197,-120.247,"Palisades High Camp","palisades-high-camp"],
+    [39.293,-120.139,"Martis Camp","martis-camp"],
+    [39.244,-119.943,"Hyatt Regency Lake Tahoe","hyatt-regency-lake-tahoe"],
+    [39.054,-120.118,"Hellman-Ehrman Mansion","hellman-ehrman-mansion"],
+    [39.237,-120.025,"North Tahoe Event Center","north-tahoe-event-center"]
+  ];
+  var small=[
+    [39.069,-120.155,"West Shore Cafe & Inn"],[39.197,-120.265,"Everline Resort"],
+    [39.149,-120.156,"Sunnyside"],[39.226,-120.082,"Gar Woods"],
+    [39.198,-120.236,"PlumpJack at Palisades"],[39.088,-119.931,"Tahoe Blue Estate"],
+    [38.957,-119.949,"The Landing Resort"],[38.940,-120.043,"Valhalla Tahoe"],
+    [39.252,-119.948,"The Chateau, Incline Village"],[39.236,-120.114,"Tahoe Mountain Club"]
+  ];
+  var region=[
+    [39.262,-121.016,"The National Exchange"],[39.219,-121.060,"The Holbrooke"],
+    [39.261,-121.017,"Miner's Foundry"],[39.206,-121.052,"Empire Mine"],
+    [39.197,-121.077,"The North Star House"],[39.260,-121.013,"Nevada City Winery"]
+  ];
+
+  var map=L.map('venue-map',{scrollWheelZoom:false,zoomControl:true}).setView([39.16,-120.05],10);
+  L.tileLayer(TILES,TOPTS).addTo(map);
+  var pts=[];
+  big.forEach(function(v){
+    var m=L.marker([v[0],v[1]],{icon:dot('')}).addTo(map);
+    m.bindTooltip(v[2],{className:'v-tip',direction:'top',offset:[0,-10]});
+    m.on('click',function(){ window.location=BASE+'/venues/'+v[3]; });
+    pts.push([v[0],v[1]]);
+  });
+  small.forEach(function(v){
+    var m=L.marker([v[0],v[1]],{icon:dot(' sm')}).addTo(map);
+    m.bindTooltip(v[2],{className:'v-tip',direction:'top',offset:[0,-7]});
+    pts.push([v[0],v[1]]);
+  });
+  map.fitBounds(pts,{padding:[44,44]});
+
+  var rmap=L.map('region-map',{scrollWheelZoom:false,zoomControl:false}).setView([39.235,-121.04],12);
+  L.tileLayer(TILES,TOPTS).addTo(rmap);
+  region.forEach(function(v){
+    L.marker([v[0],v[1]],{icon:dot(' sm')}).addTo(rmap)
+     .bindTooltip(v[2],{className:'v-tip',direction:'top',offset:[0,-7]});
+  });
+})();
+</script>

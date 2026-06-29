@@ -84,17 +84,16 @@
   },{passive:true});
 })();
 
-/* Mobile menu toggle */
+/* Mobile menu: any [data-menu-toggle] toggles; links + Esc close. */
 (function(){
-  var btn=document.querySelector('[data-menu-toggle]'); if(!btn) return;
-  btn.addEventListener('click',function(){
-    var open=document.body.classList.toggle('menu-open');
-    btn.setAttribute('aria-expanded', open ? 'true':'false');
-    btn.setAttribute('aria-label', open ? 'Close menu':'Open menu');
-  });
-  document.querySelectorAll('.mobile-menu a').forEach(function(a){
-    a.addEventListener('click',function(){ document.body.classList.remove('menu-open'); });
-  });
+  var toggles=document.querySelectorAll('[data-menu-toggle]'); if(!toggles.length) return;
+  function set(open){
+    document.body.classList.toggle('menu-open', open);
+    toggles.forEach(function(b){ b.setAttribute('aria-expanded', open?'true':'false'); b.setAttribute('aria-label', open?'Close menu':'Open menu'); });
+  }
+  toggles.forEach(function(b){ b.addEventListener('click', function(){ set(!document.body.classList.contains('menu-open')); }); });
+  document.querySelectorAll('.mobile-menu a').forEach(function(a){ a.addEventListener('click', function(){ set(false); }); });
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape') set(false); });
 })();
 </script>
 </body>
