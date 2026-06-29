@@ -69,14 +69,16 @@
    hides on scroll-down and reveals on scroll-up. */
 (function(){
   var nav=document.getElementById('site-nav'); if(!nav) return;
+  var hasHero=!!document.querySelector('.hero');   // no hero (e.g. article) => nav stays solid
   var last=0, ticking=false;
   function update(){
     var y=window.pageYOffset;
-    nav.classList.toggle('solid', y>40);
+    nav.classList.toggle('solid', !hasHero || y>40);
     if(y>last && y>500){ nav.classList.add('up'); }
     else { nav.classList.remove('up'); }
     last=y; ticking=false;
   }
+  update();
   window.addEventListener('scroll',function(){
     if(!ticking){ requestAnimationFrame(update); ticking=true; }
   },{passive:true});
