@@ -168,6 +168,28 @@ redirect_from:
   </div>
 </section>
 
+<hr class="section-div">
+
+<!-- Pricing / Investment -->
+<section class="section" id="pricing">
+  <div class="container">
+    <span class="label">Investment</span>
+    <h2 class="section-head">Transparent pricing.</h2>
+    <div class="pricing-inner pricing-inner--solo">
+      <div>
+        <p class="price-num">$5,000–$25,000+</p>
+        <p class="price-sub">Full-service wedding florals</p>
+        <ul class="price-list">
+          <li>A 100-person Lake Tahoe wedding typically ranges from <strong>$12,000–$18,000</strong></li>
+          <li>Every package includes consultation through day-of setup and breakdown</li>
+          <li>We'll build a custom proposal around your venue, vision, and what's in season</li>
+        </ul>
+        <p class="price-tagline">No floral foam. No imported filler. Just intentional design.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- Editorial break -->
 <section class="fullbleed">
   <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1779132409797-K9BH7UUY32BCL87P6QI8/16.jpg?format=2500w" alt="Floral installation at a Lake Tahoe wedding" loading="lazy">
@@ -178,7 +200,7 @@ redirect_from:
 </section>
 
 <!-- Testimonials -->
-<section class="section">
+<section class="section" id="reviews">
   <div class="container">
     <span class="label">What couples say</span>
     <h2 class="section-head">Loved by couples across the Sierra.</h2>

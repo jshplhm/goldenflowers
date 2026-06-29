@@ -20,6 +20,45 @@ no_prefooter: true
   </div>
 </section>
 
+<section class="section" style="padding-top:72px;padding-bottom:16px;">
+  <div class="container" style="max-width:1040px;">
+    <div class="twoup" style="gap:72px;">
+      <div>
+        <span class="label">What happens next</span>
+        <h2 class="section-head" style="font-size:clamp(2rem,3vw,2.8rem);margin-bottom:30px;">Three steps, no pressure.</h2>
+        <ol style="list-style:none;margin:0;padding:0;">
+          <li style="position:relative;padding-left:42px;margin-bottom:24px;line-height:1.5;color:var(--fg2);">
+            <span style="position:absolute;left:0;top:-2px;font-family:var(--f-d);font-style:italic;font-size:1.5rem;color:var(--acc);">1</span>
+            <strong style="color:var(--fg);display:block;margin-bottom:3px;">You send the form.</strong>
+            Your date, venue, and a little about your vision &mdash; about two minutes.
+          </li>
+          <li style="position:relative;padding-left:42px;margin-bottom:24px;line-height:1.5;color:var(--fg2);">
+            <span style="position:absolute;left:0;top:-2px;font-family:var(--f-d);font-style:italic;font-size:1.5rem;color:var(--acc);">2</span>
+            <strong style="color:var(--fg);display:block;margin-bottom:3px;">We reply within 48 hours.</strong>
+            We confirm we're open on your date &mdash; we take one wedding per day, so dates go quickly.
+          </li>
+          <li style="position:relative;padding-left:42px;line-height:1.5;color:var(--fg2);">
+            <span style="position:absolute;left:0;top:-2px;font-family:var(--f-d);font-style:italic;font-size:1.5rem;color:var(--acc);">3</span>
+            <strong style="color:var(--fg);display:block;margin-bottom:3px;">We talk it through.</strong>
+            A complimentary call, then a custom proposal built around your season and venue.
+          </li>
+        </ol>
+      </div>
+      <div>
+        <span class="label">Reach us directly</span>
+        <h2 class="section-head" style="font-size:clamp(2rem,3vw,2.8rem);margin-bottom:30px;">Or just say hello.</h2>
+        <p style="font-size:1.05rem;margin-bottom:12px;"><a href="tel:5305577689">(530) 557-7689</a></p>
+        <p style="font-size:1.05rem;margin-bottom:12px;"><a href="mailto:brittany@goldenflorals.com">brittany@goldenflorals.com</a></p>
+        <p style="font-size:1.05rem;margin-bottom:12px;"><a href="https://www.instagram.com/goldenflowersfloraldesign/" target="_blank" rel="noopener">@goldenflowersfloraldesign</a></p>
+        <p style="font-size:1.05rem;color:var(--fg);margin-top:22px;">Incline Village, Lake Tahoe</p>
+        <p style="font-size:.85rem;color:var(--fgm);margin-top:5px;line-height:1.5;">By appointment only &mdash; we don't host walk-ins. Serving Lake Tahoe, Truckee, Nevada City &amp; beyond.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-div">
+
 <section class="form-section" id="consultation">
   <div class="container" style="max-width:1100px;" data-form-wrap>
     <form action="https://formspree.io/f/xgobrjyo" method="POST" id="consultation-form" data-multistep data-ajax>

@@ -19,6 +19,7 @@ canonical_url: https://goldenflorals.com/
       <a href="{{ site.baseurl }}/weddings#consultation" class="btn-primary" data-consult-open>Check Your Date &rarr;</a>
       <a href="{{ site.baseurl }}/portfolio" class="btn-ghost">Explore Portfolio</a>
     </div>
+    <p style="margin-top:20px;font-size:.82rem;letter-spacing:.04em;color:oklch(88% .02 96);text-shadow:0 1px 12px oklch(20% .02 148 / .5);">We book one wedding per date — once yours is taken, it's gone.</p>
   </div>
 </section>
 
@@ -131,30 +132,26 @@ canonical_url: https://goldenflorals.com/
 
 <section class="section">
   <div class="container">
-    <span class="label">Investment</span>
-    <h2 class="section-head">Transparent pricing.</h2>
-    <div class="pricing-inner pricing-inner--solo">
-      <div>
-        <p class="price-num">$5,000–$25,000+</p>
-        <p class="price-sub">Full-service wedding florals</p>
-        <ul class="price-list">
-          <li>A 100-person Lake Tahoe wedding typically ranges from <strong>$12,000–$18,000</strong></li>
-          <li>Every package includes consultation through day-of setup and breakdown</li>
-          <li>We'll build a custom proposal around your venue, vision, and what's in season</li>
-        </ul>
-        <p class="price-tagline">No floral foam. No imported filler. Just intentional design.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<hr class="section-div">
-
-<section class="section">
-  <div class="container">
     <span class="label">What couples say</span>
     <h2 class="section-head">Loved by couples across the Sierra.</h2>
-    {% include testimonials.html %}
+    <div class="values-grid">
+      <div class="testi-card">
+        <span class="testi-tag">Lake Tahoe Wedding</span>
+        <p class="testi-quote">"Brittany and her team are the utmost in artistry, professionalism, and support. The presentation at the wedding was through-the-roof beautiful."</p>
+        <div class="testi-by"><strong>Brian</strong>Lake Tahoe wedding</div>
+      </div>
+      <div class="testi-card">
+        <span class="testi-tag">Elevated Minimalist · Ritz-Carlton</span>
+        <p class="testi-quote">"Brittany had ideas that helped me achieve the luxe look I wanted while staying in budget."</p>
+        <div class="testi-by"><strong>Sara</strong>The Ritz-Carlton, Truckee</div>
+      </div>
+      <div class="testi-card">
+        <span class="testi-tag">Lush &amp; Romantic · Miner's Foundry</span>
+        <p class="testi-quote">"All of the bouquets were perfect, exactly the way we envisioned them. We would absolutely recommend Golden Flowers to anyone married-to-be."</p>
+        <div class="testi-by"><strong>Samantha</strong>The Miner's Foundry, Nevada City</div>
+      </div>
+    </div>
+    <p style="text-align:center;margin-top:32px;"><a href="{{ site.baseurl }}/weddings#reviews" class="btn-ghost">Read all couples' reviews →</a></p>
   </div>
 </section>
 
@@ -162,6 +159,7 @@ canonical_url: https://goldenflorals.com/
   <div class="container">
     <span class="label">Browse by venue</span>
     <h2 class="section-head">Every venue is its own world.</h2>
+    <p style="max-width:580px;margin-bottom:8px;color:var(--fg2);">A few of the spaces we know intimately — we design at 30+ venues across Lake Tahoe, Truckee, and the Sierra, and we'll know yours.</p>
     <div class="venue-grid">
       <a href="{{ site.baseurl }}/venues/edgewood-tahoe" class="venue-card">
         <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1776975190166-PCFON7QIR65XK1VPLH3K/l-a-preview-8192.jpg?format=750w" alt="Edgewood Tahoe" loading="lazy">
@@ -180,6 +178,6 @@ canonical_url: https://goldenflorals.com/
         <div class="venue-overlay"><p class="venue-name">Thunderbird Lodge</p><p class="venue-meta">East Shore · Historic Estate</p></div>
       </a>
     </div>
-    <p style="margin-top:36px;"><a href="{{ site.baseurl }}/venues" class="btn-ghost">View all venues &rarr;</a></p>
+    <p style="margin-top:36px;"><a href="{{ site.baseurl }}/venues" class="btn-ghost">See all 30+ venues &rarr;</a></p>
   </div>
 </section>

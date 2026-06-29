@@ -275,7 +275,7 @@ h3 {
   line-height: 1.2;
   color: var(--fg); text-wrap: balance;
 }
-p { font-size: 1rem; line-height: 1.75; color: var(--fg2); }
+p { font-size: 1.05rem; line-height: 1.8; color: var(--fg2); }
 hr.div { border: none; border-top: 1px solid var(--bor); display: block; width: 48px; margin: 0 auto; }
 hr.section-div { border: none; border-top: 1px solid var(--bor); display: block; width: 100%; margin: 0; }
 .section-tinted { background: var(--bg3); }
@@ -1069,7 +1069,7 @@ h1.venue-title { font-family: var(--f-d); font-style: italic; font-weight: 300; 
 @media (max-width: 768px) {
   .section { padding: 64px 0; }
   .venue-grid { margin-top: 32px; }
-  h2.section-head, h2 { font-size: clamp(1.9rem, 5vw, 3.8rem); }
+  h2.section-head, h2 { font-size: clamp(2rem, 5.4vw, 3.5rem); }
 }
 
 /* ── 31. MOBILE HEADING WRAPS ─────────────────────────── */
@@ -1507,24 +1507,24 @@ input, select { min-height: 50px; }
 .hero .hero-display { font-size: clamp(3rem, 5.8vw, 5.5rem); line-height: 1.04; }
 /* T2 · Interior page titles - one size for all */
 h1.venue-title, .page-header h1, .founder-copy h1, .blog-title {
-  font-size: clamp(2.6rem, 4.8vw, 4.2rem); line-height: 1.06;
+  font-size: clamp(2.7rem, 5vw, 4.6rem); line-height: 1.05;
 }
 /* T3 · Section headings */
 h2, h2.section-head, .cta-section h2 {
-  font-size: clamp(2rem, 3.4vw, 3rem); line-height: 1.1;
+  font-size: clamp(2.15rem, 3.8vw, 3.5rem); line-height: 1.08;
 }
 /* T4 · Medium / block headings */
 .section-header h2, .modal h2, .form-success h3, .cta-strip h3, .farm-text h3 {
-  font-size: clamp(1.6rem, 2.4vw, 2rem); line-height: 1.18;
+  font-size: clamp(1.7rem, 2.6vw, 2.2rem); line-height: 1.16;
 }
 /* T5 · Card / sub headings */
 h3, .diff-card h3, .step h3, .faq-question h3, .value-item h3,
 .philosophy-item h3 {
-  font-size: 1.25rem; line-height: 1.3;
+  font-size: 1.32rem; line-height: 1.28;
 }
 /* T5 · Serif gallery accents (couples / seasons) - same size, italic voice */
 .season-name, .wedding-couple, .example-couple {
-  font-size: 1.25rem; line-height: 1.3;
+  font-size: 1.32rem; line-height: 1.28;
 }
 @media (max-width: 640px) {
   .hero .hero-display { font-size: clamp(2.8rem, 11vw, 3.6rem); }
@@ -1537,7 +1537,7 @@ h3, .diff-card h3, .step h3, .faq-question h3, .value-item h3,
 .diff-card p, .step p, .value-item p, .philosophy-item p, .include-text p,
 .cred-item p, .farm-text p, .faq-answer, .wedding-desc, .price-list li,
 .form-intro p, .farm-grid .farm-text p {
-  font-size: .92rem; line-height: var(--lh-ui);
+  font-size: .96rem; line-height: var(--lh-ui);
 }
 /* Small meta / supporting text → one size */
 .footer-info p, .testi-by, .price-sub, .form-note,
