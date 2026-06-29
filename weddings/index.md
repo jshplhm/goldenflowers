@@ -10,19 +10,14 @@ redirect_from:
   - /weddings-1
 ---
 
-<!-- HERO -->
-<header class="hero hero-sm">
-  <img class="bg" src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1776975190166-PCFON7QIR65XK1VPLH3K/l-a-preview-8192.jpg?format=2500w" alt="Lakeside Lake Tahoe wedding framed by a floral arch" style="object-position:center 42%;">
-  <div class="hero-in">
-    <p class="ey lab">Working with us</p>
-    <h1 class="disp">Full-service <em>wedding flowers.</em></h1>
-    <div class="hero-foot">
-      <p class="hero-sub">One wedding per date · Lake Tahoe &amp; the Sierra Nevada.</p>
-      <div class="hero-btns">
-        <a class="btn" href="{{ site.baseurl }}/consultation-form">Schedule a consultation <span>&rarr;</span></a>
-        <a class="btn ghost" href="{{ site.baseurl }}/portfolio">View portfolio</a>
-      </div>
-    </div>
+<!-- TEXT HEADER (no photo — distinct from the other pages) -->
+<header class="text-hero">
+  <span class="lab">Working with us</span>
+  <h1>Full-service <em>wedding flowers.</em></h1>
+  <p class="th-sub">One wedding per date, across Lake Tahoe &amp; the Sierra Nevada — designed start to finish by the same hands.</p>
+  <div class="hero-btns">
+    <a class="btn" href="{{ site.baseurl }}/consultation-form">Schedule a consultation <span>&rarr;</span></a>
+    <a class="btn ghost-ink" href="{{ site.baseurl }}/portfolio">View portfolio</a>
   </div>
 </header>
 
