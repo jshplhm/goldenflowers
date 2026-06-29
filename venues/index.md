@@ -10,7 +10,7 @@ canonical_url: https://goldenflorals.com/venues
 <!-- HEADER -->
 <section class="block venues-head" style="padding-top:clamp(120px,15vw,180px);padding-bottom:clamp(8px,2vw,20px);">
   <span class="lab">Venues</span>
-  <h1 class="h-lg">The venues we love.</h1>
+  <h1 class="h-lg">We love this place.</h1>
 </section>
 
 <!-- CUSTOM TAHOE MAP -->
@@ -18,11 +18,8 @@ canonical_url: https://goldenflorals.com/venues
   <div class="map-figure">
     <svg class="tahoe" viewBox="0 0 480 760" xmlns="http://www.w3.org/2000/svg" role="group" aria-label="Map of Lake Tahoe wedding venues">
       <defs>
-        <path id="tahoe-lake" d="M172 108 C214 90 262 88 304 98 C340 106 362 126 372 160 C388 210 396 272 390 334 C384 396 374 456 360 514 C348 566 324 616 284 654 C258 678 222 688 190 679 C167 672 156 649 150 618 C146 601 160 590 150 571 C138 543 130 472 130 402 C130 320 140 206 151 158 C156 136 162 121 172 108 Z"/>
+        <path id="tahoe-lake" d="M140 122 C168 108 210 104 242 108 C250 109 252 124 258 126 C264 118 276 108 296 108 C318 108 334 116 348 136 C366 166 378 230 378 302 C378 372 372 442 360 500 C350 552 326 598 284 636 C258 656 220 664 188 657 C168 653 156 632 150 608 C146 591 162 580 148 562 C137 531 126 467 124 402 C122 322 124 222 130 172 C134 146 135 132 140 122 Z"/>
       </defs>
-
-      <!-- perimeter ring road (just outside the shoreline) -->
-      <use href="#tahoe-lake" class="t-ring" transform="translate(260 388) scale(1.05) translate(-260 -388)"/>
 
       <!-- highways -->
       <path class="t-hwy maj" d="M70 60 Q185 50 300 30 T448 18"/>
@@ -57,13 +54,13 @@ canonical_url: https://goldenflorals.com/venues
       <a href="{{ site.baseurl }}/venues/schaffers-camp" class="t-pin" aria-label="Schaffer's Camp — view venue"><circle class="t-dot" cx="262" cy="56" r="5.5"/><text class="t-vlabel" x="271" y="54">Schaffer's Camp</text></a>
       <a href="{{ site.baseurl }}/venues/palisades-high-camp" class="t-pin" aria-label="Palisades High Camp — view venue"><circle class="t-dot" cx="95" cy="120" r="5.5"/><text class="t-vlabel" x="104" y="123">Palisades High Camp</text></a>
       <a href="{{ site.baseurl }}/venues/martis-camp" class="t-pin" aria-label="Martis Camp — view venue"><circle class="t-dot" cx="205" cy="74" r="5.5"/><text class="t-vlabel" x="214" y="78">Martis Camp</text></a>
-      <a href="{{ site.baseurl }}/venues/hyatt-regency-lake-tahoe" class="t-pin" aria-label="Hyatt Regency Lake Tahoe — view venue"><circle class="t-dot" cx="335" cy="158" r="5.5"/><text class="t-vlabel" x="326" y="161" text-anchor="end">Hyatt Regency</text></a>
-      <a href="{{ site.baseurl }}/venues/hellman-ehrman-mansion" class="t-pin" aria-label="Hellman-Ehrman Mansion — view venue"><circle class="t-dot" cx="128" cy="432" r="5.5"/><text class="t-vlabel" x="137" y="435">Hellman-Ehrman</text></a>
+      <a href="{{ site.baseurl }}/venues/hyatt-regency-lake-tahoe" class="t-pin" aria-label="Hyatt Regency Lake Tahoe — view venue"><circle class="t-dot" cx="344" cy="170" r="5.5"/><text class="t-vlabel" x="353" y="173">Hyatt Regency</text></a>
+      <a href="{{ site.baseurl }}/venues/hellman-ehrman-mansion" class="t-pin" aria-label="Hellman-Ehrman Mansion — view venue"><circle class="t-dot" cx="116" cy="432" r="5.5"/><text class="t-vlabel" x="107" y="435" text-anchor="end">Hellman-Ehrman</text></a>
       <a href="{{ site.baseurl }}/venues/north-tahoe-event-center" class="t-pin" aria-label="North Tahoe Event Center — view venue"><circle class="t-dot" cx="295" cy="92" r="5.5"/><text class="t-vlabel" x="304" y="90">North Tahoe Event Center</text></a>
 
       <!-- venues we love (small, name only) -->
-      <g class="t-pin" tabindex="0" role="img" aria-label="West Shore Cafe &amp; Inn"><circle class="t-dot sm" cx="128" cy="470" r="3.6"/><text class="t-vlabel" x="137" y="473">West Shore Cafe</text></g>
-      <g class="t-pin" tabindex="0" role="img" aria-label="Sunnyside"><circle class="t-dot sm" cx="142" cy="250" r="3.6"/><text class="t-vlabel" x="151" y="253">Sunnyside</text></g>
+      <g class="t-pin" tabindex="0" role="img" aria-label="West Shore Cafe &amp; Inn"><circle class="t-dot sm" cx="114" cy="470" r="3.6"/><text class="t-vlabel" x="105" y="473" text-anchor="end">West Shore Cafe</text></g>
+      <g class="t-pin" tabindex="0" role="img" aria-label="Sunnyside"><circle class="t-dot sm" cx="108" cy="252" r="3.6"/><text class="t-vlabel" x="99" y="255" text-anchor="end">Sunnyside</text></g>
       <g class="t-pin" tabindex="0" role="img" aria-label="Gar Woods Grill &amp; Pier"><circle class="t-dot sm" cx="256" cy="100" r="3.6"/><text class="t-vlabel" x="265" y="103">Gar Woods</text></g>
       <g class="t-pin" tabindex="0" role="img" aria-label="PlumpJack at Palisades"><circle class="t-dot sm" cx="86" cy="142" r="3.6"/><text class="t-vlabel" x="95" y="145">PlumpJack</text></g>
       <g class="t-pin" tabindex="0" role="img" aria-label="Tahoe Blue Estate"><circle class="t-dot sm" cx="360" cy="455" r="3.6"/><text class="t-vlabel" x="351" y="458" text-anchor="end">Tahoe Blue Estate</text></g>
@@ -76,7 +73,7 @@ canonical_url: https://goldenflorals.com/venues
     <h2>The Tahoe basin, at a glance.</h2>
     <p>From Tahoe City and Incline Village down to the south shore — and up into Truckee and Olympic Valley — we design across the lake and the surrounding Sierra. Hover a marker to see the venue; tap a larger one to open its page.</p>
     <ul class="map-legend">
-      <li><span class="lg-dot"></span> The nine venues we know best — tap to explore</li>
+      <li><span class="lg-dot"></span> Featured venues — tap to explore</li>
       <li><span class="lg-dot sm"></span> More venues we love to design at</li>
     </ul>
   </div>
@@ -84,9 +81,9 @@ canonical_url: https://goldenflorals.com/venues
 
 <hr class="hr-line">
 
-<!-- THE NINE (links — SEO + fallback) -->
+<!-- FEATURED VENUES (links — SEO + fallback) -->
 <section class="block">
-  <span class="lab">The nine we know best</span>
+  <span class="lab">Featured venues</span>
   <div class="venue-list">
     <a href="{{ site.baseurl }}/venues/edgewood-tahoe"><span class="vl-name">Edgewood Tahoe</span><span class="vl-region">South Shore</span></a>
     <a href="{{ site.baseurl }}/venues/ritz-carlton-lake-tahoe"><span class="vl-name">The Ritz-Carlton</span><span class="vl-region">Northstar</span></a>
