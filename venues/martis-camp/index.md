@@ -1,11 +1,10 @@
 ---
-layout: default
+layout: redesign
 title: "Martis Camp Wedding Flowers"
 seo_title: "Martis Camp Wedding Florist | Golden Flowers"
 permalink: /venues/martis-camp
 description: "Wedding flowers for Martis Camp near Truckee. Golden Flowers designs refined, foam-free, California-grown florals for the private community's lodge, barn, and forest lawns in the High Sierra."
 canonical_url: https://goldenflorals.com/venues/martis-camp
-no_prefooter: true
 redirect_from:
   - /wedding-florist-martis-camp
 ---
@@ -91,7 +90,7 @@ redirect_from:
   <div class="container">
     <span class="label">Questions about Martis Camp</span>
     <h2>What planning at Martis Camp looks like.</h2>
-    {% include faq.html %}
+    {% include redesign-faq.html %}
   </div>
 </section>
 
@@ -109,7 +108,7 @@ redirect_from:
       <div class="price-details">
         <p>Every proposal is custom, built around your table count, ceremony footprint, and vision. We don't offer packages with minimum bids or imported filler.</p>
         <p>A standard engagement covers: initial consultation, design proposal and mood board, ceremony arch or installation, bridal bouquet, bridal party florals, reception centerpieces, and full day-of setup and breakdown.</p>
-        <a href="{{ site.baseurl }}/weddings#consultation" class="btn-primary" style="margin-top:16px;display:inline-block;" data-consult-open>Request a custom estimate</a>
+        <a href="{{ site.baseurl }}/consultation-form" class="btn-primary" style="margin-top:16px;display:inline-block;">Request a custom estimate</a>
       </div>
     </div>
   </div>
@@ -120,6 +119,6 @@ redirect_from:
     <span class="label" style="display:block;text-align:center">Get started</span>
     <h2>Getting married at Martis Camp?</h2>
     <p>Tell us your date and vision. We'll let you know if we're available and what the design process looks like from here.</p>
-    <a href="{{ site.baseurl }}/weddings#consultation" class="btn-primary" data-consult-open>Check your date &rarr;</a>
+    <a href="{{ site.baseurl }}/consultation-form" class="btn-primary">Check your date &rarr;</a>
   </div>
 </div>

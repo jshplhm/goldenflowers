@@ -1,11 +1,10 @@
 ---
-layout: default
+layout: redesign
 title: "Hyatt Regency Lake Tahoe Wedding Flowers"
 seo_title: "Hyatt Regency Lake Tahoe Wedding Florist | Incline Village | Golden Flowers"
 permalink: /venues/hyatt-regency-lake-tahoe
 description: "Wedding flowers for the Hyatt Regency Lake Tahoe in Incline Village. Golden Flowers is the local, foam-free, California-grown florist for North Shore resort weddings, based in the same town."
 canonical_url: https://goldenflorals.com/venues/hyatt-regency-lake-tahoe
-no_prefooter: true
 redirect_from:
   - /wedding-florist-hyatt-regency-lake-tahoe
 ---
@@ -95,7 +94,7 @@ redirect_from:
   <div class="container">
     <span class="label">Questions about the Hyatt Regency</span>
     <h2>What planning a Hyatt wedding looks like.</h2>
-    {% include faq.html %}
+    {% include redesign-faq.html %}
   </div>
 </section>
 
@@ -114,7 +113,7 @@ redirect_from:
       <div class="price-details">
         <p>Every proposal is custom, built around your guest count, ceremony footprint, and vision. We don't offer packages with minimum bids or imported filler.</p>
         <p>A standard engagement covers: initial consultation, design proposal and mood board, ceremony installation, bridal bouquet, wedding party florals, reception centerpieces, and full day-of setup and breakdown.</p>
-        <a href="{{ site.baseurl }}/weddings#consultation" class="btn-primary" style="margin-top:16px;display:inline-block;">Request a custom estimate</a>
+        <a href="{{ site.baseurl }}/consultation-form" class="btn-primary" style="margin-top:16px;display:inline-block;">Request a custom estimate</a>
       </div>
     </div>
   </div>
@@ -126,6 +125,6 @@ redirect_from:
     <span class="label" style="display:block;text-align:center">Get started</span>
     <h2>Getting married at the Hyatt Regency?</h2>
     <p>Tell us your date and vision. As your local Incline Village florist, we'll let you know if we're available and how we'd approach the design.</p>
-    <a href="{{ site.baseurl }}/weddings#consultation" class="btn-primary">Schedule a Consultation</a>
+    <a href="{{ site.baseurl }}/consultation-form" class="btn-primary">Schedule a Consultation</a>
   </div>
 </div>

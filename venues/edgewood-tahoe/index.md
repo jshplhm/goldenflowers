@@ -1,10 +1,9 @@
 ---
-layout: default
+layout: redesign
 title: "Edgewood Tahoe Wedding Florist"
 permalink: /venues/edgewood-tahoe
 description: "Golden Flowers designs wedding flowers for Edgewood Tahoe. Farm-grown, foam-free ceremony and reception florals for South Shore weddings."
 canonical_url: https://goldenflorals.com/venues/edgewood-tahoe
-no_prefooter: true
 redirect_from:
   - /wedding-florist-edgewood-tahoe
 ---
@@ -94,7 +93,7 @@ redirect_from:
   <div class="container">
     <span class="label">Questions about Edgewood</span>
     <h2>What planning at Edgewood looks like.</h2>
-    {% include faq.html %}
+    {% include redesign-faq.html %}
   </div>
 </section>
 
@@ -113,7 +112,7 @@ redirect_from:
       <div class="price-details">
         <p>Every proposal is custom, built around your table count, ceremony footprint, and vision. We don't offer packages with minimum bids or imported filler.</p>
         <p>A standard Edgewood engagement covers: initial consultation, design proposal and mood board, ceremony arch or installation, bridal bouquet, bridesmaids and groomsmen florals, reception centerpieces, and full day-of setup and breakdown.</p>
-        <a href="{{ site.baseurl }}/weddings#consultation" class="btn-primary" style="margin-top:16px;display:inline-block;">Request a custom estimate</a>
+        <a href="{{ site.baseurl }}/consultation-form" class="btn-primary" style="margin-top:16px;display:inline-block;">Request a custom estimate</a>
       </div>
     </div>
   </div>
@@ -125,6 +124,6 @@ redirect_from:
     <span class="label" style="display:block;text-align:center">Get started</span>
     <h2>Getting married at Edgewood?</h2>
     <p>Tell us your date and vision. We'll let you know if we're available and what the design process looks like from here.</p>
-    <a href="{{ site.baseurl }}/weddings#consultation" class="btn-primary">Schedule a Consultation</a>
+    <a href="{{ site.baseurl }}/consultation-form" class="btn-primary">Schedule a Consultation</a>
   </div>
 </div>

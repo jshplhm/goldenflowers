@@ -1,11 +1,10 @@
 ---
-layout: default
+layout: redesign
 title: "Hellman-Ehrman Mansion Wedding Flowers"
 seo_title: "Hellman-Ehrman Mansion Wedding Florist | Sugar Pine Point | Golden Flowers"
 permalink: /venues/hellman-ehrman-mansion
 description: "Wedding flowers for the Hellman-Ehrman Mansion at Sugar Pine Point State Park. Golden Flowers designs foam-free, California-grown florals for lakefront, leave-no-trace weddings on Lake Tahoe's West Shore."
 canonical_url: https://goldenflorals.com/venues/hellman-ehrman-mansion
-no_prefooter: true
 redirect_from:
   - /wedding-florist-hellman-ehrman-mansion-sugar-pine-point
 ---
@@ -95,7 +94,7 @@ redirect_from:
   <div class="container">
     <span class="label">Questions about Hellman-Ehrman</span>
     <h2>What planning at Sugar Pine Point looks like.</h2>
-    {% include faq.html %}
+    {% include redesign-faq.html %}
   </div>
 </section>
 
@@ -114,7 +113,7 @@ redirect_from:
       <div class="price-details">
         <p>Every proposal is custom, built around your guest count, ceremony footprint, and vision. We don't offer packages with minimum bids or imported filler.</p>
         <p>A standard engagement covers: initial consultation, design proposal and mood board, ceremony installation, bridal bouquet, wedding party florals, reception centerpieces, and full day-of setup and leave-no-trace breakdown.</p>
-        <a href="{{ site.baseurl }}/weddings#consultation" class="btn-primary" style="margin-top:16px;display:inline-block;">Request a custom estimate</a>
+        <a href="{{ site.baseurl }}/consultation-form" class="btn-primary" style="margin-top:16px;display:inline-block;">Request a custom estimate</a>
       </div>
     </div>
   </div>
@@ -126,6 +125,6 @@ redirect_from:
     <span class="label" style="display:block;text-align:center">Get started</span>
     <h2>Getting married at Hellman-Ehrman?</h2>
     <p>Tell us your date and vision. We'll let you know if we're available and what the design process looks like from here.</p>
-    <a href="{{ site.baseurl }}/weddings#consultation" class="btn-primary">Schedule a Consultation</a>
+    <a href="{{ site.baseurl }}/consultation-form" class="btn-primary">Schedule a Consultation</a>
   </div>
 </div>

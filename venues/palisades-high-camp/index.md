@@ -1,11 +1,10 @@
 ---
-layout: default
+layout: redesign
 title: "Palisades High Camp Wedding Flowers"
 seo_title: "Palisades High Camp Wedding Florist | Golden Flowers"
 permalink: /venues/palisades-high-camp
 description: "Wedding flowers for Palisades High Camp in Olympic Valley. Golden Flowers designs alpine, foam-free, California-grown florals built for High Camp's tram access, thin air, and panoramic Sierra views."
 canonical_url: https://goldenflorals.com/venues/palisades-high-camp
-no_prefooter: true
 ---
 
 {% include venue-subnav.html name="Palisades High Camp" %}
@@ -89,7 +88,7 @@ no_prefooter: true
   <div class="container">
     <span class="label">Questions about Palisades High Camp</span>
     <h2>What planning at High Camp looks like.</h2>
-    {% include faq.html %}
+    {% include redesign-faq.html %}
   </div>
 </section>
 
@@ -107,7 +106,7 @@ no_prefooter: true
       <div class="price-details">
         <p>Every proposal is custom, built around your table count, ceremony footprint, and vision. We don't offer packages with minimum bids or imported filler.</p>
         <p>A standard engagement covers: initial consultation, design proposal and mood board, ceremony arch or installation, bridal bouquet, bridal party florals, reception centerpieces, and full day-of setup and breakdown.</p>
-        <a href="{{ site.baseurl }}/weddings#consultation" class="btn-primary" style="margin-top:16px;display:inline-block;" data-consult-open>Request a custom estimate</a>
+        <a href="{{ site.baseurl }}/consultation-form" class="btn-primary" style="margin-top:16px;display:inline-block;">Request a custom estimate</a>
       </div>
     </div>
   </div>
@@ -118,6 +117,6 @@ no_prefooter: true
     <span class="label" style="display:block;text-align:center">Get started</span>
     <h2>Getting married at Palisades High Camp?</h2>
     <p>Tell us your date and vision. We'll let you know if we're available and what the design process looks like from here.</p>
-    <a href="{{ site.baseurl }}/weddings#consultation" class="btn-primary" data-consult-open>Check your date &rarr;</a>
+    <a href="{{ site.baseurl }}/consultation-form" class="btn-primary">Check your date &rarr;</a>
   </div>
 </div>
