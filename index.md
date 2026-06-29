@@ -1,183 +1,116 @@
 ---
-layout: default
+layout: redesign
 title: "Golden Flowers"
 seo_title: "Lake Tahoe Wedding Florist | Golden Flowers"
 permalink: /
-description: "Golden Flowers is a Lake Tahoe wedding florist designing artful and sustainably grown Lake Tahoe wedding flowers for couples getting married in the Sierra Nevada"
+description: "Golden Flowers is a Lake Tahoe wedding florist designing artful, sustainably grown, foam-free wedding flowers for couples getting married across the Sierra Nevada."
 canonical_url: https://goldenflorals.com/
 ---
 
-<section class="hero">
-  <div class="hero-media">
-    <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/2b98245c-1230-4e50-847e-90c7d13f793b/Lake%2BTahoe%2BFloral%2BInstallation.jpeg?format=2500w" alt="Lake Tahoe floral installation by Golden Flowers" loading="eager">
-  </div>
-  <div class="hero-copy">
-    <h1 class="hero-eyebrow">Lake Tahoe Wedding Florist</h1>
-    <p class="hero-display">Artful florals, rooted in the Sierra.</p>
-    <p class="hero-sub">Farm-grown &amp; foam-free · One wedding per date</p>
-    <div class="hero-btns">
-      <a href="{{ site.baseurl }}/weddings#consultation" class="btn-primary" data-consult-open>Check Your Date &rarr;</a>
-      <a href="{{ site.baseurl }}/portfolio" class="btn-ghost">Explore Portfolio</a>
-    </div>
-    <p style="margin-top:20px;font-size:.82rem;letter-spacing:.04em;color:oklch(88% .02 96);text-shadow:0 1px 12px oklch(20% .02 148 / .5);">We book one wedding per date — once yours is taken, it's gone.</p>
-  </div>
-</section>
-
-<section class="section">
-  <div class="container">
-    <span class="label">What sets us apart</span>
-    <h2 class="section-head">Designed to be unlike anything else.</h2>
-    <div class="diff-grid">
-      <div class="diff-card">
-        <div class="diff-icon">{% include icon.html name="sprout" %}</div>
-        <h3>Farm-grown</h3>
-        <p>We grow on our own plots in California and source exclusively from growers we trust. No flowers flown in from across the world.</p>
-      </div>
-      <div class="diff-card">
-        <div class="diff-icon">{% include icon.html name="leaf" %}</div>
-        <h3>Foam-free</h3>
-        <p>Every arrangement we make is built without floral foam. Intentional, sustainable, and better for the environment.</p>
-      </div>
-      <div class="diff-card">
-        <div class="diff-icon">{% include icon.html name="calendar-heart" %}</div>
-        <h3>One wedding per date</h3>
-        <p>We never double-book. Your wedding day gets our complete attention, start to finish.</p>
-      </div>
-      <div class="diff-card">
-        <div class="diff-icon">{% include icon.html name="flask" %}</div>
-        <h3>Agronomist-founded</h3>
-        <p>Founder Brittany trained as an agronomist. Soil science shapes what we plant, source, and design.</p>
+<!-- HERO -->
+<header class="hero">
+  <img class="bg" src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/4685a495-c2ce-4b90-9fd1-f91ca0d6a135/K%2BJ-0962.jpg?format=2500w" alt="Lake Tahoe ceremony arch by Golden Flowers">
+  <span class="side-label">Est. in the Sierra Nevada</span>
+  <div class="hero-in">
+    <p class="ey lab">Lake Tahoe Wedding Florist</p>
+    <h1 class="disp">Flowers That Belong to the <em>Place They Grow.</em></h1>
+    <div class="hero-foot">
+      <p class="hero-sub">Farm-grown, foam-free florals — one wedding a day, deep in the Sierra Nevada.</p>
+      <div class="hero-btns">
+        <a class="btn" href="{{ site.baseurl }}/consultation-form">Check your date <span>&rarr;</span></a>
+        <a class="btn ghost" href="{{ site.baseurl }}/portfolio">Explore portfolio</a>
       </div>
     </div>
   </div>
+</header>
+
+<!-- CREDO -->
+<section class="credo">
+  <span class="lab">Why Golden Flowers</span>
+  <h2 class="disp">We don't fly flowers in from across the world. We <em>grow them</em> — an hour from where you'll say I do.</h2>
+  <div class="facts">
+    <div class="fact"><span class="n">01</span><h3>Farm-grown</h3><p>Raised on our own California plots and sourced only from growers we trust — never shipped from overseas.</p></div>
+    <div class="fact"><span class="n">02</span><h3>Foam-free, always</h3><p>Every arrangement is built without floral foam. Better for the design, and better for the mountains.</p></div>
+    <div class="fact"><span class="n">03</span><h3>One wedding a day</h3><p>We never double-book. Your date is yours alone — undivided, start to finish.</p></div>
+  </div>
 </section>
 
-<hr class="section-div">
+<!-- WORK -->
+<section class="work">
+  <div class="work-head">
+    <h2 class="disp">Selected weddings</h2>
+    <a href="{{ site.baseurl }}/portfolio" class="txt-link">Browse the full portfolio &rarr;</a>
+  </div>
+  <div class="grid">
+    <a class="tile feature" href="{{ site.baseurl }}/portfolio"><img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/5854318e-a30f-4303-b4d9-38c510fdc75a/Lake+Tahoe+Floral+Installationn?format=1500w" alt="Forest ceremony installation"><span class="cap"><b>Kate &amp; James</b><span>The Miner's Foundry · Lush &amp; Romantic</span></span></a>
+    <a class="tile portrait" href="{{ site.baseurl }}/portfolio"><img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1776975105426-4BAEXMVDBX6Q5ETZ1BVC/l-a-preview-6962.jpg?format=1000w" alt="Elevated minimalist bouquet"><span class="cap"><b>Lauren &amp; Andy</b><span>Edgewood Tahoe · Elevated Minimalist</span></span></a>
+    <a class="tile quarter" href="{{ site.baseurl }}/portfolio"><img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1770534306889-NSEB5HC1TYWMEPG4WSCI/NationalGothic--268.jpg?format=1000w" alt="Dark romance florals"><span class="cap"><b>Niamh &amp; Nick</b><span>National Exchange · Dark Romance</span></span></a>
+    <a class="tile quarter" href="{{ site.baseurl }}/portfolio"><img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1779129057432-Y8VGDRIHTV4BILCZVW27/MountainTimePhoto-48.jpg?format=1000w" alt="Wildflower modern design"><span class="cap"><b>Emma &amp; Ross</b><span>Palisades High Camp · Wildflower</span></span></a>
+    <a class="tile quarter" href="{{ site.baseurl }}/portfolio"><img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/bc425f51-1b71-473f-815b-8c481fd5a5c1/8.jpg?format=1000w" alt="Reception table florals"><span class="cap"><b>Sara &amp; Tom</b><span>The Ritz-Carlton · Elevated Minimalist</span></span></a>
+    <a class="tile quarter" href="{{ site.baseurl }}/portfolio"><img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1779129636646-VAQ2FSYB2YNR4O0UZFAA/K%252BJ-8434.jpg?format=1000w" alt="Bride with bouquet"><span class="cap"><b>Brittany &amp; Co.</b><span>East Shore · Lush &amp; Romantic</span></span></a>
+  </div>
+</section>
 
-<section class="section">
-  <div class="container">
-    <span class="label">Find your aesthetic</span>
-    <h2 class="section-head">Three distinct design languages.</h2>
-    <p style="max-width:560px;margin-bottom:8px;font-size:1.02rem;color:var(--fg2);">Three directions we return to most. Explore each in the portfolio.</p>
-    <div class="aesthetic-grid">
-      <a class="aesthetic-card" href="{{ site.baseurl }}/portfolio?filter=dark-romance">
-        <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1770534306889-NSEB5HC1TYWMEPG4WSCI/NationalGothic--268.jpg?format=750w" alt="Lush and Romantic floral design" loading="lazy">
-        <div class="aesthetic-overlay">
-          <span class="aesthetic-tag">Aesthetic 01</span>
-          <h3>Lush &amp; Romantic</h3>
-          <p>Rich, dramatic, and lush. Deep burgundy, plum, and forest tones. Arrangements that feel cinematic and of the moment.</p>
-          <span class="aesthetic-link">View weddings →</span>
-        </div>
+<!-- IMMERSIVE -->
+<section class="immersive">
+  <img class="bg" src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/2b98245c-1230-4e50-847e-90c7d13f793b/Lake%2BTahoe%2BFloral%2BInstallation.jpeg?format=2500w" alt="Lake Tahoe floral installation">
+  <div class="il">
+    <span class="lab">Grown, not shipped</span>
+    <p class="disp">Every stem chosen for one couple, one date, one place in the mountains.</p>
+  </div>
+</section>
+
+<!-- AESTHETICS -->
+<section class="aes">
+  <div class="aes-wrap">
+    <div class="aes-head">
+      <span class="lab">Find your aesthetic</span>
+      <h2 class="disp">Three design languages we keep returning to.</h2>
+    </div>
+    <div class="aes-row">
+      <a class="aes-card" href="{{ site.baseurl }}/portfolio?filter=dark-romance">
+        <div class="ph"><span class="idx">01</span><img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1770534306889-NSEB5HC1TYWMEPG4WSCI/NationalGothic--268.jpg?format=1000w" alt="Lush and romantic floral design"></div>
+        <h3>Lush &amp; Romantic</h3>
+        <p>Rich, cinematic, deep burgundy and plum. Of the moment, never overdone.</p>
+        <span class="more">View weddings</span>
       </a>
-      <a class="aesthetic-card" href="{{ site.baseurl }}/portfolio?filter=minimalist">
-        <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1776975105426-4BAEXMVDBX6Q5ETZ1BVC/l-a-preview-6962.jpg?format=750w" alt="Elevated Minimalist floral design" loading="lazy">
-        <div class="aesthetic-overlay">
-          <span class="aesthetic-tag">Aesthetic 02</span>
-          <h3>Elevated Minimalist</h3>
-          <p>Clean lines, airy compositions, and restrained palettes. White, ivory, and soft sage. Design that doesn't compete with the view.</p>
-          <span class="aesthetic-link">View weddings →</span>
-        </div>
+      <a class="aes-card" href="{{ site.baseurl }}/portfolio?filter=minimalist">
+        <div class="ph"><span class="idx">02</span><img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1776975105426-4BAEXMVDBX6Q5ETZ1BVC/l-a-preview-6962.jpg?format=1000w" alt="Elevated minimalist floral design"></div>
+        <h3>Elevated Minimalist</h3>
+        <p>Clean lines, ivory and sage. Design that lets the view do the talking.</p>
+        <span class="more">View weddings</span>
       </a>
-      <a class="aesthetic-card" href="{{ site.baseurl }}/portfolio?filter=wildflower">
-        <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1779129057432-Y8VGDRIHTV4BILCZVW27/MountainTimePhoto-48.jpg?format=750w" alt="Wildflower Modern floral design" loading="lazy">
-        <div class="aesthetic-overlay">
-          <span class="aesthetic-tag">Aesthetic 03</span>
-          <h3>Wildflower Modern</h3>
-          <p>Wild, seasonal, and rooted in the landscape. Native blooms and grasses styled with an editorial eye. Effortless and of this place.</p>
-          <span class="aesthetic-link">View weddings →</span>
-        </div>
+      <a class="aes-card" href="{{ site.baseurl }}/portfolio?filter=wildflower">
+        <div class="ph"><span class="idx">03</span><img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1779129057432-Y8VGDRIHTV4BILCZVW27/MountainTimePhoto-48.jpg?format=1000w" alt="Wildflower modern floral design"></div>
+        <h3>Wildflower Modern</h3>
+        <p>Native blooms and grasses, styled with an editorial eye. Of this place.</p>
+        <span class="more">View weddings</span>
       </a>
-    </div>
-  </div>
-</section>
-
-<section class="fullbleed">
-  <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/4685a495-c2ce-4b90-9fd1-f91ca0d6a135/K%2BJ-0962.jpg?format=2500w" alt="Golden Flowers ceremony arch at a Lake Tahoe wedding" loading="lazy">
-  <div class="fullbleed-copy">
-    <span class="fullbleed-eyebrow">Grown, not shipped</span>
-    <p class="fullbleed-line">Every stem chosen for one couple, one date, one place in the mountains.</p>
-  </div>
-</section>
-
-<section class="section">
-  <div class="container">
-    <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap;margin-bottom:56px;">
-      <div>
-        <span class="label">Selected work</span>
-        <h2 class="section-head" style="margin-bottom:0;">A few favorites.</h2>
-      </div>
-      <a href="{{ site.baseurl }}/portfolio" class="btn-ghost" style="white-space:nowrap;">Browse the portfolio →</a>
-    </div>
-    <div class="port-grid">
-      <div class="port-item">
-        <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1779129636646-VAQ2FSYB2YNR4O0UZFAA/K%252BJ-8434.jpg?format=750w" alt="Bride with bouquet at a Sierra wedding" loading="lazy">
-      </div>
-      <div class="port-item">
-        <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/bc425f51-1b71-473f-815b-8c481fd5a5c1/8.jpg?format=750w" alt="Reception dinner table with florals" loading="lazy">
-      </div>
-      <div class="port-item">
-        <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/4da65886-1655-4ecd-957b-8d48969ffc60/l-a-preview-0305.jpg?format=750w" alt="Lakeside reception tables at Lake Tahoe" loading="lazy">
-      </div>
-      <div class="port-item wide">
-        <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/5854318e-a30f-4303-b4d9-38c510fdc75a/Lake+Tahoe+Floral+Installationn?format=1000w" alt="Couple beneath a forest ceremony installation" loading="lazy">
-      </div>
-      <div class="port-item">
-        <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/4685a495-c2ce-4b90-9fd1-f91ca0d6a135/K%2BJ-0962.jpg?format=750w" alt="Ceremony at a floral arch" loading="lazy">
-      </div>
     </div>
   </div>
 </section>
 
-<hr class="section-div">
-
-<section class="section">
-  <div class="container">
-    <span class="label">What couples say</span>
-    <h2 class="section-head">Loved by couples across the Sierra.</h2>
-    <div class="values-grid">
-      <div class="testi-card">
-        <span class="testi-tag">Lake Tahoe Wedding</span>
-        <p class="testi-quote">"Brittany and her team are the utmost in artistry, professionalism, and support. The presentation at the wedding was through-the-roof beautiful."</p>
-        <div class="testi-by"><strong>Brian</strong>Lake Tahoe wedding</div>
-      </div>
-      <div class="testi-card">
-        <span class="testi-tag">Elevated Minimalist · Ritz-Carlton</span>
-        <p class="testi-quote">"Brittany had ideas that helped me achieve the luxe look I wanted while staying in budget."</p>
-        <div class="testi-by"><strong>Sara</strong>The Ritz-Carlton, Truckee</div>
-      </div>
-      <div class="testi-card">
-        <span class="testi-tag">Lush &amp; Romantic · Miner's Foundry</span>
-        <p class="testi-quote">"All of the bouquets were perfect, exactly the way we envisioned them. We would absolutely recommend Golden Flowers to anyone married-to-be."</p>
-        <div class="testi-by"><strong>Samantha</strong>The Miner's Foundry, Nevada City</div>
-      </div>
-    </div>
-    <p style="text-align:center;margin-top:32px;"><a href="{{ site.baseurl }}/weddings#reviews" class="btn-ghost">Read all couples' reviews →</a></p>
+<!-- VENUE MARQUEE -->
+<section class="marq">
+  <span class="lab">We design at 30+ venues across the Sierra</span>
+  <div class="marq-track" aria-hidden="true">
+    <span>Edgewood Tahoe</span><span>The Ritz-Carlton</span><span>Thunderbird Lodge</span><span>Palisades High Camp</span><span>Martis Camp</span><span>Schaffer's Camp</span><span>The Miner's Foundry</span><span>National Exchange</span>
+    <span>Edgewood Tahoe</span><span>The Ritz-Carlton</span><span>Thunderbird Lodge</span><span>Palisades High Camp</span><span>Martis Camp</span><span>Schaffer's Camp</span><span>The Miner's Foundry</span><span>National Exchange</span>
   </div>
+  <p class="marq-foot"><a href="{{ site.baseurl }}/venues" class="txt-link">See all venues &rarr;</a></p>
 </section>
 
-<section class="section section-tinted">
-  <div class="container">
-    <span class="label">Browse by venue</span>
-    <h2 class="section-head">Every venue is its own world.</h2>
-    <p style="max-width:580px;margin-bottom:8px;color:var(--fg2);">A few of the spaces we know intimately — we design at 30+ venues across Lake Tahoe, Truckee, and the Sierra, and we'll know yours.</p>
-    <div class="venue-grid">
-      <a href="{{ site.baseurl }}/venues/edgewood-tahoe" class="venue-card">
-        <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1776975190166-PCFON7QIR65XK1VPLH3K/l-a-preview-8192.jpg?format=750w" alt="Edgewood Tahoe" loading="lazy">
-        <div class="venue-overlay"><p class="venue-name">Edgewood Tahoe</p><p class="venue-meta">South Shore · Lakeside</p></div>
-      </a>
-      <a href="{{ site.baseurl }}/venues/ritz-carlton-lake-tahoe" class="venue-card">
-        <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1776975178999-V2BIKI0FVBMBXFKG8Z3I/l-a-preview-8139.jpg?format=750w" alt="The Ritz-Carlton, Lake Tahoe" loading="lazy">
-        <div class="venue-overlay"><p class="venue-name">The Ritz-Carlton, Lake Tahoe</p><p class="venue-meta">Northstar · Mountain Resort</p></div>
-      </a>
-      <a href="{{ site.baseurl }}/venues/palisades-high-camp" class="venue-card">
-        <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/4da65886-1655-4ecd-957b-8d48969ffc60/l-a-preview-0305.jpg?format=750w" alt="Palisades High Camp" loading="lazy">
-        <div class="venue-overlay"><p class="venue-name">Palisades High Camp</p><p class="venue-meta">Olympic Valley · Alpine</p></div>
-      </a>
-      <a href="{{ site.baseurl }}/venues/thunderbird-lodge" class="venue-card">
-        <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/4685a495-c2ce-4b90-9fd1-f91ca0d6a135/K%2BJ-0962.jpg?format=750w" alt="Thunderbird Lodge" loading="lazy">
-        <div class="venue-overlay"><p class="venue-name">Thunderbird Lodge</p><p class="venue-meta">East Shore · Historic Estate</p></div>
-      </a>
-    </div>
-    <p style="margin-top:36px;"><a href="{{ site.baseurl }}/venues" class="btn-ghost">See all 30+ venues &rarr;</a></p>
-  </div>
+<!-- TESTIMONIAL -->
+<section class="testi">
+  <div class="stars" aria-label="Five stars">★★★★★</div>
+  <blockquote class="disp">"Brittany and her team are the utmost in artistry, professionalism, and support. The presentation at the wedding was <em>through-the-roof beautiful.</em>"</blockquote>
+  <p class="by"><b>Brian</b> &nbsp;·&nbsp; Lake Tahoe Wedding</p>
+</section>
+
+<!-- CLOSING -->
+<section class="cta">
+  <span class="lab">One wedding per date</span>
+  <h2 class="disp">Is your date <em>still open?</em></h2>
+  <p>We book a single wedding each day. Once yours is taken, it's gone — let's find out while it's still yours.</p>
+  <a class="btn btn-ink" href="{{ site.baseurl }}/consultation-form">Check your date <span>&rarr;</span></a>
 </section>

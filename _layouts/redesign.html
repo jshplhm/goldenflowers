@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% if page.seo_title %}{{ page.seo_title }}{% elsif page.title %}{{ page.title }} · Golden Flowers{% else %}Lake Tahoe Wedding Florist | Golden Flowers{% endif %}</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="{{ site.baseurl }}/assets/favicon-32.png" media="(prefers-color-scheme: light)">
+  <link rel="icon" type="image/png" sizes="16x16" href="{{ site.baseurl }}/assets/favicon-16.png" media="(prefers-color-scheme: light)">
+  <link rel="icon" type="image/png" sizes="32x32" href="{{ site.baseurl }}/assets/favicon-dark-32.png" media="(prefers-color-scheme: dark)">
+  <link rel="icon" type="image/png" sizes="16x16" href="{{ site.baseurl }}/assets/favicon-dark-16.png" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="{{ site.baseurl }}/favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" href="{{ site.baseurl }}/assets/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400..500;1,6..72,400..500&family=DM+Sans:opsz,wght@9..40,400;9..40,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/redesign.css?v=1">
+
+  {% seo title=false %}
+
+  {% comment %} Business identity for search + AI answer engines. Brand domain is hardcoded
+  so it stays correct regardless of site.url (staging vs production). {% endcomment %}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Florist",
+    "@id": "https://goldenflorals.com/#business",
+    "name": "Golden Flowers",
+    "alternateName": "Golden Flowers Floral Design",
+    "url": "https://goldenflorals.com/",
+    "image": "https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1776975190166-PCFON7QIR65XK1VPLH3K/l-a-preview-8192.jpg?format=1200w",
+    "description": "Lake Tahoe wedding florist designing sustainable, locally-grown, foam-free floral design for weddings across Lake Tahoe, Truckee, Incline Village and the Sierra Nevada.",
+    "telephone": "+1-530-557-7689",
+    "email": "brittany@goldenflorals.com",
+    "priceRange": "$$$",
+    "founder": { "@type": "Person", "name": "Brittany", "jobTitle": "Floral Designer & Agronomist" },
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "885 Tahoe Blvd",
+      "addressLocality": "Incline Village",
+      "addressRegion": "NV",
+      "postalCode": "89451",
+      "addressCountry": "US"
+    },
+    "hasMap": "https://maps.app.goo.gl/iSNwv732pnkZUF3N7",
+    "areaServed": [
+      "Lake Tahoe", "Incline Village", "Truckee", "Olympic Valley", "Tahoe City",
+      "South Lake Tahoe", "Northstar", "Sierra Nevada", "Nevada City", "Grass Valley"
+    ],
+    "sameAs": [
+      "https://www.instagram.com/goldenflowersfloraldesign/"
+    ],
+    "knowsAbout": [
+      "wedding flowers", "foam-free floral design", "sustainable floristry",
+      "locally-grown flowers", "Lake Tahoe weddings"
+    ]
+  }
+  </script>
+</head>
+<body>
+
+{% include redesign-nav.html %}
+
+{{ content }}
+
+{% include redesign-footer.html %}
+
+<script>
+/* Smart sticky header: transparent at top, solid once scrolled,
+   hides on scroll-down and reveals on scroll-up. */
+(function(){
+  var nav=document.getElementById('site-nav'); if(!nav) return;
+  var last=0, ticking=false;
+  function update(){
+    var y=window.pageYOffset;
+    nav.classList.toggle('solid', y>40);
+    if(y>last && y>500){ nav.classList.add('up'); }
+    else { nav.classList.remove('up'); }
+    last=y; ticking=false;
+  }
+  window.addEventListener('scroll',function(){
+    if(!ticking){ requestAnimationFrame(update); ticking=true; }
+  },{passive:true});
+})();
+
+/* Mobile menu toggle */
+(function(){
+  var btn=document.querySelector('[data-menu-toggle]'); if(!btn) return;
+  btn.addEventListener('click',function(){
+    var open=document.body.classList.toggle('menu-open');
+    btn.setAttribute('aria-expanded', open ? 'true':'false');
+    btn.setAttribute('aria-label', open ? 'Close menu':'Open menu');
+  });
+  document.querySelectorAll('.mobile-menu a').forEach(function(a){
+    a.addEventListener('click',function(){ document.body.classList.remove('menu-open'); });
+  });
+})();
+</script>
+</body>
+</html>
