@@ -1,66 +1,53 @@
 ---
-layout: default
+layout: redesign
 title: "Schedule a Consultation"
 seo_title: "Schedule a Wedding Floral Consultation | Golden Flowers"
 permalink: /consultation-form
 description: "Schedule a free consultation with Golden Flowers, a Lake Tahoe wedding florist. We respond within 48 hours."
 canonical_url: https://goldenflorals.com/consultation-form
-hide_consult_cta: true
-no_prefooter: true
 ---
 
-<section class="hero hero--interior">
-  <div class="hero-media">
-    <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1779129104888-WQHCD92BY6WE4CQZH8QU/14.jpg?format=2500w" alt="Bride holding her bouquet at Lake Tahoe" loading="eager">
+<!-- HERO -->
+<header class="hero hero-sm">
+  <img class="bg" src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1779129104888-WQHCD92BY6WE4CQZH8QU/14.jpg?format=2500w" alt="Bride holding her bouquet at Lake Tahoe" style="object-position:center 40%;">
+  <div class="hero-in">
+    <p class="ey lab">Get started</p>
+    <h1 class="disp">Let's start the <em>conversation.</em></h1>
+    <div class="hero-foot">
+      <p class="hero-sub">Tell us your date, venue, and vision. We follow up within 48 hours to confirm availability.</p>
+    </div>
   </div>
-  <div class="hero-copy">
-    <span class="hero-eyebrow">Get started</span>
-    <h1 class="hero-display">Let's start the conversation.</h1>
-    <p class="hero-sub">Tell us about your date, venue, and vision. We'll follow up within 48 hours to confirm availability and schedule a call.</p>
-  </div>
-</section>
+</header>
 
-<section class="section" style="padding-top:72px;padding-bottom:16px;">
-  <div class="container" style="max-width:1040px;">
-    <div class="twoup" style="gap:72px;">
-      <div>
-        <span class="label">What happens next</span>
-        <h2 class="section-head" style="font-size:clamp(2rem,3vw,2.8rem);margin-bottom:30px;">Three steps, no pressure.</h2>
-        <ol style="list-style:none;margin:0;padding:0;">
-          <li style="position:relative;padding-left:42px;margin-bottom:24px;line-height:1.5;color:var(--fg2);">
-            <span style="position:absolute;left:0;top:-2px;font-family:var(--f-d);font-style:italic;font-size:1.5rem;color:var(--acc);">1</span>
-            <strong style="color:var(--fg);display:block;margin-bottom:3px;">You send the form.</strong>
-            Your date, venue, and a little about your vision &mdash; about two minutes.
-          </li>
-          <li style="position:relative;padding-left:42px;margin-bottom:24px;line-height:1.5;color:var(--fg2);">
-            <span style="position:absolute;left:0;top:-2px;font-family:var(--f-d);font-style:italic;font-size:1.5rem;color:var(--acc);">2</span>
-            <strong style="color:var(--fg);display:block;margin-bottom:3px;">We reply within 48 hours.</strong>
-            We confirm we're open on your date &mdash; we take one wedding per day, so dates go quickly.
-          </li>
-          <li style="position:relative;padding-left:42px;line-height:1.5;color:var(--fg2);">
-            <span style="position:absolute;left:0;top:-2px;font-family:var(--f-d);font-style:italic;font-size:1.5rem;color:var(--acc);">3</span>
-            <strong style="color:var(--fg);display:block;margin-bottom:3px;">We talk it through.</strong>
-            A complimentary call, then a custom proposal built around your season and venue.
-          </li>
-        </ol>
-      </div>
-      <div>
-        <span class="label">Reach us directly</span>
-        <h2 class="section-head" style="font-size:clamp(2rem,3vw,2.8rem);margin-bottom:30px;">Or just say hello.</h2>
-        <p style="font-size:1.05rem;margin-bottom:12px;"><a href="tel:5305577689">(530) 557-7689</a></p>
-        <p style="font-size:1.05rem;margin-bottom:12px;"><a href="mailto:brittany@goldenflorals.com">brittany@goldenflorals.com</a></p>
-        <p style="font-size:1.05rem;margin-bottom:12px;"><a href="https://www.instagram.com/goldenflowersfloraldesign/" target="_blank" rel="noopener">@goldenflowersfloraldesign</a></p>
-        <p style="font-size:1.05rem;color:var(--fg);margin-top:22px;">Incline Village, Lake Tahoe</p>
-        <p style="font-size:.85rem;color:var(--fgm);margin-top:5px;line-height:1.5;">By appointment only &mdash; we don't host walk-ins. Serving Lake Tahoe, Truckee, Nevada City &amp; beyond.</p>
-      </div>
+<!-- INTRO -->
+<section class="block">
+  <div class="twoup">
+    <div>
+      <span class="lab">What happens next</span>
+      <h2 class="h-lg" style="margin-bottom:26px;">Three steps, no pressure.</h2>
+      <ol class="next-steps">
+        <li><span class="n">1</span><strong>You send the form.</strong>Your date, venue, and a little about your vision — about two minutes.</li>
+        <li><span class="n">2</span><strong>We reply within 48 hours.</strong>We confirm we're open on your date — we take one wedding per day, so dates go quickly.</li>
+        <li><span class="n">3</span><strong>We talk it through.</strong>A complimentary call, then a custom proposal built around your season and venue.</li>
+      </ol>
+    </div>
+    <div class="contact-links">
+      <span class="lab">Reach us directly</span>
+      <h2 class="h-lg" style="margin-bottom:26px;">Or just say hello.</h2>
+      <p><a href="tel:5305577689">(530) 557-7689</a></p>
+      <p><a href="mailto:brittany@goldenflorals.com">brittany@goldenflorals.com</a></p>
+      <p><a href="https://www.instagram.com/goldenflowersfloraldesign/" target="_blank" rel="noopener">@goldenflowersfloraldesign</a></p>
+      <p style="color:var(--ink);margin-top:22px;">Incline Village, Lake Tahoe</p>
+      <p style="font-size:.85rem;color:var(--mute);margin-top:5px;line-height:1.5;">By appointment only — we don't host walk-ins. Serving Lake Tahoe, Truckee, Nevada City &amp; beyond.</p>
     </div>
   </div>
 </section>
 
-<hr class="section-div">
+<hr class="hr-line">
 
+<!-- FORM -->
 <section class="form-section" id="consultation">
-  <div class="container" style="max-width:1100px;" data-form-wrap>
+  <div data-form-wrap>
     <form action="https://formspree.io/f/xgobrjyo" method="POST" id="consultation-form" data-multistep data-ajax>
       <input type="hidden" name="_subject" value="New consultation request, Golden Flowers">
       <input type="hidden" name="_next" value="{{ site.baseurl }}/consultation-form#consultation-success">
@@ -113,7 +100,7 @@ no_prefooter: true
           <label for="message">Tell us about your wedding</label>
           <textarea id="message" name="message" placeholder="Your venue, your vision, anything that matters to you." rows="4"></textarea>
         </div>
-        <div class="form-submit">
+        <div class="form-submit field-full">
           <button type="submit" class="btn-primary">Send consultation request</button>
           <p class="form-note">We'll respond within 48 hours · Consultations are complimentary</p>
         </div>
@@ -130,7 +117,7 @@ no_prefooter: true
         <a href="https://calendar.app.google/iKY1Xqerqtcv6fdj7" target="_blank" rel="noopener" class="btn-primary">Book a call with Brittany &rarr;</a>
       </div>
       <div class="form-success-next">
-        <span class="label">While you wait</span>
+        <span class="lab">While you wait</span>
         <a href="{{ site.baseurl }}/portfolio">Explore the portfolio &rarr;</a>
         <a href="{{ site.baseurl }}/sustainability">Read our sustainability pledge &rarr;</a>
         <a href="{{ site.baseurl }}/about">Meet Brittany &rarr;</a>
@@ -140,10 +127,107 @@ no_prefooter: true
 </section>
 
 <script>
-if (window.location.hash === '#consultation-success') {
-  const form = document.getElementById('consultation-form');
-  const success = document.getElementById('consultation-success');
-  if (form) form.style.display = 'none';
-  if (success) success.style.display = 'block';
-}
+/* Consultation form: two-step reveal + mm/dd/yyyy mask + in-place AJAX success.
+   Ported from the legacy default layout so this page is self-contained. */
+(function(){
+  // ---- two-step reveal ----
+  document.querySelectorAll('form[data-multistep]').forEach(function(form){
+    var step1=form.querySelector('.form-step-1'), step2=form.querySelector('.form-step-2');
+    var advance=form.querySelector('.form-advance'), advanceBtn=form.querySelector('[data-form-advance]');
+    var indicator=form.querySelector('.form-step-indicator'), backBtn=form.querySelector('[data-form-back]');
+    if(!step2||!advanceBtn) return;
+    step2.hidden=true;
+    advanceBtn.addEventListener('click', function(){
+      var reqs=form.querySelectorAll('.form-step-1 [required]');
+      for(var i=0;i<reqs.length;i++){ if(!reqs[i].reportValidity()) return; }
+      if(!form.dataset.partialSent && form.hasAttribute('data-ajax')){
+        form.dataset.partialSent='1';
+        try{
+          var p=new FormData();
+          ['date','name','email'].forEach(function(n){ var f=form.querySelector('[name="'+n+'"]'); if(f) p.append(n,f.value); });
+          p.append('_subject','Date check started (Step 1): Golden Flowers');
+          fetch(form.action,{method:'POST',body:p,headers:{'Accept':'application/json'}});
+        }catch(e){}
+      }
+      if(step1) step1.hidden=true;
+      if(advance) advance.hidden=true;
+      step2.hidden=false;
+      if(indicator) indicator.textContent='Step 2 of 2';
+    });
+    if(backBtn) backBtn.addEventListener('click', function(){
+      step2.hidden=true; if(step1) step1.hidden=false; if(advance) advance.hidden=false;
+      if(indicator) indicator.textContent='Step 1 of 2';
+    });
+  });
+
+  // ---- wedding-date mask ----
+  function mask(value, advance){
+    var d=value.replace(/\D/g,'').slice(0,8); if(!d) return '';
+    var out='',i=0,a=d[0];
+    if(a>='2'){ out='0'+a; i=1; }
+    else if(a==='1'){ if(d.length<2) return '1'; if(d[1]<='2'){ out='1'+d[1]; i=2; } else { out='01'; i=1; } }
+    else { if(d.length<2) return '0'; if(d[1]==='0') return '0'; out='0'+d[1]; i=2; }
+    if(i>=d.length) return advance?out+'/':out;
+    out+='/'; var b=d[i];
+    if(b>='4'){ out+='0'+b; i+=1; }
+    else if(b==='3'){ if(i+1>=d.length) return out+'3'; if(d[i+1]<='1'){ out+='3'+d[i+1]; i+=2; } else { out+='03'; i+=1; } }
+    else if(b==='0'){ if(i+1>=d.length) return out+'0'; if(d[i+1]==='0') return out+'0'; out+='0'+d[i+1]; i+=2; }
+    else { if(i+1>=d.length) return out+b; out+=b+d[i+1]; i+=2; }
+    if(i>=d.length) return advance?out+'/':out;
+    return out+'/'+d.slice(i,i+4);
+  }
+  document.querySelectorAll('[data-date-mask]').forEach(function(el){
+    var field=document.createElement('span'); field.className='date-field';
+    el.parentNode.insertBefore(field, el); field.appendChild(el);
+    var ghost=document.createElement('span'); ghost.className='date-ghost'; ghost.setAttribute('aria-hidden','true');
+    var gt=document.createElement('span'); gt.className='gt'; var rest=document.createTextNode('');
+    ghost.appendChild(gt); ghost.appendChild(rest); field.appendChild(ghost);
+    el.removeAttribute('placeholder');
+    function render(){ gt.textContent=el.value; rest.nodeValue='mm/dd/yyyy'.slice(el.value.length); }
+    el.addEventListener('input', function(e){
+      var deleting=e.inputType && e.inputType.indexOf('delete')===0;
+      el.value=mask(el.value, !deleting); render();
+    });
+    render();
+  });
+
+  // ---- AJAX submit -> in-place success ----
+  function fmtDate(v){
+    if(!v) return ''; var m=v.match(/^(\d{2})\/(\d{2})\/(\d{4})$/);
+    if(m){ var d=new Date(+m[3],+m[1]-1,+m[2]); if(!isNaN(d)) return d.toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'}); }
+    return v;
+  }
+  function showSuccess(form, data){
+    var wrap=form.closest('[data-form-wrap]')||form.parentNode;
+    var success=wrap.querySelector('[data-form-success]');
+    if(!success){ var n=form.querySelector('[name="_next"]'); window.location=n?n.value:'/'; return; }
+    var dateVal=data.get('date');
+    var dateLine=success.querySelector('[data-success-date-line]'), dateEl=success.querySelector('[data-success-date]'), dflt=success.querySelector('[data-success-default]');
+    if(dateVal&&dateEl&&dateLine){ dateEl.textContent=fmtDate(dateVal); dateLine.hidden=false; if(dflt) dflt.hidden=true; }
+    var tagWrap=success.querySelector('[data-success-tags]');
+    if(tagWrap){
+      tagWrap.innerHTML=''; var chips=[]; if(dateVal) chips.push(fmtDate(dateVal));
+      ['aesthetic','budget'].forEach(function(name){ var v=data.get(name); if(!v||/not sure/i.test(v)) return; if(name==='aesthetic') v=v.split(',')[0]; chips.push(v); });
+      chips.forEach(function(t){ var s=document.createElement('span'); s.className='stag'; s.textContent=t; tagWrap.appendChild(s); });
+    }
+    form.hidden=true;
+    Array.prototype.forEach.call(wrap.children, function(el){ if(el!==success) el.classList.add('is-gone'); });
+    success.hidden=false; success.setAttribute('tabindex','-1');
+    success.scrollIntoView({behavior:'smooth',block:'center'}); success.focus();
+  }
+  document.querySelectorAll('form[data-ajax]').forEach(function(form){
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      var btn=form.querySelector('[type="submit"]'); if(btn){ btn.disabled=true; btn.textContent='Sending…'; }
+      var data=new FormData(form);
+      fetch(form.action,{method:'POST',body:data,headers:{'Accept':'application/json'}}).catch(function(){}).then(function(){ showSuccess(form,data); });
+    });
+  });
+
+  // ---- direct landing on success hash ----
+  if(window.location.hash==='#consultation-success'){
+    var f=document.getElementById('consultation-form'), s=document.getElementById('consultation-success');
+    if(f) f.hidden=true; if(s) s.hidden=false;
+  }
+})();
 </script>

@@ -1,30 +1,32 @@
 ---
-layout: default
+layout: redesign
 title: "Our Sustainability Pledge"
 seo_title: "Sustainable & Eco-Friendly Lake Tahoe Wedding Florist | Golden Flowers"
 permalink: /sustainability
 description: "Golden Flowers is a sustainable, foam-free Lake Tahoe wedding florist. Farm-grown and California-sourced flowers, no floral foam, composting, reuse, and a steady pull toward lower-impact wedding design."
 canonical_url: https://goldenflorals.com/sustainability
-no_prefooter: true
 redirect_from:
   - /golden-flowers-sustainable-lake-tahoe-wedding-florist
 ---
 
-<section class="section venues-intro">
-  <div class="container">
-    <span class="label">Sustainability pledge</span>
-    <h1 class="section-head">Working toward something better.</h1>
-    <p style="max-width:660px;font-size:1.05rem;color:var(--fg2);">The commitments that shape how we design, source, and grow. Some are already woven into every wedding; others we're actively working toward, with steady progress in the right direction.</p>
+<!-- HERO -->
+<header class="hero hero-sm">
+  <img class="bg" src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/2b98245c-1230-4e50-847e-90c7d13f793b/Lake%2BTahoe%2BFloral%2BInstallation.jpeg?format=2500w" alt="Farm-grown floral installation by Golden Flowers" style="object-position:center 45%;">
+  <div class="hero-in">
+    <p class="ey lab">Sustainability pledge</p>
+    <h1 class="disp">Working toward <em>something better.</em></h1>
+    <div class="hero-foot">
+      <p class="hero-sub">The commitments that shape how we design, source, and grow.</p>
+    </div>
   </div>
+</header>
+
+{% include redesign-pledge.html hide_head=true %}
+
+<!-- CLOSING -->
+<section class="cta">
+  <span class="lab">Work with us</span>
+  <h2 class="disp">Flowers that leave the <em>land better.</em></h2>
+  <p>Tell us about your wedding and we'll reply within 48 hours.</p>
+  <a class="btn btn-ink" href="{{ site.baseurl }}/consultation-form">Check your date <span>&rarr;</span></a>
 </section>
-
-{% include pledge.html hide_head=true %}
-
-<div class="cta-section">
-  <div style="max-width:640px;margin:0 auto;">
-    <span class="label" style="display:block;text-align:center">Work with us</span>
-    <h2>Flowers that leave the land better.</h2>
-    <p>Tell us about your wedding and we'll reply within 48 hours.</p>
-    <a href="{{ site.baseurl }}/weddings#consultation" class="btn-primary" data-consult-open>Check your date &rarr;</a>
-  </div>
-</div>
