@@ -7,69 +7,81 @@ description: "Golden Flowers is a Lake Tahoe wedding florist specializing in bol
 canonical_url: https://goldenflorals.com/about
 ---
 
-<!-- FOUNDER HERO (split — deliberately not full-bleed) -->
+<!-- STUDIO HERO (split — deliberately not full-bleed) -->
 <section class="studio-hero">
   <div class="sh-text">
     <p class="ey lab">Our Story</p>
-    <h1>Designed by an <em>agronomist.</em></h1>
-    <p class="sh-sub">Brittany is an agronomist turned floral designer. Golden Flowers is her studio — farm-grown, foam-free, and rooted in the Sierra Nevada.</p>
+    <h1>The team you want when it <em>has to be right.</em></h1>
+    <p class="sh-sub">Golden Flowers is a professional floral studio led by Brittany and built around a team of the region's most accomplished designers. One wedding a day — by choice, not by limit.</p>
   </div>
   <div class="sh-img">
-    <img src="{{ site.baseurl }}/assets/images/studio-hero.jpg" alt="Brittany of Golden Flowers beside a spring installation" loading="eager">
+    <img src="{{ site.baseurl }}/assets/images/studio-hero.jpg" alt="The Golden Flowers team finishing a wedding installation" loading="eager">
   </div>
 </section>
 
-<!-- FOUNDER STORY -->
+<!-- STUDIO INTRO -->
 <section class="block-narrow prose">
-  <p class="lead">Golden Flowers is Brittany's studio. Before flowers, she earned a master's in agricultural science and spent more than a decade in sustainable agriculture across Spain, Mexico, New Zealand, and the United States — work that connected how things are grown with how they reach the people who love them, at the scale of partners like Whole Foods.</p>
-  <p>She paired that grounding with formal European floral design training. So she approaches your florals the way a grower does: knowing what each stem needs, what each season offers, and how to build something that feels genuinely alive.</p>
-  <p>When their son was born, she and her family moved to the Sierra Nevada to raise him in a small mountain town with a real sense of community. Golden Flowers grew from that — rooted in this place, and designed for the couples who marry here.</p>
+  <span class="lab" style="display:block;margin-bottom:18px;">What we're really for</span>
+  <p class="lead">A wedding day happens once — no rehearsal, no do-over. Golden Flowers exists to take that on: to plan for everything that can go wrong with cut flowers, and to make your design feel effortless on the one day it absolutely has to.</p>
+  <p>Brittany founded and leads the studio, and her background runs deep — a master's in agricultural science, more than a decade in sustainable agriculture across Spain, Mexico, New Zealand, and the United States, and formal European floral design training. But Golden Flowers was never built to be one person. It's a studio — a team of senior designers, growers, and installers who plan, lead, listen, and overdeliver together on every wedding we take.</p>
+  <p>We're based in the Sierra Nevada and we design for the couples who marry here. The flowers are grown close by, the team is local and seasoned, and the standards don't move.</p>
 </section>
 
 <hr class="hr-line">
 
-<!-- AGRONOMY -->
+<!-- ONE WEDDING A DAY — BY CHOICE -->
 <section class="block">
   <div class="twocol">
     <div>
-      <span class="lab">Background</span>
-      <h2>Why agronomy changes everything.</h2>
+      <span class="lab">By choice</span>
+      <h2>One wedding a day is a standard, not a limit.</h2>
     </div>
     <div class="prose">
-      <p>Most floral designers learn to arrange flowers. Brittany learned to grow them first. Agronomy — the science of soil, crops, and land management — informs the way she thinks about every material she works with.</p>
-      <p>When she sources from California growers, she's not just looking for pretty flowers. She's evaluating growing conditions, harvest timing, stem integrity, and how a flower will hold through a full wedding day. When she designs foam-free arrangements, she's applying the same rigor: understanding how stems take water, how structures hold without artificial support, and how to build something that lasts.</p>
-      <span class="kicker">Growing the flowers first changes how she reads every stem — and you can see it in the work.</span>
+      <p>We could book more. We choose not to. Taking a single wedding per date means the people who design your flowers are the same people who source them, build them, install them, and strike them at the end of the night — with nothing else competing for their attention that day.</p>
+      <p>It's the difference between a vendor squeezing you into a crowded Saturday and a team whose entire day belongs to you. At this level, that undivided focus is the whole point.</p>
+      <span class="kicker">Your date is the only wedding on our calendar that day. Always.</span>
     </div>
-  </div>
-  <div class="cred-grid">
-    <div class="cred-item"><h4>Farm-grown</h4><p>Our own California farm plots, managed agronomically — not just grown.</p></div>
-    <div class="cred-item"><h4>California-sourced</h4><p>Every flower we don't grow comes from California growers we know personally.</p></div>
-    <div class="cred-item"><h4>Foam-free</h4><p>No floral foam, ever. The technique reflects the agronomic training.</p></div>
-    <div class="cred-item"><h4>Seasonal</h4><p>We work with what's at its peak, not what's convenient to import.</p></div>
   </div>
 </section>
 
 <hr class="hr-line">
 
-<!-- SOURCING + TEAM -->
+<!-- THE TEAM -->
 <section class="block">
+  <span class="lab">The team</span>
+  <h2 class="h-lg">We work alongside the best designers in the region — and beyond.</h2>
   <div class="twoup">
-    <div>
-      <span class="lab">Where the flowers come from</span>
-      <h3>Grown here, designed for here.</h3>
-      <div class="prose">
-        <p>We maintain our own farm plots in California, growing varieties that perform well in the Sierra Nevada climate and light. A meaningful portion of what goes into every arrangement was grown by us, from seed or cutting, with care for soil health and biodiversity.</p>
-        <p>What we don't grow ourselves, we source from California growers we've worked with for years. We know the soil, the season, and exactly where every stem comes from. That chain of custody is part of the product.</p>
-      </div>
+    <div class="prose">
+      <p>Golden Flowers is a collective of accomplished florists, several of whom run their own studios and flower farms. These aren't day-of temps or junior assistants — they're seasoned designers we're privileged to build with, chosen for each wedding around its scale, style, and venue.</p>
+      <p>Brittany leads and designs every wedding, but the depth of the bench is what lets us take on ambitious installations and deliver them, calmly, on schedule. Experienced hands at every table and on every install.</p>
     </div>
-    <div>
-      <span class="lab">The team</span>
-      <h3>Never a one-woman show.</h3>
-      <div class="prose">
-        <p>Brittany designs alongside a select group of senior florists, several of whom run their own studios and farms. You get experienced hands at every table — never junior staff or an assembly line.</p>
-        <p>Because we take one wedding per date, the same team that designs your flowers is the team that sets them up and breaks them down at the end of the night.</p>
-      </div>
+    <div class="prose">
+      <p>Because we take one wedding per date, the team that designs your flowers is the team that shows up to set them, adjusts them in the room, and breaks everything down when the night ends.</p>
+      <p>No handoffs. No assembly line. No stranger arriving with your bouquets. The same trusted people, start to finish.</p>
     </div>
+  </div>
+</section>
+
+<hr class="hr-line">
+
+<!-- CERTAINTY -->
+<section class="block">
+  <div class="twocol">
+    <div>
+      <span class="lab">Why it matters</span>
+      <h2>What you're really buying is certainty.</h2>
+    </div>
+    <div class="prose">
+      <p>Cut flowers are volatile. Stems wilt, blooms open early or refuse to, a shipment falls through, the heat turns, something breaks in transit. On an ordinary day that's a nuisance. On a wedding day it's a crisis — unless the people handling it have seen it before and planned for it.</p>
+      <p>That's the expertise you're paying for. We engineer the sourcing, timing, and mechanics so the predictable problems never reach you, and we have the depth and the calm to solve the unpredictable ones in the moment, while the day keeps moving. The science background helps here too: knowing how a stem takes water, how a structure holds without foam, and how a flower will perform from setup through the last dance.</p>
+      <span class="kicker">At this price point, you're not paying for stems. You're paying to be sure.</span>
+    </div>
+  </div>
+  <div class="cred-grid">
+    <div class="cred-item"><h4>Planned, not improvised</h4><p>Sourcing, timing, and logistics mapped before your week begins — the risks engineered out in advance.</p></div>
+    <div class="cred-item"><h4>Calm under pressure</h4><p>When the inevitable happens, an experienced team solves it on-site without it becoming your problem.</p></div>
+    <div class="cred-item"><h4>Built to hold</h4><p>Foam-free construction and a grower's understanding of how every stem performs across a full day.</p></div>
+    <div class="cred-item"><h4>Grown close by</h4><p>Our own California farm plots and trusted regional growers — short chains, fresh stems, no overseas shipping.</p></div>
   </div>
 </section>
 

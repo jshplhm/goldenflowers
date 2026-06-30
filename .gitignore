@@ -13,3 +13,6 @@ _site/
 
 # Private design handoff (audit + mockups), not for the public site
 handoff/
+
+# Local-only large assets (host externally / Git LFS before using)
+assets/images/wedding_photos/

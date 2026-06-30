@@ -9,20 +9,15 @@ canonical_url: https://goldenflorals.com/venues/thunderbird-lodge
 
 {% include venue-subnav.html name="Thunderbird Lodge" %}
 
-<section class="hero hero--interior">
-  <div class="hero-media">
-    <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1776975190166-PCFON7QIR65XK1VPLH3K/l-a-preview-8192.jpg?format=2500w" alt="Lakefront wedding florals on Lake Tahoe" loading="eager">
-  </div>
-  <div class="hero-copy">
-    <span class="hero-eyebrow">East Shore · Historic Estate</span>
-    <h1 class="hero-display">Thunderbird Lodge.</h1>
-    <p class="hero-sub">Lakefront weddings on Tahoe's east shore</p>
-  </div>
-</section>
+<header class="text-hero venue-hero">
+  <span class="lab">East Shore · Historic Estate</span>
+  <h1>Thunderbird Lodge.</h1>
+  <p class="th-sub">Lakefront weddings on Tahoe's east shore</p>
+</header>
 
 <section class="section">
   <div class="container">
-    <div class="two-col">
+    <div class="two-col two-col--solo">
       <div class="two-col-text">
         <span class="label">Why this venue matters</span>
         <h2>A historic estate on the water.</h2>
@@ -30,10 +25,7 @@ canonical_url: https://goldenflorals.com/venues/thunderbird-lodge
         <p>Florals here share the stage with hand-cut granite, old-growth timber, and the lake itself. The work has to feel as considered and enduring as the architecture, never decorative for its own sake.</p>
         <p>The estate hosts smaller, exclusive celebrations, which means the design can be detailed and architectural without getting lost. Every arrangement reads up close.</p>
       </div>
-      <div class="two-col-img">
-        <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/f77301d9-f890-451d-8bf8-c8d3a07d2bc4/Lake+Tahoe+Luxe+Boquet.jpg?format=1100w" alt="Luxe Lake Tahoe bridal bouquet" loading="lazy">
       </div>
-    </div>
     <div class="facts-strip">
       <div class="fact">
         <p class="label">Historic estate</p>

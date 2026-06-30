@@ -11,20 +11,15 @@ redirect_from:
 
 {% include venue-subnav.html name="Ritz-Carlton" %}
 
-<section class="hero hero--interior">
-  <div class="hero-media">
-    <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1776975178999-V2BIKI0FVBMBXFKG8Z3I/l-a-preview-8139.jpg?format=2500w" alt="Mountain resort wedding at the Ritz-Carlton, Lake Tahoe" loading="eager">
-  </div>
-  <div class="hero-copy">
-    <span class="hero-eyebrow">Northstar · Mountain Resort</span>
-    <h1 class="hero-display">The Ritz-Carlton, Lake Tahoe.</h1>
-    <p class="hero-sub">Mid-mountain weddings at Northstar</p>
-  </div>
-</section>
+<header class="text-hero venue-hero">
+  <span class="lab">Northstar · Mountain Resort</span>
+  <h1>The Ritz-Carlton, Lake Tahoe.</h1>
+  <p class="th-sub">Mid-mountain weddings at Northstar</p>
+</header>
 
 <section class="section">
   <div class="container">
-    <div class="two-col">
+    <div class="two-col two-col--solo">
       <div class="two-col-text">
         <span class="label">Why this venue matters</span>
         <h2>Mountain luxury, mid-mountain.</h2>
@@ -32,10 +27,7 @@ redirect_from:
         <p>Florals here need to meet the venue's level of finish. The interiors are refined and the service is exacting, so the flowers have to feel considered and clean, never an afterthought against that backdrop.</p>
         <p>The terrace, the lawn, and the ballroom each read differently. We design for the specific spaces you're using and the season you're in, from a summer ceremony in the pines to a candlelit winter reception.</p>
       </div>
-      <div class="two-col-img">
-        <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1776975105426-4BAEXMVDBX6Q5ETZ1BVC/l-a-preview-6962.jpg?format=1100w" alt="Refined minimalist wedding florals" loading="lazy">
       </div>
-    </div>
     <div class="facts-strip">
       <div class="fact">
         <p class="label">Mid-mountain</p>

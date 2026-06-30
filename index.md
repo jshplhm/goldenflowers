@@ -9,7 +9,7 @@ canonical_url: https://goldenflorals.com/
 
 <!-- HERO -->
 <header class="hero">
-  <img class="bg" src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/4685a495-c2ce-4b90-9fd1-f91ca0d6a135/K%2BJ-0962.jpg?format=2500w" alt="Lake Tahoe ceremony arch by Golden Flowers">
+  <img class="bg" src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1776975190166-PCFON7QIR65XK1VPLH3K/l-a-preview-8192.jpg?format=2500w" alt="Lakeside Lake Tahoe wedding florals at Edgewood Tahoe by Golden Flowers" style="object-position:center 42%;">
   <span class="side-label">Est. in the Sierra Nevada</span>
   <div class="hero-in">
     <p class="ey lab">Lake Tahoe Wedding Florist</p>
@@ -23,6 +23,16 @@ canonical_url: https://goldenflorals.com/
     </div>
   </div>
 </header>
+
+<!-- VENUE MARQUEE -->
+<section class="marq">
+  <span class="lab">We design at 30+ venues across the Sierra</span>
+  <div class="marq-track" aria-hidden="true">
+    <span>Edgewood Tahoe</span><span>The Ritz-Carlton</span><span>Thunderbird Lodge</span><span>Palisades High Camp</span><span>Martis Camp</span><span>Schaffer's Camp</span><span>The Miner's Foundry</span><span>National Exchange</span>
+    <span>Edgewood Tahoe</span><span>The Ritz-Carlton</span><span>Thunderbird Lodge</span><span>Palisades High Camp</span><span>Martis Camp</span><span>Schaffer's Camp</span><span>The Miner's Foundry</span><span>National Exchange</span>
+  </div>
+  <p class="marq-foot"><a href="{{ site.baseurl }}/venues" class="txt-link">See all venues &rarr;</a></p>
+</section>
 
 <!-- CREDO -->
 <section class="credo">
@@ -90,21 +100,13 @@ canonical_url: https://goldenflorals.com/
   </div>
 </section>
 
-<!-- VENUE MARQUEE -->
-<section class="marq">
-  <span class="lab">We design at 30+ venues across the Sierra</span>
-  <div class="marq-track" aria-hidden="true">
-    <span>Edgewood Tahoe</span><span>The Ritz-Carlton</span><span>Thunderbird Lodge</span><span>Palisades High Camp</span><span>Martis Camp</span><span>Schaffer's Camp</span><span>The Miner's Foundry</span><span>National Exchange</span>
-    <span>Edgewood Tahoe</span><span>The Ritz-Carlton</span><span>Thunderbird Lodge</span><span>Palisades High Camp</span><span>Martis Camp</span><span>Schaffer's Camp</span><span>The Miner's Foundry</span><span>National Exchange</span>
-  </div>
-  <p class="marq-foot"><a href="{{ site.baseurl }}/venues" class="txt-link">See all venues &rarr;</a></p>
-</section>
 
 <!-- TESTIMONIAL -->
 <section class="testi">
   <div class="stars" aria-label="Five stars">★★★★★</div>
   <blockquote class="disp">"Brittany and her team are the utmost in artistry, professionalism, and support. The presentation at the wedding was <em>through-the-roof beautiful.</em>"</blockquote>
   <p class="by"><b>Brian</b> &nbsp;·&nbsp; Lake Tahoe Wedding</p>
+  <p class="marq-foot" style="margin-top:24px;"><a href="{{ site.baseurl }}/weddings#reviews" class="txt-link">Read more reviews &rarr;</a></p>
 </section>
 
 <!-- CLOSING -->

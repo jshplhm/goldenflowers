@@ -32,7 +32,7 @@
     "telephone": "+1-530-557-7689",
     "email": "brittany@goldenflorals.com",
     "priceRange": "$$$",
-    "founder": { "@type": "Person", "name": "Brittany", "jobTitle": "Floral Designer & Agronomist" },
+    "founder": { "@type": "Person", "name": "Brittany", "jobTitle": "Founder & Lead Floral Designer" },
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "885 Tahoe Blvd",
@@ -64,6 +64,9 @@
 
 {% include redesign-footer.html %}
 
+{% include consult-modal.html %}
+{% include redesign-consult-js.html %}
+
 <script>
 /* Smart sticky header: transparent at top, solid once scrolled,
    hides on scroll-down and reveals on scroll-up. */
@@ -79,6 +82,9 @@
     last=y; ticking=false;
   }
   update();
+  /* Enable transitions only after the header paints in its correct state,
+     so navigating between pages doesn't look like a slow load. */
+  requestAnimationFrame(function(){ requestAnimationFrame(function(){ nav.classList.add('nav-anim'); }); });
   window.addEventListener('scroll',function(){
     if(!ticking){ requestAnimationFrame(update); ticking=true; }
   },{passive:true});

@@ -1,0 +1,152 @@
+<script>
+/* Consultation lightbox + multi-step form behaviors (shared across the redesign system).
+   - Button-style CTAs (.btn / .pill / .m-cta) pointing at /consultation-form open the modal.
+   - On the Contact page itself (an inline form is present), those CTAs scroll to the form instead.
+   - Plain text links to /consultation-form still navigate to the page (keeps Contact reachable, no-JS safe). */
+(function(){
+  var modal=document.getElementById('consult-modal');
+  var inlineForm=document.querySelector('.form-section form, #consultation form');
+  var lastFocus=null;
+  function openModal(){
+    if(!modal) return;
+    lastFocus=document.activeElement;
+    modal.classList.add('open');
+    modal.setAttribute('aria-hidden','false');
+    document.body.classList.add('modal-open');
+    var first=modal.querySelector('input, select, textarea, button');
+    if(first) setTimeout(function(){ first.focus(); },60);
+  }
+  function closeModal(){
+    if(!modal) return;
+    modal.classList.remove('open');
+    modal.setAttribute('aria-hidden','true');
+    document.body.classList.remove('modal-open');
+    if(lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+  var TRIGGER='a.btn[href$="/consultation-form"],a.pill[href$="/consultation-form"],a.m-cta[href$="/consultation-form"],[data-consult-open]';
+  document.addEventListener('click', function(e){
+    var trigger=e.target.closest(TRIGGER);
+    if(trigger){
+      // Contact page: scroll to the inline form rather than stack a modal over it.
+      if(inlineForm){
+        e.preventDefault();
+        document.body.classList.remove('menu-open');
+        var target=document.getElementById('consultation')||inlineForm.closest('section')||inlineForm;
+        target.scrollIntoView({behavior:'smooth'});
+        return;
+      }
+      if(!modal) return;            // no modal on page (e.g. no-JS / missing include) -> let link navigate
+      e.preventDefault();
+      document.body.classList.remove('menu-open');
+      openModal();
+      return;
+    }
+    if(modal && (e.target===modal || e.target.closest('[data-consult-close]'))) closeModal();
+  });
+  document.addEventListener('keydown', function(e){
+    if(e.key==='Escape' && modal && modal.classList.contains('open')) closeModal();
+  });
+})();
+
+/* Two-step reveal + mm/dd/yyyy date mask + in-place AJAX success. Binds every consult form on the page. */
+(function(){
+  document.querySelectorAll('form[data-multistep]').forEach(function(form){
+    var step1=form.querySelector('.form-step-1'), step2=form.querySelector('.form-step-2');
+    var advance=form.querySelector('.form-advance'), advanceBtn=form.querySelector('[data-form-advance]');
+    var indicator=form.querySelector('.form-step-indicator'), backBtn=form.querySelector('[data-form-back]');
+    if(!step2||!advanceBtn) return;
+    step2.hidden=true;
+    function toTop(){ var m=form.closest('.modal'); if(m) m.scrollTop=0; }
+    advanceBtn.addEventListener('click', function(){
+      var reqs=form.querySelectorAll('.form-step-1 [required]');
+      for(var i=0;i<reqs.length;i++){ if(!reqs[i].reportValidity()) return; }
+      if(!form.dataset.partialSent && form.hasAttribute('data-ajax')){
+        form.dataset.partialSent='1';
+        try{
+          var p=new FormData();
+          ['date','name','email'].forEach(function(n){ var f=form.querySelector('[name="'+n+'"]'); if(f) p.append(n,f.value); });
+          p.append('_subject','Date check started (Step 1): Golden Flowers');
+          fetch(form.action,{method:'POST',body:p,headers:{'Accept':'application/json'}});
+        }catch(e){}
+      }
+      if(step1) step1.hidden=true;
+      if(advance) advance.hidden=true;
+      step2.hidden=false;
+      if(indicator) indicator.textContent='Step 2 of 2';
+      toTop();
+    });
+    if(backBtn) backBtn.addEventListener('click', function(){
+      step2.hidden=true; if(step1) step1.hidden=false; if(advance) advance.hidden=false;
+      if(indicator) indicator.textContent='Step 1 of 2'; toTop();
+    });
+  });
+
+  function mask(value, advance){
+    var d=value.replace(/\D/g,'').slice(0,8); if(!d) return '';
+    var out='',i=0,a=d[0];
+    if(a>='2'){ out='0'+a; i=1; }
+    else if(a==='1'){ if(d.length<2) return '1'; if(d[1]<='2'){ out='1'+d[1]; i=2; } else { out='01'; i=1; } }
+    else { if(d.length<2) return '0'; if(d[1]==='0') return '0'; out='0'+d[1]; i=2; }
+    if(i>=d.length) return advance?out+'/':out;
+    out+='/'; var b=d[i];
+    if(b>='4'){ out+='0'+b; i+=1; }
+    else if(b==='3'){ if(i+1>=d.length) return out+'3'; if(d[i+1]<='1'){ out+='3'+d[i+1]; i+=2; } else { out+='03'; i+=1; } }
+    else if(b==='0'){ if(i+1>=d.length) return out+'0'; if(d[i+1]==='0') return out+'0'; out+='0'+d[i+1]; i+=2; }
+    else { if(i+1>=d.length) return out+b; out+=b+d[i+1]; i+=2; }
+    if(i>=d.length) return advance?out+'/':out;
+    return out+'/'+d.slice(i,i+4);
+  }
+  document.querySelectorAll('[data-date-mask]').forEach(function(el){
+    var field=document.createElement('span'); field.className='date-field';
+    el.parentNode.insertBefore(field, el); field.appendChild(el);
+    var ghost=document.createElement('span'); ghost.className='date-ghost'; ghost.setAttribute('aria-hidden','true');
+    var gt=document.createElement('span'); gt.className='gt'; var rest=document.createTextNode('');
+    ghost.appendChild(gt); ghost.appendChild(rest); field.appendChild(ghost);
+    el.removeAttribute('placeholder');
+    function render(){ gt.textContent=el.value; rest.nodeValue='mm/dd/yyyy'.slice(el.value.length); }
+    el.addEventListener('input', function(e){
+      var deleting=e.inputType && e.inputType.indexOf('delete')===0;
+      el.value=mask(el.value, !deleting); render();
+    });
+    render();
+  });
+
+  function fmtDate(v){
+    if(!v) return ''; var m=v.match(/^(\d{2})\/(\d{2})\/(\d{4})$/);
+    if(m){ var d=new Date(+m[3],+m[1]-1,+m[2]); if(!isNaN(d)) return d.toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'}); }
+    return v;
+  }
+  function showSuccess(form, data){
+    var wrap=form.closest('[data-form-wrap]')||form.parentNode;
+    var success=wrap.querySelector('[data-form-success]');
+    if(!success){ var n=form.querySelector('[name="_next"]'); window.location=n?n.value:'/'; return; }
+    var dateVal=data.get('date');
+    var dateLine=success.querySelector('[data-success-date-line]'), dateEl=success.querySelector('[data-success-date]'), dflt=success.querySelector('[data-success-default]');
+    if(dateVal&&dateEl&&dateLine){ dateEl.textContent=fmtDate(dateVal); dateLine.hidden=false; if(dflt) dflt.hidden=true; }
+    var tagWrap=success.querySelector('[data-success-tags]');
+    if(tagWrap){
+      tagWrap.innerHTML=''; var chips=[]; if(dateVal) chips.push(fmtDate(dateVal));
+      ['aesthetic','budget'].forEach(function(name){ var v=data.get(name); if(!v||/not sure/i.test(v)) return; if(name==='aesthetic') v=v.split(',')[0]; chips.push(v); });
+      chips.forEach(function(t){ var s=document.createElement('span'); s.className='stag'; s.textContent=t; tagWrap.appendChild(s); });
+    }
+    form.hidden=true;
+    Array.prototype.forEach.call(wrap.children, function(el){ if(el!==success && !el.classList.contains('modal-close')) el.classList.add('is-gone'); });
+    success.hidden=false; success.setAttribute('tabindex','-1');
+    success.scrollIntoView({behavior:'smooth',block:'center'}); success.focus();
+  }
+  document.querySelectorAll('form[data-ajax]').forEach(function(form){
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      var btn=form.querySelector('[type="submit"]'); if(btn){ btn.disabled=true; btn.textContent='Sending…'; }
+      var data=new FormData(form);
+      fetch(form.action,{method:'POST',body:data,headers:{'Accept':'application/json'}}).catch(function(){}).then(function(){ showSuccess(form,data); });
+    });
+  });
+
+  /* Direct landing on the inline success hash (no-JS fallback path). */
+  if(window.location.hash==='#consultation-success'){
+    var f=document.getElementById('consultation-form'), s=document.getElementById('consultation-success');
+    if(f) f.hidden=true; if(s) s.hidden=false;
+  }
+})();
+</script>

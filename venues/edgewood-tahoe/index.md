@@ -8,24 +8,18 @@ redirect_from:
   - /wedding-florist-edgewood-tahoe
 ---
 
-<!-- Hero -->
 {% include venue-subnav.html name="Edgewood Tahoe" %}
 
-<section class="hero hero--interior">
-  <div class="hero-media">
-    <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1776975190166-PCFON7QIR65XK1VPLH3K/l-a-preview-8192.jpg?format=2500w" alt="Edgewood Tahoe wedding flowers by Golden Flowers" loading="eager">
-  </div>
-  <div class="hero-copy">
-    <span class="hero-eyebrow">South Shore · Lakeside</span>
-    <h1 class="hero-display">Edgewood Tahoe.</h1>
-    <p class="hero-sub">Lakeside weddings on Lake Tahoe</p>
-  </div>
-</section>
+<header class="text-hero venue-hero">
+  <span class="lab">South Shore · Lakeside</span>
+  <h1>Edgewood Tahoe.</h1>
+  <p class="th-sub">Lakeside weddings on Lake Tahoe</p>
+</header>
 
 <!-- Why Edgewood -->
 <section class="section">
   <div class="container">
-    <div class="two-col">
+    <div class="two-col two-col--solo">
       <div class="two-col-text">
         <span class="label">Why this venue matters</span>
         <h2>Edgewood is unlike anywhere else on the lake.</h2>
@@ -33,10 +27,7 @@ redirect_from:
         <p>Arrangements that feel imported or generic read immediately against this landscape. We design florals that feel as though they came from the property itself, from the meadows at the course edge, the forested ridgeline, the Nevada-side light.</p>
         <p>Edgewood ceremonies range from the lakeside lawn to the Edgewood Pavilion, and each setting carries its own light and proportion. We design for the specific space you're using.</p>
       </div>
-      <div class="two-col-img">
-        <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/4685a495-c2ce-4b90-9fd1-f91ca0d6a135/K%2BJ-0962.jpg?format=1100w" alt="Ceremony flower arch at Lake Tahoe" loading="lazy">
       </div>
-    </div>
     <div class="facts-strip">
       <div class="fact">
         <p class="label">Two settings</p>

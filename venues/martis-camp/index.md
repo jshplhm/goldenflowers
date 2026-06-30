@@ -11,20 +11,15 @@ redirect_from:
 
 {% include venue-subnav.html name="Martis Camp" %}
 
-<section class="hero hero--interior">
-  <div class="hero-media">
-    <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1779129057432-Y8VGDRIHTV4BILCZVW27/MountainTimePhoto-48.jpg?format=2500w" alt="Forest wedding at Martis Camp near Truckee" loading="eager">
-  </div>
-  <div class="hero-copy">
-    <span class="hero-eyebrow">Truckee · Private Community</span>
-    <h1 class="hero-display">Martis Camp.</h1>
-    <p class="hero-sub">Private High Sierra weddings</p>
-  </div>
-</section>
+<header class="text-hero venue-hero">
+  <span class="lab">Truckee · Private Community</span>
+  <h1>Martis Camp.</h1>
+  <p class="th-sub">Private High Sierra weddings</p>
+</header>
 
 <section class="section">
   <div class="container">
-    <div class="two-col">
+    <div class="two-col two-col--solo">
       <div class="two-col-text">
         <span class="label">Why this venue matters</span>
         <h2>A wedding behind the gate.</h2>
@@ -32,10 +27,7 @@ redirect_from:
         <p>Access is coordinated through the community and your hosts, which makes logistics, timing, and load-in something to plan carefully and early. We're comfortable working inside those guidelines so the day runs cleanly.</p>
         <p>The design language here is refined and of the forest. We pull from the pine, granite, and mountain light so the florals feel native to the setting rather than imported into it.</p>
       </div>
-      <div class="two-col-img">
-        <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/4685a495-c2ce-4b90-9fd1-f91ca0d6a135/K%2BJ-0962.jpg?format=1100w" alt="Forest ceremony arch in the Sierra" loading="lazy">
       </div>
-    </div>
     <div class="facts-strip">
       <div class="fact">
         <p class="label">Private community</p>

@@ -11,20 +11,15 @@ redirect_from:
 
 {% include venue-subnav.html name="Schaffer's Camp" %}
 
-<section class="hero hero--interior">
-  <div class="hero-media">
-    <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1779129057432-Y8VGDRIHTV4BILCZVW27/MountainTimePhoto-48.jpg?format=2500w" alt="Alpine mountaintop wedding florals" loading="eager">
-  </div>
-  <div class="hero-copy">
-    <span class="hero-eyebrow">Northstar · Mountaintop Lodge</span>
-    <h1 class="hero-display">Schaffer's Camp.</h1>
-    <p class="hero-sub">Weddings at 7,900 feet, by gondola</p>
-  </div>
-</section>
+<header class="text-hero venue-hero">
+  <span class="lab">Northstar · Mountaintop Lodge</span>
+  <h1>Schaffer's Camp.</h1>
+  <p class="th-sub">Weddings at 7,900 feet, by gondola</p>
+</header>
 
 <section class="section">
   <div class="container">
-    <div class="two-col">
+    <div class="two-col two-col--solo">
       <div class="two-col-text">
         <span class="label">Why this venue matters</span>
         <h2>A lodge on top of the mountain.</h2>
@@ -32,10 +27,7 @@ redirect_from:
         <p>The setting is intimate but the views are enormous. Florals here work against a backdrop of glass, timber, and mountain light, and they have to read both indoors by the fire and out on the deck.</p>
         <p>It's also a venue at altitude, reached by lift, so the flowers need the conditioning and structure to arrive fresh and hold through a full mountaintop day.</p>
       </div>
-      <div class="two-col-img">
-        <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1776975105426-4BAEXMVDBX6Q5ETZ1BVC/l-a-preview-6962.jpg?format=1100w" alt="Refined alpine wedding design" loading="lazy">
       </div>
-    </div>
     <div class="facts-strip">
       <div class="fact">
         <p class="label">Mountaintop</p>

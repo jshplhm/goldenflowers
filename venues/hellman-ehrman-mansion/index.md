@@ -9,24 +9,18 @@ redirect_from:
   - /wedding-florist-hellman-ehrman-mansion-sugar-pine-point
 ---
 
-<!-- Hero -->
 {% include venue-subnav.html name="Hellman-Ehrman Mansion" %}
 
-<section class="hero hero--interior">
-  <div class="hero-media">
-    <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/4685a495-c2ce-4b90-9fd1-f91ca0d6a135/K%2BJ-0962.jpg?format=2500w" alt="Lakefront wedding ceremony flowers by Golden Flowers" loading="eager">
-  </div>
-  <div class="hero-copy">
-    <span class="hero-eyebrow">West Shore · State Park</span>
-    <h1 class="hero-display">Hellman-Ehrman Mansion.</h1>
-    <p class="hero-sub">Lakefront weddings at Sugar Pine Point</p>
-  </div>
-</section>
+<header class="text-hero venue-hero">
+  <span class="lab">West Shore · State Park</span>
+  <h1>Hellman-Ehrman Mansion.</h1>
+  <p class="th-sub">Lakefront weddings at Sugar Pine Point</p>
+</header>
 
 <!-- Why this venue -->
 <section class="section">
   <div class="container">
-    <div class="two-col">
+    <div class="two-col two-col--solo">
       <div class="two-col-text">
         <span class="label">Why this venue matters</span>
         <h2>A 1903 estate inside a state park.</h2>
@@ -34,10 +28,7 @@ redirect_from:
         <p>That setting asks for a particular kind of flower. Anything too polished or imported fights the place. We design florals that look like they were gathered from the forest and meadow around you, so the arrangements belong to the landscape rather than sitting on top of it.</p>
         <p>Because it's a state park, this is also a leave-no-trace venue, which is exactly how we already work.</p>
       </div>
-      <div class="two-col-img">
-        <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1776975190166-PCFON7QIR65XK1VPLH3K/l-a-preview-8192.jpg?format=1100w" alt="Foam-free wedding arrangement in soft natural tones" loading="lazy">
       </div>
-    </div>
     <div class="facts-strip">
       <div class="fact">
         <p class="label">Outdoor only</p>

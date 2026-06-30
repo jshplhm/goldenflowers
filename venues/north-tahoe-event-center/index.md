@@ -9,24 +9,18 @@ redirect_from:
   - /wedding-florist-lake-tahoe-event-center
 ---
 
-<!-- Hero -->
 {% include venue-subnav.html name="North Tahoe Event Center" %}
 
-<section class="hero hero--interior">
-  <div class="hero-media">
-    <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/4da65886-1655-4ecd-957b-8d48969ffc60/l-a-preview-0305.jpg?format=2500w" alt="Lakefront wedding flowers by Golden Flowers" loading="eager">
-  </div>
-  <div class="hero-copy">
-    <span class="hero-eyebrow">Kings Beach · North Shore</span>
-    <h1 class="hero-display">North Tahoe Event Center.</h1>
-    <p class="hero-sub">Lakefront weddings on the North Shore</p>
-  </div>
-</section>
+<header class="text-hero venue-hero">
+  <span class="lab">Kings Beach · North Shore</span>
+  <h1>North Tahoe Event Center.</h1>
+  <p class="th-sub">Lakefront weddings on the North Shore</p>
+</header>
 
 <!-- Why this venue -->
 <section class="section">
   <div class="container">
-    <div class="two-col">
+    <div class="two-col two-col--solo">
       <div class="two-col-text">
         <span class="label">Why this venue matters</span>
         <h2>Right on the water in Kings Beach.</h2>
@@ -34,10 +28,7 @@ redirect_from:
         <p>That's the opportunity and the challenge. A blank-canvas hall means the flowers carry the room, set the palette, define the scale, turn an open space into your wedding. We design for that: installations and tablescapes that do real work, not garnish.</p>
         <p>Outside, the lakefront ceremony has Tahoe doing the heavy lifting, so the florals stay light and frame the view.</p>
       </div>
-      <div class="two-col-img">
-        <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1776975190166-PCFON7QIR65XK1VPLH3K/l-a-preview-8192.jpg?format=1100w" alt="Foam-free wedding centerpiece in seasonal tones" loading="lazy">
       </div>
-    </div>
     <div class="facts-strip">
       <div class="fact">
         <p class="label">Blank canvas</p>

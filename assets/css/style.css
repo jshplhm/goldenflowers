@@ -1333,7 +1333,7 @@ h1.venue-title, .page-header h1, .founder-copy h1, .blog-title,
    higher specificity wins), pull-quotes, and numerals. Same family + sizes;
    only font-style + weight flip. (Bare h2 = the page section heads; the
    .cta-section h2 / .modal h2 keep italic via their own specificity.) */
-h2, h2.section-head, .venue-name, .aesthetic-card h3 {
+h2, h2.section-head, .venue-name, .aesthetic-card h3, .section-header h2 {
   font-style: normal;
   font-weight: 500;
 }
@@ -1421,7 +1421,7 @@ h2, h2.section-head, .venue-name, .aesthetic-card h3 {
 }
 
 /* - Inline forms: clean single column, constrained width (parity with modal) - */
-.form-section form { grid-template-columns: 1fr; max-width: 620px; }
+.form-section form { grid-template-columns: 1fr; max-width: 620px; margin-left: auto; margin-right: auto; }
 /* Date control: left-align its value to match the other fields (iOS centers it) */
 input[type="date"]::-webkit-date-and-time-value { text-align: left; }
 input[type="date"] { text-align: left; }
@@ -1510,11 +1510,11 @@ h1.venue-title, .page-header h1, .founder-copy h1, .blog-title {
   font-size: clamp(2.7rem, 5vw, 4.6rem); line-height: 1.05;
 }
 /* T3 · Section headings */
-h2, h2.section-head, .cta-section h2 {
+h2, h2.section-head, .cta-section h2, .section-header h2 {
   font-size: clamp(2.15rem, 3.8vw, 3.5rem); line-height: 1.08;
 }
 /* T4 · Medium / block headings */
-.section-header h2, .modal h2, .form-success h3, .cta-strip h3, .farm-text h3 {
+.modal h2, .form-success h3, .cta-strip h3, .farm-text h3 {
   font-size: clamp(1.7rem, 2.6vw, 2.2rem); line-height: 1.16;
 }
 /* T5 · Card / sub headings */

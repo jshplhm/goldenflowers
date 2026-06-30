@@ -25,6 +25,9 @@ html{scroll-behavior:smooth;}
 body{background:var(--bg);color:var(--ink);font-family:var(--b);font-weight:400;line-height:1.6;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow-x:hidden;}
 img{display:block;max-width:100%;height:auto;}
 a{color:inherit;text-decoration:none;}
+/* Make the hidden attribute authoritative so JS-toggled steps/success actually hide
+   (class rules like .form-step-2{display:grid} would otherwise override the UA [hidden] rule). */
+[hidden]{display:none !important;}
 .lab{font-size:.74rem;letter-spacing:.22em;text-transform:uppercase;color:var(--terra);font-weight:500;}
 .disp{font-family:var(--d);font-weight:430;letter-spacing:-.015em;line-height:1.02;font-optical-sizing:auto;}
 em{font-style:italic;}
@@ -32,15 +35,20 @@ em{font-style:italic;}
 
 /* ---------- NAV ---------- */
 nav.site-nav{position:fixed;top:0;left:0;right:0;z-index:55;display:flex;align-items:center;justify-content:space-between;padding:26px var(--pad);color:var(--paper);border-bottom:1px solid transparent;transition:transform .4s ease,background .3s ease,color .3s ease,border-color .3s ease,padding .3s ease;}
+/* Don't animate the header into its solid state on initial paint (felt like a slow load). Transitions enable after first frame. */
+nav.site-nav:not(.nav-anim){transition:none;}
 body.menu-open nav.site-nav{background:transparent;border-bottom-color:transparent;color:var(--paper);transform:none;}
 nav.site-nav.solid{background:var(--bg);color:var(--ink);border-bottom-color:var(--line);padding-top:18px;padding-bottom:18px;}
 nav.site-nav.up{transform:translateY(-100%);}
 .brand{font-family:var(--d);font-size:1.5rem;letter-spacing:-.01em;}
 .nav-r{display:flex;gap:36px;align-items:center;}
 .nav-r a:not(.pill){font-size:.84rem;letter-spacing:.02em;opacity:.92;position:relative;padding-bottom:3px;}
+/* Hover feedback: underline grows from the left */
+.nav-r a:not(.pill)::after{content:"";position:absolute;left:0;bottom:-2px;height:1.5px;width:100%;background:var(--terra);transform:scaleX(0);transform-origin:left;transition:transform .28s ease;}
 .nav-r a:not(.pill):hover{opacity:1;}
+.nav-r a:not(.pill):hover::after{transform:scaleX(1);}
 .nav-r a.active{opacity:1;}
-.nav-r a.active::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:1.5px;background:var(--terra);}
+.nav-r a.active::after{transform:scaleX(1);}
 .pill{border:1px solid currentColor;border-radius:100px;padding:11px 22px;font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;transition:background .25s,color .25s,border-color .25s;}
 .pill:hover{background:var(--terra);color:var(--paper);border-color:var(--terra);}
 
@@ -211,6 +219,29 @@ body.menu-open .mobile-menu{transform:none;}
 .pf-cap .tag{display:inline-block;margin-top:10px;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;border:1px solid oklch(100% 0 0/.5);border-radius:100px;padding:4px 11px;}
 @media(max-width:1024px){.pf-grid{column-count:2;}}
 @media(max-width:600px){.pf-grid{column-count:1;}}
+/* Portfolio grouped-by-aesthetic with a feature layout (1 big + 2 small) */
+.pf-group{max-width:1500px;margin:0 auto;padding:clamp(40px,5vw,72px) var(--pad) 0;}
+.pf-group:last-of-type{padding-bottom:clamp(24px,3vw,44px);}
+.pf-group-head{max-width:62ch;margin-bottom:clamp(20px,2.5vw,34px);}
+.pf-group-head h2{font-family:var(--d);font-weight:430;font-optical-sizing:auto;font-size:clamp(1.9rem,3.6vw,3rem);letter-spacing:-.02em;line-height:1.04;margin:12px 0 10px;}
+.pf-group-head p{color:var(--fg2);font-size:1.04rem;line-height:1.6;max-width:52ch;}
+.pf-feature{display:grid;grid-template-columns:1.62fr 1fr;grid-template-rows:1fr 1fr;gap:16px;height:clamp(440px,48vw,648px);}
+.pf-feature .pf-card{height:100%;min-height:0;margin:0;border-radius:4px;}
+.pf-feature .pf-card.big{grid-row:1 / span 2;}
+.pf-feature .pf-card img{height:100%;width:100%;object-fit:cover;}
+@media(max-width:760px){
+  .pf-feature{grid-template-columns:1fr;grid-template-rows:none;height:auto;}
+  .pf-feature .pf-card.big{grid-row:auto;}
+  .pf-feature .pf-card{height:64vw;}
+  .pf-feature .pf-card.big{height:78vw;}
+}
+/* Wedding (portfolio detail) page gallery */
+.wd-gallery{max-width:1200px;margin:0 auto;padding:clamp(18px,3vw,38px) var(--pad);}
+.wd-hero-img{width:100%;height:clamp(360px,52vw,640px);object-fit:cover;border-radius:4px;}
+.wd-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px;}
+.wd-grid img{width:100%;height:clamp(220px,28vw,360px);object-fit:cover;border-radius:4px;}
+.wd-note{text-align:center;color:var(--mute);font-size:.8rem;font-style:italic;margin-top:14px;}
+@media(max-width:600px){.wd-grid{grid-template-columns:1fr;}.wd-grid img{height:56vw;}}
 
 /* ---------- INTERIOR CONTENT (shared: Studio / Process / Venues) ---------- */
 .block{max-width:1500px;margin:0 auto;padding:clamp(60px,8vw,110px) var(--pad);}
@@ -312,6 +343,16 @@ body.menu-open .mobile-menu{transform:none;}
 .quote-card p{font-family:var(--d);font-size:1.22rem;line-height:1.35;letter-spacing:-.005em;margin-bottom:20px;}
 .quote-card .src{font-size:.76rem;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);}
 .quote-card .src b{color:var(--ink);font-weight:500;}
+/* Testimonials carousel (swipe on touch, arrows on desktop) */
+.testi-carousel{margin-top:clamp(22px,3vw,36px);}
+.testi-controls{display:flex;justify-content:flex-end;gap:10px;margin-bottom:16px;}
+.testi-nav{width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:var(--bg);color:var(--ink);font-size:1.05rem;cursor:pointer;transition:border-color .2s,background .2s,color .2s;}
+.testi-nav:hover{border-color:var(--ink);background:var(--terra);color:var(--paper);}
+.testi-row{display:flex;gap:24px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;padding:4px 2px 18px;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
+.testi-row::-webkit-scrollbar{display:none;}
+.testi-row .quote-card{flex:0 0 clamp(270px,30%,380px);scroll-snap-align:start;display:flex;flex-direction:column;}
+.testi-row .quote-card p{flex:1;}
+.testi-row .quote-card .src{margin-top:auto;}
 
 /* ---------- FAQ ---------- */
 .faq-list{max-width:860px;margin:clamp(32px,4vw,48px) auto 0;}
@@ -360,10 +401,10 @@ body.menu-open .mobile-menu{transform:none;}
 .field-full{grid-column:1 / -1;}
 .form-step-1{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
 .form-step-2{display:grid;grid-template-columns:1fr;gap:18px;margin-top:18px;}
-.form-section label{display:block;font-size:.82rem;letter-spacing:.03em;color:var(--fg2);margin-bottom:8px;}
-.form-section input,.form-section select,.form-section textarea{width:100%;font-family:var(--b);font-size:1rem;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:14px 16px;transition:border-color .2s;}
-.form-section input:focus,.form-section select:focus,.form-section textarea:focus{outline:none;border-color:var(--terra);}
-.form-section textarea{resize:vertical;}
+.form-section label,.modal label{display:block;font-size:.82rem;letter-spacing:.03em;color:var(--fg2);margin-bottom:8px;}
+.form-section input,.form-section select,.form-section textarea,.modal input,.modal select,.modal textarea{width:100%;font-family:var(--b);font-size:1rem;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:14px 16px;transition:border-color .2s;}
+.form-section input:focus,.form-section select:focus,.form-section textarea:focus,.modal input:focus,.modal select:focus,.modal textarea:focus{outline:none;border-color:var(--terra);}
+.form-section textarea,.modal textarea{resize:vertical;}
 .form-advance{margin-top:22px;}
 .form-advance .btn-primary,.form-submit .btn-primary{width:100%;justify-content:center;}
 .form-step-hint{text-align:center;font-size:.82rem;color:var(--mute);margin-top:12px;}
@@ -388,6 +429,21 @@ body.menu-open .mobile-menu{transform:none;}
 .form-success-next a{display:block;color:var(--forest);padding:8px 0;border-bottom:1px solid var(--line);}
 .form-success-next a:hover{color:var(--terra);}
 .is-gone{display:none !important;}
+
+/* ---------- CONSULT MODAL (Check-your-date lightbox) ---------- */
+.modal-overlay{position:fixed;inset:0;z-index:1000;background:oklch(20% .02 150/.55);display:flex;align-items:center;justify-content:center;padding:4vh 20px;overflow-y:auto;opacity:0;visibility:hidden;transition:opacity .25s ease,visibility .25s ease;}
+.modal-overlay.open{opacity:1;visibility:visible;}
+.modal{position:relative;background:var(--bg);border:1px solid var(--line);border-radius:14px;max-width:560px;width:100%;padding:46px 40px 40px;box-shadow:0 28px 80px oklch(20% .02 150/.32);transform:translateY(14px);transition:transform .25s ease;}
+.modal-overlay.open .modal{transform:translateY(0);}
+.modal-close{position:absolute;top:12px;right:14px;width:38px;height:38px;border:none;background:transparent;font-size:1.7rem;line-height:1;color:var(--mute);cursor:pointer;border-radius:50%;transition:background .2s,color .2s;}
+.modal-close:hover{background:oklch(20% .02 150/.07);color:var(--ink);}
+.modal h2{font-family:var(--d);font-weight:430;font-size:1.95rem;line-height:1.04;letter-spacing:-.015em;margin:8px 0 6px;color:var(--ink);}
+.modal .modal-intro{font-size:.92rem;color:var(--fg2);line-height:1.6;margin:4px 0 24px;}
+.modal form{display:grid;gap:15px;}
+.modal .form-submit{margin-top:4px;}
+body.modal-open{overflow:hidden;}
+@media (max-width:520px){.modal{padding:42px 22px 28px;}}
+@media (prefers-reduced-motion:reduce){.modal,.modal-overlay{transition:opacity .25s ease,visibility .25s ease;}.modal{transform:none;}}
 
 /* ---------- BLOG INDEX ---------- */
 .blog-toolbar{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-bottom:clamp(32px,4vw,48px);flex-wrap:wrap;}
@@ -423,7 +479,15 @@ body.menu-open .mobile-menu{transform:none;}
 .blog-body strong{color:var(--ink);font-weight:500;}
 
 /* ---------- VENUE SUBPAGES (legacy markup → redesign look) ---------- */
-.venue-breadcrumb{display:none;}
+/* Venue breadcrumb — the way back to the map (sits below the solid nav) */
+.venue-breadcrumb{max-width:1500px;margin:0 auto;padding:clamp(94px,11vh,116px) var(--pad) 0;}
+.venue-breadcrumb-inner{list-style:none;display:flex;gap:11px;align-items:center;font-family:var(--b);font-size:.8rem;letter-spacing:.04em;color:var(--mute);margin:0;padding:0;}
+.venue-breadcrumb a{color:var(--mute);border-bottom:1px solid transparent;transition:color .15s,border-color .15s;}
+.venue-breadcrumb a:hover{color:var(--ink);border-bottom-color:var(--terra);}
+.venue-breadcrumb .sep{color:var(--line);}
+.venue-breadcrumb .current{color:var(--ink);}
+.venue-hero{padding-top:clamp(18px,2.5vw,30px);}
+.two-col--solo{grid-template-columns:1fr;max-width:760px;}
 .hero--interior{height:64vh;min-height:460px;}
 .hero--interior .hero-media{position:absolute;inset:0;z-index:0;}
 .hero--interior .hero-media img{width:100%;height:100%;object-fit:cover;}
@@ -463,27 +527,57 @@ body.menu-open .mobile-menu{transform:none;}
 .btn-primary{display:inline-flex;align-items:center;gap:9px;background:var(--terra);color:var(--paper);padding:16px 30px;border-radius:100px;font-size:.85rem;letter-spacing:.03em;font-weight:500;transition:.25s;}
 .btn-primary:hover{transform:translateY(-2px);filter:brightness(1.07);}
 
-/* ---------- VENUES — custom Tahoe map ---------- */
-.map-section{display:grid;grid-template-columns:.92fr 1.08fr;gap:clamp(28px,5vw,72px);align-items:center;max-width:1400px;margin:0 auto;padding:clamp(40px,6vw,80px) var(--pad);}
+/* ---------- VENUES — custom Tahoe map (full-page hero) ---------- */
+.map-hero{min-height:100vh;display:grid;grid-template-columns:.78fr 1.22fr;column-gap:clamp(24px,4vw,60px);row-gap:0;align-items:center;max-width:1560px;margin:0 auto;padding:clamp(96px,12vh,124px) var(--pad) clamp(40px,5vw,60px);}
+.mh-head{grid-column:1;grid-row:1;align-self:end;}
+.mh-body{grid-column:1;grid-row:2;align-self:start;padding-top:22px;}
+.mh-map{grid-column:2;grid-row:1 / span 2;}
+.map-hero .mh-head h1{font-family:var(--d);font-weight:430;font-optical-sizing:auto;font-size:clamp(2.7rem,6vw,5.2rem);line-height:1.0;letter-spacing:-.025em;margin:14px 0 0;}
+.map-hero .mh-body p{color:var(--fg2);line-height:1.62;max-width:42ch;font-size:1.08rem;}
 .tahoe{width:auto;height:auto;max-width:100%;max-height:74vh;display:block;margin:0 auto;overflow:visible;}
-.map-aside h2{font-family:var(--d);font-weight:430;font-optical-sizing:auto;font-size:clamp(1.9rem,4vw,3rem);letter-spacing:-.02em;line-height:1.06;margin:16px 0;}
-.map-aside p{color:var(--fg2);line-height:1.65;max-width:46ch;}
+.map-hero .tahoe{height:92vh;max-height:968px;width:auto;max-width:100%;}
+@media(max-width:860px){
+  .map-hero{grid-template-columns:1fr;min-height:auto;row-gap:18px;padding-top:clamp(92px,17vw,112px);}
+  .mh-head{grid-column:1;grid-row:1;align-self:auto;}
+  .mh-map{grid-column:1;grid-row:2;}
+  .mh-body{grid-column:1;grid-row:3;align-self:auto;padding-top:0;}
+  .map-hero .tahoe{height:auto;width:100%;max-height:none;}
+}
 .map-legend{list-style:none;margin:26px 0 0;}
+.map-note{margin:16px 0 0;font-size:.9rem;line-height:1.5;color:var(--mute);max-width:40ch;}
+/* Featured venue hover-list (cross-linked with the map) */
+.mh-body .mh-intro{color:var(--fg2);font-size:1.02rem;line-height:1.6;max-width:36ch;}
+.vhl{list-style:none;margin:22px 0 16px;columns:2;column-gap:30px;}
+.vhl li{margin-bottom:10px;break-inside:avoid;}
+.vhl a{font-family:var(--d);font-size:1.1rem;line-height:1.2;color:var(--ink);transition:color .15s;display:inline-block;border-bottom:1px solid transparent;}
+.vhl a:hover,.vhl a.is-active{color:var(--terra);border-bottom-color:var(--terra);}
+.t-pin.feat.is-active .t-dot{r:9;}
+.t-pin.feat.is-active .t-vlabel{fill:var(--terra);}
+@media(max-width:860px){.vhl{columns:2;}}
 .map-legend li{display:flex;align-items:center;gap:13px;margin-bottom:13px;color:var(--fg2);font-size:.96rem;}
 .map-legend .lg-dot{width:16px;height:16px;border-radius:50%;background:var(--terra);border:2px solid var(--paper);box-shadow:0 0 0 1px var(--line);flex:none;}
 .map-legend .lg-dot.sm{width:11px;height:11px;background:oklch(57% .15 45/.65);}
 /* SVG map elements */
 .t-lake{fill:oklch(73% .045 236);stroke:none;}
-.t-hwy{fill:none;stroke:oklch(55% .02 250);stroke-width:1;stroke-linecap:round;opacity:.4;}
-.t-hwy.maj{stroke-width:1.3;opacity:.5;}
+.t-hwy{fill:none;stroke:oklch(82% .004 80);stroke-width:1;stroke-linecap:round;stroke-linejoin:round;opacity:.9;}
+.t-hexit{font-family:var(--b);font-size:13px;fill:var(--mute);letter-spacing:.04em;}
 .t-lab{font-family:var(--b);font-size:8.5px;fill:var(--mute);letter-spacing:.08em;text-transform:uppercase;}
 .t-city circle{fill:var(--mute);}
 .t-city text{font-family:var(--d);font-size:17px;fill:var(--ink);}
 .t-dot{fill:var(--terra);stroke:var(--paper);stroke-width:2.4;cursor:pointer;transition:r .15s ease;}
-.t-dot.sm{fill:oklch(57% .15 45/.72);stroke-width:1.8;}
+.t-dot.sm{fill:oklch(62% .11 45/.62);stroke-width:1.6;cursor:pointer;}
+.t-town-dot{r:2.6;fill:oklch(45% .01 150);stroke:var(--paper);stroke-width:1.2;cursor:pointer;}
+/* City labels: muted/smaller, revealed on hover or tap (focus) */
+.t-clabel{font-family:var(--b);font-size:11px;fill:var(--mute);letter-spacing:.02em;opacity:0;transition:opacity .15s;paint-order:stroke;stroke:var(--paper);stroke-width:3;stroke-linejoin:round;pointer-events:none;}
+.t-town:hover .t-clabel,.t-town:focus .t-clabel{opacity:1;}
+.t-town{outline:none;cursor:pointer;}
 .t-pin:hover .t-dot{r:10;}
 .t-vlabel{font-family:var(--b);font-size:13px;fill:var(--ink);opacity:0;transition:opacity .15s;paint-order:stroke;stroke:var(--paper);stroke-width:3.5;stroke-linejoin:round;pointer-events:none;}
-.t-pin:hover .t-vlabel{opacity:1;}
+/* Featured venues keep their names visible at all times (links and non-link labels alike). */
+.t-pin.feat .t-vlabel{opacity:1;font-size:13.5px;}
+.t-pin.feat .t-dot{r:6;}
+.t-pin:hover .t-vlabel,.t-pin:focus .t-vlabel{opacity:1;}
+.t-minor{outline:none;}
 /* SEO / no-JS venue list */
 .venue-list{display:grid;grid-template-columns:repeat(3,1fr);gap:0 clamp(30px,4vw,60px);margin-top:clamp(28px,4vw,44px);}
 .venue-list a{display:flex;align-items:baseline;gap:12px;padding:18px 2px;border-top:1px solid var(--line);}

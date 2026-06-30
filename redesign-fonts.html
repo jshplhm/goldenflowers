@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Golden Flowers — typeface bake-off</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..600;1,6..96,400..600&family=Instrument+Serif:ital@0;1&family=DM+Serif+Display:ital@0;1&family=Syne:wght@600;700;800&family=Fraunces:ital,opsz,wght@0,9..144,300..500;1,9..144,300..500&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:oklch(99% .004 90);
+  --terra:oklch(57% .15 45);
+  --ink:oklch(21% .02 150);
+  --f-b:'DM Sans',Helvetica,Arial,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:var(--f-b);-webkit-font-smoothing:antialiased;background:var(--ink);}
+img{display:block;max-width:100%;height:auto;}
+a{color:inherit;text-decoration:none;}
+
+.hero{position:relative;height:100vh;min-height:640px;display:flex;align-items:flex-end;color:var(--paper);overflow:hidden;}
+.hero img.bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,oklch(20% .03 150 /.40) 0%,transparent 30%,transparent 50%,oklch(13% .03 150 /.74) 100%);}
+.inner{position:relative;z-index:2;width:100%;padding:0 56px 60px;}
+.ey{font-size:.8rem;letter-spacing:.22em;text-transform:uppercase;opacity:.92;margin-bottom:22px;}
+.foot{display:flex;align-items:flex-end;justify-content:space-between;gap:30px;flex-wrap:wrap;margin-top:34px;}
+.sub{font-size:1rem;max-width:34ch;opacity:.94;}
+.btn{display:inline-block;background:var(--terra);color:var(--paper);padding:17px 30px;border-radius:100px;font-size:.85rem;letter-spacing:.04em;font-weight:500;}
+.tag{position:absolute;top:26px;left:56px;z-index:3;background:var(--paper);color:var(--ink);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;padding:8px 14px;border-radius:100px;font-weight:500;}
+h1{font-optical-sizing:auto;}
+
+/* A — Bodoni Moda (high-fashion, Vogue) */
+.v-bodoni h1{font-family:'Bodoni Moda',serif;font-weight:500;font-size:clamp(3rem,7.6vw,7.4rem);line-height:1.02;letter-spacing:-.005em;max-width:16ch;}
+.v-bodoni h1 em{font-style:italic;font-weight:500;}
+
+/* B — Instrument Serif (delicate, editorial-romantic) */
+.v-instrument h1{font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(3.6rem,10vw,10rem);line-height:.94;letter-spacing:-.01em;max-width:15ch;}
+.v-instrument h1 em{font-style:italic;}
+
+/* C — DM Serif Display (clean high-contrast, cohesive w/ DM Sans body) */
+.v-dmserif h1{font-family:'DM Serif Display',serif;font-weight:400;font-size:clamp(3rem,7.4vw,7rem);line-height:1.02;letter-spacing:-.01em;max-width:16ch;}
+.v-dmserif h1 em{font-style:italic;}
+
+/* D — Syne (contemporary geometric, real edge) */
+.v-syne h1{font-family:'Syne',sans-serif;font-weight:700;text-transform:uppercase;font-size:clamp(2.4rem,5.8vw,5.4rem);line-height:.98;letter-spacing:-.02em;max-width:18ch;}
+.v-syne h1 em{font-style:normal;font-weight:800;color:oklch(72% .14 50);}
+
+@media(max-width:760px){.inner{padding:0 26px 44px;}.tag{left:26px;}}
+</style>
+</head>
+<body>
+
+<!-- A -->
+<section class="hero v-bodoni">
+  <img class="bg" src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/4685a495-c2ce-4b90-9fd1-f91ca0d6a135/K%2BJ-0962.jpg?format=2500w" alt="">
+  <span class="tag">A · Bodoni Moda — high fashion</span>
+  <div class="inner">
+    <p class="ey">Lake Tahoe Wedding Florist</p>
+    <h1>Flowers that belong to the <em>place they grow.</em></h1>
+    <div class="foot">
+      <p class="sub">Farm-grown, foam-free florals for one wedding a day in the Sierra Nevada.</p>
+      <a class="btn" href="#">Check your date →</a>
+    </div>
+  </div>
+</section>
+
+<!-- B -->
+<section class="hero v-instrument">
+  <img class="bg" src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/4685a495-c2ce-4b90-9fd1-f91ca0d6a135/K%2BJ-0962.jpg?format=2500w" alt="">
+  <span class="tag">B · Instrument Serif — delicate editorial</span>
+  <div class="inner">
+    <p class="ey">Lake Tahoe Wedding Florist</p>
+    <h1>Flowers that belong to the <em>place they grow.</em></h1>
+    <div class="foot">
+      <p class="sub">Farm-grown, foam-free florals for one wedding a day in the Sierra Nevada.</p>
+      <a class="btn" href="#">Check your date →</a>
+    </div>
+  </div>
+</section>
+
+<!-- C -->
+<section class="hero v-dmserif">
+  <img class="bg" src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/4685a495-c2ce-4b90-9fd1-f91ca0d6a135/K%2BJ-0962.jpg?format=2500w" alt="">
+  <span class="tag">C · DM Serif Display — cohesive &amp; clean</span>
+  <div class="inner">
+    <p class="ey">Lake Tahoe Wedding Florist</p>
+    <h1>Flowers that belong to the <em>place they grow.</em></h1>
+    <div class="foot">
+      <p class="sub">Farm-grown, foam-free florals for one wedding a day in the Sierra Nevada.</p>
+      <a class="btn" href="#">Check your date →</a>
+    </div>
+  </div>
+</section>
+
+<!-- D -->
+<section class="hero v-syne">
+  <img class="bg" src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/4685a495-c2ce-4b90-9fd1-f91ca0d6a135/K%2BJ-0962.jpg?format=2500w" alt="">
+  <span class="tag">D · Syne — contemporary edge</span>
+  <div class="inner">
+    <p class="ey">Lake Tahoe Wedding Florist</p>
+    <h1>Flowers that belong to the <em>place they grow</em></h1>
+    <div class="foot">
+      <p class="sub">Farm-grown, foam-free florals for one wedding a day in the Sierra Nevada.</p>
+      <a class="btn" href="#">Check your date →</a>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>

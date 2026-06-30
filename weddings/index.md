@@ -14,18 +14,12 @@ redirect_from:
 <header class="text-hero">
   <span class="lab">Working with us</span>
   <h1>Full-service <em>wedding flowers.</em></h1>
-  <p class="th-sub">One wedding per date, across Lake Tahoe &amp; the Sierra Nevada — designed start to finish by the same hands.</p>
+  <p class="th-sub">We take one wedding per date, so every couple works directly with our founder, Brittany, from the first consultation through setup and breakdown. She designs alongside a team of seasoned florists — no junior staff, no assembly line, no handoffs.</p>
   <div class="hero-btns">
     <a class="btn" href="{{ site.baseurl }}/consultation-form">Schedule a consultation <span>&rarr;</span></a>
-    <a class="btn ghost-ink" href="{{ site.baseurl }}/portfolio">View portfolio</a>
+    <a class="btn ghost-ink" href="{{ site.baseurl }}/about">Meet Brittany</a>
   </div>
 </header>
-
-<!-- INTRO -->
-<section class="block-narrow prose">
-  <p class="lead">We take one wedding per date, so every couple works directly with our founder, Brittany, from the first consultation through setup and breakdown. She designs alongside a team of seasoned florists — no junior staff, no assembly line, no handoffs.</p>
-  <p style="font-size:.92rem;color:var(--mute);">Available for weddings throughout Lake Tahoe, the Sierra Nevada, and the Gold Country foothills. <a href="{{ site.baseurl }}/about" style="color:var(--forest);border-bottom:1px solid var(--terra);">Meet Brittany &rarr;</a></p>
-</section>
 
 <!-- PROCESS (dark) -->
 <section class="proc">
@@ -100,11 +94,7 @@ redirect_from:
 <section class="block tight" id="reviews">
   <span class="lab">What couples say</span>
   <h2 class="h-lg">Loved by couples across the Sierra.</h2>
-  <div class="quote-grid">
-    <div class="quote-card"><div class="stars">★★★★★</div><p>"Brittany and her team are the utmost in artistry, professionalism, and support. The presentation at the wedding was through-the-roof beautiful."</p><p class="src"><b>Brian</b> · Lake Tahoe Wedding</p></div>
-    <div class="quote-card"><div class="stars">★★★★★</div><p>"Brittany had ideas that helped me achieve the luxe look I wanted while staying in budget."</p><p class="src"><b>Sara</b> · The Ritz-Carlton, Truckee</p></div>
-    <div class="quote-card"><div class="stars">★★★★★</div><p>"All of the bouquets were perfect, exactly the way we envisioned them. We'd absolutely recommend Golden Flowers to anyone married-to-be."</p><p class="src"><b>Samantha</b> · The Miner's Foundry, Nevada City</p></div>
-  </div>
+  {% include redesign-testimonials.html %}
 </section>
 
 <hr class="hr-line">

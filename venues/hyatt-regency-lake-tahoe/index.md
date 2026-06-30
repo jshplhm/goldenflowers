@@ -9,24 +9,18 @@ redirect_from:
   - /wedding-florist-hyatt-regency-lake-tahoe
 ---
 
-<!-- Hero -->
 {% include venue-subnav.html name="Hyatt Regency Lake Tahoe" %}
 
-<section class="hero hero--interior">
-  <div class="hero-media">
-    <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1776975178999-V2BIKI0FVBMBXFKG8Z3I/l-a-preview-8139.jpg?format=2500w" alt="North Shore Lake Tahoe wedding flowers by Golden Flowers" loading="eager">
-  </div>
-  <div class="hero-copy">
-    <span class="hero-eyebrow">Incline Village · North Shore</span>
-    <h1 class="hero-display">Hyatt Regency Lake Tahoe.</h1>
-    <p class="hero-sub">North Shore resort weddings, in our hometown</p>
-  </div>
-</section>
+<header class="text-hero venue-hero">
+  <span class="lab">Incline Village · North Shore</span>
+  <h1>Hyatt Regency Lake Tahoe.</h1>
+  <p class="th-sub">North Shore resort weddings, in our hometown</p>
+</header>
 
 <!-- Why this venue -->
 <section class="section">
   <div class="container">
-    <div class="two-col">
+    <div class="two-col two-col--solo">
       <div class="two-col-text">
         <span class="label">Why this venue matters</span>
         <h2>This one's in our backyard.</h2>
@@ -34,10 +28,7 @@ redirect_from:
         <p>A resort wedding gives you polish and infrastructure, the trade is that generic, imported flowers can make a beautiful room feel anonymous. We design florals with a sense of place, pulled from the Sierra and grown in California, so a Hyatt wedding still feels like Tahoe and not like anywhere.</p>
         <p>Being local means short drive times, easy site visits, and a florist who can be on-site early and stay through strike.</p>
       </div>
-      <div class="two-col-img">
-        <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1776975190166-PCFON7QIR65XK1VPLH3K/l-a-preview-8192.jpg?format=1100w" alt="Reception centerpiece by Golden Flowers in seasonal tones" loading="lazy">
       </div>
-    </div>
     <div class="facts-strip">
       <div class="fact">
         <p class="label">Incline Village</p>

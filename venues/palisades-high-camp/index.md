@@ -9,20 +9,15 @@ canonical_url: https://goldenflorals.com/venues/palisades-high-camp
 
 {% include venue-subnav.html name="Palisades High Camp" %}
 
-<section class="hero hero--interior">
-  <div class="hero-media">
-    <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/4da65886-1655-4ecd-957b-8d48969ffc60/l-a-preview-0305.jpg?format=2500w" alt="Alpine wedding at Palisades High Camp" loading="eager">
-  </div>
-  <div class="hero-copy">
-    <span class="hero-eyebrow">Olympic Valley · Alpine</span>
-    <h1 class="hero-display">Palisades High Camp.</h1>
-    <p class="hero-sub">Wedding flowers at 8,200 feet</p>
-  </div>
-</section>
+<header class="text-hero venue-hero">
+  <span class="lab">Olympic Valley · Alpine</span>
+  <h1>Palisades High Camp.</h1>
+  <p class="th-sub">Wedding flowers at 8,200 feet</p>
+</header>
 
 <section class="section">
   <div class="container">
-    <div class="two-col">
+    <div class="two-col two-col--solo">
       <div class="two-col-text">
         <span class="label">Why this venue matters</span>
         <h2>A wedding at the top of the tram.</h2>
@@ -30,10 +25,7 @@ canonical_url: https://goldenflorals.com/venues/palisades-high-camp
         <p>Flowers here have two jobs: hold up in thin, dry alpine air, and hold their own against a very big view. Delicate, thirsty blooms struggle at altitude. We design with hardy, well-conditioned stems and structure that reads from a distance.</p>
         <p>Everything also has to ride the tram. We plan the build, the hydration, and the load-in around that single constraint, so what arrives at the top is as fresh as what left the studio.</p>
       </div>
-      <div class="two-col-img">
-        <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1779129057432-Y8VGDRIHTV4BILCZVW27/MountainTimePhoto-48.jpg?format=1100w" alt="Alpine wildflower wedding design" loading="lazy">
       </div>
-    </div>
     <div class="facts-strip">
       <div class="fact">
         <p class="label">At altitude</p>
