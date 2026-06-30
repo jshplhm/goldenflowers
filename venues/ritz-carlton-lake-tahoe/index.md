@@ -19,15 +19,15 @@ redirect_from:
 
 <section class="section">
   <div class="container">
-    <div class="two-col two-col--solo">
-      <div class="two-col-text">
-        <span class="label">Why this venue matters</span>
-        <h2>Mountain luxury, mid-mountain.</h2>
+    <div class="venue-intro">
+      <div class="vi-head"><span class="label">Why this venue matters</span>
+        <h2>Mountain luxury, mid-mountain.</h2></div>
+      <div class="vi-body">
         <p>The Ritz-Carlton sits mid-mountain at Northstar, reached by gondola and surrounded by tall Sierra pines. It pairs a polished, four-season resort with a genuine mountain setting, the forest right outside the glass.</p>
         <p>Florals here need to meet the venue's level of finish. The interiors are refined and the service is exacting, so the flowers have to feel considered and clean, never an afterthought against that backdrop.</p>
         <p>The terrace, the lawn, and the ballroom each read differently. We design for the specific spaces you're using and the season you're in, from a summer ceremony in the pines to a candlelit winter reception.</p>
       </div>
-      </div>
+    </div>
     <div class="facts-strip">
       <div class="fact">
         <p class="label">Mid-mountain</p>

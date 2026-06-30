@@ -14,7 +14,8 @@ canonical_url: https://goldenflorals.com/venues
     <h1>We love this place.</h1>
   </div>
   <div class="mh-body">
-    <p class="mh-intro">The venues we know best. Hover a name or a pin — they're linked.</p>
+    <p class="mh-intro">Hover a name or a pin — they're linked. Tap a featured venue to explore it.</p>
+    <span class="lab vlist-lab">Featured</span>
     <ol class="vhl">
       <li><a data-venue="edgewood-tahoe" href="{{ site.baseurl }}/venues/edgewood-tahoe">Edgewood</a></li>
       <li><a data-venue="thunderbird-lodge" href="{{ site.baseurl }}/venues/thunderbird-lodge">Thunderbird</a></li>
@@ -28,7 +29,23 @@ canonical_url: https://goldenflorals.com/venues
       <li><a data-venue="heavenly" href="{{ site.baseurl }}/venues/heavenly">Heavenly</a></li>
       <li><a data-venue="north-tahoe-event-center" href="{{ site.baseurl }}/venues/north-tahoe-event-center">North Tahoe Event Center</a></li>
     </ol>
-    <p class="map-note">Plus 20+ more we love — scroll for the rest.</p>
+    <span class="lab vlist-lab">More around the lake</span>
+    <ul class="vhl vhl--minor">
+      <li><span data-venue="chateau">The Chateau</span></li>
+      <li><span data-venue="everline">Everline</span></li>
+      <li><span data-venue="gar-woods">Gar Woods</span></li>
+      <li><span data-venue="lahontan">Lahontan</span></li>
+      <li><span data-venue="landing">The Landing</span></li>
+      <li><span data-venue="ov-stables">Olympic Valley Stables</span></li>
+      <li><span data-venue="ovec">OVEC</span></li>
+      <li><span data-venue="plumpjack">PlumpJack</span></li>
+      <li><span data-venue="schaffers">Schaffer's Camp</span></li>
+      <li><span data-venue="sunnyside">Sunnyside</span></li>
+      <li><span data-venue="tahoe-blue">Tahoe Blue Estate</span></li>
+      <li><span data-venue="west-shore">West Shore Cafe</span></li>
+      <li><span data-venue="zephyr">Zephyr Lodge</span></li>
+    </ul>
+    <p class="map-note">Also in the Nevada City &amp; Grass Valley foothills — below.</p>
   </div>
   <div class="mh-map">
     <svg class="tahoe" viewBox="-12 -60 605 878" xmlns="http://www.w3.org/2000/svg" role="group" aria-label="Map of Lake Tahoe wedding venues">
@@ -82,19 +99,19 @@ canonical_url: https://goldenflorals.com/venues
       <a href="{{ site.baseurl }}/venues/north-tahoe-event-center" class="t-pin feat" data-venue="north-tahoe-event-center" aria-label="North Tahoe Event Center — view venue"><circle class="t-dot" cx="332.6" cy="177.7" r="6.5"/><text class="t-vlabel" text-anchor="middle" x="332.6" y="167.7">NTEC</text></a>
 
       <!-- more venues we love (smaller, muted) -->
-      <g class="t-pin t-minor" tabindex="0" role="img" aria-label="Schaffer's Camp"><circle class="t-dot sm" cx="167.5" cy="121.5" r="3.5"/><text class="t-vlabel" text-anchor="end" x="160.5" y="125.5">Schaffer's Camp</text></g>
-      <g class="t-pin t-minor" tabindex="0" role="img" aria-label="Tahoe Blue Estate"><circle class="t-dot sm" cx="458.6" cy="463.4" r="3.5"/><text class="t-vlabel" x="465.6" y="467.4">Tahoe Blue Estate</text></g>
-      <g class="t-pin t-minor" tabindex="0" role="img" aria-label="West Shore Cafe"><circle class="t-dot sm" cx="132.6" cy="470.8" r="3.5"/><text class="t-vlabel" text-anchor="end" x="125.6" y="474.8">West Shore Cafe</text></g>
-      <g class="t-pin t-minor" tabindex="0" role="img" aria-label="Everline"><circle class="t-dot sm" cx="43.5" cy="249.0" r="3.5"/><text class="t-vlabel" text-anchor="end" x="36.5" y="253.0">Everline</text></g>
-      <g class="t-pin t-minor" tabindex="0" role="img" aria-label="Olympic Valley Stables"><circle class="t-dot sm" cx="61.6" cy="273.2" r="3.5"/><text class="t-vlabel" text-anchor="end" x="54.6" y="277.2">Olympic Valley Stables</text></g>
-      <g class="t-pin t-minor" tabindex="0" role="img" aria-label="Zephyr Lodge"><circle class="t-dot sm" cx="193.7" cy="107.1" r="3.5"/><text class="t-vlabel" text-anchor="end" x="186.7" y="111.1">Zephyr Lodge</text></g>
-      <g class="t-pin t-minor" tabindex="0" role="img" aria-label="The Chateau"><circle class="t-dot sm" cx="432.7" cy="147.1" r="3.5"/><text class="t-vlabel" x="439.7" y="151.1">The Chateau</text></g>
-      <g class="t-pin t-minor" tabindex="0" role="img" aria-label="The Landing"><circle class="t-dot sm" cx="444.0" cy="706.9" r="3.5"/><text class="t-vlabel" x="451.0" y="710.9">The Landing</text></g>
-      <g class="t-pin t-minor" tabindex="0" role="img" aria-label="Sunnyside"><circle class="t-dot sm" cx="140.2" cy="363.0" r="3.5"/><text class="t-vlabel" text-anchor="end" x="133.2" y="367.0">Sunnyside</text></g>
-      <g class="t-pin t-minor" tabindex="0" role="img" aria-label="Gar Woods"><circle class="t-dot sm" cx="245.1" cy="197.9" r="3.5"/><text class="t-vlabel" text-anchor="end" x="238.1" y="201.9">Gar Woods</text></g>
-      <g class="t-pin t-minor" tabindex="0" role="img" aria-label="Lahontan"><circle class="t-dot sm" cx="97.2" cy="52.2" r="3.5"/><text class="t-vlabel" text-anchor="end" x="90.2" y="56.2">Lahontan</text></g>
-      <g class="t-pin t-minor" tabindex="0" role="img" aria-label="PlumpJack"><circle class="t-dot sm" cx="18.4" cy="251.1" r="3.5"/><text class="t-vlabel" text-anchor="end" x="11.4" y="255.1">PlumpJack</text></g>
-      <g class="t-pin t-minor" tabindex="0" role="img" aria-label="OVEC"><circle class="t-dot sm" cx="23.9" cy="256.3" r="3.5"/><text class="t-vlabel" text-anchor="end" x="16.9" y="260.3">OVEC</text></g>
+      <g class="t-pin t-minor" data-venue="schaffers" tabindex="0" role="img" aria-label="Schaffer's Camp"><circle class="t-dot sm" cx="167.5" cy="121.5" r="3.5"/><text class="t-vlabel" text-anchor="end" x="160.5" y="125.5">Schaffer's Camp</text></g>
+      <g class="t-pin t-minor" data-venue="tahoe-blue" tabindex="0" role="img" aria-label="Tahoe Blue Estate"><circle class="t-dot sm" cx="458.6" cy="463.4" r="3.5"/><text class="t-vlabel" x="465.6" y="467.4">Tahoe Blue Estate</text></g>
+      <g class="t-pin t-minor" data-venue="west-shore" tabindex="0" role="img" aria-label="West Shore Cafe"><circle class="t-dot sm" cx="132.6" cy="470.8" r="3.5"/><text class="t-vlabel" text-anchor="end" x="125.6" y="474.8">West Shore Cafe</text></g>
+      <g class="t-pin t-minor" data-venue="everline" tabindex="0" role="img" aria-label="Everline"><circle class="t-dot sm" cx="43.5" cy="249.0" r="3.5"/><text class="t-vlabel" text-anchor="end" x="36.5" y="253.0">Everline</text></g>
+      <g class="t-pin t-minor" data-venue="ov-stables" tabindex="0" role="img" aria-label="Olympic Valley Stables"><circle class="t-dot sm" cx="62.0" cy="250.0" r="3.5"/><text class="t-vlabel" text-anchor="end" x="55.0" y="254.0">Olympic Valley Stables</text></g>
+      <g class="t-pin t-minor" data-venue="zephyr" tabindex="0" role="img" aria-label="Zephyr Lodge"><circle class="t-dot sm" cx="193.7" cy="107.1" r="3.5"/><text class="t-vlabel" text-anchor="end" x="186.7" y="111.1">Zephyr Lodge</text></g>
+      <g class="t-pin t-minor" data-venue="chateau" tabindex="0" role="img" aria-label="The Chateau"><circle class="t-dot sm" cx="432.7" cy="147.1" r="3.5"/><text class="t-vlabel" x="439.7" y="151.1">The Chateau</text></g>
+      <g class="t-pin t-minor" data-venue="landing" tabindex="0" role="img" aria-label="The Landing"><circle class="t-dot sm" cx="444.0" cy="706.9" r="3.5"/><text class="t-vlabel" x="451.0" y="710.9">The Landing</text></g>
+      <g class="t-pin t-minor" data-venue="sunnyside" tabindex="0" role="img" aria-label="Sunnyside"><circle class="t-dot sm" cx="140.2" cy="363.0" r="3.5"/><text class="t-vlabel" text-anchor="end" x="133.2" y="367.0">Sunnyside</text></g>
+      <g class="t-pin t-minor" data-venue="gar-woods" tabindex="0" role="img" aria-label="Gar Woods"><circle class="t-dot sm" cx="245.1" cy="197.9" r="3.5"/><text class="t-vlabel" text-anchor="end" x="238.1" y="201.9">Gar Woods</text></g>
+      <g class="t-pin t-minor" data-venue="lahontan" tabindex="0" role="img" aria-label="Lahontan"><circle class="t-dot sm" cx="97.2" cy="52.2" r="3.5"/><text class="t-vlabel" text-anchor="end" x="90.2" y="56.2">Lahontan</text></g>
+      <g class="t-pin t-minor" data-venue="plumpjack" tabindex="0" role="img" aria-label="PlumpJack"><circle class="t-dot sm" cx="18.4" cy="251.1" r="3.5"/><text class="t-vlabel" text-anchor="end" x="11.4" y="255.1">PlumpJack</text></g>
+      <g class="t-pin t-minor" data-venue="ovec" tabindex="0" role="img" aria-label="OVEC"><circle class="t-dot sm" cx="18.5" cy="244.5" r="3.5"/><text class="t-vlabel" text-anchor="end" x="11.5" y="248.5">OVEC</text></g>
     </svg>
   </div>
 </header>
@@ -102,11 +119,7 @@ canonical_url: https://goldenflorals.com/venues
 <!-- ALSO LOVE -->
 <section class="block">
   <div class="venues-more">
-    <p class="lab">We also love designing at</p>
-    <ul class="venues-more-list">
-      <li>The HideOut</li><li>Tahoe Blue Estate</li><li>West Shore Cafe &amp; Inn</li><li>Everline Resort</li><li>Olympic Valley Stables</li><li>Zephyr Lodge, Northstar</li><li>The Chateau, Incline Village</li><li>The Landing Resort</li><li>Lakeview Lodge, Heavenly</li><li>Sunnyside</li><li>Valhalla Tahoe</li><li>Tahoe Mountain Club</li><li>PlumpJack at Palisades</li><li>Gar Woods Grill &amp; Pier</li><li>Lahontan Golf Club</li>
-    </ul>
-    <p class="lab" style="margin-top:40px;">In the foothills — our Nevada City &amp; Grass Valley home base</p>
+    <p class="lab">In the foothills — our Nevada City &amp; Grass Valley home base</p>
     <ul class="venues-more-list">
       <li>The National Exchange</li><li>The Holbrooke</li><li>Miner's Foundry</li><li>The Stone House</li><li>Harmony Ridge</li><li>The North Star House</li><li>Empire Mine</li><li>Lucchesi Vineyards</li><li>Nevada City Winery</li><li>River Highlands Ranch</li><li>The Roth Estate</li>
     </ul>
@@ -126,8 +139,8 @@ canonical_url: https://goldenflorals.com/venues
 /* Venues map <-> list cross-highlight */
 (function(){
   var pins={}, items={};
-  document.querySelectorAll('.t-pin.feat[data-venue]').forEach(function(p){ pins[p.getAttribute('data-venue')]=p; });
-  document.querySelectorAll('.vhl a[data-venue]').forEach(function(a){ items[a.getAttribute('data-venue')]=a; });
+  document.querySelectorAll('.t-pin[data-venue]').forEach(function(p){ pins[p.getAttribute('data-venue')]=p; });
+  document.querySelectorAll('.mh-body [data-venue]').forEach(function(a){ items[a.getAttribute('data-venue')]=a; });
   function set(v,on){ if(pins[v])pins[v].classList.toggle('is-active',on); if(items[v])items[v].classList.toggle('is-active',on); }
   function wire(el,v){
     el.addEventListener('mouseenter',function(){set(v,true);});

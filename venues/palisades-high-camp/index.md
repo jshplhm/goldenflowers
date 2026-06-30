@@ -17,15 +17,15 @@ canonical_url: https://goldenflorals.com/venues/palisades-high-camp
 
 <section class="section">
   <div class="container">
-    <div class="two-col two-col--solo">
-      <div class="two-col-text">
-        <span class="label">Why this venue matters</span>
-        <h2>A wedding at the top of the tram.</h2>
+    <div class="venue-intro">
+      <div class="vi-head"><span class="label">Why this venue matters</span>
+        <h2>A wedding at the top of the tram.</h2></div>
+      <div class="vi-body">
         <p>High Camp sits at 8,200 feet at the head of Olympic Valley, reached by the aerial tram and ringed by the granite peaks that hosted the 1960 Winter Olympics. The setting is enormous, bright, and exposed.</p>
         <p>Flowers here have two jobs: hold up in thin, dry alpine air, and hold their own against a very big view. Delicate, thirsty blooms struggle at altitude. We design with hardy, well-conditioned stems and structure that reads from a distance.</p>
         <p>Everything also has to ride the tram. We plan the build, the hydration, and the load-in around that single constraint, so what arrives at the top is as fresh as what left the studio.</p>
       </div>
-      </div>
+    </div>
     <div class="facts-strip">
       <div class="fact">
         <p class="label">At altitude</p>

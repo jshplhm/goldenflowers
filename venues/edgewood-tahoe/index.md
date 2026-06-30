@@ -19,15 +19,15 @@ redirect_from:
 <!-- Why Edgewood -->
 <section class="section">
   <div class="container">
-    <div class="two-col two-col--solo">
-      <div class="two-col-text">
-        <span class="label">Why this venue matters</span>
-        <h2>Edgewood is unlike anywhere else on the lake.</h2>
+    <div class="venue-intro">
+      <div class="vi-head"><span class="label">Why this venue matters</span>
+        <h2>Edgewood is unlike anywhere else on the lake.</h2></div>
+      <div class="vi-body">
         <p>The combination of lakefront access, the manicured grounds of a world-class golf course, and the dramatic Sierra Nevada backdrop means flowers here need to do something specific: belong.</p>
         <p>Arrangements that feel imported or generic read immediately against this landscape. We design florals that feel as though they came from the property itself, from the meadows at the course edge, the forested ridgeline, the Nevada-side light.</p>
         <p>Edgewood ceremonies range from the lakeside lawn to the Edgewood Pavilion, and each setting carries its own light and proportion. We design for the specific space you're using.</p>
       </div>
-      </div>
+    </div>
     <div class="facts-strip">
       <div class="fact">
         <p class="label">Two settings</p>

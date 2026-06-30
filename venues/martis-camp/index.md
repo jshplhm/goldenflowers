@@ -19,15 +19,15 @@ redirect_from:
 
 <section class="section">
   <div class="container">
-    <div class="two-col two-col--solo">
-      <div class="two-col-text">
-        <span class="label">Why this venue matters</span>
-        <h2>A wedding behind the gate.</h2>
+    <div class="venue-intro">
+      <div class="vi-head"><span class="label">Why this venue matters</span>
+        <h2>A wedding behind the gate.</h2></div>
+      <div class="vi-body">
         <p>Martis Camp is a private community in the pines between Truckee and Northstar, with a clean mountain-modern lodge, a family barn, and quiet forest lawns. The feeling is exclusive and unhurried, the High Sierra to yourself for the day.</p>
         <p>Access is coordinated through the community and your hosts, which makes logistics, timing, and load-in something to plan carefully and early. We're comfortable working inside those guidelines so the day runs cleanly.</p>
         <p>The design language here is refined and of the forest. We pull from the pine, granite, and mountain light so the florals feel native to the setting rather than imported into it.</p>
       </div>
-      </div>
+    </div>
     <div class="facts-strip">
       <div class="fact">
         <p class="label">Private community</p>

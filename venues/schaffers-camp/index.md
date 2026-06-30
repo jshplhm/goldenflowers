@@ -19,15 +19,15 @@ redirect_from:
 
 <section class="section">
   <div class="container">
-    <div class="two-col two-col--solo">
-      <div class="two-col-text">
-        <span class="label">Why this venue matters</span>
-        <h2>A lodge on top of the mountain.</h2>
+    <div class="venue-intro">
+      <div class="vi-head"><span class="label">Why this venue matters</span>
+        <h2>A lodge on top of the mountain.</h2></div>
+      <div class="vi-body">
         <p>Schaffer's Camp sits at 7,900 feet on the west ridge of Northstar, reached by gondola. The Tahoe Mountain Club lodge pairs walls of glass and three stone fireplaces with a wide deck open to the High Sierra.</p>
         <p>The setting is intimate but the views are enormous. Florals here work against a backdrop of glass, timber, and mountain light, and they have to read both indoors by the fire and out on the deck.</p>
         <p>It's also a venue at altitude, reached by lift, so the flowers need the conditioning and structure to arrive fresh and hold through a full mountaintop day.</p>
       </div>
-      </div>
+    </div>
     <div class="facts-strip">
       <div class="fact">
         <p class="label">Mountaintop</p>

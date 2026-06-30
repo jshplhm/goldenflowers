@@ -20,15 +20,15 @@ redirect_from:
 <!-- Why this venue -->
 <section class="section">
   <div class="container">
-    <div class="two-col two-col--solo">
-      <div class="two-col-text">
-        <span class="label">Why this venue matters</span>
-        <h2>Right on the water in Kings Beach.</h2>
+    <div class="venue-intro">
+      <div class="vi-head"><span class="label">Why this venue matters</span>
+        <h2>Right on the water in Kings Beach.</h2></div>
+      <div class="vi-body">
         <p>The North Tahoe Event Center sits directly on the lake in Kings Beach, with the beach and a wide-open North Shore view out front and a flexible indoor hall behind. It's one of the more accessible lakefront spaces on this side of Tahoe, and it gives couples a blank canvas to build on.</p>
         <p>That's the opportunity and the challenge. A blank-canvas hall means the flowers carry the room, set the palette, define the scale, turn an open space into your wedding. We design for that: installations and tablescapes that do real work, not garnish.</p>
         <p>Outside, the lakefront ceremony has Tahoe doing the heavy lifting, so the florals stay light and frame the view.</p>
       </div>
-      </div>
+    </div>
     <div class="facts-strip">
       <div class="fact">
         <p class="label">Blank canvas</p>

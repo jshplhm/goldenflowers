@@ -20,15 +20,15 @@ redirect_from:
 <!-- Why this venue -->
 <section class="section">
   <div class="container">
-    <div class="two-col two-col--solo">
-      <div class="two-col-text">
-        <span class="label">Why this venue matters</span>
-        <h2>A 1903 estate inside a state park.</h2>
+    <div class="venue-intro">
+      <div class="vi-head"><span class="label">Why this venue matters</span>
+        <h2>A 1903 estate inside a state park.</h2></div>
+      <div class="vi-body">
         <p>The Hellman-Ehrman Mansion sits on the West Shore at Sugar Pine Point, a historic lakefront estate surrounded by old-growth pine and protected parkland. Ceremonies happen outdoors, on the lawn in front of the mansion and along the water, with the lake and the Sierra crest as the backdrop.</p>
         <p>That setting asks for a particular kind of flower. Anything too polished or imported fights the place. We design florals that look like they were gathered from the forest and meadow around you, so the arrangements belong to the landscape rather than sitting on top of it.</p>
         <p>Because it's a state park, this is also a leave-no-trace venue, which is exactly how we already work.</p>
       </div>
-      </div>
+    </div>
     <div class="facts-strip">
       <div class="fact">
         <p class="label">Outdoor only</p>

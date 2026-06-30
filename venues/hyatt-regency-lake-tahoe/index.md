@@ -20,15 +20,15 @@ redirect_from:
 <!-- Why this venue -->
 <section class="section">
   <div class="container">
-    <div class="two-col two-col--solo">
-      <div class="two-col-text">
-        <span class="label">Why this venue matters</span>
-        <h2>This one's in our backyard.</h2>
+    <div class="venue-intro">
+      <div class="vi-head"><span class="label">Why this venue matters</span>
+        <h2>This one's in our backyard.</h2></div>
+      <div class="vi-body">
         <p>The Hyatt Regency sits on the Nevada North Shore in Incline Village, the same town Golden Flowers calls home. We know this corner of the lake by heart: the light, the late-day wind off the water, the way North Shore weather moves in fast and clears just as quickly.</p>
         <p>A resort wedding gives you polish and infrastructure, the trade is that generic, imported flowers can make a beautiful room feel anonymous. We design florals with a sense of place, pulled from the Sierra and grown in California, so a Hyatt wedding still feels like Tahoe and not like anywhere.</p>
         <p>Being local means short drive times, easy site visits, and a florist who can be on-site early and stay through strike.</p>
       </div>
-      </div>
+    </div>
     <div class="facts-strip">
       <div class="fact">
         <p class="label">Incline Village</p>

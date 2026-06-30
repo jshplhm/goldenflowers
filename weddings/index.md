@@ -16,8 +16,8 @@ redirect_from:
   <h1>Full-service <em>wedding flowers.</em></h1>
   <p class="th-sub">We take one wedding per date, so every couple works directly with our founder, Brittany, from the first consultation through setup and breakdown. She designs alongside a team of seasoned florists — no junior staff, no assembly line, no handoffs.</p>
   <div class="hero-btns">
-    <a class="btn" href="{{ site.baseurl }}/consultation-form">Schedule a consultation <span>&rarr;</span></a>
-    <a class="btn ghost-ink" href="{{ site.baseurl }}/about">Meet Brittany</a>
+    <a class="btn" href="{{ site.baseurl }}/consultation-form">Schedule a consultation</a>
+    <a class="btn ghost-ink" href="{{ site.baseurl }}/about">Meet Brittany <span>&rarr;</span></a>
   </div>
 </header>
 
@@ -55,8 +55,8 @@ redirect_from:
 
 <hr class="hr-line">
 
-<!-- PRICING -->
-<section class="block" id="pricing">
+<!-- PRICING (dark — the page's premium moment) -->
+<section class="block pricing-dark" id="pricing">
   <div class="pricing">
     <span class="lab">Investment</span>
     <p class="price-num">$5,000–$25,000+</p>
@@ -70,14 +70,6 @@ redirect_from:
   </div>
 </section>
 
-<!-- EDITORIAL BREAK -->
-<section class="immersive">
-  <img class="bg" src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1779132409797-K9BH7UUY32BCL87P6QI8/16.jpg?format=2500w" alt="Floral installation at a Lake Tahoe wedding">
-  <div class="il">
-    <span class="lab">How we work</span>
-    <p class="disp">One wedding a day, built start to finish by the same hands.</p>
-  </div>
-</section>
 
 <!-- RISK REVERSAL -->
 <section class="block">

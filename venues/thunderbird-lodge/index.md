@@ -17,15 +17,15 @@ canonical_url: https://goldenflorals.com/venues/thunderbird-lodge
 
 <section class="section">
   <div class="container">
-    <div class="two-col two-col--solo">
-      <div class="two-col-text">
-        <span class="label">Why this venue matters</span>
-        <h2>A historic estate on the water.</h2>
+    <div class="venue-intro">
+      <div class="vi-head"><span class="label">Why this venue matters</span>
+        <h2>A historic estate on the water.</h2></div>
+      <div class="vi-body">
         <p>Thunderbird Lodge is a 1936 stone estate on Lake Tahoe's quiet east shore, a National Historic Site with lawns and terraces that open straight onto some of the clearest water on the lake. There is nothing else like it in the basin.</p>
         <p>Florals here share the stage with hand-cut granite, old-growth timber, and the lake itself. The work has to feel as considered and enduring as the architecture, never decorative for its own sake.</p>
         <p>The estate hosts smaller, exclusive celebrations, which means the design can be detailed and architectural without getting lost. Every arrangement reads up close.</p>
       </div>
-      </div>
+    </div>
     <div class="facts-strip">
       <div class="fact">
         <p class="label">Historic estate</p>
