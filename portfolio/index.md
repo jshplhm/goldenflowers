@@ -12,8 +12,8 @@ redirect_from:
 <!-- TEXT HEADER (no full hero — on Portfolio, the work is the hero) -->
 <header class="text-hero">
   <span class="lab">Portfolio</span>
-  <h1>A look into our <em>creative world.</em></h1>
-  <p class="th-sub">Real Lake Tahoe &amp; Sierra weddings, grouped by the three directions couples ask for most. A starting point — we design in every style.</p>
+  <h1>Real weddings. <em>Three directions.</em></h1>
+  <p class="th-sub">Lake Tahoe and Sierra Nevada, grouped by the three directions couples ask for most. A starting point. We design in every style.</p>
 </header>
 
 <!-- Lush & Romantic -->
@@ -21,7 +21,7 @@ redirect_from:
   <div class="pf-group-head">
     <span class="lab">01 / Aesthetic</span>
     <h2>Lush & Romantic</h2>
-    <p>Rich, cinematic, deep burgundy and plum — of the moment, never overdone.</p>
+    <p>Rich, cinematic, deep burgundy and plum. Of the moment, never overdone.</p>
   </div>
   <div class="pf-feature">
     <a class="pf-card big" href="{{ site.baseurl }}/portfolio/katie-james">
@@ -44,7 +44,7 @@ redirect_from:
   <div class="pf-group-head">
     <span class="lab">02 / Aesthetic</span>
     <h2>Elevated Minimalist</h2>
-    <p>Clean lines, ivory and sage — design that lets the view do the talking.</p>
+    <p>Clean lines, ivory and sage. Design that lets the view do the talking.</p>
   </div>
   <div class="pf-feature">
     <a class="pf-card big" href="{{ site.baseurl }}/portfolio/jacqueline-brandon">
@@ -67,7 +67,7 @@ redirect_from:
   <div class="pf-group-head">
     <span class="lab">03 / Aesthetic</span>
     <h2>Wildflower Modern</h2>
-    <p>Native blooms and grasses, styled with an editorial eye — of this place.</p>
+    <p>Native blooms and grasses, styled with an editorial eye. Of this place.</p>
   </div>
   <div class="pf-feature">
     <a class="pf-card big" href="{{ site.baseurl }}/portfolio/camille-max">
@@ -88,6 +88,6 @@ redirect_from:
 <section class="cta">
   <span class="lab">Something different in mind?</span>
   <h2 class="disp">We work in <em>every direction.</em></h2>
-  <p>These three are a starting point, not a limit. Bring your Pinterest board, a venue photo, or a feeling you can't quite name yet — every wedding starts from your vision, not ours.</p>
+  <p>These three are a starting point, not a limit. Bring your Pinterest board, a venue photo, or a feeling you can't quite name yet. Every wedding starts from your vision, not ours.</p>
   <a class="btn btn-ink" href="{{ site.baseurl }}/consultation-form">Share your inspiration <span>&rarr;</span></a>
 </section>

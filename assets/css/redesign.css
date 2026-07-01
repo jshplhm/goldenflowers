@@ -22,7 +22,7 @@
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;}
-body{background:var(--bg);color:var(--ink);font-family:var(--b);font-weight:400;line-height:1.6;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow-x:hidden;}
+body{background:var(--bg);color:var(--ink);font-family:var(--b);font-weight:400;line-height:1.6;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow-x:clip;}
 img{display:block;max-width:100%;height:auto;}
 a{color:inherit;text-decoration:none;}
 /* Make the hidden attribute authoritative so JS-toggled steps/success actually hide
@@ -558,35 +558,53 @@ body.modal-open{overflow:hidden;}
 .btn-primary{display:inline-flex;align-items:center;gap:9px;background:var(--terra);color:var(--paper);padding:16px 30px;border-radius:100px;font-size:.85rem;letter-spacing:.03em;font-weight:500;transition:.25s;}
 .btn-primary:hover{transform:translateY(-2px);filter:brightness(1.07);}
 
-/* ---------- VENUES — custom Tahoe map (full-page hero) ---------- */
-.map-hero{min-height:100vh;display:grid;grid-template-columns:.78fr 1.22fr;column-gap:clamp(24px,4vw,60px);row-gap:0;align-items:center;max-width:1560px;margin:0 auto;padding:clamp(96px,12vh,124px) var(--pad) clamp(40px,5vw,60px);}
-.mh-head{grid-column:1;grid-row:1;align-self:end;}
-.mh-body{grid-column:1;grid-row:2;align-self:start;padding-top:22px;}
-.mh-map{grid-column:2;grid-row:1 / span 2;}
-.map-hero .mh-head h1{font-family:var(--d);font-weight:430;font-optical-sizing:auto;font-size:clamp(2.7rem,6vw,5.2rem);line-height:1.0;letter-spacing:-.025em;margin:14px 0 0;}
-.map-hero .mh-body p{color:var(--fg2);line-height:1.62;max-width:42ch;font-size:1.08rem;}
-.tahoe{width:auto;height:auto;max-width:100%;max-height:74vh;display:block;margin:0 auto;overflow:visible;}
-.map-hero .tahoe{height:92vh;max-height:968px;width:auto;max-width:100%;}
+/* ---------- VENUES — words + linked list (left) · Tahoe map (right) ---------- */
+.map-hero{display:grid;grid-template-columns:clamp(300px,36vw,470px) 1fr;column-gap:clamp(28px,3.5vw,56px);align-items:start;max-width:1600px;margin:0 auto;padding:clamp(78px,9vw,120px) var(--pad) clamp(48px,6vw,80px);}
+.mh-head{grid-column:1;grid-row:1;}
+.mh-body{grid-column:1;grid-row:2;padding-top:16px;}
+.mh-map{grid-column:2;grid-row:1 / span 2;align-self:center;overflow:hidden;}
+.map-hero .mh-head h1{font-family:var(--d);font-weight:430;font-optical-sizing:auto;font-size:clamp(2.6rem,5vw,4.6rem);line-height:1.02;letter-spacing:-.025em;margin:12px 0 0;}
+.tahoe{width:100%;height:auto;display:block;overflow:hidden;}
+.map-hero .tahoe{width:100%;height:auto;max-width:clamp(360px,44vw,580px);max-height:none;margin:0 auto;overflow:hidden;}
 @media(max-width:860px){
-  .map-hero{grid-template-columns:1fr;min-height:auto;row-gap:18px;padding-top:clamp(92px,17vw,112px);}
-  .mh-head{grid-column:1;grid-row:1;align-self:auto;}
-  .mh-map{grid-column:1;grid-row:2;}
-  .mh-body{grid-column:1;grid-row:3;align-self:auto;padding-top:0;}
-  .map-hero .tahoe{height:auto;width:100%;max-height:none;}
+  .map-hero{grid-template-columns:1fr;row-gap:22px;padding:clamp(92px,17vw,112px) var(--pad) clamp(40px,6vw,64px);}
+  .mh-head{grid-column:1;grid-row:1;}
+  .mh-map{grid-column:1;grid-row:2;align-self:auto;}
+  .mh-body{grid-column:1;grid-row:3;padding-top:0;}
+  .map-hero .tahoe{max-width:520px;}
 }
 .map-legend{list-style:none;margin:26px 0 0;}
 .map-note{margin:16px 0 0;font-size:.9rem;line-height:1.5;color:var(--mute);max-width:40ch;}
 /* Featured venue hover-list (cross-linked with the map) */
 .mh-body .mh-intro{color:var(--fg2);font-size:.98rem;line-height:1.55;max-width:40ch;margin-bottom:4px;}
-.vlist-lab{display:block;margin:16px 0 8px;}
-.vlist-lab:first-of-type{margin-top:14px;}
+.vlist-lab{display:block;margin:22px 0 10px;}
+.vlist-lab:first-of-type{margin-top:18px;}
+.map-legend--inline{display:flex;flex-wrap:wrap;gap:8px 22px;margin:14px 0 0;}
+.map-legend--inline li{display:flex;align-items:center;gap:9px;margin:0;font-size:.86rem;color:var(--fg2);}
+/* Featured — numbered, cross-linked with the map */
+.vfl{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:1px 20px;}
+.vfl li{margin:0;}
+.vfl a{display:grid;grid-template-columns:auto 1fr;grid-template-rows:auto auto;column-gap:12px;align-items:center;padding:8px 10px 8px 7px;border-radius:9px;transition:background .15s;text-decoration:none;}
+.vfl a:hover,.vfl a.is-active{background:oklch(62% .11 45/.10);}
+.vnum{grid-column:1;grid-row:1 / span 2;align-self:center;width:23px;height:23px;border-radius:50%;background:oklch(50% .01 150/.10);color:var(--fg2);font-family:var(--b);font-size:.72rem;display:flex;align-items:center;justify-content:center;transition:background .15s,color .15s;}
+.vfl a:hover .vnum,.vfl a.is-active .vnum{background:var(--terra);color:var(--paper);}
+.vf-name{grid-column:2;grid-row:1;font-family:var(--d);font-size:1.18rem;line-height:1.2;color:var(--ink);transition:color .15s;}
+.vfl a:hover .vf-name,.vfl a.is-active .vf-name{color:var(--terra);}
+.vf-type{grid-column:2;grid-row:2;font-size:.75rem;color:var(--mute);letter-spacing:.01em;}
+.vfl-minor{list-style:none;margin:8px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:5px 16px;}
+.vfl-minor li{margin:0;}
+.vfl-minor span{font-family:var(--b);font-size:.9rem;color:var(--fg2);cursor:pointer;border-bottom:1px solid transparent;transition:color .15s,border-color .15s;}
+.vfl-minor span:hover,.vfl-minor span.is-active{color:var(--terra);border-bottom-color:var(--terra);}
+.foothills-note{margin:24px 0 0;padding:14px 18px;background:oklch(62% .11 45/.07);border-radius:11px;font-size:.9rem;color:var(--fg2);line-height:1.5;}
+.foothills-note .lab{display:inline;margin-right:10px;}
+@media(max-width:560px){.vfl{grid-template-columns:1fr;gap:2px;}}
 .vhl{list-style:none;margin:0;padding:0;columns:2;column-gap:28px;}
-.vhl li{margin-bottom:8px;break-inside:avoid;}
-.vhl a{font-family:var(--d);font-size:1.04rem;line-height:1.2;color:var(--ink);transition:color .15s;display:inline-block;border-bottom:1px solid transparent;}
+.vhl li{margin-bottom:11px;break-inside:avoid;}
+.vhl a{font-family:var(--d);font-size:1.4rem;line-height:1.28;color:var(--ink);transition:color .15s;display:inline-block;border-bottom:1px solid transparent;}
 .vhl a:hover,.vhl a.is-active{color:var(--terra);border-bottom-color:var(--terra);}
 .vhl--minor{columns:2;column-gap:28px;}
-.vhl--minor li{margin-bottom:6px;}
-.vhl--minor span{font-family:var(--b);font-size:.9rem;line-height:1.2;color:var(--fg2);cursor:pointer;transition:color .15s;display:inline-block;border-bottom:1px solid transparent;}
+.vhl--minor li{margin-bottom:7px;}
+.vhl--minor span{font-family:var(--b);font-size:.95rem;line-height:1.25;color:var(--fg2);cursor:pointer;transition:color .15s;display:inline-block;border-bottom:1px solid transparent;}
 .vhl--minor span:hover,.vhl--minor span.is-active{color:var(--terra);border-bottom-color:var(--terra);}
 .t-pin.is-active .t-dot{r:9;}
 .t-pin.is-active .t-vlabel{fill:var(--terra);opacity:1;}
@@ -597,7 +615,7 @@ body.modal-open{overflow:hidden;}
 .map-legend .lg-dot.sm{width:11px;height:11px;background:oklch(57% .15 45/.65);}
 /* SVG map elements */
 .t-lake{fill:oklch(73% .045 236);stroke:none;}
-.t-hwy{fill:none;stroke:oklch(82% .004 80);stroke-width:1;stroke-linecap:round;stroke-linejoin:round;opacity:.9;}
+.t-hwy{fill:none;stroke:oklch(56% .018 250);stroke-width:1;stroke-linecap:round;stroke-linejoin:round;opacity:.5;}
 .t-hexit{font-family:var(--b);font-size:13px;fill:var(--mute);letter-spacing:.04em;}
 .t-lab{font-family:var(--b);font-size:8.5px;fill:var(--mute);letter-spacing:.08em;text-transform:uppercase;}
 .t-city circle{fill:var(--mute);}
@@ -610,11 +628,12 @@ body.modal-open{overflow:hidden;}
 .t-town:hover .t-clabel,.t-town:focus .t-clabel{opacity:1;}
 .t-town{outline:none;cursor:pointer;}
 .t-pin:hover .t-dot{r:10;}
-.t-vlabel{font-family:var(--b);font-size:13px;fill:var(--ink);opacity:0;transition:opacity .15s;paint-order:stroke;stroke:var(--paper);stroke-width:3.5;stroke-linejoin:round;pointer-events:none;}
-/* Featured venue names are hidden on the map by default — revealed on hover/tap or via the list. */
-.t-pin.feat .t-vlabel{font-size:13.5px;}
-.t-pin.feat .t-dot{r:6;}
+.t-vlabel{font-family:var(--b);font-size:13px;fill:var(--ink);opacity:0;transition:opacity .15s,fill .15s;paint-order:stroke;stroke:var(--paper);stroke-width:3.5;stroke-linejoin:round;pointer-events:none;}
+/* Featured venue names read on the map by default; hover/tap or the list brightens them. */
+.t-pin.feat .t-vlabel{font-size:13px;}
+.t-pin.feat .t-dot{r:5.5;}
 .t-pin:hover .t-vlabel,.t-pin:focus .t-vlabel{opacity:1;}
+.t-pin.feat:hover .t-vlabel,.t-pin.feat:focus .t-vlabel,.t-pin.feat.is-active .t-vlabel{fill:var(--terra);}
 .t-minor{outline:none;}
 /* SEO / no-JS venue list */
 .venue-list{display:grid;grid-template-columns:repeat(3,1fr);gap:0 clamp(30px,4vw,60px);margin-top:clamp(28px,4vw,44px);}
@@ -642,6 +661,8 @@ body.modal-open{overflow:hidden;}
   .form-step-1{grid-template-columns:1fr;}
   .map-section{grid-template-columns:1fr;gap:24px;}
   .venue-list{grid-template-columns:1fr;}
+  .venue-list a{flex-direction:column;align-items:flex-start;gap:5px;padding:15px 2px;}
+  .venue-list .vl-region{margin-left:0;}
   .cred-grid{grid-template-columns:repeat(2,1fr);}
   .values-grid{grid-template-columns:1fr;}
   .season-grid,.pledge-grid{grid-template-columns:1fr;}

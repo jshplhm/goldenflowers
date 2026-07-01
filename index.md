@@ -16,7 +16,7 @@ canonical_url: https://goldenflorals.com/
     <p class="ey lab">Lake Tahoe Wedding Florist</p>
     <h1 class="disp">Flowers That Belong to the <em>Place They Grow.</em></h1>
     <div class="hero-foot">
-      <p class="hero-sub">Farm-grown, foam-free florals — one wedding a day, deep in the Sierra Nevada.</p>
+      <p class="hero-sub">Farm-grown, foam-free florals. One wedding a day, deep in the Sierra Nevada.</p>
       <div class="hero-btns">
         <a class="btn" href="{{ site.baseurl }}/consultation-form">Check your date <span>&rarr;</span></a>
         <a class="btn ghost" href="{{ site.baseurl }}/portfolio">Explore portfolio</a>
@@ -38,11 +38,11 @@ canonical_url: https://goldenflorals.com/
 <!-- CREDO -->
 <section class="credo">
   <span class="lab">Why Golden Flowers</span>
-  <h2 class="disp">We don't fly flowers in from across the world. We <em>grow them</em> — an hour from where you'll say I do.</h2>
+  <h2 class="disp">We don't fly flowers in from across the world. We <em>grow them.</em> An hour from where you'll say I do.</h2>
   <div class="facts">
-    <div class="fact"><span class="n">01</span><h3>Farm-grown</h3><p>Raised on our own California plots and sourced only from growers we trust — never shipped from overseas.</p></div>
+    <div class="fact"><span class="n">01</span><h3>Farm-grown</h3><p>Raised on our own California plots and sourced only from growers we trust, never shipped from overseas.</p></div>
     <div class="fact"><span class="n">02</span><h3>Foam-free, always</h3><p>Every arrangement is built without floral foam. Better for the design, and better for the mountains.</p></div>
-    <div class="fact"><span class="n">03</span><h3>One wedding a day</h3><p>We never double-book. Your date is yours alone — undivided, start to finish.</p></div>
+    <div class="fact"><span class="n">03</span><h3>One wedding a day</h3><p>We never double-book. Your date is yours alone, undivided, start to finish.</p></div>
   </div>
 </section>
 
@@ -114,6 +114,6 @@ canonical_url: https://goldenflorals.com/
 <section class="cta">
   <span class="lab">One wedding per date</span>
   <h2 class="disp">Is your date <em>still open?</em></h2>
-  <p>We book a single wedding each day. Once yours is taken, it's gone — let's find out while it's still yours.</p>
+  <p>We book a single wedding each day. Once yours is taken, it's gone. Find out while it's still yours.</p>
   <a class="btn btn-ink" href="{{ site.baseurl }}/consultation-form">Check your date <span>&rarr;</span></a>
 </section>

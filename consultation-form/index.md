@@ -10,21 +10,21 @@ redirect_from:
 ---
 
 <!-- TEXT HEADER (no hero image) -->
-<header class="text-hero">
+<header class="text-hero" style="padding-bottom:32px">
   <span class="lab">Contact</span>
   <h1>Let's start the <em>conversation.</em></h1>
   <p class="th-sub">Tell us your date, venue, and vision. We follow up within 48 hours to confirm availability.</p>
 </header>
 
 <!-- INTRO -->
-<section class="block">
+<section class="block tight">
   <div class="twoup">
     <div>
       <span class="lab">What happens next</span>
       <h2 class="h-lg" style="margin-bottom:26px;">Three steps, no pressure.</h2>
       <ol class="next-steps">
-        <li><span class="n">1</span><strong>You send the form.</strong>Your date, venue, and a little about your vision — about two minutes.</li>
-        <li><span class="n">2</span><strong>We reply within 48 hours.</strong>We confirm we're open on your date — we take one wedding per day, so dates go quickly.</li>
+        <li><span class="n">1</span><strong>You send the form.</strong>Your date, venue, and a little about your vision. About two minutes.</li>
+        <li><span class="n">2</span><strong>We reply within 48 hours.</strong>We confirm we're open on your date. We take one wedding per day, so dates go quickly.</li>
         <li><span class="n">3</span><strong>We talk it through.</strong>A complimentary call, then a custom proposal built around your season and venue.</li>
       </ol>
     </div>
@@ -35,7 +35,7 @@ redirect_from:
       <p><a href="mailto:brittany@goldenflorals.com">brittany@goldenflorals.com</a></p>
       <p><a href="https://www.instagram.com/goldenflowersfloraldesign/" target="_blank" rel="noopener">@goldenflowersfloraldesign</a></p>
       <p style="color:var(--ink);margin-top:22px;">Incline Village, Lake Tahoe</p>
-      <p style="font-size:.85rem;color:var(--mute);margin-top:5px;line-height:1.5;">By appointment only — we don't host walk-ins. Serving Lake Tahoe, Truckee, Nevada City &amp; beyond.</p>
+      <p style="font-size:.85rem;color:var(--mute);margin-top:5px;line-height:1.5;">By appointment only. We don't host walk-ins. Serving Lake Tahoe, Truckee, Nevada City &amp; beyond.</p>
     </div>
   </div>
 </section>
