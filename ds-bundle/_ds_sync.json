@@ -1,0 +1,25 @@
+{
+  "shape": "package",
+  "offScript": true,
+  "syncDate": "2026-06-30",
+  "bundleSha12": "97fdc1babf1b",
+  "styleSha": "6afdff45fa19",
+  "auxSha": "33c75caf9a82",
+  "renderHashes": {
+    "SiteNav": "38b263e08b40",
+    "Button": "78e0fbaaeb9a",
+    "GhostButton": "56d4f01ef9a8",
+    "Hero": "12d87494de91",
+    "TextHero": "8766fc653eae",
+    "CredoSection": "073814989bca",
+    "ImmersiveQuote": "5ece0a610b06",
+    "ProcessSteps": "a8d7143fcd46",
+    "CtaSection": "6281caa261e0",
+    "Footer": "610a586916f2",
+    "Testimonial": "3a79c5455eee",
+    "QuoteCard": "01d5d3055437",
+    "PricingBlock": "b750813095aa",
+    "WorkGrid": "882963d08b23"
+  },
+  "sourceHashes": {}
+}
