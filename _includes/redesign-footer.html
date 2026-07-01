@@ -1,7 +1,11 @@
 <footer class="site-footer">
-  <div class="foot-top">
-    <div class="foot-brand">Golden Flowers</div>
-    <div class="foot-cols">
+  <div class="foot-in">
+    <div class="foot-lead">
+      <div class="foot-brand">Golden Flowers</div>
+      <p class="foot-tag">Farm-grown, foam-free wedding flowers — one wedding a day, across Lake Tahoe &amp; the Sierra Nevada.</p>
+      <a class="foot-cta" href="{{ site.baseurl }}/consultation-form">Check your date</a>
+    </div>
+    <nav class="foot-cols" aria-label="Footer">
       <div>
         <h4>Explore</h4>
         <a href="{{ site.baseurl }}/">Home</a>
@@ -12,22 +16,21 @@
       </div>
       <div>
         <h4>Studio</h4>
-        <p>Incline Village, NV</p>
-        <p>By appointment</p>
         <a href="{{ site.baseurl }}/sustainability">Sustainability</a>
         <a href="{{ site.baseurl }}/blog">Blog</a>
+        <p>Incline Village, NV</p>
+        <p>By appointment only</p>
       </div>
       <div>
         <h4>Contact</h4>
         <a href="tel:5305577689">(530) 557-7689</a>
         <a href="mailto:brittany@goldenflorals.com">brittany@goldenflorals.com</a>
         <a href="https://www.instagram.com/goldenflowersfloraldesign/" target="_blank" rel="noopener">@goldenflowersfloraldesign</a>
-        <a href="{{ site.baseurl }}/consultation-form">Check your date &rarr;</a>
       </div>
-    </div>
+    </nav>
   </div>
   <div class="foot-bottom">
-    <span>&copy; {{ site.time | date: "%Y" }} Golden Flowers</span>
+    <span>&copy; {{ site.time | date: "%Y" }} Golden Flowers · Incline Village, NV</span>
     <span>Farm-grown &amp; foam-free · Lake Tahoe · Truckee · Sierra Nevada</span>
   </div>
 </footer>

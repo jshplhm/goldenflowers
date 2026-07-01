@@ -43,13 +43,13 @@ redirect_from:
 <section class="block">
   <span class="lab">What's included</span>
   <h2 class="h-lg">Full-service means all of it.</h2>
-  <div class="values-grid">
+  <div class="included-grid">
     <div class="value-item"><h3>Bridal &amp; party florals</h3><p>Bridal bouquet, bridesmaids, boutonnieres, flower crown, corsages — all designed as a cohesive system.</p></div>
     <div class="value-item"><h3>Ceremony installation</h3><p>Arch, altar arrangement, aisle florals, or hanging installation, designed for your specific venue and ceremony setup.</p></div>
     <div class="value-item"><h3>Reception centerpieces</h3><p>Table arrangements designed to work at scale in your space — low-profile, elevated, or dramatic, based on your vision and room.</p></div>
-    <div class="value-item"><h3>Environmental florals</h3><p>Cocktail hour arrangements, bar florals, lounge pieces, escort card table styling, and any other environmental design.</p></div>
-    <div class="value-item"><h3>Setup &amp; breakdown</h3><p>We coordinate directly with your venue and planner, handle full setup on the day, and break down and remove everything at the end of the night.</p></div>
-    <div class="value-item"><h3>Mood board &amp; proposal</h3><p>Visual design document and itemized proposal before you commit to anything. You know exactly what you're getting and why.</p></div>
+    <div class="value-item"><h3>Environmental florals</h3><p>Cocktail-hour arrangements, bar florals, lounge pieces, escort-card styling, and any other environmental design.</p></div>
+    <div class="value-item"><h3>Setup &amp; breakdown</h3><p>We coordinate with your venue and planner, handle full setup on the day, and break down and remove everything at the end of the night.</p></div>
+    <div class="value-item"><h3>Mood board &amp; proposal</h3><p>A visual design document and itemized proposal before you commit to anything — you know exactly what you're getting, and why.</p></div>
   </div>
 </section>
 
@@ -59,10 +59,10 @@ redirect_from:
 <section class="block pricing-dark" id="pricing">
   <div class="pricing">
     <span class="lab">Investment</span>
-    <p class="price-num">$5,000–$25,000+</p>
-    <p class="price-sub">Full-service wedding florals</p>
+    <p class="price-num">$12,000–$18,000</p>
+    <p class="price-sub">Typical 100-person Lake Tahoe wedding</p>
     <ul class="price-list">
-      <li>A 100-person Lake Tahoe wedding typically ranges from <strong>$12,000–$18,000</strong></li>
+      <li>Most weddings start around <strong>$5,000</strong>; ambitious, installation-heavy visions run <strong>$25,000+</strong></li>
       <li>Every wedding includes consultation through day-of setup and breakdown</li>
       <li>We build a custom proposal around your venue, vision, and what's in season</li>
     </ul>

@@ -5,6 +5,8 @@ seo_title: "Schedule a Wedding Floral Consultation | Golden Flowers"
 permalink: /consultation-form
 description: "Schedule a free consultation with Golden Flowers, a Lake Tahoe wedding florist. We respond within 48 hours."
 canonical_url: https://goldenflorals.com/consultation-form
+redirect_from:
+  - /contact
 ---
 
 <!-- TEXT HEADER (no hero image) -->

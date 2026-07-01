@@ -1,5 +1,6 @@
 ---
 layout: redesign
+hero_nav: true
 title: "Our Sustainability Pledge"
 seo_title: "Sustainable & Eco-Friendly Lake Tahoe Wedding Florist | Golden Flowers"
 permalink: /sustainability

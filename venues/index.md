@@ -116,23 +116,12 @@ canonical_url: https://goldenflorals.com/venues
   </div>
 </header>
 
-<!-- ALSO LOVE -->
-<section class="block">
-  <div class="venues-more">
-    <p class="lab">In the foothills — our Nevada City &amp; Grass Valley home base</p>
-    <ul class="venues-more-list">
-      <li>The National Exchange</li><li>The Holbrooke</li><li>Miner's Foundry</li><li>The Stone House</li><li>Harmony Ridge</li><li>The North Star House</li><li>Empire Mine</li><li>Lucchesi Vineyards</li><li>Nevada City Winery</li><li>River Highlands Ranch</li><li>The Roth Estate</li>
-    </ul>
-    <p class="venues-more-note">Some of our favorite work happens away from named venues entirely, at <strong>private residences and lakeside estates</strong>. Don't see yours? We love adding new venues — tell us where you're getting married and we'll take it from there.</p>
-  </div>
-</section>
-
-<!-- CLOSING -->
-<section class="cta">
+<!-- CLOSING (the only thing below the hero, before the footer) -->
+<section class="cta cta--tall">
   <span class="lab">Get started</span>
   <h2 class="disp">Getting married at <em>one of these?</em></h2>
-  <p>Tell us your venue and date. We'll let you know if we're available and how we'd approach the design.</p>
-  <a class="btn btn-ink" href="{{ site.baseurl }}/consultation-form">Check your date <span>&rarr;</span></a>
+  <p>Tell us your venue and date — we'll let you know if we're available and how we'd approach the design. Don't see your venue? We love adding new ones, and some of our favorite work happens at private residences and lakeside estates. We also design across the Nevada City &amp; Grass Valley foothills.</p>
+  <a class="btn btn-ink" href="{{ site.baseurl }}/consultation-form">Check your date</a>
 </section>
 
 <script>

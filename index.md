@@ -1,5 +1,6 @@
 ---
 layout: redesign
+hero_nav: true
 title: "Golden Flowers"
 seo_title: "Lake Tahoe Wedding Florist | Golden Flowers"
 permalink: /

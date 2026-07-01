@@ -35,6 +35,51 @@ canonical_url: https://goldenflorals.com/venues/valhalla-tahoe
   </div>
 </section>
 
+<hr class="section-div">
+
+<section class="section">
+  <div class="container">
+    <span class="label">Design philosophy</span>
+    <h2>How we approach Valhalla florals.</h2>
+    <div class="philosophy-grid">
+      <div class="philosophy-item"><h3>Design with the architecture</h3><p>The timber Grand Hall is the star. We build pieces that read against dark wood and stone rather than disappearing into them.</p></div>
+      <div class="philosophy-item"><h3>A palette from the pines</h3><p>Ferns, textural greens, and garden-grown blooms that feel like they belong to the Tallac forest — never imported or slick.</p></div>
+      <div class="philosophy-item"><h3>Two very different rooms</h3><p>The Hall wants scale and drama; the boathouse and lawn want something looser and lakeside. We design each on its own terms.</p></div>
+      <div class="philosophy-item"><h3>Respect the site</h3><p>As a state historic site, Valhalla has firm load-in and strike windows. We plan the whole day around them so nothing runs late.</p></div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-div">
+
+<section class="section">
+  <div class="container">
+    <span class="label">Questions about Valhalla</span>
+    <h2>What planning here looks like.</h2>
+    {% include redesign-faq.html %}
+  </div>
+</section>
+
+<hr class="section-div">
+
+<section class="section">
+  <div class="container">
+    <span class="label">Investment at Valhalla</span>
+    <h2>What Valhalla florals cost.</h2>
+    <div class="pricing-box">
+      <div>
+        <p class="price-range">$10,000–$18,000</p>
+        <p class="price-note">Typical full-service Valhalla wedding</p>
+      </div>
+      <div class="price-details">
+        <p>A full-service Valhalla wedding typically runs $10,000–$18,000, depending on installation scale and guest count. Every proposal is custom — built around your guest count, ceremony footprint, and vision. No packages, no imported filler.</p>
+        <p>A standard engagement covers consultation, design proposal and mood board, ceremony installation, personal florals, reception centerpieces, and full day-of setup and breakdown.</p>
+        <a href="{{ site.baseurl }}/consultation-form" class="btn-primary" style="margin-top:16px;display:inline-block;">Request a custom estimate</a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <div class="cta-section">
   <div style="max-width:640px;margin:0 auto;">
     <span class="label" style="display:block;text-align:center">Get started</span>

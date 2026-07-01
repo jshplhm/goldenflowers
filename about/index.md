@@ -20,11 +20,18 @@ canonical_url: https://goldenflorals.com/about
 </section>
 
 <!-- STUDIO INTRO -->
-<section class="block-narrow prose">
-  <span class="lab" style="display:block;margin-bottom:18px;">What we're really for</span>
-  <p class="lead">A wedding day happens once — no rehearsal, no do-over. Golden Flowers exists to take that on: to plan for everything that can go wrong with cut flowers, and to make your design feel effortless on the one day it absolutely has to.</p>
-  <p>Brittany founded and leads the studio, and her background runs deep — a master's in agricultural science, more than a decade in sustainable agriculture across Spain, Mexico, New Zealand, and the United States, and formal European floral design training. But Golden Flowers was never built to be one person. It's a studio — a team of senior designers, growers, and installers who plan, lead, listen, and overdeliver together on every wedding we take.</p>
-  <p>We're based in the Sierra Nevada and we design for the couples who marry here. The flowers are grown close by, the team is local and seasoned, and the standards don't move.</p>
+<section class="block">
+  <div class="twocol">
+    <div>
+      <span class="lab">What we're really for</span>
+      <h2>A wedding day happens once — no rehearsal, no do-over.</h2>
+    </div>
+    <div class="prose">
+      <p class="lead">Golden Flowers exists to take that on: to plan for everything that can go wrong with cut flowers, and to make your design feel effortless on the one day it absolutely has to.</p>
+      <p>Brittany founded and leads the studio, and her background runs deep — a master's in agricultural science, more than a decade in sustainable agriculture across Spain, Mexico, New Zealand, and the United States, and formal European floral design training. But Golden Flowers was never built to be one person. It's a studio — a team of senior designers, growers, and installers who plan, lead, listen, and overdeliver together on every wedding we take.</p>
+      <p>We're based in the Sierra Nevada and we design for the couples who marry here. The flowers are grown close by, the team is local and seasoned, and the standards don't move.</p>
+    </div>
+  </div>
 </section>
 
 <hr class="hr-line">
@@ -33,12 +40,12 @@ canonical_url: https://goldenflorals.com/about
 <section class="block">
   <div class="twocol">
     <div>
-      <span class="lab">By choice</span>
-      <h2>One wedding a day is a standard, not a limit.</h2>
+      <span class="lab">Our one rule</span>
+      <h2>One wedding a day, so the day is entirely yours.</h2>
     </div>
     <div class="prose">
-      <p>We could book more. We choose not to. Taking a single wedding per date means the people who design your flowers are the same people who source them, build them, install them, and strike them at the end of the night — with nothing else competing for their attention that day.</p>
-      <p>It's the difference between a vendor squeezing you into a crowded Saturday and a team whose entire day belongs to you. At this level, that undivided focus is the whole point.</p>
+      <p>We take one wedding per date. Not because we couldn't do more — but because of what it lets us give the couple whose date it is: all of it. Every hour of that day, every hand on our team, focused on bringing one vision to life.</p>
+      <p>It's a values decision before it's a logistics one. The people who design your flowers are the same people who source, build, install, and strike them — with nothing else competing for their attention. All hands on deck, for you.</p>
       <span class="kicker">Your date is the only wedding on our calendar that day. Always.</span>
     </div>
   </div>

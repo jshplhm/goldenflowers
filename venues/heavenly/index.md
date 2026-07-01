@@ -35,6 +35,51 @@ canonical_url: https://goldenflorals.com/venues/heavenly
   </div>
 </section>
 
+<hr class="section-div">
+
+<section class="section">
+  <div class="container">
+    <span class="label">Design philosophy</span>
+    <h2>How we approach Heavenly florals.</h2>
+    <div class="philosophy-grid">
+      <div class="philosophy-item"><h3>Frame the view, don't fight it</h3><p>At the top of the gondola the basin is the headliner. We design restrained, intentional pieces that add to the moment.</p></div>
+      <div class="philosophy-item"><h3>Engineered for altitude</h3><p>Wind and thin air are real up here. Every arrangement is built to hold from the gondola ride through the last dance.</p></div>
+      <div class="philosophy-item"><h3>Plan the logistics first</h3><p>Getting florals up a mountain is its own project. We map transport, timing, and load-in so the day runs without you.</p></div>
+      <div class="philosophy-item"><h3>Light, and foam-free</h3><p>California-grown, no floral foam — lighter to carry up and better for the mountain you're standing on.</p></div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-div">
+
+<section class="section">
+  <div class="container">
+    <span class="label">Questions about Heavenly</span>
+    <h2>What planning here looks like.</h2>
+    {% include redesign-faq.html %}
+  </div>
+</section>
+
+<hr class="section-div">
+
+<section class="section">
+  <div class="container">
+    <span class="label">Investment at Heavenly</span>
+    <h2>What Heavenly florals cost.</h2>
+    <div class="pricing-box">
+      <div>
+        <p class="price-range">$12,000–$22,000</p>
+        <p class="price-note">Typical full-service Heavenly wedding</p>
+      </div>
+      <div class="price-details">
+        <p>A full-service Heavenly wedding typically runs $12,000–$22,000, reflecting the mountaintop logistics, depending on scale and guest count. Every proposal is custom — built around your guest count, ceremony footprint, and vision. No packages, no imported filler.</p>
+        <p>A standard engagement covers consultation, design proposal and mood board, ceremony installation, personal florals, reception centerpieces, and full day-of setup and breakdown.</p>
+        <a href="{{ site.baseurl }}/consultation-form" class="btn-primary" style="margin-top:16px;display:inline-block;">Request a custom estimate</a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <div class="cta-section">
   <div style="max-width:640px;margin:0 auto;">
     <span class="label" style="display:block;text-align:center">Get started</span>

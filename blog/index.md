@@ -1,5 +1,6 @@
 ---
 layout: redesign
+hero_nav: true
 title: "Blog"
 seo_title: "Lake Tahoe Wedding Flower Journal | Golden Flowers"
 permalink: /blog
