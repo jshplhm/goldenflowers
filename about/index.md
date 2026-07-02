@@ -41,7 +41,7 @@ canonical_url: https://goldenflorals.com/about
       <h2>A wedding day happens once. There is no rehearsal and no do-over.</h2>
     </div>
     <div class="prose">
-      <p class="lead">Golden Flowers exists to take that on: to plan for everything that can go wrong with cut flowers, and to make your design feel effortless on the one day it absolutely has to.</p>
+      <p>Golden Flowers exists to take that on: to plan for everything that can go wrong with cut flowers, and to make your design feel effortless on the one day it absolutely has to.</p>
       <p>Brittany founded and leads the studio, and her background runs deep: a master's in agricultural science, more than a decade in sustainable agriculture across Spain, Mexico, New Zealand, and the United States, and formal European floral design training.</p>
       <p>We're based in the Sierra Nevada and we design for the couples who marry here. The flowers are grown close by, the team is local and seasoned, and the standards don't move.</p>
     </div>

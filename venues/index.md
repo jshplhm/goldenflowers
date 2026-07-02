@@ -15,11 +15,7 @@ canonical_url: https://goldenflorals.com/venues
     <p class="mh-intro">From lakefront estates to mountaintop lodges, these are the venues Tahoe couples ask about most. Tap a featured venue for design notes, typical budgets, and planning answers.</p>
   </div>
   <div class="mh-body">
-    <ul class="map-legend map-legend--inline">
-      <li><span class="lg-dot"></span> Featured</li>
-      <li><span class="lg-dot sm"></span> More around the lake</li>
-    </ul>
-    <span class="lab vlist-lab">Featured</span>
+    <span class="lab vlist-lab"><span class="vlist-dot vlist-dot--feat"></span>Featured venues</span>
     <ol class="vfl">
       <li><a data-venue="edgewood-tahoe" href="{{ site.baseurl }}/venues/edgewood-tahoe"><span class="vnum">1</span><span class="vf-name">Edgewood</span><span class="vf-type">Golf resort</span></a></li>
       <li><a data-venue="thunderbird-lodge" href="{{ site.baseurl }}/venues/thunderbird-lodge"><span class="vnum">2</span><span class="vf-name">Thunderbird</span><span class="vf-type">Historic estate</span></a></li>
@@ -113,7 +109,7 @@ canonical_url: https://goldenflorals.com/venues
 <!-- MORE VENUES: full-width under the map hero -->
 <section class="venues-more">
   <div class="vm-group">
-    <span class="lab vlist-lab">More around the lake</span>
+    <span class="lab vlist-lab"><span class="vlist-dot vlist-dot--minor"></span>More around the lake</span>
     <ul class="vfl-minor vfl-pills">
       <li><span data-venue="chateau">The Chateau</span></li>
       <li><span data-venue="plumpjack">PlumpJack</span></li>
@@ -135,7 +131,7 @@ canonical_url: https://goldenflorals.com/venues
     </ul>
   </div>
   <div class="vm-group">
-    <span class="lab vlist-lab">Foothills · Nevada City &amp; Grass Valley</span>
+    <span class="lab vlist-lab">Select weddings in the foothills of Nevada City &amp; Grass Valley</span>
     <ul class="vfl-minor vfl-pills">
       <li><span>National Exchange Hotel</span></li>
       <li><span>Miners Foundry</span></li>
@@ -153,7 +149,7 @@ canonical_url: https://goldenflorals.com/venues
   <span class="lab">Somewhere else?</span>
   <h2>Don't see your venue?</h2>
   <p>The map covers the venues couples ask about most, and we range well beyond it. We design across Lake Tahoe, Truckee, and the Sierra foothills, and we'll gladly walk a space that's new to us before we propose a single stem.</p>
-  <a href="{{ site.baseurl }}/consultation-form" class="txt-link">Tell us where &rarr;</a>
+  <button type="button" class="txt-link" data-consult-open>Tell us where &rarr;</button>
 </section>
 
 <!-- CTA -->
@@ -169,7 +165,8 @@ canonical_url: https://goldenflorals.com/venues
 (function(){
   var pins={}, items={};
   document.querySelectorAll('.t-pin[data-venue]').forEach(function(p){ pins[p.getAttribute('data-venue')]=p; });
-  document.querySelectorAll('.mh-body [data-venue]').forEach(function(a){ items[a.getAttribute('data-venue')]=a; });
+  document.querySelectorAll('.mh-body [data-venue], .vfl-pills [data-venue]').forEach(function(a){ items[a.getAttribute('data-venue')]=a; });
+  function clearAll(){ Object.keys(pins).forEach(function(v){set(v,false);}); }
   function set(v,on){ if(pins[v])pins[v].classList.toggle('is-active',on); if(items[v])items[v].classList.toggle('is-active',on); }
   function wire(el,v){
     el.addEventListener('mouseenter',function(){set(v,true);});
@@ -179,5 +176,11 @@ canonical_url: https://goldenflorals.com/venues
   }
   Object.keys(pins).forEach(function(v){ wire(pins[v],v); });
   Object.keys(items).forEach(function(v){ wire(items[v],v); });
+  /* Clear highlights when returning via browser back (bfcache restore) */
+  window.addEventListener('pageshow',function(e){ if(e.persisted) clearAll(); });
+  /* Also clear on any navigation click so state doesn't persist on return */
+  document.querySelectorAll('.t-pin.feat').forEach(function(p){
+    p.addEventListener('click',function(){ clearAll(); });
+  });
 })();
 </script>

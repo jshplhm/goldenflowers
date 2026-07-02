@@ -25,14 +25,12 @@ canonical_url: https://goldenflorals.com/
   </div>
 </header>
 
-<!-- VENUE MARQUEE -->
-<section class="marq">
-  <span class="lab">We design at 30+ venues across the Sierra</span>
-  <div class="marq-track" aria-hidden="true">
-    <span>Edgewood Tahoe</span><span>The Ritz-Carlton</span><span>Thunderbird Lodge</span><span>Palisades High Camp</span><span>Martis Camp</span><span>Schaffer's Camp</span><span>The Miner's Foundry</span><span>National Exchange</span>
-    <span>Edgewood Tahoe</span><span>The Ritz-Carlton</span><span>Thunderbird Lodge</span><span>Palisades High Camp</span><span>Martis Camp</span><span>Schaffer's Camp</span><span>The Miner's Foundry</span><span>National Exchange</span>
+<!-- INTRO -->
+<section class="credo" style="padding-bottom:clamp(20px,3vw,40px);">
+  <div style="max-width:860px;">
+    <p style="font-size:1.08rem;line-height:1.75;color:var(--fg2);">Golden Flowers is a Lake Tahoe wedding florist designing seasonally grown, foam-free wedding flowers for couples getting married across the Sierra Nevada. We work with what California grows at its peak, in the season you're getting married, and we design around it. No flowers shipped from across the world. No floral foam. Just intentional, artful design that belongs to the place you're saying yes in.</p>
+    <p style="font-size:1.08rem;line-height:1.75;color:var(--fg2);margin-top:16px;">We take one wedding a day, so your wedding is the only one on our calendar. Our designs are elevated and organic, grounded in texture and movement, and grown as close to the Sierra Nevada as the season allows.</p>
   </div>
-  <p class="marq-foot"><a href="{{ site.baseurl }}/venues" class="txt-link">See all venues &rarr;</a></p>
 </section>
 
 <!-- CREDO -->
@@ -54,12 +52,22 @@ canonical_url: https://goldenflorals.com/
   </div>
   <div class="grid">
     <a class="tile feature" href="{{ site.baseurl }}/portfolio/lynn-aaron"><img src="{{ site.baseurl }}/assets/images/portfolio/lynn-aaron/lynn-aaron-16.jpg" alt="Lynn &amp; Aaron wedding flowers: mountaintop florals at Palisades High Camp, Olympic Valley" style="object-position:center 30%;"><span class="cap"><b>Lynn &amp; Aaron</b><span>Lush &amp; Romantic</span></span></a>
-    <a class="tile portrait" href="{{ site.baseurl }}/portfolio/emma-ross"><img src="{{ site.baseurl }}/assets/images/portfolio/emma-ross/emma-ross-14.jpg" alt="Emma &amp; Ross wedding flowers: white calla and ranunculus bouquet in golden light"><span class="cap"><b>Emma &amp; Ross</b><span>Elevated Minimalist</span></span></a>
+    <a class="tile portrait" href="{{ site.baseurl }}/portfolio/katie-james"><img src="{{ site.baseurl }}/assets/images/portfolio/katie-james/katie-james-07.jpg" alt="Katie &amp; James wedding flowers: lush blush florals"><span class="cap"><b>Katie &amp; James</b><span>Lush &amp; Romantic</span></span></a>
     <a class="tile quarter" href="{{ site.baseurl }}/portfolio/jacqueline-brandon"><img src="{{ site.baseurl }}/assets/images/portfolio/jacqueline-brandon/jacqueline-brandon-05.jpg" alt="Jacqueline &amp; Brandon wedding flowers: red velvet ceremony arch and rose petal aisle"><span class="cap"><b>Jacqueline &amp; Brandon</b><span>Lush &amp; Romantic</span></span></a>
     <a class="tile quarter" href="{{ site.baseurl }}/portfolio/camille-max"><img src="{{ site.baseurl }}/assets/images/portfolio/camille-max/camille-max-05.jpg" alt="Camille &amp; Max wedding flowers: blush bouquets and sage bridal party at North Star House"><span class="cap"><b>Camille &amp; Max</b><span>Wildflower Modern</span></span></a>
     <a class="tile quarter" href="{{ site.baseurl }}/portfolio/kelly-dylan"><img src="{{ site.baseurl }}/assets/images/portfolio/kelly-dylan/kelly-dylan-08.jpg" alt="Kelly &amp; Dylan wedding flowers: lakeside wildflower bouquet"><span class="cap"><b>Kelly &amp; Dylan</b><span>Wildflower Modern</span></span></a>
-    <a class="tile quarter" href="{{ site.baseurl }}/portfolio/katie-james"><img src="{{ site.baseurl }}/assets/images/portfolio/katie-james/katie-james-07.jpg" alt="Katie &amp; James wedding flowers: lush blush florals"><span class="cap"><b>Katie &amp; James</b><span>Lush &amp; Romantic</span></span></a>
+    <a class="tile quarter" href="{{ site.baseurl }}/portfolio/emma-ross"><img src="{{ site.baseurl }}/assets/images/portfolio/emma-ross/emma-ross-14.jpg" alt="Emma &amp; Ross wedding flowers: white calla and ranunculus bouquet in golden light"><span class="cap"><b>Emma &amp; Ross</b><span>Elevated Minimalist</span></span></a>
   </div>
+</section>
+
+<!-- VENUE MARQUEE -->
+<section class="marq">
+  <span class="lab">We design at 30+ venues across the Sierra</span>
+  <div class="marq-track" aria-hidden="true">
+    <span>Edgewood Tahoe</span><span>The Ritz-Carlton</span><span>Thunderbird Lodge</span><span>Palisades High Camp</span><span>Martis Camp</span><span>Schaffer's Camp</span><span>The Miner's Foundry</span><span>National Exchange</span>
+    <span>Edgewood Tahoe</span><span>The Ritz-Carlton</span><span>Thunderbird Lodge</span><span>Palisades High Camp</span><span>Martis Camp</span><span>Schaffer's Camp</span><span>The Miner's Foundry</span><span>National Exchange</span>
+  </div>
+  <p class="marq-foot"><a href="{{ site.baseurl }}/venues" class="txt-link">See all venues &rarr;</a></p>
 </section>
 
 <!-- IMMERSIVE -->

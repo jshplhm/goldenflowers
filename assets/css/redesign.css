@@ -88,6 +88,7 @@ body.menu-open .mobile-menu{transform:none;}
 .text-hero .th-sub{font-size:1.1rem;color:var(--fg2);max-width:42ch;line-height:1.55;margin-bottom:28px;}
 .txt-link{font-size:.85rem;letter-spacing:.03em;border-bottom:1px solid var(--terra);padding-bottom:3px;color:var(--forest);font-weight:500;transition:.2s;}
 .txt-link:hover{color:var(--terra);}
+button.txt-link{background:none;border-top:0;border-left:0;border-right:0;cursor:pointer;font-family:var(--b);display:inline;padding-left:0;padding-right:0;}
 
 /* ---------- HERO ---------- */
 .hero{position:relative;height:100vh;min-height:660px;display:flex;align-items:flex-end;color:var(--paper);overflow:hidden;}
@@ -608,7 +609,7 @@ body.nav-hidden .venue-breadcrumb{top:0;}
 .btn-primary:hover{transform:translateY(-2px);filter:brightness(1.07);}
 
 /* ---------- VENUES — words + linked list (left) · Tahoe map (right) ---------- */
-.map-hero{display:grid;grid-template-columns:clamp(300px,36vw,470px) 1fr;column-gap:clamp(28px,3.5vw,56px);align-items:start;max-width:1600px;margin:0 auto;padding:clamp(110px,13vw,160px) var(--pad) clamp(36px,5vw,60px);}
+.map-hero{display:grid;grid-template-columns:clamp(300px,36vw,470px) 1fr;column-gap:clamp(28px,3.5vw,56px);align-items:start;max-width:1600px;margin:0 auto;padding:clamp(120px,15vw,180px) var(--pad) clamp(36px,5vw,60px);}
 .mh-head{grid-column:1;grid-row:1;}
 .mh-body{grid-column:1;grid-row:2;padding-top:16px;}
 .mh-map{grid-column:2;grid-row:1 / span 2;align-self:center;overflow:hidden;}
@@ -616,11 +617,13 @@ body.nav-hidden .venue-breadcrumb{top:0;}
 .tahoe{width:100%;height:auto;display:block;overflow:hidden;}
 .map-hero .tahoe{width:100%;height:auto;max-width:clamp(360px,44vw,580px);max-height:none;margin:0 auto;overflow:hidden;}
 @media(max-width:860px){
-  .map-hero{grid-template-columns:1fr;row-gap:22px;padding:clamp(92px,17vw,112px) var(--pad) clamp(40px,6vw,64px);}
+  .map-hero{grid-template-columns:1fr;row-gap:22px;padding:clamp(120px,15vw,180px) var(--pad) clamp(40px,6vw,64px);}
   .mh-head{grid-column:1;grid-row:1;}
   .mh-map{grid-column:1;grid-row:2;align-self:auto;}
   .mh-body{grid-column:1;grid-row:3;padding-top:0;}
   .map-hero .tahoe{max-width:520px;}
+  .t-num{display:none;}
+  .testi-controls{display:none;}
 }
 .map-legend{list-style:none;margin:26px 0 0;}
 .map-note{margin:16px 0 0;font-size:.9rem;line-height:1.5;color:var(--mute);max-width:40ch;}
@@ -666,6 +669,11 @@ body.nav-hidden .venue-breadcrumb{top:0;}
 .t-pin.is-active .t-dot{r:11.5;fill:oklch(48% .16 45);stroke-width:3;}
 .t-pin.is-active .t-vlabel{fill:var(--terra);opacity:1;}
 .t-pin.t-minor.is-active .t-dot.sm{r:6;fill:var(--terra);}
+.t-pin.t-minor.is-active .t-vlabel{opacity:1;}
+/* inline section-label dot (replaces the old standalone legend) */
+.vlist-dot{display:inline-block;border-radius:50%;vertical-align:middle;margin-right:7px;flex:none;}
+.vlist-dot--feat{width:12px;height:12px;background:var(--terra);}
+.vlist-dot--minor{width:8px;height:8px;background:oklch(62% .11 45/.62);}
 @media(max-width:860px){.vhl,.vhl--minor{columns:2;}}
 .map-legend li{display:flex;align-items:center;gap:13px;margin-bottom:13px;color:var(--fg2);font-size:.96rem;}
 .map-legend .lg-dot{width:18px;height:18px;border-radius:50%;background:var(--terra);border:2px solid var(--paper);box-shadow:0 0 0 1px var(--line);flex:none;}
