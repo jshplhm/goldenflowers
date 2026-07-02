@@ -17,7 +17,7 @@
   --terra-soft:oklch(72% .13 50);
   --line:oklch(80% .015 120 / .65);
   --d:'Cormorant Garamond',Georgia,serif;  /* display — swap here to change face */
-  --b:-apple-system,BlinkMacSystemFont,'DM Sans',Helvetica,Arial,sans-serif;
+  --b:'DM Sans',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;
   --pad:clamp(24px,5vw,72px);
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
@@ -302,7 +302,7 @@ body.lb-open{overflow:hidden;}
 .block h2 em,.h-lg em{color:var(--forest);}
 .block h3{font-family:var(--d);font-weight:430;font-size:clamp(1.4rem,2.6vw,2rem);letter-spacing:-.01em;}
 .prose p{font-size:1.05rem;line-height:1.72;color:var(--fg2);margin-bottom:16px;max-width:66ch;}
-.prose p.lead{font-size:1.22rem;color:var(--ink);line-height:1.55;}
+.prose p.lead{font-family:var(--d);font-size:1.42rem;color:var(--ink);line-height:1.42;letter-spacing:-.005em;}
 .hr-line{border:none;border-top:1px solid var(--line);max-width:1500px;margin:0 auto;}
 
 /* two-column: heading left, body right */

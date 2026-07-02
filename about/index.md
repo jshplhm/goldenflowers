@@ -42,7 +42,7 @@ canonical_url: https://goldenflorals.com/about
     </div>
     <div class="prose">
       <p class="lead">Golden Flowers exists to take that on: to plan for everything that can go wrong with cut flowers, and to make your design feel effortless on the one day it absolutely has to.</p>
-      <p>Brittany founded and leads the studio, and her background runs deep: a master's in agricultural science, more than a decade in sustainable agriculture across Spain, Mexico, New Zealand, and the United States, and formal European floral design training. And Golden Flowers is more than one person: a studio of senior designers, growers, and installers who plan, listen, and deliver together on every wedding we take.</p>
+      <p>Brittany founded and leads the studio, and her background runs deep: a master's in agricultural science, more than a decade in sustainable agriculture across Spain, Mexico, New Zealand, and the United States, and formal European floral design training.</p>
       <p>We're based in the Sierra Nevada and we design for the couples who marry here. The flowers are grown close by, the team is local and seasoned, and the standards don't move.</p>
     </div>
   </div>
@@ -61,7 +61,6 @@ canonical_url: https://goldenflorals.com/about
       <h2>One wedding a day, so the day is entirely yours.</h2>
       <div class="prose">
         <p>We take one wedding per date because of what it lets us give the couple whose date it is: every hour of that day and every hand on our team, focused on bringing one vision to life.</p>
-        <p>The people who design your flowers are the same people who source, build, install, and strike them, with nothing else competing for their attention.</p>
         <span class="kicker">Your date is the only wedding on our calendar that day. Always.</span>
       </div>
     </div>
@@ -78,7 +77,7 @@ canonical_url: https://goldenflorals.com/about
       <h2 class="h-lg">We work alongside the best designers in the region, and beyond.</h2>
       <div class="prose">
         <p>Golden Flowers is a collective of accomplished florists, several of whom run their own studios and flower farms: seasoned designers we're privileged to build with, chosen for each wedding around its scale, style, and venue.</p>
-        <p>Because we take one wedding per date, the team that designs your flowers is the team that shows up to set them, adjusts them in the room, and breaks everything down when the night ends. The same trusted people carry your wedding from start to finish.</p>
+        <p>The team that designs your flowers is the team that shows up to set them, adjusts them in the room, and breaks everything down when the night ends.</p>
       </div>
     </div>
     <div class="ss-img">
@@ -99,7 +98,6 @@ canonical_url: https://goldenflorals.com/about
     <div class="prose">
       <p>Cut flowers are volatile. Stems wilt, blooms open early or refuse to, a shipment falls through, the heat turns, something breaks in transit. On an ordinary day that's a nuisance. On a wedding day it's a crisis, unless the people handling it have seen it before and planned for it.</p>
       <p>That's the expertise you're paying for. We engineer the sourcing, timing, and mechanics so the predictable problems never reach you, and we have the depth and the calm to solve the unpredictable ones in the moment, while the day keeps moving. The science background helps here too: knowing how a stem takes water, how a structure holds without foam, and how a flower will perform from setup through the last dance.</p>
-      <span class="kicker">At this level, what you're paying for is the certainty that it all goes right.</span>
     </div>
   </div>
   <div class="cred-grid">
@@ -176,7 +174,7 @@ canonical_url: https://goldenflorals.com/about
 <section class="mini">
   <span class="lab">Sustainability</span>
   <h2>Grown here, and grown responsibly.</h2>
-  <p>Foam-free construction, California-grown sourcing, composting, and reuse. The commitments that shape how we design are written down, in public, on their own page.</p>
+  <p>The commitments that shape how we design, source, and grow, from vase return to composting the harvest, are written down, in public, on their own page.</p>
   <a href="{{ site.baseurl }}/sustainability" class="txt-link">Read our sustainability pledge &rarr;</a>
 </section>
 
