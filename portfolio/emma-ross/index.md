@@ -1,9 +1,9 @@
 ---
 layout: redesign
-title: "Emma & Ross — Elevated Minimalist"
+title: "Emma & Ross · Elevated Minimalist"
 seo_title: "Emma & Ross Wedding Flowers · Elevated Minimalist | Golden Flowers"
 permalink: /portfolio/emma-ross
-description: "A Golden Flowers wedding — elevated minimalist floral design for a Lake Tahoe and Sierra Nevada celebration."
+description: "A Golden Flowers wedding: elevated minimalist floral design for a Lake Tahoe and Sierra Nevada celebration."
 hero_photo: emma-ross-08.jpg
 ---
 
@@ -12,7 +12,7 @@ hero_photo: emma-ross-08.jpg
 <header class="text-hero venue-hero">
   <span class="lab">Elevated Minimalist</span>
   <h1>Emma & Ross</h1>
-  <p class="th-sub">Ivory and green, and almost nothing else. At River Highlands Ranch, with rolling foothills and golden light doing most of the work, we kept the flowers quiet and architectural — white garden roses and calla lilies with long trailing amaranthus — so the landscape stayed the loudest thing in the frame.</p>
+  <p class="th-sub">Ivory and green, and almost nothing else. At River Highlands Ranch, with rolling foothills and golden light doing most of the work, we kept the flowers quiet and architectural, white garden roses and calla lilies with long trailing amaranthus, so the landscape stayed the loudest thing in the frame.</p>
 </header>
 
 {% include portfolio-gallery.html slug="emma-ross" hero="emma-ross-08.jpg" name="Emma & Ross" %}

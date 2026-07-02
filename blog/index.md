@@ -45,7 +45,7 @@ redirect_from:
 <section class="cta">
   <span class="lab">One wedding per date</span>
   <h2 class="disp">Planning your <em>Sierra wedding?</em></h2>
-  <p>Tell us your date and venue — we'll let you know if we're available while it's still yours.</p>
+  <p>Tell us your date and venue, and we'll let you know if we're available.</p>
   <a class="btn btn-ink" href="{{ site.baseurl }}/consultation-form">Check your date <span>&rarr;</span></a>
 </section>
 

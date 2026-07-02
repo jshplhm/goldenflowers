@@ -3,12 +3,12 @@ layout: redesign
 title: "About Golden Flowers"
 seo_title: "About Golden Flowers | Sustainable Lake Tahoe Wedding Florist"
 permalink: /about
-description: "Golden Flowers is a Lake Tahoe wedding florist specializing in bold, sustainable, artful floral design. Located in Incline Village, our studio creates seasonally grown arrangements, from editorial bouquets to full installations, for couples who want their wedding flowers to feel intentional, and unforgettable."
+description: "Golden Flowers is a Lake Tahoe wedding florist specializing in bold, sustainable, artful floral design. Located in Incline Village, our studio creates seasonally grown arrangements, from editorial bouquets to full installations, for couples who want their wedding flowers to feel intentional and unforgettable."
 canonical_url: https://goldenflorals.com/about
 ---
 
 <style>
-/* Editorial text + portrait splits — Brittany photos woven through the page */
+/* Editorial text + portrait splits: Brittany photos woven through the page */
 .story-split{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,64px);align-items:stretch;}
 .story-split .ss-text{align-self:center;}
 .story-split .ss-text .prose{margin-top:16px;}
@@ -21,12 +21,12 @@ canonical_url: https://goldenflorals.com/about
 }
 </style>
 
-<!-- STUDIO HERO (split — deliberately not full-bleed) -->
+<!-- STUDIO HERO (split: deliberately not full-bleed) -->
 <section class="studio-hero">
   <div class="sh-text">
     <p class="ey lab">Our Story</p>
     <h1>The team you want when it <em>has to be right.</em></h1>
-    <p class="sh-sub">Golden Flowers is a professional floral studio led by Brittany and built around a team of the region's most accomplished designers. One wedding a day, by choice, not by limit.</p>
+    <p class="sh-sub">Golden Flowers is a professional floral studio led by Brittany and built around a team of the region's most accomplished designers. We take one wedding a day and give it everything we have.</p>
   </div>
   <div class="sh-img">
     <img src="{{ site.baseurl }}/assets/images/studio-hero.jpg" alt="The Golden Flowers team finishing a wedding installation" loading="eager">
@@ -38,11 +38,11 @@ canonical_url: https://goldenflorals.com/about
   <div class="twocol">
     <div>
       <span class="lab">What we're really for</span>
-      <h2>A wedding day happens once. No rehearsal, no do-over.</h2>
+      <h2>A wedding day happens once. There is no rehearsal and no do-over.</h2>
     </div>
     <div class="prose">
       <p class="lead">Golden Flowers exists to take that on: to plan for everything that can go wrong with cut flowers, and to make your design feel effortless on the one day it absolutely has to.</p>
-      <p>Brittany founded and leads the studio, and her background runs deep: a master's in agricultural science, more than a decade in sustainable agriculture across Spain, Mexico, New Zealand, and the United States, and formal European floral design training. But Golden Flowers was never built to be one person. It's a studio: a team of senior designers, growers, and installers who plan, lead, listen, and overdeliver together on every wedding we take.</p>
+      <p>Brittany founded and leads the studio, and her background runs deep: a master's in agricultural science, more than a decade in sustainable agriculture across Spain, Mexico, New Zealand, and the United States, and formal European floral design training. And Golden Flowers is more than one person: a studio of senior designers, growers, and installers who plan, listen, and deliver together on every wedding we take.</p>
       <p>We're based in the Sierra Nevada and we design for the couples who marry here. The flowers are grown close by, the team is local and seasoned, and the standards don't move.</p>
     </div>
   </div>
@@ -50,7 +50,7 @@ canonical_url: https://goldenflorals.com/about
 
 <hr class="hr-line">
 
-<!-- ONE WEDDING A DAY — BY CHOICE -->
+<!-- ONE WEDDING A DAY: BY CHOICE -->
 <section class="block">
   <div class="story-split rev">
     <div class="ss-img">
@@ -60,8 +60,8 @@ canonical_url: https://goldenflorals.com/about
       <span class="lab">Our one rule</span>
       <h2>One wedding a day, so the day is entirely yours.</h2>
       <div class="prose">
-        <p>We take one wedding per date. Not because we couldn't do more, but because of what it lets us give the couple whose date it is: all of it. Every hour of that day, every hand on our team, focused on bringing one vision to life.</p>
-        <p>It's a values decision before it's a logistics one. The people who design your flowers are the same people who source, build, install, and strike them, with nothing else competing for their attention. All hands on deck, for you.</p>
+        <p>We take one wedding per date because of what it lets us give the couple whose date it is: every hour of that day and every hand on our team, focused on bringing one vision to life.</p>
+        <p>The people who design your flowers are the same people who source, build, install, and strike them, with nothing else competing for their attention.</p>
         <span class="kicker">Your date is the only wedding on our calendar that day. Always.</span>
       </div>
     </div>
@@ -77,8 +77,8 @@ canonical_url: https://goldenflorals.com/about
       <span class="lab">The team</span>
       <h2 class="h-lg">We work alongside the best designers in the region, and beyond.</h2>
       <div class="prose">
-        <p>Golden Flowers is a collective of accomplished florists, several of whom run their own studios and flower farms. These aren't day-of temps or junior assistants. They're seasoned designers we're privileged to build with, chosen for each wedding around its scale, style, and venue.</p>
-        <p>Because we take one wedding per date, the team that designs your flowers is the team that shows up to set them, adjusts them in the room, and breaks everything down when the night ends. No handoffs, no assembly line — the same trusted people, start to finish.</p>
+        <p>Golden Flowers is a collective of accomplished florists, several of whom run their own studios and flower farms: seasoned designers we're privileged to build with, chosen for each wedding around its scale, style, and venue.</p>
+        <p>Because we take one wedding per date, the team that designs your flowers is the team that shows up to set them, adjusts them in the room, and breaks everything down when the night ends. The same trusted people carry your wedding from start to finish.</p>
       </div>
     </div>
     <div class="ss-img">
@@ -99,11 +99,11 @@ canonical_url: https://goldenflorals.com/about
     <div class="prose">
       <p>Cut flowers are volatile. Stems wilt, blooms open early or refuse to, a shipment falls through, the heat turns, something breaks in transit. On an ordinary day that's a nuisance. On a wedding day it's a crisis, unless the people handling it have seen it before and planned for it.</p>
       <p>That's the expertise you're paying for. We engineer the sourcing, timing, and mechanics so the predictable problems never reach you, and we have the depth and the calm to solve the unpredictable ones in the moment, while the day keeps moving. The science background helps here too: knowing how a stem takes water, how a structure holds without foam, and how a flower will perform from setup through the last dance.</p>
-      <span class="kicker">At this price point, you're not paying for stems. You're paying to be sure.</span>
+      <span class="kicker">At this level, what you're paying for is the certainty that it all goes right.</span>
     </div>
   </div>
   <div class="cred-grid">
-    <div class="cred-item"><h4>Planned, not improvised</h4><p>Sourcing, timing, and logistics mapped before your week begins. The risks engineered out in advance.</p></div>
+    <div class="cred-item"><h4>Planned in advance</h4><p>Sourcing, timing, and logistics are mapped before your week begins, with the risks engineered out early.</p></div>
     <div class="cred-item"><h4>Calm under pressure</h4><p>When the inevitable happens, an experienced team solves it on-site without it becoming your problem.</p></div>
     <div class="cred-item"><h4>Built to hold</h4><p>Foam-free construction and a grower's understanding of how every stem performs across a full day.</p></div>
     <div class="cred-item"><h4>Grown close by</h4><p>Our own California farm plots and trusted regional growers: short chains, fresh stems, no overseas shipping.</p></div>
@@ -164,8 +164,8 @@ canonical_url: https://goldenflorals.com/about
   <span class="lab">Philosophy</span>
   <h2 class="h-lg">The principles behind the work.</h2>
   <div class="values-grid">
-    <div class="value-item"><h3>Intentional, not imported</h3><p>We don't import what's convenient. We work with what California produces at its peak, in the season you're getting married. The design responds to the land, not the other way around.</p></div>
-    <div class="value-item"><h3>Specific, not formula</h3><p>Every wedding gets a design built from scratch around its venue, season, and vision. There are no packages. Brittany designs each proposal as if it's the only one she's ever working on.</p></div>
+    <div class="value-item"><h3>Grown with intention</h3><p>We work with what California produces at its peak, in the season you're getting married, and we let the design respond to the land.</p></div>
+    <div class="value-item"><h3>Designed from scratch</h3><p>Every wedding gets a design built from scratch around its venue, season, and vision. There are no packages. Brittany designs each proposal as if it's the only one she's ever working on.</p></div>
     <div class="value-item"><h3>Sustainable at the root</h3><p>Foam-free construction, California-grown sourcing, and farm practices that treat soil health as a long-term investment. The environmental ethic runs through the whole operation.</p></div>
   </div>
 </section>
