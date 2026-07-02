@@ -12,7 +12,7 @@ redirect_from:
 
 <!-- HERO -->
 <header class="hero hero-sm">
-  <img class="bg" src="{{ site.baseurl }}/assets/images/portfolio/camille-max/camille-max-19.jpg" alt="Farm-grown, garden-gathered floral design by Golden Flowers" style="object-position:center 45%;">
+  <img class="bg" src="{{ site.baseurl }}/assets/images/portfolio/camille-max/camille-max-28.jpg" alt="Couple walking a tree-lined lane, flowers grown on California land by Golden Flowers" style="object-position:center 45%;">
   <div class="hero-in">
     <p class="ey lab">Sustainability pledge</p>
     <h1 class="disp">Working toward <em>something better.</em></h1>

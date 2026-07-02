@@ -32,24 +32,8 @@ canonical_url: https://goldenflorals.com/venues
       <li><a data-venue="old-greenwood" href="{{ site.baseurl }}/venues/old-greenwood"><span class="vnum">9</span><span class="vf-name">Old Greenwood</span><span class="vf-type">Golf club</span></a></li>
       <li><a data-venue="heavenly" href="{{ site.baseurl }}/venues/heavenly"><span class="vnum">10</span><span class="vf-name">Heavenly</span><span class="vf-type">Mountain resort</span></a></li>
       <li><a data-venue="north-tahoe-event-center" href="{{ site.baseurl }}/venues/north-tahoe-event-center"><span class="vnum">11</span><span class="vf-name">North Tahoe Event Center</span><span class="vf-type">Event venue</span></a></li>
+      <li><a data-venue="gar-woods" href="{{ site.baseurl }}/venues/gar-woods"><span class="vnum">12</span><span class="vf-name">Gar Woods</span><span class="vf-type">Lakefront restaurant</span></a></li>
     </ol>
-    <span class="lab vlist-lab">More around the lake</span>
-    <ul class="vfl-minor">
-      <li><span data-venue="chateau">The Chateau</span></li>
-      <li><span data-venue="plumpjack">PlumpJack</span></li>
-      <li><span data-venue="everline">Everline</span></li>
-      <li><span data-venue="schaffers">Schaffer's Camp</span></li>
-      <li><span data-venue="gar-woods">Gar Woods</span></li>
-      <li><span data-venue="sunnyside">Sunnyside</span></li>
-      <li><span data-venue="lahontan">Lahontan</span></li>
-      <li><span data-venue="tahoe-blue">Tahoe Blue Estate</span></li>
-      <li><span data-venue="landing">The Landing</span></li>
-      <li><span data-venue="west-shore">West Shore Cafe</span></li>
-      <li><span data-venue="ov-stables">Olympic Valley Stables</span></li>
-      <li><span data-venue="zephyr">Zephyr Lodge</span></li>
-      <li><span data-venue="ovec">OVEC</span></li>
-    </ul>
-    <p class="foothills-note"><span class="lab">Foothills</span> Also serving Nevada City &amp; Grass Valley.</p>
   </div>
   <div class="mh-map">
     <svg class="tahoe" viewBox="-12 -66 605 892" xmlns="http://www.w3.org/2000/svg" role="group" aria-label="Map of Lake Tahoe wedding venues">
@@ -99,7 +83,7 @@ canonical_url: https://goldenflorals.com/venues
       <a href="{{ site.baseurl }}/venues/hellman-ehrman-mansion" class="t-pin feat" data-venue="hellman-ehrman-mansion" aria-label="Hellman-Ehrman Mansion: view venue"><circle class="t-dot" cx="200.6" cy="532.0" r="6.5"/><text class="t-num" x="200.6" y="535.2">6</text><text class="t-vlabel" text-anchor="end" x="191.6" y="536.0">Hellman-Ehrman</text></a>
       <a href="{{ site.baseurl }}/venues/valhalla-tahoe" class="t-pin feat" data-venue="valhalla-tahoe" aria-label="Valhalla: view venue"><circle class="t-dot" cx="298.9" cy="747.4" r="6.5"/><text class="t-num" x="298.9" y="750.6">7</text><text class="t-vlabel" text-anchor="middle" x="298.9" y="764.4">Valhalla</text></a>
       <a href="{{ site.baseurl }}/venues/palisades-high-camp" class="t-pin feat" data-venue="palisades-high-camp" aria-label="Palisades High Camp: view venue"><circle class="t-dot" cx="-3.0" cy="273.2" r="6.5"/><text class="t-num" x="-3.0" y="276.4">8</text><text class="t-vlabel" x="4.0" y="293.0">Palisades High Camp</text></a>
-      <a href="{{ site.baseurl }}/venues/old-greenwood" class="t-pin feat" data-venue="old-greenwood" aria-label="Old Greenwood: view venue"><circle class="t-dot" cx="148.0" cy="22.0" r="6.5"/><text class="t-num" x="148.0" y="25.2">9</text><text class="t-vlabel" x="157.0" y="26.0">Old Greenwood</text></a>
+      <a href="{{ site.baseurl }}/venues/old-greenwood" class="t-pin feat" data-venue="old-greenwood" aria-label="Old Greenwood: view venue"><circle class="t-dot" cx="175.0" cy="-27.0" r="6.5"/><text class="t-num" x="175.0" y="-23.8">9</text><text class="t-vlabel" x="184.0" y="-23.0">Old Greenwood</text></a>
       <a href="{{ site.baseurl }}/venues/heavenly" class="t-pin feat" data-venue="heavenly" aria-label="Heavenly: view venue"><circle class="t-dot" cx="458.7" cy="757.1" r="6.5"/><text class="t-num" x="458.7" y="760.3000000000001">10</text><text class="t-vlabel" x="467.7" y="761.1">Heavenly</text></a>
       <a href="{{ site.baseurl }}/venues/north-tahoe-event-center" class="t-pin feat" data-venue="north-tahoe-event-center" aria-label="North Tahoe Event Center: view venue"><circle class="t-dot" cx="332.6" cy="177.7" r="6.5"/><text class="t-num" x="332.6" y="180.89999999999998">11</text><text class="t-vlabel" text-anchor="middle" x="332.6" y="167.7">North Tahoe</text></a>
 
@@ -110,16 +94,59 @@ canonical_url: https://goldenflorals.com/venues
       <g class="t-pin t-minor" data-venue="everline" tabindex="0" role="img" aria-label="Everline"><circle class="t-dot sm" cx="43.5" cy="249.0" r="3.5"/><text class="t-vlabel" x="50.5" y="253.0">Everline</text></g>
       <g class="t-pin t-minor" data-venue="ov-stables" tabindex="0" role="img" aria-label="Olympic Valley Stables"><circle class="t-dot sm" cx="62.0" cy="250.0" r="3.5"/><text class="t-vlabel" x="69.0" y="254.0">Olympic Valley Stables</text></g>
       <g class="t-pin t-minor" data-venue="zephyr" tabindex="0" role="img" aria-label="Zephyr Lodge"><circle class="t-dot sm" cx="193.7" cy="107.1" r="3.5"/><text class="t-vlabel" text-anchor="end" x="186.7" y="111.1">Zephyr Lodge</text></g>
-      <g class="t-pin t-minor" data-venue="chateau" tabindex="0" role="img" aria-label="The Chateau"><circle class="t-dot sm" cx="432.7" cy="147.1" r="3.5"/><text class="t-vlabel" x="439.7" y="151.1">The Chateau</text></g>
+      <g class="t-pin t-minor" data-venue="chateau" tabindex="0" role="img" aria-label="The Chateau"><circle class="t-dot sm" cx="437.0" cy="157.0" r="3.5"/><text class="t-vlabel" x="444.0" y="161.0">The Chateau</text></g>
       <g class="t-pin t-minor" data-venue="landing" tabindex="0" role="img" aria-label="The Landing"><circle class="t-dot sm" cx="444.0" cy="706.9" r="3.5"/><text class="t-vlabel" x="451.0" y="710.9">The Landing</text></g>
       <g class="t-pin t-minor" data-venue="sunnyside" tabindex="0" role="img" aria-label="Sunnyside"><circle class="t-dot sm" cx="140.2" cy="363.0" r="3.5"/><text class="t-vlabel" text-anchor="end" x="133.2" y="367.0">Sunnyside</text></g>
-      <g class="t-pin t-minor" data-venue="gar-woods" tabindex="0" role="img" aria-label="Gar Woods"><circle class="t-dot sm" cx="245.1" cy="197.9" r="3.5"/><text class="t-vlabel" text-anchor="end" x="238.1" y="201.9">Gar Woods</text></g>
+      <a href="{{ site.baseurl }}/venues/gar-woods" class="t-pin feat" data-venue="gar-woods" aria-label="Gar Woods: view venue"><circle class="t-dot" cx="245.1" cy="197.9" r="6.5"/><text class="t-num" x="245.1" y="201.1">12</text><text class="t-vlabel" text-anchor="end" x="231.1" y="201.9">Gar Woods</text></a>
       <g class="t-pin t-minor" data-venue="lahontan" tabindex="0" role="img" aria-label="Lahontan"><circle class="t-dot sm" cx="97.2" cy="52.2" r="3.5"/><text class="t-vlabel" text-anchor="end" x="90.2" y="56.2">Lahontan</text></g>
       <g class="t-pin t-minor" data-venue="plumpjack" tabindex="0" role="img" aria-label="PlumpJack"><circle class="t-dot sm" cx="18.4" cy="251.1" r="3.5"/><text class="t-vlabel" x="25.4" y="255.1">PlumpJack</text></g>
       <g class="t-pin t-minor" data-venue="ovec" tabindex="0" role="img" aria-label="OVEC"><circle class="t-dot sm" cx="18.5" cy="244.5" r="3.5"/><text class="t-vlabel" x="25.5" y="248.5">OVEC</text></g>
+      <g class="t-pin t-minor" data-venue="ridge-tahoe" tabindex="0" role="img" aria-label="The Ridge Tahoe"><circle class="t-dot sm" cx="530.5" cy="709.6" r="3.5"/><text class="t-vlabel" text-anchor="end" x="523.5" y="713.6">The Ridge Tahoe</text></g>
+      <g class="t-pin t-minor" data-venue="round-hill" tabindex="0" role="img" aria-label="Round Hill Pines Beach Resort"><circle class="t-dot sm" cx="445.7" cy="659.1" r="3.5"/><text class="t-vlabel" x="452.7" y="663.1">Round Hill Pines</text></g>
+      <g class="t-pin t-minor" data-venue="zephyr-cove" tabindex="0" role="img" aria-label="Zephyr Cove Resort"><circle class="t-dot sm" cx="444.0" cy="616.0" r="3.5"/><text class="t-vlabel" x="451.0" y="620.0">Zephyr Cove Resort</text></g>
+      <g class="t-pin t-minor" data-venue="hideout" tabindex="0" role="img" aria-label="The Hideout at Kirkwood"><circle class="t-dot sm" cx="258.0" cy="800.0" r="3.5"/><text class="t-vlabel" text-anchor="end" x="251.0" y="804.0">The Hideout · Kirkwood</text></g>
+      <g class="t-pin t-minor" data-venue="kirkwood" tabindex="0" role="img" aria-label="Kirkwood Mountain Resort"><circle class="t-dot sm" cx="276.0" cy="800.0" r="3.5"/><text class="t-vlabel" x="283.0" y="804.0">Kirkwood Mountain Resort</text></g>
     </svg>
   </div>
 </header>
+
+<!-- MORE VENUES: full-width under the map hero -->
+<section class="venues-more">
+  <div class="vm-group">
+    <span class="lab vlist-lab">More around the lake</span>
+    <ul class="vfl-minor vfl-pills">
+      <li><span data-venue="chateau">The Chateau</span></li>
+      <li><span data-venue="plumpjack">PlumpJack</span></li>
+      <li><span data-venue="everline">Everline</span></li>
+      <li><span data-venue="schaffers">Schaffer's Camp</span></li>
+      <li><span data-venue="sunnyside">Sunnyside</span></li>
+      <li><span data-venue="lahontan">Lahontan</span></li>
+      <li><span data-venue="tahoe-blue">Tahoe Blue Estate</span></li>
+      <li><span data-venue="landing">The Landing</span></li>
+      <li><span data-venue="west-shore">West Shore Cafe</span></li>
+      <li><span data-venue="ov-stables">Olympic Valley Stables</span></li>
+      <li><span data-venue="zephyr">Zephyr Lodge</span></li>
+      <li><span data-venue="ovec">OVEC</span></li>
+      <li><span data-venue="ridge-tahoe">The Ridge Tahoe</span></li>
+      <li><span data-venue="round-hill">Round Hill Pines</span></li>
+      <li><span data-venue="zephyr-cove">Zephyr Cove Resort</span></li>
+      <li><span data-venue="hideout">The Hideout</span></li>
+      <li><span data-venue="kirkwood">Kirkwood Mountain Resort</span></li>
+    </ul>
+  </div>
+  <div class="vm-group">
+    <span class="lab vlist-lab">Foothills · Nevada City &amp; Grass Valley</span>
+    <ul class="vfl-minor vfl-pills">
+      <li><span>National Exchange Hotel</span></li>
+      <li><span>Miners Foundry</span></li>
+      <li><span>Holbrooke Hotel</span></li>
+      <li><span>The Stone House</span></li>
+      <li><span>The North Star House</span></li>
+      <li><span>Harmony Ridge Lodge</span></li>
+      <li><span>The Roth Estate</span></li>
+    </ul>
+  </div>
+</section>
 
 <!-- DON'T SEE YOUR VENUE -->
 <section class="mini">
