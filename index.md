@@ -54,9 +54,9 @@ canonical_url: https://goldenflorals.com/
   </div>
   <div class="grid">
     <a class="tile feature" href="{{ site.baseurl }}/portfolio/lynn-aaron"><img src="{{ site.baseurl }}/assets/images/portfolio/lynn-aaron/lynn-aaron-16.jpg" alt="Lynn &amp; Aaron wedding flowers: mountaintop florals at Palisades High Camp, Olympic Valley" style="object-position:center 30%;"><span class="cap"><b>Lynn &amp; Aaron</b><span>Lush &amp; Romantic</span></span></a>
-    <a class="tile portrait" href="{{ site.baseurl }}/portfolio/emma-ross"><img src="{{ site.baseurl }}/assets/images/portfolio/emma-ross/emma-ross-08.jpg" alt="Emma &amp; Ross wedding flowers: ivory and trailing greenery"><span class="cap"><b>Emma &amp; Ross</b><span>Elevated Minimalist</span></span></a>
-    <a class="tile quarter" href="{{ site.baseurl }}/portfolio/jacqueline-brandon"><img src="{{ site.baseurl }}/assets/images/portfolio/jacqueline-brandon/jacqueline-brandon-11.jpg" alt="Jacqueline &amp; Brandon wedding flowers: deep red roses"><span class="cap"><b>Jacqueline &amp; Brandon</b><span>Lush &amp; Romantic</span></span></a>
-    <a class="tile quarter" href="{{ site.baseurl }}/portfolio/camille-max"><img src="{{ site.baseurl }}/assets/images/portfolio/camille-max/camille-max-16.jpg" alt="Camille &amp; Max wedding flowers: garden florals"><span class="cap"><b>Camille &amp; Max</b><span>Wildflower Modern</span></span></a>
+    <a class="tile portrait" href="{{ site.baseurl }}/portfolio/emma-ross"><img src="{{ site.baseurl }}/assets/images/portfolio/emma-ross/emma-ross-14.jpg" alt="Emma &amp; Ross wedding flowers: white calla and ranunculus bouquet in golden light"><span class="cap"><b>Emma &amp; Ross</b><span>Elevated Minimalist</span></span></a>
+    <a class="tile quarter" href="{{ site.baseurl }}/portfolio/jacqueline-brandon"><img src="{{ site.baseurl }}/assets/images/portfolio/jacqueline-brandon/jacqueline-brandon-05.jpg" alt="Jacqueline &amp; Brandon wedding flowers: red velvet ceremony arch and rose petal aisle"><span class="cap"><b>Jacqueline &amp; Brandon</b><span>Lush &amp; Romantic</span></span></a>
+    <a class="tile quarter" href="{{ site.baseurl }}/portfolio/camille-max"><img src="{{ site.baseurl }}/assets/images/portfolio/camille-max/camille-max-05.jpg" alt="Camille &amp; Max wedding flowers: blush bouquets and sage bridal party at North Star House"><span class="cap"><b>Camille &amp; Max</b><span>Wildflower Modern</span></span></a>
     <a class="tile quarter" href="{{ site.baseurl }}/portfolio/kelly-dylan"><img src="{{ site.baseurl }}/assets/images/portfolio/kelly-dylan/kelly-dylan-08.jpg" alt="Kelly &amp; Dylan wedding flowers: lakeside wildflower bouquet"><span class="cap"><b>Kelly &amp; Dylan</b><span>Wildflower Modern</span></span></a>
     <a class="tile quarter" href="{{ site.baseurl }}/portfolio/katie-james"><img src="{{ site.baseurl }}/assets/images/portfolio/katie-james/katie-james-07.jpg" alt="Katie &amp; James wedding flowers: lush blush florals"><span class="cap"><b>Katie &amp; James</b><span>Lush &amp; Romantic</span></span></a>
   </div>
@@ -79,19 +79,19 @@ canonical_url: https://goldenflorals.com/
       <h2 class="disp">Three design languages we keep returning to.</h2>
     </div>
     <div class="aes-row">
-      <a class="aes-card" href="{{ site.baseurl }}/portfolio?filter=dark-romance">
+      <a class="aes-card" href="{{ site.baseurl }}/portfolio#lush-romantic">
         <div class="ph"><span class="idx">01</span><img src="{{ site.baseurl }}/assets/images/portfolio/jacqueline-brandon/jacqueline-brandon-11.jpg" alt="Lush and romantic floral design: deep red roses"></div>
         <h3>Lush &amp; Romantic</h3>
         <p>Rich and cinematic, in deep shades of burgundy and plum.</p>
         <span class="more">View weddings</span>
       </a>
-      <a class="aes-card" href="{{ site.baseurl }}/portfolio?filter=minimalist">
+      <a class="aes-card" href="{{ site.baseurl }}/portfolio#elevated-minimalist">
         <div class="ph"><span class="idx">02</span><img src="{{ site.baseurl }}/assets/images/portfolio/emma-ross/emma-ross-08.jpg" alt="Elevated minimalist floral design: ivory and greenery"></div>
         <h3>Elevated Minimalist</h3>
         <p>Clean lines, ivory and sage. Design that lets the view do the talking.</p>
         <span class="more">View weddings</span>
       </a>
-      <a class="aes-card" href="{{ site.baseurl }}/portfolio?filter=wildflower">
+      <a class="aes-card" href="{{ site.baseurl }}/portfolio#wildflower-modern">
         <div class="ph"><span class="idx">03</span><img src="{{ site.baseurl }}/assets/images/portfolio/camille-max/camille-max-16.jpg" alt="Wildflower modern floral design: garden blooms and grasses"></div>
         <h3>Wildflower Modern</h3>
         <p>Native blooms and grasses, styled with an editorial eye.</p>

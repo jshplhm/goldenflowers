@@ -26,7 +26,7 @@ redirect_from:
 </header>
 
 <!-- Lush & Romantic -->
-<section class="pf-group">
+<section class="pf-group" id="lush-romantic">
   <div class="pf-group-head">
     <span class="lab">01 / Aesthetic</span>
     <h2>Lush &amp; Romantic</h2>
@@ -53,7 +53,7 @@ redirect_from:
 </section>
 
 <!-- Elevated Minimalist -->
-<section class="pf-group">
+<section class="pf-group" id="elevated-minimalist">
   <div class="pf-group-head">
     <span class="lab">02 / Aesthetic</span>
     <h2>Elevated Minimalist</h2>
@@ -80,7 +80,7 @@ redirect_from:
 </section>
 
 <!-- Wildflower Modern -->
-<section class="pf-group">
+<section class="pf-group" id="wildflower-modern">
   <div class="pf-group-head">
     <span class="lab">03 / Aesthetic</span>
     <h2>Wildflower Modern</h2>

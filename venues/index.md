@@ -14,7 +14,7 @@ canonical_url: https://goldenflorals.com/venues
     <h1>We love this place.</h1>
   </div>
   <div class="mh-body">
-    <p class="mh-intro">Every name is linked to its pin on the map. Tap a featured venue to explore it.</p>
+    <p class="mh-intro">From lakefront estates to mountaintop lodges, these are the Sierra venues we know best. Tap a featured venue for design notes, typical budgets, and planning answers.</p>
     <ul class="map-legend map-legend--inline">
       <li><span class="lg-dot"></span> Featured</li>
       <li><span class="lg-dot sm"></span> More around the lake</li>
@@ -120,6 +120,14 @@ canonical_url: https://goldenflorals.com/venues
     </svg>
   </div>
 </header>
+
+<!-- DON'T SEE YOUR VENUE -->
+<section class="mini">
+  <span class="lab">Somewhere else?</span>
+  <h2>Don't see your venue?</h2>
+  <p>These are the venues we return to most, and only a fraction of where we've designed. We work across Lake Tahoe, Truckee, and the Sierra foothills, and we'll walk a new space before we propose a single stem.</p>
+  <a href="{{ site.baseurl }}/consultation-form" class="txt-link">Tell us where &rarr;</a>
+</section>
 
 <!-- CTA -->
 <section class="cta cta--tall">

@@ -170,7 +170,15 @@ canonical_url: https://goldenflorals.com/about
   </div>
 </section>
 
-{% include redesign-pledge.html %}
+<hr class="hr-line">
+
+<!-- SUSTAINABILITY POINTER (full pledge lives on /sustainability) -->
+<section class="mini">
+  <span class="lab">Sustainability</span>
+  <h2>Grown here, and grown responsibly.</h2>
+  <p>Foam-free construction, California-grown sourcing, composting, and reuse. The commitments that shape how we design are written down, in public, on their own page.</p>
+  <a href="{{ site.baseurl }}/sustainability" class="txt-link">Read our sustainability pledge &rarr;</a>
+</section>
 
 <!-- CLOSING -->
 <section class="cta">
