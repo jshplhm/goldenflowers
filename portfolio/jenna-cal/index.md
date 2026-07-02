@@ -1,9 +1,9 @@
 ---
 layout: redesign
-title: "Jenna & Cal — Elevated Minimalist"
+title: "Jenna & Cal · Elevated Minimalist"
 seo_title: "Jenna & Cal Wedding Flowers · Elevated Minimalist | Golden Flowers"
 permalink: /portfolio/jenna-cal
-description: "A Golden Flowers wedding — elevated minimalist floral design for a Lake Tahoe and Sierra Nevada celebration."
+description: "A Golden Flowers wedding: elevated minimalist floral design for a Lake Tahoe and Sierra Nevada celebration."
 hero_photo: jenna-cal-15.jpg
 ---
 

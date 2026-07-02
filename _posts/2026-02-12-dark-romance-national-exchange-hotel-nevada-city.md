@@ -3,7 +3,7 @@ layout: post
 title: "Dark Romance at The National Exchange Hotel"
 date: 2026-02-12
 permalink: /natures-canvas-lake-tahoe-wedding-flowers/dark-romance-national-exchange-hotel-nevada-city/
-description: "A soft goth, edgy romantic love story set in Nevada City's most historic hotel, deep red blooms"
+description: "A soft goth love story at Nevada City's most historic hotel: deep red blooms, candlelight, and black velvet at the National Exchange."
 ---
 
 <div class="sqs-html-content" data-sqsp-text-block-content><p class="" style="white-space:pre-wrap;"><em>A gothic love story told in black velvet, deep red blooms, and wild foraged texture</em></p></div>

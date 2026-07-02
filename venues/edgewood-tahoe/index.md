@@ -39,7 +39,7 @@ redirect_from:
       </div>
       <div class="fact">
         <p class="label">Lakeside</p>
-        <p class="fact-body">Ceremonies on the terrace or lawn look straight over Lake Tahoe. Arrangements must frame that view, never block it.</p>
+        <p class="fact-body">Ceremonies on the terrace or lawn look straight over Lake Tahoe. Arrangements are built to frame that view rather than block it.</p>
       </div>
       <div class="fact">
         <p class="label">Seasonal</p>
@@ -58,7 +58,7 @@ redirect_from:
     <h2>How we approach Edgewood florals.</h2>
     <div class="philosophy-grid">
       <div class="philosophy-item">
-        <h3>Work with the view, not against it</h3>
+        <h3>Work with the view</h3>
         <p>The lakeside terrace has one of the most photographed backdrops in the Tahoe basin. We design installations that add to that context, never competing. Scale, transparency, and negative space are as important as the flowers themselves.</p>
       </div>
       <div class="philosophy-item">

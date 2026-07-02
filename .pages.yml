@@ -16,7 +16,7 @@ content:
   # Edits the FAQ accordions on the venue pages + the Weddings page. These
   # render as both the visible Q&A and FAQPage structured data (for Google /
   # AI answer engines) from _data/faqs.yml. Pick a page, edit its questions.
-  # The `url` matches the FAQs to a page — leave it alone.
+  # The `url` matches the FAQs to a page. Leave it alone.
   - name: faqs
     label: Page FAQs
     type: file

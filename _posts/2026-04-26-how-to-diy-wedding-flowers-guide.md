@@ -3,7 +3,7 @@ layout: post
 title: "How to DIY Your Wedding Flowers: The Ultimate Step-by-Step Guide for Creative Couples"
 date: 2026-04-26
 permalink: /natures-canvas-lake-tahoe-wedding-flowers/how-to-diy-wedding-flowers-guide/
-description: "Designing your own wedding flowers can be deeply rewarding, but it requires strategy. Learn how"
+description: "Designing your own wedding flowers can be deeply rewarding, but it takes strategy. A step-by-step guide to sourcing, mechanics, and timing."
 ---
 
 <div class="sqs-html-content" data-sqsp-text-block-content><p style="white-space:pre-wrap;" data-rte-preserve-empty="true">There is something incredibly romantic about the idea of designing your own wedding flowers. Hand-selecting your blooms, spending the morning before your wedding with your bridal party surrounded by fresh stems, and seeing your personal touch all over your venue is deeply rewarding.</p><p style="white-space:pre-wrap;" data-rte-preserve-empty="true">However, as a flower grower and professional floral designer based in Lake Tahoe, I’ll be the first to tell you:&nbsp;DIY wedding flowers are a major logistical undertaking.&nbsp;If you are organized, have a great support team, and love a creative project, it is entirely possible. To help you pull it off beautifully and sustainably, here is the ultimate insider guide to DIYing your wedding flowers without the wedding-week panic.</p><pre><code>THE GOLDEN RULES OF DIY FLORALS:

@@ -36,7 +36,7 @@ redirect_from:
       </div>
       <div class="fact">
         <p class="label">Lakefront</p>
-        <p class="fact-body">The ceremony space looks straight out over Lake Tahoe from the Kings Beach shoreline. Arrangements frame the water, never block it.</p>
+        <p class="fact-body">The ceremony space looks straight out over Lake Tahoe from the Kings Beach shoreline. Arrangements are built to frame the water rather than block it.</p>
       </div>
       <div class="fact">
         <p class="label">North Shore</p>

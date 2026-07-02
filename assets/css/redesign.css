@@ -17,7 +17,7 @@
   --terra-soft:oklch(72% .13 50);
   --line:oklch(80% .015 120 / .65);
   --d:'Cormorant Garamond',Georgia,serif;  /* display — swap here to change face */
-  --b:-apple-system,BlinkMacSystemFont,'DM Sans',Helvetica,Arial,sans-serif;
+  --b:'DM Sans',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;
   --pad:clamp(24px,5vw,72px);
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
@@ -115,7 +115,7 @@ body.menu-open .mobile-menu{transform:none;}
 
 /* ---------- CREDO ---------- */
 .credo{padding:clamp(80px,11vw,150px) var(--pad) clamp(60px,7vw,90px);max-width:1500px;margin:0 auto;}
-.credo h2{font-family:var(--d);font-weight:430;font-optical-sizing:auto;font-size:clamp(2.1rem,5.3vw,4.8rem);line-height:1.05;letter-spacing:-.02em;max-width:20ch;margin-top:26px;}
+.credo h2{font-family:var(--d);font-weight:430;font-optical-sizing:auto;font-size:clamp(2.1rem,5.3vw,4.8rem);line-height:1.05;letter-spacing:-.02em;max-width:24ch;text-wrap:balance;margin-top:26px;}
 .credo h2 em{color:var(--forest);}
 .facts{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(28px,4vw,60px);margin-top:clamp(56px,7vw,90px);border-top:1px solid var(--line);padding-top:46px;}
 .fact .n{font-family:var(--d);font-style:normal;font-size:1.6rem;color:var(--terra);display:block;margin-bottom:16px;}
@@ -157,6 +157,7 @@ body.menu-open .mobile-menu{transform:none;}
 .aes-row{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(20px,2.4vw,32px);}
 .aes-card{display:block;}
 .aes-card .ph{position:relative;aspect-ratio:4/5;overflow:hidden;border-radius:3px;margin-bottom:22px;}
+.aes-card .ph::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(135deg,oklch(15% .02 150/.45),transparent 38%);pointer-events:none;}
 .aes-card .ph img{width:100%;height:100%;object-fit:cover;transition:transform 1s cubic-bezier(.2,.7,.2,1);}
 .aes-card:hover .ph img{transform:scale(1.05);}
 .aes-card .idx{position:absolute;top:16px;left:18px;z-index:2;font-family:var(--d);font-style:normal;font-size:2.4rem;color:var(--paper);text-shadow:0 2px 18px oklch(15% 0 0/.5);}
@@ -209,6 +210,7 @@ body.menu-open .mobile-menu{transform:none;}
 
 /* ---------- INTERIOR HERO (shorter) ---------- */
 .hero.hero-sm{height:64vh;min-height:460px;}
+.hero.hero-sm::after{background:linear-gradient(180deg,oklch(18% .03 150/.45) 0%,transparent 30%,oklch(12% .03 150/.5) 66%,oklch(12% .03 150/.85) 100%);}
 
 /* ---------- PORTFOLIO ---------- */
 .pf-filters{position:sticky;top:0;z-index:15;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;background:var(--bg);padding:18px var(--pad);border-bottom:1px solid var(--line);}
@@ -301,7 +303,7 @@ body.lb-open{overflow:hidden;}
 .block h2 em,.h-lg em{color:var(--forest);}
 .block h3{font-family:var(--d);font-weight:430;font-size:clamp(1.4rem,2.6vw,2rem);letter-spacing:-.01em;}
 .prose p{font-size:1.05rem;line-height:1.72;color:var(--fg2);margin-bottom:16px;max-width:66ch;}
-.prose p.lead{font-size:1.22rem;color:var(--ink);line-height:1.55;}
+.prose p.lead{font-family:var(--d);font-size:1.42rem;color:var(--ink);line-height:1.42;letter-spacing:-.005em;}
 .hr-line{border:none;border-top:1px solid var(--line);max-width:1500px;margin:0 auto;}
 
 /* two-column: heading left, body right */
@@ -598,7 +600,7 @@ body.nav-hidden .venue-breadcrumb{top:0;}
 .cta-section .label{display:block;}
 .cta-section h2{font-family:var(--d);font-weight:430;font-optical-sizing:auto;font-size:clamp(2.2rem,5vw,4rem);letter-spacing:-.02em;line-height:1.05;margin:12px 0;}
 .cta-section p{max-width:46ch;margin:0 auto 28px;color:var(--fg2);}
-.btn-primary{display:inline-flex;align-items:center;gap:9px;background:var(--terra);color:var(--paper);padding:16px 30px;border-radius:100px;font-size:.85rem;letter-spacing:.03em;font-weight:500;transition:.25s;}
+.btn-primary{display:inline-flex;align-items:center;gap:9px;background:var(--terra);color:var(--paper);padding:16px 30px;border-radius:100px;font-size:.85rem;letter-spacing:.03em;font-weight:500;transition:.25s;border:0;cursor:pointer;font-family:var(--b);}
 .btn-primary:hover{transform:translateY(-2px);filter:brightness(1.07);}
 
 /* ---------- VENUES — words + linked list (left) · Tahoe map (right) ---------- */
@@ -649,13 +651,13 @@ body.nav-hidden .venue-breadcrumb{top:0;}
 .vhl--minor li{margin-bottom:7px;}
 .vhl--minor span{font-family:var(--b);font-size:.95rem;line-height:1.25;color:var(--fg2);cursor:pointer;transition:color .15s;display:inline-block;border-bottom:1px solid transparent;}
 .vhl--minor span:hover,.vhl--minor span.is-active{color:var(--terra);border-bottom-color:var(--terra);}
-.t-pin.is-active .t-dot{r:9;}
+.t-pin.is-active .t-dot{r:11.5;fill:oklch(48% .16 45);stroke-width:3;}
 .t-pin.is-active .t-vlabel{fill:var(--terra);opacity:1;}
 .t-pin.t-minor.is-active .t-dot.sm{r:6;fill:var(--terra);}
 @media(max-width:860px){.vhl,.vhl--minor{columns:2;}}
 .map-legend li{display:flex;align-items:center;gap:13px;margin-bottom:13px;color:var(--fg2);font-size:.96rem;}
-.map-legend .lg-dot{width:16px;height:16px;border-radius:50%;background:var(--terra);border:2px solid var(--paper);box-shadow:0 0 0 1px var(--line);flex:none;}
-.map-legend .lg-dot.sm{width:11px;height:11px;background:oklch(57% .15 45/.65);}
+.map-legend .lg-dot{width:18px;height:18px;border-radius:50%;background:var(--terra);border:2px solid var(--paper);box-shadow:0 0 0 1px var(--line);flex:none;}
+.map-legend .lg-dot.sm{width:9px;height:9px;background:oklch(57% .15 45/.65);}
 /* SVG map elements */
 .t-lake{fill:oklch(73% .045 236);stroke:none;}
 .t-hwy{fill:none;stroke:oklch(56% .018 250);stroke-width:1;stroke-linecap:round;stroke-linejoin:round;opacity:.5;}
@@ -666,15 +668,16 @@ body.nav-hidden .venue-breadcrumb{top:0;}
 .t-dot{fill:var(--terra);stroke:var(--paper);stroke-width:2.4;cursor:pointer;transition:r .15s ease;}
 .t-dot.sm{fill:oklch(62% .11 45/.62);stroke-width:1.6;cursor:pointer;}
 .t-town-dot{r:2.6;fill:oklch(45% .01 150);stroke:var(--paper);stroke-width:1.2;cursor:pointer;}
-/* City labels: muted/smaller, revealed on hover or tap (focus) */
-.t-clabel{font-family:var(--b);font-size:11px;fill:var(--mute);letter-spacing:.02em;opacity:0;transition:opacity .15s;paint-order:stroke;stroke:var(--paper);stroke-width:3;stroke-linejoin:round;pointer-events:none;}
+/* City labels: always on, muted, for geographic orientation (venue names stay hover-only) */
+.t-clabel{font-family:var(--b);font-size:11px;fill:var(--mute);letter-spacing:.02em;opacity:.85;transition:opacity .15s;paint-order:stroke;stroke:var(--paper);stroke-width:3;stroke-linejoin:round;pointer-events:none;}
 .t-town:hover .t-clabel,.t-town:focus .t-clabel{opacity:1;}
 .t-town{outline:none;cursor:pointer;}
-.t-pin:hover .t-dot{r:10;}
+.t-pin:hover .t-dot{r:11.5;fill:oklch(48% .16 45);stroke-width:3;}
 .t-vlabel{font-family:var(--b);font-size:13px;fill:var(--ink);opacity:0;transition:opacity .15s,fill .15s;paint-order:stroke;stroke:var(--paper);stroke-width:3.5;stroke-linejoin:round;pointer-events:none;}
-/* Featured venue names read on the map by default; hover/tap or the list brightens them. */
+/* Featured pins: numbered dots (pair with the numbered list; readable without hover on touch). */
 .t-pin.feat .t-vlabel{font-size:13px;}
-.t-pin.feat .t-dot{r:5.5;}
+.t-pin.feat .t-dot{r:9;}
+.t-num{font-family:var(--b);font-size:9px;font-weight:600;fill:var(--paper);text-anchor:middle;pointer-events:none;}
 .t-pin:hover .t-vlabel,.t-pin:focus .t-vlabel{opacity:1;}
 .t-pin.feat:hover .t-vlabel,.t-pin.feat:focus .t-vlabel,.t-pin.feat.is-active .t-vlabel{fill:var(--terra);}
 .t-minor{outline:none;}

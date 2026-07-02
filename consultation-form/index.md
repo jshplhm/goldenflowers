@@ -74,10 +74,10 @@ redirect_from:
           <label for="aesthetic">Aesthetic direction</label>
           <select id="aesthetic" name="aesthetic">
             <option value="" disabled selected>Which direction resonates?</option>
-            <option>Lush &amp; Romantic, rich, dramatic, deep tones</option>
-            <option>Elevated Minimalist, clean, airy, restrained</option>
-            <option>Wildflower Modern, wild, seasonal, editorial</option>
-            <option>A mix, I'll explain below</option>
+            <option>Lush &amp; Romantic (rich, dramatic, deep tones)</option>
+            <option>Elevated Minimalist (clean, airy, restrained)</option>
+            <option>Wildflower Modern (wild, seasonal, editorial)</option>
+            <option>A mix (I'll explain below)</option>
             <option>Not sure yet</option>
           </select>
         </div>

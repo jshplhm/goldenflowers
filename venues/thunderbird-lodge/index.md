@@ -37,7 +37,7 @@ canonical_url: https://goldenflorals.com/venues/thunderbird-lodge
       </div>
       <div class="fact">
         <p class="label">Lakefront</p>
-        <p class="fact-body">Ceremonies on the lawn and stone terraces open right onto the water. Design has to live up to that light, never block it.</p>
+        <p class="fact-body">Ceremonies on the lawn and stone terraces open right onto the water. Design has to live up to that light and leave it unobstructed.</p>
       </div>
       <div class="fact">
         <p class="label">Intimate</p>

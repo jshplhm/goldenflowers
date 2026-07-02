@@ -1,9 +1,9 @@
 ---
 layout: redesign
-title: "Camille & Max — Wildflower Modern"
+title: "Camille & Max · Wildflower Modern"
 seo_title: "Camille & Max Wedding Flowers · Wildflower Modern | Golden Flowers"
 permalink: /portfolio/camille-max
-description: "A Golden Flowers wedding — wildflower modern floral design for a Lake Tahoe and Sierra Nevada celebration."
+description: "A Golden Flowers wedding: wildflower modern floral design for a Lake Tahoe and Sierra Nevada celebration."
 hero_photo: camille-max-16.jpg
 ---
 
@@ -12,7 +12,7 @@ hero_photo: camille-max-16.jpg
 <header class="text-hero venue-hero">
   <span class="lab">Wildflower Modern</span>
   <h1>Camille & Max</h1>
-  <p class="th-sub">An autumn celebration at the historic North Star House, where craftsman architecture and old oaks set the tone. We built cascading, garden-gathered bouquets — blush and burgundy roses trailing amaranthus — and an arbor that read as though it grew in place rather than being installed. Wild in feeling, considered in every detail.</p>
+  <p class="th-sub">An autumn celebration at the historic North Star House, where craftsman architecture and old oaks set the tone. We built cascading, garden-gathered bouquets of blush and burgundy roses trailing amaranthus, and an arbor that read as though it grew in place rather than being installed. Wild in feeling, considered in every detail.</p>
 </header>
 
 {% include portfolio-gallery.html slug="camille-max" hero="camille-max-16.jpg" name="Camille & Max" %}
