@@ -7,6 +7,13 @@ description: "Golden Flowers is a Lake Tahoe wedding florist specializing in bol
 canonical_url: https://goldenflorals.com/about
 ---
 
+<style>
+/* Brittany portraits within the team section */
+.brittany-duo{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:44px;}
+.brittany-duo img{width:100%;height:100%;aspect-ratio:4/5;object-fit:cover;display:block;}
+@media(max-width:640px){.brittany-duo{gap:12px;}}
+</style>
+
 <!-- STUDIO HERO (split — deliberately not full-bleed) -->
 <section class="studio-hero">
   <div class="sh-text">
@@ -67,6 +74,10 @@ canonical_url: https://goldenflorals.com/about
       <p>No handoffs. No assembly line. No stranger arriving with your bouquets. The same trusted people, start to finish.</p>
     </div>
   </div>
+  <div class="brittany-duo">
+    <img src="{{ site.baseurl }}/assets/images/our-story.jpg" alt="Brittany of Golden Flowers at work on a wedding installation" loading="lazy">
+    <img src="{{ site.baseurl }}/assets/images/our-story-2.jpg" alt="Brittany of Golden Flowers arranging seasonal blooms" loading="lazy">
+  </div>
 </section>
 
 <hr class="hr-line">
@@ -94,7 +105,7 @@ canonical_url: https://goldenflorals.com/about
 
 <!-- EDITORIAL BREAK -->
 <section class="immersive">
-  <img class="bg" src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/2b98245c-1230-4e50-847e-90c7d13f793b/Lake%2BTahoe%2BFloral%2BInstallation.jpeg?format=2500w" alt="Lake Tahoe floral installation by Golden Flowers">
+  <img class="bg" src="{{ site.baseurl }}/assets/images/portfolio/catherine-joaquin/catherine-joaquin-15.jpg" alt="Lake Tahoe wedding florals by Golden Flowers">
   <div class="il">
     <span class="lab">Rooted in place</span>
     <p class="disp">We design with what the California land gives us, in the season you say yes.</p>

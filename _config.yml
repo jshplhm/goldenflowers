@@ -50,7 +50,7 @@ defaults:
       path: ""
     values:
       # Default social-share / og:image (pages may override with their own `image:`)
-      image: "https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1776975190166-PCFON7QIR65XK1VPLH3K/l-a-preview-8192.jpg?format=1200w"
+      image: "/assets/images/portfolio/lynn-aaron/lynn-aaron-19.jpg"
   - scope:
       path: ""
       type: "posts"

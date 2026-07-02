@@ -1,32 +1,21 @@
 ---
 layout: redesign
-title: "Camille & Max — Hellman-Ehrman Mansion, Lake Tahoe"
+title: "Camille & Max — Wildflower Modern"
 seo_title: "Camille & Max Wedding Flowers · Wildflower Modern | Golden Flowers"
 permalink: /portfolio/camille-max
-description: "A Golden Flowers wedding at Hellman-Ehrman Mansion, Lake Tahoe — Wildflower Modern floral design."
+description: "A Golden Flowers wedding — wildflower modern floral design for a Lake Tahoe and Sierra Nevada celebration."
+hero_photo: camille-max-16.jpg
 ---
 
-<header class="text-hero">
-  <span class="lab">Wildflower Modern · Hellman-Ehrman Mansion</span>
+{% include portfolio-subnav.html name="Camille & Max" %}
+
+<header class="text-hero venue-hero">
+  <span class="lab">Wildflower Modern</span>
   <h1>Camille & Max</h1>
-  <p class="th-sub"><a href="{{ site.baseurl }}/portfolio" style="color:var(--mute);border-bottom:1px solid var(--line);">&larr; Back to portfolio</a></p>
+  <p class="th-sub">An autumn celebration at the historic North Star House, where craftsman architecture and old oaks set the tone. We built cascading, garden-gathered bouquets — blush and burgundy roses trailing amaranthus — and an arbor that read as though it grew in place rather than being installed. Wild in feeling, considered in every detail.</p>
 </header>
 
-<!-- Placeholder gallery -->
-<section class="wd-gallery">
-  <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1779129057432-Y8VGDRIHTV4BILCZVW27/MountainTimePhoto-48.jpg?format=2000w" alt="Camille & Max wedding flowers at Hellman-Ehrman Mansion, Lake Tahoe" loading="eager" class="wd-hero-img">
-  <div class="wd-grid">
-      <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1779129078871-L0C6RZWY0OFNYM1EF93C/MountainTimePhoto-64.jpg?format=1100w" alt="Placeholder wedding photo" loading="lazy">
-      <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/5854318e-a30f-4303-b4d9-38c510fdc75a/Lake+Tahoe+Floral+Installationn?format=1100w" alt="Placeholder wedding photo" loading="lazy">
-  </div>
-  <p class="wd-note">Gallery photos are placeholders for now.</p>
-</section>
-
-<section class="block tight" style="text-align:center;">
-  <div class="stars" style="color:var(--terra);letter-spacing:.2em;">★★★★★</div>
-  <blockquote class="disp" style="max-width:760px;margin:14px auto 0;font-size:clamp(1.4rem,3vw,2rem);line-height:1.3;">"Brittany accomplished the look we wanted. The flowers were gorgeous. She was professional and very easy to work with."</blockquote>
-  <p class="by" style="margin-top:18px;color:var(--mute);letter-spacing:.08em;text-transform:uppercase;font-size:.78rem;"><b style="color:var(--ink)">Julie</b> &nbsp;·&nbsp; Hellman-Ehrman Mansion, Lake Tahoe</p>
-</section>
+{% include portfolio-gallery.html slug="camille-max" hero="camille-max-16.jpg" name="Camille & Max" %}
 
 <section class="cta">
   <span class="lab">Planning something like this?</span>

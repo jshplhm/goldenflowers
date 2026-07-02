@@ -27,7 +27,7 @@
     "name": "Golden Flowers",
     "alternateName": "Golden Flowers Floral Design",
     "url": "https://goldenflorals.com/",
-    "image": "https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1776975190166-PCFON7QIR65XK1VPLH3K/l-a-preview-8192.jpg?format=1200w",
+    "image": "https://goldenflorals.com/assets/images/portfolio/lynn-aaron/lynn-aaron-19.jpg",
     "description": "Lake Tahoe wedding florist designing sustainable, locally-grown, foam-free floral design for weddings across Lake Tahoe, Truckee, Incline Village and the Sierra Nevada.",
     "telephone": "+1-530-557-7689",
     "email": "brittany@goldenflorals.com",
@@ -79,8 +79,11 @@
   function update(){
     var y=window.pageYOffset;
     if(isHeroPage) nav.classList.toggle('over-hero', y<=40);
-    if(y>last && y>500){ nav.classList.add('up'); }
-    else { nav.classList.remove('up'); }
+    var hide = (y>last && y>500);
+    nav.classList.toggle('up', hide);
+    /* Mirror nav visibility so the sticky breadcrumb can dock under the nav
+       when it's showing, or sit flush at the top when the nav is hidden. */
+    document.body.classList.toggle('nav-hidden', hide);
     last=y; ticking=false;
   }
   update();

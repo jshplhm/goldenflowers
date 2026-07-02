@@ -14,5 +14,6 @@ _site/
 # Private design handoff (audit + mockups), not for the public site
 handoff/
 
-# Local-only large assets (host externally / Git LFS before using)
+# Local-only source photos (full-res originals — crop/optimize in place, never committed).
+# The web-optimized derivatives live in assets/images/portfolio/ and ARE published.
 assets/images/wedding_photos/

@@ -1,0 +1,50 @@
+{%- comment -%}
+  Auto-filling wedding gallery.
+  Reads every image in /assets/images/portfolio/<slug>/ at build time (so adding or
+  removing an optimized photo updates automatically on rebuild — no hardcoded lists).
+  Lays out varied rows of 1 / 2 / 3 photos on a 6-col grid; every row sums to 6 columns,
+  so the gallery always ends flush with no empty spot at the bottom.
+  Params: slug, hero (filename e.g. "lynn-aaron-16.jpg"), name (couple, for alt text).
+{%- endcomment -%}
+{%- assign prefix = '/assets/images/portfolio/' | append: include.slug | append: '/' -%}
+{%- assign allf = site.static_files | where_exp: "f", "f.path contains prefix" | sort: "path" -%}
+{%- assign count = 0 -%}
+{%- for f in allf -%}{%- unless f.name == include.hero -%}{%- assign count = count | plus: 1 -%}{%- endunless -%}{%- endfor -%}
+{%- assign spans = '' -%}
+{%- assign remaining = count -%}
+{%- assign i = 0 -%}
+{%- for _u in (1..count) -%}
+  {%- if remaining == 0 -%}{%- break -%}{%- endif -%}
+  {%- if remaining == 1 -%}{%- assign rs = 1 -%}
+  {%- elsif remaining == 2 -%}{%- assign rs = 2 -%}
+  {%- elsif remaining == 3 -%}{%- assign rs = 3 -%}
+  {%- elsif remaining == 4 -%}{%- assign rs = 2 -%}
+  {%- else -%}
+    {%- assign mod = i | modulo: 5 -%}
+    {%- case mod -%}
+      {%- when 0 -%}{%- assign rs = 3 -%}
+      {%- when 1 -%}{%- assign rs = 2 -%}
+      {%- when 2 -%}{%- assign rs = 3 -%}
+      {%- when 3 -%}{%- assign rs = 2 -%}
+      {%- else -%}{%- assign rs = 1 -%}
+    {%- endcase -%}
+  {%- endif -%}
+  {%- assign sp = 6 | divided_by: rs -%}
+  {%- for _k in (1..rs) -%}{%- assign spans = spans | append: sp | append: ',' -%}{%- endfor -%}
+  {%- assign remaining = remaining | minus: rs -%}
+  {%- assign i = i | plus: 1 -%}
+{%- endfor -%}
+{%- assign spanArr = spans | split: ',' -%}
+<section class="wd-gallery">
+  <img src="{{ site.baseurl }}{{ prefix }}{{ include.hero }}" alt="{{ include.name }} wedding flowers by Golden Flowers" loading="eager" class="wd-hero-img">
+  <div class="wd-mosaic">
+  {%- assign j = 0 -%}
+  {%- for f in allf -%}
+    {%- if f.name == include.hero -%}{%- continue -%}{%- endif -%}
+    <a class="mo mo-{{ spanArr[j] }}" href="{{ site.baseurl }}{{ f.path }}" target="_blank" rel="noopener">
+      <img src="{{ site.baseurl }}{{ f.path }}" alt="{{ include.name }} wedding florals by Golden Flowers" loading="lazy">
+    </a>
+    {%- assign j = j | plus: 1 -%}
+  {%- endfor -%}
+  </div>
+</section>
