@@ -107,16 +107,16 @@ canonical_url: https://goldenflorals.com/venues
       <g class="t-pin t-minor" data-venue="schaffers" tabindex="0" role="img" aria-label="Schaffer's Camp"><circle class="t-dot sm" cx="167.5" cy="121.5" r="3.5"/><text class="t-vlabel" text-anchor="end" x="160.5" y="125.5">Schaffer's Camp</text></g>
       <g class="t-pin t-minor" data-venue="tahoe-blue" tabindex="0" role="img" aria-label="Tahoe Blue Estate"><circle class="t-dot sm" cx="458.6" cy="463.4" r="3.5"/><text class="t-vlabel" x="465.6" y="467.4">Tahoe Blue Estate</text></g>
       <g class="t-pin t-minor" data-venue="west-shore" tabindex="0" role="img" aria-label="West Shore Cafe"><circle class="t-dot sm" cx="132.6" cy="470.8" r="3.5"/><text class="t-vlabel" text-anchor="end" x="125.6" y="474.8">West Shore Cafe</text></g>
-      <g class="t-pin t-minor" data-venue="everline" tabindex="0" role="img" aria-label="Everline"><circle class="t-dot sm" cx="43.5" cy="249.0" r="3.5"/><text class="t-vlabel" text-anchor="end" x="36.5" y="253.0">Everline</text></g>
-      <g class="t-pin t-minor" data-venue="ov-stables" tabindex="0" role="img" aria-label="Olympic Valley Stables"><circle class="t-dot sm" cx="62.0" cy="250.0" r="3.5"/><text class="t-vlabel" text-anchor="end" x="55.0" y="254.0">Olympic Valley Stables</text></g>
+      <g class="t-pin t-minor" data-venue="everline" tabindex="0" role="img" aria-label="Everline"><circle class="t-dot sm" cx="43.5" cy="249.0" r="3.5"/><text class="t-vlabel" x="50.5" y="253.0">Everline</text></g>
+      <g class="t-pin t-minor" data-venue="ov-stables" tabindex="0" role="img" aria-label="Olympic Valley Stables"><circle class="t-dot sm" cx="62.0" cy="250.0" r="3.5"/><text class="t-vlabel" x="69.0" y="254.0">Olympic Valley Stables</text></g>
       <g class="t-pin t-minor" data-venue="zephyr" tabindex="0" role="img" aria-label="Zephyr Lodge"><circle class="t-dot sm" cx="193.7" cy="107.1" r="3.5"/><text class="t-vlabel" text-anchor="end" x="186.7" y="111.1">Zephyr Lodge</text></g>
       <g class="t-pin t-minor" data-venue="chateau" tabindex="0" role="img" aria-label="The Chateau"><circle class="t-dot sm" cx="432.7" cy="147.1" r="3.5"/><text class="t-vlabel" x="439.7" y="151.1">The Chateau</text></g>
       <g class="t-pin t-minor" data-venue="landing" tabindex="0" role="img" aria-label="The Landing"><circle class="t-dot sm" cx="444.0" cy="706.9" r="3.5"/><text class="t-vlabel" x="451.0" y="710.9">The Landing</text></g>
       <g class="t-pin t-minor" data-venue="sunnyside" tabindex="0" role="img" aria-label="Sunnyside"><circle class="t-dot sm" cx="140.2" cy="363.0" r="3.5"/><text class="t-vlabel" text-anchor="end" x="133.2" y="367.0">Sunnyside</text></g>
       <g class="t-pin t-minor" data-venue="gar-woods" tabindex="0" role="img" aria-label="Gar Woods"><circle class="t-dot sm" cx="245.1" cy="197.9" r="3.5"/><text class="t-vlabel" text-anchor="end" x="238.1" y="201.9">Gar Woods</text></g>
       <g class="t-pin t-minor" data-venue="lahontan" tabindex="0" role="img" aria-label="Lahontan"><circle class="t-dot sm" cx="97.2" cy="52.2" r="3.5"/><text class="t-vlabel" text-anchor="end" x="90.2" y="56.2">Lahontan</text></g>
-      <g class="t-pin t-minor" data-venue="plumpjack" tabindex="0" role="img" aria-label="PlumpJack"><circle class="t-dot sm" cx="18.4" cy="251.1" r="3.5"/><text class="t-vlabel" text-anchor="end" x="11.4" y="255.1">PlumpJack</text></g>
-      <g class="t-pin t-minor" data-venue="ovec" tabindex="0" role="img" aria-label="OVEC"><circle class="t-dot sm" cx="18.5" cy="244.5" r="3.5"/><text class="t-vlabel" text-anchor="end" x="11.5" y="248.5">OVEC</text></g>
+      <g class="t-pin t-minor" data-venue="plumpjack" tabindex="0" role="img" aria-label="PlumpJack"><circle class="t-dot sm" cx="18.4" cy="251.1" r="3.5"/><text class="t-vlabel" x="25.4" y="255.1">PlumpJack</text></g>
+      <g class="t-pin t-minor" data-venue="ovec" tabindex="0" role="img" aria-label="OVEC"><circle class="t-dot sm" cx="18.5" cy="244.5" r="3.5"/><text class="t-vlabel" x="25.5" y="248.5">OVEC</text></g>
     </svg>
   </div>
 </header>

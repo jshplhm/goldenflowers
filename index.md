@@ -64,7 +64,7 @@ canonical_url: https://goldenflorals.com/
 
 <!-- IMMERSIVE -->
 <section class="immersive">
-  <img class="bg" src="{{ site.baseurl }}/assets/images/portfolio/emma-ross/emma-ross-12.jpg" alt="Couple at golden hour with a trailing white bouquet by Golden Flowers">
+  <img class="bg" src="{{ site.baseurl }}/assets/images/portfolio/tori-tucker/tori-tucker-05.jpg" alt="Floral ceremony arch on the Lake Tahoe shore by Golden Flowers, mountains across the water">
   <div class="il">
     <span class="lab">From our farm</span>
     <p class="disp">Every stem chosen for one couple, one date, one place in the mountains.</p>

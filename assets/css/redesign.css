@@ -651,7 +651,7 @@ body.nav-hidden .venue-breadcrumb{top:0;}
 .vhl--minor li{margin-bottom:7px;}
 .vhl--minor span{font-family:var(--b);font-size:.95rem;line-height:1.25;color:var(--fg2);cursor:pointer;transition:color .15s;display:inline-block;border-bottom:1px solid transparent;}
 .vhl--minor span:hover,.vhl--minor span.is-active{color:var(--terra);border-bottom-color:var(--terra);}
-.t-pin.is-active .t-dot{r:11;}
+.t-pin.is-active .t-dot{r:11.5;fill:oklch(48% .16 45);stroke-width:3;}
 .t-pin.is-active .t-vlabel{fill:var(--terra);opacity:1;}
 .t-pin.t-minor.is-active .t-dot.sm{r:6;fill:var(--terra);}
 @media(max-width:860px){.vhl,.vhl--minor{columns:2;}}
@@ -672,7 +672,7 @@ body.nav-hidden .venue-breadcrumb{top:0;}
 .t-clabel{font-family:var(--b);font-size:11px;fill:var(--mute);letter-spacing:.02em;opacity:.85;transition:opacity .15s;paint-order:stroke;stroke:var(--paper);stroke-width:3;stroke-linejoin:round;pointer-events:none;}
 .t-town:hover .t-clabel,.t-town:focus .t-clabel{opacity:1;}
 .t-town{outline:none;cursor:pointer;}
-.t-pin:hover .t-dot{r:11;}
+.t-pin:hover .t-dot{r:11.5;fill:oklch(48% .16 45);stroke-width:3;}
 .t-vlabel{font-family:var(--b);font-size:13px;fill:var(--ink);opacity:0;transition:opacity .15s,fill .15s;paint-order:stroke;stroke:var(--paper);stroke-width:3.5;stroke-linejoin:round;pointer-events:none;}
 /* Featured pins: numbered dots (pair with the numbered list; readable without hover on touch). */
 .t-pin.feat .t-vlabel{font-size:13px;}
