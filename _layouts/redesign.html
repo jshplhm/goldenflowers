@@ -42,6 +42,17 @@
       "addressCountry": "US"
     },
     "hasMap": "https://maps.app.goo.gl/iSNwv732pnkZUF3N7",
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 39.2496,
+      "longitude": -119.9549
+    },
+    "openingHoursSpecification": {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+      "opens": "09:00",
+      "closes": "17:00"
+    },
     "areaServed": [
       "Lake Tahoe", "Incline Village", "Truckee", "Olympic Valley", "Tahoe City",
       "South Lake Tahoe", "Northstar", "Sierra Nevada", "Nevada City", "Grass Valley"
@@ -55,6 +66,37 @@
     ]
   }
   </script>
+
+  {% comment %} WebSite + main navigation: names the site for branded search and gives
+  Google/AI crawlers a labeled map of the primary sections (a nudge toward search sitelinks;
+  they remain algorithmic and are not guaranteed). Mirrors the visible nav. {% endcomment %}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": "https://goldenflorals.com/#website",
+    "url": "https://goldenflorals.com/",
+    "name": "Golden Flowers",
+    "publisher": { "@id": "https://goldenflorals.com/#business" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "Golden Flowers main navigation",
+    "itemListElement": [
+      { "@type": "SiteNavigationElement", "position": 1, "name": "Portfolio",         "url": "https://goldenflorals.com/portfolio" },
+      { "@type": "SiteNavigationElement", "position": 2, "name": "Venues",            "url": "https://goldenflorals.com/venues" },
+      { "@type": "SiteNavigationElement", "position": 3, "name": "Process & Pricing", "url": "https://goldenflorals.com/weddings" },
+      { "@type": "SiteNavigationElement", "position": 4, "name": "Our Story",         "url": "https://goldenflorals.com/about" },
+      { "@type": "SiteNavigationElement", "position": 5, "name": "Sustainability",    "url": "https://goldenflorals.com/sustainability" },
+      { "@type": "SiteNavigationElement", "position": 6, "name": "Blog",              "url": "https://goldenflorals.com/blog" }
+    ]
+  }
+  </script>
+
+  {% include analytics.html %}
 </head>
 <body>
 

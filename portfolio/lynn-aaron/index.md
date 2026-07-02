@@ -3,6 +3,8 @@ layout: redesign
 title: "Lynn & Aaron · Lush & Romantic"
 seo_title: "Lynn & Aaron Wedding Flowers · Lush & Romantic | Golden Flowers"
 permalink: /portfolio/lynn-aaron
+redirect_from:
+  - /portfolio-1/lynn-and-aaron
 description: "A Golden Flowers wedding: lush & romantic floral design for a Lake Tahoe and Sierra Nevada celebration."
 hero_photo: lynn-aaron-16.jpg
 ---

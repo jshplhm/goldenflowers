@@ -3,6 +3,8 @@ layout: redesign
 title: "Sarah & Brian · Elevated Minimalist"
 seo_title: "Sarah & Brian Wedding Flowers · Elevated Minimalist | Golden Flowers"
 permalink: /portfolio/sarah-brian
+redirect_from:
+  - /portfolio-1/sarahandbrian
 description: "A Golden Flowers wedding: elevated minimalist floral design for a Lake Tahoe and Sierra Nevada celebration."
 hero_photo: sarah-brian-06.jpg
 ---

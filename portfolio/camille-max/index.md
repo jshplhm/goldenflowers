@@ -3,6 +3,8 @@ layout: redesign
 title: "Camille & Max · Wildflower Modern"
 seo_title: "Camille & Max Wedding Flowers · Wildflower Modern | Golden Flowers"
 permalink: /portfolio/camille-max
+redirect_from:
+  - /portfolio-1/camille-and-max
 description: "A Golden Flowers wedding: wildflower modern floral design for a Lake Tahoe and Sierra Nevada celebration."
 hero_photo: camille-max-16.jpg
 ---

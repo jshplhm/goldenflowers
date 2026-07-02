@@ -3,6 +3,8 @@ layout: redesign
 title: "Emma & Ross · Elevated Minimalist"
 seo_title: "Emma & Ross Wedding Flowers · Elevated Minimalist | Golden Flowers"
 permalink: /portfolio/emma-ross
+redirect_from:
+  - /portfolio-1/emma-and-ross
 description: "A Golden Flowers wedding: elevated minimalist floral design for a Lake Tahoe and Sierra Nevada celebration."
 hero_photo: emma-ross-08.jpg
 ---

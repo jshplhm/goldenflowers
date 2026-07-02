@@ -26,6 +26,11 @@ plugins:
   - jekyll-paginate-v2
   - jekyll-redirect-from
 
+# Analytics — paste your GA4 Measurement ID (looks like G-XXXXXXXXXX) to turn on tracking.
+# Get it at analytics.google.com → Admin → Data streams → your web stream. Left blank =
+# analytics off (safe for staging). The _includes/analytics.html tag only fires when set.
+google_analytics: "G-LSEQ0EKDLD"
+
 # SEO
 author:
   name: "Brittany"

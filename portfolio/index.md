@@ -7,6 +7,11 @@ description: "Browse our wedding floral designs: wild, sustainable, editorial ar
 canonical_url: https://goldenflorals.com/portfolio
 redirect_from:
   - /portfolio-1
+  # Old galleries with no 1:1 replacement -> portfolio index
+  - /portfolio-1/allieanddevin
+  - /portfolio-1/dylanandjosh
+  - /portfolio-1/dylanandjosh-jd238
+  - /portfolio-1/samandmatt
 ---
 
 <style>

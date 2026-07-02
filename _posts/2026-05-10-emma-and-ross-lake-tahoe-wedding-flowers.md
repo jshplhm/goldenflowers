@@ -12,55 +12,55 @@ featured_image: https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec
 <div class="image-gallery-wrapper">
 
   
-   <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1780086962131-SVAGM3FL0MX2ZVPTSXTK/RHRSS4.jpg?format=original" />
+   <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1780086962131-SVAGM3FL0MX2ZVPTSXTK/RHRSS4.jpg?format=original" alt="Emma and Ross wedding flowers by Golden Flowers at River Highlands Ranch, Sierra Nevada" />
   
 
   
-   <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1780086803553-7GAUVGX36ACYJ8KBOY35/RRSS12.jpg?format=original" />
+   <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1780086803553-7GAUVGX36ACYJ8KBOY35/RRSS12.jpg?format=original" alt="Emma and Ross wedding flowers by Golden Flowers at River Highlands Ranch, Sierra Nevada" />
   
 
   
-   <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1780086782812-U5EI88UWH87K8ACOIGA9/RRSS11.jpg?format=original" />
+   <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1780086782812-U5EI88UWH87K8ACOIGA9/RRSS11.jpg?format=original" alt="Emma and Ross wedding flowers by Golden Flowers at River Highlands Ranch, Sierra Nevada" />
   
 
   
-   <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1780086850661-BQUS9N2OPQHY1CWDRY2W/RHRSS.jpg?format=original" />
+   <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1780086850661-BQUS9N2OPQHY1CWDRY2W/RHRSS.jpg?format=original" alt="Emma and Ross wedding flowers by Golden Flowers at River Highlands Ranch, Sierra Nevada" />
   
 
   
-   <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1780086892986-Z8HWSPYB837Q166MD40J/RHRSS%40.jpg?format=original" />
+   <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1780086892986-Z8HWSPYB837Q166MD40J/RHRSS%40.jpg?format=original" alt="Emma and Ross wedding flowers by Golden Flowers at River Highlands Ranch, Sierra Nevada" />
   
 
   
-   <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1780086927177-IIIKM34X1EUMKE1JB5DH/RHRSS3.jpg?format=original" />
+   <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1780086927177-IIIKM34X1EUMKE1JB5DH/RHRSS3.jpg?format=original" alt="Emma and Ross wedding flowers by Golden Flowers at River Highlands Ranch, Sierra Nevada" />
   
 
   
-   <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1780086634614-Z0XIR1BUO88MP9W16ULP/RHRSS5.jpg?format=original" />
+   <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1780086634614-Z0XIR1BUO88MP9W16ULP/RHRSS5.jpg?format=original" alt="Emma and Ross wedding flowers by Golden Flowers at River Highlands Ranch, Sierra Nevada" />
   
 
   
-   <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1780086702852-3CUGU5YSJ2SCE2IX54UR/RHRss8.jpg?format=original" />
+   <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1780086702852-3CUGU5YSJ2SCE2IX54UR/RHRss8.jpg?format=original" alt="Emma and Ross wedding flowers by Golden Flowers at River Highlands Ranch, Sierra Nevada" />
   
 
   
-   <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1780086691173-MI6MZ5IH7IUZV814XRBP/RHRSS7.jpg?format=original" />
+   <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1780086691173-MI6MZ5IH7IUZV814XRBP/RHRSS7.jpg?format=original" alt="Emma and Ross wedding flowers by Golden Flowers at River Highlands Ranch, Sierra Nevada" />
   
 
   
-   <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1780086766925-RJ726CYNR92WV2JY9I25/rhrss13.jpg?format=original" />
+   <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1780086766925-RJ726CYNR92WV2JY9I25/rhrss13.jpg?format=original" alt="Emma and Ross wedding flowers by Golden Flowers at River Highlands Ranch, Sierra Nevada" />
   
 
   
-   <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1780086721762-C6SXT2L89MP7ENH8QJDD/RHRSS6.jpg?format=original" />
+   <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1780086721762-C6SXT2L89MP7ENH8QJDD/RHRSS6.jpg?format=original" alt="Emma and Ross wedding flowers by Golden Flowers at River Highlands Ranch, Sierra Nevada" />
   
 
   
-   <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1780086768690-OPMDERA6HTHMKVE2TSX9/RHRss14.jpg?format=original" />
+   <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1780086768690-OPMDERA6HTHMKVE2TSX9/RHRss14.jpg?format=original" alt="Emma and Ross wedding flowers by Golden Flowers at River Highlands Ranch, Sierra Nevada" />
   
 
   
-   <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1780086795542-Z2P645UFI1LRI3B181O2/RRss10.jpg?format=original" />
+   <img src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/1780086795542-Z2P645UFI1LRI3B181O2/RRss10.jpg?format=original" alt="Emma and Ross wedding flowers by Golden Flowers at River Highlands Ranch, Sierra Nevada" />
   
 
 </div>

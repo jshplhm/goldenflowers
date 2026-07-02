@@ -1,0 +1,16 @@
+{%- comment -%}
+Google Analytics 4. Fires ONLY when (a) `google_analytics` is set in _config.yml AND
+(b) the site is being served from the real goldenflorals.com domain. This keeps the fresh
+GA4 property clean of staging/local/testing hits and makes tracking auto-activate at
+cutover (when _config url flips to goldenflorals.com) — nothing to remember later.
+Get the ID at analytics.google.com → Admin → Data streams → your web stream → "G-XXXXXXXXXX".
+{%- endcomment -%}
+{%- if site.google_analytics and site.url contains "goldenflorals.com" -%}
+<script async src="https://www.googletagmanager.com/gtag/js?id={{ site.google_analytics }}"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', '{{ site.google_analytics }}');
+</script>
+{%- endif -%}

@@ -3,6 +3,8 @@ layout: redesign
 title: "Katie & James · Lush & Romantic"
 seo_title: "Katie & James Wedding Flowers · Lush & Romantic | Golden Flowers"
 permalink: /portfolio/katie-james
+redirect_from:
+  - /portfolio-1/katieandjames
 description: "A Golden Flowers wedding: lush & romantic floral design for a Lake Tahoe and Sierra Nevada celebration."
 hero_photo: katie-james-07.jpg
 ---

@@ -3,6 +3,8 @@ layout: redesign
 title: "Tori & Tucker · Wildflower Modern"
 seo_title: "Tori & Tucker Wedding Flowers · Wildflower Modern | Golden Flowers"
 permalink: /portfolio/tori-tucker
+redirect_from:
+  - /portfolio-1/tori-and-tucker
 description: "A Golden Flowers wedding: wildflower modern floral design for a Lake Tahoe and Sierra Nevada celebration."
 hero_photo: tori-tucker-12.jpg
 ---

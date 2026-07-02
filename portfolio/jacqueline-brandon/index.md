@@ -3,6 +3,8 @@ layout: redesign
 title: "Jacqueline & Brandon · Lush & Romantic"
 seo_title: "Jacqueline & Brandon Wedding Flowers · Lush & Romantic | Golden Flowers"
 permalink: /portfolio/jacqueline-brandon
+redirect_from:
+  - /portfolio-1/jacquelineandbrandon
 description: "A Golden Flowers wedding: lush & romantic floral design for a Lake Tahoe and Sierra Nevada celebration."
 hero_photo: jacqueline-brandon-11.jpg
 ---
