@@ -64,7 +64,7 @@ canonical_url: https://goldenflorals.com/
 
 <!-- IMMERSIVE -->
 <section class="immersive">
-  <img class="bg" src="{{ site.baseurl }}/assets/images/portfolio/hannah-chance/hannah-chance-27.jpg" alt="Autumn wedding reception centerpieces by Golden Flowers at The Stone House">
+  <img class="bg" src="{{ site.baseurl }}/assets/images/portfolio/emma-ross/emma-ross-12.jpg" alt="Couple at golden hour with a trailing white bouquet by Golden Flowers">
   <div class="il">
     <span class="lab">From our farm</span>
     <p class="disp">Every stem chosen for one couple, one date, one place in the mountains.</p>

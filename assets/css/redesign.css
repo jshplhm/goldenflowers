@@ -115,7 +115,7 @@ body.menu-open .mobile-menu{transform:none;}
 
 /* ---------- CREDO ---------- */
 .credo{padding:clamp(80px,11vw,150px) var(--pad) clamp(60px,7vw,90px);max-width:1500px;margin:0 auto;}
-.credo h2{font-family:var(--d);font-weight:430;font-optical-sizing:auto;font-size:clamp(2.1rem,5.3vw,4.8rem);line-height:1.05;letter-spacing:-.02em;max-width:20ch;margin-top:26px;}
+.credo h2{font-family:var(--d);font-weight:430;font-optical-sizing:auto;font-size:clamp(2.1rem,5.3vw,4.8rem);line-height:1.05;letter-spacing:-.02em;max-width:24ch;text-wrap:balance;margin-top:26px;}
 .credo h2 em{color:var(--forest);}
 .facts{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(28px,4vw,60px);margin-top:clamp(56px,7vw,90px);border-top:1px solid var(--line);padding-top:46px;}
 .fact .n{font-family:var(--d);font-style:normal;font-size:1.6rem;color:var(--terra);display:block;margin-bottom:16px;}
@@ -157,6 +157,7 @@ body.menu-open .mobile-menu{transform:none;}
 .aes-row{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(20px,2.4vw,32px);}
 .aes-card{display:block;}
 .aes-card .ph{position:relative;aspect-ratio:4/5;overflow:hidden;border-radius:3px;margin-bottom:22px;}
+.aes-card .ph::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(135deg,oklch(15% .02 150/.45),transparent 38%);pointer-events:none;}
 .aes-card .ph img{width:100%;height:100%;object-fit:cover;transition:transform 1s cubic-bezier(.2,.7,.2,1);}
 .aes-card:hover .ph img{transform:scale(1.05);}
 .aes-card .idx{position:absolute;top:16px;left:18px;z-index:2;font-family:var(--d);font-style:normal;font-size:2.4rem;color:var(--paper);text-shadow:0 2px 18px oklch(15% 0 0/.5);}
