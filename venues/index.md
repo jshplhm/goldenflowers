@@ -12,9 +12,9 @@ canonical_url: https://goldenflorals.com/venues
   <div class="mh-head">
     <span class="lab">Venues</span>
     <h1>We love this place.</h1>
+    <p class="mh-intro">From lakefront estates to mountaintop lodges, these are the venues Tahoe couples ask about most. Tap a featured venue for design notes, typical budgets, and planning answers.</p>
   </div>
   <div class="mh-body">
-    <p class="mh-intro">From lakefront estates to mountaintop lodges, these are the venues Tahoe couples ask about most. Tap a featured venue for design notes, typical budgets, and planning answers.</p>
     <ul class="map-legend map-legend--inline">
       <li><span class="lg-dot"></span> Featured</li>
       <li><span class="lg-dot sm"></span> More around the lake</li>

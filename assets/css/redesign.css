@@ -136,6 +136,10 @@ body.menu-open .mobile-menu{transform:none;}
 .tile:hover .cap{opacity:1;transform:none;}
 .cap b{font-family:var(--d);font-size:1.3rem;display:block;font-weight:430;}
 .cap span{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;opacity:.9;}
+@media(hover:none){
+  .tile::after{opacity:1;}
+  .cap{opacity:1;transform:none;}
+}
 .feature{grid-column:span 8;height:clamp(360px,44vw,580px);}
 .portrait{grid-column:span 4;height:clamp(360px,44vw,580px);}
 .quarter{grid-column:span 3;height:clamp(240px,24vw,340px);}
@@ -621,7 +625,7 @@ body.nav-hidden .venue-breadcrumb{top:0;}
 .map-legend{list-style:none;margin:26px 0 0;}
 .map-note{margin:16px 0 0;font-size:.9rem;line-height:1.5;color:var(--mute);max-width:40ch;}
 /* Featured venue hover-list (cross-linked with the map) */
-.mh-body .mh-intro{color:var(--fg2);font-size:.98rem;line-height:1.55;max-width:40ch;margin-bottom:4px;}
+.map-hero .mh-intro{color:var(--fg2);font-size:.98rem;line-height:1.55;max-width:40ch;margin:18px 0 4px;}
 .vlist-lab{display:block;margin:22px 0 10px;}
 .vlist-lab:first-of-type{margin-top:18px;}
 .map-legend--inline{display:flex;flex-wrap:wrap;gap:8px 22px;margin:14px 0 0;}
@@ -706,7 +710,8 @@ body.nav-hidden .venue-breadcrumb{top:0;}
   .nav-toggle{display:flex;}
   .twocol,.twoup{grid-template-columns:1fr;gap:28px;}
   .proc-step{grid-template-columns:1fr;gap:6px;}
-  .proc-num{font-size:1.7rem;}
+  .proc-step::before{display:none;}
+  .proc-num{font-size:1.7rem;width:auto;text-align:left;padding:0;}
   .quote-grid{grid-template-columns:1fr;}
   .venue-grid{grid-template-columns:1fr 1fr;}
   .two-col,.philosophy-grid,.pricing-box{grid-template-columns:1fr;gap:28px;}
