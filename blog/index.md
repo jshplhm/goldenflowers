@@ -12,7 +12,7 @@ redirect_from:
 
 <!-- HERO -->
 <header class="hero hero-sm">
-  <img class="bg" src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/f77301d9-f890-451d-8bf8-c8d3a07d2bc4/Lake+Tahoe+Luxe+Boquet.jpg" alt="Seasonal California-grown bouquet" style="object-position:center 45%;">
+  <img class="bg" src="{{ site.baseurl }}/assets/images/portfolio/kelly-dylan/kelly-dylan-05.jpg" alt="Seasonal California-grown wedding florals by Golden Flowers" style="object-position:center 45%;">
   <div class="hero-in">
     <p class="ey lab">Blog</p>
     <h1 class="disp">Flowers, farming &amp; the <em>Sierra Nevada.</em></h1>

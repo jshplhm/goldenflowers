@@ -8,10 +8,17 @@ canonical_url: https://goldenflorals.com/about
 ---
 
 <style>
-/* Brittany portraits within the team section */
-.brittany-duo{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:44px;}
-.brittany-duo img{width:100%;height:100%;aspect-ratio:4/5;object-fit:cover;display:block;}
-@media(max-width:640px){.brittany-duo{gap:12px;}}
+/* Editorial text + portrait splits — Brittany photos woven through the page */
+.story-split{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,64px);align-items:stretch;}
+.story-split .ss-text{align-self:center;}
+.story-split .ss-text .prose{margin-top:16px;}
+.story-split .ss-img img{width:100%;height:100%;min-height:clamp(360px,40vw,540px);object-fit:cover;border-radius:4px;display:block;}
+.story-split.rev .ss-img{order:-1;}
+@media(max-width:760px){
+  .story-split{grid-template-columns:1fr;gap:22px;}
+  .story-split.rev .ss-img{order:0;}
+  .story-split .ss-img img{min-height:0;aspect-ratio:4/5;}
+}
 </style>
 
 <!-- STUDIO HERO (split — deliberately not full-bleed) -->
@@ -45,15 +52,18 @@ canonical_url: https://goldenflorals.com/about
 
 <!-- ONE WEDDING A DAY — BY CHOICE -->
 <section class="block">
-  <div class="twocol">
-    <div>
+  <div class="story-split rev">
+    <div class="ss-img">
+      <img src="{{ site.baseurl }}/assets/images/our-story.jpg" alt="Brittany of Golden Flowers building a wedding installation" loading="lazy">
+    </div>
+    <div class="ss-text">
       <span class="lab">Our one rule</span>
       <h2>One wedding a day, so the day is entirely yours.</h2>
-    </div>
-    <div class="prose">
-      <p>We take one wedding per date. Not because we couldn't do more, but because of what it lets us give the couple whose date it is: all of it. Every hour of that day, every hand on our team, focused on bringing one vision to life.</p>
-      <p>It's a values decision before it's a logistics one. The people who design your flowers are the same people who source, build, install, and strike them, with nothing else competing for their attention. All hands on deck, for you.</p>
-      <span class="kicker">Your date is the only wedding on our calendar that day. Always.</span>
+      <div class="prose">
+        <p>We take one wedding per date. Not because we couldn't do more, but because of what it lets us give the couple whose date it is: all of it. Every hour of that day, every hand on our team, focused on bringing one vision to life.</p>
+        <p>It's a values decision before it's a logistics one. The people who design your flowers are the same people who source, build, install, and strike them, with nothing else competing for their attention. All hands on deck, for you.</p>
+        <span class="kicker">Your date is the only wedding on our calendar that day. Always.</span>
+      </div>
     </div>
   </div>
 </section>
@@ -62,21 +72,18 @@ canonical_url: https://goldenflorals.com/about
 
 <!-- THE TEAM -->
 <section class="block">
-  <span class="lab">The team</span>
-  <h2 class="h-lg">We work alongside the best designers in the region, and beyond.</h2>
-  <div class="twoup">
-    <div class="prose">
-      <p>Golden Flowers is a collective of accomplished florists, several of whom run their own studios and flower farms. These aren't day-of temps or junior assistants. They're seasoned designers we're privileged to build with, chosen for each wedding around its scale, style, and venue.</p>
-      <p>Brittany leads and designs every wedding, but the depth of the bench is what lets us take on ambitious installations and deliver them, calmly, on schedule. Experienced hands at every table and on every install.</p>
+  <div class="story-split">
+    <div class="ss-text">
+      <span class="lab">The team</span>
+      <h2 class="h-lg">We work alongside the best designers in the region, and beyond.</h2>
+      <div class="prose">
+        <p>Golden Flowers is a collective of accomplished florists, several of whom run their own studios and flower farms. These aren't day-of temps or junior assistants. They're seasoned designers we're privileged to build with, chosen for each wedding around its scale, style, and venue.</p>
+        <p>Because we take one wedding per date, the team that designs your flowers is the team that shows up to set them, adjusts them in the room, and breaks everything down when the night ends. No handoffs, no assembly line — the same trusted people, start to finish.</p>
+      </div>
     </div>
-    <div class="prose">
-      <p>Because we take one wedding per date, the team that designs your flowers is the team that shows up to set them, adjusts them in the room, and breaks everything down when the night ends.</p>
-      <p>No handoffs. No assembly line. No stranger arriving with your bouquets. The same trusted people, start to finish.</p>
+    <div class="ss-img">
+      <img src="{{ site.baseurl }}/assets/images/our-story-2.jpg" alt="Brittany of Golden Flowers arranging seasonal blooms at the studio" loading="lazy">
     </div>
-  </div>
-  <div class="brittany-duo">
-    <img src="{{ site.baseurl }}/assets/images/our-story.jpg" alt="Brittany of Golden Flowers at work on a wedding installation" loading="lazy">
-    <img src="{{ site.baseurl }}/assets/images/our-story-2.jpg" alt="Brittany of Golden Flowers arranging seasonal blooms" loading="lazy">
   </div>
 </section>
 

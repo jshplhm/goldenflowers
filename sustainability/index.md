@@ -12,7 +12,7 @@ redirect_from:
 
 <!-- HERO -->
 <header class="hero hero-sm">
-  <img class="bg" src="https://images.squarespace-cdn.com/content/v1/67e81d7599b7ef0dec0ec81c/2b98245c-1230-4e50-847e-90c7d13f793b/Lake%2BTahoe%2BFloral%2BInstallation.jpeg?format=2500w" alt="Farm-grown floral installation by Golden Flowers" style="object-position:center 45%;">
+  <img class="bg" src="{{ site.baseurl }}/assets/images/portfolio/camille-max/camille-max-19.jpg" alt="Farm-grown, garden-gathered floral design by Golden Flowers" style="object-position:center 45%;">
   <div class="hero-in">
     <p class="ey lab">Sustainability pledge</p>
     <h1 class="disp">Working toward <em>something better.</em></h1>
