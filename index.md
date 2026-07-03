@@ -11,29 +11,27 @@ canonical_url: https://goldenflorals.com/
 <!-- HERO -->
 <header class="hero">
   <img class="bg" src="{{ site.baseurl }}/assets/images/portfolio/lynn-aaron/lynn-aaron-19.jpg" alt="Lake Tahoe wedding florals: a floral arch above the lake at Palisades High Camp by Golden Flowers" style="object-position:center 45%;">
-  <span class="side-label">Est. in the Sierra Nevada</span>
   <div class="hero-in">
     <p class="ey lab">Lake Tahoe Wedding Florist</p>
     <h1 class="disp">Flowers That Belong to the <em>Place They Grow.</em></h1>
     <div class="hero-foot">
-      <p class="hero-sub">Farm-grown, foam-free florals. One wedding a day, deep in the Sierra Nevada.</p>
-      <div class="hero-btns">
-        <a class="btn" href="{{ site.baseurl }}/consultation-form">Check your date <span>&rarr;</span></a>
-        <a class="btn ghost" href="{{ site.baseurl }}/portfolio">Explore portfolio</a>
-      </div>
+      <p class="hero-sub">Farm-grown, foam-free florals, designed for weddings across Lake Tahoe and the Sierra Nevada.</p>
+      <a class="btn" href="{{ site.baseurl }}/consultation-form">Check your date <span>&rarr;</span></a>
     </div>
   </div>
 </header>
 
-<!-- INTRO -->
-<section class="credo" style="padding-bottom:clamp(20px,3vw,40px);">
+<!-- INTRO (paper band) -->
+<div class="band-paper">
+<section class="credo">
   <div style="max-width:860px;">
     <p style="font-size:1.08rem;line-height:1.75;color:var(--fg2);">Golden Flowers is a Lake Tahoe wedding florist designing seasonally grown, foam-free wedding flowers for couples getting married across the Sierra Nevada. We work with what California grows at its peak, in the season you're getting married, and we design around it. No flowers shipped from across the world. No floral foam. Just intentional, artful design that belongs to the place you're saying yes in.</p>
     <p style="font-size:1.08rem;line-height:1.75;color:var(--fg2);margin-top:16px;">We take one wedding a day, so your wedding is the only one on our calendar. Our designs are elevated and organic, grounded in texture and movement, and grown as close to the Sierra Nevada as the season allows.</p>
   </div>
 </section>
+</div>
 
-<!-- CREDO -->
+<!-- CREDO (cream) -->
 <section class="credo">
   <span class="lab">Why Golden Flowers</span>
   <h2 class="disp">We grow our own flowers on California soil, an hour from where you'll <em>say I do.</em></h2>
@@ -44,21 +42,23 @@ canonical_url: https://goldenflorals.com/
   </div>
 </section>
 
-<!-- WORK -->
+<!-- WORK (paper band) -->
+<div class="band-paper">
 <section class="work">
   <div class="work-head">
     <h2 class="disp">Selected weddings</h2>
     <a href="{{ site.baseurl }}/portfolio" class="txt-link">Browse the full portfolio &rarr;</a>
   </div>
   <div class="grid">
-    <a class="tile feature" href="{{ site.baseurl }}/portfolio/lynn-aaron"><img src="{{ site.baseurl }}/assets/images/portfolio/lynn-aaron/lynn-aaron-16.jpg" alt="Lynn &amp; Aaron wedding flowers: mountaintop florals at Palisades High Camp, Olympic Valley" style="object-position:center 30%;"><span class="cap"><b>Lynn &amp; Aaron</b><span>Lush &amp; Romantic</span></span></a>
-    <a class="tile portrait" href="{{ site.baseurl }}/portfolio/katie-james"><img src="{{ site.baseurl }}/assets/images/portfolio/katie-james/katie-james-07.jpg" alt="Katie &amp; James wedding flowers: lush blush florals"><span class="cap"><b>Katie &amp; James</b><span>Lush &amp; Romantic</span></span></a>
-    <a class="tile quarter" href="{{ site.baseurl }}/portfolio/jacqueline-brandon"><img src="{{ site.baseurl }}/assets/images/portfolio/jacqueline-brandon/jacqueline-brandon-05.jpg" alt="Jacqueline &amp; Brandon wedding flowers: red velvet ceremony arch and rose petal aisle"><span class="cap"><b>Jacqueline &amp; Brandon</b><span>Lush &amp; Romantic</span></span></a>
-    <a class="tile quarter" href="{{ site.baseurl }}/portfolio/camille-max"><img src="{{ site.baseurl }}/assets/images/portfolio/camille-max/camille-max-05.jpg" alt="Camille &amp; Max wedding flowers: blush bouquets and sage bridal party at North Star House"><span class="cap"><b>Camille &amp; Max</b><span>Wildflower Modern</span></span></a>
-    <a class="tile quarter" href="{{ site.baseurl }}/portfolio/kelly-dylan"><img src="{{ site.baseurl }}/assets/images/portfolio/kelly-dylan/kelly-dylan-08.jpg" alt="Kelly &amp; Dylan wedding flowers: lakeside wildflower bouquet"><span class="cap"><b>Kelly &amp; Dylan</b><span>Wildflower Modern</span></span></a>
-    <a class="tile quarter" href="{{ site.baseurl }}/portfolio/emma-ross"><img src="{{ site.baseurl }}/assets/images/portfolio/emma-ross/emma-ross-14.jpg" alt="Emma &amp; Ross wedding flowers: white calla and ranunculus bouquet in golden light"><span class="cap"><b>Emma &amp; Ross</b><span>Elevated Minimalist</span></span></a>
+    <a class="tile feature" href="{{ site.baseurl }}/portfolio/katie-james"><img src="{{ site.baseurl }}/assets/images/portfolio/katie-james/katie-james-08.jpg" alt="Katie &amp; James wedding flowers: lush pastel floral ceremony arch on a stone wall, The Miner's Foundry, Nevada City" style="object-position:center 45%;"><span class="cap"><b>Katie &amp; James</b><span>Lush &amp; Romantic</span></span></a>
+    <a class="tile portrait" href="{{ site.baseurl }}/portfolio/lynn-aaron"><img src="{{ site.baseurl }}/assets/images/portfolio/lynn-aaron/lynn-aaron-17.jpg" alt="Lynn &amp; Aaron wedding flowers: reception tables with foraged bud-vase florals against green velvet drapery, Palisades High Camp, Olympic Valley" style="object-position:center 50%;"><span class="cap"><b>Lynn &amp; Aaron</b><span>Lush &amp; Romantic</span></span></a>
+    <a class="tile quarter" href="{{ site.baseurl }}/portfolio/jenna-cal"><img src="{{ site.baseurl }}/assets/images/portfolio/jenna-cal/jenna-cal-12.jpg" alt="Jenna &amp; Cal wedding flowers: magnolia-and-greenery arch with red hanging lanterns above a sweetheart table, National Exchange Hotel, Nevada City" style="object-position:center 42%;"><span class="cap"><b>Jenna &amp; Cal</b><span>Elevated Minimalist</span></span></a>
+    <a class="tile quarter" href="{{ site.baseurl }}/portfolio/camille-max"><img src="{{ site.baseurl }}/assets/images/portfolio/camille-max/camille-max-30.jpg" alt="Camille &amp; Max wedding flowers: bride on a tree-lined path with a cascading bouquet of trailing amaranthus, North Star House, Grass Valley" style="object-position:center 28%;"><span class="cap"><b>Camille &amp; Max</b><span>Wildflower Modern</span></span></a>
+    <a class="tile quarter" href="{{ site.baseurl }}/portfolio/kelly-dylan"><img src="{{ site.baseurl }}/assets/images/portfolio/kelly-dylan/kelly-dylan-04.jpg" alt="Kelly &amp; Dylan wedding flowers: blue delphinium beach ceremony installation, North Tahoe Event Center, Kings Beach" style="object-position:center 40%;"><span class="cap"><b>Kelly &amp; Dylan</b><span>Wildflower Modern</span></span></a>
+    <a class="tile quarter" href="{{ site.baseurl }}/portfolio/tori-tucker"><img src="{{ site.baseurl }}/assets/images/portfolio/tori-tucker/tori-tucker-16.jpg" alt="Tori &amp; Tucker wedding flowers: lakeside beach ceremony with a wild peony and garden-rose arch, North Tahoe Event Center, Kings Beach" style="object-position:center 25%;"><span class="cap"><b>Tori &amp; Tucker</b><span>Wildflower Modern</span></span></a>
   </div>
 </section>
+</div>
 
 <!-- VENUE MARQUEE -->
 <section class="marq">
@@ -75,7 +75,7 @@ canonical_url: https://goldenflorals.com/
   <img class="bg" src="{{ site.baseurl }}/assets/images/portfolio/tori-tucker/tori-tucker-05.jpg" alt="Floral ceremony arch on the Lake Tahoe shore by Golden Flowers, mountains across the water">
   <div class="il">
     <span class="lab">From our farm</span>
-    <p class="disp">Every stem chosen for one couple, one date, one place in the mountains.</p>
+    <p class="disp">Every stem grown and gathered for a single day in the mountains.</p>
   </div>
 </section>
 
@@ -88,19 +88,19 @@ canonical_url: https://goldenflorals.com/
     </div>
     <div class="aes-row">
       <a class="aes-card" href="{{ site.baseurl }}/portfolio#lush-romantic">
-        <div class="ph"><span class="idx">01</span><img src="{{ site.baseurl }}/assets/images/portfolio/jacqueline-brandon/jacqueline-brandon-11.jpg" alt="Lush and romantic floral design: deep red roses"></div>
+        <div class="ph"><span class="idx">01</span><img src="{{ site.baseurl }}/assets/images/portfolio/katie-james/katie-james-01.jpg" alt="Lush and romantic floral design: candlelit reception tablescape with peach and burgundy blooms"></div>
         <h3>Lush &amp; Romantic</h3>
         <p>Rich and cinematic, in deep shades of burgundy and plum.</p>
         <span class="more">View weddings</span>
       </a>
       <a class="aes-card" href="{{ site.baseurl }}/portfolio#elevated-minimalist">
-        <div class="ph"><span class="idx">02</span><img src="{{ site.baseurl }}/assets/images/portfolio/emma-ross/emma-ross-08.jpg" alt="Elevated minimalist floral design: ivory and greenery"></div>
+        <div class="ph"><span class="idx">02</span><img src="{{ site.baseurl }}/assets/images/portfolio/emma-ross/emma-ross-14.jpg" alt="Elevated minimalist floral design: ivory calla and ranunculus bouquet"></div>
         <h3>Elevated Minimalist</h3>
         <p>Clean lines, ivory and sage. Design that lets the view do the talking.</p>
         <span class="more">View weddings</span>
       </a>
       <a class="aes-card" href="{{ site.baseurl }}/portfolio#wildflower-modern">
-        <div class="ph"><span class="idx">03</span><img src="{{ site.baseurl }}/assets/images/portfolio/camille-max/camille-max-16.jpg" alt="Wildflower modern floral design: garden blooms and grasses"></div>
+        <div class="ph"><span class="idx">03</span><img src="{{ site.baseurl }}/assets/images/portfolio/camille-max/camille-max-17.jpg" alt="Wildflower modern floral design: rose-lined aisle recessional, North Star House, Grass Valley"></div>
         <h3>Wildflower Modern</h3>
         <p>Native blooms and grasses, styled with an editorial eye.</p>
         <span class="more">View weddings</span>
@@ -120,8 +120,7 @@ canonical_url: https://goldenflorals.com/
 
 <!-- CLOSING -->
 <section class="cta">
-  <span class="lab">One wedding per date</span>
   <h2 class="disp">Is your date <em>still open?</em></h2>
-  <p>We book a single wedding each day, and peak dates go quickly. Tell us yours and we'll let you know if it's open.</p>
+  <p>Peak dates go quickly. Tell us your date and venue, and we'll let you know if it's still yours.</p>
   <a class="btn btn-ink" href="{{ site.baseurl }}/consultation-form">Check your date <span>&rarr;</span></a>
 </section>

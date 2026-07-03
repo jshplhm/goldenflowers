@@ -110,7 +110,7 @@ canonical_url: https://goldenflorals.com/venues
 <section class="venues-more">
   <div class="vm-group">
     <span class="lab vlist-lab"><span class="vlist-dot vlist-dot--minor"></span>More around the lake</span>
-    <ul class="vfl-minor vfl-pills">
+    <ul class="vfl-minor vfl-textlist">
       <li><span data-venue="chateau">The Chateau</span></li>
       <li><span data-venue="plumpjack">PlumpJack</span></li>
       <li><span data-venue="everline">Everline</span></li>
@@ -131,8 +131,8 @@ canonical_url: https://goldenflorals.com/venues
     </ul>
   </div>
   <div class="vm-group">
-    <span class="lab vlist-lab">Select weddings in the foothills of Nevada City &amp; Grass Valley</span>
-    <ul class="vfl-minor vfl-pills">
+    <span class="lab vlist-lab">Select venues in the foothills of Nevada City &amp; Grass Valley</span>
+    <ul class="vfl-minor vfl-textlist vfl-static">
       <li><span>National Exchange Hotel</span></li>
       <li><span>Miners Foundry</span></li>
       <li><span>Holbrooke Hotel</span></li>
@@ -148,7 +148,7 @@ canonical_url: https://goldenflorals.com/venues
 <section class="mini">
   <span class="lab">Somewhere else?</span>
   <h2>Don't see your venue?</h2>
-  <p>The map covers the venues couples ask about most, and we range well beyond it. We design across Lake Tahoe, Truckee, and the Sierra foothills, and we'll gladly walk a space that's new to us before we propose a single stem.</p>
+  <p>The map covers the venues couples ask about most, and we range well beyond it, including private lakeside and mountain estates. We design across Lake Tahoe, Truckee, and the Sierra foothills, and we'll gladly walk a space that's new to us before we propose a single stem.</p>
   <button type="button" class="txt-link" data-consult-open>Tell us where &rarr;</button>
 </section>
 
@@ -165,7 +165,7 @@ canonical_url: https://goldenflorals.com/venues
 (function(){
   var pins={}, items={};
   document.querySelectorAll('.t-pin[data-venue]').forEach(function(p){ pins[p.getAttribute('data-venue')]=p; });
-  document.querySelectorAll('.mh-body [data-venue], .vfl-pills [data-venue]').forEach(function(a){ items[a.getAttribute('data-venue')]=a; });
+  document.querySelectorAll('.mh-body [data-venue], .vfl-textlist [data-venue]').forEach(function(a){ items[a.getAttribute('data-venue')]=a; });
   function clearAll(){ Object.keys(pins).forEach(function(v){set(v,false);}); }
   function set(v,on){ if(pins[v])pins[v].classList.toggle('is-active',on); if(items[v])items[v].classList.toggle('is-active',on); }
   function wire(el,v){
