@@ -12,6 +12,529 @@ media:
     output: /goldenflowers/assets/images/proposals
 
 content:
+  # ═══════════════════════════════════════════════════════════════════
+  #  SITE COPY
+  #  Every page's words live here. Pick a page, edit the text boxes,
+  #  press Save, and the live site updates in a minute or two.
+  #  Tip anywhere you see it: put *asterisks* around words to italicize.
+  # ═══════════════════════════════════════════════════════════════════
+
+  - name: home
+    label: Home page
+    type: file
+    path: _data/home.yml
+    format: yaml
+    icon: house
+    fields:
+      - name: hero
+        label: Hero (very top)
+        type: object
+        fields:
+          - {name: eyebrow, label: "Small label above the headline", type: string}
+          - {name: heading, label: "Headline", type: string, description: "Put *asterisks* around words to italicize them."}
+          - {name: subheading, label: "Sub-headline", type: text}
+          - {name: button, label: "Button text", type: string}
+      - name: intro
+        label: Intro band
+        type: object
+        fields:
+          - {name: paragraph1, label: "First paragraph", type: text}
+          - {name: paragraph2, label: "Second paragraph", type: text}
+      - name: why
+        label: Why Golden Flowers
+        type: object
+        fields:
+          - {name: label, label: "Small label", type: string}
+          - {name: heading, label: "Heading", type: string, description: "*asterisks* = italics"}
+          - name: facts
+            label: The three facts
+            type: object
+            list: true
+            fields:
+              - {name: number, label: "Number (e.g. 01)", type: string}
+              - {name: title, label: "Title", type: string}
+              - {name: body, label: "Text", type: text}
+      - name: work
+        label: Selected weddings
+        type: object
+        fields:
+          - {name: heading, label: "Heading", type: string}
+          - {name: link, label: "Link text", type: string}
+      - name: marquee
+        label: Scrolling venue strip
+        type: object
+        fields:
+          - {name: label, label: "Label", type: string}
+          - {name: link, label: "Link text", type: string}
+      - name: immersive
+        label: Full-width photo band
+        type: object
+        fields:
+          - {name: label, label: "Small label", type: string}
+          - {name: heading, label: "Text over the photo", type: string}
+      - name: aesthetics
+        label: Three design languages
+        type: object
+        fields:
+          - {name: label, label: "Small label", type: string}
+          - {name: heading, label: "Heading", type: string}
+          - name: cards
+            label: The three cards
+            type: object
+            list: true
+            fields:
+              - {name: title, label: "Title", type: string}
+              - {name: body, label: "Text", type: text}
+              - {name: link, label: "Link text", type: string}
+      - name: testimonial
+        label: Featured review
+        type: object
+        fields:
+          - {name: quote, label: "Quote", type: text, description: "*asterisks* = italics"}
+          - {name: name, label: "Name", type: string}
+          - {name: context, label: "Context (e.g. Lake Tahoe Wedding)", type: string}
+          - {name: link, label: "Link text", type: string}
+      - name: cta
+        label: Closing call to action
+        type: object
+        fields:
+          - {name: heading, label: "Heading", type: string, description: "*asterisks* = italics"}
+          - {name: body, label: "Text", type: text}
+          - {name: button, label: "Button text", type: string}
+
+  - name: about
+    label: About page
+    type: file
+    path: _data/about.yml
+    format: yaml
+    icon: book-open
+    fields:
+      - name: hero
+        label: Hero (top)
+        type: object
+        fields:
+          - {name: eyebrow, label: "Small label", type: string}
+          - {name: heading, label: "Headline", type: string, description: "*asterisks* = italics"}
+          - {name: subheading, label: "Sub-headline", type: text}
+      - name: intro
+        label: "Section: what we're for"
+        type: object
+        fields:
+          - {name: label, label: "Small label", type: string}
+          - {name: heading, label: "Heading", type: string}
+          - {name: paragraphs, label: "Paragraphs", type: text, list: true}
+      - name: one_rule
+        label: "Section: one wedding a day"
+        type: object
+        fields:
+          - {name: label, label: "Small label", type: string}
+          - {name: heading, label: "Heading", type: string}
+          - {name: paragraph, label: "Paragraph", type: text}
+          - {name: kicker, label: "Highlighted line", type: text}
+      - name: team
+        label: "Section: the team"
+        type: object
+        fields:
+          - {name: label, label: "Small label", type: string}
+          - {name: heading, label: "Heading", type: string}
+          - {name: paragraphs, label: "Paragraphs", type: text, list: true}
+      - name: certainty
+        label: "Section: buying certainty"
+        type: object
+        fields:
+          - {name: label, label: "Small label", type: string}
+          - {name: heading, label: "Heading", type: string}
+          - {name: paragraphs, label: "Paragraphs", type: text, list: true}
+          - name: points
+            label: The four points
+            type: object
+            list: true
+            fields:
+              - {name: title, label: "Title", type: string}
+              - {name: body, label: "Text", type: text}
+      - name: editorial
+        label: Full-width photo band
+        type: object
+        fields:
+          - {name: label, label: "Small label", type: string}
+          - {name: heading, label: "Text over the photo", type: string}
+      - name: seasonal
+        label: "Section: seasonal availability"
+        type: object
+        fields:
+          - {name: label, label: "Small label", type: string}
+          - {name: heading, label: "Heading", type: string}
+          - {name: intro, label: "Intro line", type: text}
+          - name: seasons
+            label: The four seasons
+            type: object
+            list: true
+            fields:
+              - {name: name, label: "Season name", type: string}
+              - {name: dates, label: "Dates", type: string}
+              - {name: flowers, label: "Flowers in season", type: string, list: true}
+              - {name: note, label: "Note", type: text}
+          - {name: footnote, label: "Footnote", type: text}
+      - name: values
+        label: "Section: philosophy"
+        type: object
+        fields:
+          - {name: label, label: "Small label", type: string}
+          - {name: heading, label: "Heading", type: string}
+          - name: items
+            label: The principles
+            type: object
+            list: true
+            fields:
+              - {name: title, label: "Title", type: string}
+              - {name: body, label: "Text", type: text}
+      - name: sustainability_pointer
+        label: "Section: sustainability pointer"
+        type: object
+        fields:
+          - {name: label, label: "Small label", type: string}
+          - {name: heading, label: "Heading", type: string}
+          - {name: body, label: "Text", type: text}
+          - {name: link, label: "Link text", type: string}
+      - name: closing
+        label: Closing call to action
+        type: object
+        fields:
+          - {name: label, label: "Small label", type: string}
+          - {name: heading, label: "Heading", type: string, description: "*asterisks* = italics"}
+          - {name: body, label: "Text", type: text}
+          - {name: button, label: "Button text", type: string}
+
+  - name: weddings
+    label: Weddings page
+    type: file
+    path: _data/weddings.yml
+    format: yaml
+    icon: flower-2
+    fields:
+      - name: hero
+        label: Hero (top)
+        type: object
+        fields:
+          - {name: label, label: "Small label", type: string}
+          - {name: heading, label: "Headline", type: string, description: "*asterisks* = italics"}
+          - {name: subheading, label: "Sub-headline", type: text}
+          - {name: button_primary, label: "Main button text", type: string}
+          - {name: button_secondary, label: "Second button text", type: string}
+      - name: process
+        label: "Section: how it works"
+        type: object
+        fields:
+          - {name: label, label: "Small label", type: string}
+          - {name: heading, label: "Heading", type: string}
+          - {name: intro, label: "Intro paragraph", type: text}
+          - name: steps
+            label: The steps
+            type: object
+            list: true
+            fields:
+              - {name: number, label: "Number", type: string}
+              - {name: when, label: "Timing label", type: string}
+              - {name: title, label: "Title", type: string}
+              - {name: body, label: "Text", type: text}
+      - name: included
+        label: "Section: what's included"
+        type: object
+        fields:
+          - {name: label, label: "Small label", type: string}
+          - {name: heading, label: "Heading", type: string}
+          - name: items
+            label: The items
+            type: object
+            list: true
+            fields:
+              - {name: title, label: "Title", type: string}
+              - {name: body, label: "Text", type: text}
+      - name: pricing
+        label: "Section: investment"
+        type: object
+        fields:
+          - {name: label, label: "Small label", type: string}
+          - {name: price, label: "Headline price", type: string}
+          - {name: price_sub, label: "Under the price", type: string}
+          - {name: points, label: "Bullet points", type: text, list: true, description: "**double asterisks** make text bold"}
+          - {name: tagline, label: "Closing line", type: text}
+      - name: risk
+        label: "Section: if something goes wrong"
+        type: object
+        fields:
+          - {name: label, label: "Small label", type: string}
+          - {name: heading, label: "Heading", type: string}
+          - {name: body, label: "Text", type: text}
+          - {name: quote, label: "Quote", type: text}
+          - {name: source, label: "Quote source", type: string}
+      - name: testimonials
+        label: "Section: reviews heading"
+        type: object
+        fields:
+          - {name: label, label: "Small label", type: string}
+          - {name: heading, label: "Heading", type: string}
+      - name: seasonal
+        label: "Section: seasonal flowers"
+        type: object
+        fields:
+          - {name: label, label: "Small label", type: string}
+          - {name: heading, label: "Heading", type: string}
+          - {name: body, label: "Text", type: text}
+          - {name: link, label: "Link text", type: string}
+      - name: faq
+        label: "Section: FAQ heading"
+        type: object
+        fields:
+          - {name: label, label: "Small label", type: string}
+          - {name: heading, label: "Heading", type: string}
+      - name: venue_cta
+        label: "Section: browse by venue"
+        type: object
+        fields:
+          - {name: label, label: "Small label", type: string}
+          - {name: heading, label: "Heading", type: string}
+          - {name: body, label: "Text", type: text}
+          - {name: link, label: "Link text", type: string}
+      - name: closing
+        label: Closing call to action
+        type: object
+        fields:
+          - {name: label, label: "Small label", type: string}
+          - {name: heading, label: "Heading", type: string, description: "*asterisks* = italics"}
+          - {name: body, label: "Text", type: text}
+          - {name: button, label: "Button text", type: string}
+
+  - name: venues_page
+    label: Venues page (intro & closing)
+    type: file
+    path: _data/venues_page.yml
+    format: yaml
+    icon: map
+    fields:
+      - name: hero
+        label: Top of page
+        type: object
+        fields:
+          - {name: label, label: "Small label", type: string}
+          - {name: heading, label: "Headline", type: string}
+          - {name: intro, label: "Intro paragraph", type: text}
+      - name: not_listed
+        label: "Section: don't see your venue"
+        type: object
+        fields:
+          - {name: label, label: "Small label", type: string}
+          - {name: heading, label: "Heading", type: string}
+          - {name: body, label: "Text", type: text}
+          - {name: link, label: "Link text", type: string}
+      - name: closing
+        label: Closing call to action
+        type: object
+        fields:
+          - {name: label, label: "Small label", type: string}
+          - {name: heading, label: "Heading", type: string, description: "*asterisks* = italics"}
+          - {name: body, label: "Text", type: text}
+          - {name: button, label: "Button text", type: string}
+
+  - name: venue_pages
+    label: Venue pages (one each)
+    type: collection
+    path: _data/venues
+    format: yaml
+    icon: map-pin
+    view:
+      fields: [venue_name]
+    fields:
+      - {name: venue_name, label: "Venue name", type: string}
+      - name: hero
+        label: Top of page
+        type: object
+        fields:
+          - {name: eyebrow, label: "Small label (area)", type: string}
+          - {name: heading, label: "Headline", type: string, description: "*asterisks* = italics"}
+          - {name: subheading, label: "Sub-headline", type: string}
+      - name: why
+        label: "Section: why this venue"
+        type: object
+        fields:
+          - {name: label, label: "Small label", type: string}
+          - {name: heading, label: "Heading", type: string}
+          - {name: paragraphs, label: "Paragraphs", type: text, list: true}
+          - name: facts
+            label: The four facts
+            type: object
+            list: true
+            fields:
+              - {name: label, label: "Label", type: string}
+              - {name: body, label: "Text", type: text}
+      - name: philosophy
+        label: "Section: design philosophy"
+        type: object
+        fields:
+          - {name: label, label: "Small label", type: string}
+          - {name: heading, label: "Heading", type: string}
+          - name: items
+            label: The four points
+            type: object
+            list: true
+            fields:
+              - {name: title, label: "Title", type: string}
+              - {name: body, label: "Text", type: text}
+      - name: faq
+        label: "Section: FAQ heading"
+        type: object
+        fields:
+          - {name: label, label: "Small label", type: string}
+          - {name: heading, label: "Heading", type: string}
+      - name: pricing
+        label: "Section: investment"
+        type: object
+        fields:
+          - {name: label, label: "Small label", type: string}
+          - {name: heading, label: "Heading", type: string}
+          - {name: range, label: "Price range", type: string}
+          - {name: note, label: "Under the price", type: string}
+          - {name: details, label: "Paragraphs", type: text, list: true}
+          - {name: button, label: "Button text", type: string}
+      - name: cta
+        label: Closing call to action
+        type: object
+        fields:
+          - {name: label, label: "Small label", type: string}
+          - {name: heading, label: "Heading", type: string}
+          - {name: body, label: "Text", type: text}
+          - {name: button, label: "Button text", type: string}
+
+  - name: portfolio
+    label: Portfolio blurbs
+    type: file
+    path: _data/portfolio.yml
+    format: yaml
+    icon: images
+    fields:
+      - {name: katie-james, label: "Katie & James", type: text}
+      - {name: lynn-aaron, label: "Lynn & Aaron", type: text}
+      - {name: jenna-cal, label: "Jenna & Cal", type: text}
+      - {name: camille-max, label: "Camille & Max", type: text}
+      - {name: kelly-dylan, label: "Kelly & Dylan", type: text}
+      - {name: tori-tucker, label: "Tori & Tucker", type: text}
+      - {name: emma-ross, label: "Emma & Ross", type: text}
+      - {name: sarah-brian, label: "Sarah & Brian", type: text}
+      - {name: niamh-nick, label: "Niamh & Nick", type: text}
+      - {name: catherine-joaquin, label: "Catherine & Joaquin", type: text}
+      - {name: hannah-chance, label: "Hannah & Chance", type: text}
+      - {name: jacqueline-brandon, label: "Jacqueline & Brandon", type: text}
+
+  - name: testimonials
+    label: Reviews (carousel)
+    type: file
+    path: _data/testimonials.yml
+    format: yaml
+    icon: quote
+    fields:
+      - name: items
+        label: Reviews
+        type: object
+        list: true
+        fields:
+          - {name: quote, label: "Quote (keep the quotation marks)", type: text}
+          - {name: name, label: "First name", type: string}
+          - {name: context, label: "Venue / wedding", type: string}
+
+  - name: sustainability
+    label: Sustainability page
+    type: file
+    path: _data/sustainability.yml
+    format: yaml
+    icon: sprout
+    fields:
+      - name: hero
+        label: Hero (top)
+        type: object
+        fields:
+          - {name: eyebrow, label: "Small label", type: string}
+          - {name: heading, label: "Headline", type: string, description: "*asterisks* = italics"}
+          - {name: subheading, label: "Sub-headline", type: text}
+      - name: closing
+        label: Closing call to action
+        type: object
+        fields:
+          - {name: label, label: "Small label", type: string}
+          - {name: heading, label: "Heading", type: string, description: "*asterisks* = italics"}
+          - {name: body, label: "Text", type: text}
+          - {name: button, label: "Button text", type: string}
+
+  - name: pledge
+    label: Sustainability pledge (the commitments)
+    type: file
+    path: _data/pledge.yml
+    format: yaml
+    icon: leaf
+    fields:
+      - name: head
+        label: Heading area
+        type: object
+        fields:
+          - {name: label, label: "Small label", type: string}
+          - {name: heading, label: "Heading", type: string}
+          - {name: intro, label: "Intro paragraph", type: text}
+      - name: items
+        label: The commitments
+        type: object
+        list: true
+        fields:
+          - {name: title, label: "Title", type: string}
+          - {name: body, label: "Text", type: text}
+      - {name: closing, label: "Closing line", type: text}
+
+  - name: contact
+    label: Contact page
+    type: file
+    path: _data/consultation.yml
+    format: yaml
+    icon: mail
+    fields:
+      - name: hero
+        label: Hero (top)
+        type: object
+        fields:
+          - {name: label, label: "Small label", type: string}
+          - {name: heading, label: "Headline", type: string, description: "*asterisks* = italics"}
+          - {name: subheading, label: "Sub-headline", type: text}
+      - name: next_steps
+        label: "Section: what happens next"
+        type: object
+        fields:
+          - {name: label, label: "Small label", type: string}
+          - {name: heading, label: "Heading", type: string}
+          - name: steps
+            label: The three steps
+            type: object
+            list: true
+            fields:
+              - {name: title, label: "Bold lead-in", type: string}
+              - {name: body, label: "Text", type: text}
+      - name: reach
+        label: "Section: reach us directly"
+        type: object
+        fields:
+          - {name: label, label: "Small label", type: string}
+          - {name: heading, label: "Heading", type: string}
+          - {name: location, label: "Location line", type: string}
+          - {name: note, label: "Small print note", type: text}
+
+  - name: footer
+    label: Footer (every page)
+    type: file
+    path: _data/footer.yml
+    format: yaml
+    icon: panel-bottom
+    fields:
+      - {name: tagline, label: "Tagline", type: text}
+      - {name: cta, label: "Button text", type: string}
+      - {name: studio, label: "Studio lines", type: string, list: true}
+      - {name: bottom_right, label: "Bottom-right line", type: string}
+
   # ── Page FAQs ────────────────────────────────────────────────────
   # Edits the FAQ accordions on the venue pages + the Weddings page. These
   # render as both the visible Q&A and FAQPage structured data (for Google /

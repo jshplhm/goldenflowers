@@ -1,0 +1,31 @@
+# Sustainability pledge, shown on the Sustainability page (and the About page pointer).
+# Tip: wrap words in *asterisks* to make them italic.
+
+head:
+  label: Sustainability pledge
+  heading: Working toward something better.
+  intro: These are the commitments that shape how we design, source, and grow. Some are already woven into every wedding; others we're actively working toward. We don't claim perfection, only steady progress in the right direction.
+
+items:
+  - title: Foam-free, plastic-free design
+    body: No floral foam, ever. We build with reusable mechanics like chicken wire, wool, and pin frogs instead of single-use plastic that sheds microplastics into the watershed.
+  - title: Buying local first
+    body: We reach for what's grown closest before anything else, starting with our own farm plots and California growers we know personally. No flowers flown in from across the world.
+  - title: Mindful growing practices
+    body: Our farm plots are tended for soil health, biodiversity, and pollinators, a direct extension of Brittany's agronomic training in how land and plants actually thrive.
+  - title: Vase return & reuse
+    body: Vessels and vases can come back to us. We clean, reuse, and recirculate what doesn't need to end up in the bin.
+  - title: Repurposing wedding florals
+    body: We're building partnerships to give wedding flowers a second life after the event, going to hospitals, senior care facilities, and community spaces.
+  - title: Toward electric delivery
+    body: We're working toward an all-electric delivery vehicle to lower the carbon footprint of getting your flowers from our farm to your venue.
+  - title: Low-waste packaging
+    body: Digital-first invoicing and proposals, recycled paper for cards and wraps, and no single-use plastic wherever we can help it.
+  - title: Composting the harvest
+    body: Stem trimmings and spent blooms from our farm go back into the soil to feed the next season instead of the landfill.
+  - title: Giving back to the land
+    body: We're committing a share of profits to organizations working to restore California habitat and protect the land this business is rooted in.
+  - title: Seasonal by default
+    body: We design around what's at its peak in California, so flowers travel less, last longer, and are never forced out of season just to fill an order.
+
+closing: "This is a living pledge, still growing. The aim is simple: leave the land a little better than we found it."

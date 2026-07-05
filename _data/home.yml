@@ -1,0 +1,64 @@
+# Home page copy (the front page at goldenflorals.com).
+# Edit the text here; the layout, photos, and links stay put.
+# Tip: wrap words in *asterisks* to make them italic, like *this*.
+
+hero:
+  eyebrow: Lake Tahoe Wedding Florist
+  heading: Flowers That Belong to the *Place They Grow.*
+  subheading: Farm-grown, foam-free florals, designed for weddings across Lake Tahoe and the Sierra Nevada.
+  button: Check your date
+
+intro:
+  paragraph1: Golden Flowers is a Lake Tahoe wedding florist designing seasonally grown, foam-free wedding flowers for couples getting married across the Sierra Nevada. We work with what California grows at its peak, in the season you're getting married, and we design around it. No flowers shipped from across the world. No floral foam. Just intentional, artful design that belongs to the place you're saying yes in.
+  paragraph2: We take one wedding a day, so your wedding is the only one on our calendar. Our designs are elevated and organic, grounded in texture and movement, and grown as close to the Sierra Nevada as the season allows.
+
+why:
+  label: Why Golden Flowers
+  heading: We grow our own flowers on California soil, an hour from where you'll *say I do.*
+  facts:
+    - number: '01'
+      title: Farm-grown
+      body: Raised on our own California plots and sourced only from growers we trust, never shipped from overseas.
+    - number: '02'
+      title: Foam-free, always
+      body: Every arrangement is built without floral foam. Better for the design, and better for the mountains.
+    - number: '03'
+      title: One wedding a day
+      body: We never double-book. Our full team spends the day on your wedding and nothing else.
+
+work:
+  heading: Selected weddings
+  link: Browse the full portfolio
+
+marquee:
+  label: We design at 30+ venues across the Sierra
+  link: See all venues
+
+immersive:
+  label: From our farm
+  heading: Every stem grown and gathered for a single day in the mountains.
+
+aesthetics:
+  label: Find your aesthetic
+  heading: Three design languages we keep returning to.
+  cards:
+    - title: Lush & Romantic
+      body: Rich and cinematic, in deep shades of burgundy and plum.
+      link: View weddings
+    - title: Elevated Minimalist
+      body: Clean lines, ivory and sage. Design that lets the view do the talking.
+      link: View weddings
+    - title: Wildflower Modern
+      body: Native blooms and grasses, styled with an editorial eye.
+      link: View weddings
+
+testimonial:
+  quote: '"Brittany and her team are the utmost in artistry, professionalism, and support. The presentation at the wedding was *through-the-roof beautiful.*"'
+  name: Brian
+  context: Lake Tahoe Wedding
+  link: Read more reviews
+
+cta:
+  heading: Is your date *still open?*
+  body: Peak dates go quickly. Tell us your date and venue, and we'll let you know if it's still yours.
+  button: Check your date

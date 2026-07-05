@@ -24,9 +24,9 @@ canonical_url: https://goldenflorals.com/about
 <!-- STUDIO HERO (split: deliberately not full-bleed) -->
 <section class="studio-hero">
   <div class="sh-text">
-    <p class="ey lab">Our Story</p>
-    <h1>The team you want when it <em>has to be right.</em></h1>
-    <p class="sh-sub">Golden Flowers is a professional floral studio led by Brittany and built around a team of the region's most accomplished designers. We take one wedding a day and give it everything we have.</p>
+    <p class="ey lab">{{ site.data.about.hero.eyebrow }}</p>
+    <h1>{% include em.html t=site.data.about.hero.heading %}</h1>
+    <p class="sh-sub">{{ site.data.about.hero.subheading }}</p>
   </div>
   <div class="sh-img">
     <img src="{{ site.baseurl }}/assets/images/studio-hero.jpg" alt="The Golden Flowers team finishing a wedding installation" loading="eager">
@@ -37,13 +37,13 @@ canonical_url: https://goldenflorals.com/about
 <section class="block">
   <div class="twocol">
     <div>
-      <span class="lab">What we're really for</span>
-      <h2>A wedding day happens once. There is no rehearsal and no do-over.</h2>
+      <span class="lab">{{ site.data.about.intro.label }}</span>
+      <h2>{{ site.data.about.intro.heading }}</h2>
     </div>
     <div class="prose">
-      <p>Golden Flowers exists to take that on: to plan for everything that can go wrong with cut flowers, and to make your design feel effortless on the one day it absolutely has to.</p>
-      <p>Brittany founded and leads the studio, and her background runs deep: a master's in agricultural science, more than a decade in sustainable agriculture across Spain, Mexico, New Zealand, and the United States, and formal European floral design training.</p>
-      <p>We're based in the Sierra Nevada and we design for the couples who marry here. The flowers are grown close by, the team is local and seasoned, and the standards don't move.</p>
+      {%- for p in site.data.about.intro.paragraphs %}
+      <p>{{ p }}</p>
+      {%- endfor %}
     </div>
   </div>
 </section>
@@ -57,11 +57,11 @@ canonical_url: https://goldenflorals.com/about
       <img src="{{ site.baseurl }}/assets/images/our-story.jpg" alt="Brittany of Golden Flowers building a wedding installation" loading="lazy">
     </div>
     <div class="ss-text">
-      <span class="lab">Our one rule</span>
-      <h2>One wedding a day, so the day is entirely yours.</h2>
+      <span class="lab">{{ site.data.about.one_rule.label }}</span>
+      <h2>{{ site.data.about.one_rule.heading }}</h2>
       <div class="prose">
-        <p>We take one wedding per date because of what it lets us give the couple whose date it is: every hour of that day and every hand on our team, focused on bringing one vision to life.</p>
-        <span class="kicker">Your date is the only wedding on our calendar that day. Always.</span>
+        <p>{{ site.data.about.one_rule.paragraph }}</p>
+        <span class="kicker">{{ site.data.about.one_rule.kicker }}</span>
       </div>
     </div>
   </div>
@@ -73,11 +73,12 @@ canonical_url: https://goldenflorals.com/about
 <section class="block">
   <div class="story-split">
     <div class="ss-text">
-      <span class="lab">The team</span>
-      <h2 class="h-lg">We work alongside the best designers in the region, and beyond.</h2>
+      <span class="lab">{{ site.data.about.team.label }}</span>
+      <h2 class="h-lg">{{ site.data.about.team.heading }}</h2>
       <div class="prose">
-        <p>Golden Flowers is a collective of accomplished florists, several of whom run their own studios and flower farms: seasoned designers we're privileged to build with, chosen for each wedding around its scale, style, and venue.</p>
-        <p>The team that designs your flowers is the team that shows up to set them, adjusts them in the room, and breaks everything down when the night ends.</p>
+        {%- for p in site.data.about.team.paragraphs %}
+        <p>{{ p }}</p>
+        {%- endfor %}
       </div>
     </div>
     <div class="ss-img">
@@ -92,19 +93,19 @@ canonical_url: https://goldenflorals.com/about
 <section class="block">
   <div class="twocol">
     <div>
-      <span class="lab">Why it matters</span>
-      <h2>What you're really buying is certainty.</h2>
+      <span class="lab">{{ site.data.about.certainty.label }}</span>
+      <h2>{{ site.data.about.certainty.heading }}</h2>
     </div>
     <div class="prose">
-      <p>Cut flowers are volatile. Stems wilt, blooms open early or refuse to, a shipment falls through, the heat turns, something breaks in transit. On an ordinary day that's a nuisance. On a wedding day it's a crisis, unless the people handling it have seen it before and planned for it.</p>
-      <p>That's the expertise you're paying for. We engineer the sourcing, timing, and mechanics so the predictable problems never reach you, and we have the depth and the calm to solve the unpredictable ones in the moment, while the day keeps moving. The science background helps here too: knowing how a stem takes water, how a structure holds without foam, and how a flower will perform from setup through the last dance.</p>
+      {%- for p in site.data.about.certainty.paragraphs %}
+      <p>{{ p }}</p>
+      {%- endfor %}
     </div>
   </div>
   <div class="cred-grid">
-    <div class="cred-item"><h4>Planned in advance</h4><p>Sourcing, timing, and logistics are mapped before your week begins, with the risks engineered out early.</p></div>
-    <div class="cred-item"><h4>Calm under pressure</h4><p>When the inevitable happens, an experienced team solves it on-site without it becoming your problem.</p></div>
-    <div class="cred-item"><h4>Built to hold</h4><p>Foam-free construction and a grower's understanding of how every stem performs across a full day.</p></div>
-    <div class="cred-item"><h4>Grown close by</h4><p>Our own California farm plots and trusted regional growers: short chains, fresh stems, no overseas shipping.</p></div>
+    {%- for pt in site.data.about.certainty.points %}
+    <div class="cred-item"><h4>{{ pt.title }}</h4><p>{{ pt.body }}</p></div>
+    {%- endfor %}
   </div>
 </section>
 
@@ -112,59 +113,40 @@ canonical_url: https://goldenflorals.com/about
 <section class="immersive">
   <img class="bg" src="{{ site.baseurl }}/assets/images/portfolio/catherine-joaquin/catherine-joaquin-15.jpg" alt="Lake Tahoe wedding florals by Golden Flowers">
   <div class="il">
-    <span class="lab">Rooted in place</span>
-    <p class="disp">We design with what the California land gives us, in the season you say yes.</p>
+    <span class="lab">{{ site.data.about.editorial.label }}</span>
+    <p class="disp">{{ site.data.about.editorial.heading }}</p>
   </div>
 </section>
 
 <!-- SEASONAL AVAILABILITY -->
 <section class="block" id="seasonal-availability">
-  <span class="lab">Seasonal availability</span>
-  <h2 class="h-lg">What's growing for your wedding.</h2>
-  <p class="prose" style="max-width:560px;margin-top:14px;"><span style="color:var(--fg2);">California's seasons produce dramatically different palettes. Here's what we can source at its peak across the year.</span></p>
+  <span class="lab">{{ site.data.about.seasonal.label }}</span>
+  <h2 class="h-lg">{{ site.data.about.seasonal.heading }}</h2>
+  <p class="prose" style="max-width:560px;margin-top:14px;"><span style="color:var(--fg2);">{{ site.data.about.seasonal.intro }}</span></p>
   <div class="season-grid">
+    {%- for season in site.data.about.seasonal.seasons %}
     <details class="season-card" open>
-      <summary><span class="season-name">Spring</span><span class="season-dates">March – May</span><span class="season-toggle"></span></summary>
+      <summary><span class="season-name">{{ season.name }}</span><span class="season-dates">{{ season.dates }}</span><span class="season-toggle"></span></summary>
       <div class="season-body">
-        <ul class="flower-list"><li>Ranunculus (peak)</li><li>Anemone</li><li>Tulip, parrot &amp; standard</li><li>Lilac &amp; sweet pea</li><li>Early peonies (May)</li><li>Hellebore</li><li>Muscari &amp; fritillaria</li></ul>
-        <p class="season-note">The most romantic palette of the year: rich jewel tones and soft pastels. Peak for Lush &amp; Romantic.</p>
+        <ul class="flower-list">{% for f in season.flowers %}<li>{{ f }}</li>{% endfor %}</ul>
+        <p class="season-note">{{ season.note }}</p>
       </div>
     </details>
-    <details class="season-card" open>
-      <summary><span class="season-name">Summer</span><span class="season-dates">June – August</span><span class="season-toggle"></span></summary>
-      <div class="season-body">
-        <ul class="flower-list"><li>Garden rose (peak)</li><li>Dahlia (mid–late)</li><li>Peony (early June)</li><li>Delphinium &amp; larkspur</li><li>Native wildflowers</li><li>Sunflower &amp; marigold</li><li>Lisianthus &amp; cosmos</li></ul>
-        <p class="season-note">Peak Lake Tahoe wedding season. Abundant, warm, and beautiful, ideal for all three aesthetics.</p>
-      </div>
-    </details>
-    <details class="season-card" open>
-      <summary><span class="season-name">Fall</span><span class="season-dates">September – November</span><span class="season-toggle"></span></summary>
-      <div class="season-body">
-        <ul class="flower-list"><li>Dahlia (peak)</li><li>Chrysanthemum</li><li>Autumn-foliage branches</li><li>Amaranth, celosia</li><li>Dried &amp; preserved stems</li><li>Persimmon &amp; pyracantha</li><li>Squash &amp; gourd accents</li></ul>
-        <p class="season-note">Dramatic harvest tones: the richest palette of the year for Lush &amp; Romantic and Wildflower Modern.</p>
-      </div>
-    </details>
-    <details class="season-card" open>
-      <summary><span class="season-name">Winter</span><span class="season-dates">December – February</span><span class="season-toggle"></span></summary>
-      <div class="season-body">
-        <ul class="flower-list"><li>Hellebore &amp; anemone</li><li>Camellia &amp; paperwhite</li><li>Evergreen branch &amp; berry</li><li>Early forced tulip</li><li>Amaryllis</li><li>Dried &amp; architectural stems</li><li>Moss, lichen &amp; forage</li></ul>
-        <p class="season-note">Quieter availability means intentional design. Winter florals lean into structure, texture, and restraint.</p>
-      </div>
-    </details>
+    {%- endfor %}
   </div>
-  <p class="season-foot">Availability varies by year and growing conditions. Your proposal will reflect what's actually at peak in your specific season.</p>
+  <p class="season-foot">{{ site.data.about.seasonal.footnote }}</p>
 </section>
 
 <hr class="hr-line">
 
 <!-- VALUES -->
 <section class="block">
-  <span class="lab">Philosophy</span>
-  <h2 class="h-lg">The principles behind the work.</h2>
+  <span class="lab">{{ site.data.about.values.label }}</span>
+  <h2 class="h-lg">{{ site.data.about.values.heading }}</h2>
   <div class="values-grid">
-    <div class="value-item"><h3>Grown with intention</h3><p>We work with what California produces at its peak, in the season you're getting married, and we let the design respond to the land.</p></div>
-    <div class="value-item"><h3>Designed from scratch</h3><p>Every wedding gets a design built from scratch around its venue, season, and vision. There are no packages. Brittany designs each proposal as if it's the only one she's ever working on.</p></div>
-    <div class="value-item"><h3>Sustainable at the root</h3><p>Foam-free construction, California-grown sourcing, and farm practices that treat soil health as a long-term investment. The environmental ethic runs through the whole operation.</p></div>
+    {%- for v in site.data.about.values.items %}
+    <div class="value-item"><h3>{{ v.title }}</h3><p>{{ v.body }}</p></div>
+    {%- endfor %}
   </div>
 </section>
 
@@ -172,18 +154,18 @@ canonical_url: https://goldenflorals.com/about
 
 <!-- SUSTAINABILITY POINTER (full pledge lives on /sustainability) -->
 <section class="mini">
-  <span class="lab">Sustainability</span>
-  <h2>Grown here, and grown responsibly.</h2>
-  <p>The commitments that shape how we design, source, and grow, from vase return to composting the harvest, are written down, in public, on their own page.</p>
-  <a href="{{ site.baseurl }}/sustainability" class="txt-link">Read our sustainability pledge &rarr;</a>
+  <span class="lab">{{ site.data.about.sustainability_pointer.label }}</span>
+  <h2>{{ site.data.about.sustainability_pointer.heading }}</h2>
+  <p>{{ site.data.about.sustainability_pointer.body }}</p>
+  <a href="{{ site.baseurl }}/sustainability" class="txt-link">{{ site.data.about.sustainability_pointer.link }} &rarr;</a>
 </section>
 
 <!-- CLOSING -->
 <section class="cta">
-  <span class="lab">Work with us</span>
-  <h2 class="disp">Start with a <em>conversation.</em></h2>
-  <p>Reach out with your date and venue. We'll let you know if we're available.</p>
-  <a class="btn btn-ink" href="{{ site.baseurl }}/consultation-form">Schedule a consultation <span>&rarr;</span></a>
+  <span class="lab">{{ site.data.about.closing.label }}</span>
+  <h2 class="disp">{% include em.html t=site.data.about.closing.heading %}</h2>
+  <p>{{ site.data.about.closing.body }}</p>
+  <a class="btn btn-ink" href="{{ site.baseurl }}/consultation-form">{{ site.data.about.closing.button }} <span>&rarr;</span></a>
 </section>
 
 <script>

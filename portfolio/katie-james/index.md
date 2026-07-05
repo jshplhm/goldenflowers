@@ -3,6 +3,7 @@ layout: redesign
 title: "Katie & James · Lush & Romantic"
 seo_title: "Katie & James Wedding Flowers · Lush & Romantic | Golden Flowers"
 permalink: /portfolio/katie-james
+portfolio_key: katie-james
 redirect_from:
   - /portfolio-1/katieandjames
 description: "A Golden Flowers wedding: lush & romantic floral design for a Lake Tahoe and Sierra Nevada celebration."
@@ -14,7 +15,8 @@ hero_photo: katie-james-07.jpg
 <header class="text-hero venue-hero">
   <span class="lab">Lush & Romantic</span>
   <h1>Katie & James</h1>
-  <p class="th-sub">A garden fairytale inside the stone hall of The Miner's Foundry. Blush and butter-cream roses built into a lavish arch over the tall arched windows, moss runners down the banquet tables, and candlelight everywhere: lush, romantic and a little storybook.</p>
+  {%- assign subtitle = site.data.portfolio[page.portfolio_key] %}
+  <p class="th-sub">{% include em.html t=subtitle %}</p>
 </header>
 
 {% include portfolio-gallery.html slug="katie-james" hero="katie-james-07.jpg" name="Katie & James" %}

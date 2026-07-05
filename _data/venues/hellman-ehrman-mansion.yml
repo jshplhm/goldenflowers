@@ -1,0 +1,52 @@
+# hellman-ehrman-mansion venue page copy. Edit the wording here; SEO settings live in the page file.
+# Tip: wrap words in *asterisks* to make them italic.
+venue_name: "Hellman-Ehrman Mansion"
+hero:
+  eyebrow: "West Shore · State Park"
+  heading: "Hellman-Ehrman Mansion."
+  subheading: "Lakefront weddings at Sugar Pine Point"
+why:
+  label: Why this venue matters
+  heading: A 1903 estate inside a state park.
+  paragraphs:
+    - "The Hellman-Ehrman Mansion sits on the West Shore at Sugar Pine Point, a historic lakefront estate surrounded by old-growth pine and protected parkland. Ceremonies happen outdoors, on the lawn in front of the mansion and along the water, with the lake and the Sierra crest as the backdrop."
+    - "That setting asks for a particular kind of flower. Anything too polished or imported fights the place. We design florals that look like they were gathered from the forest and meadow around you, so the arrangements belong to the landscape rather than sitting on top of it."
+    - "Because it's a state park, this is also a leave-no-trace venue, which is exactly how we already work."
+  facts:
+    - label: Outdoor only
+      body: The interior of the historic mansion isn't used for events. Ceremonies and receptions happen on the lawn and lakefront, so florals are designed for open air and natural light.
+    - label: West Shore
+      body: Sugar Pine Point sits among the tallest pines on the lake, quieter and more wooded than the resort venues, with direct water access.
+    - label: Leave no trace
+      body: A state park means everything in, everything out, no foam, no floating debris. Our foam-free, compostable approach was built for exactly this.
+    - label: Intimate scale
+      body: The lakefront ceremony site suits smaller, design-forward weddings where every arrangement is seen up close.
+philosophy:
+  label: Design philosophy
+  heading: How we approach Hellman-Ehrman florals.
+  items:
+    - title: Gathered, not imported
+      body: The estate is wrapped in pine, fern, and lakeside meadow. We pull palettes and textures from that, soft whites, sage, warm naturals, foraged greenery, so the flowers read as part of the forest, not flown in to it.
+    - title: Built for open air
+      body: Outdoor lakefront ceremonies get full sun and afternoon wind off the water. We design installations and bouquets to hold up in that exposure and still look effortless in photos at golden hour.
+    - title: Foam-free by necessity and by choice
+      body: A protected state park can't take floral foam or shed material. Everything we build here is foam-free and compostable, mechanically sound enough to travel in, strike cleanly, and leave the lawn exactly as we found it.
+    - title: California-sourced, always
+      body: No flowers imported from South America or Europe. Every stem comes from our own plots or the California growers we've worked with for years, a footprint that matches the parkland you're standing in.
+faq:
+  label: Questions about Hellman-Ehrman
+  heading: What planning at Sugar Pine Point looks like.
+pricing:
+  label: Investment at Hellman-Ehrman
+  heading: What florals here cost.
+  range: $10,000–$18,000+
+  note: Typical full-service lakefront wedding
+  details:
+    - Every proposal is custom, built around your guest count, ceremony footprint, and vision. We don't offer packages with minimum bids or imported filler.
+    - "A standard engagement covers: initial consultation, design proposal and mood board, ceremony installation, bridal bouquet, wedding party florals, reception centerpieces, and full day-of setup and leave-no-trace breakdown."
+  button: Request a custom estimate
+cta:
+  label: Get started
+  heading: Getting married at Hellman-Ehrman?
+  body: Tell us your date and vision. We'll let you know if we're available and what the design process looks like from here.
+  button: Schedule a Consultation

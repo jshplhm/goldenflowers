@@ -1,0 +1,52 @@
+# heavenly venue page copy. Edit the wording here; SEO settings live in the page file.
+# Tip: wrap words in *asterisks* to make them italic.
+venue_name: "Heavenly"
+hero:
+  eyebrow: "South Lake Tahoe · Mountaintop"
+  heading: "Heavenly."
+  subheading: "Mountaintop weddings above Lake Tahoe."
+why:
+  label: Why this venue matters
+  heading: The biggest view at any Tahoe wedding.
+  paragraphs:
+    - "Ride the gondola up and the entire Tahoe basin opens beneath you: lake, ridgelines, and sky in every direction. Weddings at Heavenly trade an enclosed room for one of the largest views in the Sierra."
+    - "The view is the headliner, so the flowers play a supporting role on purpose: clean, intentional, framing the moment without competing with it. Up here, wind and altitude are real, so we design and build so nothing wilts, shifts, or blows away between the gondola and the last dance."
+    - "Getting florals to a mountaintop is its own logistics problem. We plan the timing, transport, and install so the only thing you notice is the view."
+  facts:
+    - label: View-first
+      body: Restrained, intentional design that frames the basin rather than blocking it.
+    - label: Engineered for altitude
+      body: Built to hold against mountaintop wind and sun, start to finish.
+    - label: Logistics handled
+      body: Transport, timing, and gondola load-in planned so the day runs without you.
+    - label: Foam-free
+      body: California-grown, no floral foam, lighter to carry up and better for the mountain.
+philosophy:
+  label: Design philosophy
+  heading: How we approach Heavenly florals.
+  items:
+    - title: Frame the view, don't fight it
+      body: At the top of the gondola the basin is the headliner. We design restrained, intentional pieces that add to the moment.
+    - title: Engineered for altitude
+      body: Wind and thin air are real up here. Every arrangement is built to hold from the gondola ride through the last dance.
+    - title: Plan the logistics first
+      body: Getting florals up a mountain is its own project. We map transport, timing, and load-in so the day runs without you.
+    - title: Light, and foam-free
+      body: "California-grown, no floral foam: lighter to carry up and better for the mountain you're standing on."
+faq:
+  label: Questions about Heavenly
+  heading: What planning here looks like.
+pricing:
+  label: Investment at Heavenly
+  heading: What Heavenly florals cost.
+  range: $12,000–$22,000
+  note: Typical full-service Heavenly wedding
+  details:
+    - A full-service Heavenly wedding typically runs $12,000–$22,000, reflecting the mountaintop logistics, depending on scale and guest count. Every proposal is custom, built around your guest count, ceremony footprint, and vision.
+    - A standard engagement covers consultation, design proposal and mood board, ceremony installation, personal florals, reception centerpieces, and full day-of setup and breakdown.
+  button: Request a custom estimate
+cta:
+  label: Get started
+  heading: Getting married at Heavenly?
+  body: Tell us your date and vision. We take one wedding per date, and we'll let you know if we're open and how we'd approach the design.
+  button: Schedule a Consultation

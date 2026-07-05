@@ -1,0 +1,52 @@
+# valhalla-tahoe venue page copy. Edit the wording here; SEO settings live in the page file.
+# Tip: wrap words in *asterisks* to make them italic.
+venue_name: "Valhalla Tahoe"
+hero:
+  eyebrow: "South Shore · Historic Estate"
+  heading: "Valhalla, *Tahoe.*"
+  subheading: "Lakeside weddings at the Tallac Historic Site."
+why:
+  label: Why this venue matters
+  heading: One of the most atmospheric venues on the lake.
+  paragraphs:
+    - "Valhalla is a 1920s Grand Hall and boathouse on Lake Tahoe's south shore, set among old-growth pines a few steps from the water. Timber, stone, and that filtered Sierra light give it character most venues spend a fortune trying to fake."
+    - "A room with this much presence doesn't want to be covered up. We design florals that work *with* the wood and the pines: textural, seasonal, a little wild at the edges, never fussy. The Grand Hall takes statement installations beautifully; the boathouse and lawn ceremonies call for something looser and lakeside."
+    - "Because Valhalla is part of a state historic site, load-in and breakdown follow specific rules and timing. We've worked within them before and plan the day so the constraints never reach you."
+  facts:
+    - label: Of the place
+      body: Pine, fern, and textural blooms that echo the forest setting rather than fight it.
+    - label: Built for the Hall
+      body: Statement pieces scaled to the timber Grand Hall, plus looser lakeside ceremony work.
+    - label: Foam-free
+      body: "California-grown stems, no floral foam: better for the design and for the lake."
+    - label: Site-savvy
+      body: We plan around the historic-site load-in and timing so nothing falls on you.
+philosophy:
+  label: Design philosophy
+  heading: How we approach Valhalla florals.
+  items:
+    - title: Design with the architecture
+      body: The timber Grand Hall is the star. We build pieces that read against dark wood and stone rather than disappearing into them.
+    - title: A palette from the pines
+      body: Ferns, textural greens, and garden-grown blooms that feel like they belong to the Tallac forest.
+    - title: Two very different rooms
+      body: The Hall wants scale and drama; the boathouse and lawn want something looser and lakeside. We design each on its own terms.
+    - title: Respect the site
+      body: As a state historic site, Valhalla has firm load-in and strike windows. We plan the whole day around them so nothing runs late.
+faq:
+  label: Questions about Valhalla
+  heading: What planning here looks like.
+pricing:
+  label: Investment at Valhalla
+  heading: What Valhalla florals cost.
+  range: $10,000–$18,000
+  note: Typical full-service Valhalla wedding
+  details:
+    - A full-service Valhalla wedding typically runs $10,000–$18,000, depending on installation scale and guest count. Every proposal is custom, built around your guest count, ceremony footprint, and vision.
+    - A standard engagement covers consultation, design proposal and mood board, ceremony installation, personal florals, reception centerpieces, and full day-of setup and breakdown.
+  button: Request a custom estimate
+cta:
+  label: Get started
+  heading: Getting married at Valhalla?
+  body: Tell us your date and vision. We take one wedding per date, and we'll let you know if we're open and how we'd approach the design.
+  button: Schedule a Consultation

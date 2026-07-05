@@ -12,11 +12,11 @@ canonical_url: https://goldenflorals.com/
 <header class="hero">
   <img class="bg" src="{{ site.baseurl }}/assets/images/portfolio/lynn-aaron/lynn-aaron-19.jpg" alt="Lake Tahoe wedding florals: a floral arch above the lake at Palisades High Camp by Golden Flowers" style="object-position:center 45%;">
   <div class="hero-in">
-    <p class="ey lab">Lake Tahoe Wedding Florist</p>
-    <h1 class="disp">Flowers That Belong to the <em>Place They Grow.</em></h1>
+    <p class="ey lab">{{ site.data.home.hero.eyebrow }}</p>
+    <h1 class="disp">{% include em.html t=site.data.home.hero.heading %}</h1>
     <div class="hero-foot">
-      <p class="hero-sub">Farm-grown, foam-free florals, designed for weddings across Lake Tahoe and the Sierra Nevada.</p>
-      <a class="btn" href="{{ site.baseurl }}/consultation-form">Check your date <span>&rarr;</span></a>
+      <p class="hero-sub">{{ site.data.home.hero.subheading }}</p>
+      <a class="btn" href="{{ site.baseurl }}/consultation-form">{{ site.data.home.hero.button }} <span>&rarr;</span></a>
     </div>
   </div>
 </header>
@@ -25,20 +25,20 @@ canonical_url: https://goldenflorals.com/
 <div class="band-paper">
 <section class="credo">
   <div style="max-width:860px;">
-    <p style="font-size:1.08rem;line-height:1.75;color:var(--fg2);">Golden Flowers is a Lake Tahoe wedding florist designing seasonally grown, foam-free wedding flowers for couples getting married across the Sierra Nevada. We work with what California grows at its peak, in the season you're getting married, and we design around it. No flowers shipped from across the world. No floral foam. Just intentional, artful design that belongs to the place you're saying yes in.</p>
-    <p style="font-size:1.08rem;line-height:1.75;color:var(--fg2);margin-top:16px;">We take one wedding a day, so your wedding is the only one on our calendar. Our designs are elevated and organic, grounded in texture and movement, and grown as close to the Sierra Nevada as the season allows.</p>
+    <p style="font-size:1.08rem;line-height:1.75;color:var(--fg2);">{{ site.data.home.intro.paragraph1 }}</p>
+    <p style="font-size:1.08rem;line-height:1.75;color:var(--fg2);margin-top:16px;">{{ site.data.home.intro.paragraph2 }}</p>
   </div>
 </section>
 </div>
 
 <!-- CREDO (cream) -->
 <section class="credo">
-  <span class="lab">Why Golden Flowers</span>
-  <h2 class="disp">We grow our own flowers on California soil, an hour from where you'll <em>say I do.</em></h2>
+  <span class="lab">{{ site.data.home.why.label }}</span>
+  <h2 class="disp">{% include em.html t=site.data.home.why.heading %}</h2>
   <div class="facts">
-    <div class="fact"><span class="n">01</span><h3>Farm-grown</h3><p>Raised on our own California plots and sourced only from growers we trust, never shipped from overseas.</p></div>
-    <div class="fact"><span class="n">02</span><h3>Foam-free, always</h3><p>Every arrangement is built without floral foam. Better for the design, and better for the mountains.</p></div>
-    <div class="fact"><span class="n">03</span><h3>One wedding a day</h3><p>We never double-book. Our full team spends the day on your wedding and nothing else.</p></div>
+    {%- for fact in site.data.home.why.facts %}
+    <div class="fact"><span class="n">{{ fact.number }}</span><h3>{{ fact.title }}</h3><p>{{ fact.body }}</p></div>
+    {%- endfor %}
   </div>
 </section>
 
@@ -46,8 +46,8 @@ canonical_url: https://goldenflorals.com/
 <div class="band-paper">
 <section class="work">
   <div class="work-head">
-    <h2 class="disp">Selected weddings</h2>
-    <a href="{{ site.baseurl }}/portfolio" class="txt-link">Browse the full portfolio &rarr;</a>
+    <h2 class="disp">{{ site.data.home.work.heading }}</h2>
+    <a href="{{ site.baseurl }}/portfolio" class="txt-link">{{ site.data.home.work.link }} &rarr;</a>
   </div>
   <div class="grid">
     <a class="tile feature" href="{{ site.baseurl }}/portfolio/katie-james"><img src="{{ site.baseurl }}/assets/images/portfolio/katie-james/katie-james-08.jpg" alt="Katie &amp; James wedding flowers: lush pastel floral ceremony arch on a stone wall, The Miner's Foundry, Nevada City" style="object-position:center 45%;"><span class="cap"><b>Katie &amp; James</b><span>Lush &amp; Romantic</span></span></a>
@@ -62,20 +62,20 @@ canonical_url: https://goldenflorals.com/
 
 <!-- VENUE MARQUEE -->
 <section class="marq">
-  <span class="lab">We design at 30+ venues across the Sierra</span>
+  <span class="lab">{{ site.data.home.marquee.label }}</span>
   <div class="marq-track" aria-hidden="true">
     <span>Edgewood Tahoe</span><span>The Ritz-Carlton</span><span>Thunderbird Lodge</span><span>Palisades High Camp</span><span>Martis Camp</span><span>Schaffer's Camp</span><span>The Miner's Foundry</span><span>National Exchange</span>
     <span>Edgewood Tahoe</span><span>The Ritz-Carlton</span><span>Thunderbird Lodge</span><span>Palisades High Camp</span><span>Martis Camp</span><span>Schaffer's Camp</span><span>The Miner's Foundry</span><span>National Exchange</span>
   </div>
-  <p class="marq-foot"><a href="{{ site.baseurl }}/venues" class="txt-link">See all venues &rarr;</a></p>
+  <p class="marq-foot"><a href="{{ site.baseurl }}/venues" class="txt-link">{{ site.data.home.marquee.link }} &rarr;</a></p>
 </section>
 
 <!-- IMMERSIVE -->
 <section class="immersive">
   <img class="bg" src="{{ site.baseurl }}/assets/images/portfolio/tori-tucker/tori-tucker-05.jpg" alt="Floral ceremony arch on the Lake Tahoe shore by Golden Flowers, mountains across the water">
   <div class="il">
-    <span class="lab">From our farm</span>
-    <p class="disp">Every stem grown and gathered for a single day in the mountains.</p>
+    <span class="lab">{{ site.data.home.immersive.label }}</span>
+    <p class="disp">{{ site.data.home.immersive.heading }}</p>
   </div>
 </section>
 
@@ -83,27 +83,27 @@ canonical_url: https://goldenflorals.com/
 <section class="aes">
   <div class="aes-wrap">
     <div class="aes-head">
-      <span class="lab">Find your aesthetic</span>
-      <h2 class="disp">Three design languages we keep returning to.</h2>
+      <span class="lab">{{ site.data.home.aesthetics.label }}</span>
+      <h2 class="disp">{{ site.data.home.aesthetics.heading }}</h2>
     </div>
     <div class="aes-row">
       <a class="aes-card" href="{{ site.baseurl }}/portfolio#lush-romantic">
         <div class="ph"><span class="idx">01</span><img src="{{ site.baseurl }}/assets/images/portfolio/katie-james/katie-james-01.jpg" alt="Lush and romantic floral design: candlelit reception tablescape with peach and burgundy blooms"></div>
-        <h3>Lush &amp; Romantic</h3>
-        <p>Rich and cinematic, in deep shades of burgundy and plum.</p>
-        <span class="more">View weddings</span>
+        <h3>{{ site.data.home.aesthetics.cards[0].title }}</h3>
+        <p>{{ site.data.home.aesthetics.cards[0].body }}</p>
+        <span class="more">{{ site.data.home.aesthetics.cards[0].link }}</span>
       </a>
       <a class="aes-card" href="{{ site.baseurl }}/portfolio#elevated-minimalist">
         <div class="ph"><span class="idx">02</span><img src="{{ site.baseurl }}/assets/images/portfolio/emma-ross/emma-ross-14.jpg" alt="Elevated minimalist floral design: ivory calla and ranunculus bouquet"></div>
-        <h3>Elevated Minimalist</h3>
-        <p>Clean lines, ivory and sage. Design that lets the view do the talking.</p>
-        <span class="more">View weddings</span>
+        <h3>{{ site.data.home.aesthetics.cards[1].title }}</h3>
+        <p>{{ site.data.home.aesthetics.cards[1].body }}</p>
+        <span class="more">{{ site.data.home.aesthetics.cards[1].link }}</span>
       </a>
       <a class="aes-card" href="{{ site.baseurl }}/portfolio#wildflower-modern">
         <div class="ph"><span class="idx">03</span><img src="{{ site.baseurl }}/assets/images/portfolio/camille-max/camille-max-17.jpg" alt="Wildflower modern floral design: rose-lined aisle recessional, North Star House, Grass Valley"></div>
-        <h3>Wildflower Modern</h3>
-        <p>Native blooms and grasses, styled with an editorial eye.</p>
-        <span class="more">View weddings</span>
+        <h3>{{ site.data.home.aesthetics.cards[2].title }}</h3>
+        <p>{{ site.data.home.aesthetics.cards[2].body }}</p>
+        <span class="more">{{ site.data.home.aesthetics.cards[2].link }}</span>
       </a>
     </div>
   </div>
@@ -113,14 +113,14 @@ canonical_url: https://goldenflorals.com/
 <!-- TESTIMONIAL -->
 <section class="testi">
   <div class="stars" aria-label="Five stars">★★★★★</div>
-  <blockquote class="disp">"Brittany and her team are the utmost in artistry, professionalism, and support. The presentation at the wedding was <em>through-the-roof beautiful.</em>"</blockquote>
-  <p class="by"><b>Brian</b> &nbsp;·&nbsp; Lake Tahoe Wedding</p>
-  <p class="marq-foot" style="margin-top:24px;"><a href="{{ site.baseurl }}/weddings#reviews" class="txt-link">Read more reviews &rarr;</a></p>
+  <blockquote class="disp">{% include em.html t=site.data.home.testimonial.quote %}</blockquote>
+  <p class="by"><b>{{ site.data.home.testimonial.name }}</b> &nbsp;·&nbsp; {{ site.data.home.testimonial.context }}</p>
+  <p class="marq-foot" style="margin-top:24px;"><a href="{{ site.baseurl }}/weddings#reviews" class="txt-link">{{ site.data.home.testimonial.link }} &rarr;</a></p>
 </section>
 
 <!-- CLOSING -->
 <section class="cta">
-  <h2 class="disp">Is your date <em>still open?</em></h2>
-  <p>Peak dates go quickly. Tell us your date and venue, and we'll let you know if it's still yours.</p>
-  <a class="btn btn-ink" href="{{ site.baseurl }}/consultation-form">Check your date <span>&rarr;</span></a>
+  <h2 class="disp">{% include em.html t=site.data.home.cta.heading %}</h2>
+  <p>{{ site.data.home.cta.body }}</p>
+  <a class="btn btn-ink" href="{{ site.baseurl }}/consultation-form">{{ site.data.home.cta.button }} <span>&rarr;</span></a>
 </section>

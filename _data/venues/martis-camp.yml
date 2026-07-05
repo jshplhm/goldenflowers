@@ -1,0 +1,52 @@
+# martis-camp venue page copy. Edit the wording here; SEO settings live in the page file.
+# Tip: wrap words in *asterisks* to make them italic.
+venue_name: "Martis Camp"
+hero:
+  eyebrow: "Truckee · Private Community"
+  heading: "Martis Camp."
+  subheading: "Private High Sierra weddings"
+why:
+  label: Why this venue matters
+  heading: A wedding behind the gate.
+  paragraphs:
+    - "Martis Camp is a private community in the pines between Truckee and Northstar, with a clean mountain-modern lodge, a family barn, and quiet forest lawns. The feeling is exclusive and unhurried, the High Sierra to yourself for the day."
+    - "Access is coordinated through the community and your hosts, which makes logistics, timing, and load-in something to plan carefully and early. We're comfortable working inside those guidelines so the day runs cleanly."
+    - "The design language here is refined and of the forest. We pull from the pine, granite, and mountain light so the florals feel native to the setting rather than imported into it."
+  facts:
+    - label: Private community
+      body: A gated High Sierra community near Truckee. Access is arranged through the venue and your hosts, so we coordinate logistics carefully and early.
+    - label: Forest setting
+      body: Set in tall pines between Truckee and Northstar, with big mountain views and a genuinely quiet, exclusive feel.
+    - label: Mountain modern
+      body: Clean mountain-modern architecture across the lodge and barn. Florals lean refined and textural to match those lines.
+    - label: Seasonal
+      body: "Summer and early fall are peak. We design around the alpine-forest palette: greens, warm neutrals, and harvest depth later in the year."
+philosophy:
+  label: Design philosophy
+  heading: How we approach Martis Camp florals.
+  items:
+    - title: Of the forest
+      body: The setting is pine, granite, and sky. We design with greens, branches, and textural blooms that feel grown from the place, with refinement that suits the architecture.
+    - title: Refined, not fussy
+      body: Martis Camp's design language is clean and modern. We keep arrangements considered and uncluttered, letting strong materials and good proportion do the work.
+    - title: Planned around access
+      body: A private community means coordinated entry, timing, and load-in. We plan setup and breakdown around the venue's guidelines so everything runs quietly behind the scenes.
+    - title: California-sourced, always
+      body: No flowers flown in from overseas. Every arrangement uses blooms grown in California, from our own plots and the growers we've worked with for years.
+faq:
+  label: Questions about Martis Camp
+  heading: What planning at Martis Camp looks like.
+pricing:
+  label: Investment at Martis Camp
+  heading: What Martis Camp florals cost.
+  range: $14,000–$25,000+
+  note: Typical full-service Martis Camp wedding
+  details:
+    - Every proposal is custom, built around your table count, ceremony footprint, and vision. We don't offer packages with minimum bids or imported filler.
+    - "A standard engagement covers: initial consultation, design proposal and mood board, ceremony arch or installation, bridal bouquet, bridal party florals, reception centerpieces, and full day-of setup and breakdown."
+  button: Request a custom estimate
+cta:
+  label: Get started
+  heading: Getting married at Martis Camp?
+  body: Tell us your date and vision. We'll let you know if we're available and what the design process looks like from here.
+  button: Check your date →

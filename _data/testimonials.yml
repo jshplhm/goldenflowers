@@ -1,0 +1,43 @@
+# Couple reviews, shown in the testimonials carousel on the Weddings page.
+# Add, remove, or reorder reviews here. Keep the quotation marks around each quote.
+
+items:
+  - quote: '"Brittany and her team are the utmost in artistry, professionalism, and support. The presentation at the wedding (the bouquets, the ceremony, the reception, the table details) was through-the-roof beautiful."'
+    name: Brian
+    context: Lake Tahoe Wedding
+  - quote: '"We had a floral emergency on the morning of the wedding. Without any prior consultation, they nailed it. Our bouquets were exactly what the bride wanted. 10/10."'
+    name: Janelle
+    context: National Exchange Hotel, Nevada City
+  - quote: '"Brittany had ideas that helped me achieve the luxe look I wanted while staying in budget."'
+    name: Sara
+    context: The Ritz-Carlton, Truckee
+  - quote: '"All of the bouquets were perfect, exactly the way we envisioned them. We would absolutely recommend Golden Flowers to anyone married-to-be."'
+    name: Samantha
+    context: The Miner's Foundry, Nevada City
+  - quote: '"They went above and beyond to ensure my personal vision was executed professionally. The bouquets for myself and my bridal party were truly unforgettable."'
+    name: Jenna
+    context: National Exchange Hotel, Nevada City
+  - quote: '"Golden Flowers did a great job. I would hire them again in a heartbeat. I wanted playful, colorful and fun, and the flowers they created were just that."'
+    name: Nicole
+    context: Edgewood, Lake Tahoe
+  - quote: '"Brittany accomplished the look we wanted. The flowers were gorgeous. She was professional and very easy to work with."'
+    name: Julie
+    context: Hellman-Ehrman Estate, Lake Tahoe
+  - quote: '"She helped bring my vision to life even when I threw her the curve ball of feathers and handmade wooden flowers. Something that far exceeded my expectations."'
+    name: Lauren
+    context: Harmony Ridge Estate, Nevada City
+  - quote: '"Brittany did a great job and was very flexible. She exceeded all my flower expectations and was helpful in suggesting look-alike flowers to what I liked on Pinterest."'
+    name: Stephanie
+    context: The Chateau, Incline Village
+  - quote: '"Brittany is very talented. I absolutely loved my bouquet. It added the perfect rustic charm to my wedding day. She was very accommodating and helpful."'
+    name: Michelle
+    context: Private Estate, Lake Tahoe
+  - quote: '"Golden Flowers was great. From the start they had a streamlined process and I never felt overwhelmed with the endless flower options."'
+    name: Taylor
+    context: Olympic Valley Stables, Truckee
+  - quote: '"Golden Flowers made me a gorgeous bridal bouquet. The autumn colors set off my copper-colored dress beautifully."'
+    name: Jennifer
+    context: Autumn Wedding, Nevada City
+  - quote: '"Beautiful, amazing, talented and highly recommended. She did the flowers at my sister''s wedding and did an excellent job turning her vision into reality."'
+    name: Vicky
+    context: River Highlands Ranch, Smartsville

@@ -1,0 +1,20 @@
+# Venues index page copy (goldenflorals.com/venues).
+# The map and venue lists are part of the design and are not edited here.
+# Tip: wrap words in *asterisks* to make them italic.
+
+hero:
+  label: Venues
+  heading: We love this place.
+  intro: From lakefront estates to mountaintop lodges, these are the venues Tahoe couples ask about most. Tap a featured venue for design notes, typical budgets, and planning answers.
+
+not_listed:
+  label: Somewhere else?
+  heading: Don't see your venue?
+  body: The map covers the venues couples ask about most, and we range well beyond it, including private lakeside and mountain estates. We design across Lake Tahoe, Truckee, and the Sierra foothills, and we'll gladly walk a space that's new to us before we propose a single stem.
+  link: Tell us where
+
+closing:
+  label: Get started
+  heading: Getting married at *one of these?*
+  body: Tell us your venue and date. We'll let you know if we're available and how we'd approach the design.
+  button: Check your date

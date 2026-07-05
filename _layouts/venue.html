@@ -1,0 +1,84 @@
+---
+layout: redesign
+---
+{%- assign v = site.data.venues[page.venue_key] -%}
+{% include venue-subnav.html name=v.venue_name %}
+
+<header class="text-hero venue-hero">
+  <span class="lab">{{ v.hero.eyebrow }}</span>
+  <h1>{% include em.html t=v.hero.heading %}</h1>
+  <p class="th-sub">{% include em.html t=v.hero.subheading %}</p>
+</header>
+
+<section class="section">
+  <div class="container">
+    <div class="venue-intro">
+      <div class="vi-head"><span class="label">{{ v.why.label }}</span>
+        <h2>{{ v.why.heading }}</h2></div>
+      <div class="vi-body">
+        {%- for p in v.why.paragraphs %}
+        <p>{% include em.html t=p %}</p>
+        {%- endfor %}
+      </div>
+    </div>
+    <div class="facts-strip">
+      {%- for fact in v.why.facts %}
+      <div class="fact"><p class="label">{{ fact.label }}</p><p class="fact-body">{% include em.html t=fact.body %}</p></div>
+      {%- endfor %}
+    </div>
+  </div>
+</section>
+
+<hr class="section-div">
+
+<section class="section">
+  <div class="container">
+    <span class="label">{{ v.philosophy.label }}</span>
+    <h2>{{ v.philosophy.heading }}</h2>
+    <div class="philosophy-grid">
+      {%- for item in v.philosophy.items %}
+      <div class="philosophy-item"><h3>{{ item.title }}</h3><p>{% include em.html t=item.body %}</p></div>
+      {%- endfor %}
+    </div>
+  </div>
+</section>
+
+<hr class="section-div">
+
+<section class="section">
+  <div class="container">
+    <span class="label">{{ v.faq.label }}</span>
+    <h2>{{ v.faq.heading }}</h2>
+    {% include redesign-faq.html %}
+  </div>
+</section>
+
+<hr class="section-div">
+
+<section class="section">
+  <div class="container">
+    <span class="label">{{ v.pricing.label }}</span>
+    <h2>{{ v.pricing.heading }}</h2>
+    <div class="pricing-box">
+      <div>
+        <p class="price-range">{{ v.pricing.range }}</p>
+        <p class="price-note">{{ v.pricing.note }}</p>
+      </div>
+      <div class="price-details">
+        {%- for p in v.pricing.details %}
+        <p>{% include em.html t=p %}</p>
+        {%- endfor %}
+        <a href="{{ site.baseurl }}/consultation-form" class="btn-primary" style="margin-top:16px;display:inline-block;">{{ v.pricing.button }}</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="cta-section">
+  <div style="max-width:640px;margin:0 auto;">
+    <span class="label" style="display:block;text-align:center">{{ v.cta.label }}</span>
+    <h2>{{ v.cta.heading }}</h2>
+    <p>{% include em.html t=v.cta.body %}</p>
+    <a href="{{ site.baseurl }}/consultation-form" class="btn-primary">{{ v.cta.button }}</a>
+  </div>
+</div>

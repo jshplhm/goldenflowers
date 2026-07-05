@@ -10,9 +10,9 @@ canonical_url: https://goldenflorals.com/venues
 <!-- VENUES: words + linked list (left) · map (right) -->
 <header class="map-hero">
   <div class="mh-head">
-    <span class="lab">Venues</span>
-    <h1>We love this place.</h1>
-    <p class="mh-intro">From lakefront estates to mountaintop lodges, these are the venues Tahoe couples ask about most. Tap a featured venue for design notes, typical budgets, and planning answers.</p>
+    <span class="lab">{{ site.data.venues_page.hero.label }}</span>
+    <h1>{{ site.data.venues_page.hero.heading }}</h1>
+    <p class="mh-intro">{{ site.data.venues_page.hero.intro }}</p>
   </div>
   <div class="mh-body">
     <span class="lab vlist-lab"><span class="vlist-dot vlist-dot--feat"></span>Featured venues</span>
@@ -146,18 +146,18 @@ canonical_url: https://goldenflorals.com/venues
 
 <!-- DON'T SEE YOUR VENUE -->
 <section class="mini">
-  <span class="lab">Somewhere else?</span>
-  <h2>Don't see your venue?</h2>
-  <p>The map covers the venues couples ask about most, and we range well beyond it, including private lakeside and mountain estates. We design across Lake Tahoe, Truckee, and the Sierra foothills, and we'll gladly walk a space that's new to us before we propose a single stem.</p>
-  <button type="button" class="txt-link" data-consult-open>Tell us where &rarr;</button>
+  <span class="lab">{{ site.data.venues_page.not_listed.label }}</span>
+  <h2>{{ site.data.venues_page.not_listed.heading }}</h2>
+  <p>{{ site.data.venues_page.not_listed.body }}</p>
+  <button type="button" class="txt-link" data-consult-open>{{ site.data.venues_page.not_listed.link }} &rarr;</button>
 </section>
 
 <!-- CTA -->
 <section class="cta cta--tall">
-  <span class="lab">Get started</span>
-  <h2 class="disp">Getting married at <em>one of these?</em></h2>
-  <p>Tell us your venue and date. We'll let you know if we're available and how we'd approach the design.</p>
-  <a class="btn btn-ink" href="{{ site.baseurl }}/consultation-form">Check your date</a>
+  <span class="lab">{{ site.data.venues_page.closing.label }}</span>
+  <h2 class="disp">{% include em.html t=site.data.venues_page.closing.heading %}</h2>
+  <p>{{ site.data.venues_page.closing.body }}</p>
+  <a class="btn btn-ink" href="{{ site.baseurl }}/consultation-form">{{ site.data.venues_page.closing.button }}</a>
 </section>
 
 <script>

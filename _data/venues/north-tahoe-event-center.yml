@@ -1,0 +1,52 @@
+# north-tahoe-event-center venue page copy. Edit the wording here; SEO settings live in the page file.
+# Tip: wrap words in *asterisks* to make them italic.
+venue_name: "North Tahoe Event Center"
+hero:
+  eyebrow: "Kings Beach · North Shore"
+  heading: "North Tahoe Event Center."
+  subheading: "Lakefront weddings on the North Shore"
+why:
+  label: Why this venue matters
+  heading: Right on the water in Kings Beach.
+  paragraphs:
+    - "The North Tahoe Event Center sits directly on the lake in Kings Beach, with the beach and a wide-open North Shore view out front and a flexible indoor hall behind. It's one of the more accessible lakefront spaces on this side of Tahoe, and it gives couples a blank canvas to build on."
+    - "That's the opportunity and the challenge. A blank-canvas hall means the flowers carry the room, set the palette, define the scale, turn an open space into your wedding. We design for that: installations and tablescapes that do real work, not garnish."
+    - "Outside, the lakefront ceremony has Tahoe doing the heavy lifting, so the florals stay light and frame the view."
+  facts:
+    - label: Blank canvas
+      body: An open indoor hall means florals define the look. We design the palette and the scale from the ground up, so the room reads as yours.
+    - label: Lakefront
+      body: The ceremony space looks straight out over Lake Tahoe from the Kings Beach shoreline. Arrangements are built to frame the water rather than block it.
+    - label: North Shore
+      body: Close to our Incline Village base, so site visits, early load-in, and same-day strike stay simple.
+    - label: Indoor + outdoor
+      body: A beach ceremony and an indoor reception in one place. We design both, scaled to each space and the day's light.
+philosophy:
+  label: Design philosophy
+  heading: How we approach North Tahoe Event Center florals.
+  items:
+    - title: Flowers that transform the room
+      body: In a blank-canvas hall, florals aren't decoration, they're the design. We use installations, statement centerpieces, and a deliberate palette to give the space architecture and warmth it doesn't have on its own.
+    - title: Light at the lakefront
+      body: The ceremony's backdrop is the lake itself. Outdoor arrangements stay airy and transparent so they read against the water and hold up to the open-air North Shore wind and sun.
+    - title: Local logistics, handled
+      body: Kings Beach is a short drive from our Incline Village base. We do early site visits, install on the timeline the venue allows, and return for a clean same-day strike.
+    - title: Grown in California, never flown in
+      body: No floral foam, no flowers flown in from South America or Europe. Every stem is grown in California, from our own plots and the growers we trust.
+faq:
+  label: Questions about the North Tahoe Event Center
+  heading: What planning here looks like.
+pricing:
+  label: Investment at the North Tahoe Event Center
+  heading: What florals here cost.
+  range: $12,000–$22,000+
+  note: Typical full-service lakefront wedding
+  details:
+    - Every proposal is custom, built around your guest count, ceremony footprint, and vision. We don't offer packages with minimum bids or imported filler.
+    - "A standard engagement covers: initial consultation, design proposal and mood board, ceremony installation, bridal bouquet, wedding party florals, reception centerpieces and installations, and full day-of setup and breakdown."
+  button: Request a custom estimate
+cta:
+  label: Get started
+  heading: Getting married at the North Tahoe Event Center?
+  body: Tell us your date and vision. We'll let you know if we're available and how we'd approach the design.
+  button: Schedule a Consultation

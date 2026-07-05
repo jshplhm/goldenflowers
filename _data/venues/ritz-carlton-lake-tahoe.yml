@@ -1,0 +1,52 @@
+# ritz-carlton-lake-tahoe venue page copy. Edit the wording here; SEO settings live in the page file.
+# Tip: wrap words in *asterisks* to make them italic.
+venue_name: "Ritz-Carlton"
+hero:
+  eyebrow: "Northstar · Mountain Resort"
+  heading: "The Ritz-Carlton, Lake Tahoe."
+  subheading: "Mid-mountain weddings at Northstar"
+why:
+  label: Why this venue matters
+  heading: Mountain luxury, mid-mountain.
+  paragraphs:
+    - "The Ritz-Carlton sits mid-mountain at Northstar, reached by gondola and surrounded by tall Sierra pines. It pairs a polished, four-season resort with a genuine mountain setting, the forest right outside the glass."
+    - "Florals here need to meet the venue's level of finish. The interiors are refined and the service is exacting, so the flowers have to feel considered and clean, never an afterthought against that backdrop."
+    - "The terrace, the lawn, and the ballroom each read differently. We design for the specific spaces you're using and the season you're in, from a summer ceremony in the pines to a candlelit winter reception."
+  facts:
+    - label: Mid-mountain
+      body: The resort sits mid-mountain at Northstar, reached by gondola and ringed by tall pines. A true mountain setting with full resort service.
+    - label: Four-season
+      body: Weddings run year-round here, from summer terrace ceremonies to winter ballroom receptions. The season shapes the whole design.
+    - label: Refined
+      body: A polished luxury property. Florals have to match that finish, clean lines, considered scale, and nothing left looking improvised.
+    - label: Forest light
+      body: Tall Sierra pines and soft mountain light. The palette pulls from the evergreen, the stone, and the warm interiors.
+philosophy:
+  label: Design philosophy
+  heading: How we approach Ritz-Carlton florals.
+  items:
+    - title: Match the finish
+      body: The Ritz-Carlton sets a high bar for polish. We design florals that hold that standard, clean, intentional, and finished down to the last stem at every table.
+    - title: Design for the season
+      body: A four-season venue means very different weddings. We design around what's at peak, soft and abundant in summer, deep and structural in winter, so the flowers belong to the date.
+    - title: Bridge inside and out
+      body: Ceremonies in the pines, receptions in the ballroom. We carry a cohesive palette and language across both, so the day feels like one designed event rather than two.
+    - title: California-sourced, always
+      body: No flowers flown in from overseas. Every arrangement uses blooms grown in California, from our own plots and the growers we've worked with for years.
+faq:
+  label: Questions about the Ritz-Carlton
+  heading: What planning at the Ritz-Carlton looks like.
+pricing:
+  label: Investment at the Ritz-Carlton
+  heading: What Ritz-Carlton florals cost.
+  range: $14,000–$25,000+
+  note: Typical full-service Ritz-Carlton wedding
+  details:
+    - Every proposal is custom, built around your table count, ceremony footprint, and vision. We don't offer packages with minimum bids or imported filler.
+    - "A standard engagement covers: initial consultation, design proposal and mood board, ceremony arch or installation, bridal bouquet, bridal party florals, reception centerpieces, and full day-of setup and breakdown."
+  button: Request a custom estimate
+cta:
+  label: Get started
+  heading: Getting married at the Ritz-Carlton?
+  body: Tell us your date and vision. We'll let you know if we're available and what the design process looks like from here.
+  button: Check your date →

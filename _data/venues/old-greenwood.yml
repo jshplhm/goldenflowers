@@ -1,0 +1,52 @@
+# old-greenwood venue page copy. Edit the wording here; SEO settings live in the page file.
+# Tip: wrap words in *asterisks* to make them italic.
+venue_name: "Old Greenwood"
+hero:
+  eyebrow: "Truckee · Mountain Club"
+  heading: "Old *Greenwood.*"
+  subheading: "Meadow-and-mountain weddings at the Tahoe Mountain Club."
+why:
+  label: Why this venue matters
+  heading: Wide-open meadow, framed by the Sierra.
+  paragraphs:
+    - "Old Greenwood sits in the Martis Valley just outside Truckee: a Jack Nicklaus course ringed by open meadow, pine forest, and the Sierra crest beyond. The light is high and clear, and the setting runs wide and golden in late summer."
+    - "A venue this expansive wants florals with presence. We design with scale and movement so arrangements read across a big lawn and a big sky: grasses, branching stems, and seasonal blooms that hold up to mountain sun and wind through a full day."
+    - "It's an easy venue to under-design. We make sure the flowers carry the open space rather than getting lost in it."
+  facts:
+    - label: Scaled to the space
+      body: Branching, architectural designs that read across an open meadow and big sky.
+    - label: Of the season
+      body: Martis Valley turns golden in late summer, and we lean into that palette at peak.
+    - label: Built to hold
+      body: Foam-free construction engineered for mountain sun and afternoon wind.
+    - label: One a day
+      body: The same team designs, installs, and strikes, with undivided attention on your date.
+philosophy:
+  label: Design philosophy
+  heading: How we approach Old Greenwood florals.
+  items:
+    - title: Scale for the meadow
+      body: Open lawns and big sky swallow small arrangements. We design with height, branching, and movement so the flowers hold the space.
+    - title: Lean into the season
+      body: Martis Valley peaks golden in late summer. When it's in season, we build a palette that belongs to that light.
+    - title: Built for wind and sun
+      body: Foam-free construction, engineered so nothing wilts or shifts across a long, exposed mountain afternoon.
+    - title: One team, start to finish
+      body: The people who design your flowers are the ones who install and strike them, which matters at a venue this spread out.
+faq:
+  label: Questions about Old Greenwood
+  heading: What planning here looks like.
+pricing:
+  label: Investment at Old Greenwood
+  heading: What Old Greenwood florals cost.
+  range: $12,000–$20,000
+  note: Typical full-service Old Greenwood wedding
+  details:
+    - A full-service Old Greenwood wedding typically runs $12,000–$20,000, depending on installation scale and guest count. Every proposal is custom, built around your guest count, ceremony footprint, and vision.
+    - A standard engagement covers consultation, design proposal and mood board, ceremony installation, personal florals, reception centerpieces, and full day-of setup and breakdown.
+  button: Request a custom estimate
+cta:
+  label: Get started
+  heading: Getting married at Old Greenwood?
+  body: Tell us your date and vision. We take one wedding per date, and we'll let you know if we're open and how we'd approach the design.
+  button: Schedule a Consultation

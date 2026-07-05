@@ -11,31 +11,31 @@ redirect_from:
 
 <!-- TEXT HEADER (no hero image) -->
 <header class="text-hero" style="padding-bottom:32px">
-  <span class="lab">Contact</span>
-  <h1>Let's start the <em>conversation.</em></h1>
-  <p class="th-sub">Tell us your date, venue, and vision. We follow up within 48 hours to confirm availability.</p>
+  <span class="lab">{{ site.data.consultation.hero.label }}</span>
+  <h1>{% include em.html t=site.data.consultation.hero.heading %}</h1>
+  <p class="th-sub">{{ site.data.consultation.hero.subheading }}</p>
 </header>
 
 <!-- INTRO -->
 <section class="block tight">
   <div class="twoup">
     <div>
-      <span class="lab">What happens next</span>
-      <h2 class="h-lg" style="margin-bottom:26px;">Three steps, no pressure.</h2>
+      <span class="lab">{{ site.data.consultation.next_steps.label }}</span>
+      <h2 class="h-lg" style="margin-bottom:26px;">{{ site.data.consultation.next_steps.heading }}</h2>
       <ol class="next-steps">
-        <li><span class="n">1</span><strong>You send the form.</strong>Your date, venue, and a little about your vision. About two minutes.</li>
-        <li><span class="n">2</span><strong>We reply within 48 hours.</strong>We confirm we're open on your date. We take one wedding per day, so dates go quickly.</li>
-        <li><span class="n">3</span><strong>We talk it through.</strong>A complimentary call, then a custom proposal built around your season and venue.</li>
+        {%- for step in site.data.consultation.next_steps.steps %}
+        <li><span class="n">{{ forloop.index }}</span><strong>{{ step.title }}</strong>{{ step.body }}</li>
+        {%- endfor %}
       </ol>
     </div>
     <div class="contact-links">
-      <span class="lab">Reach us directly</span>
-      <h2 class="h-lg" style="margin-bottom:26px;">Or just say hello.</h2>
+      <span class="lab">{{ site.data.consultation.reach.label }}</span>
+      <h2 class="h-lg" style="margin-bottom:26px;">{{ site.data.consultation.reach.heading }}</h2>
       <p><a href="tel:5305577689">(530) 557-7689</a></p>
       <p><a href="mailto:brittany@goldenflorals.com">brittany@goldenflorals.com</a></p>
       <p><a href="https://www.instagram.com/goldenflowersfloraldesign/" target="_blank" rel="noopener">@goldenflowersfloraldesign</a></p>
-      <p style="color:var(--ink);margin-top:22px;">Incline Village, Lake Tahoe</p>
-      <p style="font-size:.85rem;color:var(--mute);margin-top:5px;line-height:1.5;">By appointment only. We don't host walk-ins. Serving Lake Tahoe, Truckee, Nevada City &amp; beyond.</p>
+      <p style="color:var(--ink);margin-top:22px;">{{ site.data.consultation.reach.location }}</p>
+      <p style="font-size:.85rem;color:var(--mute);margin-top:5px;line-height:1.5;">{{ site.data.consultation.reach.note }}</p>
     </div>
   </div>
 </section>

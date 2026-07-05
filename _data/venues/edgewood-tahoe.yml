@@ -1,0 +1,52 @@
+# edgewood-tahoe venue page copy. Edit the wording here; SEO settings live in the page file.
+# Tip: wrap words in *asterisks* to make them italic.
+venue_name: "Edgewood Tahoe"
+hero:
+  eyebrow: "South Shore · Lakeside"
+  heading: "Edgewood Tahoe."
+  subheading: "Lakeside weddings on Lake Tahoe"
+why:
+  label: Why this venue matters
+  heading: Edgewood is unlike anywhere else on the lake.
+  paragraphs:
+    - "The combination of lakefront access, the manicured grounds of a world-class golf course, and the dramatic Sierra Nevada backdrop means flowers here need to do something specific: belong."
+    - "Arrangements that feel imported or generic read immediately against this landscape. We design florals that feel as though they came from the property itself, from the meadows at the course edge, the forested ridgeline, the Nevada-side light."
+    - "Edgewood ceremonies range from the lakeside lawn to the Edgewood Pavilion, and each setting carries its own light and proportion. We design for the specific space you're using."
+  facts:
+    - label: Two settings
+      body: The lakeside lawn and the Edgewood Pavilion each call for a different scale, from open-air ceremony to a grand interior reception.
+    - label: South Shore
+      body: Edgewood sits on the Nevada side of South Shore, dramatic mountain backdrop, direct lake access.
+    - label: Lakeside
+      body: Ceremonies on the terrace or lawn look straight over Lake Tahoe. Arrangements are built to frame that view rather than block it.
+    - label: Seasonal
+      body: "We design around what's peak in the landscape: lupine in early summer, warm harvest tones in fall, alpine white early season."
+philosophy:
+  label: Design philosophy
+  heading: How we approach Edgewood florals.
+  items:
+    - title: Work with the view
+      body: The lakeside terrace has one of the most photographed backdrops in the Tahoe basin. We design installations that add to that context, never competing. Scale, transparency, and negative space are as important as the flowers themselves.
+    - title: Palette pulled from the landscape
+      body: "Edgewood's palette is the Nevada sage, the granite gray, the lake's deep blue-green. We bring whites, soft sage, and warm ivory that feel native, with moments of depth for drama when couples want it."
+    - title: Proportions for the space
+      body: The Edgewood Pavilion is a grand space. Low-profile centerpieces at tables with ceilings this high can disappear. We design installations and centerpieces to read at scale, visible from across the room, beautiful up close.
+    - title: California-sourced, always
+      body: No flowers imported from South America or Europe. Every arrangement at Edgewood uses blooms grown in California, from our own plots, and from the growers we've worked with for years. The environmental footprint matches the venue's own values.
+faq:
+  label: Questions about Edgewood
+  heading: What planning at Edgewood looks like.
+pricing:
+  label: Investment at Edgewood
+  heading: What Edgewood florals cost.
+  range: $12,000–$22,000+
+  note: Typical full-service Edgewood wedding
+  details:
+    - Every proposal is custom, built around your table count, ceremony footprint, and vision. We don't offer packages with minimum bids or imported filler.
+    - "A standard Edgewood engagement covers: initial consultation, design proposal and mood board, ceremony arch or installation, bridal bouquet, bridesmaids and groomsmen florals, reception centerpieces, and full day-of setup and breakdown."
+  button: Request a custom estimate
+cta:
+  label: Get started
+  heading: Getting married at Edgewood?
+  body: Tell us your date and vision. We'll let you know if we're available and what the design process looks like from here.
+  button: Schedule a Consultation

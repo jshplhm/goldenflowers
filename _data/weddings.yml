@@ -1,0 +1,103 @@
+# Weddings page copy (goldenflorals.com/weddings).
+# Tip: wrap words in *asterisks* for italic, **double asterisks** for bold.
+
+hero:
+  label: Working with us
+  heading: Full-service *wedding flowers.*
+  subheading: We take one wedding per date, so every couple works directly with our founder, Brittany, from the first consultation through setup and breakdown. She designs alongside a team of seasoned florists, and the people who plan your wedding are the same people who build it.
+  button_primary: Schedule a consultation
+  button_secondary: Meet Brittany
+
+process:
+  label: How it works
+  heading: From first conversation to the end of the night.
+  intro: "You work with Brittany from the first call to the last centerpiece. One couple, one date, complete attention: a process built around feeling heard rather than handed a catalog."
+  steps:
+    - number: '01'
+      when: Today · no commitment
+      title: Check your date
+      body: Tell us your date and venue and we'll confirm it's still open. We book one wedding per date, so availability is the first thing to ask. It takes about a minute.
+    - number: '02'
+      when: Complimentary
+      title: The consultation
+      body: If your date is open, we sit down (by call or studio visit) to learn your venue, vision, palette, and guest count. It's free and there's no obligation; we both want to know it's the right fit.
+    - number: '03'
+      when: If we're a fit · held 7 days
+      title: Proposal & a held date
+      body: "When it feels mutual, Brittany builds a custom proposal: mood board, itemized estimate, and seasonal sourcing plan. We hold your date for 7 days while you review, so you can decide without losing it."
+    - number: '04'
+      when: To lock it in
+      title: Deposit to secure your date
+      body: Ready to proceed? A signed agreement and a non-refundable retainer, applied toward your balance, secure your date in full. From here, the date is officially yours.
+    - number: '05'
+      when: 30–60 days out
+      title: Refinement
+      body: As your final count, layout, and timeline settle, we refine the design and lock your stem list around what's at peak that week. Your remaining balance is due 30 days before the wedding.
+    - number: '06'
+      when: Wedding week & day
+      title: Delivery, setup & install
+      body: We grow, gather, and design in the days before, then deliver, set, and install on-site, coordinating with your venue and planner so the timeline runs without you lifting a finger. Everything arrives finished.
+    - number: '07'
+      when: End of the night
+      title: Repurposing & strike
+      body: "After the ceremony we can repurpose pieces from the aisle to the reception, and at the end of the night our team returns for a full strike: breakdown, removal, and cleanup."
+
+included:
+  label: What's included
+  heading: Full-service means all of it.
+  items:
+    - title: Bridal & party florals
+      body: "Bridal bouquet, bridesmaids, boutonnieres, flower crown, corsages: all designed as a cohesive system."
+    - title: Ceremony installation
+      body: Arch, altar arrangement, aisle florals, or hanging installation, designed for your specific venue and ceremony setup.
+    - title: Reception centerpieces
+      body: "Table arrangements designed to work at scale in your space: low-profile, elevated, or dramatic, based on your vision and room."
+    - title: Environmental florals
+      body: Cocktail-hour arrangements, bar florals, lounge pieces, escort-card styling, and any other environmental design.
+    - title: Setup & breakdown
+      body: We coordinate with your venue and planner, handle full setup on the day, and break down and remove everything at the end of the night.
+    - title: Mood board & proposal
+      body: A visual design document and itemized proposal before you commit to anything. You know exactly what you're getting, and why.
+
+pricing:
+  label: Investment
+  price: $12,000–$18,000
+  price_sub: Typical 100-person Lake Tahoe wedding
+  points:
+    - Most weddings start around **$5,000**; ambitious, installation-heavy visions run **$25,000+**
+    - Every wedding includes consultation through day-of setup and breakdown
+    - We build a custom proposal around your venue, vision, and what's in season
+  tagline: Farm-grown stems, foam-free construction, and a design built around your day.
+
+risk:
+  label: When it matters most
+  heading: What happens if something goes wrong?
+  body: A wedding day has no do-overs. You learn what a florist is really made of on the morning something doesn't go to plan.
+  quote: '"We had a floral emergency on the morning of the wedding. Without any prior consultation, they nailed it. Our bouquets were exactly what the bride wanted. 10/10."'
+  source: Janelle · National Exchange Hotel, Nevada City
+
+testimonials:
+  label: What couples say
+  heading: Loved by couples across the Sierra.
+
+seasonal:
+  label: Seasonal flowers
+  heading: What's growing for your date.
+  body: "California's seasons produce dramatically different palettes: ranunculus and anemone in spring, garden roses and dahlias in summer, rich harvest tones in fall. Your proposal is built around what will be at peak on your date."
+  link: See what's in season
+
+faq:
+  label: Frequently asked questions
+  heading: What makes Golden Flowers different?
+
+venue_cta:
+  label: Browse by venue
+  heading: Planning at a specific venue?
+  body: "We know the region's best venues: the load-in, the light, the proportions. From Edgewood's lakeside lawn to the mountaintop lodge at Schaffer's Camp. See how we think about the flowers at each, and find yours."
+  link: Explore venues
+
+closing:
+  label: One wedding per date
+  heading: Is your date *still open?*
+  body: Tell us your date and venue, and we'll let you know if it's open.
+  button: Check your date

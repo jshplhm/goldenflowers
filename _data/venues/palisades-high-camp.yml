@@ -1,0 +1,52 @@
+# palisades-high-camp venue page copy. Edit the wording here; SEO settings live in the page file.
+# Tip: wrap words in *asterisks* to make them italic.
+venue_name: "Palisades High Camp"
+hero:
+  eyebrow: "Olympic Valley · Alpine"
+  heading: "Palisades High Camp."
+  subheading: "Wedding flowers at 8,200 feet"
+why:
+  label: Why this venue matters
+  heading: A wedding at the top of the tram.
+  paragraphs:
+    - "High Camp sits at 8,200 feet at the head of Olympic Valley, reached by the aerial tram and ringed by the granite peaks that hosted the 1960 Winter Olympics. The setting is enormous, bright, and exposed."
+    - "Flowers here have two jobs: hold up in thin, dry alpine air, and hold their own against a very big view. Delicate, thirsty blooms struggle at altitude. We design with hardy, well-conditioned stems and structure that reads from a distance."
+    - "Everything also has to ride the tram. We plan the build, the hydration, and the load-in around that single constraint, so what arrives at the top is as fresh as what left the studio."
+  facts:
+    - label: At altitude
+      body: High Camp sits at 8,200 feet, reached by the aerial tram. Thin, dry air changes how flowers hold, so conditioning and stem choice matter.
+    - label: Olympic Valley
+      body: At the head of Olympic Valley, ringed by granite peaks. The site of the 1960 Winter Olympics, with history in every direction.
+    - label: Panoramic
+      body: Ceremonies look out over the valley and the High Sierra. Arrangements have to read at scale and never compete with that view.
+    - label: Seasonal
+      body: "A short alpine season. We design around what's at peak: lupine and mule's ears in high summer, golden grasses into fall."
+philosophy:
+  label: Design philosophy
+  heading: How we approach High Camp florals.
+  items:
+    - title: Built for altitude
+      body: Thin, dry air is hard on cut flowers. We choose hardy varieties, condition them thoroughly, and build with water sources that keep everything alive through a full day above the valley.
+    - title: Scaled for the view
+      body: The backdrop is granite and sky for miles. Small, low arrangements disappear here. We design installations and centerpieces with the height, transparency, and structure to hold the space.
+    - title: Palette from the alpine
+      body: The High Camp palette is granite gray, dry-grass gold, and the deep green of the tree line. We lean into wild, textural, of-the-mountain designs, with drama on request.
+    - title: Planned around the tram
+      body: Every stem rides the aerial tram to the top. We plan the build, packing, and load-in around that, so setup is calm and the flowers arrive at full freshness.
+faq:
+  label: Questions about Palisades High Camp
+  heading: What planning at High Camp looks like.
+pricing:
+  label: Investment at Palisades High Camp
+  heading: What High Camp florals cost.
+  range: $12,000–$22,000+
+  note: Typical full-service High Camp wedding
+  details:
+    - Every proposal is custom, built around your table count, ceremony footprint, and vision. We don't offer packages with minimum bids or imported filler.
+    - "A standard engagement covers: initial consultation, design proposal and mood board, ceremony arch or installation, bridal bouquet, bridal party florals, reception centerpieces, and full day-of setup and breakdown."
+  button: Request a custom estimate
+cta:
+  label: Get started
+  heading: Getting married at Palisades High Camp?
+  body: Tell us your date and vision. We'll let you know if we're available and what the design process looks like from here.
+  button: Check your date →

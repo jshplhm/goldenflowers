@@ -1,26 +1,19 @@
 <section class="block pledge">
   {% unless include.hide_head %}
   <div class="pledge-head">
-    <span class="lab">Sustainability pledge</span>
-    <h2 class="h-lg">Working toward something better.</h2>
-    <p class="pledge-intro">These are the commitments that shape how we design, source, and grow. Some are already woven into every wedding; others we're actively working toward. We don't claim perfection, only steady progress in the right direction.</p>
+    <span class="lab">{{ site.data.pledge.head.label }}</span>
+    <h2 class="h-lg">{% include em.html t=site.data.pledge.head.heading %}</h2>
+    <p class="pledge-intro">{% include em.html t=site.data.pledge.head.intro %}</p>
   </div>
   {% endunless %}
 
   <div class="pledge-grid">
-    <div class="pledge-item"><h4>Foam-free, plastic-free design</h4><p>No floral foam, ever. We build with reusable mechanics like chicken wire, wool, and pin frogs instead of single-use plastic that sheds microplastics into the watershed.</p></div>
-    <div class="pledge-item"><h4>Buying local first</h4><p>We reach for what's grown closest before anything else, starting with our own farm plots and California growers we know personally. No flowers flown in from across the world.</p></div>
-    <div class="pledge-item"><h4>Mindful growing practices</h4><p>Our farm plots are tended for soil health, biodiversity, and pollinators, a direct extension of Brittany's agronomic training in how land and plants actually thrive.</p></div>
-    <div class="pledge-item"><h4>Vase return &amp; reuse</h4><p>Vessels and vases can come back to us. We clean, reuse, and recirculate what doesn't need to end up in the bin.</p></div>
-    <div class="pledge-item"><h4>Repurposing wedding florals</h4><p>We're building partnerships to give wedding flowers a second life after the event, going to hospitals, senior care facilities, and community spaces.</p></div>
-    <div class="pledge-item"><h4>Toward electric delivery</h4><p>We're working toward an all-electric delivery vehicle to lower the carbon footprint of getting your flowers from our farm to your venue.</p></div>
-    <div class="pledge-item"><h4>Low-waste packaging</h4><p>Digital-first invoicing and proposals, recycled paper for cards and wraps, and no single-use plastic wherever we can help it.</p></div>
-    <div class="pledge-item"><h4>Composting the harvest</h4><p>Stem trimmings and spent blooms from our farm go back into the soil to feed the next season instead of the landfill.</p></div>
-    <div class="pledge-item"><h4>Giving back to the land</h4><p>We're committing a share of profits to organizations working to restore California habitat and protect the land this business is rooted in.</p></div>
-    <div class="pledge-item"><h4>Seasonal by default</h4><p>We design around what's at its peak in California, so flowers travel less, last longer, and are never forced out of season just to fill an order.</p></div>
+    {%- for item in site.data.pledge.items %}
+    <div class="pledge-item"><h4>{{ item.title }}</h4><p>{% include em.html t=item.body %}</p></div>
+    {%- endfor %}
   </div>
 
   <blockquote class="pledge-closing">
-    <p>This is a living pledge, still growing. The aim is simple: leave the land a little better than we found it.</p>
+    <p>{% include em.html t=site.data.pledge.closing %}</p>
   </blockquote>
 </section>

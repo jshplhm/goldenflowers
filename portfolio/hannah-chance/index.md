@@ -3,6 +3,7 @@ layout: redesign
 title: "Hannah & Chance · Lush & Romantic"
 seo_title: "Hannah & Chance Wedding Flowers · Lush & Romantic | Golden Flowers"
 permalink: /portfolio/hannah-chance
+portfolio_key: hannah-chance
 description: "A Golden Flowers wedding: lush & romantic floral design for a Lake Tahoe and Sierra Nevada celebration."
 hero_photo: hannah-chance-10.jpg
 ---
@@ -12,7 +13,8 @@ hero_photo: hannah-chance-10.jpg
 <header class="text-hero venue-hero">
   <span class="lab">Lush & Romantic</span>
   <h1>Hannah & Chance</h1>
-  <p class="th-sub">Full-tilt autumn at The Stone House. Rust and oxblood dahlias, sunflowers and copper foliage spilling from oversized bouquets, set against ivy-covered stone and a hand-built wooden arch. Rich, harvest-toned, and unafraid of color.</p>
+  {%- assign subtitle = site.data.portfolio[page.portfolio_key] %}
+  <p class="th-sub">{% include em.html t=subtitle %}</p>
 </header>
 
 {% include portfolio-gallery.html slug="hannah-chance" hero="hannah-chance-10.jpg" name="Hannah & Chance" %}

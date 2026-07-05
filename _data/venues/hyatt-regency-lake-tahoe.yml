@@ -1,0 +1,52 @@
+# hyatt-regency-lake-tahoe venue page copy. Edit the wording here; SEO settings live in the page file.
+# Tip: wrap words in *asterisks* to make them italic.
+venue_name: "Hyatt Regency Lake Tahoe"
+hero:
+  eyebrow: "Incline Village · North Shore"
+  heading: "Hyatt Regency Lake Tahoe."
+  subheading: "North Shore resort weddings, in our hometown"
+why:
+  label: Why this venue matters
+  heading: This one's in our backyard.
+  paragraphs:
+    - "The Hyatt Regency sits on the Nevada North Shore in Incline Village, the same town Golden Flowers calls home. We know this corner of the lake by heart: the light, the late-day wind off the water, the way North Shore weather moves in fast and clears just as quickly."
+    - "A resort wedding gives you polish and infrastructure, the trade is that generic, imported flowers can make a beautiful room feel anonymous. We design florals with a sense of place, pulled from the Sierra and grown in California, so a Hyatt wedding still feels like Tahoe and not like anywhere."
+    - "Being local means short drive times, easy site visits, and a florist who can be on-site early and stay through strike."
+  facts:
+    - label: Incline Village
+      body: Our home base. The Hyatt is minutes away, so site visits, early load-in, and same-day strike are simple, no long haul over the pass.
+    - label: North Shore
+      body: The Nevada side of the North Shore has its own light and palette, cooler, clearer, framed by tall pine and deep-blue water.
+    - label: Indoor + outdoor
+      body: Resort weddings move between open-air ceremony settings and ballroom receptions. We design for both, with arrangements scaled to each space.
+    - label: Year-round
+      body: A resort works in every season. We design around what's peak, alpine whites in spring, harvest tones in fall, candlelit depth in winter.
+philosophy:
+  label: Design philosophy
+  heading: How we approach Hyatt Regency florals.
+  items:
+    - title: A sense of place in a resort room
+      body: Ballrooms can flatten flowers into decor. We bring texture, seasonal stems, and Sierra-grown character so the design feels rooted in Tahoe, not pulled from a catalog.
+    - title: Scaled to the space
+      body: Indoor resort spaces and open lakeside settings call for different proportions. We design installations and centerpieces that read across a full ballroom and still hold up close, beautiful from the back of the room and the first row.
+    - title: Local logistics, handled
+      body: Because we're in Incline Village, we can do early site visits, coordinate directly with the resort's events team, install on tight timelines, and return for a clean same-day strike.
+    - title: Foam-free, even at a full-service resort
+      body: No floral foam, no flowers flown in from South America or Europe. Every stem is grown in California, from our own plots and the growers we trust, even inside a full-service resort wedding.
+faq:
+  label: Questions about the Hyatt Regency
+  heading: What planning a Hyatt wedding looks like.
+pricing:
+  label: Investment at the Hyatt Regency
+  heading: What florals here cost.
+  range: $12,000–$22,000+
+  note: Typical full-service resort wedding
+  details:
+    - Every proposal is custom, built around your guest count, ceremony footprint, and vision. We don't offer packages with minimum bids or imported filler.
+    - "A standard engagement covers: initial consultation, design proposal and mood board, ceremony installation, bridal bouquet, wedding party florals, reception centerpieces, and full day-of setup and breakdown."
+  button: Request a custom estimate
+cta:
+  label: Get started
+  heading: Getting married at the Hyatt Regency?
+  body: Tell us your date and vision. As your local Incline Village florist, we'll let you know if we're available and how we'd approach the design.
+  button: Schedule a Consultation

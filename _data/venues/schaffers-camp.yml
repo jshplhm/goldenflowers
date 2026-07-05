@@ -1,0 +1,52 @@
+# schaffers-camp venue page copy. Edit the wording here; SEO settings live in the page file.
+# Tip: wrap words in *asterisks* to make them italic.
+venue_name: "Schaffer's Camp"
+hero:
+  eyebrow: "Northstar · Mountaintop Lodge"
+  heading: "Schaffer's Camp."
+  subheading: "Weddings at 7,900 feet, by gondola"
+why:
+  label: Why this venue matters
+  heading: A lodge on top of the mountain.
+  paragraphs:
+    - "Schaffer's Camp sits at 7,900 feet on the west ridge of Northstar, reached by gondola. The Tahoe Mountain Club lodge pairs walls of glass and three stone fireplaces with a wide deck open to the High Sierra."
+    - "The setting is intimate but the views are enormous. Florals here work against a backdrop of glass, timber, and mountain light, and they have to read both indoors by the fire and out on the deck."
+    - "It's also a venue at altitude, reached by lift, so the flowers need the conditioning and structure to arrive fresh and hold through a full mountaintop day."
+  facts:
+    - label: Mountaintop
+      body: At 7,900 feet on Northstar's west ridge, reached by gondola. A Tahoe Mountain Club lodge with glass walls and stone fireplaces.
+    - label: Alpine views
+      body: Floor-to-ceiling windows and a wide deck open onto the High Sierra. Design reads against a very big mountain backdrop.
+    - label: Intimate
+      body: Built for smaller mountaintop celebrations, so florals can be rich and detailed and still feel right at scale.
+    - label: At altitude
+      body: Thin, dry air and a gondola load-in mean conditioning, hardy stem choice, and careful timing all matter.
+philosophy:
+  label: Design philosophy
+  heading: How we approach Schaffer's Camp florals.
+  items:
+    - title: Built for altitude
+      body: Thin, dry air is hard on cut flowers. We choose hardy varieties, condition them thoroughly, and build with water sources that keep everything alive through a full day on the ridge.
+    - title: Glass and fire
+      body: The lodge is timber, stone, and light. We design warm, textural arrangements for the fireside interior and crisp, structural pieces that hold up against the windows and the view.
+    - title: Indoors and out
+      body: Ceremonies on the deck, dinner by the fire. We carry one palette and language across both so the day reads as a single designed event.
+    - title: Planned around the gondola
+      body: Every stem rides the gondola to the top. We plan the build, packing, and load-in around that, so setup is calm and the flowers arrive at full freshness.
+faq:
+  label: Questions about Schaffer's Camp
+  heading: What planning at Schaffer's Camp looks like.
+pricing:
+  label: Investment at Schaffer's Camp
+  heading: What Schaffer's Camp florals cost.
+  range: $15,000–$26,000+
+  note: Typical full-service Schaffer's Camp wedding
+  details:
+    - Every proposal is custom, built around your table count, ceremony footprint, and vision. We don't offer packages with minimum bids or imported filler.
+    - "A standard engagement covers: initial consultation, design proposal and mood board, ceremony arch or installation, bridal bouquet, bridal party florals, reception centerpieces, and full day-of setup and breakdown."
+  button: Request a custom estimate
+cta:
+  label: Get started
+  heading: Getting married at Schaffer's Camp?
+  body: Tell us your date and vision. We'll let you know if we're available and what the design process looks like from here.
+  button: Check your date →

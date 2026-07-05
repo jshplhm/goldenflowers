@@ -3,6 +3,7 @@ layout: redesign
 title: "Jenna & Cal · Elevated Minimalist"
 seo_title: "Jenna & Cal Wedding Flowers · Elevated Minimalist | Golden Flowers"
 permalink: /portfolio/jenna-cal
+portfolio_key: jenna-cal
 redirect_from:
   - /portfolio-1/jennaandcal
 description: "A Golden Flowers wedding: elevated minimalist floral design for a Lake Tahoe and Sierra Nevada celebration."
@@ -14,7 +15,8 @@ hero_photo: jenna-cal-15.jpg
 <header class="text-hero venue-hero">
   <span class="lab">Elevated Minimalist</span>
   <h1>Jenna & Cal</h1>
-  <p class="th-sub">A white-and-green wedding with a thread of red running through it. Phalaenopsis orchids and magnolia foliage in clean, elevated arrangements, warmed by hanging red silk lanterns and glowing over candlelit tables at the National Exchange Hotel.</p>
+  {%- assign subtitle = site.data.portfolio[page.portfolio_key] %}
+  <p class="th-sub">{% include em.html t=subtitle %}</p>
 </header>
 
 {% include portfolio-gallery.html slug="jenna-cal" hero="jenna-cal-15.jpg" name="Jenna & Cal" %}

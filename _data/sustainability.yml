@@ -1,0 +1,14 @@
+# Sustainability page copy (goldenflorals.com/sustainability).
+# The pledge points themselves are edited under "Sustainability pledge".
+# Tip: wrap words in *asterisks* to make them italic.
+
+hero:
+  eyebrow: Sustainability pledge
+  heading: Working toward *something better.*
+  subheading: The commitments that shape how we design, source, and grow.
+
+closing:
+  label: Work with us
+  heading: Flowers that leave the *land better.*
+  body: Tell us about your wedding and we'll reply within 48 hours.
+  button: Check your date

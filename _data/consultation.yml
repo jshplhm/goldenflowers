@@ -1,0 +1,25 @@
+# Consultation / Contact page copy (goldenflorals.com/consultation-form).
+# The form fields themselves are not edited here (they connect to email).
+# Tip: wrap words in *asterisks* to make them italic.
+
+hero:
+  label: Contact
+  heading: Let's start the *conversation.*
+  subheading: Tell us your date, venue, and vision. We follow up within 48 hours to confirm availability.
+
+next_steps:
+  label: What happens next
+  heading: Three steps, no pressure.
+  steps:
+    - title: You send the form.
+      body: Your date, venue, and a little about your vision. About two minutes.
+    - title: We reply within 48 hours.
+      body: We confirm we're open on your date. We take one wedding per day, so dates go quickly.
+    - title: We talk it through.
+      body: A complimentary call, then a custom proposal built around your season and venue.
+
+reach:
+  label: Reach us directly
+  heading: Or just say hello.
+  location: Incline Village, Lake Tahoe
+  note: By appointment only. We don't host walk-ins. Serving Lake Tahoe, Truckee, Nevada City & beyond.

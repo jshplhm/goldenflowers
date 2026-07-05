@@ -1,0 +1,52 @@
+# thunderbird-lodge venue page copy. Edit the wording here; SEO settings live in the page file.
+# Tip: wrap words in *asterisks* to make them italic.
+venue_name: "Thunderbird Lodge"
+hero:
+  eyebrow: "East Shore · Historic Estate"
+  heading: "Thunderbird Lodge."
+  subheading: "Lakefront weddings on Tahoe's east shore"
+why:
+  label: Why this venue matters
+  heading: A historic estate on the water.
+  paragraphs:
+    - "Thunderbird Lodge is a 1936 stone estate on Lake Tahoe's quiet east shore, a National Historic Site with lawns and terraces that open straight onto some of the clearest water on the lake. There is nothing else like it in the basin."
+    - "Florals here share the stage with hand-cut granite, old-growth timber, and the lake itself. The work has to feel as considered and enduring as the architecture, never decorative for its own sake."
+    - "The estate hosts smaller, exclusive celebrations, which means the design can be detailed and architectural without getting lost. Every arrangement reads up close."
+  facts:
+    - label: Historic estate
+      body: A 1936 stone estate and National Historic Site, with a boathouse, tunnels, and the Old Lodge set into the shoreline.
+    - label: East Shore
+      body: On Tahoe's quiet Nevada east shore, framed by granite and some of the clearest, deepest blue water on the lake.
+    - label: Lakefront
+      body: Ceremonies on the lawn and stone terraces open right onto the water. Design has to live up to that light and leave it unobstructed.
+    - label: Intimate
+      body: The estate hosts smaller, exclusive celebrations, so florals can be detailed and architectural and still read up close.
+philosophy:
+  label: Design philosophy
+  heading: How we approach Thunderbird Lodge florals.
+  items:
+    - title: Honor the architecture
+      body: Stone, timber, and craftsmanship define this estate. We design florals with the same sense of permanence, structural, material-forward, and built to belong to the place.
+    - title: Frame the lake
+      body: The water is the centerpiece. We keep sightlines open with height, transparency, and negative space so arrangements add to the view rather than compete with it.
+    - title: Palette from the east shore
+      body: Granite gray, pine green, and the deep blue of the lake. We bring whites, soft neutrals, and moments of depth that feel native to the shoreline.
+    - title: California-sourced, always
+      body: No flowers flown in from overseas. Every arrangement uses blooms grown in California, from our own plots and the growers we've worked with for years.
+faq:
+  label: Questions about Thunderbird Lodge
+  heading: What planning at Thunderbird Lodge looks like.
+pricing:
+  label: Investment at Thunderbird Lodge
+  heading: What Thunderbird Lodge florals cost.
+  range: $18,000–$32,000+
+  note: Typical full-service Thunderbird Lodge wedding
+  details:
+    - Every proposal is custom, built around your table count, ceremony footprint, and vision. We don't offer packages with minimum bids or imported filler.
+    - "A standard engagement covers: initial consultation, design proposal and mood board, ceremony arch or installation, bridal bouquet, bridal party florals, reception centerpieces, and full day-of setup and breakdown."
+  button: Request a custom estimate
+cta:
+  label: Get started
+  heading: Getting married at Thunderbird Lodge?
+  body: Tell us your date and vision. We'll let you know if we're available and what the design process looks like from here.
+  button: Check your date →

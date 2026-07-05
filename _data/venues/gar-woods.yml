@@ -1,0 +1,52 @@
+# gar-woods venue page copy. Edit the wording here; SEO settings live in the page file.
+# Tip: wrap words in *asterisks* to make them italic.
+venue_name: "Gar Woods"
+hero:
+  eyebrow: "Carnelian Bay · North Shore"
+  heading: "Gar *Woods.*"
+  subheading: "Lakefront weddings on the deck at Gar Woods Grill & Pier."
+why:
+  label: Why this venue matters
+  heading: The lake is close enough to touch.
+  paragraphs:
+    - "Gar Woods sits right on the sand at Carnelian Bay, with a deck that hangs over the water and a view that runs across the whole width of Lake Tahoe. Ceremonies happen with the lake as the immediate backdrop, and receptions carry that view into the evening."
+    - "A setting this close to the water calls for florals that hold their own without blocking a single sightline. We design low and lush for the tables, and give the ceremony moments height only where the view allows it."
+    - "The scale here is intimate, and that's the appeal. Every arrangement gets seen up close, so the detail work matters more than anywhere else."
+  facts:
+    - label: On the water
+      body: The deck sits over the beach, so arrangements frame the lake rather than compete with it.
+    - label: Intimate scale
+      body: A closer, more personal room than the resort venues. Detail-level design gets noticed.
+    - label: Sunset light
+      body: West-facing water means golden evening light. We build palettes that come alive in it.
+    - label: One a day
+      body: The same team designs, installs, and strikes, with undivided attention on your date.
+philosophy:
+  label: Design philosophy
+  heading: How we approach Gar Woods florals.
+  items:
+    - title: Frame the water
+      body: Low-profile centerpieces and ceremony pieces placed so the lake stays in every photo and every seat keeps its view.
+    - title: Detail up close
+      body: "An intimate deck puts every stem at arm's length. We design for close viewing: texture, movement, and blooms worth studying."
+    - title: Built for lake air
+      body: Foam-free mechanics engineered for breeze off the water, so nothing shifts or wilts between vows and last call.
+    - title: A palette for dusk
+      body: West-facing venues earn their keep at golden hour. We choose tones that deepen, not disappear, as the light warms.
+faq:
+  label: Questions about Gar Woods
+  heading: What planning here looks like.
+pricing:
+  label: Investment at Gar Woods
+  heading: What Gar Woods florals cost.
+  range: $8,000–$16,000
+  note: Typical full-service Gar Woods wedding
+  details:
+    - "A full-service Gar Woods wedding typically runs $8,000–$16,000, reflecting the venue's intimate scale, depending on guest count and ceremony design. Every proposal is custom, built around your table count, ceremony footprint, and vision."
+    - A standard engagement covers consultation, design proposal and mood board, ceremony florals, personal florals, reception centerpieces, and full day-of setup and breakdown.
+  button: Request a custom estimate
+cta:
+  label: Get started
+  heading: Getting married at Gar Woods?
+  body: Tell us your date and vision. We take one wedding per date, and we'll let you know if we're open and how we'd approach the design.
+  button: Schedule a Consultation
