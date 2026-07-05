@@ -68,7 +68,7 @@ layout: redesign
         {%- for p in v.pricing.details %}
         <p>{% include em.html t=p %}</p>
         {%- endfor %}
-        <a href="{{ site.baseurl }}/consultation-form" class="btn-primary" style="margin-top:16px;display:inline-block;">{{ v.pricing.button }}</a>
+        <a href="{{ site.baseurl }}/consultation-form" class="txt-link" style="margin-top:16px;display:inline-block;" data-consult-open>{{ v.pricing.button }}</a>
       </div>
     </div>
   </div>
@@ -79,6 +79,6 @@ layout: redesign
     <span class="label" style="display:block;text-align:center">{{ v.cta.label }}</span>
     <h2>{{ v.cta.heading }}</h2>
     <p>{% include em.html t=v.cta.body %}</p>
-    <a href="{{ site.baseurl }}/consultation-form" class="btn-primary">{{ v.cta.button }}</a>
+    <a href="{{ site.baseurl }}/consultation-form" class="btn-primary" data-consult-open>{{ v.cta.button }}</a>
   </div>
 </div>
