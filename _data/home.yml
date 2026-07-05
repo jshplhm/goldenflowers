@@ -1,19 +1,19 @@
 hero:
   eyebrow: Lake Tahoe Wedding Florist
   heading: Flowers That Belong to the *Place They Grow.*
-  subheading: Farm-grown, foam-free florals, designed for weddings across Lake
-    Tahoe and the Sierra Nevada.
+  subheading: Sustainably grown floral artistry for weddings across Lake Tahoe
+    and the Sierra Nevada.
   button: Check my date
 intro:
-  paragraph1: Golden Flowers is a Lake Tahoe wedding florist designing seasonally
-    grown, foam-free wedding flowers for couples getting married across the
+  paragraph1: Golden Flowers is a Lake Tahoe wedding florist creating elevated,
+    sustainably grown floral artistry for couples getting married across the
     Sierra Nevada. We work with what California grows at its peak, in the season
-    you're getting married, and we design around it. No flowers shipped from
-    across the world. No floral foam. Just intentional, artful design that
-    belongs to the place you're saying yes in.
-  paragraph2: We take one wedding a day, so your wedding is the only one on our
-    calendar. Our designs are elevated and organic, grounded in texture and
-    movement, and grown as close to the Sierra Nevada as the season allows.
+    you're getting married, and we design around it, so the flowers belong to
+    the place you're saying yes in.
+  paragraph2: To us, every wedding is a unique piece of art. Our designs are
+    refined and organic, grounded in texture and movement, curated around your
+    venue and your season, and grown as close to the Sierra Nevada as the
+    year allows.
 why:
   label: Why Golden Flowers
   heading: We grow our own flowers on California soil, an hour from where you'll
@@ -21,12 +21,13 @@ why:
   facts:
     - number: "01"
       title: Farm-grown
-      body: Raised on our own California plots and sourced only from growers we trust,
-        never shipped from overseas.
+      body: Cultivated on our own California farm, where Brittany's training in
+        agronomy and soil science shapes every planting, and sourced from growers
+        we trust.
     - number: "02"
-      title: Foam-free, always
-      body: Every arrangement is built without floral foam. Better for the design, and
-        better for the mountains.
+      title: Sustainable, always
+      body: Seasonal sourcing, reusable mechanics, and growing practices that give
+        back to the soil. Our full pledge is written down, in public.
     - number: "03"
       title: One wedding a day
       body: We never double-book. Our full team spends the day on your wedding and
@@ -61,6 +62,5 @@ testimonial:
   link: Read more reviews
 cta:
   heading: Is your date *still open?*
-  body: Peak dates go quickly. Tell us your date and venue, and we'll let you know
-    if it's still yours.
+  body: Tell us your date and venue, and we'll let you know, usually within 48 hours.
   button: Check your date

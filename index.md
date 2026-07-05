@@ -4,7 +4,7 @@ hero_nav: true
 title: "Golden Flowers"
 seo_title: "Lake Tahoe Wedding Florist | Golden Flowers"
 permalink: /
-description: "Golden Flowers is a Lake Tahoe wedding florist designing artful, sustainably grown, foam-free wedding flowers for couples getting married across the Sierra Nevada."
+description: "Golden Flowers is a Lake Tahoe wedding florist creating elevated, sustainably grown wedding floral artistry for couples getting married across the Sierra Nevada."
 canonical_url: https://goldenflorals.com/
 ---
 

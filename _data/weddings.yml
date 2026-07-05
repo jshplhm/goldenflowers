@@ -4,7 +4,7 @@
 hero:
   label: Working with us
   heading: Full-service *wedding flowers.*
-  subheading: We take one wedding per date, so every couple works directly with our founder, Brittany, from the first consultation through setup and breakdown. She designs alongside a team of seasoned florists, and the people who plan your wedding are the same people who build it.
+  subheading: Every couple works directly with our founder, Brittany, from the first consultation through setup and breakdown. She designs alongside some of the region's best florists, and the people who plan your wedding are the same people who build it.
   button_primary: Schedule a consultation
   button_secondary: Meet Brittany
 
@@ -67,12 +67,12 @@ pricing:
     - Most weddings start around **$5,000**; ambitious, installation-heavy visions run **$25,000+**
     - Every wedding includes consultation through day-of setup and breakdown
     - We build a custom proposal around your venue, vision, and what's in season
-  tagline: Farm-grown stems, foam-free construction, and a design built around your day.
+  tagline: Farm-grown stems, refined floral artistry, and a design curated around your day.
 
 risk:
   label: When it matters most
   heading: What happens if something goes wrong?
-  body: A wedding day has no do-overs. You learn what a florist is really made of on the morning something doesn't go to plan.
+  body: A wedding day has no do-overs, so we plan like it, with backups in place for the things that matter most and a team deep enough to absorb surprises. You learn what a florist is really made of on the morning something doesn't go to plan.
   quote: '"We had a floral emergency on the morning of the wedding. Without any prior consultation, they nailed it. Our bouquets were exactly what the bride wanted. 10/10."'
   source: Janelle · National Exchange Hotel, Nevada City
 
@@ -97,7 +97,7 @@ venue_cta:
   link: Explore venues
 
 closing:
-  label: One wedding per date
+  label: Begin here
   heading: Is your date *still open?*
   body: Tell us your date and venue, and we'll let you know if it's open.
   button: Check your date
