@@ -63,7 +63,22 @@
     "knowsAbout": [
       "wedding flowers", "foam-free floral design", "sustainable floristry",
       "locally-grown flowers", "Lake Tahoe weddings"
-    ]
+    ],
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "5",
+      "bestRating": "5",
+      "worstRating": "1",
+      "reviewCount": "18"
+    },
+    "review": [{% for item in site.data.testimonials.items %}
+      {
+        "@type": "Review",
+        "author": { "@type": "Person", "name": {{ item.name | jsonify }} },
+        "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5", "worstRating": "1" },
+        "reviewBody": {{ item.quote | jsonify }}
+      }{% unless forloop.last %},{% endunless %}
+    {% endfor %}]
   }
   </script>
 

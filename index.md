@@ -6,6 +6,16 @@ seo_title: "Lake Tahoe Wedding Florist | Golden Flowers"
 permalink: /
 description: "Golden Flowers is a Lake Tahoe wedding florist creating elevated, sustainably grown wedding floral artistry for couples getting married across the Sierra Nevada."
 canonical_url: https://goldenflorals.com/
+redirect_from:
+  - /a-la-carte-weddings/p/aisle-marker-xf38y
+  - /a-la-carte-weddings/p/corsage
+  - /a-la-carte/p/basic-package-bgzcp-s5d9e
+  - /a-la-carte/p/basic-package-bgzcp-s5d9e-kz83z
+  - /a-la-carte/p/basic-package-bgzcp-s5d9e-5entb
+  - /a-la-carte/p/basic-package-bgzcp-s5d9e-5entb-hhsnz
+  - /a-la-carte/p/basic-package-bgzcp-s5d9e-5entb-hhsnz-c43ng
+  - /send-flowers/p/earth-sky-planter-4awkk-nazcb-w7e3y
+  - /sendflowers/p/i-love-you
 ---
 
 <!-- HERO -->
