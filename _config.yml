@@ -1,14 +1,8 @@
 title: "Golden Flowers"
 description: "Lake Tahoe wedding florist specializing in sustainable, locally-grown, foam-free floral design"
 
-# ⚠️ CUTOVER STEP: when pointing goldenflorals.com DNS at this repo, change to:
-#   url: "https://goldenflorals.com"
-#   baseurl: ""
-# This is what makes the home page, blog index, and all 35 posts canonicalize to the
-# production domain (interior pages already pin canonical_url in their front matter).
-# Do NOT flip until cutover: it breaks the jshplhm.github.io/goldenflowers staging URL.
-url: "https://jshplhm.github.io"
-baseurl: "/goldenflowers"
+url: "https://goldenflorals.com"
+baseurl: ""
 
 # Permalink setting
 permalink: /:categories/:title/
