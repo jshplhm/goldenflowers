@@ -6,7 +6,7 @@ permalink: /portfolio/katie-james
 portfolio_key: katie-james
 redirect_from:
   - /portfolio-1/katieandjames
-description: "A Golden Flowers wedding: lush & romantic floral design for a Lake Tahoe and Sierra Nevada celebration."
+description: "Katie & James at The Miner's Foundry in Nevada City: blush and butter-cream roses, a lavish arch over the stone hall's windows, moss, and candlelight."
 hero_photo: katie-james-07.jpg
 ---
 

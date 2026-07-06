@@ -1,9 +1,9 @@
 ---
 layout: redesign
 title: "About Golden Flowers"
-seo_title: "About Golden Flowers | Sustainable Lake Tahoe Wedding Florist"
+seo_title: "About Brittany & Golden Flowers | Lake Tahoe Wedding Florist"
 permalink: /about
-description: "Golden Flowers is a Lake Tahoe wedding florist specializing in bold, sustainable, artful floral design. Located in Incline Village, our studio creates seasonally grown arrangements, from editorial bouquets to full installations, for couples who want their wedding flowers to feel intentional and unforgettable."
+description: "Golden Flowers is a Lake Tahoe wedding florist. Brittany, an artist and an agronomist, designs seasonal, intentional wedding florals across the Sierra Nevada."
 canonical_url: https://goldenflorals.com/about
 redirect_from:
   - /about-us

@@ -6,7 +6,7 @@ permalink: /portfolio/tori-tucker
 portfolio_key: tori-tucker
 redirect_from:
   - /portfolio-1/tori-and-tucker
-description: "A Golden Flowers wedding: wildflower modern floral design for a Lake Tahoe and Sierra Nevada celebration."
+description: "Tori & Tucker at the North Tahoe Event Center: pink and green lakeside wedding flowers with garden roses, coral peonies, and sweet peas."
 hero_photo: tori-tucker-12.jpg
 ---
 

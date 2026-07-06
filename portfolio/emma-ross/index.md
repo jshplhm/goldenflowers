@@ -6,7 +6,7 @@ permalink: /portfolio/emma-ross
 portfolio_key: emma-ross
 redirect_from:
   - /portfolio-1/emma-and-ross
-description: "A Golden Flowers wedding: elevated minimalist floral design for a Lake Tahoe and Sierra Nevada celebration."
+description: "Emma & Ross at River Highlands Ranch: ivory-and-green wedding flowers with white garden roses, calla lilies, and amaranthus that let the landscape lead."
 hero_photo: emma-ross-08.jpg
 ---
 

@@ -4,7 +4,7 @@ title: "Catherine & Joaquin · Wildflower Modern"
 seo_title: "Catherine & Joaquin Wedding Flowers · Wildflower Modern | Golden Flowers"
 permalink: /portfolio/catherine-joaquin
 portfolio_key: catherine-joaquin
-description: "A Golden Flowers wedding: wildflower modern floral design for a Lake Tahoe and Sierra Nevada celebration."
+description: "Catherine & Joaquin at the National Exchange Hotel: a dried, textural fall wedding with pampas, bunny tails, and preserved grasses in warm cream and wheat."
 hero_photo: catherine-joaquin-15.jpg
 ---
 

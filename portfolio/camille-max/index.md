@@ -6,7 +6,7 @@ permalink: /portfolio/camille-max
 portfolio_key: camille-max
 redirect_from:
   - /portfolio-1/camille-and-max
-description: "A Golden Flowers wedding: wildflower modern floral design for a Lake Tahoe and Sierra Nevada celebration."
+description: "Camille & Max at the North Star House in Grass Valley: an autumn wedding with cascading blush and burgundy bouquets and an arbor that looks grown in place."
 hero_photo: camille-max-16.jpg
 ---
 

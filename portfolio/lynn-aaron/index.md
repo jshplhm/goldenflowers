@@ -6,7 +6,7 @@ permalink: /portfolio/lynn-aaron
 portfolio_key: lynn-aaron
 redirect_from:
   - /portfolio-1/lynn-and-aaron
-description: "A Golden Flowers wedding: lush & romantic floral design for a Lake Tahoe and Sierra Nevada celebration."
+description: "Lynn & Aaron at Palisades High Camp: jewel-toned wedding flowers with coral peonies, oxblood dahlias, and trailing amaranthus, scaled for the mountaintop."
 hero_photo: lynn-aaron-16.jpg
 ---
 
