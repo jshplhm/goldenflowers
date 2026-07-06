@@ -29,6 +29,7 @@ redirect_from:
   - /a-la-carte/p/flower-delivery-to-your-venue
   - /send-flowers/p/earth-sky-planter-4awkk-nazcb-w7e3y
   - /send-flowers/p/spring-bowl-rltkk-4a48k-6738j
+  - /send-flowers/p/country-feast-set-3nybt-zczh5-bgj3f
   - /sendflowers/p/i-love-you
   - /sendflowers/p/sympathy-arrangment
 ---

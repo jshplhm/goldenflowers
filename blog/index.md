@@ -8,6 +8,7 @@ description: "Notes on flowers, farming, and Sierra Nevada weddings from Golden 
 canonical_url: https://goldenflorals.com/blog
 redirect_from:
   - /natures-canvas-lake-tahoe-wedding-flowers
+  - /natures-canvas-flowers-for-tahoe-bride
 ---
 
 <!-- HERO -->
