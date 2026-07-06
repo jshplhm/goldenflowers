@@ -8,14 +8,29 @@ description: "Golden Flowers is a Lake Tahoe wedding florist creating elevated, 
 canonical_url: https://goldenflorals.com/
 redirect_from:
   - /a-la-carte-weddings/p/aisle-marker-xf38y
+  - /a-la-carte-weddings/p/aisle-marker
   - /a-la-carte-weddings/p/corsage
+  - /a-la-carte-weddings/p/flower-girl-petals
+  - /a-la-carte-weddings/p/bud-vases
+  - /a-la-carte-weddings/p/signature-bridal-bouquet
+  - /a-la-carte-weddings/p/midi-bridal-bouquet
+  - /a-la-carte-weddings/p/floral-design-consultation
+  - /a-la-carte-weddings/p/minimalist-bouquet
+  - /a-la-carte-weddings/p/boutonniere-new
+  - /a-la-carte-weddings/p/bridesmaid-bouquet
   - /a-la-carte/p/basic-package-bgzcp-s5d9e
   - /a-la-carte/p/basic-package-bgzcp-s5d9e-kz83z
+  - /a-la-carte/p/basic-package-bgzcp-s5d9e-kghp7
   - /a-la-carte/p/basic-package-bgzcp-s5d9e-5entb
   - /a-la-carte/p/basic-package-bgzcp-s5d9e-5entb-hhsnz
   - /a-la-carte/p/basic-package-bgzcp-s5d9e-5entb-hhsnz-c43ng
+  - /a-la-carte/p/basic-package-bgzcp-s5d9e-64msg-epl3n-g2m2r-fm297
+  - /a-la-carte/p/q4y7ldy5lm3xj3a8wfk3wwmop33x20
+  - /a-la-carte/p/flower-delivery-to-your-venue
   - /send-flowers/p/earth-sky-planter-4awkk-nazcb-w7e3y
+  - /send-flowers/p/spring-bowl-rltkk-4a48k-6738j
   - /sendflowers/p/i-love-you
+  - /sendflowers/p/sympathy-arrangment
 ---
 
 <!-- HERO -->
