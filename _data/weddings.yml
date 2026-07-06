@@ -17,9 +17,8 @@ process:
     - number: "01"
       when: Today · no commitment
       title: Check your date
-      body: Tell us your date and venue and we'll confirm it's still open. We book one
-        wedding per date, so availability is the first thing to ask. It takes
-        about a minute.
+      body: Tell us your date and venue and we'll confirm it's still open.
+        Availability is the first thing we check. It takes about a minute.
     - number: "02"
       when: Complimentary
       title: The consultation
