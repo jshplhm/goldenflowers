@@ -1,69 +1,95 @@
-# About page copy (goldenflorals.com/about).
-# Edit the text here; layout and photos stay put.
-# Tip: wrap words in *asterisks* to make them italic, like *this*.
-
 hero:
   eyebrow: Our Story
   heading: The team you want when it *has to be right.*
-  subheading: Golden Flowers is a professional floral studio led by Brittany, an artist and an agronomist, and built around a team of the region's most accomplished designers.
-
+  subheading: Golden Flowers is a professional floral studio led by Brittany, an
+    artist and an agronomist, and built around a team of the region's most
+    creative designers.
 intro:
   label: What we're really for
-  heading: A wedding day happens once. There is no rehearsal and no do-over.
+  heading: A wedding day happens once. There is no do-over.
   paragraphs:
-    - "Golden Flowers exists to take that on: to plan for everything that can go wrong with cut flowers, and to make your design feel effortless on the one day it absolutely has to."
-    - "Brittany founded and leads the studio. She is an artist and an agronomist, and she'll tell you the two were never separate: art is a science, and science is an art. Her background runs deep on both sides, with a master's in agricultural science, more than a decade in sustainable agriculture across Spain, Mexico, New Zealand, and the United States, and formal European floral design training."
-    - "We're based in the Sierra Nevada and we design for the couples who marry here. The flowers are grown close by, the team is local and seasoned, and the standards don't move."
-
+    - "Golden Flowers exists to take that on: to plan for everything that can go
+      wrong with cut flowers, and to make your design feel effortless on the one
+      day it absolutely has to."
+    - "Brittany founded and leads the studio. She is an artist and an
+      agronomist, and she'll tell you the two were never separate: art is a
+      science, and science is an art. Her background runs deep on both sides,
+      with a master's degree in agronomy, more than a decade in sustainable
+      agriculture across Europe, North and South America and New Zealand, and
+      formal European floral design training. Our studio believes that the way
+      flowers are designed are just as important as they way those same flowers
+      are selected and grown, and we design in a way that honors both. "
+    - We're based Incline Village and we design for the couples who marry in
+      Lake Tahoe. The flowers are grown close by, the team is local and
+      seasoned, and the standards don't move.
 one_rule:
   label: Our one rule
   heading: One wedding a day, so the day is entirely yours.
-  paragraph: "We take one wedding per date because of what it lets us give the couple whose date it is: every hour of that day and every hand on our team, focused on bringing one vision to life."
-  kicker: Your date is the only wedding on our calendar that day. Always.
-
+  paragraph: "We take one wedding per date because of what it lets us give the
+    couple whose date it is: every hour of that day and every hand on our team,
+    focused on bringing one vision to life."
+  kicker: "Your date is the only wedding on our calendar that day. "
 team:
   label: The team
   heading: We work alongside the best designers in the region, and beyond.
   paragraphs:
-    - "Golden Flowers is a collective of accomplished florists, several of whom run their own studios and flower farms: seasoned designers we're privileged to build with, chosen for each wedding around its scale, style, and venue."
-    - "The team that designs your flowers is the team that shows up to set them, adjusts them in the room, and breaks everything down when the night ends."
-
+    - "Golden Flowers is a collective of accomplished florists, several of whom
+      run their own studios and flower farms: seasoned designers we're
+      privileged to build with, chosen for each wedding around its scale, style,
+      and venue."
+    - The team that designs your flowers is the team that shows up to set them,
+      adjusts them in the room, and breaks everything down when the night ends.
 certainty:
   label: Why it matters
-  heading: What you're really buying is certainty.
+  heading: What you're really choosing is certainty.
   paragraphs:
-    - "Cut flowers are volatile. Stems wilt, blooms open early or refuse to, a shipment falls through, the heat turns, something breaks in transit. On an ordinary day that's a nuisance. On a wedding day it's a crisis, unless the people handling it have seen it before and planned for it."
-    - "That's the expertise you're paying for. We engineer the sourcing, timing, and mechanics so the predictable problems never reach you, and we have the depth and the calm to solve the unpredictable ones in the moment, while the day keeps moving. The science background helps here too: knowing how a stem takes water, how a structure holds without foam, and how a flower will perform from setup through the last dance."
+    - Cut flowers are delicate. Stems wilt, blooms open early or refuse to, a
+      shipment falls through, the heat turns, something breaks in transit. On an
+      ordinary day that's a nuisance. On a wedding day it's a crisis, unless the
+      people handling it have seen it before and planned for it.
+    - "That's the expertise you're selecting. We engineer the sourcing, timing,
+      and mechanics so the predictable problems never reach you, and we have the
+      depth and the calm to solve the unpredictable ones in the moment, while
+      the day keeps moving. The science background helps here too: knowing how a
+      stem takes water, how a structure holds without foam, and how a flower
+      will perform from setup through the last dance."
   points:
     - title: Planned in advance
-      body: Sourcing, timing, and logistics are mapped before your week begins, with backups in place for everything that matters.
+      body: Sourcing, timing, and logistics are mapped months in advance, with backups
+        in place for everything that matters.
     - title: Calm under pressure
-      body: When the inevitable happens, an experienced team solves it on-site without it becoming your problem.
+      body: When the inevitable happens, an experienced team solves it on-site without
+        it becoming your problem.
     - title: Built to hold
-      body: Foam-free construction and a grower's understanding of how every stem performs across a full day.
+      body: Foam-free construction and an agronomist's understanding of how every stem
+        performs across a full day.
     - title: Grown close by
-      body: "Our own California farm and trusted regional growers: short chains and fresh stems, cut days before your wedding."
-
+      body: "Our own California farm and trusted regional growers: short supply chains
+        and fresh stems, cut days before your wedding."
 editorial:
   label: Rooted in place
   heading: We design with what the California land gives us, in the season you say yes.
-
 seasonal:
   label: Seasonal availability
   heading: What's growing for your wedding.
-  intro: California's seasons produce dramatically different palettes. Here's what we can source at its peak across the year.
+  intro: California's seasons produce dramatically different palettes. Here's what
+    we can source at its peak across the year.
   seasons:
     - name: Spring
       dates: March – May
       flowers:
         - Ranunculus (peak)
         - Anemone
+        - Peony
         - Tulip, parrot & standard
         - Lilac & sweet pea
         - Early peonies (May)
         - Hellebore
         - Muscari & fritillaria
-      note: "The most romantic palette of the year: rich jewel tones and soft pastels. Peak for Lush & Romantic."
+        - Dianthus
+        - Snapdragons
+      note: "The most romantic palette of the year: rich jewel tones and soft pastels.
+        Peak for Lush & Romantic."
     - name: Summer
       dates: June – August
       flowers:
@@ -74,18 +100,26 @@ seasonal:
         - Native wildflowers
         - Sunflower & marigold
         - Lisianthus & cosmos
-      note: Peak Lake Tahoe wedding season. Abundant, warm, and beautiful, ideal for all three aesthetics.
+        - Hydrangea
+        - Dianthus
+        - Snapdragons
+      note: Peak Lake Tahoe wedding season. Abundant, warm, and beautiful, ideal for
+        all three aesthetics.
     - name: Fall
       dates: September – November
       flowers:
         - Dahlia (peak)
         - Chrysanthemum
         - Autumn-foliage branches
+        - Zinnia
+        - Hydrangea
         - Amaranth, celosia
+        - Lisianthus
         - Dried & preserved stems
         - Persimmon & pyracantha
         - Squash & gourd accents
-      note: "Dramatic harvest tones: the richest palette of the year for Lush & Romantic and Wildflower Modern."
+      note: "Dramatic harvest tones: the richest palette of the year for Lush &
+        Romantic and Wildflower Modern."
     - name: Winter
       dates: December – February
       flowers:
@@ -96,26 +130,32 @@ seasonal:
         - Amaryllis
         - Dried & architectural stems
         - Moss, lichen & forage
-      note: Quieter availability means intentional design. Winter florals lean into structure, texture, and restraint.
-  footnote: Availability varies by year and growing conditions. Your proposal will reflect what's actually at peak in your specific season.
-
+      note: Quieter availability means intentional design. Winter florals lean into
+        structure, texture, and restraint.
+  footnote: Availability varies by year and growing conditions. Your proposal will
+    reflect what's actually at peak in your specific season.
 values:
   label: Philosophy
   heading: The principles behind the work.
   items:
     - title: Grown with intention
-      body: We work with what California produces at its peak, in the season you're getting married, and we let the design respond to the land.
+      body: We work with what California produces at its peak, in the season you're
+        getting married, and we let the design respond to the land.
     - title: Designed as art
-      body: To us, every wedding is a unique piece of art, curated around its venue, season, and vision. There are no packages. Brittany designs each proposal as if it's the only one she's ever working on.
+      body: To us, every wedding is a unique piece of art, curated around its venue,
+        season, and vision. There are no packages. Brittany designs each
+        proposal as if it's the only one she's ever working on.
     - title: Sustainable at the root
-      body: Foam-free construction, California-grown sourcing, and farm practices that treat soil health as a long-term investment. The environmental ethic runs through the whole operation.
-
+      body: Foam-free construction, California-grown sourcing, and farm practices that
+        treat soil health as a long-term investment. The environmental ethic
+        runs through the whole operation.
 sustainability_pointer:
   label: Sustainability
   heading: Grown here, and grown responsibly.
-  body: The commitments that shape how we design, source, and grow, from vase return to composting the harvest, are written down, in public, on their own page.
+  body: The commitments that shape how we design, source, and grow, from vase
+    return to composting the harvest, are written down, in public, on their own
+    page.
   link: Read our sustainability pledge
-
 closing:
   label: Work with us
   heading: Start with a *conversation.*
