@@ -66,6 +66,7 @@
           var p=new URLSearchParams();
           ['date','name','email'].forEach(function(n){ var f=form.querySelector('[name="'+n+'"]'); if(f) p.append(n,f.value); });
           p.append('status','partial');
+          p.append('k','gf-lupine-26');
           fetch(form.action,{method:'POST',body:p}).catch(function(){});
         }catch(e){}
       }
@@ -140,6 +141,7 @@
       var btn=form.querySelector('[type="submit"]'); if(btn){ btn.disabled=true; btn.textContent='Sending…'; }
       var data=new FormData(form);
       var params=new URLSearchParams(); data.forEach(function(v,k){ params.append(k,v); });
+      params.append('k','gf-lupine-26');
       fetch(form.action,{method:'POST',body:params}).catch(function(){}).then(function(){ showSuccess(form,data); });
     });
   });

@@ -45,7 +45,7 @@ redirect_from:
 <!-- FORM -->
 <section class="form-section" id="consultation">
   <div data-form-wrap>
-    <form action="https://script.google.com/macros/s/AKfycbxYl9LaejM3x9ntYuXwWDvHbIFArpCHTBAhSCqq6ZY6mvxa6c9aUsXeNZPlzQLKAdSMbw/exec" method="POST" id="consultation-form" data-multistep data-ajax>
+    <form action="{{ site.consult_endpoint }}" method="POST" id="consultation-form" data-multistep data-ajax>
       <span class="form-step-indicator" aria-hidden="true">Step 1 of 2</span>
       <div class="form-step-1">
         <div class="field-full">

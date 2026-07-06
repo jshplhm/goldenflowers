@@ -20,6 +20,11 @@ plugins:
   - jekyll-paginate-v2
   - jekyll-redirect-from
 
+# Consultation form endpoint — the Google Apps Script web app that writes to the
+# leads sheet. If the script is ever redeployed under a new URL, this is the only
+# place to update it (the contact page form and the modal both read it from here).
+consult_endpoint: "https://script.google.com/macros/s/AKfycbxYl9LaejM3x9ntYuXwWDvHbIFArpCHTBAhSCqq6ZY6mvxa6c9aUsXeNZPlzQLKAdSMbw/exec"
+
 # Analytics — paste your GA4 Measurement ID (looks like G-XXXXXXXXXX) to turn on tracking.
 # Get it at analytics.google.com → Admin → Data streams → your web stream. Left blank =
 # analytics off (safe for staging). The _includes/analytics.html tag only fires when set.
