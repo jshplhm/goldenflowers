@@ -72,11 +72,15 @@ sitemap: false
     .ed-ph-bar{display:flex;align-items:center;gap:12px;margin-top:14px;}
     .ed-ph-bar .ed-btn{width:auto;margin:0;}
     .ed-ph-status{flex:1;font-size:.8rem;color:var(--ed-mute);}
+    .ed-ph-grid.busy{pointer-events:none;opacity:.6;}
     .ed-ph-status.ok{color:var(--ed-green);}
     .ed-ph-status.err{color:#a33;}
 
     /* replace-photo modal */
-    .ed-rep-preview{width:100%;max-height:260px;object-fit:contain;border-radius:8px;border:1px solid var(--ed-line);background:#f4f1ea;margin-bottom:6px;}
+    .ed-rep-preview{width:100%;max-height:200px;object-fit:contain;border-radius:8px;border:1px solid var(--ed-line);background:#f4f1ea;margin-bottom:6px;}
+    .ed-rep-gal{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;max-height:220px;overflow:auto;padding:2px;}
+    .ed-rep-gal img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:6px;cursor:pointer;border:2px solid transparent;}
+    .ed-rep-gal img:hover{border-color:var(--ed-green);}
   </style>
 </head>
 <body>
@@ -100,9 +104,9 @@ sitemap: false
     <div class="ed-card ed-ph-card">
       <div class="ed-ph-head">
         <h1 id="ed-ph-title">Photos</h1>
-        <button class="ed-btn" id="ed-ph-close" type="button" style="width:auto;margin:0;">Close</button>
+        <button class="ed-btn" id="ed-ph-close" type="button" style="width:auto;margin:0;">Done</button>
       </div>
-      <p class="ed-ph-note">Add or remove photos in this wedding's gallery, or pick the big opening photo. The page lays itself out automatically. Changes appear on the live site in about two minutes.</p>
+      <p class="ed-ph-note">Add or remove photos in this wedding's gallery, or pick the big opening photo. Changes here save immediately (no Save button needed) and reach the live site in about two minutes.</p>
       <div class="ed-ph-grid" id="ed-ph-grid"></div>
       <div class="ed-ph-bar">
         <button class="ed-btn primary" id="ed-ph-add" type="button">Add photos</button>
@@ -112,11 +116,16 @@ sitemap: false
   </div>
 
   <div class="ed-login" id="ed-rep-modal" hidden>
-    <form class="ed-card" id="ed-rep-form">
+    <form class="ed-card" id="ed-rep-form" style="max-width:520px;">
       <h1>Swap this photo</h1>
       <img class="ed-rep-preview" id="ed-rep-preview" alt="">
       <p id="ed-rep-note">Choose a new photo to appear in its place. The words and layout stay exactly the same.</p>
-      <button class="ed-btn primary" type="submit">Choose new photo…</button>
+      <div id="ed-rep-gal-wrap" hidden>
+        <p class="ed-ph-note" id="ed-rep-gal-label" style="margin:0 0 8px;"></p>
+        <div class="ed-rep-gal" id="ed-rep-gal"></div>
+        <p class="ed-ph-note" style="margin:10px 0 0;">…or upload something new:</p>
+      </div>
+      <button class="ed-btn primary" type="submit">Upload a new photo…</button>
       <button class="ed-btn" type="button" id="ed-rep-cancel">Cancel</button>
       <div class="ed-err" id="ed-rep-err"></div>
     </form>
