@@ -1,174 +1,392 @@
-# FAQ content for venue + weddings pages. Rendered as visible accordions AND
-# FAQPage structured data by _includes/faq.html (matched to a page by `url`).
-# Editable in Pages CMS (Page FAQs). `a` may contain basic HTML like <strong>.
 pages:
-- label: Weddings
-  url: /weddings
-  faqs:
-  - q: What actually makes you different?
-    a: <strong>Four specific things most florists can't say:</strong> We grow our own flowers on our California farm. We never use floral foam. We take one wedding per date, so your wedding day gets our full team from start to finish. And our founder Brittany is an artist and an agronomist, which means her design decisions are rooted in how plants actually grow.<br><br> Most florists source from the same wholesale importers and build the same kinds of arrangements. We work with what the California land is producing at peak, and we design around that. The result is florals that feel grounded, seasonal, and specific to the Sierra Nevada landscape where your wedding is happening.
-  - q: What does "one wedding per date" actually mean?
-    a: It means we never double-book. When you book with us, Brittany and the whole Golden Flowers team is dedicated to your wedding, full stop. We won't be splitting time or attention with another couple on your day. Setup starts at the right time, nothing gets rushed, and the design you approved is what actually shows up. This is non-negotiable for us.
-  - q: Why does it matter that you're foam-free?
-    a: 'Floral foam is a plastic-based product that sheds microplastics into water and soil and never biodegrades. Most florists use it because it''s easier and faster. We don''t use it because it contradicts everything we care about: the environmental ethic of our farm-grown sourcing, the integrity of the flowers, and the land where your wedding is happening. Foam-free arrangements require more skill to build. We''ve invested in that skill. Your flowers will look better for it and leave less impact on the place you love.'
-  - q: How far in advance should I reach out?
-    a: For popular summer and fall Saturday dates at venues like Edgewood, Palisades, or the National Exchange Hotel, we recommend reaching out <strong>12–18 months in advance</strong>. Our calendar fills from the back forward, and peak dates go first. If your date is closer than 12 months away, reach out anyway. We'll tell you honestly what's available. We occasionally have openings for mid-week, off-season, or non-peak dates.
-  - q: What does a full-service wedding florals investment typically look like?
-    a: 'Our full-service weddings typically range from <strong>$5,000–$25,000+</strong>, depending on scale. A typical 100-person Lake Tahoe wedding runs <strong>$12,000–$18,000</strong>. That includes everything: consultation, design proposal and mood board, ceremony installation, bridal and party florals, reception centerpieces, environmental florals, and full day-of setup and breakdown.<br><br> We build every proposal from scratch around your specific wedding, with no packages or minimums. After your consultation, you''ll receive an itemized quote so you know exactly what you''re paying for.'
-  - q: Can you work with my existing coordinator or planner?
-    a: Yes, always. We work closely with coordinators and planners at all the venues we serve. If you're working with a planner, they'll be looped in from the proposal stage so timeline, logistics, and setup are coordinated. We're experienced working within planner-led events and take our cues from whoever is running point on the day.
-  - q: Do you travel outside of Lake Tahoe?
-    a: Yes. We work throughout the Sierra Nevada foothills and Gold Country, from Nevada City and Grass Valley to private estates across the region. The National Exchange Hotel, Miner's Foundry, and private ranches in the foothills are all part of our regular service area. Travel outside our primary service area may involve a travel fee, which we'll include in your proposal.
-  - q: What if I'm not sure which aesthetic I want?
-    a: 'That''s what the consultation is for. Bring whatever references you have: Pinterest boards, photos, a vibe description, an outfit. We''re very good at translating what someone means from what they show us. We''ll help you identify the aesthetic direction and show you examples of our work in that register. Many couples come in with "I like moody but also clean?" and leave with a crystal-clear vision.<br><br> You can also <a href="/portfolio">browse the portfolio by aesthetic</a> before your consultation to get your bearings.'
-- label: Edgewood Tahoe
-  url: /venues/edgewood-tahoe
-  faqs:
-  - q: Do you design florals for Edgewood weddings?
-    a: Yes. We design for Edgewood's lakeside ceremony spaces and the Edgewood Pavilion, and plan around the venue's logistics, load-in, and space constraints so setup runs cleanly on the day.
-  - q: What does a typical Edgewood wedding budget look like?
-    a: Edgewood weddings typically range from <strong>$12,000–$22,000+</strong> for full-service florals. This covers consultation through day-of breakdown, ceremony installation, bridal party florals, and reception centerpieces. The range depends on table count, installation scale, and aesthetic complexity. We'll build a custom proposal after your consultation.
-  - q: Do you work with Edgewood's preferred vendors?
-    a: Yes. If you're already working with a planner, we'll coordinate directly with them and the venue's events team. If not, we can recommend planners we trust for Lake Tahoe weddings. A well-coordinated vendor team makes everything on your wedding day run cleanly.
-  - q: What aesthetics work best at Edgewood?
-    a: 'All three of our aesthetics work beautifully at Edgewood, for different reasons. <strong>Elevated Minimalist</strong> is the most popular: the clean lines work with the venue''s architecture and the open lake view. <strong>Wildflower Modern</strong> works especially well for outdoor ceremonies on the lawn. Rich, lush arrangements come alive in the Pavilion''s interior evening reception settings, deep tones and candlelight work beautifully there. We''ll design around the specific spaces you''re using.'
-  - q: How far in advance should I reach out?
-    a: Edgewood dates book up fast, especially Saturday summer dates. We recommend reaching out <strong>12–18 months in advance</strong> if possible. If your date is sooner, reach out anyway and we'll let you know availability. We occasionally have late-availability openings.
-- label: Martis Camp
-  url: /venues/martis-camp
-  faqs:
-  - q: How does access to a private community work?
-    a: Entry, timing, and vendor load-in at Martis Camp are coordinated through the community and your hosts. We plan around those guidelines from the start and work closely with your planner so setup and breakdown stay smooth and discreet.
-  - q: What does a typical Martis Camp wedding budget look like?
-    a: Full-service florals here typically range from <strong>$14,000–$25,000+</strong>. That covers consultation through day-of breakdown, ceremony installation, bridal party florals, and reception centerpieces. The range depends on table count, installation scale, and aesthetic. Every proposal is custom.
-  - q: Which spaces do you design for?
-    a: 'We design for the spaces you''re using: the lodge, the family barn, and the outdoor lawns, carrying one cohesive palette and language across the ceremony and reception so the day reads as a single designed event.'
-  - q: How far in advance should I reach out?
-    a: Peak summer and fall Saturdays fill <strong>12–18 months ahead</strong>, so reach out early when you can. If your date is sooner, reach out anyway and we'll let you know availability.
-- label: The Ritz-Carlton, Lake Tahoe
-  url: /venues/ritz-carlton-lake-tahoe
-  faqs:
-  - q: Do you work with the Ritz-Carlton's planning team?
-    a: Yes. We coordinate directly with your planner and the venue's events team on timing, load-in, and setup. If you don't have a planner yet, we can recommend coordinators we've worked with successfully at mountain resort venues.
-  - q: What does a typical Ritz-Carlton wedding budget look like?
-    a: Full-service florals here typically range from <strong>$14,000–$25,000+</strong>, reflecting the scale and finish the venue calls for. That covers consultation through day-of breakdown, ceremony installation, bridal party florals, and reception centerpieces. Every proposal is custom.
-  - q: Can you design for a winter wedding here?
-    a: 'Absolutely. Winter here is a beautiful brief: evergreen, candlelight, deep tones, and structural arrangements that work with the season instead of pretending it''s summer.'
-  - q: How far in advance should I reach out?
-    a: Peak summer and fall Saturdays fill <strong>12–18 months ahead</strong>, so reach out early when you can. If your date is sooner, reach out anyway and we'll let you know availability.
-- label: Palisades High Camp
-  url: /venues/palisades-high-camp
-  faqs:
-  - q: Do you design for alpine venues like High Camp?
-    a: 'Yes. High-elevation venues are some of our favorites to design for, and they take specific know-how: conditioning for thin dry air, hardy stem selection, and a load-in planned around the tram. We''ll walk you through exactly how we''d approach your ceremony and reception spaces.'
-  - q: What does a typical High Camp wedding budget look like?
-    a: Full-service florals at venues like High Camp typically range from <strong>$12,000–$22,000+</strong>. That covers consultation through day-of breakdown, ceremony installation, bridal party florals, and reception centerpieces. The range depends on table count, installation scale, and aesthetic. Every proposal is custom.
-  - q: How does the tram affect setup?
-    a: Everything travels up by tram, so we build and pack with that in mind and coordinate load-in timing with your planner and the venue. It's a logistics question we plan for from the start.
-  - q: How far in advance should I reach out?
-    a: Peak summer and fall Saturdays fill <strong>12–18 months ahead</strong>, so reach out early when you can. If your date is sooner, reach out anyway and we'll let you know availability.
-- label: Schaffer's Camp
-  url: /venues/schaffers-camp
-  faqs:
-  - q: Do you design florals for Schaffer's Camp weddings?
-    a: Yes. Mountaintop lodges like Schaffer's Camp are some of our favorites to design for. We plan around the altitude, the glass-and-fire interior, the deck, and a gondola load-in, and walk you through exactly how we'd approach your spaces.
-  - q: What does a typical Schaffer's Camp wedding budget look like?
-    a: Full-service florals here typically range from <strong>$15,000–$26,000+</strong>. That covers consultation through day-of breakdown, ceremony installation, bridal party florals, and reception centerpieces. Every proposal is custom.
-  - q: How does the gondola affect setup?
-    a: Everything travels up by gondola, so we build and pack with that in mind and coordinate load-in timing with the venue and your planner. It's a logistics question we plan for from the start.
-  - q: How far in advance should I reach out?
-    a: Peak summer and fall Saturdays fill <strong>12–18 months ahead</strong>, so reach out early when you can. If your date is sooner, reach out anyway and we'll let you know availability.
-- label: Thunderbird Lodge
-  url: /venues/thunderbird-lodge
-  faqs:
-  - q: Do you design florals for Thunderbird Lodge weddings?
-    a: Yes. We design for the estate's lawns, stone terraces, and the Old Lodge, and we plan around the site's access and historic-property guidelines so setup and breakdown stay smooth and respectful of the grounds.
-  - q: What does a typical Thunderbird Lodge wedding budget look like?
-    a: Full-service florals here typically start around <strong>$18,000</strong> and rise with installation scale and guest count, reflecting the estate's level and logistics. Every proposal is custom, built around your vision, table count, and the spaces you're using.
-  - q: How does access to the estate work?
-    a: Thunderbird Lodge has limited road and boat access along the east shore, so load-in is coordinated carefully with the venue and your planner. We build and stage with that in mind from the start.
-  - q: How far in advance should I reach out?
-    a: Peak summer and fall Saturdays fill <strong>12–18 months ahead</strong>, so reach out early when you can. If your date is sooner, reach out anyway and we'll let you know availability.
-- label: Hyatt Regency Lake Tahoe
-  url: /venues/hyatt-regency-lake-tahoe
-  faqs:
-  - q: Do you design florals for Hyatt Regency Lake Tahoe weddings?
-    a: Yes. We're based in Incline Village, the same town as the resort, so we coordinate directly with the venue's events team and plan around load-in, ceremony, and reception spaces. Confirm your specific spaces with the resort, and we'll design for them.
-  - q: Does being local actually make a difference?
-    a: A real one. Site visits are a short drive for us. We can install early, adjust on the day, and come back for strike without a long haul over the pass, which keeps your timeline calm and your costs down.
-  - q: What does a typical Hyatt wedding budget look like?
-    a: Full-service resort florals typically range from <strong>$12,000–$22,000+</strong>, depending on guest count, ceremony installation, and reception scale. Every proposal is custom, built after your consultation.
-  - q: What aesthetics work best here?
-    a: All three of our directions translate well to a resort. <strong>Elevated Minimalist</strong> suits ballroom architecture; <strong>Wildflower Modern</strong> brings the outdoors into an indoor space; and rich, lush arrangements come alive under evening light. We'll match the design to your spaces and season.
-  - q: How far in advance should I reach out?
-    a: North Shore summer and fall dates book early, so reach out <strong>12–18 months ahead</strong> if you can. If your date is sooner, ask anyway; we occasionally have late-availability openings.
-- label: Hellman-Ehrman Mansion
-  url: /venues/hellman-ehrman-mansion
-  faqs:
-  - q: Do you design florals for Hellman-Ehrman Mansion weddings?
-    a: Yes. We design for the lakefront ceremony site and the lawn reception at Sugar Pine Point, and we plan around the park's access, load-in windows, and leave-no-trace rules so setup and strike run cleanly.
-  - q: Does a state park venue limit what's possible with flowers?
-    a: The material rules are strict, but they leave the creativity alone. Floral foam and anything that can shed into the lake or forest are out, which suits us, since we've always worked foam-free. We use water sources, reusable mechanics, and compostable materials, so the design ambition stays high while the footprint stays at zero.
-  - q: What does a typical wedding budget look like here?
-    a: Full-service florals at Hellman-Ehrman typically range from <strong>$10,000–$18,000+</strong>, depending on guest count, ceremony installation, and reception scale. Every proposal is custom, built after your consultation.
-  - q: What aesthetics work best at Sugar Pine Point?
-    a: The wooded, lakefront setting is made for natural, gathered design, our <strong>Wildflower Modern</strong> direction especially. Cleaner, <strong>Elevated Minimalist</strong> arrangements also look striking against the historic mansion and the water. We design around the specific spots you're using.
-  - q: How far in advance should I reach out?
-    a: State-park dates are limited and reserved through California State Parks, so they go early. Reach out <strong>12–18 months ahead</strong> if you can. If your date is sooner, ask anyway and we'll let you know our availability.
-- label: North Tahoe Event Center
-  url: /venues/north-tahoe-event-center
-  faqs:
-  - q: Do you design florals for North Tahoe Event Center weddings?
-    a: Yes. We design for the lakefront ceremony and the indoor hall reception, and we plan around the venue's load-in windows and setup access so the day runs cleanly.
-  - q: It's a pretty open, plain hall, can flowers really change that?
-    a: That's exactly where florals earn their keep. A blank-canvas space lets us set the entire mood, palette, scale, and focal points, with installations and centerpieces instead of working around fixed decor. Couples are often surprised how completely the room transforms.
-  - q: What does a typical wedding budget look like here?
-    a: Full-service florals at the North Tahoe Event Center typically range from <strong>$12,000–$22,000+</strong>. Because it's a blank-canvas space, more of the wedding's look comes from flowers, so the floral budget often does more of the design work. Every proposal is custom, built after your consultation.
-  - q: What aesthetics work best here?
-    a: All three of our directions work, since the room is yours to define. <strong>Wildflower Modern</strong> brings the lakefront feeling indoors; <strong>Elevated Minimalist</strong> gives the open space clean structure; and rich, lush installations turn the hall into something dramatic for an evening reception.
-  - q: How far in advance should I reach out?
-    a: North Shore summer and fall dates book early, so reach out <strong>12–18 months ahead</strong> if you can. If your date is sooner, ask anyway and we'll let you know our availability.
-- label: Valhalla Tahoe
-  url: /venues/valhalla-tahoe
-  faqs:
-  - q: Do you design florals for Valhalla Tahoe weddings?
-    a: Yes. We design for the Grand Hall, the boathouse, and the lakeside lawn at the Tallac Historic Site. We plan around the park's load-in windows and site guidelines so setup and breakdown run cleanly without those constraints landing on you.
-  - q: What does a typical Valhalla wedding budget look like?
-    a: Full-service florals here typically range from <strong>$10,000–$18,000</strong>, depending on installation scale and guest count. The Grand Hall takes statement pieces beautifully, so budget often rises with how much of the architecture you want the florals to work with. Every proposal is custom, built after your consultation.
-  - q: Are there restrictions on florals at a state historic site?
-    a: Valhalla has specific load-in timing and site rules as a historic property. We've worked within them before and build the whole day's logistics around them so nothing runs late or becomes your problem to manage. On the materials side, we've always worked foam-free, which aligns well with the environmental standards the site requires.
-  - q: How far in advance should I reach out?
-    a: Valhalla dates are limited by the park calendar, so they fill early. We recommend reaching out <strong>12–18 months ahead</strong> when you can. If your date is sooner, reach out anyway and we'll let you know our availability.
-- label: Old Greenwood
-  url: /venues/old-greenwood
-  faqs:
-  - q: Do you design florals for Old Greenwood weddings?
-    a: Yes. We design for the Old Greenwood lawns, indoor spaces, and the open Martis Valley setting, and we build pieces with the scale and structure to hold their own against big sky and open meadow. The same team designs, installs, and strikes, with full attention on your date.
-  - q: What does a typical Old Greenwood wedding budget look like?
-    a: Full-service florals here typically range from <strong>$12,000–$20,000</strong>, depending on installation scale and guest count. Open meadow venues often require taller, more architectural pieces that read across the space, which shapes the build. Every proposal is custom, built after your consultation.
-  - q: How do you approach a setting this open and exposed?
-    a: The meadow and open sky at Old Greenwood swallow small arrangements. We design with height, branching, and movement so the florals hold the space rather than disappearing into it. Everything is built foam-free to hold up through a long, sun-exposed mountain afternoon without wilting or shifting.
-  - q: How far in advance should I reach out?
-    a: Peak summer and fall Saturdays fill <strong>12–18 months ahead</strong>, so reach out early when you can. If your date is sooner, reach out anyway and we'll let you know our availability.
-- label: Heavenly
-  url: /venues/heavenly
-  faqs:
-  - q: Do you design florals for Heavenly Mountain weddings?
-    a: Yes. We design for mountaintop ceremonies and receptions at Heavenly, and we plan the transport, gondola timing, and install so the logistics never reach you. Everything is built to hold against altitude, wind, and sun through a full mountain day.
-  - q: What does a typical Heavenly wedding budget look like?
-    a: Full-service florals at Heavenly typically range from <strong>$12,000–$22,000+</strong>, reflecting the mountaintop logistics alongside the florals themselves. Every proposal is custom, built around your guest count, ceremony footprint, and vision.
-  - q: How do you get florals up a gondola?
-    a: We build and pack with the gondola in mind, coordinating load-in timing with the venue and your planner. It's a logistics question we plan for from the start, and it never affects what's possible with the design itself.
-  - q: How far in advance should I reach out?
-    a: Peak summer and fall Saturdays fill <strong>12–18 months ahead</strong>, so reach out early when you can. If your date is sooner, reach out anyway and we'll let you know our availability.
-- label: Gar Woods
-  url: /venues/gar-woods
-  faqs:
-  - q: Do you design florals for Gar Woods weddings?
-    a: Yes. We design for the lakefront deck, pier, and intimate reception spaces at Gar Woods in Carnelian Bay. The setting is close to the water, so we design with the sightlines in mind and build pieces that frame the lake rather than block it.
-  - q: What does a typical Gar Woods wedding budget look like?
-    a: Full-service florals here typically range from <strong>$8,000–$16,000</strong>, reflecting the venue's intimate scale. Because every stem is seen up close on a smaller deck, detail and quality matter more than volume. Every proposal is custom, built after your consultation.
-  - q: What makes designing for Gar Woods different?
-    a: "The deck puts every arrangement at arm's length. There's no hiding behind scale or density here, so we design for close viewing: texture, movement, and blooms worth studying. West-facing water also means golden evening light, and we choose palettes that come alive in it rather than disappearing."
-  - q: How far in advance should I reach out?
-    a: Peak summer and fall Saturdays fill <strong>12–18 months ahead</strong>, so reach out early when you can. If your date is sooner, reach out anyway and we'll let you know our availability.
+  - label: Weddings
+    url: /weddings
+    faqs:
+      - q: What actually makes you different?
+        a: <strong>Four specific things most florists can't say:</strong> We grow our
+          own flowers on our California farm. We never use floral foam. We
+          intentionally book a limited number of weddings per season, so your
+          wedding day gets our full team from start to finish. And our founder
+          Brittany is an artist and an agronomist, which means her design
+          decisions are rooted in how plants actually grow.<br><br> Most
+          florists source from the same wholesale importers and build the same
+          kinds of arrangements. We work with what the California land is
+          producing at peak, and we design around that. The result is florals
+          that feel grounded, seasonal, and specific to the Sierra Nevada
+          landscape where your wedding is happening.
+      - q: What does "fewer weddings, more time on yours" actually mean?
+        a: Most wedding studios book every date they can and staff up to produce them.
+          We do the opposite. We cap our calendar each season, which means your
+          wedding gets weeks of sourcing and design work, instead of a slot on a
+          production line. Brittany is heavily involved in each wedding. When we
+          say more time on yours, we mean her time, specifically.
+      - q: Why does it matter that you're foam-free?
+        a: "Floral foam is a plastic-based product that sheds microplastics into water
+          and soil and never biodegrades. Most florists use it because it's
+          easier and faster. We don't use it because it contradicts everything
+          we care about: the environmental ethic of our farm-grown sourcing, the
+          integrity of the flowers, and the land where your wedding is
+          happening. Foam-free arrangements require more skill to build. We've
+          invested in that skill. Your flowers will look better for it and leave
+          less impact on the place you love."
+      - q: How far in advance should I reach out?
+        a: For popular summer and fall Saturday dates at venues like Edgewood,
+          Palisades, or the National Exchange Hotel, we recommend reaching out
+          <strong>12–18 months in advance</strong>. Our calendar fills from the
+          back forward, and peak dates go first. If your date is closer than 12
+          months away, reach out anyway. We'll tell you honestly what's
+          available. We occasionally have openings for mid-week, off-season, or
+          non-peak dates.
+      - q: What does a full-service wedding florals investment typically look like?
+        a: "Our full-service weddings typically range from
+          <strong>$5,000–$25,000+</strong>, depending on scale. A typical
+          100-person Lake Tahoe wedding runs <strong>$12,000–$18,000</strong>.
+          That includes everything: consultation, design proposal and mood
+          board, ceremony installation, bridal and party florals, reception
+          centerpieces, environmental florals, and full day-of setup and
+          breakdown.<br><br> We build every proposal from scratch around your
+          specific wedding, with no packages or minimums. After your
+          consultation, you'll receive an itemized quote so you know exactly
+          what you're paying for."
+      - q: Can you work with my existing coordinator or planner?
+        a: Yes, always. We work closely with coordinators and planners at all the venues
+          we serve. If you're working with a planner, they'll be looped in from
+          the proposal stage so timeline, logistics, and setup are coordinated.
+          We're experienced working within planner-led events and take our cues
+          from whoever is running point on the day.
+      - q: Do you travel outside of Lake Tahoe?
+        a: Yes. We work throughout the Sierra Nevada foothills and Gold Country, from
+          Nevada City and Grass Valley to private estates across the region. The
+          National Exchange Hotel, Miner's Foundry, and private ranches in the
+          foothills are all part of our regular service area. Travel outside our
+          primary service area may involve a travel fee, which we'll include in
+          your proposal.
+      - q: What if I'm not sure which aesthetic I want?
+        a: "That's what the consultation is for. Bring whatever references you have:
+          Pinterest boards, photos, a vibe description, an outfit. We're very
+          good at translating what someone means from what they show us. We'll
+          help you identify the aesthetic direction and show you examples of our
+          work in that register. Many couples come in with \"I like moody but
+          also clean?\" and leave with a crystal-clear vision.<br><br> You can
+          also <a href=\"/portfolio\">browse the portfolio by aesthetic</a>
+          before your consultation to get your bearings."
+  - label: Edgewood Tahoe
+    url: /venues/edgewood-tahoe
+    faqs:
+      - q: Do you design florals for Edgewood weddings?
+        a: Yes. We design for Edgewood's lakeside ceremony spaces and the Edgewood
+          Pavilion, and plan around the venue's logistics, load-in, and space
+          constraints so setup runs cleanly on the day.
+      - q: What does a typical Edgewood wedding budget look like?
+        a: Edgewood weddings typically range from <strong>$12,000–$22,000+</strong> for
+          full-service florals. This covers consultation through day-of
+          breakdown, ceremony installation, bridal party florals, and reception
+          centerpieces. The range depends on table count, installation scale,
+          and aesthetic complexity. We'll build a custom proposal after your
+          consultation.
+      - q: Do you work with Edgewood's preferred vendors?
+        a: Yes. If you're already working with a planner, we'll coordinate directly with
+          them and the venue's events team. If not, we can recommend planners we
+          trust for Lake Tahoe weddings. A well-coordinated vendor team makes
+          everything on your wedding day run cleanly.
+      - q: What aesthetics work best at Edgewood?
+        a: "All three of our aesthetics work beautifully at Edgewood, for different
+          reasons. <strong>Elevated Minimalist</strong> is the most popular: the
+          clean lines work with the venue's architecture and the open lake view.
+          <strong>Wildflower Modern</strong> works especially well for outdoor
+          ceremonies on the lawn. Rich, lush arrangements come alive in the
+          Pavilion's interior evening reception settings, deep tones and
+          candlelight work beautifully there. We'll design around the specific
+          spaces you're using."
+      - q: How far in advance should I reach out?
+        a: Edgewood dates book up fast, especially Saturday summer dates. We recommend
+          reaching out <strong>12–18 months in advance</strong> if possible. If
+          your date is sooner, reach out anyway and we'll let you know
+          availability. We occasionally have late-availability openings.
+  - label: Martis Camp
+    url: /venues/martis-camp
+    faqs:
+      - q: How does access to a private community work?
+        a: Entry, timing, and vendor load-in at Martis Camp are coordinated through the
+          community and your hosts. We plan around those guidelines from the
+          start and work closely with your planner so setup and breakdown stay
+          smooth and discreet.
+      - q: What does a typical Martis Camp wedding budget look like?
+        a: Full-service florals here typically range from
+          <strong>$14,000–$25,000+</strong>. That covers consultation through
+          day-of breakdown, ceremony installation, bridal party florals, and
+          reception centerpieces. The range depends on table count, installation
+          scale, and aesthetic. Every proposal is custom.
+      - q: Which spaces do you design for?
+        a: "We design for the spaces you're using: the lodge, the family barn, and the
+          outdoor lawns, carrying one cohesive palette and language across the
+          ceremony and reception so the day reads as a single designed event."
+      - q: How far in advance should I reach out?
+        a: Peak summer and fall Saturdays fill <strong>12–18 months ahead</strong>, so
+          reach out early when you can. If your date is sooner, reach out anyway
+          and we'll let you know availability.
+  - label: The Ritz-Carlton, Lake Tahoe
+    url: /venues/ritz-carlton-lake-tahoe
+    faqs:
+      - q: Do you work with the Ritz-Carlton's planning team?
+        a: Yes. We coordinate directly with your planner and the venue's events team on
+          timing, load-in, and setup. If you don't have a planner yet, we can
+          recommend coordinators we've worked with successfully at mountain
+          resort venues.
+      - q: What does a typical Ritz-Carlton wedding budget look like?
+        a: Full-service florals here typically range from
+          <strong>$14,000–$25,000+</strong>, reflecting the scale and finish the
+          venue calls for. That covers consultation through day-of breakdown,
+          ceremony installation, bridal party florals, and reception
+          centerpieces. Every proposal is custom.
+      - q: Can you design for a winter wedding here?
+        a: "Absolutely. Winter here is a beautiful brief: evergreen, candlelight, deep
+          tones, and structural arrangements that work with the season instead
+          of pretending it's summer."
+      - q: How far in advance should I reach out?
+        a: Peak summer and fall Saturdays fill <strong>12–18 months ahead</strong>, so
+          reach out early when you can. If your date is sooner, reach out anyway
+          and we'll let you know availability.
+  - label: Palisades High Camp
+    url: /venues/palisades-high-camp
+    faqs:
+      - q: Do you design for alpine venues like High Camp?
+        a: "Yes. High-elevation venues are some of our favorites to design for, and they
+          take specific know-how: conditioning for thin dry air, hardy stem
+          selection, and a load-in planned around the tram. We'll walk you
+          through exactly how we'd approach your ceremony and reception spaces."
+      - q: What does a typical High Camp wedding budget look like?
+        a: Full-service florals at venues like High Camp typically range from
+          <strong>$12,000–$22,000+</strong>. That covers consultation through
+          day-of breakdown, ceremony installation, bridal party florals, and
+          reception centerpieces. The range depends on table count, installation
+          scale, and aesthetic. Every proposal is custom.
+      - q: How does the tram affect setup?
+        a: Everything travels up by tram, so we build and pack with that in mind and
+          coordinate load-in timing with your planner and the venue. It's a
+          logistics question we plan for from the start.
+      - q: How far in advance should I reach out?
+        a: Peak summer and fall Saturdays fill <strong>12–18 months ahead</strong>, so
+          reach out early when you can. If your date is sooner, reach out anyway
+          and we'll let you know availability.
+  - label: Schaffer's Camp
+    url: /venues/schaffers-camp
+    faqs:
+      - q: Do you design florals for Schaffer's Camp weddings?
+        a: Yes. Mountaintop lodges like Schaffer's Camp are some of our favorites to
+          design for. We plan around the altitude, the glass-and-fire interior,
+          the deck, and a gondola load-in, and walk you through exactly how we'd
+          approach your spaces.
+      - q: What does a typical Schaffer's Camp wedding budget look like?
+        a: Full-service florals here typically range from
+          <strong>$15,000–$26,000+</strong>. That covers consultation through
+          day-of breakdown, ceremony installation, bridal party florals, and
+          reception centerpieces. Every proposal is custom.
+      - q: How does the gondola affect setup?
+        a: Everything travels up by gondola, so we build and pack with that in mind and
+          coordinate load-in timing with the venue and your planner. It's a
+          logistics question we plan for from the start.
+      - q: How far in advance should I reach out?
+        a: Peak summer and fall Saturdays fill <strong>12–18 months ahead</strong>, so
+          reach out early when you can. If your date is sooner, reach out anyway
+          and we'll let you know availability.
+  - label: Thunderbird Lodge
+    url: /venues/thunderbird-lodge
+    faqs:
+      - q: Do you design florals for Thunderbird Lodge weddings?
+        a: Yes. We design for the estate's lawns, stone terraces, and the Old Lodge, and
+          we plan around the site's access and historic-property guidelines so
+          setup and breakdown stay smooth and respectful of the grounds.
+      - q: What does a typical Thunderbird Lodge wedding budget look like?
+        a: Full-service florals here typically start around <strong>$18,000</strong> and
+          rise with installation scale and guest count, reflecting the estate's
+          level and logistics. Every proposal is custom, built around your
+          vision, table count, and the spaces you're using.
+      - q: How does access to the estate work?
+        a: Thunderbird Lodge has limited road and boat access along the east shore, so
+          load-in is coordinated carefully with the venue and your planner. We
+          build and stage with that in mind from the start.
+      - q: How far in advance should I reach out?
+        a: Peak summer and fall Saturdays fill <strong>12–18 months ahead</strong>, so
+          reach out early when you can. If your date is sooner, reach out anyway
+          and we'll let you know availability.
+  - label: Hyatt Regency Lake Tahoe
+    url: /venues/hyatt-regency-lake-tahoe
+    faqs:
+      - q: Do you design florals for Hyatt Regency Lake Tahoe weddings?
+        a: Yes. We're based in Incline Village, the same town as the resort, so we
+          coordinate directly with the venue's events team and plan around
+          load-in, ceremony, and reception spaces. Confirm your specific spaces
+          with the resort, and we'll design for them.
+      - q: Does being local actually make a difference?
+        a: A real one. Site visits are a short drive for us. We can install early,
+          adjust on the day, and come back for strike without a long haul over
+          the pass, which keeps your timeline calm and your costs down.
+      - q: What does a typical Hyatt wedding budget look like?
+        a: Full-service resort florals typically range from
+          <strong>$12,000–$22,000+</strong>, depending on guest count, ceremony
+          installation, and reception scale. Every proposal is custom, built
+          after your consultation.
+      - q: What aesthetics work best here?
+        a: All three of our directions translate well to a resort. <strong>Elevated
+          Minimalist</strong> suits ballroom architecture; <strong>Wildflower
+          Modern</strong> brings the outdoors into an indoor space; and rich,
+          lush arrangements come alive under evening light. We'll match the
+          design to your spaces and season.
+      - q: How far in advance should I reach out?
+        a: North Shore summer and fall dates book early, so reach out <strong>12–18
+          months ahead</strong> if you can. If your date is sooner, ask anyway;
+          we occasionally have late-availability openings.
+  - label: Hellman-Ehrman Mansion
+    url: /venues/hellman-ehrman-mansion
+    faqs:
+      - q: Do you design florals for Hellman-Ehrman Mansion weddings?
+        a: Yes. We design for the lakefront ceremony site and the lawn reception at
+          Sugar Pine Point, and we plan around the park's access, load-in
+          windows, and leave-no-trace rules so setup and strike run cleanly.
+      - q: Does a state park venue limit what's possible with flowers?
+        a: The material rules are strict, but they leave the creativity alone. Floral
+          foam and anything that can shed into the lake or forest are out, which
+          suits us, since we've always worked foam-free. We use water sources,
+          reusable mechanics, and compostable materials, so the design ambition
+          stays high while the footprint stays at zero.
+      - q: What does a typical wedding budget look like here?
+        a: Full-service florals at Hellman-Ehrman typically range from
+          <strong>$10,000–$18,000+</strong>, depending on guest count, ceremony
+          installation, and reception scale. Every proposal is custom, built
+          after your consultation.
+      - q: What aesthetics work best at Sugar Pine Point?
+        a: The wooded, lakefront setting is made for natural, gathered design, our
+          <strong>Wildflower Modern</strong> direction especially. Cleaner,
+          <strong>Elevated Minimalist</strong> arrangements also look striking
+          against the historic mansion and the water. We design around the
+          specific spots you're using.
+      - q: How far in advance should I reach out?
+        a: State-park dates are limited and reserved through California State Parks, so
+          they go early. Reach out <strong>12–18 months ahead</strong> if you
+          can. If your date is sooner, ask anyway and we'll let you know our
+          availability.
+  - label: North Tahoe Event Center
+    url: /venues/north-tahoe-event-center
+    faqs:
+      - q: Do you design florals for North Tahoe Event Center weddings?
+        a: Yes. We design for the lakefront ceremony and the indoor hall reception, and
+          we plan around the venue's load-in windows and setup access so the day
+          runs cleanly.
+      - q: It's a pretty open, plain hall, can flowers really change that?
+        a: That's exactly where florals earn their keep. A blank-canvas space lets us
+          set the entire mood, palette, scale, and focal points, with
+          installations and centerpieces instead of working around fixed decor.
+          Couples are often surprised how completely the room transforms.
+      - q: What does a typical wedding budget look like here?
+        a: Full-service florals at the North Tahoe Event Center typically range from
+          <strong>$12,000–$22,000+</strong>. Because it's a blank-canvas space,
+          more of the wedding's look comes from flowers, so the floral budget
+          often does more of the design work. Every proposal is custom, built
+          after your consultation.
+      - q: What aesthetics work best here?
+        a: All three of our directions work, since the room is yours to define.
+          <strong>Wildflower Modern</strong> brings the lakefront feeling
+          indoors; <strong>Elevated Minimalist</strong> gives the open space
+          clean structure; and rich, lush installations turn the hall into
+          something dramatic for an evening reception.
+      - q: How far in advance should I reach out?
+        a: North Shore summer and fall dates book early, so reach out <strong>12–18
+          months ahead</strong> if you can. If your date is sooner, ask anyway
+          and we'll let you know our availability.
+  - label: Valhalla Tahoe
+    url: /venues/valhalla-tahoe
+    faqs:
+      - q: Do you design florals for Valhalla Tahoe weddings?
+        a: Yes. We design for the Grand Hall, the boathouse, and the lakeside lawn at
+          the Tallac Historic Site. We plan around the park's load-in windows
+          and site guidelines so setup and breakdown run cleanly without those
+          constraints landing on you.
+      - q: What does a typical Valhalla wedding budget look like?
+        a: Full-service florals here typically range from
+          <strong>$10,000–$18,000</strong>, depending on installation scale and
+          guest count. The Grand Hall takes statement pieces beautifully, so
+          budget often rises with how much of the architecture you want the
+          florals to work with. Every proposal is custom, built after your
+          consultation.
+      - q: Are there restrictions on florals at a state historic site?
+        a: Valhalla has specific load-in timing and site rules as a historic property.
+          We've worked within them before and build the whole day's logistics
+          around them so nothing runs late or becomes your problem to manage. On
+          the materials side, we've always worked foam-free, which aligns well
+          with the environmental standards the site requires.
+      - q: How far in advance should I reach out?
+        a: Valhalla dates are limited by the park calendar, so they fill early. We
+          recommend reaching out <strong>12–18 months ahead</strong> when you
+          can. If your date is sooner, reach out anyway and we'll let you know
+          our availability.
+  - label: Old Greenwood
+    url: /venues/old-greenwood
+    faqs:
+      - q: Do you design florals for Old Greenwood weddings?
+        a: Yes. We design for the Old Greenwood lawns, indoor spaces, and the open
+          Martis Valley setting, and we build pieces with the scale and
+          structure to hold their own against big sky and open meadow. The same
+          team designs, installs, and strikes, with full attention on your date.
+      - q: What does a typical Old Greenwood wedding budget look like?
+        a: Full-service florals here typically range from
+          <strong>$12,000–$20,000</strong>, depending on installation scale and
+          guest count. Open meadow venues often require taller, more
+          architectural pieces that read across the space, which shapes the
+          build. Every proposal is custom, built after your consultation.
+      - q: How do you approach a setting this open and exposed?
+        a: The meadow and open sky at Old Greenwood swallow small arrangements. We
+          design with height, branching, and movement so the florals hold the
+          space rather than disappearing into it. Everything is built foam-free
+          to hold up through a long, sun-exposed mountain afternoon without
+          wilting or shifting.
+      - q: How far in advance should I reach out?
+        a: Peak summer and fall Saturdays fill <strong>12–18 months ahead</strong>, so
+          reach out early when you can. If your date is sooner, reach out anyway
+          and we'll let you know our availability.
+  - label: Heavenly
+    url: /venues/heavenly
+    faqs:
+      - q: Do you design florals for Heavenly Mountain weddings?
+        a: Yes. We design for mountaintop ceremonies and receptions at Heavenly, and we
+          plan the transport, gondola timing, and install so the logistics never
+          reach you. Everything is built to hold against altitude, wind, and sun
+          through a full mountain day.
+      - q: What does a typical Heavenly wedding budget look like?
+        a: Full-service florals at Heavenly typically range from
+          <strong>$12,000–$22,000+</strong>, reflecting the mountaintop
+          logistics alongside the florals themselves. Every proposal is custom,
+          built around your guest count, ceremony footprint, and vision.
+      - q: How do you get florals up a gondola?
+        a: We build and pack with the gondola in mind, coordinating load-in timing with
+          the venue and your planner. It's a logistics question we plan for from
+          the start, and it never affects what's possible with the design
+          itself.
+      - q: How far in advance should I reach out?
+        a: Peak summer and fall Saturdays fill <strong>12–18 months ahead</strong>, so
+          reach out early when you can. If your date is sooner, reach out anyway
+          and we'll let you know our availability.
+  - label: Gar Woods
+    url: /venues/gar-woods
+    faqs:
+      - q: Do you design florals for Gar Woods weddings?
+        a: Yes. We design for the lakefront deck, pier, and intimate reception spaces at
+          Gar Woods in Carnelian Bay. The setting is close to the water, so we
+          design with the sightlines in mind and build pieces that frame the
+          lake rather than block it.
+      - q: What does a typical Gar Woods wedding budget look like?
+        a: Full-service florals here typically range from
+          <strong>$8,000–$16,000</strong>, reflecting the venue's intimate
+          scale. Because every stem is seen up close on a smaller deck, detail
+          and quality matter more than volume. Every proposal is custom, built
+          after your consultation.
+      - q: What makes designing for Gar Woods different?
+        a: "The deck puts every arrangement at arm's length. There's no hiding behind
+          scale or density here, so we design for close viewing: texture,
+          movement, and blooms worth studying. West-facing water also means
+          golden evening light, and we choose palettes that come alive in it
+          rather than disappearing."
+      - q: How far in advance should I reach out?
+        a: Peak summer and fall Saturdays fill <strong>12–18 months ahead</strong>, so
+          reach out early when you can. If your date is sooner, reach out anyway
+          and we'll let you know our availability.
