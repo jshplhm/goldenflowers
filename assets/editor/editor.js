@@ -40,6 +40,9 @@ const repForm = document.getElementById("ed-rep-form");
 const repPreview = document.getElementById("ed-rep-preview");
 const repErr = document.getElementById("ed-rep-err");
 const repCancel = document.getElementById("ed-rep-cancel");
+const repGalWrap = document.getElementById("ed-rep-gal-wrap");
+const repGalLabel = document.getElementById("ed-rep-gal-label");
+const repGal = document.getElementById("ed-rep-gal");
 const fileInput = document.getElementById("ed-file");
 const filesInput = document.getElementById("ed-files");
 const statusEl = document.getElementById("ed-status");
@@ -856,7 +859,7 @@ phAdd.addEventListener("click", async () => {
     }
     phNote(`Saving ${entries.length} photo${entries.length > 1 ? "s" : ""}…`);
     await commitFiles(entries, `Add ${entries.length} photo${entries.length > 1 ? "s" : ""} to the ${curGallery.name} gallery via inline editor`);
-    phNote(`Added ✓ On the live page in ~2 minutes`, "ok");
+    phNote(`✓ ${entries.length} photo${entries.length > 1 ? "s" : ""} added — they're in the grid here and reach the live page in ~2 minutes.`, "ok");
     renderPhotos();
   } catch (err) {
     phNote(err.message, "err");
@@ -879,15 +882,24 @@ async function deletePhoto(name) {
     }
     if (!window.confirm(`Delete ${name} from the ${curGallery.name} gallery?`)) { phNote(""); return; }
     phNote("Deleting…");
+    phGrid.classList.add("busy");
     await commitFiles([{ path: `assets/images/portfolio/${curGallery.slug}/${name}`, del: true }], `Remove ${name} from the ${curGallery.name} gallery via inline editor`);
-    phNote("Deleted ✓ Gone from the live page in ~2 minutes", "ok");
+    /* remove it from the page behind the panel right away */
+    const doc = frameDoc();
+    doc && doc.querySelectorAll("[data-ed-gallery] img").forEach((im) => {
+      if ((im.currentSrc || im.src).endsWith(`/${name}`)) (im.closest("a") || im).remove();
+    });
+    phNote(`✓ ${name} deleted — it's gone from the page behind this panel. Live site follows in ~2 minutes.`, "ok");
     renderPhotos();
   } catch (err) {
     phNote(err.message, "err");
   }
+  phGrid.classList.remove("busy");
 }
 
 async function makeHero(name) {
+  if (name === curGallery.hero) return;
+  phGrid.classList.add("busy");
   try {
     phNote("Updating the opening photo…");
     const { text } = await rawFile(curPage);
@@ -895,23 +907,87 @@ async function makeHero(name) {
     const updated = text.split(curGallery.hero).join(name);
     await commitFiles([{ path: curPage, text: updated }], `Set ${name} as the ${curGallery.name} opening photo via inline editor`);
     curGallery.hero = name;
-    phNote("Opening photo changed ✓ Live in ~2 minutes", "ok");
+    /* show it on the page behind the panel right away */
+    const doc = frameDoc();
+    const galEl = doc && doc.querySelector("[data-ed-gallery]");
+    if (galEl) {
+      galEl.setAttribute("data-ed-ghero", name);
+      const heroImg = galEl.querySelector(".wd-hero-img");
+      if (heroImg) {
+        heroImg.removeAttribute("srcset");
+        heroImg.src = `${CFG.baseurl}/assets/images/portfolio/${curGallery.slug}/${name}`;
+      }
+    }
+    phNote(`✓ ${name} is the opening photo now — you can see it on the page behind this panel. Live site follows in ~2 minutes.`, "ok");
     renderPhotos();
   } catch (err) {
     phNote(err.message, "err");
   }
+  phGrid.classList.remove("busy");
 }
 
 /* ---------- photos: swap any page image ---------- */
 
 let repTarget = null;
 
+/* rewrite every reference to the clicked photo in this page's source */
+async function swapSourceTo(newSrcPath) {
+  const { text } = await rawFile(curPage);
+  if (!text.includes(repTarget.path)) {
+    throw new Error("This photo is placed by the site's design rather than this page, so it can't be swapped here. Tell Josh which photo you want changed.");
+  }
+  const updated = text.split(repTarget.path).join(newSrcPath);
+  await commitFiles([{ path: curPage, text: updated }], `Swap a photo on ${curPage} via inline editor`);
+}
+
 function openReplace(img) {
   if (!curPage) return;
   repTarget = { el: img, path: new URL(img.currentSrc || img.src).pathname };
   repPreview.src = img.currentSrc || img.src;
   repErr.style.display = "none";
+  repGalWrap.hidden = true;
+  repGal.innerHTML = "";
   repModal.hidden = false;
+
+  /* if this photo belongs to a wedding gallery (e.g. a cover tile on the
+   * portfolio or home page), offer picking a different photo from that
+   * same wedding instead of uploading */
+  const m = repTarget.path.match(/^\/assets\/images\/portfolio\/([^/]+)\//);
+  if (m) {
+    const slug = m[1];
+    fetch(`${API}assets/images/portfolio/${slug}?ref=${encodeURIComponent(BRANCH)}`, { headers: ghHeaders() })
+      .then((r) => (r.ok ? r.json() : []))
+      .then((items) => {
+        items = items.filter((f) => /\.(jpe?g|png)$/i.test(f.name) && `/${f.path}` !== repTarget.path);
+        if (!items.length || repModal.hidden) return;
+        repGalLabel.textContent = `Pick another photo from this wedding's gallery:`;
+        for (const it of items) {
+          const t = document.createElement("img");
+          t.src = it.download_url;
+          t.loading = "lazy";
+          t.title = it.name;
+          t.addEventListener("click", async () => {
+            repErr.style.display = "none";
+            try {
+              const newSrc = `/${it.path}`;
+              await swapSourceTo(newSrc);
+              repTarget.el.removeAttribute("srcset");
+              repTarget.el.src = newSrc;
+              repModal.hidden = true;
+              repTarget = null;
+              statusEl.className = "ed-status ok";
+              statusEl.textContent = DRYRUN ? "Dry run done — nothing committed" : "✓ Photo swapped — it's on the page now, live site in ~2 minutes";
+            } catch (err) {
+              repErr.textContent = err.message;
+              repErr.style.display = "block";
+            }
+          });
+          repGal.appendChild(t);
+        }
+        repGalWrap.hidden = false;
+      })
+      .catch(() => {});
+  }
 }
 
 repCancel.addEventListener("click", () => { repModal.hidden = true; repTarget = null; });
@@ -941,7 +1017,7 @@ repForm.addEventListener("submit", async (e) => {
     repModal.hidden = true;
     repTarget = null;
     statusEl.className = "ed-status ok";
-    statusEl.textContent = DRYRUN ? "Dry run done — nothing committed" : "Photo swapped ✓ Live in ~2 minutes";
+    statusEl.textContent = DRYRUN ? "Dry run done — nothing committed" : "✓ Photo swapped — it's on the page now, live site in ~2 minutes";
   } catch (err) {
     repErr.textContent = err.message;
     repErr.style.display = "block";
