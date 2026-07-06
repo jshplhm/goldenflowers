@@ -2,8 +2,8 @@
   <div class="foot-in">
     <div class="foot-lead">
       <div class="foot-brand">Golden Flowers</div>
-      <p class="foot-tag">{{ site.data.footer.tagline }}</p>
-      <a class="foot-cta" href="{{ site.baseurl }}/consultation-form" data-consult-open>{{ site.data.footer.cta }}</a>
+      <p class="foot-tag"><span data-ed="footer:tagline">{{ site.data.footer.tagline }}</span></p>
+      <a class="foot-cta" href="{{ site.baseurl }}/consultation-form" data-consult-open><span data-ed="footer:cta">{{ site.data.footer.cta }}</span></a>
     </div>
     <nav class="foot-cols" aria-label="Footer">
       <div>
@@ -19,7 +19,7 @@
       <div>
         <h4>Studio</h4>
         {%- for line in site.data.footer.studio %}
-        <p>{{ line }}</p>
+        <p><span data-ed="footer:studio.{{ forloop.index0 }}">{{ line }}</span></p>
         {%- endfor %}
       </div>
       <div>
@@ -33,6 +33,6 @@
   </div>
   <div class="foot-bottom">
     <span>&copy; {{ site.time | date: "%Y" }} Golden Flowers · Incline Village, NV</span>
-    <span>{{ site.data.footer.bottom_right }}</span>
+    <span><span data-ed="footer:bottom_right">{{ site.data.footer.bottom_right }}</span></span>
   </div>
 </footer>

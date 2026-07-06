@@ -1,8 +1,11 @@
 {%- comment -%}
 Renders editor text into HTML: **double asterisks** = bold, *single* = italic.
 Usage: {% include em.html t=site.data.home.hero.heading %}
+Optional k (+ i list index + f field name) wraps the output in a data-ed span
+for the inline editor: k="home:hero.heading", or k="pledge:items" i=forloop.index0 f="body".
 {%- endcomment -%}
 {%- assign _b = include.t | split: '**' -%}
 {%- capture _mid -%}{% for _s in _b %}{% assign _o = forloop.index0 | modulo: 2 %}{% if _o == 1 %}<strong>{{ _s }}</strong>{% else %}{{ _s }}{% endif %}{% endfor %}{%- endcapture -%}
 {%- assign _i = _mid | split: '*' -%}
-{%- for _s in _i -%}{%- assign _o = forloop.index0 | modulo: 2 -%}{%- if _o == 1 -%}<em>{{ _s }}</em>{%- else -%}{{ _s }}{%- endif -%}{%- endfor -%}
+{%- capture _out -%}{%- for _s in _i -%}{%- assign _o = forloop.index0 | modulo: 2 -%}{%- if _o == 1 -%}<em>{{ _s }}</em>{%- else -%}{{ _s }}{%- endif -%}{%- endfor -%}{%- endcapture -%}
+{%- if include.k -%}<span data-ed="{{ include.k }}{% if include.i != nil %}.{{ include.i }}{% endif %}{% if include.f %}.{{ include.f }}{% endif %}">{{ _out }}</span>{%- else -%}{{ _out }}{%- endif -%}

@@ -3,12 +3,18 @@ Redesign FAQ: native <details> accordion (no JS) + identical FAQPage structured
 data, from _data/faqs.yml matched by page.url. Mirrors _includes/faq.html.
 {%- endcomment -%}
 {%- assign faq_entry = site.data.faqs.pages | where: "url", page.url | first -%}
+{%- assign faq_pi = -1 -%}
+{%- for _pg in site.data.faqs.pages -%}{%- if _pg.url == page.url -%}{%- assign faq_pi = forloop.index0 -%}{%- endif -%}{%- endfor -%}
 {%- if faq_entry and faq_entry.faqs -%}
 <div class="faq-list">
   {%- for faq in faq_entry.faqs %}
   <details class="faq-card">
-    <summary><span class="faq-q">{{ faq.q }}</span><span class="faq-toggle"></span></summary>
+    <summary><span class="faq-q"><span data-ed="faqs:pages.{{ faq_pi }}.faqs.{{ forloop.index0 }}.q">{{ faq.q }}</span></span><span class="faq-toggle"></span></summary>
+    {%- if faq.a contains '<' %}
     <div class="faq-a">{{ faq.a | replace: 'href="/', 'href="@@B@@/' | replace: '@@B@@', site.baseurl }}</div>
+    {%- else %}
+    <div class="faq-a"><span data-ed="faqs:pages.{{ faq_pi }}.faqs.{{ forloop.index0 }}.a">{{ faq.a }}</span></div>
+    {%- endif %}
   </details>
   {%- endfor %}
 </div>

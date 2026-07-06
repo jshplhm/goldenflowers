@@ -10,9 +10,9 @@ canonical_url: https://goldenflorals.com/venues
 <!-- VENUES: words + linked list (left) · map (right) -->
 <header class="map-hero">
   <div class="mh-head">
-    <span class="lab">{{ site.data.venues_page.hero.label }}</span>
-    <h1>{{ site.data.venues_page.hero.heading }}</h1>
-    <p class="mh-intro">{{ site.data.venues_page.hero.intro }}</p>
+    <span class="lab"><span data-ed="venues_page:hero.label">{{ site.data.venues_page.hero.label }}</span></span>
+    <h1><span data-ed="venues_page:hero.heading">{{ site.data.venues_page.hero.heading }}</span></h1>
+    <p class="mh-intro"><span data-ed="venues_page:hero.intro">{{ site.data.venues_page.hero.intro }}</span></p>
   </div>
   <div class="mh-body">
     <span class="lab vlist-lab"><span class="vlist-dot vlist-dot--feat"></span>Featured venues</span>
@@ -146,18 +146,18 @@ canonical_url: https://goldenflorals.com/venues
 
 <!-- DON'T SEE YOUR VENUE -->
 <section class="mini">
-  <span class="lab">{{ site.data.venues_page.not_listed.label }}</span>
-  <h2>{{ site.data.venues_page.not_listed.heading }}</h2>
-  <p>{{ site.data.venues_page.not_listed.body }}</p>
-  <button type="button" class="txt-link" data-consult-open>{{ site.data.venues_page.not_listed.link }} &rarr;</button>
+  <span class="lab"><span data-ed="venues_page:not_listed.label">{{ site.data.venues_page.not_listed.label }}</span></span>
+  <h2><span data-ed="venues_page:not_listed.heading">{{ site.data.venues_page.not_listed.heading }}</span></h2>
+  <p><span data-ed="venues_page:not_listed.body">{{ site.data.venues_page.not_listed.body }}</span></p>
+  <button type="button" class="txt-link" data-consult-open><span data-ed="venues_page:not_listed.link">{{ site.data.venues_page.not_listed.link }}</span> &rarr;</button>
 </section>
 
 <!-- CTA -->
 <section class="cta cta--tall">
-  <span class="lab">{{ site.data.venues_page.closing.label }}</span>
-  <h2 class="disp">{% include em.html t=site.data.venues_page.closing.heading %}</h2>
-  <p>{{ site.data.venues_page.closing.body }}</p>
-  <a class="btn btn-ink" href="{{ site.baseurl }}/consultation-form">{{ site.data.venues_page.closing.button }}</a>
+  <span class="lab"><span data-ed="venues_page:closing.label">{{ site.data.venues_page.closing.label }}</span></span>
+  <h2 class="disp">{% include em.html t=site.data.venues_page.closing.heading k="venues_page:closing.heading" %}</h2>
+  <p><span data-ed="venues_page:closing.body">{{ site.data.venues_page.closing.body }}</span></p>
+  <a class="btn btn-ink" href="{{ site.baseurl }}/consultation-form"><span data-ed="venues_page:closing.button">{{ site.data.venues_page.closing.button }}</span></a>
 </section>
 
 <script>

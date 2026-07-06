@@ -14,10 +14,10 @@ redirect_from:
 <header class="hero hero-sm">
   <img class="bg" src="{{ site.baseurl }}/assets/images/portfolio/camille-max/camille-max-28.jpg" alt="Couple walking a tree-lined lane, flowers grown on California land by Golden Flowers" style="object-position:center 45%;">
   <div class="hero-in">
-    <p class="ey lab">{{ site.data.sustainability.hero.eyebrow }}</p>
-    <h1 class="disp">{% include em.html t=site.data.sustainability.hero.heading %}</h1>
+    <p class="ey lab"><span data-ed="sustainability:hero.eyebrow">{{ site.data.sustainability.hero.eyebrow }}</span></p>
+    <h1 class="disp">{% include em.html t=site.data.sustainability.hero.heading k="sustainability:hero.heading" %}</h1>
     <div class="hero-foot">
-      <p class="hero-sub">{{ site.data.sustainability.hero.subheading }}</p>
+      <p class="hero-sub"><span data-ed="sustainability:hero.subheading">{{ site.data.sustainability.hero.subheading }}</span></p>
     </div>
   </div>
 </header>
@@ -26,8 +26,8 @@ redirect_from:
 
 <!-- CLOSING -->
 <section class="cta">
-  <span class="lab">{{ site.data.sustainability.closing.label }}</span>
-  <h2 class="disp">{% include em.html t=site.data.sustainability.closing.heading %}</h2>
-  <p>{{ site.data.sustainability.closing.body }}</p>
-  <a class="btn btn-ink" href="{{ site.baseurl }}/consultation-form">{{ site.data.sustainability.closing.button }} <span>&rarr;</span></a>
+  <span class="lab"><span data-ed="sustainability:closing.label">{{ site.data.sustainability.closing.label }}</span></span>
+  <h2 class="disp">{% include em.html t=site.data.sustainability.closing.heading k="sustainability:closing.heading" %}</h2>
+  <p><span data-ed="sustainability:closing.body">{{ site.data.sustainability.closing.body }}</span></p>
+  <a class="btn btn-ink" href="{{ site.baseurl }}/consultation-form"><span data-ed="sustainability:closing.button">{{ site.data.sustainability.closing.button }}</span> <span>&rarr;</span></a>
 </section>

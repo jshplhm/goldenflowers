@@ -1,19 +1,19 @@
 <section class="block pledge">
   {% unless include.hide_head %}
   <div class="pledge-head">
-    <span class="lab">{{ site.data.pledge.head.label }}</span>
-    <h2 class="h-lg">{% include em.html t=site.data.pledge.head.heading %}</h2>
-    <p class="pledge-intro">{% include em.html t=site.data.pledge.head.intro %}</p>
+    <span class="lab"><span data-ed="pledge:head.label">{{ site.data.pledge.head.label }}</span></span>
+    <h2 class="h-lg">{% include em.html t=site.data.pledge.head.heading k="pledge:head.heading" %}</h2>
+    <p class="pledge-intro">{% include em.html t=site.data.pledge.head.intro k="pledge:head.intro" %}</p>
   </div>
   {% endunless %}
 
   <div class="pledge-grid">
     {%- for item in site.data.pledge.items %}
-    <div class="pledge-item"><h4>{{ item.title }}</h4><p>{% include em.html t=item.body %}</p></div>
+    <div class="pledge-item"><h4><span data-ed="pledge:items.{{ forloop.index0 }}.title">{{ item.title }}</span></h4><p>{% include em.html t=item.body k="pledge:items" i=forloop.index0 f="body" %}</p></div>
     {%- endfor %}
   </div>
 
   <blockquote class="pledge-closing">
-    <p>{% include em.html t=site.data.pledge.closing %}</p>
+    <p>{% include em.html t=site.data.pledge.closing k="pledge:closing" %}</p>
   </blockquote>
 </section>

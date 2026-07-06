@@ -2,28 +2,33 @@
 layout: redesign
 ---
 {%- assign v = site.data.venues[page.venue_key] -%}
+{%- assign vk = page.venue_key | prepend: "venues/" -%}
 {% include venue-subnav.html name=v.venue_name %}
 
 <header class="text-hero venue-hero">
-  <span class="lab">{{ v.hero.eyebrow }}</span>
-  <h1>{% include em.html t=v.hero.heading %}</h1>
-  <p class="th-sub">{% include em.html t=v.hero.subheading %}</p>
+  <span class="lab"><span data-ed="{{ vk }}:hero.eyebrow">{{ v.hero.eyebrow }}</span></span>
+  {%- assign k_hh = vk | append: ":hero.heading" %}
+  <h1>{% include em.html t=v.hero.heading k=k_hh %}</h1>
+  {%- assign k_hs = vk | append: ":hero.subheading" %}
+  <p class="th-sub">{% include em.html t=v.hero.subheading k=k_hs %}</p>
 </header>
 
 <section class="section">
   <div class="container">
     <div class="venue-intro">
-      <div class="vi-head"><span class="label">{{ v.why.label }}</span>
-        <h2>{{ v.why.heading }}</h2></div>
+      <div class="vi-head"><span class="label"><span data-ed="{{ vk }}:why.label">{{ v.why.label }}</span></span>
+        <h2><span data-ed="{{ vk }}:why.heading">{{ v.why.heading }}</span></h2></div>
       <div class="vi-body">
+        {%- assign k_wp = vk | append: ":why.paragraphs" %}
         {%- for p in v.why.paragraphs %}
-        <p>{% include em.html t=p %}</p>
+        <p>{% include em.html t=p k=k_wp i=forloop.index0 %}</p>
         {%- endfor %}
       </div>
     </div>
     <div class="facts-strip">
+      {%- assign k_wf = vk | append: ":why.facts" %}
       {%- for fact in v.why.facts %}
-      <div class="fact"><p class="label">{{ fact.label }}</p><p class="fact-body">{% include em.html t=fact.body %}</p></div>
+      <div class="fact"><p class="label"><span data-ed="{{ vk }}:why.facts.{{ forloop.index0 }}.label">{{ fact.label }}</span></p><p class="fact-body">{% include em.html t=fact.body k=k_wf i=forloop.index0 f="body" %}</p></div>
       {%- endfor %}
     </div>
   </div>
@@ -33,11 +38,12 @@ layout: redesign
 
 <section class="section">
   <div class="container">
-    <span class="label">{{ v.philosophy.label }}</span>
-    <h2>{{ v.philosophy.heading }}</h2>
+    <span class="label"><span data-ed="{{ vk }}:philosophy.label">{{ v.philosophy.label }}</span></span>
+    <h2><span data-ed="{{ vk }}:philosophy.heading">{{ v.philosophy.heading }}</span></h2>
     <div class="philosophy-grid">
+      {%- assign k_pi = vk | append: ":philosophy.items" %}
       {%- for item in v.philosophy.items %}
-      <div class="philosophy-item"><h3>{{ item.title }}</h3><p>{% include em.html t=item.body %}</p></div>
+      <div class="philosophy-item"><h3><span data-ed="{{ vk }}:philosophy.items.{{ forloop.index0 }}.title">{{ item.title }}</span></h3><p>{% include em.html t=item.body k=k_pi i=forloop.index0 f="body" %}</p></div>
       {%- endfor %}
     </div>
   </div>
@@ -47,8 +53,8 @@ layout: redesign
 
 <section class="section">
   <div class="container">
-    <span class="label">{{ v.faq.label }}</span>
-    <h2>{{ v.faq.heading }}</h2>
+    <span class="label"><span data-ed="{{ vk }}:faq.label">{{ v.faq.label }}</span></span>
+    <h2><span data-ed="{{ vk }}:faq.heading">{{ v.faq.heading }}</span></h2>
     {% include redesign-faq.html %}
   </div>
 </section>
@@ -57,18 +63,19 @@ layout: redesign
 
 <section class="section">
   <div class="container">
-    <span class="label">{{ v.pricing.label }}</span>
-    <h2>{{ v.pricing.heading }}</h2>
+    <span class="label"><span data-ed="{{ vk }}:pricing.label">{{ v.pricing.label }}</span></span>
+    <h2><span data-ed="{{ vk }}:pricing.heading">{{ v.pricing.heading }}</span></h2>
     <div class="pricing-box">
       <div>
-        <p class="price-range">{{ v.pricing.range }}</p>
-        <p class="price-note">{{ v.pricing.note }}</p>
+        <p class="price-range"><span data-ed="{{ vk }}:pricing.range">{{ v.pricing.range }}</span></p>
+        <p class="price-note"><span data-ed="{{ vk }}:pricing.note">{{ v.pricing.note }}</span></p>
       </div>
       <div class="price-details">
+        {%- assign k_pd = vk | append: ":pricing.details" %}
         {%- for p in v.pricing.details %}
-        <p>{% include em.html t=p %}</p>
+        <p>{% include em.html t=p k=k_pd i=forloop.index0 %}</p>
         {%- endfor %}
-        <a href="{{ site.baseurl }}/consultation-form" class="txt-link" style="margin-top:16px;display:inline-block;" data-consult-open>{{ v.pricing.button }}</a>
+        <a href="{{ site.baseurl }}/consultation-form" class="txt-link" style="margin-top:16px;display:inline-block;" data-consult-open><span data-ed="{{ vk }}:pricing.button">{{ v.pricing.button }}</span></a>
       </div>
     </div>
   </div>
@@ -76,9 +83,10 @@ layout: redesign
 
 <div class="cta-section">
   <div style="max-width:640px;margin:0 auto;">
-    <span class="label" style="display:block;text-align:center">{{ v.cta.label }}</span>
-    <h2>{{ v.cta.heading }}</h2>
-    <p>{% include em.html t=v.cta.body %}</p>
-    <a href="{{ site.baseurl }}/consultation-form" class="btn-primary" data-consult-open>{{ v.cta.button }}</a>
+    <span class="label" style="display:block;text-align:center"><span data-ed="{{ vk }}:cta.label">{{ v.cta.label }}</span></span>
+    <h2><span data-ed="{{ vk }}:cta.heading">{{ v.cta.heading }}</span></h2>
+    {%- assign k_cb = vk | append: ":cta.body" %}
+    <p>{% include em.html t=v.cta.body k=k_cb %}</p>
+    <a href="{{ site.baseurl }}/consultation-form" class="btn-primary" data-consult-open><span data-ed="{{ vk }}:cta.button">{{ v.cta.button }}</span></a>
   </div>
 </div>

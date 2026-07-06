@@ -11,31 +11,31 @@ redirect_from:
 
 <!-- TEXT HEADER (no hero image) -->
 <header class="text-hero" style="padding-bottom:32px">
-  <span class="lab">{{ site.data.consultation.hero.label }}</span>
-  <h1>{% include em.html t=site.data.consultation.hero.heading %}</h1>
-  <p class="th-sub">{{ site.data.consultation.hero.subheading }}</p>
+  <span class="lab"><span data-ed="consultation:hero.label">{{ site.data.consultation.hero.label }}</span></span>
+  <h1>{% include em.html t=site.data.consultation.hero.heading k="consultation:hero.heading" %}</h1>
+  <p class="th-sub"><span data-ed="consultation:hero.subheading">{{ site.data.consultation.hero.subheading }}</span></p>
 </header>
 
 <!-- INTRO -->
 <section class="block tight">
   <div class="twoup">
     <div>
-      <span class="lab">{{ site.data.consultation.next_steps.label }}</span>
-      <h2 class="h-lg" style="margin-bottom:26px;">{{ site.data.consultation.next_steps.heading }}</h2>
+      <span class="lab"><span data-ed="consultation:next_steps.label">{{ site.data.consultation.next_steps.label }}</span></span>
+      <h2 class="h-lg" style="margin-bottom:26px;"><span data-ed="consultation:next_steps.heading">{{ site.data.consultation.next_steps.heading }}</span></h2>
       <ol class="next-steps">
         {%- for step in site.data.consultation.next_steps.steps %}
-        <li><span class="n">{{ forloop.index }}</span><strong>{{ step.title }}</strong>{{ step.body }}</li>
+        <li><span class="n">{{ forloop.index }}</span><strong><span data-ed="consultation:next_steps.steps.{{ forloop.index0 }}.title">{{ step.title }}</span></strong><span data-ed="consultation:next_steps.steps.{{ forloop.index0 }}.body">{{ step.body }}</span></li>
         {%- endfor %}
       </ol>
     </div>
     <div class="contact-links">
-      <span class="lab">{{ site.data.consultation.reach.label }}</span>
-      <h2 class="h-lg" style="margin-bottom:26px;">{{ site.data.consultation.reach.heading }}</h2>
+      <span class="lab"><span data-ed="consultation:reach.label">{{ site.data.consultation.reach.label }}</span></span>
+      <h2 class="h-lg" style="margin-bottom:26px;"><span data-ed="consultation:reach.heading">{{ site.data.consultation.reach.heading }}</span></h2>
       <p><a href="tel:5305577689">(530) 557-7689</a></p>
       <p><a href="mailto:brittany@goldenflorals.com">brittany@goldenflorals.com</a></p>
       <p><a href="https://www.instagram.com/goldenflowersfloraldesign/" target="_blank" rel="noopener">@goldenflowersfloraldesign</a></p>
-      <p style="color:var(--ink);margin-top:22px;">{{ site.data.consultation.reach.location }}</p>
-      <p style="font-size:.85rem;color:var(--mute);margin-top:5px;line-height:1.5;">{{ site.data.consultation.reach.note }}</p>
+      <p style="color:var(--ink);margin-top:22px;"><span data-ed="consultation:reach.location">{{ site.data.consultation.reach.location }}</span></p>
+      <p style="font-size:.85rem;color:var(--mute);margin-top:5px;line-height:1.5;"><span data-ed="consultation:reach.note">{{ site.data.consultation.reach.note }}</span></p>
     </div>
   </div>
 </section>

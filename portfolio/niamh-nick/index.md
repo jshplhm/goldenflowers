@@ -14,7 +14,8 @@ hero_photo: niamh-nick-04.jpg
   <span class="lab">Elevated Minimalist</span>
   <h1>Niamh & Nick</h1>
   {%- assign subtitle = site.data.portfolio[page.portfolio_key] %}
-  <p class="th-sub">{% include em.html t=subtitle %}</p>
+  {%- assign subtitle_k = page.portfolio_key | prepend: "portfolio:" %}
+  <p class="th-sub">{% include em.html t=subtitle k=subtitle_k %}</p>
 </header>
 
 {% include portfolio-gallery.html slug="niamh-nick" hero="niamh-nick-04.jpg" name="Niamh & Nick" %}
