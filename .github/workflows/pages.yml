@@ -31,6 +31,14 @@ jobs:
         run: bundle exec jekyll build
         env:
           JEKYLL_ENV: production
+      - name: Restore responsive image cache
+        uses: actions/cache@v4
+        with:
+          path: .rsp-cache
+          key: rsp-${{ hashFiles('assets/images/**/*.jpg') }}
+          restore-keys: rsp-
+      - name: Generate responsive image variants
+        run: bash scripts/make-responsive-variants.sh
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
 

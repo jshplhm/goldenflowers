@@ -20,3 +20,6 @@ assets/images/wedding_photos/
 
 # Internal SEO briefing: local-only, never published
 seo-report/
+
+# CI scratch for responsive image variants (see scripts/make-responsive-variants.sh)
+.rsp-cache/

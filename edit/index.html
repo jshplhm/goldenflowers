@@ -53,6 +53,30 @@ sitemap: false
     .ed-card .ed-err{color:#a33;font-size:.8rem;margin-top:10px;display:none;}
     .ed-card .ed-alt{margin-top:16px;font-size:.78rem;text-align:center;}
     .ed-card a{color:var(--ed-green);}
+
+    /* photo manager */
+    .ed-ph-card{max-width:880px;max-height:86vh;display:flex;flex-direction:column;}
+    .ed-ph-head{display:flex;align-items:baseline;gap:12px;margin-bottom:4px;}
+    .ed-ph-head h1{flex:1;}
+    .ed-ph-note{font-size:.78rem;color:var(--ed-mute);margin:0 0 14px;}
+    .ed-ph-grid{overflow:auto;display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;padding:2px;}
+    .ed-ph{position:relative;border:1px solid var(--ed-line);border-radius:8px;overflow:hidden;background:#f4f1ea;}
+    .ed-ph img{width:100%;aspect-ratio:4/5;object-fit:cover;display:block;}
+    .ed-ph .ed-ph-name{font-size:.66rem;color:var(--ed-mute);padding:4px 6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+    .ed-ph .ed-ph-acts{position:absolute;top:6px;right:6px;display:flex;gap:6px;opacity:0;transition:opacity .12s;}
+    .ed-ph:hover .ed-ph-acts{opacity:1;}
+    .ed-ph-acts button{border:0;border-radius:5px;background:rgba(34,48,31,.85);color:#fff;font-size:.68rem;padding:5px 8px;cursor:pointer;}
+    .ed-ph-acts button:hover{background:#a33;}
+    .ed-ph-acts button.hero:hover{background:var(--ed-green);}
+    .ed-ph-badge{position:absolute;top:6px;left:6px;background:var(--ed-green);color:#fff;font-size:.64rem;letter-spacing:.05em;text-transform:uppercase;padding:3px 7px;border-radius:4px;}
+    .ed-ph-bar{display:flex;align-items:center;gap:12px;margin-top:14px;}
+    .ed-ph-bar .ed-btn{width:auto;margin:0;}
+    .ed-ph-status{flex:1;font-size:.8rem;color:var(--ed-mute);}
+    .ed-ph-status.ok{color:var(--ed-green);}
+    .ed-ph-status.err{color:#a33;}
+
+    /* replace-photo modal */
+    .ed-rep-preview{width:100%;max-height:260px;object-fit:contain;border-radius:8px;border:1px solid var(--ed-line);background:#f4f1ea;margin-bottom:6px;}
   </style>
 </head>
 <body>
@@ -60,15 +84,46 @@ sitemap: false
     <div class="ed-brand">Golden Flowers<small>Site editor</small></div>
     <div class="ed-page" id="ed-page"></div>
     <div class="ed-status" id="ed-status"></div>
+    <button class="ed-btn" id="ed-photos" hidden>Photos</button>
+    <button class="ed-btn" id="ed-imgins" hidden>Insert photo</button>
     <button class="ed-btn" id="ed-new">New post</button>
     <button class="ed-btn" id="ed-del" hidden>Delete post</button>
     <button class="ed-btn" id="ed-discard" disabled>Discard</button>
     <button class="ed-btn primary" id="ed-save" disabled>Save</button>
   </div>
-  <div class="ed-hint">Click any text on the page to edit it, then press <b>Save</b>. On a blog post you can edit the whole article, including headings and links. Changes go live in about two minutes.</div>
+  <div class="ed-hint">Click any text to edit it, then press <b>Save</b>. Click any photo to swap it. On a wedding page, <b>Photos</b> manages the whole gallery. Changes go live in about two minutes.</div>
   <div class="ed-frame-wrap">
     <iframe id="ed-frame" src="{{ site.baseurl }}/" title="Golden Flowers website"></iframe>
   </div>
+
+  <div class="ed-login" id="ed-ph-modal" hidden>
+    <div class="ed-card ed-ph-card">
+      <div class="ed-ph-head">
+        <h1 id="ed-ph-title">Photos</h1>
+        <button class="ed-btn" id="ed-ph-close" type="button" style="width:auto;margin:0;">Close</button>
+      </div>
+      <p class="ed-ph-note">Add or remove photos in this wedding's gallery, or pick the big opening photo. The page lays itself out automatically. Changes appear on the live site in about two minutes.</p>
+      <div class="ed-ph-grid" id="ed-ph-grid"></div>
+      <div class="ed-ph-bar">
+        <button class="ed-btn primary" id="ed-ph-add" type="button">Add photos</button>
+        <span class="ed-ph-status" id="ed-ph-status"></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="ed-login" id="ed-rep-modal" hidden>
+    <form class="ed-card" id="ed-rep-form">
+      <h1>Swap this photo</h1>
+      <img class="ed-rep-preview" id="ed-rep-preview" alt="">
+      <p id="ed-rep-note">Choose a new photo to appear in its place. The words and layout stay exactly the same.</p>
+      <button class="ed-btn primary" type="submit">Choose new photo…</button>
+      <button class="ed-btn" type="button" id="ed-rep-cancel">Cancel</button>
+      <div class="ed-err" id="ed-rep-err"></div>
+    </form>
+  </div>
+
+  <input type="file" id="ed-file" accept="image/*" hidden>
+  <input type="file" id="ed-files" accept="image/*" multiple hidden>
 
   <div class="ed-login" id="ed-new-modal" hidden>
     <form class="ed-card" id="ed-new-form">

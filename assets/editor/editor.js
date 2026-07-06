@@ -27,6 +27,21 @@ const saveBtn = document.getElementById("ed-save");
 const discardBtn = document.getElementById("ed-discard");
 const newBtn = document.getElementById("ed-new");
 const delBtn = document.getElementById("ed-del");
+const photosBtn = document.getElementById("ed-photos");
+const imginsBtn = document.getElementById("ed-imgins");
+const phModal = document.getElementById("ed-ph-modal");
+const phTitle = document.getElementById("ed-ph-title");
+const phGrid = document.getElementById("ed-ph-grid");
+const phStatus = document.getElementById("ed-ph-status");
+const phAdd = document.getElementById("ed-ph-add");
+const phClose = document.getElementById("ed-ph-close");
+const repModal = document.getElementById("ed-rep-modal");
+const repForm = document.getElementById("ed-rep-form");
+const repPreview = document.getElementById("ed-rep-preview");
+const repErr = document.getElementById("ed-rep-err");
+const repCancel = document.getElementById("ed-rep-cancel");
+const fileInput = document.getElementById("ed-file");
+const filesInput = document.getElementById("ed-files");
 const statusEl = document.getElementById("ed-status");
 const pageEl = document.getElementById("ed-page");
 const loginEl = document.getElementById("ed-login");
@@ -215,7 +230,14 @@ const FRAME_CSS = `
   [data-ed-post]:hover{outline-color:rgba(47,93,58,.45);}
   .gf-editing{outline:2px solid rgba(47,93,58,.95) !important;background:rgba(47,93,58,.05);cursor:text;}
   .gf-dirty{box-shadow:0 0 0 2px rgba(200,150,30,.45);}
+  img:hover{outline:2px dashed rgba(47,93,58,.55);outline-offset:-2px;cursor:pointer;}
+  [data-ed-post] img:hover{outline:none;cursor:text;}
 `;
+
+/* current page context, set on every iframe load */
+let curPage = "";
+let curGallery = null;
+let lastRange = null;
 
 let editing = null;
 
@@ -313,6 +335,22 @@ function hookFrame() {
 
   try { pageEl.textContent = doc.title || frame.contentWindow.location.pathname; } catch { pageEl.textContent = ""; }
   delBtn.hidden = !doc.querySelector("[data-ed-post]");
+  imginsBtn.hidden = delBtn.hidden;
+  curPage = doc.body.getAttribute("data-ed-page") || "";
+  const gal = doc.querySelector("[data-ed-gallery]");
+  curGallery = gal ? {
+    slug: gal.getAttribute("data-ed-gallery"),
+    hero: gal.getAttribute("data-ed-ghero"),
+    name: gal.getAttribute("data-ed-gname"),
+  } : null;
+  photosBtn.hidden = !curGallery;
+  lastRange = null;
+  doc.addEventListener("selectionchange", () => {
+    const sel = doc.getSelection();
+    if (sel && sel.rangeCount && editing && isPostBody(editing) && editing.contains(sel.anchorNode)) {
+      lastRange = sel.getRangeAt(0).cloneRange();
+    }
+  });
 
   /* re-apply unsaved edits after in-site navigation */
   for (const [key, val] of dirty) {
@@ -346,9 +384,24 @@ function hookFrame() {
       if (body) {
         if (e.target.closest("a")) e.preventDefault();
         startEdit(body);
-      } else if (editing) {
-        stopEdit();
+        return;
       }
+      const img = e.target.closest && e.target.closest("img");
+      if (img && img.closest("[data-ed-gallery]")) {
+        e.preventDefault();
+        e.stopPropagation();
+        if (editing) stopEdit();
+        openPhotos();
+        return;
+      }
+      if (img) {
+        e.preventDefault();
+        e.stopPropagation();
+        if (editing) stopEdit();
+        openReplace(img);
+        return;
+      }
+      if (editing) stopEdit();
     },
     true
   );
@@ -376,9 +429,16 @@ function hookFrame() {
   }, true);
 }
 
-frame.addEventListener("load", hookFrame);
-/* the iframe may already be loaded by the time this module runs */
-if (frameDoc() && frameDoc().readyState === "complete" && frameDoc().body) hookFrame();
+/* Hook each new document as soon as its DOM is ready (not after every photo
+ * finishes loading). The document object changes identity on navigation. */
+let hookedDoc = null;
+setInterval(() => {
+  const doc = frameDoc();
+  if (doc && doc !== hookedDoc && doc.body && doc.readyState !== "loading") {
+    hookedDoc = doc;
+    hookFrame();
+  }
+}, 200);
 
 /* ---------- toolbar ---------- */
 
@@ -636,6 +696,290 @@ delBtn.addEventListener("click", async () => {
     statusEl.className = "ed-status ok";
     statusEl.textContent = DRYRUN ? "Dry run done — nothing deleted" : "Post deleted ✓ It disappears from the site in ~2 minutes";
     frame.src = `${CFG.baseurl}/blog`;
+  } catch (err) {
+    statusEl.className = "ed-status err";
+    statusEl.textContent = err.message;
+  }
+});
+
+/* ---------- photos: shared plumbing ---------- */
+
+const GITAPI = `https://api.github.com/repos/${CFG.owner}/${CFG.repo}/git/`;
+
+/* One commit for any mix of binary uploads, text edits and deletions.
+ * files: [{ path, base64 }] | [{ path, text }] | [{ path, del: true }] */
+async function commitFiles(files, message, attempt = 0) {
+  if (DRYRUN) {
+    window.__gfDryrun = window.__gfDryrun || {};
+    for (const f of files) {
+      window.__gfDryrun[f.path] = f.del ? "(deleted)" : (f.text !== undefined ? f.text : `(binary, ${f.base64.length} b64 chars)`);
+      console.log(`[dryrun] would commit ${f.path}${f.del ? " (delete)" : ""}`);
+    }
+    return;
+  }
+  const refRes = await fetch(`${GITAPI}refs/heads/${encodeURIComponent(BRANCH)}`, { headers: ghHeaders() });
+  if (!refRes.ok) throw new Error(`Couldn't read the site (${refRes.status})`);
+  const headSha = (await refRes.json()).object.sha;
+  const baseTree = (await (await fetch(`${GITAPI}commits/${headSha}`, { headers: ghHeaders() })).json()).tree.sha;
+
+  const tree = [];
+  for (const f of files) {
+    if (f.del) {
+      tree.push({ path: f.path, mode: "100644", type: "blob", sha: null });
+    } else {
+      const body = f.text !== undefined
+        ? { content: f.text, encoding: "utf-8" }
+        : { content: f.base64, encoding: "base64" };
+      const blobRes = await fetch(`${GITAPI}blobs`, { method: "POST", headers: ghHeaders(), body: JSON.stringify(body) });
+      if (!blobRes.ok) throw new Error(`Upload failed (${blobRes.status})`);
+      tree.push({ path: f.path, mode: "100644", type: "blob", sha: (await blobRes.json()).sha });
+    }
+  }
+  const treeRes = await fetch(`${GITAPI}trees`, { method: "POST", headers: ghHeaders(), body: JSON.stringify({ base_tree: baseTree, tree }) });
+  if (!treeRes.ok) throw new Error(`Save failed (${treeRes.status})`);
+  const commitRes = await fetch(`${GITAPI}commits`, {
+    method: "POST", headers: ghHeaders(),
+    body: JSON.stringify({ message, tree: (await treeRes.json()).sha, parents: [headSha] }),
+  });
+  if (!commitRes.ok) throw new Error(`Save failed (${commitRes.status})`);
+  const patchRes = await fetch(`${GITAPI}refs/heads/${encodeURIComponent(BRANCH)}`, {
+    method: "PATCH", headers: ghHeaders(),
+    body: JSON.stringify({ sha: (await commitRes.json()).sha }),
+  });
+  /* someone else committed while we worked: redo on the new head, once */
+  if ((patchRes.status === 409 || patchRes.status === 422) && attempt === 0) return commitFiles(files, message, 1);
+  if (!patchRes.ok) throw new Error(`Save failed (${patchRes.status})`);
+}
+
+/* photo file -> resized JPEG, longest edge maxEdge (matches the site's derivatives) */
+async function processImage(file, maxEdge = 2000, quality = 0.82) {
+  let bmp;
+  try {
+    bmp = await createImageBitmap(file, { imageOrientation: "from-image" });
+  } catch {
+    throw new Error(`Couldn't read ${file.name} — please use a JPG or PNG photo.`);
+  }
+  const scale = Math.min(1, maxEdge / Math.max(bmp.width, bmp.height));
+  const w = Math.max(1, Math.round(bmp.width * scale));
+  const h = Math.max(1, Math.round(bmp.height * scale));
+  const c = document.createElement("canvas");
+  c.width = w; c.height = h;
+  c.getContext("2d").drawImage(bmp, 0, 0, w, h);
+  bmp.close();
+  const blob = await new Promise((res) => c.toBlob(res, "image/jpeg", quality));
+  if (!blob) throw new Error(`Couldn't process ${file.name}.`);
+  const buf = new Uint8Array(await blob.arrayBuffer());
+  let bin = "";
+  for (let i = 0; i < buf.length; i += 0x8000) bin += String.fromCharCode.apply(null, buf.subarray(i, i + 0x8000));
+  return { base64: btoa(bin), blobUrl: URL.createObjectURL(blob) };
+}
+
+function pickFiles(input) {
+  return new Promise((res) => {
+    input.value = "";
+    input.onchange = () => res([...input.files]);
+    input.click();
+  });
+}
+
+async function rawFile(path) {
+  const meta = await getFile(path);
+  return { text: b64decodeUtf8(meta.content), sha: meta.sha };
+}
+
+/* ---------- photos: gallery manager ---------- */
+
+function phNote(msg, cls) {
+  phStatus.className = "ed-ph-status" + (cls ? " " + cls : "");
+  phStatus.textContent = msg;
+}
+
+async function listGallery() {
+  const r = await fetch(`${API}assets/images/portfolio/${curGallery.slug}?ref=${encodeURIComponent(BRANCH)}`, { headers: ghHeaders() });
+  if (!r.ok) throw new Error(`Couldn't load the photo list (${r.status})`);
+  return (await r.json()).filter((f) => /\.(jpe?g|png)$/i.test(f.name));
+}
+
+async function renderPhotos() {
+  phGrid.innerHTML = "<p style='color:var(--ed-mute);font-size:.85rem;'>Loading photos…</p>";
+  let items;
+  try { items = await listGallery(); } catch (err) { phGrid.innerHTML = ""; phNote(err.message, "err"); return; }
+  phGrid.innerHTML = "";
+  for (const it of items) {
+    const d = document.createElement("div");
+    d.className = "ed-ph";
+    const isHero = it.name === curGallery.hero;
+    d.innerHTML =
+      `<img src="${it.download_url}" loading="lazy" alt="">` +
+      (isHero ? `<span class="ed-ph-badge">Opening photo</span>` : "") +
+      `<div class="ed-ph-acts">` +
+      (isHero ? "" : `<button type="button" class="hero" data-act="hero">Make opening photo</button><button type="button" data-act="del">Delete</button>`) +
+      `</div><div class="ed-ph-name">${it.name}</div>`;
+    d.querySelectorAll("button").forEach((b) => {
+      b.addEventListener("click", () => (b.dataset.act === "del" ? deletePhoto(it.name) : makeHero(it.name)));
+    });
+    phGrid.appendChild(d);
+  }
+  if (!items.length) phGrid.innerHTML = "<p style='color:var(--ed-mute);font-size:.85rem;'>No photos yet — add some below.</p>";
+}
+
+async function openPhotos() {
+  if (!curGallery) return;
+  if (!DRYRUN && !token()) { await ensureAuth(); if (!token()) return; }
+  phTitle.textContent = `${curGallery.name} — photos`;
+  phNote("");
+  phModal.hidden = false;
+  renderPhotos();
+}
+
+photosBtn.addEventListener("click", openPhotos);
+phClose.addEventListener("click", () => { phModal.hidden = true; });
+
+phAdd.addEventListener("click", async () => {
+  const files = await pickFiles(filesInput);
+  if (!files.length) return;
+  phAdd.disabled = true;
+  try {
+    const items = await listGallery();
+    let next = 0;
+    const numRe = new RegExp(`^${curGallery.slug}-(\\d+)`);
+    for (const it of items) {
+      const m = it.name.match(numRe);
+      if (m) next = Math.max(next, parseInt(m[1], 10));
+    }
+    const entries = [];
+    for (let i = 0; i < files.length; i++) {
+      phNote(`Preparing photo ${i + 1} of ${files.length}…`);
+      const { base64 } = await processImage(files[i]);
+      next += 1;
+      entries.push({ path: `assets/images/portfolio/${curGallery.slug}/${curGallery.slug}-${String(next).padStart(2, "0")}.jpg`, base64 });
+    }
+    phNote(`Saving ${entries.length} photo${entries.length > 1 ? "s" : ""}…`);
+    await commitFiles(entries, `Add ${entries.length} photo${entries.length > 1 ? "s" : ""} to the ${curGallery.name} gallery via inline editor`);
+    phNote(`Added ✓ On the live page in ~2 minutes`, "ok");
+    renderPhotos();
+  } catch (err) {
+    phNote(err.message, "err");
+  }
+  phAdd.disabled = false;
+});
+
+/* pages that hard-code specific gallery photos; deleting one of those would leave a hole */
+const PHOTO_USAGE_PAGES = ["index.md", "portfolio/index.md", "blog/index.md"];
+
+async function deletePhoto(name) {
+  if (name === curGallery.hero) { phNote("That's the big opening photo — make another photo the opener first.", "err"); return; }
+  phNote("Checking where this photo is used…");
+  try {
+    for (const p of PHOTO_USAGE_PAGES) {
+      if ((await rawFile(p)).text.includes(name)) {
+        phNote(`Not deleted: this photo also appears on ${p === "index.md" ? "the home page" : "the " + p.split("/")[0] + " page"}. Swap it there first (click the photo on that page).`, "err");
+        return;
+      }
+    }
+    if (!window.confirm(`Delete ${name} from the ${curGallery.name} gallery?`)) { phNote(""); return; }
+    phNote("Deleting…");
+    await commitFiles([{ path: `assets/images/portfolio/${curGallery.slug}/${name}`, del: true }], `Remove ${name} from the ${curGallery.name} gallery via inline editor`);
+    phNote("Deleted ✓ Gone from the live page in ~2 minutes", "ok");
+    renderPhotos();
+  } catch (err) {
+    phNote(err.message, "err");
+  }
+}
+
+async function makeHero(name) {
+  try {
+    phNote("Updating the opening photo…");
+    const { text } = await rawFile(curPage);
+    if (!text.includes(curGallery.hero)) throw new Error("Couldn't find the current opening photo in the page — refresh and try again.");
+    const updated = text.split(curGallery.hero).join(name);
+    await commitFiles([{ path: curPage, text: updated }], `Set ${name} as the ${curGallery.name} opening photo via inline editor`);
+    curGallery.hero = name;
+    phNote("Opening photo changed ✓ Live in ~2 minutes", "ok");
+    renderPhotos();
+  } catch (err) {
+    phNote(err.message, "err");
+  }
+}
+
+/* ---------- photos: swap any page image ---------- */
+
+let repTarget = null;
+
+function openReplace(img) {
+  if (!curPage) return;
+  repTarget = { el: img, path: new URL(img.currentSrc || img.src).pathname };
+  repPreview.src = img.currentSrc || img.src;
+  repErr.style.display = "none";
+  repModal.hidden = false;
+}
+
+repCancel.addEventListener("click", () => { repModal.hidden = true; repTarget = null; });
+
+repForm.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  if (!repTarget) return;
+  repErr.style.display = "none";
+  const [file] = await pickFiles(fileInput);
+  if (!file) return;
+  if (!DRYRUN && !token()) { repModal.hidden = true; await ensureAuth(); return; }
+  try {
+    const { text } = await rawFile(curPage);
+    if (!text.includes(repTarget.path)) {
+      throw new Error("This photo is placed by the site's design rather than this page, so it can't be swapped here. Tell Josh which photo you want changed.");
+    }
+    const { base64, blobUrl } = await processImage(file, 2400);
+    const stem = repTarget.path.split("/").pop().replace(/\.[a-z]+$/i, "");
+    const newPath = `assets/images/pages/${stem}-${Date.now().toString(36)}.jpg`;
+    const updated = text.split(repTarget.path).join(`/${newPath}`);
+    await commitFiles(
+      [{ path: newPath, base64 }, { path: curPage, text: updated }],
+      `Swap a photo on ${curPage} via inline editor`
+    );
+    repTarget.el.removeAttribute("srcset");
+    repTarget.el.src = blobUrl;
+    repModal.hidden = true;
+    repTarget = null;
+    statusEl.className = "ed-status ok";
+    statusEl.textContent = DRYRUN ? "Dry run done — nothing committed" : "Photo swapped ✓ Live in ~2 minutes";
+  } catch (err) {
+    repErr.textContent = err.message;
+    repErr.style.display = "block";
+  }
+});
+
+/* ---------- photos: insert into a blog post ---------- */
+
+imginsBtn.addEventListener("click", async () => {
+  const doc = frameDoc();
+  const art = doc && doc.querySelector("[data-ed-post]");
+  if (!art) return;
+  const [file] = await pickFiles(fileInput);
+  if (!file) return;
+  if (!DRYRUN && !token()) { await ensureAuth(); if (!token()) return; }
+  const alt = (window.prompt("Describe the photo in a few words (helps Google find it):", "") || "").trim();
+  statusEl.className = "ed-status";
+  statusEl.textContent = "Adding photo…";
+  try {
+    const { base64, blobUrl } = await processImage(file, 1600);
+    const postPath = art.getAttribute("data-ed-post");
+    const stem = postPath.split("/").pop().replace(/^\d{4}-\d{2}-\d{2}-/, "").replace(/\.md$/, "");
+    const path = `assets/images/blog/${stem}-${Date.now().toString(36)}.jpg`;
+    await commitFiles([{ path, base64 }], `Add a photo to ${postPath.replace(/^_posts\//, "")} via inline editor`);
+
+    if (!editing || editing !== art) startEdit(art);
+    const sel = doc.getSelection();
+    sel.removeAllRanges();
+    if (lastRange && art.contains(lastRange.startContainer)) sel.addRange(lastRange);
+    else { const r = doc.createRange(); r.selectNodeContents(art); r.collapse(false); sel.addRange(r); }
+    const altEsc = escapeHtml(alt).replace(/"/g, "&quot;");
+    /* srcset carries a local preview until deploy; it's stripped on save */
+    doc.execCommand("insertHTML", false, `<p><img src="/${path}" srcset="${blobUrl}" alt="${altEsc}" loading="lazy"></p>`);
+    setPostField(postPath, "body", cleanPostHtml(art), (postBaseline.get(postPath) || {}).body);
+    art.classList.add("gf-dirty");
+    refreshBar();
+    statusEl.className = "ed-status";
+    statusEl.textContent = "Photo added — press Save to publish the post.";
   } catch (err) {
     statusEl.className = "ed-status err";
     statusEl.textContent = err.message;
