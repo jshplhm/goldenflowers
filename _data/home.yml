@@ -21,7 +21,7 @@ why:
     *say I do.*
   facts:
     - number: "01"
-      title: Farm-grown
+      title: Locally grown
       body: Field-grown on our own Nevada County organic and regenerative farm, where
         Brittany's expertise in agronomy and soil science shapes every planting,
         and sourced from local growers we trust.
