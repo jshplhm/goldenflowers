@@ -4,7 +4,7 @@ title: "Kelly & Dylan · Wildflower Modern"
 seo_title: "Kelly & Dylan Wedding Flowers · Wildflower Modern | Golden Flowers"
 permalink: /portfolio/kelly-dylan
 portfolio_key: kelly-dylan
-description: "A Golden Flowers wedding: wildflower modern floral design for a Lake Tahoe and Sierra Nevada celebration."
+description: "Kelly & Dylan at the North Tahoe Event Center: a blue-and-citrus Lake Tahoe beach ceremony with delphinium, anemone, thistle, and orange ranunculus."
 hero_photo: kelly-dylan-08.jpg
 ---
 

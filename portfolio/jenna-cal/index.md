@@ -6,7 +6,7 @@ permalink: /portfolio/jenna-cal
 portfolio_key: jenna-cal
 redirect_from:
   - /portfolio-1/jennaandcal
-description: "A Golden Flowers wedding: elevated minimalist floral design for a Lake Tahoe and Sierra Nevada celebration."
+description: "Jenna & Cal at the National Exchange Hotel in Nevada City: white-and-green wedding flowers with phalaenopsis orchids, magnolia, and hanging red lanterns."
 hero_photo: jenna-cal-15.jpg
 ---
 

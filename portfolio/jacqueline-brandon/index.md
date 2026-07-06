@@ -6,7 +6,7 @@ permalink: /portfolio/jacqueline-brandon
 portfolio_key: jacqueline-brandon
 redirect_from:
   - /portfolio-1/jacquelineandbrandon
-description: "A Golden Flowers wedding: lush & romantic floral design for a Lake Tahoe and Sierra Nevada celebration."
+description: "Jacqueline & Brandon at the National Exchange Hotel: deep crimson roses and red blooms against black velvet and candlelight. Romance turned all the way up."
 hero_photo: jacqueline-brandon-11.jpg
 ---
 

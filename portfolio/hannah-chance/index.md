@@ -4,7 +4,7 @@ title: "Hannah & Chance · Lush & Romantic"
 seo_title: "Hannah & Chance Wedding Flowers · Lush & Romantic | Golden Flowers"
 permalink: /portfolio/hannah-chance
 portfolio_key: hannah-chance
-description: "A Golden Flowers wedding: lush & romantic floral design for a Lake Tahoe and Sierra Nevada celebration."
+description: "Hannah & Chance at The Stone House: full-tilt autumn with rust and oxblood dahlias, sunflowers, and copper foliage against ivy-covered stone."
 hero_photo: hannah-chance-10.jpg
 ---
 

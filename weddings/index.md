@@ -1,9 +1,9 @@
 ---
 layout: redesign
 title: "Weddings"
-seo_title: "Lake Tahoe Wedding Flowers & Wedding Florist | Golden Flowers"
+seo_title: "Lake Tahoe Wedding Flowers & Pricing | Golden Flowers"
 permalink: /weddings
-description: "Golden Flowers is a Lake Tahoe wedding florist designing seasonally grown, foam-free wedding flowers for couples getting married in Lake Tahoe, Truckee, and the Sierra Nevada."
+description: "Golden Flowers designs seasonal, foam-free wedding flowers for Lake Tahoe, Truckee, and the Sierra Nevada. How our process works and what to expect on pricing."
 canonical_url: https://goldenflorals.com/weddings
 redirect_from:
   - /weddingflowers

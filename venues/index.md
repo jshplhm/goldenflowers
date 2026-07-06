@@ -3,7 +3,7 @@ layout: redesign
 title: "Lake Tahoe Wedding Venues"
 seo_title: "Lake Tahoe Wedding Venues We Love | Golden Flowers"
 permalink: /venues
-description: "The Lake Tahoe and Sierra Nevada wedding venues Golden Flowers knows best, from Edgewood Tahoe and the Ritz-Carlton to Palisades High Camp and Martis Camp. Venue-specific, foam-free, California-grown floral design."
+description: "The Lake Tahoe and Sierra Nevada wedding venues Golden Flowers knows best, from Edgewood Tahoe to Palisades High Camp, with venue-specific floral design."
 canonical_url: https://goldenflorals.com/venues
 ---
 

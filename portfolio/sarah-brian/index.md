@@ -6,7 +6,7 @@ permalink: /portfolio/sarah-brian
 portfolio_key: sarah-brian
 redirect_from:
   - /portfolio-1/sarahandbrian
-description: "A Golden Flowers wedding: elevated minimalist floral design for a Lake Tahoe and Sierra Nevada celebration."
+description: "Sarah & Brian at The Miner's Foundry: an all-white, garden-boho wedding with white roses, ranunculus, baby's breath, and hanging greenery against old stone."
 hero_photo: sarah-brian-06.jpg
 ---
 
