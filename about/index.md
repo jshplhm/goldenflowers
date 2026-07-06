@@ -29,7 +29,7 @@ canonical_url: https://goldenflorals.com/about
     <p class="sh-sub"><span data-ed="about:hero.subheading">{{ site.data.about.hero.subheading }}</span></p>
   </div>
   <div class="sh-img">
-    <img src="{{ site.baseurl }}/assets/images/studio-hero.jpg" alt="The Golden Flowers team finishing a wedding installation" loading="eager">
+    <img src="{{ site.baseurl }}/assets/images/our-story.jpg" alt="Brittany of Golden Flowers arranging a floral installation at an outdoor wedding" loading="eager">
   </div>
 </section>
 
@@ -54,7 +54,7 @@ canonical_url: https://goldenflorals.com/about
 <section class="block">
   <div class="story-split rev">
     <div class="ss-img">
-      <img src="{{ site.baseurl }}/assets/images/our-story.jpg" alt="Brittany of Golden Flowers building a wedding installation" loading="lazy">
+      <img src="{{ site.baseurl }}/assets/images/studio-hero.jpg" alt="Brittany of Golden Flowers with a large floral installation" loading="lazy">
     </div>
     <div class="ss-text">
       <span class="lab"><span data-ed="about:one_rule.label">{{ site.data.about.one_rule.label }}</span></span>
@@ -82,7 +82,9 @@ canonical_url: https://goldenflorals.com/about
       </div>
     </div>
     <div class="ss-img">
-      <img src="{{ site.baseurl }}/assets/images/our-story-2.jpg" alt="Brittany of Golden Flowers arranging seasonal blooms at the studio" loading="lazy">
+      <video autoplay muted loop playsinline style="width:100%;height:100%;min-height:clamp(360px,40vw,540px);object-fit:cover;border-radius:4px;display:block;">
+        <source src="{{ site.baseurl }}/assets/videos/team-timelapse.mp4" type="video/mp4">
+      </video>
     </div>
   </div>
 </section>

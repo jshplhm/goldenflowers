@@ -10,9 +10,9 @@ canonical_url: https://goldenflorals.com/
 
 <!-- HERO -->
 <header class="hero">
-  <img class="bg" src="{{ site.baseurl }}/assets/images/portfolio/lynn-aaron/lynn-aaron-19.jpg" alt="Lake Tahoe wedding florals: a floral arch above the lake at Palisades High Camp by Golden Flowers" style="object-position:center 45%;">
+  <img class="bg" src="{{ site.baseurl }}/assets/images/portfolio/kelly-dylan/kelly-dylan-07.jpg" alt="Lake Tahoe beach wedding: bride with veil blowing in the wind, blue delphinium ceremony aisle at Kings Beach" style="object-position:center 50%;">
   <div class="hero-in">
-    <p class="ey lab"><span data-ed="home:hero.eyebrow">{{ site.data.home.hero.eyebrow }}</span></p>
+    {% if site.data.home.hero.eyebrow and site.data.home.hero.eyebrow != "" %}<p class="ey lab"><span data-ed="home:hero.eyebrow">{{ site.data.home.hero.eyebrow }}</span></p>{% endif %}
     <h1 class="disp">{% include em.html t=site.data.home.hero.heading k="home:hero.heading" %}</h1>
     <div class="hero-foot">
       <p class="hero-sub"><span data-ed="home:hero.subheading">{{ site.data.home.hero.subheading }}</span></p>
@@ -72,7 +72,7 @@ canonical_url: https://goldenflorals.com/
 
 <!-- IMMERSIVE -->
 <section class="immersive">
-  <img class="bg" src="{{ site.baseurl }}/assets/images/portfolio/tori-tucker/tori-tucker-05.jpg" alt="Floral ceremony arch on the Lake Tahoe shore by Golden Flowers, mountains across the water">
+  <img class="bg" src="{{ site.baseurl }}/assets/images/portfolio/lynn-aaron/lynn-aaron-19.jpg" alt="First kiss at a mountain wedding ceremony at Palisades High Camp, dramatic floral installations by Golden Flowers">
   <div class="il">
     <span class="lab"><span data-ed="home:immersive.label">{{ site.data.home.immersive.label }}</span></span>
     <p class="disp"><span data-ed="home:immersive.heading">{{ site.data.home.immersive.heading }}</span></p>

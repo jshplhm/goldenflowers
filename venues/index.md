@@ -68,7 +68,7 @@ canonical_url: https://goldenflorals.com/venues
       <g class="t-town" tabindex="0" role="img" aria-label="Tahoe City"><circle class="t-town-dot" cx="154.3" cy="310.6" r="2.4"/><text class="t-clabel" text-anchor="end" x="146" y="314">Tahoe City</text></g>
       <g class="t-town" tabindex="0" role="img" aria-label="Incline Village"><circle class="t-town-dot" cx="451.7" cy="154.3" r="2.4"/><text class="t-clabel" text-anchor="middle" x="451.7" y="145">Incline Village</text></g>
       <g class="t-town" tabindex="0" role="img" aria-label="Tahoma"><circle class="t-town-dot" cx="178.0" cy="500.4" r="2.4"/><text class="t-clabel" text-anchor="end" x="170" y="504">Tahoma</text></g>
-      <g class="t-town" tabindex="0" role="img" aria-label="South Lake Tahoe"><circle class="t-town-dot" cx="403.5" cy="747.4" r="2.4"/><text class="t-clabel" text-anchor="middle" x="404" y="766">South Lake Tahoe</text></g>
+      <g class="t-town" tabindex="0" role="img" aria-label="South Lake Tahoe"><circle class="t-town-dot" cx="403.5" cy="747.4" r="2.4"/><text class="t-clabel" text-anchor="middle" x="397" y="773">South Lake Tahoe</text></g>
 
       <!-- featured venues -->
       <a href="{{ site.baseurl }}/venues/edgewood-tahoe" class="t-pin feat" data-venue="edgewood-tahoe" aria-label="Edgewood Tahoe: view venue"><circle class="t-dot" cx="444.6" cy="693.8" r="6.5"/><text class="t-num" x="444.6" y="697.0">1</text><text class="t-vlabel" x="453.6" y="697.8">Edgewood Tahoe</text></a>

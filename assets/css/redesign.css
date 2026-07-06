@@ -642,7 +642,7 @@ body.nav-hidden .venue-breadcrumb{top:0;}
 .vfl li{margin:0;}
 .vfl a{display:grid;grid-template-columns:auto 1fr;grid-template-rows:auto auto;column-gap:12px;align-items:center;padding:8px 10px 8px 7px;border-radius:9px;transition:background .15s;text-decoration:none;}
 .vfl a:hover,.vfl a.is-active{background:oklch(38% .105 150/.10);}
-.vnum{grid-column:1;grid-row:1 / span 2;align-self:center;width:23px;height:23px;border-radius:50%;background:oklch(50% .01 150/.10);color:var(--fg2);font-family:var(--b);font-size:.72rem;display:flex;align-items:center;justify-content:center;transition:background .15s,color .15s;}
+.vnum{display:none;}
 .vfl a:hover .vnum,.vfl a.is-active .vnum{background:var(--terra);color:var(--paper);}
 .vf-name{grid-column:2;grid-row:1;font-family:var(--d);font-size:1.18rem;line-height:1.2;color:var(--ink);transition:color .15s;}
 .vfl a:hover .vf-name,.vfl a.is-active .vf-name{color:var(--terra);}
@@ -686,8 +686,8 @@ body.nav-hidden .venue-breadcrumb{top:0;}
 .t-pin.t-minor.is-active .t-vlabel{opacity:1;}
 /* inline section-label dot (replaces the old standalone legend) */
 .vlist-dot{display:inline-block;border-radius:50%;vertical-align:middle;margin-right:7px;flex:none;}
-.vlist-dot--feat{width:12px;height:12px;background:var(--terra);}
-.vlist-dot--minor{width:8px;height:8px;background:oklch(38% .105 150/.55);}
+.vlist-dot--feat{width:12px;height:12px;background:var(--ink);}
+.vlist-dot--minor{width:8px;height:8px;background:oklch(22% .015 150/.70);}
 @media(max-width:860px){.vhl,.vhl--minor{columns:2;}}
 .map-legend li{display:flex;align-items:center;gap:13px;margin-bottom:13px;color:var(--fg2);font-size:.96rem;}
 .map-legend .lg-dot{width:18px;height:18px;border-radius:50%;background:var(--terra);border:2px solid var(--paper);box-shadow:0 0 0 1px var(--line);flex:none;}
@@ -699,9 +699,9 @@ body.nav-hidden .venue-breadcrumb{top:0;}
 .t-lab{font-family:var(--b);font-size:8.5px;fill:var(--mute);letter-spacing:.08em;text-transform:uppercase;}
 .t-city circle{fill:var(--mute);}
 .t-city text{font-family:var(--d);font-size:17px;fill:var(--ink);}
-.t-dot{fill:var(--terra);stroke:var(--paper);stroke-width:2.4;cursor:pointer;transition:r .15s ease;}
-.t-dot.sm{fill:oklch(38% .105 150/.55);stroke-width:1.6;cursor:pointer;}
-.t-town-dot{r:2.6;fill:oklch(45% .01 150);stroke:var(--paper);stroke-width:1.2;cursor:pointer;}
+.t-dot{fill:var(--ink);stroke:var(--paper);stroke-width:2.4;cursor:pointer;transition:r .15s ease;}
+.t-dot.sm{fill:oklch(22% .015 150/.70);stroke-width:1.6;cursor:pointer;}
+.t-town-dot{r:2.6;fill:oklch(45% .01 150);stroke:var(--paper);stroke-width:1.2;cursor:pointer;display:none;}
 /* City labels: always on, muted, for geographic orientation (venue names stay hover-only) */
 .t-clabel{font-family:var(--b);font-size:11px;fill:var(--mute);letter-spacing:.02em;opacity:.85;transition:opacity .15s;paint-order:stroke;stroke:var(--paper);stroke-width:3;stroke-linejoin:round;pointer-events:none;}
 .t-town:hover .t-clabel,.t-town:focus .t-clabel{opacity:1;}
@@ -711,7 +711,7 @@ body.nav-hidden .venue-breadcrumb{top:0;}
 /* Featured pins: numbered dots (pair with the numbered list; readable without hover on touch). */
 .t-pin.feat .t-vlabel{font-size:13px;}
 .t-pin.feat .t-dot{r:9;}
-.t-num{font-family:var(--b);font-size:9px;font-weight:600;fill:var(--paper);text-anchor:middle;pointer-events:none;}
+.t-num{font-family:var(--b);font-size:9px;font-weight:600;fill:var(--paper);text-anchor:middle;pointer-events:none;display:none;}
 .t-pin:hover .t-vlabel,.t-pin:focus .t-vlabel{opacity:1;}
 .t-pin.feat:hover .t-vlabel,.t-pin.feat:focus .t-vlabel,.t-pin.feat.is-active .t-vlabel{fill:var(--terra);}
 .t-minor{outline:none;}
