@@ -38,7 +38,9 @@ jobs:
           key: rsp-${{ hashFiles('assets/images/**/*.jpg') }}
           restore-keys: rsp-
       - name: Generate responsive image variants
-        run: bash scripts/make-responsive-variants.sh
+        run: |
+          command -v magick >/dev/null 2>&1 || command -v convert >/dev/null 2>&1 || sudo apt-get install -y --no-install-recommends imagemagick
+          bash scripts/make-responsive-variants.sh
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
 
