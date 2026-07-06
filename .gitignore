@@ -17,3 +17,6 @@ handoff/
 # Local-only source photos (full-res originals — crop/optimize in place, never committed).
 # The web-optimized derivatives live in assets/images/portfolio/ and ARE published.
 assets/images/wedding_photos/
+
+# Internal SEO briefing: local-only, never published
+seo-report/

@@ -584,18 +584,41 @@ newForm.addEventListener("submit", async (e) => {
   }
 });
 
+/* Keep a deleted post's URL working: send it to /blog via jekyll-redirect-from
+ * on blog/index.md, committed before the post itself is removed. */
+async function addBlogRedirect(urlPath, attempt = 0) {
+  const path = "blog/index.md";
+  const meta = await getFile(path);
+  const raw = b64decodeUtf8(meta.content);
+  const m = raw.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n?/);
+  if (!m) throw new Error("blog/index.md has no front matter — redirect not added.");
+  const fmDoc = parseDocument(m[1]);
+  const existing = fmDoc.toJS().redirect_from || [];
+  if (existing.includes(urlPath)) return;
+  if (fmDoc.has("redirect_from")) fmDoc.addIn(["redirect_from"], urlPath);
+  else fmDoc.set("redirect_from", [urlPath]);
+  const out = `---\n${fmDoc.toString().replace(/\n+$/, "")}\n---\n\n${raw.slice(m[0].length).replace(/^\n+/, "")}`;
+  const res = await putFile(path, `Redirect ${urlPath} to /blog (post deleted via inline editor)`, out, meta.sha);
+  if (res.status === 409 && attempt === 0) return addBlogRedirect(urlPath, 1);
+  if (!res.ok) throw new Error(`Couldn't add the redirect (${res.status})`);
+}
+
 delBtn.addEventListener("click", async () => {
   const doc = frameDoc();
   const art = doc && doc.querySelector("[data-ed-post]");
   if (!art) return;
   const path = art.getAttribute("data-ed-post");
   const title = art.getAttribute("data-ed-title") || path;
-  if (!window.confirm(`Delete the post "${title}"?\n\nIt will be removed from the site. This can't be undone from here.`)) return;
+  if (!window.confirm(`Delete the post "${title}"?\n\nIt will be removed from the site, and its old address will redirect to the blog. This can't be undone from here.`)) return;
   if (!DRYRUN && !token()) { await ensureAuth(); if (!token()) return; }
+
+  let postUrl = "";
+  try { postUrl = frame.contentWindow.location.pathname; } catch {}
 
   statusEl.className = "ed-status";
   statusEl.textContent = "Deleting…";
   try {
+    if (postUrl && postUrl !== "/") await addBlogRedirect(postUrl);
     const meta = await getFile(path);
     if (DRYRUN) {
       console.log(`[dryrun] would delete ${path}`);
