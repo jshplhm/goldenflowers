@@ -496,7 +496,9 @@ function keyPath(dotPath) {
 }
 
 async function getFile(path) {
-  const r = await fetch(`${API}${path}?ref=${encodeURIComponent(BRANCH)}`, { headers: ghHeaders() });
+  /* no-store: GitHub's contents API allows 60s of browser caching, which made
+   * read-after-write checks (e.g. "is this photo still used?") see stale files */
+  const r = await fetch(`${API}${path}?ref=${encodeURIComponent(BRANCH)}`, { headers: ghHeaders(), cache: "no-store" });
   if (!r.ok) throw new Error(`Couldn't read ${path} (${r.status})`);
   return r.json();
 }
@@ -798,7 +800,7 @@ function phNote(msg, cls) {
 }
 
 async function listGallery() {
-  const r = await fetch(`${API}assets/images/portfolio/${curGallery.slug}?ref=${encodeURIComponent(BRANCH)}`, { headers: ghHeaders() });
+  const r = await fetch(`${API}assets/images/portfolio/${curGallery.slug}?ref=${encodeURIComponent(BRANCH)}`, { headers: ghHeaders(), cache: "no-store" });
   if (!r.ok) throw new Error(`Couldn't load the photo list (${r.status})`);
   return (await r.json()).filter((f) => /\.(jpe?g|png)$/i.test(f.name));
 }
@@ -876,6 +878,8 @@ async function deletePhoto(name) {
   try {
     for (const p of PHOTO_USAGE_PAGES) {
       if ((await rawFile(p)).text.includes(name)) {
+        /* remember what's being removed so the swap picker won't offer it */
+        sessionStorage.setItem("gfDeleting", name);
         phNote(`Not deleted: this photo also appears on ${p === "index.md" ? "the home page" : "the " + p.split("/")[0] + " page"}. Swap it there first (click the photo on that page).`, "err");
         return;
       }
@@ -884,6 +888,7 @@ async function deletePhoto(name) {
     phNote("Deleting…");
     phGrid.classList.add("busy");
     await commitFiles([{ path: `assets/images/portfolio/${curGallery.slug}/${name}`, del: true }], `Remove ${name} from the ${curGallery.name} gallery via inline editor`);
+    if (sessionStorage.getItem("gfDeleting") === name) sessionStorage.removeItem("gfDeleting");
     /* remove it from the page behind the panel right away */
     const doc = frameDoc();
     doc && doc.querySelectorAll("[data-ed-gallery] img").forEach((im) => {
@@ -955,12 +960,17 @@ function openReplace(img) {
   const m = repTarget.path.match(/^\/assets\/images\/portfolio\/([^/]+)\//);
   if (m) {
     const slug = m[1];
-    fetch(`${API}assets/images/portfolio/${slug}?ref=${encodeURIComponent(BRANCH)}`, { headers: ghHeaders() })
+    fetch(`${API}assets/images/portfolio/${slug}?ref=${encodeURIComponent(BRANCH)}`, { headers: ghHeaders(), cache: "no-store" })
       .then((r) => (r.ok ? r.json() : []))
       .then((items) => {
-        items = items.filter((f) => /\.(jpe?g|png)$/i.test(f.name) && `/${f.path}` !== repTarget.path);
+        /* leave out the photo a blocked delete is trying to remove — clicking
+         * here means "feature this photo", the opposite of deleting it */
+        const deleting = sessionStorage.getItem("gfDeleting");
+        items = items.filter((f) => /\.(jpe?g|png)$/i.test(f.name) && `/${f.path}` !== repTarget.path && f.name !== deleting);
         if (!items.length || repModal.hidden) return;
-        repGalLabel.textContent = `Pick another photo from this wedding's gallery:`;
+        repGalLabel.textContent = deleting
+          ? `Pick the photo to show here instead (${deleting} isn't offered — you're deleting it):`
+          : `Pick another photo from this wedding's gallery to show here instead:`;
         for (const it of items) {
           const t = document.createElement("img");
           t.src = it.download_url;
