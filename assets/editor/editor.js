@@ -1,14 +1,19 @@
 /* Golden Flowers inline site editor.
  *
- * Loads the live site in an iframe and makes every element carrying a
- * data-ed="file:dot.path" attribute click-to-edit. Saves write the changed
- * values back into _data/<file>.yml on GitHub (same files Pages CMS edits),
- * which triggers the normal Actions deploy.
+ * Loads the live site in an iframe and makes three kinds of things editable:
+ *   - data-ed="file:dot.path" spans: page copy stored in _data/<file>.yml
+ *     (same files Pages CMS edits)
+ *   - data-ed-fm="field" data-ed-src="path" spans: a front-matter field of a
+ *     blog post (the title)
+ *   - data-ed-post="path" article: the whole body of a blog post, edited in
+ *     place and saved back as clean HTML
+ * The toolbar can also create and delete blog posts. Every save commits to
+ * GitHub, which triggers the normal Actions deploy.
  *
  * Query params: ?branch=<name> commits to a branch other than main;
  * ?dryrun=1 skips the commit and exposes results on window.__gfDryrun.
  */
-import { parseDocument } from "https://cdn.jsdelivr.net/npm/yaml@2/+esm";
+import { parseDocument, stringify } from "https://cdn.jsdelivr.net/npm/yaml@2/+esm";
 
 const CFG = window.GF_ED;
 const params = new URLSearchParams(location.search);
@@ -20,15 +25,27 @@ const TOKEN_KEY = "gf_ed_token";
 const frame = document.getElementById("ed-frame");
 const saveBtn = document.getElementById("ed-save");
 const discardBtn = document.getElementById("ed-discard");
+const newBtn = document.getElementById("ed-new");
+const delBtn = document.getElementById("ed-del");
 const statusEl = document.getElementById("ed-status");
 const pageEl = document.getElementById("ed-page");
 const loginEl = document.getElementById("ed-login");
 const loginForm = document.getElementById("ed-login-form");
 const loginErr = document.getElementById("ed-login-err");
 const tokenInput = document.getElementById("ed-token");
+const newModal = document.getElementById("ed-new-modal");
+const newForm = document.getElementById("ed-new-form");
+const newTitle = document.getElementById("ed-new-title");
+const newDesc = document.getElementById("ed-new-desc");
+const newErr = document.getElementById("ed-new-err");
+const newCancel = document.getElementById("ed-new-cancel");
 
 /* dirty[key] = new plain-text value with *asterisk* markup */
 const dirty = new Map();
+/* postDirty[path] = { title?, body? } — pending edits to a _posts file */
+const postDirty = new Map();
+/* postBaseline[path] = { title?, body? } — what was on disk before editing */
+const postBaseline = new Map();
 
 /* ---------- auth ---------- */
 
@@ -62,7 +79,7 @@ loginForm.addEventListener("submit", async (e) => {
   }
 });
 
-/* ---------- markup round-trip ---------- */
+/* ---------- markup round-trip (data-ed spans) ---------- */
 
 /* DOM subtree -> "text with *em* and **strong** markers" */
 function serialize(node) {
@@ -97,13 +114,107 @@ function renderValue(v) {
   return h;
 }
 
+function cleanValueOfHtml(html) {
+  const tmp = document.createElement("div");
+  tmp.innerHTML = html;
+  return cleanValue(tmp);
+}
+
+/* ---------- post body round-trip ---------- */
+
+/* Tags that survive a body save; everything else is unwrapped. */
+const POST_TAGS = new Set([
+  "H2", "H3", "H4", "P", "BR", "HR", "UL", "OL", "LI", "A", "STRONG", "EM",
+  "IMG", "BLOCKQUOTE", "FIGURE", "FIGCAPTION", "TABLE", "THEAD", "TBODY", "TR", "TH", "TD",
+]);
+const POST_ATTRS = {
+  A: ["href", "target", "rel"],
+  IMG: ["src", "alt", "loading"],
+  TD: ["colspan", "rowspan"],
+  TH: ["colspan", "rowspan"],
+};
+const BLOCKISH = /^(H[1-6]|P|DIV|UL|OL|LI|BLOCKQUOTE|FIGURE|TABLE|HR|SECTION|ARTICLE)$/;
+
+function normalizeTree(parent) {
+  let n = parent.firstChild;
+  while (n) {
+    const next = n.nextSibling;
+    if (n.nodeType === Node.COMMENT_NODE) {
+      n.remove();
+    } else if (n.nodeType === Node.ELEMENT_NODE) {
+      normalizeTree(n);
+      let tag = n.tagName;
+      if (tag === "B" || tag === "I") {
+        const repl = n.ownerDocument.createElement(tag === "B" ? "strong" : "em");
+        while (n.firstChild) repl.appendChild(n.firstChild);
+        n.replaceWith(repl);
+      } else if (tag === "H1") {
+        const repl = n.ownerDocument.createElement("h2");
+        while (n.firstChild) repl.appendChild(n.firstChild);
+        n.replaceWith(repl);
+      } else if (!POST_TAGS.has(tag)) {
+        const hasBlockChild = [...n.children].some((c) => BLOCKISH.test(c.tagName));
+        if (tag === "DIV" && !hasBlockChild && n.textContent.trim()) {
+          /* contenteditable's default line container -> paragraph */
+          const p = n.ownerDocument.createElement("p");
+          while (n.firstChild) p.appendChild(n.firstChild);
+          n.replaceWith(p);
+        } else {
+          n.replaceWith(...n.childNodes);
+        }
+      } else {
+        for (const a of [...n.attributes]) {
+          const keep = POST_ATTRS[tag];
+          if (!keep || !keep.includes(a.name.toLowerCase())) n.removeAttribute(a.name);
+        }
+        if (tag === "P" && !n.textContent.trim() && !n.querySelector("img")) n.remove();
+      }
+    }
+    n = next;
+  }
+}
+
+/* article DOM -> clean HTML string for the _posts file */
+function cleanPostHtml(articleEl) {
+  const tmp = document.createElement("div");
+  tmp.innerHTML = articleEl.innerHTML;
+  normalizeTree(tmp);
+  return tmp.innerHTML
+    .replace(/<\/(p|h2|h3|h4|ul|ol|blockquote|figure|table)>\s*/gi, "</$1>\n\n")
+    .trim();
+}
+
+/* ---------- dirty bookkeeping ---------- */
+
+function dirtyCount() {
+  let n = dirty.size;
+  for (const v of postDirty.values()) n += Object.keys(v).length;
+  return n;
+}
+
+function setPostField(path, field, value, baseline) {
+  const cur = postDirty.get(path) || {};
+  if (value === baseline) {
+    delete cur[field];
+    if (Object.keys(cur).length === 0) postDirty.delete(path);
+    else postDirty.set(path, cur);
+    return false;
+  }
+  cur[field] = value;
+  postDirty.set(path, cur);
+  return true;
+}
+
 /* ---------- iframe wiring ---------- */
 
+const ED_SEL = "[data-ed],[data-ed-fm]";
 const FRAME_CSS = `
-  [data-ed]{cursor:text;transition:outline-color .12s;outline:1px dashed transparent;outline-offset:3px;}
-  [data-ed]:hover{outline-color:rgba(47,93,58,.75);background:rgba(47,93,58,.06);}
-  [data-ed].gf-editing{outline:2px solid rgba(47,93,58,.95);background:rgba(47,93,58,.07);cursor:text;}
-  [data-ed].gf-dirty{box-shadow:0 0 0 2px rgba(200,150,30,.45);}
+  [data-ed],[data-ed-fm]{cursor:text;transition:outline-color .12s;outline:1px dashed transparent;outline-offset:3px;}
+  [data-ed]:hover,[data-ed-fm]:hover{outline-color:rgba(47,93,58,.75);background:rgba(47,93,58,.06);}
+  [data-ed-post]{transition:outline-color .12s;outline:1px dashed transparent;outline-offset:6px;}
+  [data-ed-post]:hover{outline-color:rgba(47,93,58,.45);}
+  .gf-editing{outline:2px solid rgba(47,93,58,.95) !important;background:rgba(47,93,58,.05);cursor:text;}
+  .gf-dirty{box-shadow:0 0 0 2px rgba(200,150,30,.45);}
 `;
 
 let editing = null;
@@ -112,13 +223,30 @@ function frameDoc() {
   try { return frame.contentDocument; } catch { return null; }
 }
 
+function isPostBody(el) { return el.hasAttribute("data-ed-post"); }
+
 function startEdit(el) {
   if (editing === el) return;
   stopEdit();
   editing = el;
-  /* baseline = the value currently on disk, captured before the first edit */
-  if (el.dataset.gfBaseline === undefined && !dirty.has(el.getAttribute("data-ed"))) {
-    el.dataset.gfBaseline = cleanValueOfHtml(el.innerHTML);
+  if (isPostBody(el)) {
+    const path = el.getAttribute("data-ed-post");
+    const base = postBaseline.get(path) || {};
+    if (base.body === undefined && !(postDirty.get(path) || {}).body) {
+      base.body = cleanPostHtml(el);
+      postBaseline.set(path, base);
+    }
+    try { el.ownerDocument.execCommand("defaultParagraphSeparator", false, "p"); } catch {}
+  } else {
+    /* baseline = the value currently on disk, captured before the first edit */
+    const fmField = el.getAttribute("data-ed-fm");
+    const key = fmField ? el.getAttribute("data-ed-src") + "#" + fmField : el.getAttribute("data-ed");
+    const alreadyDirty = fmField
+      ? (postDirty.get(el.getAttribute("data-ed-src")) || {})[fmField] !== undefined
+      : dirty.has(key);
+    if (el.dataset.gfBaseline === undefined && !alreadyDirty) {
+      el.dataset.gfBaseline = cleanValueOfHtml(el.innerHTML);
+    }
   }
   el.dataset.gfOriginal = el.innerHTML;
   el.classList.add("gf-editing");
@@ -137,29 +265,40 @@ function stopEdit(revert) {
     delete el.dataset.gfOriginal;
     return;
   }
-  const key = el.getAttribute("data-ed");
+
+  if (isPostBody(el)) {
+    const path = el.getAttribute("data-ed-post");
+    const changed = setPostField(path, "body", cleanPostHtml(el), (postBaseline.get(path) || {}).body);
+    el.classList.toggle("gf-dirty", changed);
+    delete el.dataset.gfOriginal;
+    refreshBar();
+    return;
+  }
+
   const val = cleanValue(el);
-  const doc = frameDoc();
-  /* compare against a pristine render of what's on disk for this key */
   const before = el.dataset.gfBaseline !== undefined ? el.dataset.gfBaseline : cleanValueOfHtml(el.dataset.gfOriginal);
-  if (val !== before) {
-    dirty.set(key, val);
-    doc && doc.querySelectorAll(`[data-ed="${CSS.escape(key)}"]`).forEach((n) => {
-      n.classList.add("gf-dirty");
-      if (n !== el) n.innerHTML = renderValue(val);
-    });
+  const doc = frameDoc();
+  const fmField = el.getAttribute("data-ed-fm");
+
+  if (fmField) {
+    const path = el.getAttribute("data-ed-src");
+    const changed = setPostField(path, fmField, val, before);
+    el.classList.toggle("gf-dirty", changed);
   } else {
-    dirty.delete(key);
-    el.classList.remove("gf-dirty");
+    const key = el.getAttribute("data-ed");
+    if (val !== before) {
+      dirty.set(key, val);
+      doc && doc.querySelectorAll(`[data-ed="${CSS.escape(key)}"]`).forEach((n) => {
+        n.classList.add("gf-dirty");
+        if (n !== el) n.innerHTML = renderValue(val);
+      });
+    } else {
+      dirty.delete(key);
+      el.classList.remove("gf-dirty");
+    }
   }
   delete el.dataset.gfOriginal;
   refreshBar();
-}
-
-function cleanValueOfHtml(html) {
-  const tmp = document.createElement("div");
-  tmp.innerHTML = html;
-  return cleanValue(tmp);
 }
 
 function hookFrame() {
@@ -173,6 +312,7 @@ function hookFrame() {
   doc.head.appendChild(style);
 
   try { pageEl.textContent = doc.title || frame.contentWindow.location.pathname; } catch { pageEl.textContent = ""; }
+  delBtn.hidden = !doc.querySelector("[data-ed-post]");
 
   /* re-apply unsaved edits after in-site navigation */
   for (const [key, val] of dirty) {
@@ -181,15 +321,31 @@ function hookFrame() {
       n.classList.add("gf-dirty");
     });
   }
+  for (const [path, edits] of postDirty) {
+    if (edits.body !== undefined) {
+      const art = doc.querySelector(`[data-ed-post="${CSS.escape(path)}"]`);
+      if (art) { art.innerHTML = edits.body; art.classList.add("gf-dirty"); }
+    }
+    if (edits.title !== undefined) {
+      const t = doc.querySelector(`[data-ed-fm="title"][data-ed-src="${CSS.escape(path)}"]`);
+      if (t) { t.textContent = edits.title; t.classList.add("gf-dirty"); }
+    }
+  }
 
   doc.addEventListener(
     "click",
     (e) => {
-      const t = e.target.closest && e.target.closest("[data-ed]");
+      const t = e.target.closest && e.target.closest(ED_SEL);
       if (t) {
         e.preventDefault();
         e.stopPropagation();
         startEdit(t);
+        return;
+      }
+      const body = e.target.closest && e.target.closest("[data-ed-post]");
+      if (body) {
+        if (e.target.closest("a")) e.preventDefault();
+        startEdit(body);
       } else if (editing) {
         stopEdit();
       }
@@ -201,8 +357,9 @@ function hookFrame() {
     "keydown",
     (e) => {
       if (!editing) return;
-      if (e.key === "Enter") { e.preventDefault(); stopEdit(); }
-      else if (e.key === "Escape") { e.preventDefault(); stopEdit(true); }
+      if (e.key === "Escape") { e.preventDefault(); stopEdit(true); }
+      /* Enter commits single-line fields; inside a post body it makes a new paragraph */
+      else if (e.key === "Enter" && !isPostBody(editing)) { e.preventDefault(); stopEdit(); }
     },
     true
   );
@@ -226,7 +383,7 @@ if (frameDoc() && frameDoc().readyState === "complete" && frameDoc().body) hookF
 /* ---------- toolbar ---------- */
 
 function refreshBar() {
-  const n = dirty.size;
+  const n = dirtyCount();
   saveBtn.disabled = n === 0;
   discardBtn.disabled = n === 0;
   saveBtn.textContent = n ? `Save (${n})` : "Save";
@@ -236,13 +393,15 @@ function refreshBar() {
 
 discardBtn.addEventListener("click", () => {
   dirty.clear();
+  postDirty.clear();
+  postBaseline.clear();
   refreshBar();
   statusEl.textContent = "";
   frame.contentWindow.location.reload();
 });
 
 window.addEventListener("beforeunload", (e) => {
-  if (dirty.size) { e.preventDefault(); e.returnValue = ""; }
+  if (dirtyCount()) { e.preventDefault(); e.returnValue = ""; }
 });
 
 /* ---------- saving ---------- */
@@ -273,11 +432,27 @@ function keyPath(dotPath) {
   return dotPath.split(".").map((s) => (/^\d+$/.test(s) ? Number(s) : s));
 }
 
+async function getFile(path) {
+  const r = await fetch(`${API}${path}?ref=${encodeURIComponent(BRANCH)}`, { headers: ghHeaders() });
+  if (!r.ok) throw new Error(`Couldn't read ${path} (${r.status})`);
+  return r.json();
+}
+
+async function putFile(path, message, content, sha) {
+  if (DRYRUN) {
+    window.__gfDryrun = window.__gfDryrun || {};
+    window.__gfDryrun[path] = content;
+    console.log(`[dryrun] would commit ${path}:\n` + content);
+    return { ok: true, status: 200 };
+  }
+  const body = { message, content: b64encodeUtf8(content), branch: BRANCH };
+  if (sha) body.sha = sha;
+  return fetch(`${API}${path}`, { method: "PUT", headers: ghHeaders(), body: JSON.stringify(body) });
+}
+
 async function saveFile(file, entries, attempt = 0) {
   const path = `_data/${file}.yml`;
-  const getRes = await fetch(`${API}${path}?ref=${encodeURIComponent(BRANCH)}`, { headers: ghHeaders() });
-  if (!getRes.ok) throw new Error(`Couldn't read ${path} (${getRes.status})`);
-  const meta = await getRes.json();
+  const meta = await getFile(path);
   const doc = parseDocument(b64decodeUtf8(meta.content));
 
   for (const [dotPath, value] of entries) {
@@ -286,29 +461,34 @@ async function saveFile(file, entries, attempt = 0) {
     doc.setIn(p, value);
   }
 
-  if (DRYRUN) {
-    window.__gfDryrun = window.__gfDryrun || {};
-    window.__gfDryrun[path] = doc.toString();
-    console.log(`[dryrun] would commit ${path}:\n` + doc.toString());
-    return;
-  }
+  const res = await putFile(path, `Update site copy in ${path} via inline editor`, doc.toString(), meta.sha);
+  if (res.status === 409 && attempt === 0) return saveFile(file, entries, 1); // file changed under us: refetch and retry once
+  if (!res.ok) throw new Error(`Couldn't save ${path} (${res.status})`);
+}
 
-  const putRes = await fetch(`${API}${path}`, {
-    method: "PUT",
-    headers: ghHeaders(),
-    body: JSON.stringify({
-      message: `Update site copy in ${path} via inline editor`,
-      content: b64encodeUtf8(doc.toString()),
-      sha: meta.sha,
-      branch: BRANCH,
-    }),
-  });
-  if (putRes.status === 409 && attempt === 0) return saveFile(file, entries, 1); // file changed under us: refetch and retry once
-  if (!putRes.ok) throw new Error(`Couldn't save ${path} (${putRes.status})`);
+async function savePostFile(path, edits, attempt = 0) {
+  const meta = await getFile(path);
+  const raw = b64decodeUtf8(meta.content);
+  const m = raw.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n?/);
+  if (!m) throw new Error(`${path} doesn't look like a blog post.`);
+  let fmText = m[1];
+  let body = raw.slice(m[0].length);
+
+  if (edits.title !== undefined) {
+    const fmDoc = parseDocument(fmText);
+    fmDoc.setIn(["title"], edits.title);
+    fmText = fmDoc.toString().replace(/\n+$/, "");
+  }
+  if (edits.body !== undefined) body = edits.body + "\n";
+
+  const out = `---\n${fmText}\n---\n\n${body.replace(/^\n+/, "")}`;
+  const res = await putFile(path, `Update blog post ${path.replace(/^_posts\//, "")} via inline editor`, out, meta.sha);
+  if (res.status === 409 && attempt === 0) return savePostFile(path, edits, 1);
+  if (!res.ok) throw new Error(`Couldn't save ${path} (${res.status})`);
 }
 
 saveBtn.addEventListener("click", async () => {
-  if (!dirty.size) return;
+  if (!dirtyCount()) return;
   if (!DRYRUN && !token()) { await ensureAuth(); if (!token()) return; }
 
   saveBtn.disabled = true;
@@ -327,7 +507,10 @@ saveBtn.addEventListener("click", async () => {
 
   try {
     for (const [file, entries] of byFile) await saveFile(file, entries);
+    for (const [path, edits] of postDirty) await savePostFile(path, edits);
     dirty.clear();
+    postDirty.clear();
+    postBaseline.clear();
     const doc = frameDoc();
     doc && doc.querySelectorAll(".gf-dirty").forEach((n) => n.classList.remove("gf-dirty"));
     refreshBar();
@@ -337,6 +520,102 @@ saveBtn.addEventListener("click", async () => {
     statusEl.className = "ed-status err";
     statusEl.textContent = err.message;
     refreshBar();
+  }
+});
+
+/* ---------- new & delete post ---------- */
+
+function slugify(t) {
+  return t.toLowerCase()
+    .replace(/['’]/g, "")
+    .replace(/&/g, " and ")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "")
+    .slice(0, 60) || "post";
+}
+
+function localDateStr() {
+  const d = new Date();
+  const p = (x) => String(x).padStart(2, "0");
+  return `${d.getFullYear()}-${p(d.getMonth() + 1)}-${p(d.getDate())}`;
+}
+
+newBtn.addEventListener("click", () => {
+  newErr.style.display = "none";
+  newModal.hidden = false;
+  newTitle.focus();
+});
+
+newCancel.addEventListener("click", () => { newModal.hidden = true; });
+
+newForm.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  newErr.style.display = "none";
+  const title = newTitle.value.trim();
+  if (!title) return;
+  if (!DRYRUN && !token()) { newModal.hidden = true; await ensureAuth(); return; }
+
+  const slug = slugify(title);
+  const date = localDateStr();
+  const path = `_posts/${date}-${slug}.md`;
+  const fm = stringify({
+    layout: "post",
+    title,
+    date,
+    permalink: `/blog/${slug}/`,
+    description: newDesc.value.trim(),
+  });
+  const content = `---\n${fm}---\n\n<p>Write your post here.</p>\n`;
+
+  try {
+    const res = await putFile(path, `New blog post: ${title}`, content);
+    if (res.status === 422) throw new Error("A post with that name already exists — pick a different title.");
+    if (!res.ok) throw new Error(`Couldn't create the post (${res.status}).`);
+    newModal.hidden = true;
+    newTitle.value = "";
+    newDesc.value = "";
+    statusEl.className = "ed-status ok";
+    statusEl.textContent = DRYRUN
+      ? "Dry run done — nothing committed"
+      : `Post created ✓ In ~2 minutes it will be at /blog/${slug}/ — open it there to write it.`;
+  } catch (err) {
+    newErr.textContent = err.message;
+    newErr.style.display = "block";
+  }
+});
+
+delBtn.addEventListener("click", async () => {
+  const doc = frameDoc();
+  const art = doc && doc.querySelector("[data-ed-post]");
+  if (!art) return;
+  const path = art.getAttribute("data-ed-post");
+  const title = art.getAttribute("data-ed-title") || path;
+  if (!window.confirm(`Delete the post "${title}"?\n\nIt will be removed from the site. This can't be undone from here.`)) return;
+  if (!DRYRUN && !token()) { await ensureAuth(); if (!token()) return; }
+
+  statusEl.className = "ed-status";
+  statusEl.textContent = "Deleting…";
+  try {
+    const meta = await getFile(path);
+    if (DRYRUN) {
+      console.log(`[dryrun] would delete ${path}`);
+    } else {
+      const res = await fetch(`${API}${path}`, {
+        method: "DELETE",
+        headers: ghHeaders(),
+        body: JSON.stringify({ message: `Delete blog post ${path.replace(/^_posts\//, "")} via inline editor`, sha: meta.sha, branch: BRANCH }),
+      });
+      if (!res.ok) throw new Error(`Couldn't delete the post (${res.status}).`);
+    }
+    postDirty.delete(path);
+    postBaseline.delete(path);
+    refreshBar();
+    statusEl.className = "ed-status ok";
+    statusEl.textContent = DRYRUN ? "Dry run done — nothing deleted" : "Post deleted ✓ It disappears from the site in ~2 minutes";
+    frame.src = `${CFG.baseurl}/blog`;
+  } catch (err) {
+    statusEl.className = "ed-status err";
+    statusEl.textContent = err.message;
   }
 });
 

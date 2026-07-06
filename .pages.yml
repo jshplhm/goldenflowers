@@ -425,6 +425,59 @@ content:
       - {name: hannah-chance, label: "Hannah & Chance", type: text}
       - {name: jacqueline-brandon, label: "Jacqueline & Brandon", type: text}
 
+  - name: portfolio_page
+    label: Portfolio page
+    type: file
+    path: _data/portfolio_page.yml
+    format: yaml
+    icon: layout-grid
+    fields:
+      - name: header
+        label: Page header
+        type: object
+        fields:
+          - {name: label, label: "Small label", type: string}
+          - {name: heading, label: "Headline", type: string, description: "*asterisks* = italics"}
+          - {name: subheading, label: "Sub-headline", type: text}
+      - name: groups
+        label: The three aesthetics
+        type: object
+        fields:
+          - name: lush_romantic
+            label: "01 · Lush & Romantic"
+            type: object
+            fields:
+              - {name: title, label: "Title", type: string}
+              - {name: blurb, label: "Blurb", type: text}
+          - name: elevated_minimalist
+            label: "02 · Elevated Minimalist"
+            type: object
+            fields:
+              - {name: title, label: "Title", type: string}
+              - {name: blurb, label: "Blurb", type: text}
+          - name: wildflower_modern
+            label: "03 · Wildflower Modern"
+            type: object
+            fields:
+              - {name: title, label: "Title", type: string}
+              - {name: blurb, label: "Blurb", type: text}
+      - name: cta
+        label: Bottom call-to-action
+        type: object
+        fields:
+          - {name: label, label: "Small label", type: string}
+          - {name: heading, label: "Heading", type: string, description: "*asterisks* = italics"}
+          - {name: body, label: "Text", type: text}
+          - {name: button, label: "Button text", type: string}
+      - name: wedding_cta
+        label: Call-to-action on each wedding page
+        type: object
+        fields:
+          - {name: label, label: "Small label", type: string}
+          - {name: heading, label: "Heading", type: string, description: "*asterisks* = italics"}
+          - {name: body, label: "Text", type: text}
+          - {name: button, label: "Button text", type: string}
+
   - name: testimonials
     label: Reviews (carousel)
     type: file
@@ -568,6 +621,37 @@ content:
               - name: a
                 label: Answer (basic HTML like <strong> and <br> is allowed)
                 type: text
+
+  - name: blog_page
+    label: Blog page
+    type: file
+    path: _data/blog_page.yml
+    format: yaml
+    icon: newspaper
+    fields:
+      - name: hero
+        label: Hero (very top)
+        type: object
+        fields:
+          - {name: label, label: "Small label", type: string}
+          - {name: heading, label: "Headline", type: string, description: "*asterisks* = italics"}
+          - {name: subheading, label: "Sub-headline", type: text}
+      - name: cta
+        label: Bottom call-to-action
+        type: object
+        fields:
+          - {name: label, label: "Small label", type: string}
+          - {name: heading, label: "Heading", type: string, description: "*asterisks* = italics"}
+          - {name: body, label: "Text", type: text}
+          - {name: button, label: "Button text", type: string}
+      - name: post_cta
+        label: Call-to-action at the bottom of every post
+        type: object
+        fields:
+          - {name: label, label: "Small label", type: string}
+          - {name: heading, label: "Heading", type: string, description: "*asterisks* = italics"}
+          - {name: body, label: "Text", type: text}
+          - {name: button, label: "Button text", type: string}
 
   - name: posts
     label: Blog Posts

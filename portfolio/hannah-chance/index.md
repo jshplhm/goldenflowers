@@ -20,9 +20,4 @@ hero_photo: hannah-chance-10.jpg
 
 {% include portfolio-gallery.html slug="hannah-chance" hero="hannah-chance-10.jpg" name="Hannah & Chance" %}
 
-<section class="cta">
-  <span class="lab">Planning something like this?</span>
-  <h2 class="disp">Tell us your <em>date.</em></h2>
-  <p>We take one wedding per date. Send your date and venue and we'll let you know if we're open.</p>
-  <a class="btn btn-ink" href="{{ site.baseurl }}/consultation-form">Check your date <span>&rarr;</span></a>
-</section>
+{% include wedding-cta.html %}
