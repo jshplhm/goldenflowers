@@ -1,19 +1,20 @@
 hero:
   eyebrow: Lake Tahoe Wedding Florist
-  heading: Flowers That Belong to the *Place They Grow.*
-  subheading: Sustainably grown floral artistry for weddings across Lake Tahoe
+  heading: Flowers That Belong to *Where The Are Grown*
+  subheading: Artful and sustainable floral design for weddings across Lake Tahoe
     and the Sierra Nevada.
   button: Check your date
 intro:
-  paragraph1: Golden Flowers is a Lake Tahoe wedding florist creating elevated,
-    sustainably grown floral artistry for couples getting married across the
-    Sierra Nevada. We work with what California grows at its peak, in the season
-    you're getting married, and we design around it, so the flowers belong to
-    the place you're saying yes in.
-  paragraph2: To us, every wedding is a unique piece of art. Our designs are
-    refined and organic, grounded in texture and movement, curated around your
-    venue and your season, and grown as close to the Sierra Nevada as the
-    year allows.
+  paragraph1: 'Golden Flowers is a luxury Lake Tahoe wedding florist creating
+    elevated, artful and sustainable floral design for couples getting married
+    across the Sierra Nevada. Our philosophy is simple: we design around what
+    California grows best at the moment you get married. By sourcing seasonally
+    and locally, we ensure your flowers belong completely to the landscape where
+    you say "I do."'
+  paragraph2: Every wedding has a unique vision and is a piece of art. Our designs
+    are refined and organic, grounded in texture and movement, curated around
+    your venue and your season. The flowers we use to create are grown as close
+    to the Sierra Nevada as the year allows.
 why:
   label: Why Golden Flowers
   heading: We grow our own flowers on California soil, an hour from where you'll
@@ -21,13 +22,13 @@ why:
   facts:
     - number: "01"
       title: Farm-grown
-      body: Cultivated on our own California farm, where Brittany's training in
-        agronomy and soil science shapes every planting, and sourced from growers
-        we trust.
+      body: Field-grown on our own Nevada County organic and regenerative farm, where
+        Brittany's expertise in agronomy and soil science shapes every planting,
+        and sourced from local growers we trust.
     - number: "02"
       title: Sustainable, always
-      body: Seasonal sourcing, reusable mechanics, and growing practices that give
-        back to the soil. Our full pledge is written down, in public.
+      body: Seasonal sourcing, foam-free, reusable mechanics, and growing practices
+        that give back to the soil. Our full pledge is written down, in public.
     - number: "03"
       title: One wedding a day
       body: We never double-book. Our full team spends the day on your wedding and
@@ -46,10 +47,10 @@ aesthetics:
   heading: Three design languages we keep returning to.
   cards:
     - title: Lush & Romantic
-      body: Rich and cinematic, in deep shades of burgundy and plum.
+      body: Rich and cinematic.
       link: View weddings
     - title: Elevated Minimalist
-      body: Clean lines, ivory and sage. Design that lets the view do the talking.
+      body: Clean lines, ivory and sage.
       link: View weddings
     - title: Wildflower Modern
       body: Native blooms and grasses, styled with an editorial eye.
