@@ -1,0 +1,27 @@
+# Portfolio page copy. Editable in Pages CMS and the inline editor (/edit).
+# *single asterisks* = italic, **double** = bold.
+header:
+  label: "Portfolio"
+  heading: "Real weddings. *Three directions.*"
+  subheading: "Lake Tahoe and the Sierra Nevada, grouped by the three directions couples ask for most. A starting point. We design in every style."
+groups:
+  lush_romantic:
+    title: "Lush & Romantic"
+    blurb: "Rich and cinematic, in deep shades of burgundy and plum."
+  elevated_minimalist:
+    title: "Elevated Minimalist"
+    blurb: "Clean lines, ivory and sage. Design that lets the view do the talking."
+  wildflower_modern:
+    title: "Wildflower Modern"
+    blurb: "Native blooms and grasses, styled with an editorial eye."
+cta:
+  label: "Something different in mind?"
+  heading: "We work in *every direction.*"
+  body: "These three are only a starting point. Bring your Pinterest board, a venue photo, or a feeling you can't quite name yet, and we'll design from there."
+  button: "Share your inspiration"
+# Shared closing CTA on every individual wedding page.
+wedding_cta:
+  label: "Planning something like this?"
+  heading: "Tell us your *date.*"
+  body: "We take one wedding per date. Send your date and venue and we'll let you know if we're open."
+  button: "Check your date"

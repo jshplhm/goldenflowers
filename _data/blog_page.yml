@@ -1,0 +1,17 @@
+# Blog copy. Editable in Pages CMS and the inline editor (/edit).
+# *single asterisks* = italic, **double** = bold.
+hero:
+  label: "Blog"
+  heading: "Flowers, farming & the *Sierra Nevada.*"
+  subheading: "Seasonal notes, wedding inspiration, and thoughts from the farm."
+cta:
+  label: "One wedding per date"
+  heading: "Planning your *Sierra wedding?*"
+  body: "Tell us your date and venue, and we'll let you know if we're available."
+  button: "Check your date"
+# CTA at the bottom of every blog post.
+post_cta:
+  label: "Get started"
+  heading: "Ready to design your wedding florals?"
+  body: "Tell us your date and venue, and we'll let you know if it's open."
+  button: "Schedule a Consultation"

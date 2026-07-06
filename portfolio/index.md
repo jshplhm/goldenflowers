@@ -57,17 +57,17 @@ redirect_from:
 
 <!-- TEXT HEADER (no full hero: on Portfolio, the work is the hero) -->
 <header class="text-hero">
-  <span class="lab">Portfolio</span>
-  <h1>Real weddings. <em>Three directions.</em></h1>
-  <p class="th-sub">Lake Tahoe and the Sierra Nevada, grouped by the three directions couples ask for most. A starting point. We design in every style.</p>
+  <span class="lab"><span data-ed="portfolio_page:header.label">{{ site.data.portfolio_page.header.label }}</span></span>
+  <h1>{% include em.html t=site.data.portfolio_page.header.heading k="portfolio_page:header.heading" %}</h1>
+  <p class="th-sub"><span data-ed="portfolio_page:header.subheading">{{ site.data.portfolio_page.header.subheading }}</span></p>
 </header>
 
 <!-- Lush & Romantic -->
 <section class="pf-group" id="lush-romantic">
   <div class="pf-group-head">
     <span class="lab">01 / Aesthetic</span>
-    <h2>Lush &amp; Romantic</h2>
-    <p>Rich and cinematic, in deep shades of burgundy and plum.</p>
+    <h2><span data-ed="portfolio_page:groups.lush_romantic.title">{{ site.data.portfolio_page.groups.lush_romantic.title }}</span></h2>
+    <p><span data-ed="portfolio_page:groups.lush_romantic.blurb">{{ site.data.portfolio_page.groups.lush_romantic.blurb }}</span></p>
   </div>
   <div class="pf-grid">
     <a class="pf-card" href="{{ site.baseurl }}/portfolio/katie-james">
@@ -93,8 +93,8 @@ redirect_from:
 <section class="pf-group" id="elevated-minimalist">
   <div class="pf-group-head">
     <span class="lab">02 / Aesthetic</span>
-    <h2>Elevated Minimalist</h2>
-    <p>Clean lines, ivory and sage. Design that lets the view do the talking.</p>
+    <h2><span data-ed="portfolio_page:groups.elevated_minimalist.title">{{ site.data.portfolio_page.groups.elevated_minimalist.title }}</span></h2>
+    <p><span data-ed="portfolio_page:groups.elevated_minimalist.blurb">{{ site.data.portfolio_page.groups.elevated_minimalist.blurb }}</span></p>
   </div>
   <div class="pf-grid">
     <a class="pf-card" href="{{ site.baseurl }}/portfolio/emma-ross">
@@ -120,8 +120,8 @@ redirect_from:
 <section class="pf-group" id="wildflower-modern">
   <div class="pf-group-head">
     <span class="lab">03 / Aesthetic</span>
-    <h2>Wildflower Modern</h2>
-    <p>Native blooms and grasses, styled with an editorial eye.</p>
+    <h2><span data-ed="portfolio_page:groups.wildflower_modern.title">{{ site.data.portfolio_page.groups.wildflower_modern.title }}</span></h2>
+    <p><span data-ed="portfolio_page:groups.wildflower_modern.blurb">{{ site.data.portfolio_page.groups.wildflower_modern.blurb }}</span></p>
   </div>
   <div class="pf-grid">
     <a class="pf-card" href="{{ site.baseurl }}/portfolio/camille-max">
@@ -144,8 +144,8 @@ redirect_from:
 </section>
 
 <section class="cta">
-  <span class="lab">Something different in mind?</span>
-  <h2 class="disp">We work in <em>every direction.</em></h2>
-  <p>These three are only a starting point. Bring your Pinterest board, a venue photo, or a feeling you can't quite name yet, and we'll design from there.</p>
-  <a class="btn btn-ink" href="{{ site.baseurl }}/consultation-form">Share your inspiration <span>&rarr;</span></a>
+  <span class="lab"><span data-ed="portfolio_page:cta.label">{{ site.data.portfolio_page.cta.label }}</span></span>
+  <h2 class="disp">{% include em.html t=site.data.portfolio_page.cta.heading k="portfolio_page:cta.heading" %}</h2>
+  <p><span data-ed="portfolio_page:cta.body">{{ site.data.portfolio_page.cta.body }}</span></p>
+  <a class="btn btn-ink" href="{{ site.baseurl }}/consultation-form"><span data-ed="portfolio_page:cta.button">{{ site.data.portfolio_page.cta.button }}</span> <span>&rarr;</span></a>
 </section>

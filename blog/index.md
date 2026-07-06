@@ -15,10 +15,10 @@ redirect_from:
 <header class="hero hero-sm">
   <img class="bg" src="{{ site.baseurl }}/assets/images/portfolio/kelly-dylan/kelly-dylan-05.jpg" alt="Seasonal California-grown wedding florals by Golden Flowers" style="object-position:center 45%;">
   <div class="hero-in">
-    <p class="ey lab">Blog</p>
-    <h1 class="disp">Flowers, farming &amp; the <em>Sierra Nevada.</em></h1>
+    <p class="ey lab"><span data-ed="blog_page:hero.label">{{ site.data.blog_page.hero.label }}</span></p>
+    <h1 class="disp">{% include em.html t=site.data.blog_page.hero.heading k="blog_page:hero.heading" %}</h1>
     <div class="hero-foot">
-      <p class="hero-sub">Seasonal notes, wedding inspiration, and thoughts from the farm.</p>
+      <p class="hero-sub"><span data-ed="blog_page:hero.subheading">{{ site.data.blog_page.hero.subheading }}</span></p>
     </div>
   </div>
 </header>
@@ -44,10 +44,10 @@ redirect_from:
 </section>
 
 <section class="cta">
-  <span class="lab">One wedding per date</span>
-  <h2 class="disp">Planning your <em>Sierra wedding?</em></h2>
-  <p>Tell us your date and venue, and we'll let you know if we're available.</p>
-  <a class="btn btn-ink" href="{{ site.baseurl }}/consultation-form">Check your date <span>&rarr;</span></a>
+  <span class="lab"><span data-ed="blog_page:cta.label">{{ site.data.blog_page.cta.label }}</span></span>
+  <h2 class="disp">{% include em.html t=site.data.blog_page.cta.heading k="blog_page:cta.heading" %}</h2>
+  <p><span data-ed="blog_page:cta.body">{{ site.data.blog_page.cta.body }}</span></p>
+  <a class="btn btn-ink" href="{{ site.baseurl }}/consultation-form"><span data-ed="blog_page:cta.button">{{ site.data.blog_page.cta.button }}</span> <span>&rarr;</span></a>
 </section>
 
 <script>

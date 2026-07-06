@@ -13,7 +13,7 @@ layout: redesign
 <!-- Blog Post Header -->
 <header class="blog-header">
   <span class="blog-category">{{ page.category | default: 'Blog' }}</span>
-  <h1 class="blog-title">{{ page.title }}</h1>
+  <h1 class="blog-title"><span data-ed-fm="title" data-ed-src="{{ page.path }}">{{ page.title }}</span></h1>
   <div class="blog-meta">
     <!-- Date hidden from readers per migration strategy -->
     <span>By Brittany · Golden Flowers</span>
@@ -31,14 +31,14 @@ layout: redesign
 {% endif %}
 
 <!-- Blog Body -->
-<article class="blog-body">
+<article class="blog-body" data-ed-post="{{ page.path }}" data-ed-title="{{ page.title | escape }}">
   {{ content }}
 </article>
 
 <!-- Post-specific CTA -->
 <div class="cta-section">
-  <span class="label" style="display:block;text-align:center">Get started</span>
-  <h2>Ready to design your wedding florals?</h2>
-  <p>Tell us your date and venue, and we'll let you know if it's open.</p>
-  <a href="{{ site.baseurl }}/consultation-form" class="btn-primary" data-consult-open>Schedule a Consultation</a>
+  <span class="label" style="display:block;text-align:center"><span data-ed="blog_page:post_cta.label">{{ site.data.blog_page.post_cta.label }}</span></span>
+  <h2>{% include em.html t=site.data.blog_page.post_cta.heading k="blog_page:post_cta.heading" %}</h2>
+  <p><span data-ed="blog_page:post_cta.body">{{ site.data.blog_page.post_cta.body }}</span></p>
+  <a href="{{ site.baseurl }}/consultation-form" class="btn-primary" data-consult-open><span data-ed="blog_page:post_cta.button">{{ site.data.blog_page.post_cta.button }}</span></a>
 </div>
