@@ -444,7 +444,9 @@ body.lb-open{overflow:hidden;}
 .testi-row{display:flex;gap:24px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;padding:4px 2px 18px;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
 .testi-row::-webkit-scrollbar{display:none;}
 .testi-row .quote-card{flex:0 0 clamp(270px,30%,380px);scroll-snap-align:start;display:flex;flex-direction:column;}
-.testi-row .quote-card p{flex:1;}
+/* Only the quote stretches; the attribution is also a <p>, so exclude it or it
+   grows too and the name floats at a height that depends on the quote length. */
+.testi-row .quote-card p:not(.src){flex:1;}
 .testi-row .quote-card .src{margin-top:auto;}
 
 /* ---------- FAQ ---------- */
@@ -643,7 +645,6 @@ body.nav-hidden .venue-breadcrumb{top:0;}
   .mh-map{grid-column:1;grid-row:2;align-self:auto;}
   .mh-body{grid-column:1;grid-row:3;padding-top:0;}
   .map-hero .tahoe{max-width:520px;}
-  .t-num{display:none;}
   .testi-controls{display:none;}
 }
 .map-legend{list-style:none;margin:26px 0 0;}
@@ -697,9 +698,11 @@ body.nav-hidden .venue-breadcrumb{top:0;}
 .vhl--minor li{margin-bottom:7px;}
 .vhl--minor span{font-family:var(--b);font-size:.95rem;line-height:1.25;color:var(--fg2);cursor:pointer;transition:color .15s;display:inline-block;border-bottom:1px solid transparent;}
 .vhl--minor span:hover,.vhl--minor span.is-active{color:var(--terra);border-bottom-color:var(--terra);}
-.t-pin.is-active .t-dot{r:11.5;fill:oklch(30% .11 150);stroke-width:3;}
-.t-pin.is-active .t-vlabel{fill:var(--terra);opacity:1;}
-.t-pin.t-minor.is-active .t-dot.sm{r:6;fill:var(--terra);}
+/* Map activation stays in the map's own palette (ink dot, cream halo, size + label)
+   — green accents live on the cream list side only; dark green on the lake blue clashed. */
+.t-pin.is-active .t-dot{r:11.5;fill:var(--ink);stroke-width:3;}
+.t-pin.is-active .t-vlabel{fill:var(--ink);opacity:1;}
+.t-pin.t-minor.is-active .t-dot.sm{r:6;fill:var(--ink);}
 .t-pin.t-minor.is-active .t-vlabel{opacity:1;}
 /* inline section-label dot (replaces the old standalone legend) */
 .vlist-dot{display:inline-block;border-radius:50%;vertical-align:middle;margin-right:7px;flex:none;}
@@ -725,15 +728,24 @@ body.nav-hidden .venue-breadcrumb{top:0;}
 .t-clabel{font-family:var(--b);font-size:11px;fill:var(--mute);letter-spacing:.02em;opacity:.85;transition:opacity .15s;paint-order:stroke;stroke:var(--paper);stroke-width:3;stroke-linejoin:round;pointer-events:none;}
 .t-town:hover .t-clabel,.t-town:focus .t-clabel{opacity:1;}
 .t-town{outline:none;cursor:pointer;}
-.t-pin:hover .t-dot{r:11.5;fill:oklch(30% .11 150);stroke-width:3;}
+.t-pin:hover .t-dot{r:11.5;fill:var(--ink);stroke-width:3;}
 .t-vlabel{font-family:var(--b);font-size:13px;fill:var(--ink);opacity:0;transition:opacity .15s,fill .15s;paint-order:stroke;stroke:var(--paper);stroke-width:3.5;stroke-linejoin:round;pointer-events:none;}
 /* Featured pins: numbered dots (pair with the numbered list; readable without hover on touch). */
 .t-pin.feat .t-vlabel{font-size:13px;}
 .t-pin.feat .t-dot{r:9;}
 .t-num{font-family:var(--b);font-size:9px;font-weight:600;fill:var(--paper);text-anchor:middle;pointer-events:none;display:none;}
 .t-pin:hover .t-vlabel,.t-pin:focus .t-vlabel{opacity:1;}
-.t-pin.feat:hover .t-vlabel,.t-pin.feat:focus .t-vlabel,.t-pin.feat.is-active .t-vlabel{fill:var(--terra);}
+.t-pin.feat:hover .t-vlabel,.t-pin.feat:focus .t-vlabel,.t-pin.feat.is-active .t-vlabel{fill:var(--ink);}
 .t-minor{outline:none;}
+/* No hover on touch: light up the built-in numbered pairing instead —
+   numbered dots on the map ↔ numbered chips in the featured list.
+   (Must sit after the base .t-num/.vnum/.t-dot rules to win the cascade.) */
+@media(max-width:860px){
+  .t-num{display:block;font-size:14px;transform:translateY(1.5px);}
+  .t-pin.feat .t-dot{r:14;}
+  .t-pin:hover .t-dot,.t-pin.is-active .t-dot{r:14;}
+  .vnum{display:flex;align-items:center;justify-content:center;grid-row:1/span 2;width:22px;height:22px;border-radius:50%;background:var(--ink);color:var(--paper);font-size:.7rem;font-weight:600;}
+}
 /* SEO / no-JS venue list */
 .venue-list{display:grid;grid-template-columns:repeat(3,1fr);gap:0 clamp(30px,4vw,60px);margin-top:clamp(28px,4vw,44px);}
 .venue-list a{display:flex;align-items:baseline;gap:12px;padding:18px 2px;border-top:1px solid var(--line);}
