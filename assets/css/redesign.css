@@ -49,13 +49,16 @@ nav.site-nav.over-hero :focus-visible,body.menu-open nav.site-nav :focus-visible
 .site-footer :focus-visible,.mobile-menu :focus-visible,.lb :focus-visible{outline-color:currentColor;}
 
 /* ---------- NAV ---------- */
-nav.site-nav{position:fixed;top:0;left:0;right:0;z-index:55;height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;padding:0 var(--pad-col);color:var(--ink);background:var(--bg);border-bottom:1px solid var(--line);transition:transform .4s ease,background .3s ease,color .3s ease,border-color .3s ease;}
+/* Hide/reveal animates `top` (not transform) so it shares the main-thread pipeline
+   with the sticky breadcrumb's `top` transition — the two edges are computed in the
+   same style pass every frame and can never drift apart mid-animation. */
+nav.site-nav{position:fixed;top:0;left:0;right:0;z-index:55;height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;padding:0 var(--pad-col);color:var(--ink);background:var(--bg);border-bottom:1px solid var(--line);transition:top .4s ease,background .3s ease,color .3s ease,border-color .3s ease;}
 /* Don't animate the header on initial paint. Transitions enable after first frame. */
 nav.site-nav:not(.nav-anim){transition:none;}
-body.menu-open nav.site-nav{background:transparent;border-bottom-color:transparent;color:var(--paper);transform:none;}
+body.menu-open nav.site-nav{background:transparent;border-bottom-color:transparent;color:var(--paper);top:0;}
 /* Over a full-bleed hero (home/blog/sustainability): transparent until scrolled. Position is identical to the solid state. */
 nav.site-nav.over-hero{background:transparent;color:var(--paper);border-bottom-color:transparent;}
-nav.site-nav.up{transform:translateY(-100%);}
+nav.site-nav.up{top:calc(-1 * var(--nav-h));}
 .brand{font-family:var(--d);font-size:1.62rem;letter-spacing:-.01em;}
 .nav-r{display:flex;gap:36px;align-items:center;}
 .nav-r a:not(.pill){font-size:.84rem;letter-spacing:.02em;opacity:.92;position:relative;padding-bottom:3px;}

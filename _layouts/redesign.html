@@ -140,6 +140,11 @@
     last=y; ticking=false;
   }
   update();
+  /* Keyboard users can Tab into the nav while it's hidden off-screen — reveal it. */
+  nav.addEventListener('focusin', function(){
+    nav.classList.remove('up');
+    document.body.classList.remove('nav-hidden');
+  });
   /* Enable transitions only after the header paints in its correct state,
      so navigating between pages doesn't look like a slow load. */
   requestAnimationFrame(function(){ requestAnimationFrame(function(){ nav.classList.add('nav-anim'); }); });
