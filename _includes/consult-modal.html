@@ -1,36 +1,3 @@
-<!-- Venue suggestions: the 13 venues with dedicated pages (site.data.venues)
-     plus everyone else listed on /venues that doesn't have its own page (the
-     "more around the lake" and foothills lists there). Those two lists live
-     as plain text in venues/index.md, not in a data file, so if that page's
-     lists change, mirror the change here too. -->
-<datalist id="venue-list">
-  {%- for v in site.data.venues %}
-  <option value="{{ v[1].venue_name }}">
-  {%- endfor %}
-  <option value="Tahoe Blue Estate">
-  <option value="West Shore Cafe">
-  <option value="Everline">
-  <option value="Olympic Valley Stables">
-  <option value="Zephyr Lodge">
-  <option value="The Chateau">
-  <option value="The Landing">
-  <option value="Sunnyside">
-  <option value="Lahontan">
-  <option value="PlumpJack">
-  <option value="OVEC">
-  <option value="The Ridge Tahoe">
-  <option value="Round Hill Pines Beach Resort">
-  <option value="Zephyr Cove Resort">
-  <option value="The Hideout at Kirkwood">
-  <option value="Kirkwood Mountain Resort">
-  <option value="National Exchange Hotel">
-  <option value="Miners Foundry">
-  <option value="Holbrooke Hotel">
-  <option value="The Stone House">
-  <option value="The North Star House">
-  <option value="Harmony Ridge Lodge">
-  <option value="The Roth Estate">
-</datalist>
 <div class="modal-overlay" id="consult-modal" aria-hidden="true">
   <div class="modal" role="dialog" aria-modal="true" aria-labelledby="consult-modal-title" data-form-wrap>
     <button class="modal-close" type="button" aria-label="Close" data-consult-close>&times;</button>
@@ -39,6 +6,7 @@
     <p class="modal-intro">We reply within 48 hours · complimentary, by phone or video.</p>
     <form action="{{ site.consult_endpoint }}" method="POST" data-multistep data-ajax>
       <span class="form-step-indicator" aria-hidden="true">Step 1 of 2</span>
+      <p class="form-required-note">* Required</p>
       <div class="hp-wrap" aria-hidden="true">
         <label for="m-hp">Company</label>
         <input type="text" id="m-hp" name="gf_hp" tabindex="-1" autocomplete="off">
@@ -65,7 +33,7 @@
         <button type="button" class="form-back" data-form-back>&larr; Back</button>
         <div class="field-full">
           <label for="m-venue">Venue</label>
-          <input type="text" id="m-venue" name="venue" list="venue-list" placeholder="Search or type your venue" autocomplete="off">
+          <input type="text" id="m-venue" name="venue" placeholder="If you know it yet" autocomplete="off">
         </div>
         <div class="field-full">
           <label for="m-aesthetic">Aesthetic direction</label>
@@ -92,7 +60,7 @@
         </div>
         <div class="field-full">
           <label for="m-message">Tell us about your wedding</label>
-          <textarea id="m-message" name="message" placeholder="Your venue, your vision, anything that matters to you." rows="3"></textarea>
+          <textarea id="m-message" name="message" placeholder="Your vision, anything that matters to you." rows="3"></textarea>
         </div>
         <div class="form-submit field-full">
           <button type="submit" class="btn-primary">Send consultation request</button>

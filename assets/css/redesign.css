@@ -496,6 +496,13 @@ body.lb-open{overflow:hidden;}
 .form-section{max-width:640px;margin:0 auto;padding:clamp(36px,4vw,56px) var(--pad) clamp(70px,9vw,120px);}
 .form-section form{margin:0 auto;}
 .form-step-indicator{display:block;font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--terra);margin-bottom:24px;}
+.form-required-note{font-size:.76rem;color:var(--mute);margin:-16px 0 20px;}
+/* Marks whichever labels precede a required field, so the asterisk can never
+   drift out of sync with the field's actual required-ness. */
+.form-section label:has(+ input[required])::after,
+.form-section label:has(+ select[required])::after,
+.modal label:has(+ input[required])::after,
+.modal label:has(+ select[required])::after{content:" *";color:var(--terra);}
 .field-full{grid-column:1 / -1;}
 .form-step-1{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
 .form-step-2{display:grid;grid-template-columns:1fr;gap:18px;margin-top:18px;}

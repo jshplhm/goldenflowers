@@ -47,6 +47,7 @@ redirect_from:
   <div data-form-wrap>
     <form action="{{ site.consult_endpoint }}" method="POST" id="consultation-form" data-multistep data-ajax>
       <span class="form-step-indicator" aria-hidden="true">Step 1 of 2</span>
+      <p class="form-required-note">* Required</p>
       <div class="hp-wrap" aria-hidden="true">
         <label for="hp">Company</label>
         <input type="text" id="hp" name="gf_hp" tabindex="-1" autocomplete="off">
@@ -73,7 +74,7 @@ redirect_from:
         <button type="button" class="form-back" data-form-back>&larr; Back</button>
         <div class="field-full">
           <label for="venue">Venue</label>
-          <input type="text" id="venue" name="venue" list="venue-list" placeholder="Search or type your venue" autocomplete="off">
+          <input type="text" id="venue" name="venue" placeholder="If you know it yet" autocomplete="off">
         </div>
         <div class="field-full">
           <label for="aesthetic">Aesthetic direction</label>
@@ -100,7 +101,7 @@ redirect_from:
         </div>
         <div class="field-full">
           <label for="message">Tell us about your wedding</label>
-          <textarea id="message" name="message" placeholder="Your venue, your vision, anything that matters to you." rows="4"></textarea>
+          <textarea id="message" name="message" placeholder="Your vision, anything that matters to you." rows="4"></textarea>
         </div>
         <div class="form-submit field-full">
           <button type="submit" class="btn-primary">Send consultation request</button>
