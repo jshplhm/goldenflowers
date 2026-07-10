@@ -23,3 +23,6 @@ seo-report/
 
 # CI scratch for responsive image variants (see scripts/make-responsive-variants.sh)
 .rsp-cache/
+
+# Internal UI/UX audit: local-only, never published
+audit/

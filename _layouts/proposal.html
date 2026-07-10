@@ -14,14 +14,14 @@
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     html{scroll-behavior:smooth}
     body{background:#f2f0eb;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
-    ::selection{background:#a6552d;color:#fff}
+    ::selection{background:oklch(38% .105 150);color:#fff}
     @keyframes gf-rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
 
     .gf-doc{font-family:'DM Sans',Helvetica,Arial,sans-serif;color:#15211a;line-height:1.7;background:#f2f0eb}
     img.gf-img{width:100%;height:100%;object-fit:cover;display:block}
     .gf-section{max-width:1180px;margin:0 auto;padding:96px 40px}
     .gf-band{border-top:1px solid rgba(110,118,108,.18);border-bottom:1px solid rgba(110,118,108,.18)}
-    .gf-eyebrow{display:block;font-weight:600;font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:#a6552d;margin-bottom:18px}
+    .gf-eyebrow{display:block;font-weight:600;font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:oklch(38% .105 150);margin-bottom:18px}
     .gf-eyebrow--dark{color:#e0a07e}
     .gf-h2{font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-weight:400;font-size:clamp(2rem,3.6vw,2.9rem);line-height:1.12;color:#0f1910}
     .gf-slot{border-radius:8px;border:1px solid rgba(110,118,108,.2);display:flex;align-items:center;justify-content:center;overflow:hidden;background:linear-gradient(135deg,#f5e7db,#ece4d6)}
@@ -29,17 +29,17 @@
 
     /* access gate */
     .gf-gate{position:fixed;inset:0;z-index:1000;background:#132717;display:flex;align-items:center;justify-content:center;padding:24px}
-    .gf-gate__glow{position:absolute;inset:0;background:radial-gradient(120% 80% at 50% -10%, rgba(166,85,45,.16), transparent 60%);pointer-events:none}
+    .gf-gate__glow{position:absolute;inset:0;background:radial-gradient(120% 80% at 50% -10%, oklch(89% .022 92/.10), transparent 60%);pointer-events:none}
     .gf-gate__card{position:relative;width:100%;max-width:430px;background:#f6f4ef;border-radius:10px;padding:48px 44px 40px;box-shadow:0 30px 80px rgba(0,0,0,.4);text-align:center;animation:gf-rise .6s ease both}
-    .gf-gate__mark{display:block;font-weight:600;font-size:.7rem;letter-spacing:.34em;text-transform:uppercase;color:#a6552d;margin-bottom:30px}
+    .gf-gate__mark{display:block;font-weight:600;font-size:.7rem;letter-spacing:.34em;text-transform:uppercase;color:oklch(38% .105 150);margin-bottom:30px}
     .gf-gate__title{font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-weight:400;font-size:2rem;line-height:1.18;color:#15211a;margin-bottom:14px}
     .gf-gate__sub{font-size:.9rem;color:#5b635a;line-height:1.6;max-width:30ch;margin:0 auto 28px}
     .gf-gate__form{display:flex;flex-direction:column;gap:10px}
     .gf-gate__input{width:100%;height:52px;border:1px solid rgba(110,118,108,.45);border-radius:4px;background:#fff;padding:0 18px;font-family:'DM Sans',sans-serif;font-size:1rem;color:#15211a;text-align:center;letter-spacing:.04em;outline:none}
-    .gf-gate__input:focus{border-color:#a6552d;box-shadow:0 0 0 3px rgba(166,85,45,.14)}
-    .gf-gate__btn{width:100%;height:52px;border:none;border-radius:4px;background:#a6552d;color:#fff;font-family:'DM Sans',sans-serif;font-weight:600;font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;transition:background .2s}
-    .gf-gate__btn:hover{background:#90471f}
-    .gf-gate__error{font-size:.82rem;color:#a6552d;margin-top:14px}
+    .gf-gate__input:focus{border-color:oklch(38% .105 150);box-shadow:0 0 0 3px oklch(38% .105 150/.14)}
+    .gf-gate__btn{width:100%;height:52px;border:none;border-radius:4px;background:oklch(38% .105 150);color:#fff;font-family:'DM Sans',sans-serif;font-weight:600;font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;transition:background .2s}
+    .gf-gate__btn:hover{background:oklch(33% .1 150)}
+    .gf-gate__error{font-size:.82rem;color:oklch(38% .105 150);margin-top:14px}
     .gf-gate__error[hidden]{display:none}
     .gf-gate__fine{font-size:.72rem;color:#9a9388;margin-top:30px;letter-spacing:.02em}
 
@@ -54,7 +54,7 @@
 
     /* cover (forest-green botanical) */
     .gf-cover{background:#132717;position:relative;overflow:hidden}
-    .gf-cover::before{content:"";position:absolute;inset:0;background:radial-gradient(120% 90% at 50% -20%, rgba(166,85,45,.18), transparent 62%);pointer-events:none}
+    .gf-cover::before{content:"";position:absolute;inset:0;background:radial-gradient(120% 90% at 50% -20%, oklch(89% .022 92/.12), transparent 62%);pointer-events:none}
     .gf-cover__inner{position:relative;max-width:1180px;margin:0 auto;padding:88px 40px 80px;text-align:center}
     .gf-cover__wordmark{display:block;font-weight:600;font-size:.72rem;letter-spacing:.34em;text-transform:uppercase;color:#e0a07e;margin-bottom:34px}
     .gf-cover__eyebrow{display:block;font-weight:600;font-size:.72rem;letter-spacing:.3em;text-transform:uppercase;color:#cdaf9b;margin-bottom:22px}
@@ -71,7 +71,7 @@
     .gf-note__body{font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-weight:400;font-size:clamp(1.5rem,2.7vw,2.05rem);line-height:1.5;color:#1c2a20;text-wrap:pretty}
     .gf-note__body p{margin-bottom:.6em}
     .gf-note__body p:last-child{margin-bottom:0}
-    .gf-note__sign{display:block;margin-top:30px;font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-size:1.5rem;color:#a6552d}
+    .gf-note__sign{display:block;margin-top:30px;font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-size:1.5rem;color:oklch(38% .105 150)}
 
     /* your wedding (dark) */
     .gf-dark{background:#132717;color:#f1f0ea}
@@ -106,7 +106,7 @@
     .gf-flowers__intro{font-size:1rem;color:#3b453c;line-height:1.7;max-width:50ch;margin:0 auto}
     .gf-flowers__row{display:flex;flex-wrap:wrap;gap:28px 36px;justify-content:center}
     .gf-flower{display:flex;flex-direction:column;align-items:center;gap:12px;width:108px}
-    .gf-flower__circ{width:84px;height:84px;border-radius:50%;background:#f1e4d6;border:1px solid rgba(166,85,45,.18);overflow:hidden;display:flex;align-items:center;justify-content:center}
+    .gf-flower__circ{width:84px;height:84px;border-radius:50%;background:#f1e4d6;border:1px solid oklch(38% .105 150/.18);overflow:hidden;display:flex;align-items:center;justify-content:center}
     .gf-flower__circ--sage{background:#e2e7da;border-color:rgba(110,118,108,.18)}
     .gf-flower__circ .gf-slot-label{font-family:'DM Mono',monospace;font-size:.58rem;letter-spacing:.06em;text-transform:uppercase;color:#b39377;text-align:center;padding:4px}
     .gf-flower__name{font-family:'DM Sans',sans-serif;font-size:.84rem;color:#15211a}
@@ -171,12 +171,12 @@
     .gf-reserve__pay{font-size:.92rem;color:#5b635a;line-height:1.66;margin-bottom:30px}
     .gf-actions{display:flex;flex-wrap:wrap;gap:14px}
     .gf-btn{display:inline-flex;align-items:center;height:52px;padding:0 32px;text-decoration:none;font-family:'DM Sans',sans-serif;font-weight:600;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;border-radius:3px;transition:all .2s}
-    .gf-btn--primary{background:#a6552d;color:#fff}
-    .gf-btn--primary:hover{background:#90471f}
+    .gf-btn--primary{background:oklch(38% .105 150);color:#fff}
+    .gf-btn--primary:hover{background:oklch(33% .1 150)}
     .gf-btn--ghost{background:transparent;color:#15211a;border:1px solid rgba(110,118,108,.5)}
     .gf-btn--ghost:hover{border-color:#15211a;background:#15211a;color:#f2f0eb}
     .gf-paycard{background:#fcfcf9;border:1px solid rgba(110,118,108,.26);border-radius:8px;padding:34px;box-shadow:0 1px 2px rgba(15,25,16,.04)}
-    .gf-paycard__eyebrow{display:block;font-weight:600;font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:#a6552d;margin-bottom:20px}
+    .gf-paycard__eyebrow{display:block;font-weight:600;font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:oklch(38% .105 150);margin-bottom:20px}
     .gf-paycard__deposit{font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-size:2.4rem;color:#0f1910;line-height:1;margin-bottom:6px}
     .gf-paycard__depositcap{font-size:.84rem;color:#5b635a;margin-bottom:24px}
     .gf-payrow{display:flex;justify-content:space-between;align-items:baseline;padding:14px 0;border-bottom:1px solid rgba(110,118,108,.16);gap:16px}
@@ -335,7 +335,7 @@
         {% if page.swatches %}
           {% for s in page.swatches %}<div class="gf-swatch"><div class="gf-swatch__chip" style="background:{{ s.hex }}"></div><span class="gf-swatch__label">{{ s.name }}</span></div>{% endfor %}
         {% else %}
-          <div class="gf-swatch"><div class="gf-swatch__chip" style="background:#b5552f"></div><span class="gf-swatch__label">Terracotta</span></div>
+          <div class="gf-swatch"><div class="gf-swatch__chip" style="background:#c49a8a"></div><span class="gf-swatch__label">Dusty Rose</span></div>
           <div class="gf-swatch"><div class="gf-swatch__chip" style="background:#e2962f"></div><span class="gf-swatch__label">Marigold</span></div>
           <div class="gf-swatch"><div class="gf-swatch__chip" style="background:#6e2c38"></div><span class="gf-swatch__label">Deep Burgundy</span></div>
           <div class="gf-swatch"><div class="gf-swatch__chip" style="background:#f0e6d5"></div><span class="gf-swatch__label">Antique Cream</span></div>
