@@ -59,6 +59,55 @@
   });
 })();
 
+/* Captures how a visitor arrived (utm params + referrer) once per session, on
+   whichever page they land on first, so the consult form — however many
+   pages later they reach it — can report the true source instead of just
+   "goldenflorals.com" (the referrer of the page before it). */
+(function(){
+  try{
+    if(!sessionStorage.getItem('gf_source')){
+      var qs=new URLSearchParams(location.search);
+      sessionStorage.setItem('gf_source', JSON.stringify({
+        utm_source: qs.get('utm_source')||'',
+        utm_medium: qs.get('utm_medium')||'',
+        utm_campaign: qs.get('utm_campaign')||'',
+        referrer: document.referrer||'',
+        landing: location.pathname
+      }));
+    }
+  }catch(e){}
+})();
+
+/* Real calendar-date + reasonable-year-range check, shared by the mask
+   render and the step-1 -> step-2 advance guard. Mirrors the server-side
+   check in consultation-form-doPost.gs — keep both in sync. */
+function dateIssue(v){
+  if(!v) return '';
+  var m=v.match(/^(\d{2})\/(\d{2})\/(\d{4})$/);
+  if(!m) return 'Use mm/dd/yyyy.';
+  var mm=+m[1],dd=+m[2],yyyy=+m[3];
+  var d=new Date(yyyy,mm-1,dd);
+  if(d.getFullYear()!==yyyy||d.getMonth()!==mm-1||d.getDate()!==dd) return "That date doesn't exist.";
+  var thisYear=new Date().getFullYear();
+  if(yyyy<thisYear-1) return 'That date has already passed.';
+  if(yyyy>thisYear+6) return 'That year looks off — mind checking it?';
+  return '';
+}
+function applyDateValidity(el){ if(el) el.setCustomValidity(dateIssue(el.value)); }
+
+function sourceParams_(){
+  var out={}; try{ var raw=sessionStorage.getItem('gf_source'); if(raw) out=JSON.parse(raw); }catch(e){}
+  return out;
+}
+function appendCommon_(params, form){
+  params.append('lead_id', form.dataset.leadId||'');
+  params.append('ts', form.dataset.renderedAt||'');
+  var hp=form.querySelector('[name="gf_hp"]');
+  params.append('gf_hp', hp?hp.value:'');
+  var s=sourceParams_();
+  ['utm_source','utm_medium','utm_campaign','referrer','landing'].forEach(function(k){ params.append(k, s[k]||''); });
+}
+
 /* Two-step reveal + mm/dd/yyyy date mask + in-place AJAX success. Binds every consult form on the page. */
 (function(){
   document.querySelectorAll('form[data-multistep]').forEach(function(form){
@@ -67,10 +116,14 @@
     var indicator=form.querySelector('.form-step-indicator'), backBtn=form.querySelector('[data-form-back]');
     if(!step2||!advanceBtn) return;
     step2.hidden=true;
+    form.dataset.leadId=(window.crypto&&crypto.randomUUID)?crypto.randomUUID():('c-'+Date.now()+'-'+Math.random().toString(36).slice(2));
+    form.dataset.renderedAt=String(Date.now());
     function toTop(){ var m=form.closest('.modal'); if(m) m.scrollTop=0; }
     advanceBtn.addEventListener('click', function(){
       var reqs=form.querySelectorAll('.form-step-1 [required]');
       for(var i=0;i<reqs.length;i++){ if(!reqs[i].reportValidity()) return; }
+      var dateEl=form.querySelector('.form-step-1 [data-date-mask]');
+      if(dateEl){ (dateEl._finalizeYear||function(){ applyDateValidity(dateEl); })(); if(!dateEl.reportValidity()) return; }
       if(!form.dataset.partialSent && form.hasAttribute('data-ajax')){
         form.dataset.partialSent='1';
         try{
@@ -78,6 +131,7 @@
           ['date','name','email'].forEach(function(n){ var f=form.querySelector('[name="'+n+'"]'); if(f) p.append(n,f.value); });
           p.append('status','partial');
           p.append('k','gf-lupine-26');
+          appendCommon_(p, form);
           fetch(form.action,{method:'POST',body:p}).catch(function(){});
         }catch(e){}
       }
@@ -116,10 +170,25 @@
     ghost.appendChild(gt); ghost.appendChild(rest); field.appendChild(ghost);
     el.removeAttribute('placeholder');
     function render(){ gt.textContent=el.value; rest.nodeValue='mm/dd/yyyy'.slice(el.value.length); }
+    var yearTimer=null;
+    // "20" is ambiguous mid-type — could be someone typing the 2-digit
+    // shorthand ("27" -> 2027) or the first half of a full 4-digit year
+    // typed the old way ("2027"). Wait for a pause before deciding, so
+    // both styles of typing land on the right year.
+    function finalizeYear(){
+      var m=el.value.match(/^(\d\d\/\d\d\/)(\d\d)$/);
+      if(m){ el.value=m[1]+'20'+m[2]; render(); }
+      applyDateValidity(el);
+    }
+    el._finalizeYear=finalizeYear; // exposed so the advance-click handler can force-settle a pending 2-digit year
     el.addEventListener('input', function(e){
       var deleting=e.inputType && e.inputType.indexOf('delete')===0;
       el.value=mask(el.value, !deleting); render();
+      el.setCustomValidity(''); // don't flag mid-edit; finalizeYear re-checks once typing settles
+      clearTimeout(yearTimer);
+      if(!deleting) yearTimer=setTimeout(finalizeYear, 600);
     });
+    el.addEventListener('blur', function(){ clearTimeout(yearTimer); finalizeYear(); el.reportValidity(); });
     render();
   });
 
@@ -153,7 +222,34 @@
       var data=new FormData(form);
       var params=new URLSearchParams(); data.forEach(function(v,k){ params.append(k,v); });
       params.append('k','gf-lupine-26');
+      appendCommon_(params, form);
       fetch(form.action,{method:'POST',body:params}).catch(function(){}).then(function(){ showSuccess(form,data); });
+    });
+  });
+
+  /* Soft, non-blocking heads-up if an email's domain can't receive mail
+     (same free Google DNS lookup the server does authoritatively). Never
+     blocks submission — just a hint to double-check a typo. */
+  document.querySelectorAll('form[data-multistep] input[type="email"]').forEach(function(el){
+    var hint=null;
+    el.addEventListener('blur', function(){
+      var v=el.value.trim();
+      if(hint){ hint.remove(); hint=null; }
+      var m=v.match(/^[^\s@]+@([^\s@]+\.[^\s@]{2,})$/);
+      if(!m) return;
+      var domain=m[1];
+      fetch('https://dns.google/resolve?name='+encodeURIComponent(domain)+'&type=MX')
+        .then(function(r){ return r.json(); })
+        .then(function(data){
+          if(el.value.trim()!==v) return; // value changed while we waited; drop stale result
+          var noMx=!(data && data.Status===0 && data.Answer && data.Answer.length);
+          if(noMx){
+            hint=document.createElement('p');
+            hint.className='field-hint';
+            hint.textContent="This email domain doesn't look like it can receive mail — worth double-checking?";
+            el.parentNode.appendChild(hint);
+          }
+        }).catch(function(){});
     });
   });
 

@@ -47,6 +47,10 @@ redirect_from:
   <div data-form-wrap>
     <form action="{{ site.consult_endpoint }}" method="POST" id="consultation-form" data-multistep data-ajax>
       <span class="form-step-indicator" aria-hidden="true">Step 1 of 2</span>
+      <div class="hp-wrap" aria-hidden="true">
+        <label for="hp">Company</label>
+        <input type="text" id="hp" name="gf_hp" tabindex="-1" autocomplete="off">
+      </div>
       <div class="form-step-1">
         <div class="field-full">
           <label for="date">Wedding date</label>
@@ -66,10 +70,14 @@ redirect_from:
         <p class="form-step-hint">Then: aesthetic · budget · the details</p>
       </div>
       <div class="form-step-2">
-        <button type="button" class="form-back field-full" data-form-back>&larr; Back</button>
+        <button type="button" class="form-back" data-form-back>&larr; Back</button>
+        <div class="field-full">
+          <label for="venue">Venue</label>
+          <input type="text" id="venue" name="venue" list="venue-list" placeholder="Search or type your venue" autocomplete="off">
+        </div>
         <div class="field-full">
           <label for="aesthetic">Aesthetic direction</label>
-          <select id="aesthetic" name="aesthetic">
+          <select id="aesthetic" name="aesthetic" required>
             <option value="" disabled selected>Which direction resonates?</option>
             <option>Lush &amp; Romantic (rich, dramatic, deep tones)</option>
             <option>Elevated Minimalist (clean, airy, restrained)</option>
@@ -80,7 +88,7 @@ redirect_from:
         </div>
         <div class="field-full">
           <label for="budget">Approximate budget</label>
-          <select id="budget" name="budget">
+          <select id="budget" name="budget" required>
             <option value="" disabled selected>Estimated florals budget</option>
             <option>$5,000–$8,000</option>
             <option>$8,000–$12,000</option>

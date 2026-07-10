@@ -503,16 +503,21 @@ body.lb-open{overflow:hidden;}
 .form-section input,.form-section select,.form-section textarea,.modal input,.modal select,.modal textarea{width:100%;font-family:var(--b);font-size:1rem;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:14px 16px;transition:border-color .2s;}
 .form-section input:focus,.form-section select:focus,.form-section textarea:focus,.modal input:focus,.modal select:focus,.modal textarea:focus{outline:none;border-color:var(--terra);}
 .form-section textarea,.modal textarea{resize:vertical;}
+.form-section select,.modal select{appearance:none;-webkit-appearance:none;-moz-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='%23767267' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 8l5 5 5-5'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;background-size:14px;padding-right:42px;}
+.form-section select:invalid,.modal select:invalid{color:var(--mute);}
 .form-advance{margin-top:22px;}
 .form-advance .btn-primary,.form-submit .btn-primary{width:100%;justify-content:center;}
 .form-step-hint{text-align:center;font-size:.82rem;color:var(--mute);margin-top:12px;}
-.form-back{background:none;border:0;color:var(--mute);font-family:var(--b);font-size:.85rem;cursor:pointer;padding:0;margin-bottom:2px;}
+.form-back{justify-self:start;background:none;border:0;color:var(--mute);font-family:var(--b);font-size:.85rem;cursor:pointer;padding:4px 0;margin:-4px 0 2px;text-align:left;}
 .form-back:hover{color:var(--ink);}
 .form-submit{margin-top:8px;}
 .form-note{text-align:center;font-size:.82rem;color:var(--mute);margin-top:12px;}
 .date-field{position:relative;display:block;}
 .date-ghost{position:absolute;left:16px;top:14px;font-size:1rem;color:var(--mute);pointer-events:none;}
 .date-ghost .gt{visibility:hidden;}
+.field-hint{font-size:.78rem;color:var(--terra);margin-top:6px;line-height:1.4;}
+/* Honeypot: off-screen (not display:none — some bots skip hidden fields but not offscreen ones), invisible and unreachable to real visitors. */
+.hp-wrap{position:absolute;left:-9999px;top:-9999px;width:1px;height:1px;overflow:hidden;}
 
 .form-success{text-align:center;max-width:600px;margin:0 auto;}
 .form-success-tags{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:24px;}
@@ -747,18 +752,24 @@ body.nav-hidden .venue-breadcrumb{top:0;}
 .t-pin.feat .t-vlabel{font-size:13px;}
 /* (feat dot radius lives on the r attribute in the markup — CSS geometry props
    are ignored by older iOS Safari) */
-.t-num{font-family:var(--b);font-size:9px;font-weight:600;fill:var(--paper);text-anchor:middle;pointer-events:none;display:none;}
+.t-num{font-family:var(--b);font-size:9.5px;font-weight:600;fill:var(--paper);text-anchor:middle;pointer-events:none;display:none;}
 .t-pin:hover .t-vlabel,.t-pin:focus .t-vlabel{opacity:1;}
 .t-pin.feat:hover .t-vlabel,.t-pin.feat:focus .t-vlabel,.t-pin.feat.is-active .t-vlabel{fill:var(--ink);}
 .t-minor{outline:none;}
 /* No hover on touch: light up the built-in numbered pairing instead —
    numbered dots on the map ↔ numbered chips in the featured list.
    (Must sit after the base .t-num/.vnum/.t-dot rules to win the cascade.
-   Dot + numeral scale TOGETHER via transform, not CSS r: older iOS Safari
-   ignores geometry properties, which left big numerals on small dots.) */
+   Dot scales via transform-box:fill-box (reliable for a <circle>, whose
+   geometric bounding box is well-defined). The numeral does NOT use
+   fill-box: Safari computes a <text> element's fill-box unreliably —
+   in production this scaled the "4" glyph to a wrong origin, leaving
+   dots numberless and a stray "4" floating elsewhere on the map. Each
+   number instead carries its own transform-origin inline (set in
+   venues/index.md, matching its dot's cx/cy in the SVG's own coordinate
+   space), which CSS transforms honor without needing fill-box at all. */
 @media(max-width:860px){
-  .t-num{display:block;transform:scale(2);transform-box:fill-box;transform-origin:center;}
-  .t-pin.feat .t-dot{transform:scale(2);transform-box:fill-box;transform-origin:center;}
+  .t-num{display:block;transform:scale(1.7);}
+  .t-pin.feat .t-dot{transform:scale(1.7);transform-box:fill-box;transform-origin:center;}
   .vnum{display:flex;align-items:center;justify-content:center;grid-row:1/span 2;width:22px;height:22px;border-radius:50%;background:var(--ink);color:var(--paper);font-size:.7rem;font-weight:600;}
 }
 /* SEO / no-JS venue list */
