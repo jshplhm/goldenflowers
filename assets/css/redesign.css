@@ -724,11 +724,14 @@ body.nav-hidden .venue-breadcrumb{top:0;}
    hover zones overlap in pin clusters and light up the wrong label, so tighten
    it to just past the visible dot — the name appears only when you're on the dot. */
 .t-hit{fill:none;stroke:none;pointer-events:all;}
+/* Mouse pointers get exact hover: the finger-sized hit circles are disabled and
+   the painted dot itself is the target, so a label appears only on its dot.
+   (pointer-events is used instead of CSS r, which older iOS Safari ignores.) */
 @media(hover:hover) and (pointer:fine){
-  .t-hit{r:9;}
+  .t-hit{pointer-events:none;}
 }
 .t-dot{fill:var(--ink);stroke:var(--paper);stroke-width:2.4;cursor:pointer;transition:r .15s ease;}
-.t-dot.sm{r:4.5;fill:oklch(22% .015 150/.70);stroke-width:1.6;cursor:pointer;}
+.t-dot.sm{fill:oklch(22% .015 150/.70);stroke-width:1.6;cursor:pointer;}
 .t-pin.t-minor:hover .t-dot.sm{r:7;}
 .t-town-dot{r:2.6;fill:oklch(45% .01 150);stroke:var(--paper);stroke-width:1.2;cursor:pointer;display:none;}
 /* City labels: always on, muted, for geographic orientation (venue names stay hover-only) */
@@ -739,18 +742,20 @@ body.nav-hidden .venue-breadcrumb{top:0;}
 .t-vlabel{font-family:var(--b);font-size:13px;fill:var(--ink);opacity:0;transition:opacity .15s,fill .15s;paint-order:stroke;stroke:var(--paper);stroke-width:3.5;stroke-linejoin:round;pointer-events:none;}
 /* Featured pins: numbered dots (pair with the numbered list; readable without hover on touch). */
 .t-pin.feat .t-vlabel{font-size:13px;}
-.t-pin.feat .t-dot{r:9;}
+/* (feat dot radius lives on the r attribute in the markup — CSS geometry props
+   are ignored by older iOS Safari) */
 .t-num{font-family:var(--b);font-size:9px;font-weight:600;fill:var(--paper);text-anchor:middle;pointer-events:none;display:none;}
 .t-pin:hover .t-vlabel,.t-pin:focus .t-vlabel{opacity:1;}
 .t-pin.feat:hover .t-vlabel,.t-pin.feat:focus .t-vlabel,.t-pin.feat.is-active .t-vlabel{fill:var(--ink);}
 .t-minor{outline:none;}
 /* No hover on touch: light up the built-in numbered pairing instead —
    numbered dots on the map ↔ numbered chips in the featured list.
-   (Must sit after the base .t-num/.vnum/.t-dot rules to win the cascade.) */
+   (Must sit after the base .t-num/.vnum/.t-dot rules to win the cascade.
+   Dot + numeral scale TOGETHER via transform, not CSS r: older iOS Safari
+   ignores geometry properties, which left big numerals on small dots.) */
 @media(max-width:860px){
-  .t-num{display:block;font-size:14px;transform:translateY(1.5px);}
-  .t-pin.feat .t-dot{r:14;}
-  .t-pin:hover .t-dot,.t-pin.is-active .t-dot{r:14;}
+  .t-num{display:block;transform:scale(1.8);transform-box:fill-box;transform-origin:center;}
+  .t-pin.feat .t-dot{transform:scale(1.8);transform-box:fill-box;transform-origin:center;}
   .vnum{display:flex;align-items:center;justify-content:center;grid-row:1/span 2;width:22px;height:22px;border-radius:50%;background:var(--ink);color:var(--paper);font-size:.7rem;font-weight:600;}
 }
 /* SEO / no-JS venue list */
