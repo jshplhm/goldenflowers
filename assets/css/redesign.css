@@ -435,7 +435,10 @@ body.lb-open{overflow:hidden;}
 .quote-card .stars{color:var(--terra);letter-spacing:.2em;font-size:.8rem;margin-bottom:18px;}
 .quote-card p{font-family:var(--d);font-size:1.22rem;line-height:1.35;letter-spacing:-.005em;margin-bottom:20px;}
 .quote-card .src{font-size:.76rem;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);}
-.quote-card .src b{color:var(--ink);font-weight:500;}
+/* Attribution is two fixed rows — name, then venue — so names and venues sit on
+   the same lines in every card regardless of the venue string's length. */
+.quote-card .src b{color:var(--ink);font-weight:500;display:block;margin-bottom:3px;}
+.quote-card .src .src-venue{display:block;}
 /* Testimonials carousel (swipe on touch, arrows on desktop) */
 .testi-carousel{margin-top:clamp(22px,3vw,36px);}
 .testi-controls{display:flex;justify-content:flex-end;gap:10px;margin-bottom:16px;}
@@ -700,7 +703,7 @@ body.nav-hidden .venue-breadcrumb{top:0;}
 .vhl--minor span:hover,.vhl--minor span.is-active{color:var(--terra);border-bottom-color:var(--terra);}
 /* Map activation stays in the map's own palette (ink dot, cream halo, size + label)
    — green accents live on the cream list side only; dark green on the lake blue clashed. */
-.t-pin.is-active .t-dot{r:11.5;fill:var(--ink);stroke-width:3;}
+.t-pin.is-active .t-dot{r:10.5;fill:var(--ink);stroke-width:3;}
 .t-pin.is-active .t-vlabel{fill:var(--ink);opacity:1;}
 .t-pin.t-minor.is-active .t-dot.sm{r:7;fill:var(--ink);}
 .t-pin.t-minor.is-active .t-vlabel{opacity:1;}
@@ -738,7 +741,7 @@ body.nav-hidden .venue-breadcrumb{top:0;}
 .t-clabel{font-family:var(--b);font-size:11px;fill:var(--mute);letter-spacing:.02em;opacity:.85;transition:opacity .15s;paint-order:stroke;stroke:var(--paper);stroke-width:3;stroke-linejoin:round;pointer-events:none;}
 .t-town:hover .t-clabel,.t-town:focus .t-clabel{opacity:1;}
 .t-town{outline:none;cursor:pointer;}
-.t-pin:hover .t-dot{r:11.5;fill:var(--ink);stroke-width:3;}
+.t-pin:hover .t-dot{r:10.5;fill:var(--ink);stroke-width:3;}
 .t-vlabel{font-family:var(--b);font-size:13px;fill:var(--ink);opacity:0;transition:opacity .15s,fill .15s;paint-order:stroke;stroke:var(--paper);stroke-width:3.5;stroke-linejoin:round;pointer-events:none;}
 /* Featured pins: numbered dots (pair with the numbered list; readable without hover on touch). */
 .t-pin.feat .t-vlabel{font-size:13px;}
@@ -754,8 +757,8 @@ body.nav-hidden .venue-breadcrumb{top:0;}
    Dot + numeral scale TOGETHER via transform, not CSS r: older iOS Safari
    ignores geometry properties, which left big numerals on small dots.) */
 @media(max-width:860px){
-  .t-num{display:block;transform:scale(1.8);transform-box:fill-box;transform-origin:center;}
-  .t-pin.feat .t-dot{transform:scale(1.8);transform-box:fill-box;transform-origin:center;}
+  .t-num{display:block;transform:scale(2);transform-box:fill-box;transform-origin:center;}
+  .t-pin.feat .t-dot{transform:scale(2);transform-box:fill-box;transform-origin:center;}
   .vnum{display:flex;align-items:center;justify-content:center;grid-row:1/span 2;width:22px;height:22px;border-radius:50%;background:var(--ink);color:var(--paper);font-size:.7rem;font-weight:600;}
 }
 /* SEO / no-JS venue list */

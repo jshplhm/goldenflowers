@@ -5,7 +5,7 @@
   </div>
   <div class="testi-row" data-testi-row tabindex="0" role="group" aria-label="Couple reviews, scrollable">
     {%- for t in site.data.testimonials.items %}
-    <div class="quote-card"><div class="stars">★★★★★</div><p><span data-ed="testimonials:items.{{ forloop.index0 }}.quote">{{ t.quote }}</span></p><p class="src"><b><span data-ed="testimonials:items.{{ forloop.index0 }}.name">{{ t.name }}</span></b> · <span data-ed="testimonials:items.{{ forloop.index0 }}.context">{{ t.context }}</span></p></div>
+    <div class="quote-card"><div class="stars">★★★★★</div><p><span data-ed="testimonials:items.{{ forloop.index0 }}.quote">{{ t.quote }}</span></p><p class="src"><b><span data-ed="testimonials:items.{{ forloop.index0 }}.name">{{ t.name }}</span></b><span class="src-venue"><span data-ed="testimonials:items.{{ forloop.index0 }}.context">{{ t.context }}</span></span></p></div>
     {%- endfor %}
   </div>
 </div>
