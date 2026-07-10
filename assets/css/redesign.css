@@ -702,7 +702,7 @@ body.nav-hidden .venue-breadcrumb{top:0;}
    — green accents live on the cream list side only; dark green on the lake blue clashed. */
 .t-pin.is-active .t-dot{r:11.5;fill:var(--ink);stroke-width:3;}
 .t-pin.is-active .t-vlabel{fill:var(--ink);opacity:1;}
-.t-pin.t-minor.is-active .t-dot.sm{r:6;fill:var(--ink);}
+.t-pin.t-minor.is-active .t-dot.sm{r:7;fill:var(--ink);}
 .t-pin.t-minor.is-active .t-vlabel{opacity:1;}
 /* inline section-label dot (replaces the old standalone legend) */
 .vlist-dot{display:inline-block;border-radius:50%;vertical-align:middle;margin-right:7px;flex:none;}
@@ -719,10 +719,17 @@ body.nav-hidden .venue-breadcrumb{top:0;}
 .t-lab{font-family:var(--b);font-size:8.5px;fill:var(--mute);letter-spacing:.08em;text-transform:uppercase;}
 .t-city circle{fill:var(--mute);}
 .t-city text{font-family:var(--d);font-size:17px;fill:var(--ink);}
-/* invisible enlarged hit area inside each map-pin link (touch targets) */
+/* invisible enlarged hit area inside each map-pin link (touch targets).
+   The markup radius (r=22) is sized for fingers; on mouse pointers that made
+   hover zones overlap in pin clusters and light up the wrong label, so tighten
+   it to just past the visible dot — the name appears only when you're on the dot. */
 .t-hit{fill:none;stroke:none;pointer-events:all;}
+@media(hover:hover) and (pointer:fine){
+  .t-hit{r:9;}
+}
 .t-dot{fill:var(--ink);stroke:var(--paper);stroke-width:2.4;cursor:pointer;transition:r .15s ease;}
-.t-dot.sm{fill:oklch(22% .015 150/.70);stroke-width:1.6;cursor:pointer;}
+.t-dot.sm{r:4.5;fill:oklch(22% .015 150/.70);stroke-width:1.6;cursor:pointer;}
+.t-pin.t-minor:hover .t-dot.sm{r:7;}
 .t-town-dot{r:2.6;fill:oklch(45% .01 150);stroke:var(--paper);stroke-width:1.2;cursor:pointer;display:none;}
 /* City labels: always on, muted, for geographic orientation (venue names stay hover-only) */
 .t-clabel{font-family:var(--b);font-size:11px;fill:var(--mute);letter-spacing:.02em;opacity:.85;transition:opacity .15s;paint-order:stroke;stroke:var(--paper);stroke-width:3;stroke-linejoin:round;pointer-events:none;}
