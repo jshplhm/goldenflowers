@@ -6,6 +6,8 @@ permalink: /portfolio
 description: "Browse our wedding floral designs: wild, sustainable, editorial arrangements for Lake Tahoe, Nevada City, Truckee and the broader Sierra."
 canonical_url: https://goldenflorals.com/portfolio
 redirect_from:
+  # Added 2026-07-09: old Squarespace gallery page, from GSC "Redirect error" list
+  - /gallery
   - /portfolio-1
   # Old galleries with no 1:1 replacement -> portfolio index
   - /portfolio-1/allieanddevin

@@ -3,6 +3,9 @@ layout: post
 title: "Soft Goth Wedding Florals at The National Exchange Hotel, Dark, Editorial &amp; Wildly Beautiful"
 date: 2026-01-22
 permalink: /natures-canvas-lake-tahoe-wedding-flowers/soft-goth-wedding-florals-sierra-nevada/
+redirect_from:
+  # The old Squarespace URL ended in "nevadas" (plural); the new permalink dropped the s
+  - /natures-canvas-lake-tahoe-wedding-flowers/soft-goth-wedding-florals-sierra-nevadas/
 description: "Not every Sierra Nevada bride wants wildflowers and white. A look at soft goth wedding florals: deep reds, dark textures, and editorial romance."
 ---
 

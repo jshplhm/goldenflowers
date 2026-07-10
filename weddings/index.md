@@ -8,6 +8,33 @@ canonical_url: https://goldenflorals.com/weddings
 redirect_from:
   - /weddingflowers
   - /weddings-1
+  # Retargeted here 2026-07-09 (were -> home): Squarespace's own URL mappings sent
+  # /goldenflowers, /a-la-carte, and /a-la-carte-weddings (incl. products) to /weddingflowers
+  - /goldenflowers
+  - /a-la-carte
+  - /a-la-carte/p/basic-package-bgzcp-s5d9e
+  - /a-la-carte/p/basic-package-bgzcp-s5d9e-kz83z
+  - /a-la-carte/p/basic-package-bgzcp-s5d9e-kghp7
+  - /a-la-carte/p/basic-package-bgzcp-s5d9e-5entb
+  - /a-la-carte/p/basic-package-bgzcp-s5d9e-5entb-hhsnz
+  - /a-la-carte/p/basic-package-bgzcp-s5d9e-5entb-hhsnz-c43ng
+  - /a-la-carte/p/basic-package-bgzcp-s5d9e-64msg-epl3n-g2m2r-fm297
+  - /a-la-carte/p/q4y7ldy5lm3xj3a8wfk3wwmop33x20
+  - /a-la-carte/p/flower-delivery-to-your-venue
+  - /a-la-carte-weddings
+  - /a-la-carte-weddings/p/signature-bridal-bouquet
+  - /a-la-carte-weddings/p/midi-bridal-bouquet
+  - /a-la-carte-weddings/p/minimalist-bouquet
+  - /a-la-carte-weddings/p/bridesmaid-bouquet
+  - /a-la-carte-weddings/p/boutonniere-new
+  - /a-la-carte-weddings/p/corsage
+  - /a-la-carte-weddings/p/bud-vases
+  - /a-la-carte-weddings/p/aisle-marker
+  - /a-la-carte-weddings/p/aisle-marker-xf38y
+  - /a-la-carte-weddings/p/flower-girl-petals
+  - /a-la-carte-weddings/p/floral-design-consultation
+  - /a-la-carte-weddings/p/table-arrangement
+  - /a-la-carte-weddings/p/delivery-to-your-venue
 ---
 
 <!-- TEXT HEADER (no photo: distinct from the other pages) -->

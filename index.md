@@ -7,31 +7,28 @@ permalink: /
 description: "Golden Flowers is a Lake Tahoe wedding florist creating elevated, sustainably grown floral artistry for couples getting married across the Sierra Nevada."
 canonical_url: https://goldenflorals.com/
 redirect_from:
-  - /a-la-carte-weddings/p/aisle-marker-xf38y
-  - /a-la-carte-weddings/p/aisle-marker
-  - /a-la-carte-weddings/p/corsage
-  - /a-la-carte-weddings/p/flower-girl-petals
-  - /a-la-carte-weddings/p/bud-vases
-  - /a-la-carte-weddings/p/signature-bridal-bouquet
-  - /a-la-carte-weddings/p/midi-bridal-bouquet
-  - /a-la-carte-weddings/p/floral-design-consultation
-  - /a-la-carte-weddings/p/minimalist-bouquet
-  - /a-la-carte-weddings/p/boutonniere-new
-  - /a-la-carte-weddings/p/bridesmaid-bouquet
-  - /a-la-carte/p/basic-package-bgzcp-s5d9e
-  - /a-la-carte/p/basic-package-bgzcp-s5d9e-kz83z
-  - /a-la-carte/p/basic-package-bgzcp-s5d9e-kghp7
-  - /a-la-carte/p/basic-package-bgzcp-s5d9e-5entb
-  - /a-la-carte/p/basic-package-bgzcp-s5d9e-5entb-hhsnz
-  - /a-la-carte/p/basic-package-bgzcp-s5d9e-5entb-hhsnz-c43ng
-  - /a-la-carte/p/basic-package-bgzcp-s5d9e-64msg-epl3n-g2m2r-fm297
-  - /a-la-carte/p/q4y7ldy5lm3xj3a8wfk3wwmop33x20
-  - /a-la-carte/p/flower-delivery-to-your-venue
+  # Old Squarespace retail-shop URLs. Squarespace's own URL mappings sent these to
+  # grassvalleyflowers.com (external); we keep them on-site at home instead.
+  # /order + several added 2026-07-09 from GSC 404 lists, bookmarks, and Google's index.
+  - /order
+  - /order-flowers
+  - /order-flowers/p/purple-hippo
+  - /order-flowers/p/hand-crafted-chocolates
+  - /order-flowers/p/uniquely-fancy
+  - /send-flowers
+  - /send-flowers/p/milk-dip-cup-92wf6-abmpj-jb64e
+  - /send-flowers/p/milk-dip-cup-92wf6-abmpj-jb64e-sfh7b-k5knw
+  - /send-flowers/p/milk-dip-cup-92wf6-abmpj-jb64e-sfh7b-sbyg3-zlaxk
   - /send-flowers/p/earth-sky-planter-4awkk-nazcb-w7e3y
   - /send-flowers/p/spring-bowl-rltkk-4a48k-6738j
   - /send-flowers/p/country-feast-set-3nybt-zczh5-bgj3f
+  - /sendflowers
   - /sendflowers/p/i-love-you
   - /sendflowers/p/sympathy-arrangment
+  - /sendflowers/p/the-haven-vessel-pfjys
+  - /the-vday-shop
+  - /the-vday-shop/p/y9uaydt8w2o28islosjxaevlkwpbbw
+  - /the-vday-shop/p/hand-crafted-chocolates
 ---
 
 <!-- HERO -->
@@ -49,10 +46,10 @@ redirect_from:
 
 <!-- INTRO (paper band) -->
 <div class="band-paper">
-<section class="credo">
-  <div style="max-width:860px;">
-    <p style="font-size:1.08rem;line-height:1.75;color:var(--fg2);"><span data-ed="home:intro.paragraph1">{{ site.data.home.intro.paragraph1 }}</span></p>
-    <p style="font-size:1.08rem;line-height:1.75;color:var(--fg2);margin-top:16px;"><span data-ed="home:intro.paragraph2">{{ site.data.home.intro.paragraph2 }}</span></p>
+<section class="credo" style="padding-top:clamp(64px,8vw,104px);">
+  <div style="max-width:960px;">
+    <p style="font-family:var(--d);font-weight:430;font-optical-sizing:auto;font-size:clamp(1.4rem,2.6vw,2rem);line-height:1.5;letter-spacing:-.01em;color:var(--ink);text-wrap:pretty;"><span data-ed="home:intro.paragraph1">{{ site.data.home.intro.paragraph1 }}</span></p>
+    <p style="font-size:1.05rem;line-height:1.75;color:var(--fg2);margin-top:28px;max-width:680px;"><span data-ed="home:intro.paragraph2">{{ site.data.home.intro.paragraph2 }}</span></p>
   </div>
 </section>
 </div>
