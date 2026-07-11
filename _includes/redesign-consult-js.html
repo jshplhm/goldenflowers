@@ -258,18 +258,52 @@ function appendCommon_(params, form){
     });
   });
 
-  /* Venue dropdown's "Somewhere else" option reveals a free-text field so
-     couples aren't limited to the venues we have pages for. */
-  document.querySelectorAll('[data-venue-select]').forEach(function(sel){
-    var wrap=sel.closest('form').querySelector('[data-venue-other]');
-    if(!wrap) return;
-    var input=wrap.querySelector('input');
-    sel.addEventListener('change', function(){
-      var other=/^Somewhere else/i.test(sel.value);
-      wrap.hidden=!other;
-      if(other && input) input.focus();
-      else if(input) input.value='';
+  /* Venue type-ahead: a plain text field (any venue can be typed) that
+     suggests matches from the /venues lists as the couple types. Selecting
+     a suggestion just fills the input — nothing is required to match. */
+  document.querySelectorAll('[data-venue-combo]').forEach(function(combo){
+    var input=combo.querySelector('input'), panel=combo.querySelector('.venue-suggest');
+    var names=[]; try{ names=JSON.parse(combo.dataset.venues||'[]'); }catch(e){}
+    if(!input||!panel||!names.length) return;
+    var active=-1;
+    function close(){ panel.hidden=true; panel.innerHTML=''; active=-1; input.setAttribute('aria-expanded','false'); }
+    function pick(name){ input.value=name; close(); }
+    function render(){
+      var q=input.value.trim().toLowerCase();
+      var hits=q?names.filter(function(n){ return n.toLowerCase().indexOf(q)!==-1; }).slice(0,6):[];
+      if(!hits.length){ close(); return; }
+      // exact match already picked/typed -> nothing left to suggest
+      if(hits.length===1 && hits[0].toLowerCase()===q){ close(); return; }
+      panel.innerHTML=''; active=-1;
+      hits.forEach(function(n){
+        var b=document.createElement('button'); b.type='button'; b.setAttribute('role','option');
+        var i=n.toLowerCase().indexOf(q);
+        b.appendChild(document.createTextNode(n.slice(0,i)));
+        var em=document.createElement('strong'); em.textContent=n.slice(i,i+q.length); b.appendChild(em);
+        b.appendChild(document.createTextNode(n.slice(i+q.length)));
+        b.addEventListener('mousedown', function(ev){ ev.preventDefault(); pick(n); });
+        panel.appendChild(b);
+      });
+      panel.hidden=false; input.setAttribute('aria-expanded','true');
+    }
+    input.addEventListener('input', render);
+    input.addEventListener('keydown', function(e){
+      if(panel.hidden) return;
+      var items=panel.querySelectorAll('button');
+      if(e.key==='ArrowDown'||e.key==='ArrowUp'){
+        e.preventDefault();
+        active=(active+(e.key==='ArrowDown'?1:-1)+items.length)%items.length;
+        items.forEach(function(el,i){ el.classList.toggle('active', i===active); });
+        items[active].scrollIntoView({block:'nearest'});
+      } else if(e.key==='Enter'){
+        e.preventDefault(); // never submit through an open suggestion panel
+        if(active>-1) pick(items[active].textContent); else close();
+      } else if(e.key==='Escape'){
+        e.stopPropagation(); // close only the panel, not the whole lightbox
+        close();
+      }
     });
+    input.addEventListener('blur', function(){ setTimeout(close,120); });
   });
 
   /* Soft, non-blocking heads-up if an email's domain can't receive mail

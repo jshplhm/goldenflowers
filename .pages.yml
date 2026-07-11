@@ -540,6 +540,15 @@ content:
           - {name: body, label: "Text", type: text}
       - {name: closing, label: "Closing line", type: text}
 
+  - name: consult_venues
+    label: "Consult form: venue suggestions"
+    type: file
+    path: _data/consult_venues.yml
+    format: yaml
+    icon: map-pin
+    fields:
+      - {name: names, label: "Venue names", type: string, list: true, description: "Suggested as couples type in the consultation form's venue field"}
+
   - name: contact
     label: Contact page
     type: file
