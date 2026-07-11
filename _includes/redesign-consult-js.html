@@ -1,11 +1,10 @@
 <script>
 /* Consultation lightbox + multi-step form behaviors (shared across the redesign system).
-   - Button-style CTAs (.btn / .pill / .m-cta) pointing at /consultation-form open the modal.
-   - On the Contact page itself (an inline form is present), those CTAs scroll to the form instead.
+   - Button-style CTAs (.btn / .pill / .m-cta) pointing at /consultation-form open the modal,
+     including on the Contact page itself — the lightbox is the preferred experience everywhere.
    - Plain text links to /consultation-form still navigate to the page (keeps Contact reachable, no-JS safe). */
 (function(){
   var modal=document.getElementById('consult-modal');
-  var inlineForm=document.querySelector('.form-section form, #consultation form');
   var lastFocus=null;
   function openModal(){
     if(!modal) return;
@@ -48,14 +47,6 @@
     var trigger=e.target.closest(TRIGGER);
     if(trigger){
       recordCtaClick(trigger);
-      // Contact page: scroll to the inline form rather than stack a modal over it.
-      if(inlineForm){
-        e.preventDefault();
-        document.body.classList.remove('menu-open');
-        var target=document.getElementById('consultation')||inlineForm.closest('section')||inlineForm;
-        target.scrollIntoView({behavior:'smooth'});
-        return;
-      }
       if(!modal) return;            // no modal on page (e.g. no-JS / missing include) -> let link navigate
       e.preventDefault();
       document.body.classList.remove('menu-open');
@@ -144,8 +135,17 @@ function appendCommon_(params, form){
     var step1=form.querySelector('.form-step-1'), step2=form.querySelector('.form-step-2');
     var advance=form.querySelector('.form-advance'), advanceBtn=form.querySelector('[data-form-advance]');
     var indicator=form.querySelector('.form-step-indicator'), backBtn=form.querySelector('[data-form-back]');
+    var eyebrow=form.querySelector('[data-form-eyebrow]'), heading=form.querySelector('[data-form-heading]');
+    var seg2=form.querySelector('[data-progress-step2]');
     if(!step2||!advanceBtn) return;
     step2.hidden=true;
+    function setStep(n){
+      if(indicator) indicator.textContent='Step '+n+' / 2';
+      if(eyebrow) eyebrow.hidden=(n===2);
+      if(backBtn) backBtn.hidden=(n===1);
+      if(seg2) seg2.classList.toggle('on', n===2);
+      if(heading) heading.textContent=(n===2)?'A few more details.':'Is your date open?';
+    }
     form.dataset.leadId=(window.crypto&&crypto.randomUUID)?crypto.randomUUID():('c-'+Date.now()+'-'+Math.random().toString(36).slice(2));
     form.dataset.renderedAt=String(Date.now());
     function toTop(){ var m=form.closest('.modal'); if(m) m.scrollTop=0; }
@@ -168,12 +168,12 @@ function appendCommon_(params, form){
       if(step1) step1.hidden=true;
       if(advance) advance.hidden=true;
       step2.hidden=false;
-      if(indicator) indicator.textContent='Step 2 of 2';
+      setStep(2);
       toTop();
     });
     if(backBtn) backBtn.addEventListener('click', function(){
       step2.hidden=true; if(step1) step1.hidden=false; if(advance) advance.hidden=false;
-      if(indicator) indicator.textContent='Step 1 of 2'; toTop();
+      setStep(1); toTop();
     });
   });
 
@@ -231,15 +231,16 @@ function appendCommon_(params, form){
     var wrap=form.closest('[data-form-wrap]')||form.parentNode;
     var success=wrap.querySelector('[data-form-success]');
     if(!success){ var n=form.querySelector('[name="_next"]'); window.location=n?n.value:'/'; return; }
+    var firstName=(data.get('name')||'').trim().split(/\s+/)[0];
+    var nameEl=success.querySelector('[data-success-name]');
+    if(nameEl&&firstName) nameEl.textContent=', '+firstName;
     var dateVal=data.get('date');
-    var dateLine=success.querySelector('[data-success-date-line]'), dateEl=success.querySelector('[data-success-date]'), dflt=success.querySelector('[data-success-default]');
-    if(dateVal&&dateEl&&dateLine){ dateEl.textContent=fmtDate(dateVal); dateLine.hidden=false; if(dflt) dflt.hidden=true; }
-    var tagWrap=success.querySelector('[data-success-tags]');
-    if(tagWrap){
-      tagWrap.innerHTML=''; var chips=[]; if(dateVal) chips.push(fmtDate(dateVal));
-      ['aesthetic','budget'].forEach(function(name){ var v=data.get(name); if(!v||/not sure/i.test(v)) return; if(name==='aesthetic') v=v.split(',')[0]; chips.push(v); });
-      chips.forEach(function(t){ var s=document.createElement('span'); s.className='stag'; s.textContent=t; tagWrap.appendChild(s); });
-    }
+    var dateLine=success.querySelector('[data-success-date-line]'), dateEl=success.querySelector('[data-success-date]');
+    if(dateVal&&dateEl&&dateLine){ dateEl.textContent=fmtDate(dateVal); dateLine.hidden=false; }
+    var stepDate=success.querySelector('[data-success-step-date]');
+    if(stepDate&&dateVal) stepDate.textContent=' for '+fmtDate(dateVal);
+    var closeBtn=wrap.querySelector('.modal-close');
+    if(closeBtn) closeBtn.hidden=false; // X only appears once they're done
     form.hidden=true;
     Array.prototype.forEach.call(wrap.children, function(el){ if(el!==success && !el.classList.contains('modal-close')) el.classList.add('is-gone'); });
     success.hidden=false; success.setAttribute('tabindex','-1');
@@ -249,12 +250,76 @@ function appendCommon_(params, form){
     form.addEventListener('submit', function(e){
       e.preventDefault();
       var btn=form.querySelector('[type="submit"]'); if(btn){ btn.disabled=true; btn.textContent='Sending…'; }
+      var old=form.querySelector('[data-send-error]'); if(old) old.remove();
       var data=new FormData(form);
       var params=new URLSearchParams(); data.forEach(function(v,k){ params.append(k,v); });
       params.append('k','gf-lupine-26');
       appendCommon_(params, form);
-      fetch(form.action,{method:'POST',body:params}).catch(function(){}).then(function(){ showSuccess(form,data); });
+      // The thank-you only appears once the request has actually gone
+      // through — a failure surfaces as "Try again" instead of a silent
+      // false success. The 1s floor keeps fast sends from feeling abrupt;
+      // an Apps Script cold start just holds "Sending…" a moment longer.
+      var send=fetch(form.action,{method:'POST',body:params,keepalive:true});
+      var beat=new Promise(function(r){ setTimeout(r,1000); });
+      Promise.all([send,beat]).then(function(){
+        showSuccess(form,data);
+      }).catch(function(){
+        if(btn){ btn.disabled=false; btn.textContent='Try again →'; }
+        var note=document.createElement('p');
+        note.className='field-hint'; note.setAttribute('data-send-error','');
+        note.style.textAlign='center'; note.style.marginTop='10px';
+        note.textContent="That didn't send — check your connection and try again.";
+        (form.querySelector('.form-submit')||form).appendChild(note);
+      });
     });
+  });
+
+  /* Venue type-ahead: a plain text field (any venue can be typed) that
+     suggests matches from the /venues lists as the couple types. Selecting
+     a suggestion just fills the input — nothing is required to match. */
+  document.querySelectorAll('[data-venue-combo]').forEach(function(combo){
+    var input=combo.querySelector('input'), panel=combo.querySelector('.venue-suggest');
+    var names=[]; try{ names=JSON.parse(combo.dataset.venues||'[]'); }catch(e){}
+    if(!input||!panel||!names.length) return;
+    var active=-1;
+    function close(){ panel.hidden=true; panel.innerHTML=''; active=-1; input.setAttribute('aria-expanded','false'); }
+    function pick(name){ input.value=name; close(); }
+    function render(){
+      var q=input.value.trim().toLowerCase();
+      var hits=q?names.filter(function(n){ return n.toLowerCase().indexOf(q)!==-1; }).slice(0,6):[];
+      if(!hits.length){ close(); return; }
+      // exact match already picked/typed -> nothing left to suggest
+      if(hits.length===1 && hits[0].toLowerCase()===q){ close(); return; }
+      panel.innerHTML=''; active=-1;
+      hits.forEach(function(n){
+        var b=document.createElement('button'); b.type='button'; b.setAttribute('role','option');
+        var i=n.toLowerCase().indexOf(q);
+        b.appendChild(document.createTextNode(n.slice(0,i)));
+        var em=document.createElement('strong'); em.textContent=n.slice(i,i+q.length); b.appendChild(em);
+        b.appendChild(document.createTextNode(n.slice(i+q.length)));
+        b.addEventListener('mousedown', function(ev){ ev.preventDefault(); pick(n); });
+        panel.appendChild(b);
+      });
+      panel.hidden=false; input.setAttribute('aria-expanded','true');
+    }
+    input.addEventListener('input', render);
+    input.addEventListener('keydown', function(e){
+      if(panel.hidden) return;
+      var items=panel.querySelectorAll('button');
+      if(e.key==='ArrowDown'||e.key==='ArrowUp'){
+        e.preventDefault();
+        active=(active+(e.key==='ArrowDown'?1:-1)+items.length)%items.length;
+        items.forEach(function(el,i){ el.classList.toggle('active', i===active); });
+        items[active].scrollIntoView({block:'nearest'});
+      } else if(e.key==='Enter'){
+        e.preventDefault(); // never submit through an open suggestion panel
+        if(active>-1) pick(items[active].textContent); else close();
+      } else if(e.key==='Escape'){
+        e.stopPropagation(); // close only the panel, not the whole lightbox
+        close();
+      }
+    });
+    input.addEventListener('blur', function(){ setTimeout(close,120); });
   });
 
   /* Soft, non-blocking heads-up if an email's domain can't receive mail

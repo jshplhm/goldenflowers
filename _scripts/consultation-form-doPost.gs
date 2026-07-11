@@ -49,9 +49,15 @@ var FORM_TOKEN = 'gf-lupine-26';
 // How long a step-1-only lead sits idle before you get a follow-up nudge.
 var STALE_MINUTES = 30;
 
-// Exact strings the two dropdowns can produce. The modal and the contact
-// page phrase the aesthetic options slightly differently, so both appear.
+// Exact strings the two dropdowns can produce. The em-dash forms are the
+// current live wording (July 2026 form revision); the older parenthetical
+// and comma phrasings stay so a stale cached page can't flag as spam.
 var AESTHETICS = [
+  "Lush & Romantic — rich, dramatic, deep tones",
+  "Elevated Minimalist — clean, airy, restrained",
+  "Wildflower Modern — wild, seasonal, editorial",
+  "A mix or something else — I'll explain below",
+  "A mix — I'll explain below",
   "Lush & Romantic (rich, dramatic, deep tones)",
   "Elevated Minimalist (clean, airy, restrained)",
   "Wildflower Modern (wild, seasonal, editorial)",
@@ -132,9 +138,19 @@ function success_() {
 }
 
 function statusLabel_(p, isPartial) {
-  var base = isPartial ? 'In progress' : 'Complete';
+  var base = isPartial ? 'Step 1 only' : 'Complete';
   if (String(p.k || '') !== FORM_TOKEN) base += ' (unverified)';
   return base;
+}
+
+/* The venue dropdown's "Somewhere else — type it in" option reveals a free
+   text field (venue_other); whatever they typed is the real venue. The
+   sentinel option text itself is never worth recording. */
+function venueValue_(p) {
+  var typed = String(p.venue_other || '').trim();
+  if (typed) return typed;
+  var v = String(p.venue || '').trim();
+  return /^Somewhere else/i.test(v) ? '' : v;
 }
 
 function buildRowValues_(p, isPartial, submittedAt, updatedAt, leadId) {
@@ -145,7 +161,7 @@ function buildRowValues_(p, isPartial, submittedAt, updatedAt, leadId) {
     'Name': p.name || '',
     'Email': p.email || '',
     'Wedding Date': p.date || '',
-    'Venue': p.venue || '',
+    'Venue': venueValue_(p),
     'Aesthetic': p.aesthetic || '',
     'Budget': p.budget || '',
     'Message': p.message || '',
@@ -220,7 +236,7 @@ function spamReasons_(p) {
   var name = String(p.name || '').trim();
   var email = String(p.email || '').trim();
   var date = String(p.date || '').trim();
-  var venue = String(p.venue || '').trim();
+  var venue = (String(p.venue || '') + ' ' + String(p.venue_other || '')).trim();
   var aesthetic = String(p.aesthetic || '').trim();
   var budget = String(p.budget || '').trim();
 
@@ -363,15 +379,16 @@ function sourceLabel_(p) {
 
 function sendCompleteEmail_(p) {
   var subject = 'New consult request: ' + (p.name || 'Unknown') + '  ·  ' + (p.date || 'no date');
+  // Deliberately no Source / Opened-from lines: Brittany forwards these
+  // emails to couples, and lead-gen internals shouldn't travel with them.
+  // That data still lands in the sheet (Source / Page / Button columns).
   var body = [
     'Name: ' + (p.name || ''),
     'Email: ' + (p.email || ''),
     'Wedding date: ' + (p.date || ''),
-    'Venue: ' + (p.venue || '(not given)'),
+    'Venue: ' + (venueValue_(p) || '(not given)'),
     'Aesthetic: ' + (p.aesthetic || ''),
     'Budget: ' + (p.budget || ''),
-    'Source: ' + sourceLabel_(p),
-    'Opened from: ' + (p.cta_page || '?') + (p.cta_button ? '  (' + p.cta_button + ')' : ''),
     '',
     'Message:',
     p.message || '(none)'
@@ -396,7 +413,8 @@ function notifyStalePartials() {
     var status = String(row[cols['Status'] - 1] || '');
     var notified = String(row[cols['Notified'] - 1] || '');
     var updated = row[cols['Updated'] - 1];
-    if (/^In progress/.test(status) && notified !== 'Y' && updated instanceof Date && updated < cutoff) {
+    // "In progress" is the pre-July-2026 wording; matched so old rows still digest.
+    if (/^(Step 1 only|In progress)/.test(status) && notified !== 'Y' && updated instanceof Date && updated < cutoff) {
       stale.push({
         rowNum: i + 2,
         name: row[cols['Name'] - 1],

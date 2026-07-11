@@ -1,0 +1,40 @@
+# Venue suggestions for the consultation form's type-ahead field.
+# Mirrors the /venues page lists (featured + around the lake + foothills).
+# One name per line; order doesn't matter — matches are found as couples type.
+names:
+  - Edgewood Tahoe
+  - Thunderbird Lodge
+  - Hyatt Regency Lake Tahoe
+  - The Ritz-Carlton, Lake Tahoe
+  - Martis Camp
+  - Hellman-Ehrman Mansion
+  - Valhalla Tahoe
+  - Old Greenwood
+  - Heavenly
+  - North Tahoe Event Center (NTEC)
+  - Gar Woods
+  - Palisades High Camp
+  - Schaffer's Camp
+  - The Chateau
+  - PlumpJack
+  - Everline Resort
+  - Sunnyside
+  - Lahontan
+  - Tahoe Blue Estate
+  - The Landing
+  - West Shore Cafe
+  - Olympic Valley Stables
+  - Zephyr Lodge
+  - Olympic Valley Event Center (OVEC)
+  - The Ridge Tahoe
+  - Round Hill Pines Beach Resort
+  - Zephyr Cove Resort
+  - The Hideout at Kirkwood
+  - Kirkwood Mountain Resort
+  - National Exchange Hotel
+  - Miners Foundry
+  - Holbrooke Hotel
+  - The Stone House
+  - The North Star House
+  - Harmony Ridge Lodge
+  - The Roth Estate
