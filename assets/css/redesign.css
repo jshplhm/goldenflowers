@@ -517,6 +517,9 @@ label .opt{color:var(--mute);}
 .form-section label,.modal label{display:block;font-size:.82rem;letter-spacing:.03em;color:var(--fg2);margin-bottom:8px;}
 .form-section input,.form-section select,.form-section textarea,.modal input,.modal select,.modal textarea{width:100%;font-family:var(--b);font-size:1rem;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:14px 16px;transition:border-color .2s;}
 .form-section input:focus,.form-section select:focus,.form-section textarea:focus,.modal input:focus,.modal select:focus,.modal textarea:focus{outline:none;border-color:var(--terra);}
+/* One placeholder gray everywhere: browsers pick their own otherwise, which
+   left name/email lighter than the date mask's ghost and the selects. */
+.form-section input::placeholder,.form-section textarea::placeholder,.modal input::placeholder,.modal textarea::placeholder{color:var(--mute);opacity:1;}
 .form-section textarea,.modal textarea{resize:vertical;}
 .form-section select,.modal select{appearance:none;-webkit-appearance:none;-moz-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='%23767267' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 8l5 5 5-5'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;background-size:14px;padding-right:42px;}
 /* :invalid greys required selects on their placeholder; :has covers optional
