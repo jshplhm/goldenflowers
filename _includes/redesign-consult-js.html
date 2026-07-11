@@ -144,8 +144,17 @@ function appendCommon_(params, form){
     var step1=form.querySelector('.form-step-1'), step2=form.querySelector('.form-step-2');
     var advance=form.querySelector('.form-advance'), advanceBtn=form.querySelector('[data-form-advance]');
     var indicator=form.querySelector('.form-step-indicator'), backBtn=form.querySelector('[data-form-back]');
+    var eyebrow=form.querySelector('[data-form-eyebrow]'), heading=form.querySelector('[data-form-heading]');
+    var seg2=form.querySelector('[data-progress-step2]');
     if(!step2||!advanceBtn) return;
     step2.hidden=true;
+    function setStep(n){
+      if(indicator) indicator.textContent='Step '+n+' / 2';
+      if(eyebrow) eyebrow.hidden=(n===2);
+      if(backBtn) backBtn.hidden=(n===1);
+      if(seg2) seg2.classList.toggle('on', n===2);
+      if(heading) heading.textContent=(n===2)?'A few more details.':'Is your date open?';
+    }
     form.dataset.leadId=(window.crypto&&crypto.randomUUID)?crypto.randomUUID():('c-'+Date.now()+'-'+Math.random().toString(36).slice(2));
     form.dataset.renderedAt=String(Date.now());
     function toTop(){ var m=form.closest('.modal'); if(m) m.scrollTop=0; }
@@ -168,12 +177,12 @@ function appendCommon_(params, form){
       if(step1) step1.hidden=true;
       if(advance) advance.hidden=true;
       step2.hidden=false;
-      if(indicator) indicator.textContent='Step 2 of 2';
+      setStep(2);
       toTop();
     });
     if(backBtn) backBtn.addEventListener('click', function(){
       step2.hidden=true; if(step1) step1.hidden=false; if(advance) advance.hidden=false;
-      if(indicator) indicator.textContent='Step 1 of 2'; toTop();
+      setStep(1); toTop();
     });
   });
 
@@ -231,15 +240,14 @@ function appendCommon_(params, form){
     var wrap=form.closest('[data-form-wrap]')||form.parentNode;
     var success=wrap.querySelector('[data-form-success]');
     if(!success){ var n=form.querySelector('[name="_next"]'); window.location=n?n.value:'/'; return; }
+    var firstName=(data.get('name')||'').trim().split(/\s+/)[0];
+    var nameEl=success.querySelector('[data-success-name]');
+    if(nameEl&&firstName) nameEl.textContent=', '+firstName;
     var dateVal=data.get('date');
-    var dateLine=success.querySelector('[data-success-date-line]'), dateEl=success.querySelector('[data-success-date]'), dflt=success.querySelector('[data-success-default]');
-    if(dateVal&&dateEl&&dateLine){ dateEl.textContent=fmtDate(dateVal); dateLine.hidden=false; if(dflt) dflt.hidden=true; }
-    var tagWrap=success.querySelector('[data-success-tags]');
-    if(tagWrap){
-      tagWrap.innerHTML=''; var chips=[]; if(dateVal) chips.push(fmtDate(dateVal));
-      ['aesthetic','budget'].forEach(function(name){ var v=data.get(name); if(!v||/not sure/i.test(v)) return; if(name==='aesthetic') v=v.split(',')[0]; chips.push(v); });
-      chips.forEach(function(t){ var s=document.createElement('span'); s.className='stag'; s.textContent=t; tagWrap.appendChild(s); });
-    }
+    var dateLine=success.querySelector('[data-success-date-line]'), dateEl=success.querySelector('[data-success-date]');
+    if(dateVal&&dateEl&&dateLine){ dateEl.textContent=fmtDate(dateVal); dateLine.hidden=false; }
+    var stepDate=success.querySelector('[data-success-step-date]');
+    if(stepDate&&dateVal) stepDate.textContent=' for '+fmtDate(dateVal);
     form.hidden=true;
     Array.prototype.forEach.call(wrap.children, function(el){ if(el!==success && !el.classList.contains('modal-close')) el.classList.add('is-gone'); });
     success.hidden=false; success.setAttribute('tabindex','-1');

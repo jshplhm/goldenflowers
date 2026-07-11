@@ -46,8 +46,13 @@ redirect_from:
 <section class="form-section" id="consultation">
   <div data-form-wrap>
     <form action="{{ site.consult_endpoint }}" method="POST" id="consultation-form" data-multistep data-ajax>
-      <span class="form-step-indicator" aria-hidden="true">Step 1 of 2</span>
-      <p class="form-required-note">* Required</p>
+      <div class="form-head">
+        <span class="form-head-label" data-form-eyebrow>Schedule a consultation</span>
+        <button type="button" class="form-back" data-form-back hidden>&larr; Back</button>
+        <span class="form-step-indicator" aria-hidden="true">Step 1 / 2</span>
+      </div>
+      <div class="form-progress" aria-hidden="true"><span class="on"></span><span data-progress-step2></span></div>
+      <h2 class="form-heading" data-form-heading>Is your date open?</h2>
       <div class="hp-wrap" aria-hidden="true">
         <label for="hp">Company</label>
         <input type="text" id="hp" name="gf_hp" tabindex="-1" autocomplete="off">
@@ -55,7 +60,7 @@ redirect_from:
       <div class="form-step-1">
         <div class="field-full">
           <label for="date">Wedding date</label>
-          <input type="text" id="date" name="date" placeholder="mm/dd/yyyy" inputmode="numeric" maxlength="10" autocomplete="off" data-date-mask>
+          <input type="text" id="date" name="date" placeholder="mm/dd/yyyy" inputmode="numeric" maxlength="10" autocomplete="off" data-date-mask required>
         </div>
         <div>
           <label for="name">Your name</label>
@@ -67,23 +72,21 @@ redirect_from:
         </div>
       </div>
       <div class="form-advance field-full">
-        <button type="button" class="btn-primary" data-form-advance>Check my date &rarr;</button>
-        <p class="form-step-hint">Then: aesthetic · budget · the details</p>
+        <button type="button" class="btn-primary" data-form-advance>Continue &rarr;</button>
       </div>
       <div class="form-step-2">
-        <button type="button" class="form-back" data-form-back>&larr; Back</button>
         <div class="field-full">
-          <label for="venue">Venue</label>
+          <label for="venue">Venue <span class="opt">(optional)</span></label>
           <input type="text" id="venue" name="venue" placeholder="If you know it yet" autocomplete="off">
         </div>
         <div class="field-full">
           <label for="aesthetic">Aesthetic direction</label>
           <select id="aesthetic" name="aesthetic" required>
             <option value="" disabled selected>Which direction resonates?</option>
-            <option>Lush &amp; Romantic (rich, dramatic, deep tones)</option>
-            <option>Elevated Minimalist (clean, airy, restrained)</option>
-            <option>Wildflower Modern (wild, seasonal, editorial)</option>
-            <option>A mix (I'll explain below)</option>
+            <option>Lush &amp; Romantic &mdash; rich, dramatic, deep tones</option>
+            <option>Elevated Minimalist &mdash; clean, airy, restrained</option>
+            <option>Wildflower Modern &mdash; wild, seasonal, editorial</option>
+            <option>A mix &mdash; I'll explain below</option>
             <option>Not sure yet</option>
           </select>
         </div>
@@ -100,30 +103,26 @@ redirect_from:
           </select>
         </div>
         <div class="field-full">
-          <label for="message">Tell us about your wedding</label>
-          <textarea id="message" name="message" placeholder="Your vision, anything that matters to you." rows="4"></textarea>
+          <label for="message">Anything else? <span class="opt">(optional)</span></label>
+          <textarea id="message" name="message" placeholder="Guest count, must-have flowers, inspiration..." rows="4"></textarea>
         </div>
         <div class="form-submit field-full">
-          <button type="submit" class="btn-primary">Send consultation request</button>
-          <p class="form-note">We'll respond within 48 hours · Consultations are complimentary</p>
+          <button type="submit" class="btn-primary">Check my date &rarr;</button>
         </div>
       </div>
     </form>
     <div id="consultation-success" class="form-success" data-form-success hidden>
-      <div class="form-success-tags" data-success-tags></div>
       <div class="form-success-check" aria-hidden="true">&#10003;</div>
-      <h3>Thank you for reaching out.</h3>
-      <p data-success-date-line hidden>We've got your details for <strong data-success-date></strong>. We'll email you within <strong>48 hours</strong> to confirm availability.</p>
-      <p data-success-default>We'll email you within <strong>48 hours</strong> to confirm availability.</p>
-      <div class="form-success-book">
-        <p class="form-success-book-prompt">Prefer to skip the wait? Grab 30 minutes with Brittany, by phone or video.</p>
-        <a href="https://calendar.app.google/iKY1Xqerqtcv6fdj7" target="_blank" rel="noopener" class="btn-primary">Book a call with Brittany &rarr;</a>
-      </div>
-      <div class="form-success-next">
-        <span class="lab">While you wait</span>
-        <a href="{{ site.baseurl }}/portfolio">Explore the portfolio &rarr;</a>
-        <a href="{{ site.baseurl }}/sustainability">Read our sustainability pledge &rarr;</a>
-        <a href="{{ site.baseurl }}/about">Meet Brittany &rarr;</a>
+      <h3>Thank you<span data-success-name></span>.</h3>
+      <p class="form-success-lede">Your consultation request<span data-success-date-line hidden> for <strong data-success-date></strong></span> is in. We're checking our calendar now.</p>
+      <hr class="form-success-rule">
+      <div class="form-success-steps">
+        <span class="form-head-label">What happens next</span>
+        <ol class="success-steps">
+          <li><span class="n">1</span><strong>We check your date</strong><span class="success-step-body">Confirming availability<span data-success-step-date> for your date</span>.</span></li>
+          <li><span class="n">2</span><strong>You hear from us</strong><span class="success-step-body">A personal note from Brittany, within 48 hours.</span></li>
+          <li><span class="n">3</span><strong>We design together</strong><span class="success-step-body">If your date's open, we'll book a call to plan your florals.</span></li>
+        </ol>
       </div>
     </div>
   </div>

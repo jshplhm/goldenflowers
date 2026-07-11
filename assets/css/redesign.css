@@ -495,14 +495,18 @@ body.lb-open{overflow:hidden;}
 
 .form-section{max-width:640px;margin:0 auto;padding:clamp(36px,4vw,56px) var(--pad) clamp(70px,9vw,120px);}
 .form-section form{margin:0 auto;}
-.form-step-indicator{display:block;font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--terra);margin-bottom:24px;}
-.form-required-note{font-size:.76rem;color:var(--mute);margin:-16px 0 20px;}
-/* Marks whichever labels precede a required field, so the asterisk can never
-   drift out of sync with the field's actual required-ness. */
-.form-section label:has(+ input[required])::after,
-.form-section label:has(+ select[required])::after,
-.modal label:has(+ input[required])::after,
-.modal label:has(+ select[required])::after{content:" *";color:var(--terra);}
+.form-section .form-heading{margin-bottom:26px;}
+/* Header row shared by both form steps: eyebrow (step 1) or Back (step 2) on
+   the left, the step counter on the right, segmented progress bar below.
+   Fields are required by default; optional ones say so in the label instead
+   of required ones carrying asterisks. */
+.form-head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;}
+.form-head-label{font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ink);font-weight:500;}
+.form-step-indicator{font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ink);}
+.form-progress{display:flex;gap:14px;margin-top:12px;}
+.form-progress span{height:2px;flex:1;background:oklch(80% .015 120/.5);transition:background .3s;}
+.form-progress span.on{background:var(--forest-deep);}
+label .opt{color:var(--mute);}
 .field-full{grid-column:1 / -1;}
 .form-step-1{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
 .form-step-2{display:grid;grid-template-columns:1fr;gap:18px;margin-top:18px;}
@@ -514,11 +518,9 @@ body.lb-open{overflow:hidden;}
 .form-section select:invalid,.modal select:invalid{color:var(--mute);}
 .form-advance{margin-top:22px;}
 .form-advance .btn-primary,.form-submit .btn-primary{width:100%;justify-content:center;}
-.form-step-hint{text-align:center;font-size:.82rem;color:var(--mute);margin-top:12px;}
-.form-back{justify-self:start;background:none;border:0;color:var(--mute);font-family:var(--b);font-size:.85rem;cursor:pointer;padding:4px 0;margin:-4px 0 2px;text-align:left;}
-.form-back:hover{color:var(--ink);}
+.form-back{background:none;border:0;color:var(--ink);font-family:var(--b);font-size:.95rem;cursor:pointer;padding:0;text-align:left;}
+.form-back:hover{color:var(--mute);}
 .form-submit{margin-top:8px;}
-.form-note{text-align:center;font-size:.82rem;color:var(--mute);margin-top:12px;}
 .date-field{position:relative;display:block;}
 .date-ghost{position:absolute;left:16px;top:14px;font-size:1rem;color:var(--mute);pointer-events:none;}
 .date-ghost .gt{visibility:hidden;}
@@ -527,17 +529,21 @@ body.lb-open{overflow:hidden;}
 .hp-wrap{position:absolute;left:-9999px;top:-9999px;width:1px;height:1px;overflow:hidden;}
 
 .form-success{text-align:center;max-width:600px;margin:0 auto;}
-.form-success-tags{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:24px;}
-.stag{font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;border:1px solid var(--line);border-radius:100px;padding:6px 14px;color:var(--fg2);}
-.form-success-check{width:56px;height:56px;border-radius:50%;background:var(--terra);color:var(--paper);font-size:1.5rem;display:flex;align-items:center;justify-content:center;margin:0 auto 24px;}
-.form-success h3{font-family:var(--d);font-weight:430;font-optical-sizing:auto;font-size:clamp(1.8rem,3.4vw,2.6rem);letter-spacing:-.01em;margin-bottom:14px;}
-.form-success p{color:var(--fg2);line-height:1.6;margin-bottom:10px;}
-.form-success-book{margin:32px 0;padding:28px;background:var(--bg2);border:1px solid var(--line);border-radius:10px;}
-.form-success-book-prompt{margin-bottom:16px;}
-.form-success-next{margin-top:28px;}
-.form-success-next .label,.form-success-next .lab{display:block;margin-bottom:10px;}
-.form-success-next a{display:block;color:var(--forest);padding:8px 0;border-bottom:1px solid var(--line);}
-.form-success-next a:hover{color:var(--terra);}
+.form-success-check{width:56px;height:56px;border-radius:50%;background:var(--forest-deep);color:var(--paper);font-size:1.4rem;display:flex;align-items:center;justify-content:center;margin:6px auto 26px;}
+.form-success h3{font-family:var(--d);font-weight:430;font-optical-sizing:auto;font-size:clamp(1.8rem,3.4vw,2.4rem);letter-spacing:-.01em;margin-bottom:14px;}
+.form-success-lede{color:var(--fg2);line-height:1.7;max-width:440px;margin:0 auto;}
+.form-success-lede strong{color:var(--ink);}
+.form-success-rule{border:0;border-top:1px solid var(--line);margin:30px 0 28px;}
+.form-success-steps{text-align:left;}
+.form-success-steps .form-head-label{display:block;color:var(--fg2);margin-bottom:24px;}
+.success-steps{list-style:none;margin:0;padding:0;}
+.success-steps li{position:relative;padding-left:56px;padding-bottom:28px;}
+.success-steps li:last-child{padding-bottom:0;}
+/* thin connector between the numbered circles */
+.success-steps li:not(:last-child)::before{content:"";position:absolute;left:18px;top:37px;bottom:-2px;width:1px;background:var(--line);}
+.success-steps .n{position:absolute;left:0;top:-2px;width:37px;height:37px;border:1px solid var(--forest);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--d);font-size:1.1rem;color:var(--ink);background:var(--bg);}
+.success-steps strong{display:block;color:var(--ink);font-weight:600;margin-bottom:2px;}
+.success-step-body{color:var(--fg2);line-height:1.6;}
 .is-gone{display:none !important;}
 
 /* ---------- CONSULT MODAL (Check-your-date lightbox) ---------- */
@@ -547,8 +553,7 @@ body.lb-open{overflow:hidden;}
 .modal-overlay.open .modal{transform:translateY(0);}
 .modal-close{position:absolute;top:12px;right:14px;width:38px;height:38px;border:none;background:transparent;font-size:1.7rem;line-height:1;color:var(--mute);cursor:pointer;border-radius:50%;transition:background .2s,color .2s;}
 .modal-close:hover{background:oklch(20% .02 150/.07);color:var(--ink);}
-.modal h2{font-family:var(--d);font-weight:430;font-size:1.95rem;line-height:1.04;letter-spacing:-.015em;margin:8px 0 6px;color:var(--ink);}
-.modal .modal-intro{font-size:.92rem;color:var(--fg2);line-height:1.6;margin:4px 0 24px;}
+.modal h2,.form-heading{font-family:var(--d);font-weight:430;font-optical-sizing:auto;font-size:2.2rem;line-height:1.04;letter-spacing:-.015em;margin:20px 0 10px;color:var(--ink);}
 .modal form{display:grid;gap:15px;}
 .modal .form-submit{margin-top:4px;}
 body.modal-open{overflow:hidden;}
