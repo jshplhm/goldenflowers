@@ -83,7 +83,7 @@ var PLACEHOLDER_DOMAINS = [
 // are appended, never inserted, so existing rows/headers never shift.
 var HEADERS = [
   'Submitted', 'Status', 'Name', 'Email', 'Wedding Date', 'Aesthetic',
-  'Budget', 'Message', 'Venue', 'Source', 'Landing Page', 'Referrer',
+  'Budget', 'Message', 'Venue', 'Source', 'Page', 'Button',
   'Updated', 'Notified', 'Lead ID'
 ];
 
@@ -150,8 +150,8 @@ function buildRowValues_(p, isPartial, submittedAt, updatedAt, leadId) {
     'Budget': p.budget || '',
     'Message': p.message || '',
     'Source': sourceLabel_(p),
-    'Landing Page': p.landing || '',
-    'Referrer': p.referrer || '',
+    'Page': p.cta_page || '',
+    'Button': p.cta_button || '',
     'Lead ID': leadId || ''
   };
 }
@@ -371,6 +371,7 @@ function sendCompleteEmail_(p) {
     'Aesthetic: ' + (p.aesthetic || ''),
     'Budget: ' + (p.budget || ''),
     'Source: ' + sourceLabel_(p),
+    'Opened from: ' + (p.cta_page || '?') + (p.cta_button ? '  (' + p.cta_button + ')' : ''),
     '',
     'Message:',
     p.message || '(none)'

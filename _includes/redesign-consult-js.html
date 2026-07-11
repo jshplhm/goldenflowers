@@ -24,9 +24,30 @@
     if(lastFocus && lastFocus.focus) lastFocus.focus();
   }
   var TRIGGER='a.btn[href$="/consultation-form"],a.pill[href$="/consultation-form"],a.m-cta[href$="/consultation-form"],[data-consult-open]';
+  // A few CTAs share the exact same label ("Check your date" appears in the
+  // nav, the mobile menu, and the footer), so plain text alone can't tell
+  // them apart — tag those with where they live. Everything else's own
+  // wording is distinct enough that the page alone disambiguates it.
+  function regionLabel(el){
+    if(el.closest('.nav-r')) return 'Nav';
+    if(el.closest('.mobile-menu')) return 'Mobile menu';
+    if(el.closest('footer.site-footer')) return 'Footer';
+    return '';
+  }
+  function recordCtaClick(trigger){
+    var text=(trigger.textContent||'').replace(/\s+/g,' ').trim().replace(/\s*(→|->)\s*$/,'');
+    var region=regionLabel(trigger);
+    try{
+      sessionStorage.setItem('gf_cta', JSON.stringify({
+        page: location.pathname,
+        button: region ? (region+' — '+text) : text
+      }));
+    }catch(e){}
+  }
   document.addEventListener('click', function(e){
     var trigger=e.target.closest(TRIGGER);
     if(trigger){
+      recordCtaClick(trigger);
       // Contact page: scroll to the inline form rather than stack a modal over it.
       if(inlineForm){
         e.preventDefault();
@@ -71,8 +92,7 @@
         utm_source: qs.get('utm_source')||'',
         utm_medium: qs.get('utm_medium')||'',
         utm_campaign: qs.get('utm_campaign')||'',
-        referrer: document.referrer||'',
-        landing: location.pathname
+        referrer: document.referrer||''
       }));
     }
   }catch(e){}
@@ -99,13 +119,23 @@ function sourceParams_(){
   var out={}; try{ var raw=sessionStorage.getItem('gf_source'); if(raw) out=JSON.parse(raw); }catch(e){}
   return out;
 }
+// The page/button that opened the form, most recent click wins. Falls back
+// to "landed here directly, no CTA click" (e.g. a typed URL or bookmark)
+// so the Page column is still populated even without a recorded click.
+function ctaParams_(){
+  try{ var raw=sessionStorage.getItem('gf_cta'); if(raw) return JSON.parse(raw); }catch(e){}
+  return { page: location.pathname, button: '' };
+}
 function appendCommon_(params, form){
   params.append('lead_id', form.dataset.leadId||'');
   params.append('ts', form.dataset.renderedAt||'');
   var hp=form.querySelector('[name="gf_hp"]');
   params.append('gf_hp', hp?hp.value:'');
   var s=sourceParams_();
-  ['utm_source','utm_medium','utm_campaign','referrer','landing'].forEach(function(k){ params.append(k, s[k]||''); });
+  ['utm_source','utm_medium','utm_campaign','referrer'].forEach(function(k){ params.append(k, s[k]||''); });
+  var c=ctaParams_();
+  params.append('cta_page', c.page||'');
+  params.append('cta_button', c.button||'');
 }
 
 /* Two-step reveal + mm/dd/yyyy date mask + in-place AJAX success. Binds every consult form on the page. */
