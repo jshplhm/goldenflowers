@@ -77,7 +77,7 @@ redirect_from:
       <div class="form-step-2">
         <div class="field-full venue-combo" data-venue-combo data-venues="{{ site.data.consult_venues.names | jsonify | escape }}">
           <label for="venue">Venue <span class="opt">(optional)</span></label>
-          <input type="text" id="venue" name="venue" placeholder="If you know it yet" autocomplete="off" role="combobox" aria-expanded="false" aria-autocomplete="list">
+          <input type="text" id="venue" name="venue" placeholder="Start typing your venue" autocomplete="off" role="combobox" aria-expanded="false" aria-autocomplete="list">
           <div class="venue-suggest" role="listbox" hidden></div>
         </div>
         <div class="field-full">
