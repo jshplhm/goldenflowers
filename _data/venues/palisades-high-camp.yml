@@ -1,22 +1,23 @@
-# palisades-high-camp venue page copy. Edit the wording here; SEO settings live in the page file.
+# palisades-tahoe venue page copy (file keeps its old venue_key name). Edit the wording here; SEO settings live in the page file.
 # Tip: wrap words in *asterisks* to make them italic.
-venue_name: "Palisades High Camp"
+venue_name: "Palisades Tahoe"
 hero:
   eyebrow: "Olympic Valley · Alpine"
-  heading: "Palisades High Camp."
+  heading: "High Camp at Palisades Tahoe."
   subheading: "Wedding flowers at 8,200 feet"
 why:
   label: Why this venue matters
   heading: A wedding at the top of the tram.
   paragraphs:
-    - "High Camp sits at 8,200 feet at the head of Olympic Valley, reached by the aerial tram and ringed by the granite peaks that hosted the 1960 Winter Olympics. The setting is enormous, bright, and exposed."
+    - "High Camp sits at 8,200 feet above Olympic Valley, reached by the Palisades Tahoe aerial tram and ringed by the granite peaks that hosted the 1960 Winter Olympics, back when the resort was still called Squaw Valley. The setting is enormous, bright, and exposed."
     - "Flowers here have two jobs: hold up in thin, dry alpine air, and hold their own against a very big view. Delicate, thirsty blooms struggle at altitude. We design with hardy, well-conditioned stems and structure that reads from a distance."
     - "Everything also has to ride the tram. We plan the build, the hydration, and the load-in around that single constraint, so what arrives at the top is as fresh as what left the studio."
+    - "Palisades Tahoe hosts weddings in two places: High Camp at the top of the tram, and the Olympic Valley Event Center (OVEC) on the valley floor. We design for both, and the same alpine palette carries beautifully down the mountain."
   facts:
     - label: At altitude
       body: High Camp sits at 8,200 feet, reached by the aerial tram. Thin, dry air changes how flowers hold, so conditioning and stem choice matter.
     - label: Olympic Valley
-      body: At the head of Olympic Valley, ringed by granite peaks. The site of the 1960 Winter Olympics, with history in every direction.
+      body: At the head of Olympic Valley, ringed by granite peaks. For valley-floor celebrations, the Olympic Valley Event Center (OVEC) sits at the base of the same tram.
     - label: Panoramic
       body: Ceremonies look out over the valley and the High Sierra. Arrangements have to read at scale and never compete with that view.
     - label: Seasonal
@@ -34,10 +35,10 @@ philosophy:
     - title: Planned around the tram
       body: Every stem rides the aerial tram to the top. We plan the build, packing, and load-in around that, so setup is calm and the flowers arrive at full freshness.
 faq:
-  label: Questions about Palisades High Camp
+  label: Questions about Palisades Tahoe
   heading: What planning at High Camp looks like.
 pricing:
-  label: Investment at Palisades High Camp
+  label: Investment at Palisades Tahoe
   heading: What High Camp florals cost.
   range: $12,000–$22,000+
   note: Typical full-service High Camp wedding
@@ -47,6 +48,6 @@ pricing:
   button: Request a custom estimate
 cta:
   label: Get started
-  heading: Getting married at Palisades High Camp?
+  heading: Getting married at Palisades Tahoe?
   body: Tell us your date and vision. We'll let you know if we're available and what the design process looks like from here.
   button: Check your date

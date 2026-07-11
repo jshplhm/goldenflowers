@@ -16,20 +16,22 @@ canonical_url: https://goldenflorals.com/venues
   </div>
   <div class="mh-body">
     <span class="lab vlist-lab"><span class="vlist-dot vlist-dot--feat"></span>Featured venues</span>
-    <ol class="vfl">
-      <li><a data-venue="edgewood-tahoe" href="{{ site.baseurl }}/venues/edgewood-tahoe"><span class="vnum">1</span><span class="vf-name">Edgewood Tahoe</span><span class="vf-type">Golf resort</span></a></li>
-      <li><a data-venue="thunderbird-lodge" href="{{ site.baseurl }}/venues/thunderbird-lodge"><span class="vnum">2</span><span class="vf-name">Thunderbird Lodge</span><span class="vf-type">Historic estate</span></a></li>
-      <li><a data-venue="hyatt-regency-lake-tahoe" href="{{ site.baseurl }}/venues/hyatt-regency-lake-tahoe"><span class="vnum">3</span><span class="vf-name">Hyatt Regency</span><span class="vf-type">Lakefront resort</span></a></li>
-      <li><a data-venue="ritz-carlton-lake-tahoe" href="{{ site.baseurl }}/venues/ritz-carlton-lake-tahoe"><span class="vnum">4</span><span class="vf-name">Ritz-Carlton</span><span class="vf-type">Mountain resort</span></a></li>
-      <li><a data-venue="martis-camp" href="{{ site.baseurl }}/venues/martis-camp"><span class="vnum">5</span><span class="vf-name">Martis Camp</span><span class="vf-type">Private club</span></a></li>
-      <li><a data-venue="hellman-ehrman-mansion" href="{{ site.baseurl }}/venues/hellman-ehrman-mansion"><span class="vnum">6</span><span class="vf-name">Hellman-Ehrman</span><span class="vf-type">Historic mansion</span></a></li>
-      <li><a data-venue="valhalla-tahoe" href="{{ site.baseurl }}/venues/valhalla-tahoe"><span class="vnum">7</span><span class="vf-name">Valhalla</span><span class="vf-type">Historic estate</span></a></li>
-      <li><a data-venue="old-greenwood" href="{{ site.baseurl }}/venues/old-greenwood"><span class="vnum">8</span><span class="vf-name">Old Greenwood</span><span class="vf-type">Golf club</span></a></li>
-      <li><a data-venue="heavenly" href="{{ site.baseurl }}/venues/heavenly"><span class="vnum">9</span><span class="vf-name">Heavenly</span><span class="vf-type">Mountain resort</span></a></li>
-      <li><a data-venue="north-tahoe-event-center" href="{{ site.baseurl }}/venues/north-tahoe-event-center"><span class="vnum">10</span><span class="vf-name">NTEC</span><span class="vf-type">Event venue</span></a></li>
-      <li><a data-venue="gar-woods" href="{{ site.baseurl }}/venues/gar-woods"><span class="vnum">11</span><span class="vf-name">Gar Woods</span><span class="vf-type">Lakefront restaurant</span></a></li>
-      <li><a data-venue="palisades-high-camp" href="{{ site.baseurl }}/venues/palisades-high-camp"><span class="vnum">12</span><span class="vf-name">Palisades High Camp</span><span class="vf-type">Mountain venue</span></a></li>
-    </ol>
+    <!-- Alphabetical on purpose: numbering read as a ranking, and order-by-map
+         implied one. The map pairing is handled by hover (desktop) / tap (touch). -->
+    <ul class="vfl">
+      <li><a data-venue="edgewood-tahoe" href="{{ site.baseurl }}/venues/edgewood-tahoe"><span class="vf-name">Edgewood Tahoe</span><span class="vf-type">Golf resort</span></a></li>
+      <li><a data-venue="gar-woods" href="{{ site.baseurl }}/venues/gar-woods"><span class="vf-name">Gar Woods</span><span class="vf-type">Lakefront restaurant</span></a></li>
+      <li><a data-venue="heavenly" href="{{ site.baseurl }}/venues/heavenly"><span class="vf-name">Heavenly</span><span class="vf-type">Mountain resort</span></a></li>
+      <li><a data-venue="hellman-ehrman-mansion" href="{{ site.baseurl }}/venues/hellman-ehrman-mansion"><span class="vf-name">Hellman-Ehrman</span><span class="vf-type">Historic mansion</span></a></li>
+      <li><a data-venue="hyatt-regency-lake-tahoe" href="{{ site.baseurl }}/venues/hyatt-regency-lake-tahoe"><span class="vf-name">Hyatt Regency</span><span class="vf-type">Lakefront resort</span></a></li>
+      <li><a data-venue="martis-camp" href="{{ site.baseurl }}/venues/martis-camp"><span class="vf-name">Martis Camp</span><span class="vf-type">Private club</span></a></li>
+      <li><a data-venue="north-tahoe-event-center" href="{{ site.baseurl }}/venues/north-tahoe-event-center"><span class="vf-name">NTEC</span><span class="vf-type">Event venue</span></a></li>
+      <li><a data-venue="old-greenwood" href="{{ site.baseurl }}/venues/old-greenwood"><span class="vf-name">Old Greenwood</span><span class="vf-type">Golf club</span></a></li>
+      <li><a data-venue="palisades-high-camp" href="{{ site.baseurl }}/venues/palisades-tahoe"><span class="vf-name">Palisades High Camp</span><span class="vf-type">Mountain venue</span></a></li>
+      <li><a data-venue="ritz-carlton-lake-tahoe" href="{{ site.baseurl }}/venues/ritz-carlton-lake-tahoe"><span class="vf-name">Ritz-Carlton</span><span class="vf-type">Mountain resort</span></a></li>
+      <li><a data-venue="thunderbird-lodge" href="{{ site.baseurl }}/venues/thunderbird-lodge"><span class="vf-name">Thunderbird Lodge</span><span class="vf-type">Historic estate</span></a></li>
+      <li><a data-venue="valhalla-tahoe" href="{{ site.baseurl }}/venues/valhalla-tahoe"><span class="vf-name">Valhalla</span><span class="vf-type">Historic estate</span></a></li>
+    </ul>
   </div>
   <div class="mh-map">
     <svg class="tahoe" viewBox="-12 -66 605 892" xmlns="http://www.w3.org/2000/svg" role="group" aria-label="Map of Lake Tahoe wedding venues">
@@ -80,6 +82,9 @@ canonical_url: https://goldenflorals.com/venues
       <g class="t-pin t-minor" data-venue="chateau" tabindex="0" role="img" aria-label="The Chateau"><circle class="t-hit" cx="437.0" cy="157.0" r="22"/><circle class="t-dot sm" cx="437.0" cy="157.0" r="4.5"/><text class="t-vlabel" x="446.5" y="161.6">The Chateau</text></g>
       <g class="t-pin t-minor" data-venue="landing" tabindex="0" role="img" aria-label="The Landing"><circle class="t-hit" cx="444.0" cy="706.9" r="22"/><circle class="t-dot sm" cx="444.0" cy="706.9" r="4.5"/><text class="t-vlabel" x="453.5" y="711.5">The Landing</text></g>
       <g class="t-pin t-minor" data-venue="sunnyside" tabindex="0" role="img" aria-label="Sunnyside"><circle class="t-hit" cx="140.2" cy="363.0" r="22"/><circle class="t-dot sm" cx="140.2" cy="363.0" r="4.5"/><text class="t-vlabel" text-anchor="end" x="130.7" y="367.6">Sunnyside</text></g>
+      <g class="t-pin t-minor" data-venue="granlibakken" tabindex="0" role="img" aria-label="Granlibakken Tahoe"><circle class="t-hit" cx="147.0" cy="322.0" r="22"/><circle class="t-dot sm" cx="147.0" cy="322.0" r="4.5"/><text class="t-vlabel" text-anchor="end" x="137.5" y="326.6">Granlibakken</text></g>
+      <g class="t-pin t-minor" data-venue="camp-richardson" tabindex="0" role="img" aria-label="Camp Richardson Resort"><circle class="t-hit" cx="289.0" cy="740.0" r="22"/><circle class="t-dot sm" cx="289.0" cy="740.0" r="4.5"/><text class="t-vlabel" text-anchor="end" x="279.5" y="744.6">Camp Richardson</text></g>
+      <g class="t-pin t-minor" data-venue="sugar-bowl" tabindex="0" role="img" aria-label="Sugar Bowl Resort"><circle class="t-hit" cx="46.0" cy="13.0" r="22"/><circle class="t-dot sm" cx="46.0" cy="13.0" r="4.5"/><text class="t-vlabel" x="55.5" y="17.6">Sugar Bowl</text></g>
       <g class="t-pin t-minor" data-venue="lahontan" tabindex="0" role="img" aria-label="Lahontan"><circle class="t-hit" cx="97.2" cy="52.2" r="22"/><circle class="t-dot sm" cx="97.2" cy="52.2" r="4.5"/><text class="t-vlabel" text-anchor="end" x="87.7" y="56.8">Lahontan</text></g>
       <g class="t-pin t-minor" data-venue="plumpjack" tabindex="0" role="img" aria-label="PlumpJack"><circle class="t-hit" cx="18.4" cy="251.1" r="22"/><circle class="t-dot sm" cx="18.4" cy="251.1" r="4.5"/><text class="t-vlabel" x="27.9" y="255.7">PlumpJack</text></g>
       <g class="t-pin t-minor" data-venue="ovec" tabindex="0" role="img" aria-label="OVEC"><circle class="t-hit" cx="18.5" cy="244.5" r="22"/><circle class="t-dot sm" cx="18.5" cy="244.5" r="4.5"/><text class="t-vlabel" x="28.0" y="249.1">OVEC</text></g>
@@ -87,60 +92,67 @@ canonical_url: https://goldenflorals.com/venues
       <g class="t-pin t-minor" data-venue="round-hill" tabindex="0" role="img" aria-label="Round Hill Pines Beach Resort"><circle class="t-hit" cx="445.7" cy="659.1" r="22"/><circle class="t-dot sm" cx="445.7" cy="659.1" r="4.5"/><text class="t-vlabel" x="455.2" y="663.7">Round Hill Pines</text></g>
       <g class="t-pin t-minor" data-venue="zephyr-cove" tabindex="0" role="img" aria-label="Zephyr Cove Resort"><circle class="t-hit" cx="444.0" cy="616.0" r="22"/><circle class="t-dot sm" cx="444.0" cy="616.0" r="4.5"/><text class="t-vlabel" x="453.5" y="620.6">Zephyr Cove Resort</text></g>
       <g class="t-pin t-minor" data-venue="hideout" tabindex="0" role="img" aria-label="The Hideout at Kirkwood"><circle class="t-hit" cx="258.0" cy="800.0" r="22"/><circle class="t-dot sm" cx="258.0" cy="800.0" r="4.5"/><text class="t-vlabel" text-anchor="end" x="248.5" y="804.6">The Hideout · Kirkwood</text></g>
-      <g class="t-pin t-minor" data-venue="kirkwood" tabindex="0" role="img" aria-label="Kirkwood Mountain Resort"><circle class="t-hit" cx="276.0" cy="800.0" r="22"/><circle class="t-dot sm" cx="276.0" cy="800.0" r="4.5"/><text class="t-vlabel" x="285.5" y="804.6">Kirkwood Mountain Resort</text></g>
+      <g class="t-pin t-minor" data-venue="kirkwood" tabindex="0" role="img" aria-label="Kirkwood Mountain Resort"><circle class="t-hit" cx="276.0" cy="800.0" r="22"/><circle class="t-dot sm" cx="276.0" cy="800.0" r="4.5"/><text class="t-vlabel" x="285.5" y="804.6">Kirkwood</text></g>
 
       <!-- featured venues -->
-      <a href="{{ site.baseurl }}/venues/edgewood-tahoe" class="t-pin feat" data-venue="edgewood-tahoe" aria-label="Edgewood Tahoe: view venue"><circle class="t-hit" cx="444.6" cy="693.8" r="22"/><circle class="t-dot" cx="444.6" cy="693.8" r="7.5"/><text class="t-num" style="transform-origin:444.6px 693.8px" x="444.6" y="697.0">1</text><text class="t-vlabel" x="457.1" y="698.4">Edgewood Tahoe</text></a>
-      <a href="{{ site.baseurl }}/venues/thunderbird-lodge" class="t-pin feat" data-venue="thunderbird-lodge" aria-label="Thunderbird Lodge: view venue"><circle class="t-hit" cx="470.4" cy="296.0" r="22"/><circle class="t-dot" cx="470.4" cy="296.0" r="7.5"/><text class="t-num" style="transform-origin:470.4px 296.0px" x="470.4" y="299.2">2</text><text class="t-vlabel" x="482.9" y="300.6">Thunderbird Lodge</text></a>
-      <a href="{{ site.baseurl }}/venues/hyatt-regency-lake-tahoe" class="t-pin feat" data-venue="hyatt-regency-lake-tahoe" aria-label="Hyatt Regency Lake Tahoe: view venue"><circle class="t-hit" cx="444.1" cy="169.3" r="22"/><circle class="t-dot" cx="444.1" cy="169.3" r="7.5"/><text class="t-num" style="transform-origin:444.1px 169.3px" x="444.1" y="172.5">3</text><text class="t-vlabel" x="456.6" y="173.9">Hyatt Regency</text></a>
-      <a href="{{ site.baseurl }}/venues/ritz-carlton-lake-tahoe" class="t-pin feat" data-venue="ritz-carlton-lake-tahoe" aria-label="Ritz-Carlton, Lake Tahoe: view venue"><circle class="t-hit" cx="178.6" cy="117.5" r="22"/><circle class="t-dot" cx="178.6" cy="117.5" r="7.5"/><text class="t-num" style="transform-origin:178.6px 117.5px" x="178.6" y="120.7">4</text><text class="t-vlabel" x="191.1" y="122.1">The Ritz-Carlton</text></a>
-      <a href="{{ site.baseurl }}/venues/martis-camp" class="t-pin feat" data-venue="martis-camp" aria-label="Martis Camp: view venue"><circle class="t-hit" cx="116.5" cy="93.0" r="22"/><circle class="t-dot" cx="116.5" cy="93.0" r="7.5"/><text class="t-num" style="transform-origin:116.5px 93.0px" x="116.5" y="96.2">5</text><text class="t-vlabel" x="129.0" y="97.6">Martis Camp</text></a>
-      <a href="{{ site.baseurl }}/venues/hellman-ehrman-mansion" class="t-pin feat" data-venue="hellman-ehrman-mansion" aria-label="Hellman-Ehrman Mansion: view venue"><circle class="t-hit" cx="200.6" cy="532.0" r="22"/><circle class="t-dot" cx="200.6" cy="532.0" r="7.5"/><text class="t-num" style="transform-origin:200.6px 532.0px" x="200.6" y="535.2">6</text><text class="t-vlabel" text-anchor="end" x="188.1" y="536.6">Hellman-Ehrman</text></a>
-      <a href="{{ site.baseurl }}/venues/valhalla-tahoe" class="t-pin feat" data-venue="valhalla-tahoe" aria-label="Valhalla: view venue"><circle class="t-hit" cx="298.9" cy="747.4" r="22"/><circle class="t-dot" cx="298.9" cy="747.4" r="7.5"/><text class="t-num" style="transform-origin:298.9px 747.4px" x="298.9" y="750.6">7</text><text class="t-vlabel" text-anchor="end" x="286.4" y="752.0">Valhalla</text></a>
-      <a href="{{ site.baseurl }}/venues/palisades-high-camp" class="t-pin feat" data-venue="palisades-high-camp" aria-label="Palisades High Camp: view venue"><circle class="t-hit" cx="-3.0" cy="273.2" r="22"/><circle class="t-dot" cx="-3.0" cy="273.2" r="7.5"/><text class="t-num" style="transform-origin:-3.0px 273.2px" x="-3.0" y="276.4">12</text><text class="t-vlabel" x="9.5" y="277.8">Palisades High Camp</text></a>
-      <a href="{{ site.baseurl }}/venues/old-greenwood" class="t-pin feat" data-venue="old-greenwood" aria-label="Old Greenwood: view venue"><circle class="t-hit" cx="175.0" cy="-27.0" r="22"/><circle class="t-dot" cx="175.0" cy="-27.0" r="7.5"/><text class="t-num" style="transform-origin:175.0px -27.0px" x="175.0" y="-23.8">8</text><text class="t-vlabel" x="187.5" y="-22.4">Old Greenwood</text></a>
-      <a href="{{ site.baseurl }}/venues/heavenly" class="t-pin feat" data-venue="heavenly" aria-label="Heavenly: view venue"><circle class="t-hit" cx="458.7" cy="757.1" r="22"/><circle class="t-dot" cx="458.7" cy="757.1" r="7.5"/><text class="t-num" style="transform-origin:458.7px 757.1px" x="458.7" y="760.3000000000001">9</text><text class="t-vlabel" x="471.2" y="761.7">Heavenly</text></a>
-      <a href="{{ site.baseurl }}/venues/north-tahoe-event-center" class="t-pin feat" data-venue="north-tahoe-event-center" aria-label="North Tahoe Event Center: view venue"><circle class="t-hit" cx="332.6" cy="177.7" r="22"/><circle class="t-dot" cx="332.6" cy="177.7" r="7.5"/><text class="t-num" style="transform-origin:332.6px 177.7px" x="332.6" y="180.89999999999998">10</text><text class="t-vlabel" x="345.1" y="182.3">NTEC</text></a>
+      <a href="{{ site.baseurl }}/venues/edgewood-tahoe" class="t-pin feat" data-venue="edgewood-tahoe" aria-label="Edgewood Tahoe: view venue"><circle class="t-hit" cx="444.6" cy="693.8" r="22"/><circle class="t-dot" cx="444.6" cy="693.8" r="7.5"/><text class="t-vlabel" x="457.1" y="698.4">Edgewood Tahoe</text></a>
+      <a href="{{ site.baseurl }}/venues/thunderbird-lodge" class="t-pin feat" data-venue="thunderbird-lodge" aria-label="Thunderbird Lodge: view venue"><circle class="t-hit" cx="470.4" cy="296.0" r="22"/><circle class="t-dot" cx="470.4" cy="296.0" r="7.5"/><text class="t-vlabel" x="482.9" y="300.6">Thunderbird Lodge</text></a>
+      <a href="{{ site.baseurl }}/venues/hyatt-regency-lake-tahoe" class="t-pin feat" data-venue="hyatt-regency-lake-tahoe" aria-label="Hyatt Regency Lake Tahoe: view venue"><circle class="t-hit" cx="444.1" cy="169.3" r="22"/><circle class="t-dot" cx="444.1" cy="169.3" r="7.5"/><text class="t-vlabel" x="456.6" y="173.9">Hyatt Regency</text></a>
+      <a href="{{ site.baseurl }}/venues/ritz-carlton-lake-tahoe" class="t-pin feat" data-venue="ritz-carlton-lake-tahoe" aria-label="Ritz-Carlton, Lake Tahoe: view venue"><circle class="t-hit" cx="178.6" cy="117.5" r="22"/><circle class="t-dot" cx="178.6" cy="117.5" r="7.5"/><text class="t-vlabel" x="191.1" y="122.1">The Ritz-Carlton</text></a>
+      <a href="{{ site.baseurl }}/venues/martis-camp" class="t-pin feat" data-venue="martis-camp" aria-label="Martis Camp: view venue"><circle class="t-hit" cx="116.5" cy="93.0" r="22"/><circle class="t-dot" cx="116.5" cy="93.0" r="7.5"/><text class="t-vlabel" x="129.0" y="97.6">Martis Camp</text></a>
+      <a href="{{ site.baseurl }}/venues/hellman-ehrman-mansion" class="t-pin feat" data-venue="hellman-ehrman-mansion" aria-label="Hellman-Ehrman Mansion: view venue"><circle class="t-hit" cx="200.6" cy="532.0" r="22"/><circle class="t-dot" cx="200.6" cy="532.0" r="7.5"/><text class="t-vlabel" text-anchor="end" x="188.1" y="536.6">Hellman-Ehrman</text></a>
+      <a href="{{ site.baseurl }}/venues/valhalla-tahoe" class="t-pin feat" data-venue="valhalla-tahoe" aria-label="Valhalla: view venue"><circle class="t-hit" cx="298.9" cy="747.4" r="22"/><circle class="t-dot" cx="298.9" cy="747.4" r="7.5"/><text class="t-vlabel" text-anchor="end" x="286.4" y="752.0">Valhalla</text></a>
+      <a href="{{ site.baseurl }}/venues/palisades-tahoe" class="t-pin feat" data-venue="palisades-high-camp" aria-label="Palisades High Camp: view venue"><circle class="t-hit" cx="-3.0" cy="273.2" r="22"/><circle class="t-dot" cx="-3.0" cy="273.2" r="7.5"/><text class="t-vlabel" x="9.5" y="277.8">Palisades High Camp</text></a>
+      <a href="{{ site.baseurl }}/venues/old-greenwood" class="t-pin feat" data-venue="old-greenwood" aria-label="Old Greenwood: view venue"><circle class="t-hit" cx="175.0" cy="-27.0" r="22"/><circle class="t-dot" cx="175.0" cy="-27.0" r="7.5"/><text class="t-vlabel" x="187.5" y="-22.4">Old Greenwood</text></a>
+      <a href="{{ site.baseurl }}/venues/heavenly" class="t-pin feat" data-venue="heavenly" aria-label="Heavenly: view venue"><circle class="t-hit" cx="458.7" cy="757.1" r="22"/><circle class="t-dot" cx="458.7" cy="757.1" r="7.5"/><text class="t-vlabel" x="471.2" y="761.7">Heavenly</text></a>
+      <a href="{{ site.baseurl }}/venues/north-tahoe-event-center" class="t-pin feat" data-venue="north-tahoe-event-center" aria-label="North Tahoe Event Center: view venue"><circle class="t-hit" cx="332.6" cy="177.7" r="22"/><circle class="t-dot" cx="332.6" cy="177.7" r="7.5"/><text class="t-vlabel" x="345.1" y="182.3">NTEC</text></a>
 
-      <a href="{{ site.baseurl }}/venues/gar-woods" class="t-pin feat" data-venue="gar-woods" aria-label="Gar Woods: view venue"><circle class="t-hit" cx="245.1" cy="197.9" r="22"/><circle class="t-dot" cx="245.1" cy="197.9" r="7.5"/><text class="t-num" style="transform-origin:245.1px 197.9px" x="245.1" y="201.1">11</text><text class="t-vlabel" text-anchor="end" x="232.6" y="202.5">Gar Woods</text></a>
+      <a href="{{ site.baseurl }}/venues/gar-woods" class="t-pin feat" data-venue="gar-woods" aria-label="Gar Woods: view venue"><circle class="t-hit" cx="245.1" cy="197.9" r="22"/><circle class="t-dot" cx="245.1" cy="197.9" r="7.5"/><text class="t-vlabel" text-anchor="end" x="232.6" y="202.5">Gar Woods</text></a>
     </svg>
   </div>
 </header>
 
-<!-- MORE VENUES: full-width under the map hero -->
+<!-- MORE VENUES: aligned columns under the map hero (lake list left, foothills right on desktop) -->
 <section class="venues-more">
   <div class="vm-group">
     <span class="lab vlist-lab"><span class="vlist-dot vlist-dot--minor"></span>More around the lake</span>
-    <ul class="vfl-minor vfl-textlist">
+    <!-- Alphabetical (ignoring "The") in a row grid so lines stay level across columns -->
+    <ul class="vfl-grid">
+      <li><span data-venue="camp-richardson">Camp Richardson</span></li>
       <li><span data-venue="chateau">The Chateau</span></li>
-      <li><span data-venue="plumpjack">PlumpJack</span></li>
       <li><span data-venue="everline">Everline</span></li>
-      <li><span data-venue="schaffers">Schaffer's Camp</span></li>
-      <li><span data-venue="sunnyside">Sunnyside</span></li>
+      <li><span data-venue="granlibakken">Granlibakken</span></li>
+      <li><span data-venue="hideout">The Hideout</span></li>
+      <li><span data-venue="kirkwood">Kirkwood</span></li>
       <li><span data-venue="lahontan">Lahontan</span></li>
-      <li><span data-venue="tahoe-blue">Tahoe Blue Estate</span></li>
       <li><span data-venue="landing">The Landing</span></li>
-      <li><span data-venue="west-shore">West Shore Cafe</span></li>
       <li><span data-venue="ov-stables">Olympic Valley Stables</span></li>
-      <li><span data-venue="zephyr">Zephyr Lodge</span></li>
       <li><span data-venue="ovec">OVEC</span></li>
+      <li><span data-venue="plumpjack">PlumpJack</span></li>
       <li><span data-venue="ridge-tahoe">The Ridge Tahoe</span></li>
       <li><span data-venue="round-hill">Round Hill Pines</span></li>
+      <li><span data-venue="schaffers">Schaffer's Camp</span></li>
+      <li><span data-venue="sugar-bowl">Sugar Bowl</span></li>
+      <li><span data-venue="sunnyside">Sunnyside</span></li>
+      <li><span data-venue="tahoe-blue">Tahoe Blue Estate</span></li>
+      <li><span data-venue="west-shore">West Shore Cafe</span></li>
       <li><span data-venue="zephyr-cove">Zephyr Cove Resort</span></li>
-      <li><span data-venue="hideout">The Hideout</span></li>
-      <li><span data-venue="kirkwood">Kirkwood Mountain Resort</span></li>
+      <li><span data-venue="zephyr">Zephyr Lodge</span></li>
     </ul>
   </div>
   <div class="vm-group">
-    <span class="lab vlist-lab">Select venues in the foothills of Nevada City &amp; Grass Valley</span>
-    <ul class="vfl-minor vfl-textlist vfl-static">
-      <li><span>National Exchange Hotel</span></li>
-      <li><span>Miners Foundry</span></li>
-      <li><span>Holbrooke Hotel</span></li>
-      <li><span>The Stone House</span></li>
-      <li><span>The North Star House</span></li>
+    <span class="lab vlist-lab">In the foothills</span>
+    <ul class="vfl-grid vfl-static">
+      <li><span>Empire Mine</span></li>
       <li><span>Harmony Ridge Lodge</span></li>
+      <li><span>Holbrooke Hotel</span></li>
+      <li><span>Miners Foundry</span></li>
+      <li><span>Naggiar Vineyards</span></li>
+      <li><span>The National Exchange</span></li>
+      <li><span>The North Star House</span></li>
+      <li><span>The Parsonage</span></li>
       <li><span>The Roth Estate</span></li>
+      <li><span>The Stone House</span></li>
     </ul>
   </div>
 </section>
@@ -162,26 +174,89 @@ canonical_url: https://goldenflorals.com/venues
 </section>
 
 <script>
-/* Venues map <-> list cross-highlight */
+/* Venues map <-> list cross-highlight + anchored name card.
+   Desktop (hover-capable): hovering a dot or a list name shows the card, whose
+   caret points at the owning dot. Touch: first tap on a featured dot reveals
+   the card, tapping the card (or the dot again) navigates, tapping elsewhere
+   dismisses. Minor dots stay decorative on touch. */
 (function(){
   var pins={}, items={};
   document.querySelectorAll('.t-pin[data-venue]').forEach(function(p){ pins[p.getAttribute('data-venue')]=p; });
-  document.querySelectorAll('.mh-body [data-venue], .vfl-textlist [data-venue]').forEach(function(a){ items[a.getAttribute('data-venue')]=a; });
-  function clearAll(){ Object.keys(pins).forEach(function(v){set(v,false);}); }
+  document.querySelectorAll('.mh-body [data-venue], .vfl-grid [data-venue]').forEach(function(a){ items[a.getAttribute('data-venue')]=a; });
+  var mapBox=document.querySelector('.mh-map');
+  if(!mapBox) return;
+  var fine=window.matchMedia('(hover:hover) and (pointer:fine)').matches;
+
+  mapBox.classList.add('tip-on');
+  var tip=document.createElement('div');
+  tip.className='map-tip';
+  tip.innerHTML='<a class="mt-card"><span class="mt-name"></span><span class="mt-type"></span><span class="mt-go">View venue &rarr;</span></a>';
+  mapBox.appendChild(tip);
+  var card=tip.querySelector('.mt-card');
+
   function set(v,on){ if(pins[v])pins[v].classList.toggle('is-active',on); if(items[v])items[v].classList.toggle('is-active',on); }
-  function wire(el,v){
-    el.addEventListener('mouseenter',function(){set(v,true);});
-    el.addEventListener('mouseleave',function(){set(v,false);});
-    el.addEventListener('focus',function(){set(v,true);});
-    el.addEventListener('blur',function(){set(v,false);});
+  function tipData(v){
+    var it=items[v];
+    if(!it) return null;
+    var n=it.querySelector('.vf-name'), t=it.querySelector('.vf-type');
+    return { name:(n?n.textContent:it.textContent), type:(t?t.textContent:'') };
   }
-  Object.keys(pins).forEach(function(v){ wire(pins[v],v); });
-  Object.keys(items).forEach(function(v){ wire(items[v],v); });
-  /* Clear highlights when returning via browser back (bfcache restore) */
+  function showTip(v){
+    var p=pins[v], d=tipData(v); if(!p||!d) return;
+    tip.querySelector('.mt-name').textContent=d.name;
+    tip.querySelector('.mt-type').textContent=d.type;
+    tip.classList.toggle('no-type',!d.type);
+    var href=p.getAttribute('href');
+    if(!fine&&href){ card.setAttribute('href',href); tip.classList.add('tappable'); }
+    else { card.removeAttribute('href'); tip.classList.remove('tappable'); }
+    var dot=p.querySelector('.t-dot');
+    var dr=dot.getBoundingClientRect(), mr=mapBox.getBoundingClientRect();
+    tip.classList.add('on');
+    var w=tip.offsetWidth;
+    /* card centers on the dot but stays on screen; the caret stays on the dot */
+    var x=dr.left-mr.left+dr.width/2;
+    var vw=document.documentElement.clientWidth;
+    var cx=Math.max(8-mr.left+w/2, Math.min(x, vw-8-mr.left-w/2));
+    var below=(dr.top-mr.top-tip.offsetHeight-16)<0;
+    tip.classList.toggle('below',below);
+    tip.style.left=cx+'px';
+    tip.style.top=(below ? dr.bottom-mr.top+7 : dr.top-mr.top-7)+'px';
+    tip.style.setProperty('--caret-x',Math.max(16,Math.min(x-cx+w/2,w-16))+'px');
+  }
+  function hideTip(){ tip.classList.remove('on'); }
+  var active=null; /* touch: venue whose card is currently revealed */
+  function clearAll(){ Object.keys(pins).forEach(function(v){set(v,false);}); active=null; hideTip(); }
+
+  if(fine){
+    var wire=function(el,v){
+      el.addEventListener('mouseenter',function(){set(v,true);showTip(v);});
+      el.addEventListener('mouseleave',function(){set(v,false);hideTip();});
+      el.addEventListener('focus',function(){set(v,true);showTip(v);});
+      el.addEventListener('blur',function(){set(v,false);hideTip();});
+    };
+    Object.keys(pins).forEach(function(v){ wire(pins[v],v); });
+    Object.keys(items).forEach(function(v){ wire(items[v],v); });
+    /* Clear on navigation click so state doesn't persist on bfcache return */
+    document.querySelectorAll('.t-pin.feat').forEach(function(p){
+      p.addEventListener('click',function(){ clearAll(); });
+    });
+  } else {
+    Object.keys(pins).forEach(function(v){
+      var p=pins[v];
+      if(!p.classList.contains('feat')) return;
+      p.addEventListener('click',function(e){
+        if(active===v) return; /* second tap on the same dot follows the link */
+        e.preventDefault();
+        if(active) set(active,false);
+        active=v; set(v,true); showTip(v);
+      });
+    });
+    document.addEventListener('click',function(e){
+      if(!active) return;
+      if(e.target.closest&&(e.target.closest('.t-pin.feat')||e.target.closest('.map-tip'))) return;
+      set(active,false); active=null; hideTip();
+    });
+  }
   window.addEventListener('pageshow',function(e){ if(e.persisted) clearAll(); });
-  /* Also clear on any navigation click so state doesn't persist on return */
-  document.querySelectorAll('.t-pin.feat').forEach(function(p){
-    p.addEventListener('click',function(){ clearAll(); });
-  });
 })();
 </script>
