@@ -502,7 +502,11 @@ body.lb-open{overflow:hidden;}
    of required ones carrying asterisks. */
 .form-head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;}
 .form-head-label{font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ink);font-weight:500;}
-.form-step-indicator{font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ink);}
+.form-step-indicator{font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ink);white-space:nowrap;flex-shrink:0;margin-left:auto;}
+/* Phones: the eyebrow would wrap against the step counter, so it steps
+   aside and the counter holds the row alone, right-aligned (the layout
+   step 2 already has). The Back button still shows on step 2. */
+@media (max-width:520px){.form-head .form-head-label{display:none;}}
 .form-progress{display:flex;gap:14px;margin-top:12px;}
 .form-progress span{height:2px;flex:1;background:oklch(80% .015 120/.5);transition:background .3s;}
 .form-progress span.on{background:var(--forest-deep);}
