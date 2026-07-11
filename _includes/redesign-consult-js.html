@@ -1,11 +1,10 @@
 <script>
 /* Consultation lightbox + multi-step form behaviors (shared across the redesign system).
-   - Button-style CTAs (.btn / .pill / .m-cta) pointing at /consultation-form open the modal.
-   - On the Contact page itself (an inline form is present), those CTAs scroll to the form instead.
+   - Button-style CTAs (.btn / .pill / .m-cta) pointing at /consultation-form open the modal,
+     including on the Contact page itself — the lightbox is the preferred experience everywhere.
    - Plain text links to /consultation-form still navigate to the page (keeps Contact reachable, no-JS safe). */
 (function(){
   var modal=document.getElementById('consult-modal');
-  var inlineForm=document.querySelector('.form-section form, #consultation form');
   var lastFocus=null;
   function openModal(){
     if(!modal) return;
@@ -48,14 +47,6 @@
     var trigger=e.target.closest(TRIGGER);
     if(trigger){
       recordCtaClick(trigger);
-      // Contact page: scroll to the inline form rather than stack a modal over it.
-      if(inlineForm){
-        e.preventDefault();
-        document.body.classList.remove('menu-open');
-        var target=document.getElementById('consultation')||inlineForm.closest('section')||inlineForm;
-        target.scrollIntoView({behavior:'smooth'});
-        return;
-      }
       if(!modal) return;            // no modal on page (e.g. no-JS / missing include) -> let link navigate
       e.preventDefault();
       document.body.classList.remove('menu-open');
@@ -248,6 +239,8 @@ function appendCommon_(params, form){
     if(dateVal&&dateEl&&dateLine){ dateEl.textContent=fmtDate(dateVal); dateLine.hidden=false; }
     var stepDate=success.querySelector('[data-success-step-date]');
     if(stepDate&&dateVal) stepDate.textContent=' for '+fmtDate(dateVal);
+    var closeBtn=wrap.querySelector('.modal-close');
+    if(closeBtn) closeBtn.hidden=false; // X only appears once they're done
     form.hidden=true;
     Array.prototype.forEach.call(wrap.children, function(el){ if(el!==success && !el.classList.contains('modal-close')) el.classList.add('is-gone'); });
     success.hidden=false; success.setAttribute('tabindex','-1');
@@ -262,6 +255,20 @@ function appendCommon_(params, form){
       params.append('k','gf-lupine-26');
       appendCommon_(params, form);
       fetch(form.action,{method:'POST',body:params}).catch(function(){}).then(function(){ showSuccess(form,data); });
+    });
+  });
+
+  /* Venue dropdown's "Somewhere else" option reveals a free-text field so
+     couples aren't limited to the venues we have pages for. */
+  document.querySelectorAll('[data-venue-select]').forEach(function(sel){
+    var wrap=sel.closest('form').querySelector('[data-venue-other]');
+    if(!wrap) return;
+    var input=wrap.querySelector('input');
+    sel.addEventListener('change', function(){
+      var other=/^Somewhere else/i.test(sel.value);
+      wrap.hidden=!other;
+      if(other && input) input.focus();
+      else if(input) input.value='';
     });
   });
 

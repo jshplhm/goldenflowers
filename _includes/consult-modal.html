@@ -1,6 +1,8 @@
 <div class="modal-overlay" id="consult-modal" aria-hidden="true">
   <div class="modal" role="dialog" aria-modal="true" aria-labelledby="consult-modal-title" data-form-wrap>
-    <button class="modal-close" type="button" aria-label="Close" data-consult-close>&times;</button>
+    {%- comment -%} No X while filling in (backdrop click / Esc still close);
+    it appears on the thank-you screen as the natural "done" affordance. {%- endcomment -%}
+    <button class="modal-close" type="button" aria-label="Close" data-consult-close hidden>&times;</button>
     <form action="{{ site.consult_endpoint }}" method="POST" data-multistep data-ajax>
       <div class="form-head">
         <span class="form-head-label" data-form-eyebrow>Schedule a consultation</span>
@@ -33,7 +35,19 @@
       <div class="form-step-2">
         <div class="field-full">
           <label for="m-venue">Venue <span class="opt">(optional)</span></label>
-          <input type="text" id="m-venue" name="venue" placeholder="If you know it yet" autocomplete="off">
+          {%- assign venue_names = "" | split: "" -%}
+          {%- for v in site.data.venues -%}{%- assign venue_names = venue_names | push: v[1].venue_name -%}{%- endfor -%}
+          {%- assign venue_names = venue_names | sort -%}
+          <select id="m-venue" name="venue" data-venue-select>
+            <option value="" selected>If you know it yet</option>
+            {%- for vname in venue_names %}
+            <option>{{ vname }}</option>
+            {%- endfor %}
+            <option>Somewhere else &mdash; type it in</option>
+          </select>
+        </div>
+        <div class="field-full" data-venue-other hidden>
+          <input type="text" id="m-venue-other" name="venue_other" placeholder="The venue name" aria-label="Venue name" autocomplete="off">
         </div>
         <div class="field-full">
           <label for="m-aesthetic">Aesthetic direction</label>

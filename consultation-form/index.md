@@ -77,7 +77,19 @@ redirect_from:
       <div class="form-step-2">
         <div class="field-full">
           <label for="venue">Venue <span class="opt">(optional)</span></label>
-          <input type="text" id="venue" name="venue" placeholder="If you know it yet" autocomplete="off">
+          {%- assign venue_names = "" | split: "" -%}
+          {%- for v in site.data.venues -%}{%- assign venue_names = venue_names | push: v[1].venue_name -%}{%- endfor -%}
+          {%- assign venue_names = venue_names | sort -%}
+          <select id="venue" name="venue" data-venue-select>
+            <option value="" selected>If you know it yet</option>
+            {%- for vname in venue_names %}
+            <option>{{ vname }}</option>
+            {%- endfor %}
+            <option>Somewhere else &mdash; type it in</option>
+          </select>
+        </div>
+        <div class="field-full" data-venue-other hidden>
+          <input type="text" id="venue-other" name="venue_other" placeholder="The venue name" aria-label="Venue name" autocomplete="off">
         </div>
         <div class="field-full">
           <label for="aesthetic">Aesthetic direction</label>

@@ -137,9 +137,19 @@ function success_() {
 }
 
 function statusLabel_(p, isPartial) {
-  var base = isPartial ? 'In progress' : 'Complete';
+  var base = isPartial ? 'Step 1 only' : 'Complete';
   if (String(p.k || '') !== FORM_TOKEN) base += ' (unverified)';
   return base;
+}
+
+/* The venue dropdown's "Somewhere else — type it in" option reveals a free
+   text field (venue_other); whatever they typed is the real venue. The
+   sentinel option text itself is never worth recording. */
+function venueValue_(p) {
+  var typed = String(p.venue_other || '').trim();
+  if (typed) return typed;
+  var v = String(p.venue || '').trim();
+  return /^Somewhere else/i.test(v) ? '' : v;
 }
 
 function buildRowValues_(p, isPartial, submittedAt, updatedAt, leadId) {
@@ -150,7 +160,7 @@ function buildRowValues_(p, isPartial, submittedAt, updatedAt, leadId) {
     'Name': p.name || '',
     'Email': p.email || '',
     'Wedding Date': p.date || '',
-    'Venue': p.venue || '',
+    'Venue': venueValue_(p),
     'Aesthetic': p.aesthetic || '',
     'Budget': p.budget || '',
     'Message': p.message || '',
@@ -225,7 +235,7 @@ function spamReasons_(p) {
   var name = String(p.name || '').trim();
   var email = String(p.email || '').trim();
   var date = String(p.date || '').trim();
-  var venue = String(p.venue || '').trim();
+  var venue = (String(p.venue || '') + ' ' + String(p.venue_other || '')).trim();
   var aesthetic = String(p.aesthetic || '').trim();
   var budget = String(p.budget || '').trim();
 
@@ -375,7 +385,7 @@ function sendCompleteEmail_(p) {
     'Name: ' + (p.name || ''),
     'Email: ' + (p.email || ''),
     'Wedding date: ' + (p.date || ''),
-    'Venue: ' + (p.venue || '(not given)'),
+    'Venue: ' + (venueValue_(p) || '(not given)'),
     'Aesthetic: ' + (p.aesthetic || ''),
     'Budget: ' + (p.budget || ''),
     '',
@@ -402,7 +412,8 @@ function notifyStalePartials() {
     var status = String(row[cols['Status'] - 1] || '');
     var notified = String(row[cols['Notified'] - 1] || '');
     var updated = row[cols['Updated'] - 1];
-    if (/^In progress/.test(status) && notified !== 'Y' && updated instanceof Date && updated < cutoff) {
+    // "In progress" is the pre-July-2026 wording; matched so old rows still digest.
+    if (/^(Step 1 only|In progress)/.test(status) && notified !== 'Y' && updated instanceof Date && updated < cutoff) {
       stale.push({
         rowNum: i + 2,
         name: row[cols['Name'] - 1],
