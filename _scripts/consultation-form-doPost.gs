@@ -49,9 +49,14 @@ var FORM_TOKEN = 'gf-lupine-26';
 // How long a step-1-only lead sits idle before you get a follow-up nudge.
 var STALE_MINUTES = 30;
 
-// Exact strings the two dropdowns can produce. The modal and the contact
-// page phrase the aesthetic options slightly differently, so both appear.
+// Exact strings the two dropdowns can produce. The em-dash forms are the
+// current live wording (July 2026 form revision); the older parenthetical
+// and comma phrasings stay so a stale cached page can't flag as spam.
 var AESTHETICS = [
+  "Lush & Romantic — rich, dramatic, deep tones",
+  "Elevated Minimalist — clean, airy, restrained",
+  "Wildflower Modern — wild, seasonal, editorial",
+  "A mix — I'll explain below",
   "Lush & Romantic (rich, dramatic, deep tones)",
   "Elevated Minimalist (clean, airy, restrained)",
   "Wildflower Modern (wild, seasonal, editorial)",
@@ -363,6 +368,9 @@ function sourceLabel_(p) {
 
 function sendCompleteEmail_(p) {
   var subject = 'New consult request: ' + (p.name || 'Unknown') + '  ·  ' + (p.date || 'no date');
+  // Deliberately no Source / Opened-from lines: Brittany forwards these
+  // emails to couples, and lead-gen internals shouldn't travel with them.
+  // That data still lands in the sheet (Source / Page / Button columns).
   var body = [
     'Name: ' + (p.name || ''),
     'Email: ' + (p.email || ''),
@@ -370,8 +378,6 @@ function sendCompleteEmail_(p) {
     'Venue: ' + (p.venue || '(not given)'),
     'Aesthetic: ' + (p.aesthetic || ''),
     'Budget: ' + (p.budget || ''),
-    'Source: ' + sourceLabel_(p),
-    'Opened from: ' + (p.cta_page || '?') + (p.cta_button ? '  (' + p.cta_button + ')' : ''),
     '',
     'Message:',
     p.message || '(none)'
