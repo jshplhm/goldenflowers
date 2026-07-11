@@ -87,7 +87,7 @@ redirect_from:
             <option>Lush &amp; Romantic &mdash; rich, dramatic, deep tones</option>
             <option>Elevated Minimalist &mdash; clean, airy, restrained</option>
             <option>Wildflower Modern &mdash; wild, seasonal, editorial</option>
-            <option>A mix &mdash; I'll explain below</option>
+            <option>A mix or something else &mdash; I'll explain below</option>
             <option>Not sure yet</option>
           </select>
         </div>

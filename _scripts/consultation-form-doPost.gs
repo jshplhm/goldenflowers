@@ -56,6 +56,7 @@ var AESTHETICS = [
   "Lush & Romantic — rich, dramatic, deep tones",
   "Elevated Minimalist — clean, airy, restrained",
   "Wildflower Modern — wild, seasonal, editorial",
+  "A mix or something else — I'll explain below",
   "A mix — I'll explain below",
   "Lush & Romantic (rich, dramatic, deep tones)",
   "Elevated Minimalist (clean, airy, restrained)",

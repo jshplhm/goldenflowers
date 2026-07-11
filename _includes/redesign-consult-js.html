@@ -254,7 +254,12 @@ function appendCommon_(params, form){
       var params=new URLSearchParams(); data.forEach(function(v,k){ params.append(k,v); });
       params.append('k','gf-lupine-26');
       appendCommon_(params, form);
-      fetch(form.action,{method:'POST',body:params}).catch(function(){}).then(function(){ showSuccess(form,data); });
+      // The response is never acted on (success shows either way, and step-1
+      // data was already captured by the partial send), so don't make the
+      // couple wait out an Apps Script cold start — fire the request and show
+      // the thank-you after one steady, deliberate beat.
+      fetch(form.action,{method:'POST',body:params,keepalive:true}).catch(function(){});
+      setTimeout(function(){ showSuccess(form,data); }, 1000);
     });
   });
 
