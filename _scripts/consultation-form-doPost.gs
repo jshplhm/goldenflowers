@@ -12,10 +12,10 @@
  * daily-digest timer and removes the old 30-minute stale-partial trigger.
  *
  * The spreadsheet's three tabs, named exactly (case matters):
- *   lead          — completed submissions. Each new one emails immediately.
- *   partial lead  — step-1-only submissions. One digest email per day.
- *   spam          — rejected submissions. One digest email per day when
- *                   anything new landed, so false positives get reviewed.
+ *   leads          — completed submissions. Each new one emails immediately.
+ *   partial leads  — step-1-only submissions. One digest email per day.
+ *   spam           — rejected submissions. One digest email per day when
+ *                    anything new landed, so false positives get reviewed.
  * The script creates any missing tab (with headers) on first use.
  *
  * What changed from v2:
@@ -45,8 +45,8 @@
 var NOTIFY_EMAIL = 'brittany@goldenflorals.com';
 var BCC_EMAIL = 'jshplhm@gmail.com';
 
-var LEADS_SHEET = 'lead';
-var PARTIALS_SHEET = 'partial lead';
+var LEADS_SHEET = 'leads';
+var PARTIALS_SHEET = 'partial leads';
 var SPAM_SHEET = 'spam';
 
 // Hour of day (script timezone) the daily digests go out.
