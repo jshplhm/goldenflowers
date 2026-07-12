@@ -1,0 +1,4 @@
+# Per-wedding photo order for /portfolio galleries, written by the /edit
+# photo manager's drag-to-reorder. Each key is a gallery slug, the value an
+# ordered list of filenames. Galleries not listed here show photos in
+# filename order. Managed by the editor — no need to edit by hand.

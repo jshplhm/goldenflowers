@@ -805,28 +805,157 @@ async function listGallery() {
   return (await r.json()).filter((f) => /\.(jpe?g|png)$/i.test(f.name));
 }
 
-async function renderPhotos() {
-  phGrid.innerHTML = "<p style='color:var(--ed-mute);font-size:.85rem;'>Loading photos…</p>";
-  let items;
-  try { items = await listGallery(); } catch (err) { phGrid.innerHTML = ""; phNote(err.message, "err"); return; }
+/* ---------- photos: display order (_data/gallery_order.yml) ---------- */
+
+const ORDER_PATH = "_data/gallery_order.yml";
+
+/* the manifest as a YAML document, so comments survive edits; missing file = empty doc */
+async function readOrderDoc() {
+  try {
+    const meta = await getFile(ORDER_PATH);
+    return parseDocument(b64decodeUtf8(meta.content));
+  } catch {
+    return parseDocument("");
+  }
+}
+
+/* manifest order first (ignoring stale names), unlisted files after, mirroring
+ * the Liquid in _includes/portfolio-gallery.html */
+function applyManifestOrder(items, manifest) {
+  if (!Array.isArray(manifest)) return items;
+  const byName = new Map(items.map((it) => [it.name, it]));
+  const out = [];
+  for (const nm of manifest) {
+    if (byName.has(nm)) { out.push(byName.get(nm)); byName.delete(nm); }
+  }
+  for (const it of items) if (byName.has(it.name)) out.push(it);
+  return out;
+}
+
+let phItems = [];        // [{name, download_url}] in display order
+let phOrderDirty = false;
+const phOrderBtn = document.getElementById("ed-ph-order");
+
+function phOrderChanged() {
+  phOrderDirty = true;
+  phOrderBtn.hidden = false;
+  phNote("New order isn't saved yet — press “Save new order”.");
+}
+
+/* reflect a saved order on the wedding page behind the panel: re-append the
+ * mosaic tiles in the new sequence, keeping the positional 1/2/3-per-row
+ * span pattern so the layout stays flush */
+function reorderPageMosaic(order) {
+  const doc = frameDoc();
+  const gal = doc && doc.querySelector("[data-ed-gallery]");
+  const mosaic = gal && gal.querySelector(".wd-mosaic");
+  if (!mosaic) return;
+  const tiles = [...mosaic.querySelectorAll("a")].filter((a) => a.querySelector("img"));
+  const pattern = tiles.map((a) => [...a.classList].find((c) => /^mo-\d+$/.test(c)));
+  const byName = new Map(tiles.map((a) => [imgPath(a.querySelector("img")).split("/").pop(), a]));
+  let i = 0;
+  for (const nm of order) {
+    const a = byName.get(nm);
+    if (!a) continue; /* the hero, or a photo not on the page yet */
+    [...a.classList].filter((c) => /^mo-\d+$/.test(c)).forEach((c) => a.classList.remove(c));
+    if (pattern[i]) a.classList.add(pattern[i]);
+    i += 1;
+    mosaic.appendChild(a);
+  }
+}
+
+function renderPhotoGrid() {
   phGrid.innerHTML = "";
-  for (const it of items) {
+  phItems.forEach((it, idx) => {
     const d = document.createElement("div");
     d.className = "ed-ph";
+    d.draggable = true;
+    d.dataset.name = it.name;
     const isHero = it.name === curGallery.hero;
     d.innerHTML =
       `<img src="${it.download_url}" loading="lazy" alt="">` +
       (isHero ? `<span class="ed-ph-badge">Opening photo</span>` : "") +
       `<div class="ed-ph-acts">` +
       (isHero ? "" : `<button type="button" class="hero" data-act="hero">Make opening photo</button><button type="button" data-act="del">Delete</button>`) +
+      `</div>` +
+      `<div class="ed-ph-move">` +
+      (idx > 0 ? `<button type="button" data-act="left" title="Move earlier">&#8249;</button>` : "") +
+      (idx < phItems.length - 1 ? `<button type="button" data-act="right" title="Move later">&#8250;</button>` : "") +
       `</div><div class="ed-ph-name">${it.name}</div>`;
     d.querySelectorAll("button").forEach((b) => {
-      b.addEventListener("click", () => (b.dataset.act === "del" ? deletePhoto(it.name) : makeHero(it.name)));
+      b.addEventListener("click", () => {
+        if (b.dataset.act === "del") return deletePhoto(it.name);
+        if (b.dataset.act === "hero") return makeHero(it.name);
+        const from = phItems.findIndex((x) => x.name === it.name);
+        const to = b.dataset.act === "left" ? from - 1 : from + 1;
+        if (to < 0 || to >= phItems.length) return;
+        phItems.splice(to, 0, phItems.splice(from, 1)[0]);
+        renderPhotoGrid();
+        phOrderChanged();
+      });
+    });
+    d.addEventListener("dragstart", (e) => {
+      e.dataTransfer.effectAllowed = "move";
+      d.classList.add("dragging");
+    });
+    d.addEventListener("dragend", () => {
+      d.classList.remove("dragging");
+      const domOrder = [...phGrid.querySelectorAll(".ed-ph")].map((n) => n.dataset.name);
+      if (domOrder.join() !== phItems.map((x) => x.name).join()) {
+        phItems = domOrder.map((nm) => phItems.find((x) => x.name === nm));
+        renderPhotoGrid();
+        phOrderChanged();
+      }
     });
     phGrid.appendChild(d);
-  }
-  if (!items.length) phGrid.innerHTML = "<p style='color:var(--ed-mute);font-size:.85rem;'>No photos yet — add some below.</p>";
+  });
+  if (!phItems.length) phGrid.innerHTML = "<p style='color:var(--ed-mute);font-size:.85rem;'>No photos yet — add some below.</p>";
 }
+
+phGrid.addEventListener("dragover", (e) => {
+  e.preventDefault();
+  const dragging = phGrid.querySelector(".dragging");
+  const target = e.target.closest(".ed-ph");
+  if (!dragging || !target || target === dragging) return;
+  const r = target.getBoundingClientRect();
+  const before = e.clientX < r.left + r.width / 2;
+  phGrid.insertBefore(dragging, before ? target : target.nextSibling);
+});
+phGrid.addEventListener("drop", (e) => e.preventDefault());
+
+async function renderPhotos() {
+  phGrid.innerHTML = "<p style='color:var(--ed-mute);font-size:.85rem;'>Loading photos…</p>";
+  phOrderDirty = false;
+  phOrderBtn.hidden = true;
+  try {
+    const [items, orderDoc] = await Promise.all([listGallery(), readOrderDoc()]);
+    phItems = applyManifestOrder(items, (orderDoc.toJS() || {})[curGallery.slug]);
+  } catch (err) { phGrid.innerHTML = ""; phNote(err.message, "err"); return; }
+  renderPhotoGrid();
+}
+
+phOrderBtn.addEventListener("click", async () => {
+  const order = phItems.map((x) => x.name);
+  phOrderBtn.disabled = true;
+  phGrid.classList.add("busy");
+  try {
+    phNote("Saving the new order…");
+    const doc = await readOrderDoc();
+    doc.setIn([curGallery.slug], order);
+    await commitFiles(
+      [{ path: ORDER_PATH, text: doc.toString() }],
+      `Reorder the ${curGallery.name} gallery photos via inline editor`
+    );
+    phOrderDirty = false;
+    phOrderBtn.hidden = true;
+    reorderPageMosaic(order);
+    phNote("✓ Order saved — the page behind this panel shows it now. Live site follows in ~2 minutes.", "ok");
+  } catch (err) {
+    phNote(err.message, "err");
+  }
+  phOrderBtn.disabled = false;
+  phGrid.classList.remove("busy");
+});
 
 async function openPhotos() {
   if (!curGallery) return;
@@ -838,7 +967,10 @@ async function openPhotos() {
 }
 
 photosBtn.addEventListener("click", openPhotos);
-phClose.addEventListener("click", () => { phModal.hidden = true; });
+phClose.addEventListener("click", () => {
+  if (phOrderDirty && !window.confirm("You dragged photos into a new order but didn't press “Save new order” — close anyway and lose it?")) return;
+  phModal.hidden = true;
+});
 
 phAdd.addEventListener("click", async () => {
   const files = await pickFiles(filesInput);
@@ -853,15 +985,26 @@ phAdd.addEventListener("click", async () => {
       if (m) next = Math.max(next, parseInt(m[1], 10));
     }
     const entries = [];
+    const newNames = [];
     for (let i = 0; i < files.length; i++) {
       phNote(`Preparing photo ${i + 1} of ${files.length}…`);
       const { base64 } = await processImage(files[i]);
       next += 1;
-      entries.push({ path: `assets/images/portfolio/${curGallery.slug}/${curGallery.slug}-${String(next).padStart(2, "0")}.jpg`, base64 });
+      const fname = `${curGallery.slug}-${String(next).padStart(2, "0")}.jpg`;
+      newNames.push(fname);
+      entries.push({ path: `assets/images/portfolio/${curGallery.slug}/${fname}`, base64 });
     }
-    phNote(`Saving ${entries.length} photo${entries.length > 1 ? "s" : ""}…`);
-    await commitFiles(entries, `Add ${entries.length} photo${entries.length > 1 ? "s" : ""} to the ${curGallery.name} gallery via inline editor`);
-    phNote(`✓ ${entries.length} photo${entries.length > 1 ? "s" : ""} added — they're in the grid here and reach the live page in ~2 minutes.`, "ok");
+    /* a pinned order exists for this gallery: append the new photos to it so
+     * they land at the end instead of wherever their number happens to sort */
+    const orderDoc = await readOrderDoc();
+    const orderList = (orderDoc.toJS() || {})[curGallery.slug];
+    if (Array.isArray(orderList)) {
+      orderDoc.setIn([curGallery.slug], orderList.concat(newNames));
+      entries.push({ path: ORDER_PATH, text: orderDoc.toString() });
+    }
+    phNote(`Saving ${newNames.length} photo${newNames.length > 1 ? "s" : ""}…`);
+    await commitFiles(entries, `Add ${newNames.length} photo${newNames.length > 1 ? "s" : ""} to the ${curGallery.name} gallery via inline editor`);
+    phNote(`✓ ${newNames.length} photo${newNames.length > 1 ? "s" : ""} added — they're in the grid here and reach the live page in ~2 minutes.`, "ok");
     renderPhotos();
   } catch (err) {
     phNote(err.message, "err");
@@ -887,12 +1030,20 @@ async function deletePhoto(name) {
     if (!window.confirm(`Delete ${name} from the ${curGallery.name} gallery?`)) { phNote(""); return; }
     phNote("Deleting…");
     phGrid.classList.add("busy");
-    await commitFiles([{ path: `assets/images/portfolio/${curGallery.slug}/${name}`, del: true }], `Remove ${name} from the ${curGallery.name} gallery via inline editor`);
+    const files = [{ path: `assets/images/portfolio/${curGallery.slug}/${name}`, del: true }];
+    /* drop it from the pinned order too (harmless if left, but keep it tidy) */
+    const orderDoc = await readOrderDoc();
+    const orderList = (orderDoc.toJS() || {})[curGallery.slug];
+    if (Array.isArray(orderList) && orderList.includes(name)) {
+      orderDoc.setIn([curGallery.slug], orderList.filter((n) => n !== name));
+      files.push({ path: ORDER_PATH, text: orderDoc.toString() });
+    }
+    await commitFiles(files, `Remove ${name} from the ${curGallery.name} gallery via inline editor`);
     if (sessionStorage.getItem("gfDeleting") === name) sessionStorage.removeItem("gfDeleting");
     /* remove it from the page behind the panel right away */
     const doc = frameDoc();
     doc && doc.querySelectorAll("[data-ed-gallery] img").forEach((im) => {
-      if ((im.currentSrc || im.src).endsWith(`/${name}`)) (im.closest("a") || im).remove();
+      if (imgPath(im).endsWith(`/${name}`)) (im.closest("a") || im).remove();
     });
     phNote(`✓ ${name} deleted — it's gone from the page behind this panel. Live site follows in ~2 minutes.`, "ok");
     renderPhotos();
@@ -933,6 +1084,20 @@ async function makeHero(name) {
 
 /* ---------- photos: swap any page image ---------- */
 
+/* Production HTML gets srcset variants at /assets/images/rsp/<stem>-<w>w.jpg
+ * (responsive_images.rb), and img.currentSrc usually picks one of those.
+ * Variant paths never appear in any source file, so map them back to the
+ * committed original before matching against page source. */
+function canonicalImagePath(p) {
+  if (CFG.baseurl && p.startsWith(CFG.baseurl)) p = p.slice(CFG.baseurl.length);
+  const m = p.match(/^\/assets\/images\/rsp\/(.+)-(?:480|960|1440)w\.jpg$/);
+  return m ? `/assets/images/${m[1]}.jpg` : p;
+}
+
+function imgPath(img) {
+  return canonicalImagePath(new URL(img.currentSrc || img.src).pathname);
+}
+
 let repTarget = null;
 
 /* rewrite every reference to the clicked photo in this page's source */
@@ -947,7 +1112,7 @@ async function swapSourceTo(newSrcPath) {
 
 function openReplace(img) {
   if (!curPage) return;
-  repTarget = { el: img, path: new URL(img.currentSrc || img.src).pathname };
+  repTarget = { el: img, path: imgPath(img) };
   repPreview.src = img.currentSrc || img.src;
   repErr.style.display = "none";
   repGalWrap.hidden = true;
@@ -1070,6 +1235,152 @@ imginsBtn.addEventListener("click", async () => {
     statusEl.className = "ed-status err";
     statusEl.textContent = err.message;
   }
+});
+
+/* ---------- new wedding ---------- */
+
+const wedBtn = document.getElementById("ed-wed");
+const wedModal = document.getElementById("ed-wed-modal");
+const wedForm = document.getElementById("ed-wed-form");
+const wedNames = document.getElementById("ed-wed-names");
+const wedVenue = document.getElementById("ed-wed-venue");
+const wedAes = document.getElementById("ed-wed-aes");
+const wedDesc = document.getElementById("ed-wed-desc");
+const wedErr = document.getElementById("ed-wed-err");
+const wedCancel = document.getElementById("ed-wed-cancel");
+
+const AES_GROUP = {
+  "Lush & Romantic": "lush-romantic",
+  "Elevated Minimalist": "elevated-minimalist",
+  "Wildflower Modern": "wildflower-modern",
+};
+
+/* "Brittany & Chase" -> "brittany-chase", matching the existing gallery slugs */
+function weddingSlug(names) {
+  return names.toLowerCase()
+    .replace(/['’.]/g, "")
+    .replace(/&/g, " ")
+    .replace(/\band\b/g, " ")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "")
+    .slice(0, 50);
+}
+
+function escAttr(s) { return escapeHtml(s).replace(/"/g, "&quot;"); }
+
+function weddingPage(slug, names, aesthetic, desc, heroName) {
+  /* JSON strings are valid YAML double-quoted scalars */
+  const q = (s) => JSON.stringify(s);
+  return `---
+layout: redesign
+title: ${q(`${names} · ${aesthetic}`)}
+seo_title: ${q(`${names} Wedding Flowers · ${aesthetic} | Golden Flowers`)}
+permalink: /portfolio/${slug}
+portfolio_key: ${slug}
+description: ${q(desc)}
+hero_photo: ${heroName}
+---
+
+{% include portfolio-subnav.html name=${q(names)} %}
+
+<header class="text-hero venue-hero">
+  <span class="lab">${escapeHtml(aesthetic)}</span>
+  <h1>${escapeHtml(names)}</h1>
+  {%- assign subtitle = site.data.portfolio[page.portfolio_key] %}
+  {%- assign subtitle_k = page.portfolio_key | prepend: "portfolio:" %}
+  <p class="th-sub">{% include em.html t=subtitle k=subtitle_k %}</p>
+</header>
+
+{% include portfolio-gallery.html slug="${slug}" hero="${heroName}" name=${q(names)} %}
+
+{% include wedding-cta.html %}
+`;
+}
+
+/* append the wedding's card to its aesthetic group on the portfolio page */
+function addHubCard(hubText, groupId, slug, names, venue, heroName) {
+  const secStart = hubText.indexOf(`id="${groupId}"`);
+  if (secStart === -1) throw new Error("Couldn't find the aesthetic's section on the portfolio page — tell Josh.");
+  const secEnd = hubText.indexOf("</section>", secStart);
+  const gridEnd = hubText.lastIndexOf("</div>", secEnd);
+  if (secEnd === -1 || gridEnd === -1 || gridEnd < secStart) throw new Error("The portfolio page's layout changed — tell Josh.");
+  const card =
+    `  <a class="pf-card" href="{{ site.baseurl }}/portfolio/${slug}">\n` +
+    `      <img src="{{ site.baseurl }}/assets/images/portfolio/${slug}/${heroName}" alt="${escAttr(`${names} wedding flowers: ${venue}`)}" loading="lazy">\n` +
+    `      <span class="pf-cap"><b>${escapeHtml(names)}</b></span>\n` +
+    `    </a>\n  `;
+  return hubText.slice(0, gridEnd) + card + hubText.slice(gridEnd);
+}
+
+wedBtn.addEventListener("click", () => {
+  wedErr.style.display = "none";
+  wedModal.hidden = false;
+  wedNames.focus();
+});
+wedCancel.addEventListener("click", () => { wedModal.hidden = true; });
+
+wedForm.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  wedErr.style.display = "none";
+  const fail = (msg) => { wedErr.textContent = msg; wedErr.style.display = "block"; };
+
+  const names = wedNames.value.trim();
+  const venue = wedVenue.value.trim();
+  const aesthetic = wedAes.value;
+  const desc = wedDesc.value.trim().replace(/\s+/g, " ");
+  if (!names) return fail("Who got married? Add the couple's names.");
+  if (!venue) return fail("Add the venue (and town) — it helps Google find the wedding.");
+  if (!aesthetic) return fail("Pick the aesthetic — it decides where the wedding appears on the portfolio page.");
+  if (!desc) return fail("Add a sentence or two about the wedding.");
+  const slug = weddingSlug(names);
+  if (!slug) return fail("Those names don't work as a web address — try e.g. “Brittany & Chase”.");
+  if (!DRYRUN && !token()) { wedModal.hidden = true; await ensureAuth(); return; }
+
+  /* already exists? (missing = good here) */
+  let exists = true;
+  try { await getFile(`portfolio/${slug}/index.md`); } catch { exists = false; }
+  if (exists) return fail(`There's already a ${names} wedding at /portfolio/${slug}. Open it from the portfolio page to edit it.`);
+
+  const files = await pickFiles(filesInput);
+  if (!files.length) return fail("Pick at least one photo — the first becomes the opening photo.");
+
+  const submitBtn = wedForm.querySelector("button[type=submit]");
+  submitBtn.disabled = true;
+  try {
+    const commit = [];
+    const heroName = `${slug}-01.jpg`;
+    for (let i = 0; i < files.length; i++) {
+      fail(`Preparing photo ${i + 1} of ${files.length}…`);
+      wedErr.style.color = "var(--ed-mute)";
+      const { base64 } = await processImage(files[i]);
+      commit.push({ path: `assets/images/portfolio/${slug}/${slug}-${String(i + 1).padStart(2, "0")}.jpg`, base64 });
+    }
+    wedErr.style.color = "";
+
+    commit.push({ path: `portfolio/${slug}/index.md`, text: weddingPage(slug, names, aesthetic, desc, heroName) });
+
+    /* subtitle under the couple's name, same text Google gets */
+    const pfMeta = await getFile("_data/portfolio.yml");
+    const pfDoc = parseDocument(b64decodeUtf8(pfMeta.content));
+    pfDoc.setIn([slug], desc);
+    commit.push({ path: "_data/portfolio.yml", text: pfDoc.toString() });
+
+    const hub = await rawFile("portfolio/index.md");
+    commit.push({ path: "portfolio/index.md", text: addHubCard(hub.text, AES_GROUP[aesthetic], slug, names, venue, heroName) });
+
+    await commitFiles(commit, `Add the ${names} wedding to the portfolio via inline editor`);
+
+    wedModal.hidden = true;
+    wedForm.reset();
+    statusEl.className = "ed-status ok";
+    statusEl.textContent = DRYRUN
+      ? "Dry run done — nothing committed"
+      : `✓ ${names} created — the page appears at /portfolio/${slug} and on the portfolio page in ~2 minutes.`;
+  } catch (err) {
+    wedErr.style.color = "";
+    fail(err.message);
+  }
+  submitBtn.disabled = false;
 });
 
 if (!DRYRUN) ensureAuth();

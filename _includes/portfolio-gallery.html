@@ -9,6 +9,25 @@
 {%- endcomment -%}
 {%- assign prefix = '/assets/images/portfolio/' | append: include.slug | append: '/' -%}
 {%- assign allf = site.static_files | where_exp: "f", "f.path contains prefix" | sort: "path" -%}
+{%- comment -%}
+  _data/gallery_order.yml (written by /edit's drag-to-reorder) can pin an
+  explicit order per slug. Files it doesn't mention append in filename order;
+  names that no longer exist are skipped — a stale manifest can never break
+  the gallery. No manifest entry = filename order, exactly as before.
+{%- endcomment -%}
+{%- assign manifest = site.data.gallery_order[include.slug] -%}
+{%- if manifest -%}
+  {%- assign ordered = "" | split: "" -%}
+  {%- for nm in manifest -%}
+    {%- for f in allf -%}
+      {%- if f.name == nm -%}{%- assign ordered = ordered | push: f -%}{%- break -%}{%- endif -%}
+    {%- endfor -%}
+  {%- endfor -%}
+  {%- for f in allf -%}
+    {%- unless manifest contains f.name -%}{%- assign ordered = ordered | push: f -%}{%- endunless -%}
+  {%- endfor -%}
+  {%- assign allf = ordered -%}
+{%- endif -%}
 {%- assign count = 0 -%}
 {%- for f in allf -%}{%- unless f.name == include.hero -%}{%- assign count = count | plus: 1 -%}{%- endunless -%}{%- endfor -%}
 {%- assign spans = '' -%}

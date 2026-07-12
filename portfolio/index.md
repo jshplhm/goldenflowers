@@ -46,6 +46,11 @@ redirect_from:
 #wildflower-modern .pf-card:nth-child(3){grid-column:span 4;grid-row:span 2;}
 #wildflower-modern .pf-card:nth-child(4){grid-column:span 2;grid-row:span 2;}
 
+/* Cards past the composed four (added via /edit's New wedding): even pairs,
+   and a lone odd card widens to a full band so the grid always ends flush */
+.pf-group .pf-grid .pf-card:nth-child(n+5){grid-column:span 3;grid-row:span 2;}
+.pf-group .pf-grid .pf-card:nth-child(n+5):nth-child(odd):last-child{grid-column:span 6;}
+
 @media(max-width:900px){
   .pf-group .pf-grid{grid-template-columns:repeat(2,1fr);grid-auto-rows:auto !important;}
   .pf-group .pf-grid .pf-card{grid-column:span 1 !important;grid-row:auto !important;aspect-ratio:4/5;}
