@@ -47,7 +47,6 @@ redirect_from:
   <div data-form-wrap>
     <form action="{{ site.consult_endpoint }}" method="POST" id="consultation-form" data-multistep data-ajax>
       <div class="form-head">
-        <span class="form-head-label" data-form-eyebrow>Schedule a consultation</span>
         <button type="button" class="form-back" data-form-back hidden>&larr; Back</button>
         <span class="form-step-indicator" aria-hidden="true">Step 1 / 2</span>
       </div>
@@ -62,13 +61,33 @@ redirect_from:
           <label for="date">Wedding date</label>
           <input type="text" id="date" name="date" placeholder="mm/dd/yyyy" inputmode="numeric" maxlength="10" autocomplete="off" data-date-mask required>
         </div>
-        <div>
+        <div class="field-full">
           <label for="name">Your name</label>
-          <input type="text" id="name" name="name" placeholder="First &amp; last" autocomplete="name" required>
+          <input type="text" id="name" name="name" placeholder="One name or both" autocomplete="name" required>
         </div>
-        <div>
-          <label for="email">Email address</label>
-          <input type="email" id="email" name="email" placeholder="your@email.com" autocomplete="email" required>
+        <!-- Email-or-text chooser: only the matching contact field appears
+             (CSS :has() reveals it; JS enables/requires the active input and
+             disables the other so it neither validates nor submits). -->
+        <fieldset class="field-full reach-fieldset">
+          <legend>How should we reach you?</legend>
+          <div class="reach-seg">
+            <label><input type="radio" name="contact_method" value="Email" required>Email</label>
+            <label><input type="radio" name="contact_method" value="Text" required>Text</label>
+          </div>
+        </fieldset>
+        <div class="field-full reach-reveal" data-reach-email>
+          <div class="reach-inner">
+            <label for="email">Email address</label>
+            <input type="email" id="email" name="email" placeholder="your@email.com" autocomplete="email">
+            <p class="reach-note">Only about your wedding. We don't send marketing email.</p>
+          </div>
+        </div>
+        <div class="field-full reach-reveal" data-reach-phone>
+          <div class="reach-inner">
+            <label for="phone">Phone number</label>
+            <input type="tel" id="phone" name="phone" placeholder="(775) 555-0123" autocomplete="tel" inputmode="tel">
+            <p class="reach-note">Only about your wedding. We don't send marketing texts.</p>
+          </div>
         </div>
       </div>
       <div class="form-advance field-full">

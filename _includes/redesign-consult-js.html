@@ -106,6 +106,17 @@ function dateIssue(v){
 }
 function applyDateValidity(el){ if(el) el.setCustomValidity(dateIssue(el.value)); }
 
+/* Phone sanity check for the text channel. Mirrors the server-side rule in
+   consultation-form-doPost.gs — keep both in sync. */
+function phoneIssue(v){
+  if(!v) return '';
+  if(!/^[\d\s().+-]+$/.test(v)) return 'Just the number, please.';
+  var d=v.replace(/\D/g,'');
+  if(d.length<10) return 'Please include your area code.';
+  if(d.length>15) return 'That looks like too many digits.';
+  return '';
+}
+
 function sourceParams_(){
   var out={}; try{ var raw=sessionStorage.getItem('gf_source'); if(raw) out=JSON.parse(raw); }catch(e){}
   return out;
@@ -135,30 +146,68 @@ function appendCommon_(params, form){
     var step1=form.querySelector('.form-step-1'), step2=form.querySelector('.form-step-2');
     var advance=form.querySelector('.form-advance'), advanceBtn=form.querySelector('[data-form-advance]');
     var indicator=form.querySelector('.form-step-indicator'), backBtn=form.querySelector('[data-form-back]');
-    var eyebrow=form.querySelector('[data-form-eyebrow]'), heading=form.querySelector('[data-form-heading]');
+    var heading=form.querySelector('[data-form-heading]');
     var seg2=form.querySelector('[data-progress-step2]');
     if(!step2||!advanceBtn) return;
     step2.hidden=true;
     function setStep(n){
       if(indicator) indicator.textContent='Step '+n+' / 2';
-      if(eyebrow) eyebrow.hidden=(n===2);
       if(backBtn) backBtn.hidden=(n===1);
       if(seg2) seg2.classList.toggle('on', n===2);
       if(heading) heading.textContent=(n===2)?'A few more details.':'Is your date open?';
+    }
+    /* Email-or-text chooser. The inactive contact input is disabled so it
+       neither blocks validation nor submits; CSS reveals the active block
+       (both via :has() and the .open class, so older engines still work). */
+    var chooser=form.querySelectorAll('input[name="contact_method"]');
+    var reachBlocks={Email:form.querySelector('[data-reach-email]'),Text:form.querySelector('[data-reach-phone]')};
+    function setChannel(v){
+      ['Email','Text'].forEach(function(k){
+        var on=(k===v), block=reachBlocks[k];
+        if(!block) return;
+        block.classList.toggle('open', on);
+        var input=block.querySelector('input');
+        if(input){ input.disabled=!on; input.required=on; }
+      });
+      chooser.forEach(function(r){
+        var l=r.closest('label'); if(l) l.classList.toggle('sel', r.checked);
+      });
+    }
+    if(chooser.length){
+      setChannel(''); // nothing chosen yet: both contact inputs parked
+      chooser.forEach(function(r){ r.addEventListener('change', function(){ setChannel(r.value); }); });
+      var phoneEl=reachBlocks.Text&&reachBlocks.Text.querySelector('input[type="tel"]');
+      if(phoneEl){
+        phoneEl.addEventListener('input', function(){ phoneEl.setCustomValidity(''); });
+        phoneEl.addEventListener('blur', function(){
+          phoneEl.setCustomValidity(phoneIssue(phoneEl.value));
+          if(phoneEl.value) phoneEl.reportValidity();
+        });
+      }
     }
     form.dataset.leadId=(window.crypto&&crypto.randomUUID)?crypto.randomUUID():('c-'+Date.now()+'-'+Math.random().toString(36).slice(2));
     form.dataset.renderedAt=String(Date.now());
     function toTop(){ var m=form.closest('.modal'); if(m) m.scrollTop=0; }
     advanceBtn.addEventListener('click', function(){
       var reqs=form.querySelectorAll('.form-step-1 [required]');
-      for(var i=0;i<reqs.length;i++){ if(!reqs[i].reportValidity()) return; }
+      for(var i=0;i<reqs.length;i++){ if(reqs[i].disabled) continue; if(!reqs[i].reportValidity()) return; }
       var dateEl=form.querySelector('.form-step-1 [data-date-mask]');
       if(dateEl){ (dateEl._finalizeYear||function(){ applyDateValidity(dateEl); })(); if(!dateEl.reportValidity()) return; }
+      var phoneCheck=form.querySelector('.form-step-1 input[type="tel"]');
+      if(phoneCheck && !phoneCheck.disabled){
+        phoneCheck.setCustomValidity(phoneIssue(phoneCheck.value));
+        if(!phoneCheck.reportValidity()) return;
+      }
       if(!form.dataset.partialSent && form.hasAttribute('data-ajax')){
         form.dataset.partialSent='1';
         try{
           var p=new URLSearchParams();
-          ['date','name','email'].forEach(function(n){ var f=form.querySelector('[name="'+n+'"]'); if(f) p.append(n,f.value); });
+          ['date','name','email','phone'].forEach(function(n){
+            var f=form.querySelector('[name="'+n+'"]');
+            p.append(n,(f&&!f.disabled)?f.value:'');
+          });
+          var cm=form.querySelector('[name="contact_method"]:checked');
+          p.append('contact_method', cm?cm.value:'');
           p.append('status','partial');
           p.append('k','gf-lupine-26');
           appendCommon_(p, form);

@@ -1,5 +1,5 @@
 /**
- * Golden Flowers consultation form — hardened intake, v3 (July 2026).
+ * Golden Flowers consultation form — hardened intake, v3.1 (July 2026).
  *
  * Paste this into the Apps Script project attached to the leads spreadsheet
  * (Extensions -> Apps Script from the sheet), replacing everything currently
@@ -18,7 +18,22 @@
  *                    anything new landed, so false positives get reviewed.
  * The script creates any missing tab (with headers) on first use.
  *
- * What changed from v2:
+ * What changed from v3 (v3.1):
+ *   - Step 1 now asks "How should we reach you?" (Email or Text) and shows
+ *     only the matching field. New params: contact_method ("Email"/"Text")
+ *     and phone. New sheet columns (auto-appended on first use): Contact
+ *     Method, Phone.
+ *   - "Missing email" is now "no contact info": a submission needs at least
+ *     one of email/phone. Email-specific checks run only when an email was
+ *     given; phone gets its own character/length checks (mirrors the form's
+ *     client-side rule — keep both in sync).
+ *   - Flood control keys on email OR phone, whichever was given.
+ *   - Digests and the complete-lead email show whichever contact exists and
+ *     note when a couple asked to be texted.
+ *   - Posts from the previous form (email always present, no contact_method)
+ *     still pass every rule, so a stale cached page can't flag as spam.
+ *
+ * What changed from v2 (v3):
  *   - Three tabs instead of everything on one: partials live on their own
  *     tab and MOVE to Full leads when step 2 arrives (same row count, no
  *     duplicates, Submitted keeps the original step-1 time).
@@ -107,7 +122,8 @@ var PLACEHOLDER_DOMAINS = [
 // are simply ignored; arrival source survives as the Source column.
 var HEADERS = [
   'Submitted', 'Status', 'Name', 'Email', 'Wedding Date', 'Aesthetic',
-  'Budget', 'Message', 'Venue', 'Source', 'Updated', 'Lead ID'
+  'Budget', 'Message', 'Venue', 'Source', 'Updated', 'Lead ID',
+  'Contact Method', 'Phone'
 ];
 
 function doPost(e) {
@@ -226,6 +242,17 @@ function venueValue_(p) {
   return /^Somewhere else/i.test(v) ? '' : v;
 }
 
+/* Phones land in the sheet pretty-printed when they're a plain US number;
+   anything else (international, extensions) is kept exactly as typed. */
+function fmtPhone_(raw) {
+  var v = String(raw || '').trim();
+  if (!v) return '';
+  var d = v.replace(/\D/g, '');
+  if (d.length === 11 && d.charAt(0) === '1') d = d.slice(1);
+  if (d.length === 10) return '(' + d.slice(0, 3) + ') ' + d.slice(3, 6) + '-' + d.slice(6);
+  return v;
+}
+
 function buildRowValues_(p, isPartial, submittedAt, updatedAt, leadId) {
   return {
     'Submitted': submittedAt,
@@ -233,6 +260,8 @@ function buildRowValues_(p, isPartial, submittedAt, updatedAt, leadId) {
     'Status': statusLabel_(p, isPartial),
     'Name': p.name || '',
     'Email': p.email || '',
+    'Contact Method': p.contact_method || '',
+    'Phone': fmtPhone_(p.phone),
     'Wedding Date': p.date || '',
     'Venue': venueValue_(p),
     'Aesthetic': p.aesthetic || '',
@@ -306,6 +335,8 @@ function spamReasons_(p) {
   var r = [];
   var name = String(p.name || '').trim();
   var email = String(p.email || '').trim();
+  var phone = String(p.phone || '').trim();
+  var method = String(p.contact_method || '').trim();
   var date = String(p.date || '').trim();
   var venue = (String(p.venue || '') + ' ' + String(p.venue_other || '')).trim();
   var aesthetic = String(p.aesthetic || '').trim();
@@ -321,19 +352,37 @@ function spamReasons_(p) {
   var ts = Number(p.ts || 0);
   if (ts && Date.now() - ts >= 0 && Date.now() - ts < 1200) r.push('submitted too fast');
 
-  // The live form marks name + email required, so posts missing either
-  // never came from the form.
+  // The chooser radios can only ever submit their two exact values. Empty is
+  // fine: the pre-chooser form (a stale cached page) never sends the field.
+  if (method && method !== 'Email' && method !== 'Text') r.push('bad contact method');
+
+  // The live form marks name required and always collects at least one way
+  // to reach them (email or phone, whichever channel they picked), so posts
+  // with neither never came from the form.
   if (!name) r.push('missing name');
-  if (!email) {
-    r.push('missing email');
-  } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
-    r.push('bad email format');
-  } else {
-    var domain = email.split('@')[1].toLowerCase();
-    if (PLACEHOLDER_DOMAINS.indexOf(domain) !== -1) {
-      r.push('placeholder email domain');
-    } else if (!domainReceivesMail_(domain)) {
-      r.push('email domain cannot receive mail');
+  if (!email && !phone) r.push('no contact info');
+  if (email) {
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
+      r.push('bad email format');
+    } else {
+      var domain = email.split('@')[1].toLowerCase();
+      if (PLACEHOLDER_DOMAINS.indexOf(domain) !== -1) {
+        r.push('placeholder email domain');
+      } else if (!domainReceivesMail_(domain)) {
+        r.push('email domain cannot receive mail');
+      }
+    }
+  }
+
+  // The phone field validates client-side before step 1 advances: only
+  // phone-ish characters, 10–15 digits. Mirrors phoneIssue() in
+  // redesign-consult-js.html — keep both in sync.
+  if (phone) {
+    if (!/^[\d\s().+-]{7,25}$/.test(phone)) {
+      r.push('bad phone characters');
+    } else {
+      var pd = phone.replace(/\D/g, '');
+      if (pd.length < 10 || pd.length > 15) r.push('bad phone length');
     }
   }
 
@@ -374,16 +423,17 @@ function spamReasons_(p) {
 
   // Flood control. A real visit produces at most 2 posts (step-1 partial +
   // complete); even a redo is 4. The July bot ran at ~10/min.
-  if (email && floodCount_(email) > 6) r.push('flood');
+  var floodKey = email || phone.replace(/\D/g, '');
+  if (floodKey && floodCount_(floodKey) > 6) r.push('flood');
 
   return r;
 }
 
-// Rolling per-email counter; the 10-minute window renews on every hit, so a
+// Rolling per-contact counter; the 10-minute window renews on every hit, so a
 // sustained bot stays counted while a couple returning tomorrow starts fresh.
-function floodCount_(email) {
+function floodCount_(contact) {
   var cache = CacheService.getScriptCache();
-  var key = 'n:' + email.toLowerCase();
+  var key = 'n:' + contact.toLowerCase();
   var n = Number(cache.get(key) || 0) + 1;
   cache.put(key, String(n), 600);
   return n;
@@ -453,16 +503,29 @@ function sendCompleteEmail_(p) {
   // Deliberately no Source / Opened-from lines: Brittany forwards these
   // emails to couples, and lead-gen internals shouldn't travel with them.
   // Arrival source still lands in the sheet's Source column.
-  var body = [
-    'Name: ' + (p.name || ''),
-    'Email: ' + (p.email || ''),
+  var lines = ['Name: ' + (p.name || '')];
+  if (String(p.contact_method || '').trim()) lines.push('Reach them by: ' + p.contact_method);
+  lines = lines.concat([
+    'Email: ' + (p.email || '(not given)'),
+    'Phone: ' + (fmtPhone_(p.phone) || '(not given)'),
     'Wedding date: ' + (p.date || ''),
     'Venue: ' + (venueValue_(p) || '(not given)'),
     'Aesthetic: ' + (p.aesthetic || ''),
     'Budget: ' + (p.budget || ''),
     'Message: ' + (p.message || '(none)')
-  ].join('\n');
-  sendMail_(subject, body);
+  ]);
+  sendMail_(subject, lines.join('\n'));
+}
+
+/* One line of contact info for digest entries: the email if there is one,
+   otherwise the phone, tagged when the couple asked to be texted. */
+function contactLine_(row, cols) {
+  var email = String(row[cols['Email'] - 1] || '').trim();
+  var phone = cols['Phone'] ? fmtPhone_(row[cols['Phone'] - 1]) : '';
+  var method = cols['Contact Method'] ? String(row[cols['Contact Method'] - 1] || '').trim() : '';
+  var contact = email || phone || 'no contact info';
+  if (method === 'Text' && phone) contact = phone + ' (reach by text)';
+  return contact;
 }
 
 /* Wedding dates land in the sheet as strings but Sheets often coerces them
@@ -499,11 +562,12 @@ function partialLeadsDigest_() {
   var fresh = [], older = [];
   values.forEach(function (row) {
     var name = row[cols['Name'] - 1], email = row[cols['Email'] - 1];
-    if (!name && !email) return; // blank spacer row
+    var phone = cols['Phone'] ? row[cols['Phone'] - 1] : '';
+    if (!name && !email && !phone) return; // blank spacer row
     var updated = row[cols['Updated'] - 1];
     if (updated instanceof Date && updated > minAge) return; // possibly still typing
     var entry =
-      '• ' + (name || '(no name)') + ' — ' + (email || 'no email') + '\n' +
+      '• ' + (name || '(no name)') + ' — ' + contactLine_(row, cols) + '\n' +
       '  Wedding date: ' + (fmtWeddingDate_(row[cols['Wedding Date'] - 1]) || '(none)') +
       '  ·  Started: ' + fmtWhen_(row[cols['Submitted'] - 1]);
     var submitted = row[cols['Submitted'] - 1];
@@ -513,7 +577,7 @@ function partialLeadsDigest_() {
   if (!fresh.length && !older.length) return;
 
   var parts = [
-    'These couples filled in step 1 (name, email, wedding date) but never finished step 2.',
+    'These couples filled in step 1 (date, name, contact) but never finished step 2.',
     'A friendly note sometimes brings them back.',
     ''
   ];
@@ -550,7 +614,7 @@ function spamDigest_() {
     if (submitted.getTime() > newest) newest = submitted.getTime();
     if (submitted.getTime() <= last) return;
     fresh.push(
-      '• ' + (row[cols['Name'] - 1] || '(no name)') + ' — ' + (row[cols['Email'] - 1] || 'no email') + '\n' +
+      '• ' + (row[cols['Name'] - 1] || '(no name)') + ' — ' + contactLine_(row, cols) + '\n' +
       '  Wedding date: ' + (fmtWeddingDate_(row[cols['Wedding Date'] - 1]) || '(none)') +
       '  ·  Caught: ' + fmtWhen_(submitted) +
       (reasonCol > -1 ? '\n  Why: ' + (row[reasonCol] || '') : '')
@@ -581,13 +645,28 @@ function setupTriggers() {
 }
 
 /** Run this in the editor (Run -> testVet) to sanity-check the rules: the
- *  first log should be [] (a real submission passes), the rest non-empty. */
+ *  first three logs should be [] (real submissions pass — old form, new
+ *  email lead, new text lead), the rest non-empty. */
 function testVet() {
   Logger.log(spamReasons_({
     name: 'Josh Pelham', email: 'jpelham03@gmail.com', date: '06/11/2028',
     aesthetic: 'Elevated Minimalist (clean, airy, restrained)', budget: '$25,000+',
     message: "idk but I'm happy to be married", k: FORM_TOKEN, ts: String(Date.now() - 30000)
   }));
+  Logger.log(spamReasons_({ // new form, email channel
+    name: 'Jordan & Sam', contact_method: 'Email', email: 'jpelham03@gmail.com',
+    date: '06/11/2028', aesthetic: 'Wildflower Modern — wild, seasonal, editorial',
+    budget: '$12,000–$18,000', k: FORM_TOKEN, ts: String(Date.now() - 30000)
+  }));
+  Logger.log(spamReasons_({ // new form, text channel — no email at all
+    name: 'Jordan & Sam', contact_method: 'Text', phone: '(775) 555-0123',
+    date: '06/11/2028', aesthetic: 'Lush & Romantic — rich, dramatic, deep tones',
+    budget: '$8,000–$12,000', k: FORM_TOKEN, ts: String(Date.now() - 30000)
+  }));
+  Logger.log(spamReasons_({ // bot guessing the new fields wrong
+    name: 'x', contact_method: 'Both', phone: '555-0123', date: '06/11/2028'
+  }));
+  Logger.log(spamReasons_({ name: 'y', date: '06/11/2028' })); // no contact info at all
   Logger.log(spamReasons_({ // July bot wave
     name: 'g6c2xl', email: '96b0fvr6ra06pq@web-library.net',
     date: '📈 + 2 BTC. Sign In', message: '83wosy'
