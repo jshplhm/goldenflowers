@@ -51,6 +51,16 @@ redirect_from:
 .pf-group .pf-grid .pf-card:nth-child(n+5){grid-column:span 3;grid-row:span 2;}
 .pf-group .pf-grid .pf-card:nth-child(n+5):nth-child(odd):last-child{grid-column:span 6;}
 
+/* Underfull groups (a wedding was retired via /edit): compose for the count
+   that actually exists so nothing sits beside a hole — a wide feature over a
+   pair for three, an even pair for two, one full band for one. The :is(#id)
+   wrapper outranks the per-group nth-child compositions above. */
+:is(#lush-romantic,#elevated-minimalist,#wildflower-modern) .pf-card:first-child:nth-last-child(3),
+:is(#lush-romantic,#elevated-minimalist,#wildflower-modern) .pf-card:first-child:nth-last-child(1){grid-column:span 6;grid-row:span 2;}
+:is(#lush-romantic,#elevated-minimalist,#wildflower-modern) .pf-card:first-child:nth-last-child(3) ~ .pf-card,
+:is(#lush-romantic,#elevated-minimalist,#wildflower-modern) .pf-card:first-child:nth-last-child(2),
+:is(#lush-romantic,#elevated-minimalist,#wildflower-modern) .pf-card:first-child:nth-last-child(2) ~ .pf-card{grid-column:span 3;grid-row:span 2;}
+
 @media(max-width:900px){
   .pf-group .pf-grid{grid-template-columns:repeat(2,1fr);grid-auto-rows:auto !important;}
   .pf-group .pf-grid .pf-card{grid-column:span 1 !important;grid-row:auto !important;aspect-ratio:4/5;}

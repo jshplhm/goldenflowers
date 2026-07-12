@@ -351,6 +351,8 @@ function hookFrame() {
     name: gal.getAttribute("data-ed-gname"),
   } : null;
   photosBtn.hidden = !curGallery;
+  wedRmBtn.hidden = !curGallery;
+  styleBtn.hidden = !curGallery;
   lastRange = null;
   doc.addEventListener("selectionchange", () => {
     const sel = doc.getSelection();
@@ -653,20 +655,25 @@ newForm.addEventListener("submit", async (e) => {
   }
 });
 
+/* Adds urlPath to a page's redirect_from front matter, returning the new file
+ * text (deletions must never 404 — user mandate). */
+function withRedirect(raw, urlPath, label) {
+  const m = raw.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n?/);
+  if (!m) throw new Error(`${label} has no front matter — redirect not added.`);
+  const fmDoc = parseDocument(m[1]);
+  const existing = fmDoc.toJS().redirect_from || [];
+  if (existing.includes(urlPath)) return raw;
+  if (fmDoc.has("redirect_from")) fmDoc.addIn(["redirect_from"], urlPath);
+  else fmDoc.set("redirect_from", [urlPath]);
+  return `---\n${fmDoc.toString().replace(/\n+$/, "")}\n---\n\n${raw.slice(m[0].length).replace(/^\n+/, "")}`;
+}
+
 /* Keep a deleted post's URL working: send it to /blog via jekyll-redirect-from
  * on blog/index.md, committed before the post itself is removed. */
 async function addBlogRedirect(urlPath, attempt = 0) {
   const path = "blog/index.md";
   const meta = await getFile(path);
-  const raw = b64decodeUtf8(meta.content);
-  const m = raw.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n?/);
-  if (!m) throw new Error("blog/index.md has no front matter — redirect not added.");
-  const fmDoc = parseDocument(m[1]);
-  const existing = fmDoc.toJS().redirect_from || [];
-  if (existing.includes(urlPath)) return;
-  if (fmDoc.has("redirect_from")) fmDoc.addIn(["redirect_from"], urlPath);
-  else fmDoc.set("redirect_from", [urlPath]);
-  const out = `---\n${fmDoc.toString().replace(/\n+$/, "")}\n---\n\n${raw.slice(m[0].length).replace(/^\n+/, "")}`;
+  const out = withRedirect(b64decodeUtf8(meta.content), urlPath, path);
   const res = await putFile(path, `Redirect ${urlPath} to /blog (post deleted via inline editor)`, out, meta.sha);
   if (res.status === 409 && attempt === 0) return addBlogRedirect(urlPath, 1);
   if (!res.ok) throw new Error(`Couldn't add the redirect (${res.status})`);
@@ -1258,6 +1265,162 @@ imginsBtn.addEventListener("click", async () => {
     statusEl.className = "ed-status err";
     statusEl.textContent = err.message;
   }
+});
+
+/* ---------- hub card surgery (shared by remove & change-style) ---------- */
+
+/* Locates a wedding's pf-card on the portfolio page. Returns the card html,
+ * the hub text without it, and which aesthetic section it sat in. */
+function cutHubCard(hubText, slug) {
+  const ref = hubText.indexOf(`/portfolio/${slug}"`);
+  if (ref === -1) throw new Error("Couldn't find this wedding on the portfolio page — tell Josh.");
+  const aOpen = hubText.lastIndexOf('<a class="pf-card"', ref);
+  const aClose = hubText.indexOf("</a>", ref) + 4;
+  const secStart = hubText.lastIndexOf('<section class="pf-group"', ref);
+  const groupId = (hubText.slice(secStart, secStart + 120).match(/id="([a-z-]+)"/) || [])[1] || "";
+  const secEnd = hubText.indexOf("</section>", ref);
+  const groupCards = (hubText.slice(secStart, secEnd).match(/class="pf-card"/g) || []).length;
+  const card = hubText.slice(aOpen, aClose);
+  const text = hubText.slice(0, aOpen).replace(/[ \t]*$/, "") + hubText.slice(aClose).replace(/^\s*\n/, "\n");
+  return { text, card, groupId, groupCards };
+}
+
+/* appends a ready-made card inside a group's grid (same anchor logic as New wedding) */
+function insertHubCard(hubText, groupId, card) {
+  const secStart = hubText.indexOf(`id="${groupId}"`);
+  if (secStart === -1) throw new Error("Couldn't find the aesthetic's section on the portfolio page — tell Josh.");
+  const secEnd = hubText.indexOf("</section>", secStart);
+  const gridEnd = hubText.lastIndexOf("</div>", secEnd);
+  if (secEnd === -1 || gridEnd === -1 || gridEnd < secStart) throw new Error("The portfolio page's layout changed — tell Josh.");
+  return hubText.slice(0, gridEnd) + "  " + card + "\n  " + hubText.slice(gridEnd);
+}
+
+/* ---------- remove wedding ---------- */
+
+const wedRmBtn = document.getElementById("ed-wedrm");
+
+wedRmBtn.addEventListener("click", async () => {
+  if (!curGallery || !curPage) return;
+  const { slug, name } = curGallery;
+  if (!window.confirm(
+    `Remove the ${name} wedding from the portfolio?\n\n` +
+    `Its page and all ${name} gallery photos are deleted, its card comes off ` +
+    `the portfolio page, and its old address redirects to the portfolio. ` +
+    `This can't be undone from here.`
+  )) return;
+  if (!DRYRUN && !token()) { await ensureAuth(); if (!token()) return; }
+
+  statusEl.className = "ed-status";
+  statusEl.textContent = "Checking it's safe to remove…";
+  try {
+    /* photos from this wedding may be featured on other pages via swap */
+    const prefix = `/assets/images/portfolio/${slug}/`;
+    for (const p of PHOTO_USAGE_PAGES) {
+      if (p === "portfolio/index.md") continue; // its card is what we're removing
+      const { text } = await rawFile(p);
+      if (text.includes(prefix)) {
+        throw new Error(`Not removed: a ${name} photo is featured on ${PAGE_LABELS[p] || p}. Swap that photo first (click it on that page), then try again.`);
+      }
+    }
+
+    /* the collage CSS adapts down to a single card, but an aesthetic with
+     * ZERO examples would show an empty section — that needs a human */
+    const hub = await rawFile("portfolio/index.md");
+    const cut = cutHubCard(hub.text, slug);
+    if (cut.groupCards <= 1) {
+      throw new Error(`Not removed: ${name} is the only wedding left in this style — the portfolio would show an empty section. Add another wedding to this style first, or tell Josh.`);
+    }
+    /* same commit: the old URL 301s to the portfolio (nothing may 404) */
+    const hubText = withRedirect(cut.text, `/portfolio/${slug}`, "portfolio/index.md");
+
+    statusEl.textContent = "Removing…";
+    const files = [
+      { path: `portfolio/${slug}/index.md`, del: true },
+      { path: "portfolio/index.md", text: hubText },
+    ];
+    for (const it of await listGallery()) {
+      files.push({ path: `assets/images/portfolio/${slug}/${it.name}`, del: true });
+    }
+    const pfMeta = await getFile("_data/portfolio.yml");
+    const pfDoc = parseDocument(b64decodeUtf8(pfMeta.content));
+    if (pfDoc.hasIn([slug])) { pfDoc.deleteIn([slug]); files.push({ path: "_data/portfolio.yml", text: pfDoc.toString() }); }
+    const orderDoc = await readOrderDoc();
+    if (orderDoc.hasIn([slug])) { orderDoc.deleteIn([slug]); files.push({ path: ORDER_PATH, text: orderDoc.toString() }); }
+
+    await commitFiles(files, `Remove the ${name} wedding from the portfolio via inline editor`);
+    statusEl.className = "ed-status ok";
+    statusEl.textContent = DRYRUN
+      ? "Dry run done — nothing committed"
+      : `✓ ${name} removed — it disappears from the live site in ~2 minutes.`;
+    if (!DRYRUN) frame.src = `${CFG.baseurl}/portfolio`;
+  } catch (err) {
+    statusEl.className = "ed-status err";
+    statusEl.textContent = err.message;
+  }
+});
+
+/* ---------- change style (redesignate a wedding's aesthetic) ---------- */
+
+const styleBtn = document.getElementById("ed-style");
+const styleModal = document.getElementById("ed-style-modal");
+const styleForm = document.getElementById("ed-style-form");
+const styleSel = document.getElementById("ed-style-sel");
+const styleErr = document.getElementById("ed-style-err");
+const styleCancel = document.getElementById("ed-style-cancel");
+
+const GROUP_AES = {
+  "lush-romantic": "Lush & Romantic",
+  "elevated-minimalist": "Elevated Minimalist",
+  "wildflower-modern": "Wildflower Modern",
+};
+
+styleBtn.addEventListener("click", () => {
+  styleErr.style.display = "none";
+  styleModal.hidden = false;
+});
+styleCancel.addEventListener("click", () => { styleModal.hidden = true; });
+
+styleForm.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  styleErr.style.display = "none";
+  if (!curGallery || !curPage) return;
+  if (!DRYRUN && !token()) { styleModal.hidden = true; await ensureAuth(); return; }
+  const target = styleSel.value;
+  const btn = styleForm.querySelector("button[type=submit]");
+  btn.disabled = true;
+  try {
+    const hub = await rawFile("portfolio/index.md");
+    const cut = cutHubCard(hub.text, curGallery.slug);
+    const fromAes = GROUP_AES[cut.groupId];
+    if (!fromAes) throw new Error("Couldn't tell which style this wedding is in — tell Josh.");
+    if (fromAes === target) throw new Error(`${curGallery.name} is already ${target}.`);
+    if (cut.groupCards <= 1) throw new Error(`${curGallery.name} is the only wedding left in ${fromAes} — moving it would leave that section empty. Tell Josh if that's really wanted.`);
+    const hubText = insertHubCard(cut.text, AES_GROUP[target], cut.card);
+
+    /* the wedding page carries the aesthetic in its title, seo_title and the
+     * label above the couple's name — swap every occurrence */
+    const page = await rawFile(curPage);
+    if (!page.text.includes(fromAes)) throw new Error("This wedding's page doesn't mention its style where expected — tell Josh.");
+    const pageText = page.text.split(fromAes).join(target);
+
+    await commitFiles(
+      [{ path: "portfolio/index.md", text: hubText }, { path: curPage, text: pageText }],
+      `Move the ${curGallery.name} wedding from ${fromAes} to ${target} via inline editor`
+    );
+    styleModal.hidden = true;
+    statusEl.className = "ed-status ok";
+    statusEl.textContent = DRYRUN
+      ? "Dry run done — nothing committed"
+      : `✓ ${curGallery.name} is now ${target} — the portfolio page and this page's label update in ~2 minutes.`;
+    /* show the new label on the page behind immediately */
+    const doc = frameDoc();
+    const lab = doc && doc.querySelector(".venue-hero .lab");
+    if (lab && lab.textContent.trim() === fromAes) lab.textContent = target;
+  } catch (err) {
+    styleErr.textContent = err.message;
+    styleErr.style.display = "block";
+  }
+  btn.disabled = false;
 });
 
 /* ---------- new wedding ---------- */

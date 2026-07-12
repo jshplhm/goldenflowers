@@ -98,6 +98,8 @@ sitemap: false
     <div class="ed-page" id="ed-page"></div>
     <div class="ed-status" id="ed-status"></div>
     <button class="ed-btn" id="ed-photos" hidden>Photos</button>
+    <button class="ed-btn" id="ed-style" hidden>Change style</button>
+    <button class="ed-btn" id="ed-wedrm" hidden>Remove wedding</button>
     <button class="ed-btn" id="ed-imgins" hidden>Insert photo</button>
     <button class="ed-btn" id="ed-new">New post</button>
     <button class="ed-btn" id="ed-wed">New wedding</button>
@@ -154,6 +156,21 @@ sitemap: false
       <button class="ed-btn primary" type="submit">Create post</button>
       <button class="ed-btn" type="button" id="ed-new-cancel">Cancel</button>
       <div class="ed-err" id="ed-new-err"></div>
+    </form>
+  </div>
+
+  <div class="ed-login" id="ed-style-modal" hidden>
+    <form class="ed-card" id="ed-style-form" style="max-width:440px;">
+      <h1>Change this wedding's style</h1>
+      <p id="ed-style-note">Moves it to a different aesthetic on the portfolio page and updates the label on its own page. The photos and words stay exactly the same.</p>
+      <select id="ed-style-sel" style="width:100%;padding:10px 12px;border:1px solid var(--ed-line);border-radius:6px;font-size:.9rem;background:#fff;">
+        <option>Lush &amp; Romantic</option>
+        <option>Elevated Minimalist</option>
+        <option>Wildflower Modern</option>
+      </select>
+      <button class="ed-btn primary" type="submit">Move it</button>
+      <button class="ed-btn" type="button" id="ed-style-cancel">Cancel</button>
+      <div class="ed-err" id="ed-style-err"></div>
     </form>
   </div>
 
