@@ -47,7 +47,13 @@ JEKYLL_ENV=production bundle exec jekyll build    # adds srcset markup (see Imag
 - **Inline editor** (`/edit`, `assets/editor/editor.js`): iframe over the
   live site; saves commit straight to `main` via GitHub API (fine-grained
   PAT in localStorage). Supports copy edits, blog posts, photo
-  add/delete/reorder/swap/hero, and one-form "New wedding" creation.
+  add/delete/reorder/swap/hero, one-form "New wedding" creation, "Remove
+  wedding" (deletes page+photos, 301s the URL, blocked if a photo is
+  featured elsewhere or it's the style's last wedding), and "Change style"
+  (moves the hub card between aesthetic sections and swaps the label on the
+  wedding page). Portfolio collages are quantity-aware: 4+ cards use the
+  composed layouts, 3/2/1 fall back to feature-pair/pair/band via
+  :is(#id) quantity queries in portfolio/index.md.
   Test with `?dryrun=1` (commits land on `window.__gfDryrun`), `?branch=X`
   to redirect commits. Photo paths must be canonicalized from `rsp/`
   srcset variants before matching page source (`canonicalImagePath`).
