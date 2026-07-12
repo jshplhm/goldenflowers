@@ -856,16 +856,23 @@ function reorderPageMosaic(order) {
   if (!mosaic) return;
   const tiles = [...mosaic.querySelectorAll("a")].filter((a) => a.querySelector("img"));
   const pattern = tiles.map((a) => [...a.classList].find((c) => /^mo-\d+$/.test(c)));
+  /* .mo-fin (mobile closing band) is positional and parity doesn't change on
+   * reorder, so if this gallery has one it belongs on the new last tile */
+  const hadFin = tiles.some((a) => a.classList.contains("mo-fin"));
   const byName = new Map(tiles.map((a) => [imgPath(a.querySelector("img")).split("/").pop(), a]));
   let i = 0;
+  let lastPlaced = null;
   for (const nm of order) {
     const a = byName.get(nm);
     if (!a) continue; /* the hero, or a photo not on the page yet */
     [...a.classList].filter((c) => /^mo-\d+$/.test(c)).forEach((c) => a.classList.remove(c));
+    a.classList.remove("mo-fin");
     if (pattern[i]) a.classList.add(pattern[i]);
     i += 1;
     mosaic.appendChild(a);
+    lastPlaced = a;
   }
+  if (hadFin && lastPlaced) lastPlaced.classList.add("mo-fin");
 }
 
 function renderPhotoGrid() {

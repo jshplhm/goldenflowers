@@ -64,6 +64,18 @@
 {%- endcomment -%}
 {%- assign lastName = '' -%}
 {%- for f in allf reversed -%}{%- unless f.name == include.hero -%}{%- assign lastName = f.name -%}{%- break -%}{%- endunless -%}{%- endfor -%}
+{%- comment -%}
+  Mobile pairing parity: on phones every mo-2/mo-3 is a half tile and every
+  mo-6 a full band. If the run of half tiles after the final band is ODD the
+  grid would end with an orphan tile beside a gap — widen the LAST photo into
+  a closing band exactly then (an even run must NOT be widened: that strands
+  the tile before it instead — seen live on Katie & James).
+{%- endcomment -%}
+{%- assign tailHalves = 0 -%}
+{%- for s in spanArr -%}
+  {%- if s == '6' -%}{%- assign tailHalves = 0 -%}{%- else -%}{%- assign tailHalves = tailHalves | plus: 1 -%}{%- endif -%}
+{%- endfor -%}
+{%- assign lastWide = tailHalves | modulo: 2 -%}
 <section class="wd-gallery" data-ed-gallery="{{ include.slug }}" data-ed-ghero="{{ include.hero }}" data-ed-gname="{{ include.name | escape }}">
   <a class="wd-hero-link wd-lb" href="{{ site.baseurl }}{{ prefix }}{{ include.hero }}" aria-label="View {{ include.name }} photo 1 full screen">
     <img src="{{ site.baseurl }}{{ prefix }}{{ include.hero }}" alt="{{ include.name }} wedding flowers by Golden Flowers" loading="eager" class="wd-hero-img" sizes="(min-width:1232px) 1164px, 100vw">
@@ -73,14 +85,16 @@
   {%- for f in allf -%}
     {%- if f.name == include.hero -%}{%- continue -%}{%- endif -%}
     {%- assign sp = spanArr[j] -%}
-    {%- if sp == '6' or f.name == lastName -%}
+    {%- assign fin = false -%}
+    {%- if f.name == lastName and lastWide == 1 -%}{%- assign fin = true -%}{%- endif -%}
+    {%- if sp == '6' or fin -%}
       {%- assign szs = '(min-width:1232px) 1164px, 100vw' -%}
     {%- elsif sp == '3' -%}
       {%- assign szs = '(max-width:600px) 50vw, (min-width:1232px) 574px, 48vw' -%}
     {%- else -%}
       {%- assign szs = '(max-width:600px) 50vw, (min-width:1232px) 378px, 31vw' -%}
     {%- endif -%}
-    <a class="mo mo-{{ sp }} wd-lb" href="{{ site.baseurl }}{{ f.path }}" aria-label="View {{ include.name }} photo full screen">
+    <a class="mo mo-{{ sp }}{% if fin %} mo-fin{% endif %} wd-lb" href="{{ site.baseurl }}{{ f.path }}" aria-label="View {{ include.name }} photo full screen">
       <img src="{{ site.baseurl }}{{ f.path }}" alt="{{ include.name }} wedding florals by Golden Flowers" loading="lazy" sizes="{{ szs }}">
     </a>
     {%- assign j = j | plus: 1 -%}
