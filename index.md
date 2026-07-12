@@ -49,7 +49,7 @@ redirect_from:
 <section class="credo" style="padding-top:clamp(64px,8vw,104px);">
   <div style="max-width:960px;">
     <p style="font-family:var(--d);font-weight:430;font-optical-sizing:auto;font-size:clamp(1.4rem,2.6vw,2rem);line-height:1.5;letter-spacing:-.01em;color:var(--ink);text-wrap:pretty;"><span data-ed="home:intro.paragraph1">{{ site.data.home.intro.paragraph1 }}</span></p>
-    <p style="font-size:1.05rem;line-height:1.75;color:var(--fg2);margin-top:28px;max-width:680px;"><span data-ed="home:intro.paragraph2">{{ site.data.home.intro.paragraph2 }}</span></p>
+    <p style="font-family:var(--d);font-weight:430;font-optical-sizing:auto;font-size:clamp(1.4rem,2.6vw,2rem);line-height:1.5;letter-spacing:-.01em;color:var(--ink);text-wrap:pretty;margin-top:28px;"><span data-ed="home:intro.paragraph2">{{ site.data.home.intro.paragraph2 }}</span></p>
   </div>
 </section>
 </div>
