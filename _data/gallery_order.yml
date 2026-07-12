@@ -2,3 +2,21 @@
 # photo manager's drag-to-reorder. Each key is a gallery slug, the value an
 # ordered list of filenames. Galleries not listed here show photos in
 # filename order. Managed by the editor — no need to edit by hand.
+
+katie-james:
+  - katie-james-08.jpg
+  - katie-james-15.jpg
+  - katie-james-03.jpg
+  - katie-james-14.jpg
+  - katie-james-01.jpg
+  - katie-james-02.jpg
+  - katie-james-04.jpg
+  - katie-james-05.jpg
+  - katie-james-06.jpg
+  - katie-james-07.jpg
+  - katie-james-09.jpg
+  - katie-james-10.jpg
+  - katie-james-11.jpg
+  - katie-james-12.jpg
+  - katie-james-13.jpg
+  - katie-james-16.jpg
