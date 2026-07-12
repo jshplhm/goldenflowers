@@ -48,16 +48,9 @@ exclude:
   - .gitignore
   - .jekyll-metadata
   # Internal design artifacts: keep out of the published site and sitemap
-  - redesign-fonts.html
-  - redesign-fonts2.html
-  - redesign-fonts3.html
-  - redesign-preview.html
-  - redesign-preview-newsreader.html
   - ds-bundle
-  - handoff
   # Local-only internal docs (gitignored, absent in CI): excluded so a local
   # build never copies them into _site
-  - audit
   - seo-report
   - proposal-archive
 

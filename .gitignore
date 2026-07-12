@@ -11,9 +11,6 @@ _site/
 # macOS
 .DS_Store
 
-# Private design handoff (audit + mockups), not for the public site
-handoff/
-
 # Local-only source photos (full-res originals — crop/optimize in place, never committed).
 # The web-optimized derivatives live in assets/images/portfolio/ and ARE published.
 assets/images/wedding_photos/
@@ -23,9 +20,6 @@ seo-report/
 
 # CI scratch for responsive image variants (see scripts/make-responsive-variants.sh)
 .rsp-cache/
-
-# Internal UI/UX audit: local-only, never published
-audit/
 
 # Proposal system archive: removed from the public repo 2026-07-11, kept local-only
 proposal-archive/
