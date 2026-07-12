@@ -46,7 +46,7 @@ redirect_from:
 <section class="form-section" id="consultation">
   <div data-form-wrap>
     <form action="{{ site.consult_endpoint }}" method="POST" id="consultation-form" data-multistep data-ajax>
-      <button type="button" class="form-back" data-form-back hidden>&larr; Back</button>
+      <button type="button" class="form-back" data-form-back aria-label="Back" hidden>&larr;</button>
       <div class="form-progress" aria-hidden="true"><span class="on"></span><span data-progress-step2></span></div>
       <h2 class="form-heading" data-form-heading>Is your date open?</h2>
       <div class="hp-wrap" aria-hidden="true">
@@ -60,7 +60,7 @@ redirect_from:
         </div>
         <div class="field-full">
           <label for="name">Your name</label>
-          <input type="text" id="name" name="name" placeholder="One name or both" autocomplete="name" required>
+          <input type="text" id="name" name="name" placeholder="Katie &amp; Aaron" autocomplete="name" required>
         </div>
         <!-- Contact chooser, check all that apply: each checked channel
              reveals its field (CSS :has() covers no-JS; JS enables/disables
@@ -135,8 +135,8 @@ redirect_from:
       <div class="form-success-steps">
         <span class="form-head-label">What happens next</span>
         <ol class="success-steps">
-          <li><span class="n">1</span><strong>We check your date</strong><span class="success-step-body">Confirming availability<span data-success-step-date> for your date</span>.</span></li>
-          <li><span class="n">2</span><strong>You hear from us</strong><span class="success-step-body" data-success-note>A personal note from Brittany, within 48 hours.</span></li>
+          <li><span class="n">1</span><strong>We check your date</strong><span class="success-step-body">Making sure<span data-success-step-date> your date is open</span>.</span></li>
+          <li><span class="n">2</span><strong>You hear from us</strong><span class="success-step-body" data-success-note>Brittany replies within 48 hours.</span></li>
           <li><span class="n">3</span><strong>We design together</strong><span class="success-step-body">If your date's open, we'll book a call to plan your florals.</span></li>
         </ol>
       </div>

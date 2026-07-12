@@ -186,7 +186,7 @@ function appendCommon_(params, form){
     var reachNote=form.querySelector('[data-reach-note]');
     var NOTES={Email:"Wedding only. We don't send marketing email.",
                Text:"Wedding only. We don't send marketing texts.",
-               both:'Wedding only. No marketing, ever.'};
+               both:"We don't send marketing emails or texts."};
     function checkedMethods(){
       return Array.prototype.filter.call(chooser,function(c){ return c.checked; })
         .map(function(c){ return c.value; });
@@ -339,25 +339,38 @@ function appendCommon_(params, form){
     if(m){ var d=new Date(+m[3],+m[1]-1,+m[2]); if(!isNaN(d)) return d.toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'}); }
     return v;
   }
+  /* First name(s) for the greeting. "Katie Smith" -> "Katie";
+     "Katie and Aaron", "Katie & Aaron Jones", "Katie, Aaron" -> "Katie and
+     Aaron". First letter capitalized so a lowercase "josh" reads "Josh". */
+  function greetName(raw){
+    var v=(raw||'').trim(); if(!v) return '';
+    var firsts=v.split(/\s*(?:,|\band\b|&|\+)\s*/i).map(function(p){
+      var w=p.trim().split(/\s+/)[0]||'';
+      return w?w.charAt(0).toUpperCase()+w.slice(1):'';
+    }).filter(Boolean);
+    if(firsts.length>1) return firsts.slice(0,-1).join(', ')+' and '+firsts[firsts.length-1];
+    return firsts[0]||'';
+  }
   function showSuccess(form, data){
     var wrap=form.closest('[data-form-wrap]')||form.parentNode;
     var success=wrap.querySelector('[data-form-success]');
     if(!success){ var n=form.querySelector('[name="_next"]'); window.location=n?n.value:'/'; return; }
-    var firstName=(data.get('name')||'').trim().split(/\s+/)[0];
+    var firstName=greetName(data.get('name'));
     var nameEl=success.querySelector('[data-success-name]');
     if(nameEl&&firstName) nameEl.textContent=', '+firstName;
     var dateVal=data.get('date');
     var dateLine=success.querySelector('[data-success-date-line]'), dateEl=success.querySelector('[data-success-date]');
     if(dateVal&&dateEl&&dateLine){ dateEl.textContent=fmtDate(dateVal); dateLine.hidden=false; }
     var stepDate=success.querySelector('[data-success-step-date]');
-    if(stepDate&&dateVal) stepDate.textContent=' for '+fmtDate(dateVal);
-    // "You hear from us" names the channel they picked.
+    if(stepDate&&dateVal) stepDate.textContent=' '+fmtDate(dateVal)+' is open';
+    // "You hear from us" names the channel they picked. Kept short so each
+    // line survives a phone screen unwrapped.
     var noteEl=success.querySelector('[data-success-note]');
     var methods=data.getAll?data.getAll('contact_method'):[];
     if(noteEl&&methods.length){
-      noteEl.textContent=(methods.length>1)?'A note from Brittany, within 48 hours.'
-        :(methods[0]==='Text'?'A text from Brittany, within 48 hours.'
-        :'An email from Brittany, within 48 hours.');
+      noteEl.textContent=(methods.length>1)?'Brittany reaches out within 48 hours.'
+        :(methods[0]==='Text'?'Brittany texts you within 48 hours.'
+        :'Brittany emails you within 48 hours.');
     }
     var closeBtn=wrap.querySelector('.modal-close');
     if(closeBtn) closeBtn.hidden=false; // X only appears once they're done
