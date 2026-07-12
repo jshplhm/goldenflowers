@@ -200,25 +200,24 @@ function appendCommon_(params, form){
     ghost.appendChild(gt); ghost.appendChild(rest); field.appendChild(ghost);
     el.removeAttribute('placeholder');
     function render(){ gt.textContent=el.value; rest.nodeValue='mm/dd/yyyy'.slice(el.value.length); }
-    var yearTimer=null;
-    // "20" is ambiguous mid-type — could be someone typing the 2-digit
-    // shorthand ("27" -> 2027) or the first half of a full 4-digit year
-    // typed the old way ("2027"). Wait for a pause before deciding, so
-    // both styles of typing land on the right year.
+    // "20" is ambiguous mid-type — the 2-digit shorthand for 2020 AND the
+    // first half of "2027" typed in full. Never guess on a timer (a slow
+    // typist pausing after "20" used to get hijacked to 2020 with further
+    // keystrokes bouncing off maxlength): a 2-digit year settles only at
+    // the moments typing is unambiguously done — leaving the field, or
+    // pressing Continue (the advance handler calls _finalizeYear).
     function finalizeYear(){
       var m=el.value.match(/^(\d\d\/\d\d\/)(\d\d)$/);
       if(m){ el.value=m[1]+'20'+m[2]; render(); }
       applyDateValidity(el);
     }
-    el._finalizeYear=finalizeYear; // exposed so the advance-click handler can force-settle a pending 2-digit year
+    el._finalizeYear=finalizeYear;
     el.addEventListener('input', function(e){
       var deleting=e.inputType && e.inputType.indexOf('delete')===0;
       el.value=mask(el.value, !deleting); render();
-      el.setCustomValidity(''); // don't flag mid-edit; finalizeYear re-checks once typing settles
-      clearTimeout(yearTimer);
-      if(!deleting) yearTimer=setTimeout(finalizeYear, 600);
+      el.setCustomValidity(''); // don't flag mid-edit; finalizeYear re-checks when typing settles
     });
-    el.addEventListener('blur', function(){ clearTimeout(yearTimer); finalizeYear(); el.reportValidity(); });
+    el.addEventListener('blur', function(){ finalizeYear(); el.reportValidity(); });
     render();
   });
 
