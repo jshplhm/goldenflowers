@@ -292,9 +292,17 @@ button.txt-link{background:none;border-top:0;border-left:0;border-right:0;cursor
 .wd-mosaic .mo-3 img{aspect-ratio:4/5;}
 .wd-mosaic .mo-2 img{aspect-ratio:3/4;}
 @media(max-width:600px){
-  .wd-mosaic{grid-template-columns:1fr;gap:12px;}
-  .wd-mosaic .mo-6,.wd-mosaic .mo-3,.wd-mosaic .mo-2{grid-column:auto;}
-  .wd-mosaic .mo-6 img,.wd-mosaic .mo-3 img,.wd-mosaic .mo-2 img{aspect-ratio:4/5;}
+  /* Miniature of the desktop rhythm instead of one endless 4:5 column
+     (31 stacked photos made ~18,000px pages on phones): photos pair up
+     two across, and the shots that are wide cinematic bands on desktop
+     (mo-6) stay full-width bands here too. The last photo always widens
+     to a band — closes the gallery on a full frame and absorbs the
+     orphan half-tile when the pair count is odd. */
+  .wd-mosaic{grid-template-columns:1fr 1fr;gap:10px;}
+  .wd-mosaic .mo-3,.wd-mosaic .mo-2{grid-column:auto;}
+  .wd-mosaic .mo-6,.wd-mosaic .mo:last-child{grid-column:1 / -1;}
+  .wd-mosaic .mo-3 img,.wd-mosaic .mo-2 img{aspect-ratio:4/5;}
+  .wd-mosaic .mo-6 img,.wd-mosaic .mo:last-child img{aspect-ratio:16/9;}
 }
 
 /* Lightbox — click / arrow / swipe through a wedding's photos */

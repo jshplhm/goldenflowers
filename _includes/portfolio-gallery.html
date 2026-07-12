@@ -55,16 +55,33 @@
   {%- assign i = i | plus: 1 -%}
 {%- endfor -%}
 {%- assign spanArr = spans | split: ',' -%}
+{%- comment -%}
+  sizes tells the browser how wide each image actually renders so it can pick
+  the smallest sufficient srcset variant (the prod plugin keeps an existing
+  sizes attribute). Mobile tiles are 50vw (two-up grid), desktop widths come
+  from the 6-col grid inside the 1200px container. The LAST mosaic photo and
+  every mo-6 render full-width on phones (see redesign.css ≤600px rules).
+{%- endcomment -%}
+{%- assign lastName = '' -%}
+{%- for f in allf reversed -%}{%- unless f.name == include.hero -%}{%- assign lastName = f.name -%}{%- break -%}{%- endunless -%}{%- endfor -%}
 <section class="wd-gallery" data-ed-gallery="{{ include.slug }}" data-ed-ghero="{{ include.hero }}" data-ed-gname="{{ include.name | escape }}">
   <a class="wd-hero-link wd-lb" href="{{ site.baseurl }}{{ prefix }}{{ include.hero }}" aria-label="View {{ include.name }} photo 1 full screen">
-    <img src="{{ site.baseurl }}{{ prefix }}{{ include.hero }}" alt="{{ include.name }} wedding flowers by Golden Flowers" loading="eager" class="wd-hero-img">
+    <img src="{{ site.baseurl }}{{ prefix }}{{ include.hero }}" alt="{{ include.name }} wedding flowers by Golden Flowers" loading="eager" class="wd-hero-img" sizes="(min-width:1232px) 1164px, 100vw">
   </a>
   <div class="wd-mosaic">
   {%- assign j = 0 -%}
   {%- for f in allf -%}
     {%- if f.name == include.hero -%}{%- continue -%}{%- endif -%}
-    <a class="mo mo-{{ spanArr[j] }} wd-lb" href="{{ site.baseurl }}{{ f.path }}" aria-label="View {{ include.name }} photo full screen">
-      <img src="{{ site.baseurl }}{{ f.path }}" alt="{{ include.name }} wedding florals by Golden Flowers" loading="lazy">
+    {%- assign sp = spanArr[j] -%}
+    {%- if sp == '6' or f.name == lastName -%}
+      {%- assign szs = '(min-width:1232px) 1164px, 100vw' -%}
+    {%- elsif sp == '3' -%}
+      {%- assign szs = '(max-width:600px) 50vw, (min-width:1232px) 574px, 48vw' -%}
+    {%- else -%}
+      {%- assign szs = '(max-width:600px) 50vw, (min-width:1232px) 378px, 31vw' -%}
+    {%- endif -%}
+    <a class="mo mo-{{ sp }} wd-lb" href="{{ site.baseurl }}{{ f.path }}" aria-label="View {{ include.name }} photo full screen">
+      <img src="{{ site.baseurl }}{{ f.path }}" alt="{{ include.name }} wedding florals by Golden Flowers" loading="lazy" sizes="{{ szs }}">
     </a>
     {%- assign j = j | plus: 1 -%}
   {%- endfor -%}

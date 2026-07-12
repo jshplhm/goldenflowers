@@ -24,7 +24,13 @@ module GF
       # variants are always .jpg regardless of the source extension (see script)
       set = RSP_WIDTHS.map { |w| "/assets/images/rsp/#{stem}-#{w}w.jpg #{w}w" }
       set << "#{src} 2000w"
-      tag.sub(/\A<img\b/, %(<img srcset="#{set.join(', ')}" sizes="100vw"))
+      if tag =~ /\bsizes="/
+        # the template declared how wide this image renders (e.g. gallery
+        # tiles are 50vw on phones) — keep it, add only the srcset
+        tag.sub(/\A<img\b/, %(<img srcset="#{set.join(', ')}"))
+      else
+        tag.sub(/\A<img\b/, %(<img srcset="#{set.join(', ')}" sizes="100vw"))
+      end
     end
   end
 end
