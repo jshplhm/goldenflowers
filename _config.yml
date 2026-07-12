@@ -55,6 +55,11 @@ exclude:
   - redesign-preview-newsreader.html
   - ds-bundle
   - handoff
+  # Local-only internal docs (gitignored, absent in CI): excluded so a local
+  # build never copies them into _site
+  - audit
+  - seo-report
+  - proposal-archive
 
 # Front matter defaults
 defaults:

@@ -26,3 +26,6 @@ seo-report/
 
 # Internal UI/UX audit: local-only, never published
 audit/
+
+# Proposal system archive: removed from the public repo 2026-07-11, kept local-only
+proposal-archive/
