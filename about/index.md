@@ -84,9 +84,30 @@ redirect_from:
       </div>
     </div>
     <div class="ss-img">
-      <video autoplay muted loop playsinline style="width:100%;height:100%;min-height:clamp(360px,40vw,540px);object-fit:cover;border-radius:4px;display:block;">
-        <source src="{{ site.baseurl }}/assets/videos/team-timelapse.mp4" type="video/mp4">
+      {%- comment -%} The poster paints instantly; the video file itself (4MB —
+      timelapses compress poorly) isn't fetched until the visitor scrolls near
+      this section, so it never competes with the photos above it. {%- endcomment -%}
+      <video muted loop playsinline preload="none" poster="{{ site.baseurl }}/assets/videos/team-timelapse-poster.jpg" data-lazy-video style="width:100%;height:100%;min-height:clamp(360px,40vw,540px);object-fit:cover;border-radius:4px;display:block;">
+        <source data-src="{{ site.baseurl }}/assets/videos/team-timelapse.mp4" type="video/mp4">
       </video>
+      <script>
+      (function(){
+        var v=document.querySelector('video[data-lazy-video]');
+        if(!v) return;
+        function start(){
+          var s=v.querySelector('source[data-src]');
+          if(!s) return;
+          s.src=s.getAttribute('data-src'); s.removeAttribute('data-src');
+          v.load();
+          var p=v.play(); if(p && p.catch) p.catch(function(){});
+        }
+        if(!('IntersectionObserver' in window)){ start(); return; }
+        var io=new IntersectionObserver(function(es){
+          es.forEach(function(e){ if(e.isIntersecting){ io.disconnect(); start(); } });
+        },{rootMargin:'800px'});
+        io.observe(v);
+      })();
+      </script>
     </div>
   </div>
 </section>
