@@ -238,10 +238,6 @@ button.txt-link{background:none;border-top:0;border-left:0;border-right:0;cursor
 .hero.hero-sm::after{background:linear-gradient(180deg,oklch(18% .03 150/.45) 0%,transparent 30%,oklch(12% .03 150/.5) 66%,oklch(12% .03 150/.85) 100%);}
 
 /* ---------- PORTFOLIO ---------- */
-.pf-filters{position:sticky;top:0;z-index:15;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;background:var(--bg);padding:18px var(--pad);border-bottom:1px solid var(--line);}
-.pf-filters .chip{font-family:var(--b);border:1px solid var(--line);border-radius:100px;padding:9px 18px;font-size:.78rem;letter-spacing:.03em;background:transparent;color:var(--ink);cursor:pointer;transition:.2s;}
-.pf-filters .chip:hover{border-color:var(--ink);}
-.pf-filters .chip.active{background:var(--terra);color:var(--paper);border-color:var(--terra);}
 .pf-note{text-align:center;color:var(--mute);font-size:.95rem;padding:26px var(--pad) 0;}
 .pf-note a{color:var(--forest);border-bottom:1px solid var(--terra);padding-bottom:2px;}
 .pf-wrap{max-width:var(--content-max);margin:0 auto;padding:clamp(36px,5vw,64px) var(--pad) clamp(60px,8vw,110px);}
