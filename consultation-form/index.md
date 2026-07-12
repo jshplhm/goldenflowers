@@ -46,10 +46,7 @@ redirect_from:
 <section class="form-section" id="consultation">
   <div data-form-wrap>
     <form action="{{ site.consult_endpoint }}" method="POST" id="consultation-form" data-multistep data-ajax>
-      <div class="form-head">
-        <button type="button" class="form-back" data-form-back hidden>&larr; Back</button>
-        <span class="form-step-indicator" aria-hidden="true">Step 1 / 2</span>
-      </div>
+      <button type="button" class="form-back" data-form-back hidden>&larr; Back</button>
       <div class="form-progress" aria-hidden="true"><span class="on"></span><span data-progress-step2></span></div>
       <h2 class="form-heading" data-form-heading>Is your date open?</h2>
       <div class="hp-wrap" aria-hidden="true">
@@ -65,30 +62,29 @@ redirect_from:
           <label for="name">Your name</label>
           <input type="text" id="name" name="name" placeholder="One name or both" autocomplete="name" required>
         </div>
-        <!-- Email-or-text chooser: only the matching contact field appears
-             (CSS :has() reveals it; JS enables/requires the active input and
-             disables the other so it neither validates nor submits). -->
+        <!-- Contact chooser, check all that apply: each checked channel
+             reveals its field (CSS :has() covers no-JS; JS enables/disables
+             the inputs so unchosen ones neither validate nor submit). -->
         <fieldset class="field-full reach-fieldset">
           <legend>How should we reach you?</legend>
           <div class="reach-seg">
-            <label><input type="radio" name="contact_method" value="Email" required>Email</label>
-            <label><input type="radio" name="contact_method" value="Text" required>Text</label>
+            <label><input type="checkbox" name="contact_method" value="Email">Email</label>
+            <label><input type="checkbox" name="contact_method" value="Text">Text</label>
           </div>
+          <div class="reach-reveal" data-reach-email>
+            <div class="reach-inner">
+              <label for="email">Email address</label>
+              <input type="email" id="email" name="email" placeholder="your@email.com" autocomplete="email">
+            </div>
+          </div>
+          <div class="reach-reveal" data-reach-phone>
+            <div class="reach-inner">
+              <label for="phone">Phone number</label>
+              <input type="tel" id="phone" name="phone" placeholder="775-555-0123" autocomplete="tel" inputmode="tel" data-phone-mask>
+            </div>
+          </div>
+          <p class="reach-note" data-reach-note>Wedding only. No marketing, ever.</p>
         </fieldset>
-        <div class="field-full reach-reveal" data-reach-email>
-          <div class="reach-inner">
-            <label for="email">Email address</label>
-            <input type="email" id="email" name="email" placeholder="your@email.com" autocomplete="email">
-            <p class="reach-note">Only about your wedding. We don't send marketing email.</p>
-          </div>
-        </div>
-        <div class="field-full reach-reveal" data-reach-phone>
-          <div class="reach-inner">
-            <label for="phone">Phone number</label>
-            <input type="tel" id="phone" name="phone" placeholder="(775) 555-0123" autocomplete="tel" inputmode="tel">
-            <p class="reach-note">Only about your wedding. We don't send marketing texts.</p>
-          </div>
-        </div>
       </div>
       <div class="form-advance field-full">
         <button type="button" class="btn-primary" data-form-advance>Continue &rarr;</button>
@@ -134,13 +130,13 @@ redirect_from:
     <div id="consultation-success" class="form-success" data-form-success hidden>
       <div class="form-success-check" aria-hidden="true">&#10003;</div>
       <h3>Thank you<span data-success-name></span>.</h3>
-      <p class="form-success-lede">Your consultation request<span data-success-date-line hidden> for <strong data-success-date></strong></span> is in. We're checking our calendar now.</p>
+      <p class="form-success-lede">Your consultation request<span data-success-date-line hidden> for <strong data-success-date></strong></span> is in. Checking our calendar now.</p>
       <hr class="form-success-rule">
       <div class="form-success-steps">
         <span class="form-head-label">What happens next</span>
         <ol class="success-steps">
           <li><span class="n">1</span><strong>We check your date</strong><span class="success-step-body">Confirming availability<span data-success-step-date> for your date</span>.</span></li>
-          <li><span class="n">2</span><strong>You hear from us</strong><span class="success-step-body">A personal note from Brittany, within 48 hours.</span></li>
+          <li><span class="n">2</span><strong>You hear from us</strong><span class="success-step-body" data-success-note>A personal note from Brittany, within 48 hours.</span></li>
           <li><span class="n">3</span><strong>We design together</strong><span class="success-step-body">If your date's open, we'll book a call to plan your florals.</span></li>
         </ol>
       </div>

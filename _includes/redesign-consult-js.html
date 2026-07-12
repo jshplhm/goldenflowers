@@ -6,12 +6,33 @@
 (function(){
   var modal=document.getElementById('consult-modal');
   var lastFocus=null;
+  /* iOS Safari ignores overflow:hidden on body, so the page behind the
+     overlay can still scroll — which is also what draws the text caret
+     offset from the input inside a fixed overlay. Freezing the body with
+     position:fixed (restoring the scroll spot on close) fixes both. */
+  var lockY=0;
+  function lockBody(){
+    lockY=window.scrollY||0;
+    document.body.classList.add('modal-open');
+    document.body.style.position='fixed';
+    document.body.style.top=(-lockY)+'px';
+    document.body.style.left='0';
+    document.body.style.right='0';
+  }
+  function unlockBody(){
+    document.body.classList.remove('modal-open');
+    document.body.style.position='';
+    document.body.style.top='';
+    document.body.style.left='';
+    document.body.style.right='';
+    window.scrollTo(0,lockY);
+  }
   function openModal(){
     if(!modal) return;
     lastFocus=document.activeElement;
     modal.classList.add('open');
     modal.setAttribute('aria-hidden','false');
-    document.body.classList.add('modal-open');
+    lockBody();
     var first=modal.querySelector('input, select, textarea, button');
     if(first) setTimeout(function(){ first.focus(); },60);
   }
@@ -19,7 +40,7 @@
     if(!modal) return;
     modal.classList.remove('open');
     modal.setAttribute('aria-hidden','true');
-    document.body.classList.remove('modal-open');
+    unlockBody();
     if(lastFocus && lastFocus.focus) lastFocus.focus();
   }
   var TRIGGER='a.btn[href$="/consultation-form"],a.pill[href$="/consultation-form"],a.m-cta[href$="/consultation-form"],[data-consult-open]';
@@ -151,34 +172,49 @@ function appendCommon_(params, form){
     if(!step2||!advanceBtn) return;
     step2.hidden=true;
     function setStep(n){
-      if(indicator) indicator.textContent='Step '+n+' / 2';
       if(backBtn) backBtn.hidden=(n===1);
       if(seg2) seg2.classList.toggle('on', n===2);
       if(heading) heading.textContent=(n===2)?'A few more details.':'Is your date open?';
     }
-    /* Email-or-text chooser. The inactive contact input is disabled so it
-       neither blocks validation nor submits; CSS reveals the active block
-       (both via :has() and the .open class, so older engines still work). */
+    /* Contact chooser, check all that apply. Each checked channel reveals
+       its field (the .open class; CSS :has() doubles it for no-JS) and
+       enables its input; unchecked inputs stay disabled so they neither
+       block validation nor submit. One shared no-spam line follows the
+       selection. */
     var chooser=form.querySelectorAll('input[name="contact_method"]');
     var reachBlocks={Email:form.querySelector('[data-reach-email]'),Text:form.querySelector('[data-reach-phone]')};
-    function setChannel(v){
-      ['Email','Text'].forEach(function(k){
-        var on=(k===v), block=reachBlocks[k];
-        if(!block) return;
-        block.classList.toggle('open', on);
-        var input=block.querySelector('input');
-        if(input){ input.disabled=!on; input.required=on; }
-      });
-      chooser.forEach(function(r){
-        var l=r.closest('label'); if(l) l.classList.toggle('sel', r.checked);
-      });
+    var reachNote=form.querySelector('[data-reach-note]');
+    var NOTES={Email:"Wedding only. We don't send marketing email.",
+               Text:"Wedding only. We don't send marketing texts.",
+               both:'Wedding only. No marketing, ever.'};
+    function checkedMethods(){
+      return Array.prototype.filter.call(chooser,function(c){ return c.checked; })
+        .map(function(c){ return c.value; });
     }
+    function syncChannels(){
+      var on=checkedMethods();
+      ['Email','Text'].forEach(function(k){
+        var active=on.indexOf(k)!==-1, block=reachBlocks[k];
+        if(!block) return;
+        block.classList.toggle('open', active);
+        var input=block.querySelector('input');
+        if(input){ input.disabled=!active; input.required=active; }
+      });
+      chooser.forEach(function(c){
+        var l=c.closest('label'); if(l) l.classList.toggle('sel', c.checked);
+        c.setCustomValidity(''); // any change clears the "pick one" message
+      });
+      if(reachNote){
+        reachNote.classList.toggle('on', on.length>0);
+        if(on.length) reachNote.textContent=(on.length>1)?NOTES.both:NOTES[on[0]];
+      }
+    }
+    form._checkedMethods=checkedMethods;
     if(chooser.length){
-      setChannel(''); // nothing chosen yet: both contact inputs parked
-      chooser.forEach(function(r){ r.addEventListener('change', function(){ setChannel(r.value); }); });
+      syncChannels(); // nothing chosen yet: both contact inputs parked
+      chooser.forEach(function(c){ c.addEventListener('change', syncChannels); });
       var phoneEl=reachBlocks.Text&&reachBlocks.Text.querySelector('input[type="tel"]');
       if(phoneEl){
-        phoneEl.addEventListener('input', function(){ phoneEl.setCustomValidity(''); });
         phoneEl.addEventListener('blur', function(){
           phoneEl.setCustomValidity(phoneIssue(phoneEl.value));
           if(phoneEl.value) phoneEl.reportValidity();
@@ -191,6 +227,13 @@ function appendCommon_(params, form){
     advanceBtn.addEventListener('click', function(){
       var reqs=form.querySelectorAll('.form-step-1 [required]');
       for(var i=0;i<reqs.length;i++){ if(reqs[i].disabled) continue; if(!reqs[i].reportValidity()) return; }
+      // Checkboxes don't group-validate natively the way radios do.
+      var boxes=form.querySelectorAll('.form-step-1 [name="contact_method"]');
+      if(boxes.length && form._checkedMethods && !form._checkedMethods().length){
+        boxes[0].setCustomValidity('Pick email or text (or both).');
+        boxes[0].reportValidity();
+        return;
+      }
       var dateEl=form.querySelector('.form-step-1 [data-date-mask]');
       if(dateEl){ (dateEl._finalizeYear||function(){ applyDateValidity(dateEl); })(); if(!dateEl.reportValidity()) return; }
       var phoneCheck=form.querySelector('.form-step-1 input[type="tel"]');
@@ -206,8 +249,7 @@ function appendCommon_(params, form){
             var f=form.querySelector('[name="'+n+'"]');
             p.append(n,(f&&!f.disabled)?f.value:'');
           });
-          var cm=form.querySelector('[name="contact_method"]:checked');
-          p.append('contact_method', cm?cm.value:'');
+          p.append('contact_method', form._checkedMethods?form._checkedMethods().join(', '):'');
           p.append('status','partial');
           p.append('k','gf-lupine-26');
           appendCommon_(p, form);
@@ -270,6 +312,28 @@ function appendCommon_(params, form){
     render();
   });
 
+  /* xxx-xxx-xxxx as they type — same shape as the placeholder. Strips a
+     pasted/autofilled leading 1 or +1. A dash only auto-appends while
+     typing forward, never after a delete (and never on a timer — same
+     rule the date mask learned the hard way). */
+  function phoneMask(v, advance){
+    var d=v.replace(/\D/g,'');
+    if(d.length>10&&d.charAt(0)==='1') d=d.slice(1);
+    d=d.slice(0,10);
+    if(d.length>6) return d.slice(0,3)+'-'+d.slice(3,6)+'-'+d.slice(6);
+    if(d.length===6&&advance) return d.slice(0,3)+'-'+d.slice(3)+'-';
+    if(d.length>3) return d.slice(0,3)+'-'+d.slice(3);
+    if(d.length===3&&advance) return d+'-';
+    return d;
+  }
+  document.querySelectorAll('[data-phone-mask]').forEach(function(el){
+    el.addEventListener('input', function(e){
+      var deleting=e.inputType && e.inputType.indexOf('delete')===0;
+      el.value=phoneMask(el.value, !deleting);
+      el.setCustomValidity(''); // don't flag mid-edit; blur/Continue re-check
+    });
+  });
+
   function fmtDate(v){
     if(!v) return ''; var m=v.match(/^(\d{2})\/(\d{2})\/(\d{4})$/);
     if(m){ var d=new Date(+m[3],+m[1]-1,+m[2]); if(!isNaN(d)) return d.toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'}); }
@@ -287,6 +351,14 @@ function appendCommon_(params, form){
     if(dateVal&&dateEl&&dateLine){ dateEl.textContent=fmtDate(dateVal); dateLine.hidden=false; }
     var stepDate=success.querySelector('[data-success-step-date]');
     if(stepDate&&dateVal) stepDate.textContent=' for '+fmtDate(dateVal);
+    // "You hear from us" names the channel they picked.
+    var noteEl=success.querySelector('[data-success-note]');
+    var methods=data.getAll?data.getAll('contact_method'):[];
+    if(noteEl&&methods.length){
+      noteEl.textContent=(methods.length>1)?'A note from Brittany, within 48 hours.'
+        :(methods[0]==='Text'?'A text from Brittany, within 48 hours.'
+        :'An email from Brittany, within 48 hours.');
+    }
     var closeBtn=wrap.querySelector('.modal-close');
     if(closeBtn) closeBtn.hidden=false; // X only appears once they're done
     form.hidden=true;
@@ -301,6 +373,10 @@ function appendCommon_(params, form){
       var old=form.querySelector('[data-send-error]'); if(old) old.remove();
       var data=new FormData(form);
       var params=new URLSearchParams(); data.forEach(function(v,k){ params.append(k,v); });
+      // Both channels checked posts contact_method twice, but Apps Script's
+      // e.parameter only surfaces the first — send one joined value instead.
+      var methods=data.getAll('contact_method');
+      if(methods.length>1){ params.delete('contact_method'); params.append('contact_method', methods.join(', ')); }
       params.append('k','gf-lupine-26');
       appendCommon_(params, form);
       // The thank-you only appears once the request has actually gone

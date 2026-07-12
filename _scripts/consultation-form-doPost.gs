@@ -1,5 +1,12 @@
 /**
- * Golden Flowers consultation form — hardened intake, v3.1 (July 2026).
+ * Golden Flowers consultation form — hardened intake, v3.2 (July 2026).
+ *
+ * What changed from v3.1 (v3.2):
+ *   - The chooser is now check-all-that-apply, so contact_method can be
+ *     "Email", "Text", or "Email, Text" (one comma-joined value). The rule
+ *     validates each comma-separated token.
+ *   - Digest/entry lines show email AND phone when a couple gave both.
+ *   - Phones store as 775-555-0123 (matches the form's input mask).
  *
  * Paste this into the Apps Script project attached to the leads spreadsheet
  * (Extensions -> Apps Script from the sheet), replacing everything currently
@@ -242,14 +249,14 @@ function venueValue_(p) {
   return /^Somewhere else/i.test(v) ? '' : v;
 }
 
-/* Phones land in the sheet pretty-printed when they're a plain US number;
-   anything else (international, extensions) is kept exactly as typed. */
+/* Phones land in the sheet as 775-555-0123 (the same shape the form's
+   input mask produces); anything unusual is kept exactly as typed. */
 function fmtPhone_(raw) {
   var v = String(raw || '').trim();
   if (!v) return '';
   var d = v.replace(/\D/g, '');
   if (d.length === 11 && d.charAt(0) === '1') d = d.slice(1);
-  if (d.length === 10) return '(' + d.slice(0, 3) + ') ' + d.slice(3, 6) + '-' + d.slice(6);
+  if (d.length === 10) return d.slice(0, 3) + '-' + d.slice(3, 6) + '-' + d.slice(6);
   return v;
 }
 
@@ -352,9 +359,16 @@ function spamReasons_(p) {
   var ts = Number(p.ts || 0);
   if (ts && Date.now() - ts >= 0 && Date.now() - ts < 1200) r.push('submitted too fast');
 
-  // The chooser radios can only ever submit their two exact values. Empty is
-  // fine: the pre-chooser form (a stale cached page) never sends the field.
-  if (method && method !== 'Email' && method !== 'Text') r.push('bad contact method');
+  // The chooser checkboxes can only produce "Email", "Text", or the joined
+  // "Email, Text". Empty is fine: the pre-chooser form (a stale cached page)
+  // never sends the field.
+  if (method) {
+    var badToken = method.split(',').some(function (t) {
+      t = t.trim();
+      return t !== 'Email' && t !== 'Text';
+    });
+    if (badToken) r.push('bad contact method');
+  }
 
   // The live form marks name required and always collects at least one way
   // to reach them (email or phone, whichever channel they picked), so posts
@@ -517,15 +531,16 @@ function sendCompleteEmail_(p) {
   sendMail_(subject, lines.join('\n'));
 }
 
-/* One line of contact info for digest entries: the email if there is one,
-   otherwise the phone, tagged when the couple asked to be texted. */
+/* One line of contact info for digest entries: whatever they gave (both,
+   when they gave both), tagged when the couple asked to be texted. */
 function contactLine_(row, cols) {
   var email = String(row[cols['Email'] - 1] || '').trim();
   var phone = cols['Phone'] ? fmtPhone_(row[cols['Phone'] - 1]) : '';
   var method = cols['Contact Method'] ? String(row[cols['Contact Method'] - 1] || '').trim() : '';
-  var contact = email || phone || 'no contact info';
-  if (method === 'Text' && phone) contact = phone + ' (reach by text)';
-  return contact;
+  var parts = [];
+  if (email) parts.push(email);
+  if (phone) parts.push(phone + (method === 'Text' ? ' (reach by text)' : ''));
+  return parts.join('  ·  ') || 'no contact info';
 }
 
 /* Wedding dates land in the sheet as strings but Sheets often coerces them
@@ -645,8 +660,8 @@ function setupTriggers() {
 }
 
 /** Run this in the editor (Run -> testVet) to sanity-check the rules: the
- *  first three logs should be [] (real submissions pass — old form, new
- *  email lead, new text lead), the rest non-empty. */
+ *  first FOUR logs should be [] (real submissions pass — old form, email
+ *  lead, text lead, both-channels lead), the rest non-empty. */
 function testVet() {
   Logger.log(spamReasons_({
     name: 'Josh Pelham', email: 'jpelham03@gmail.com', date: '06/11/2028',
@@ -659,9 +674,14 @@ function testVet() {
     budget: '$12,000–$18,000', k: FORM_TOKEN, ts: String(Date.now() - 30000)
   }));
   Logger.log(spamReasons_({ // new form, text channel — no email at all
-    name: 'Jordan & Sam', contact_method: 'Text', phone: '(775) 555-0123',
+    name: 'Jordan & Sam', contact_method: 'Text', phone: '775-555-0123',
     date: '06/11/2028', aesthetic: 'Lush & Romantic — rich, dramatic, deep tones',
     budget: '$8,000–$12,000', k: FORM_TOKEN, ts: String(Date.now() - 30000)
+  }));
+  Logger.log(spamReasons_({ // both channels checked
+    name: 'Jordan & Sam', contact_method: 'Email, Text',
+    email: 'jpelham03@gmail.com', phone: '775-555-0123',
+    date: '06/11/2028', k: FORM_TOKEN, ts: String(Date.now() - 30000)
   }));
   Logger.log(spamReasons_({ // bot guessing the new fields wrong
     name: 'x', contact_method: 'Both', phone: '555-0123', date: '06/11/2028'

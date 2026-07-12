@@ -500,15 +500,14 @@ body.lb-open{overflow:hidden;}
 .form-section{max-width:640px;margin:0 auto;padding:clamp(36px,4vw,56px) var(--pad) clamp(70px,9vw,120px);}
 .form-section form{margin:0 auto;}
 .form-section .form-heading{margin-bottom:26px;}
-/* Header row shared by both form steps: Back on the left (step 2 only), the
-   step counter right-aligned, segmented progress bar below. No eyebrow: the
-   CTA promises a date check, not a scheduled consult, so the heading carries
-   step 1 alone. Fields are required by default; optional ones say so in the
-   label instead of required ones carrying asterisks. */
-.form-head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;min-height:1.2em;}
+/* No header row, no step counter: the two-segment progress bar says where
+   you are, and the heading carries the step. No eyebrow either — the CTA
+   promises a date check, not a scheduled consult. Fields are required by
+   default; optional ones say so in the label instead of required ones
+   carrying asterisks. (.form-head-label still dresses the thank-you's
+   "What happens next".) */
 .form-head-label{font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ink);font-weight:500;}
-.form-step-indicator{font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ink);white-space:nowrap;flex-shrink:0;margin-left:auto;}
-.form-progress{display:flex;gap:14px;margin-top:12px;}
+.form-progress{display:flex;gap:14px;}
 .form-progress span{height:2px;flex:1;background:oklch(80% .015 120/.5);transition:background .3s;}
 .form-progress span.on{background:var(--forest-deep);}
 label .opt{color:var(--mute);}
@@ -531,8 +530,14 @@ label .opt{color:var(--mute);}
 .form-section select:has(> option[value=""]:checked),.modal select:has(> option[value=""]:checked){color:var(--mute);}
 .form-advance{margin-top:22px;}
 .form-advance .btn-primary,.form-submit .btn-primary{width:100%;justify-content:center;}
-.form-back{background:none;border:0;color:var(--ink);font-family:var(--b);font-size:.95rem;cursor:pointer;padding:0;text-align:left;}
+/* Step 2's Back lives in the card's top-left corner (mirror of the
+   thank-you X) so it costs no vertical space. On the inline page form it
+   floats in the section's top padding instead. */
+.form-back{background:none;border:0;color:var(--ink);font-family:var(--b);font-size:.85rem;cursor:pointer;text-align:left;position:absolute;top:8px;left:16px;padding:8px 10px;border-radius:6px;}
 .form-back:hover{color:var(--mute);}
+.form-back:focus-visible{outline:2px solid var(--terra);outline-offset:2px;}
+.form-section [data-form-wrap]{position:relative;}
+.form-section .form-back{top:-38px;left:0;padding-left:0;}
 .form-submit{margin-top:8px;}
 .date-field{position:relative;display:block;}
 .date-ghost{position:absolute;left:16px;top:14px;font-size:1rem;color:var(--mute);pointer-events:none;}
@@ -574,23 +579,34 @@ label .opt{color:var(--mute);}
 /* ---------- CONSULT MODAL (Check-your-date lightbox) ---------- */
 .modal-overlay{position:fixed;inset:0;z-index:1000;background:oklch(20% .02 150/.55);display:flex;align-items:center;justify-content:center;padding:4vh 20px;overflow-y:auto;opacity:0;visibility:hidden;transition:opacity .25s ease,visibility .25s ease;}
 .modal-overlay.open{opacity:1;visibility:visible;}
-.modal{position:relative;background:var(--bg);border:1px solid var(--line);border-radius:14px;max-width:560px;width:100%;padding:46px 40px 40px;box-shadow:0 28px 80px oklch(20% .02 150/.32);transform:translateY(14px);transition:transform .25s ease;}
-.modal-overlay.open .modal{transform:translateY(0);}
+.modal{position:relative;background:var(--bg);border:1px solid var(--line);border-radius:14px;max-width:560px;width:100%;padding:44px 40px 40px;box-shadow:0 28px 80px oklch(20% .02 150/.32);transform:translateY(14px);transition:transform .25s ease;}
+/* transform:none, not translateY(0): iOS Safari misdraws the text caret
+   inside fixed overlays whose ancestors keep a live transform. */
+.modal-overlay.open .modal{transform:none;}
 .modal-close{position:absolute;top:12px;right:14px;width:38px;height:38px;border:none;background:transparent;font-size:1.7rem;line-height:1;color:var(--mute);cursor:pointer;border-radius:50%;transition:background .2s,color .2s;}
 .modal-close:hover{background:oklch(20% .02 150/.07);color:var(--ink);}
 .modal h2,.form-heading{font-family:var(--d);font-weight:430;font-optical-sizing:auto;font-size:2.2rem;line-height:1.04;letter-spacing:-.015em;margin:20px 0 10px;color:var(--ink);}
 .modal form{display:grid;gap:15px;}
 .modal .form-submit{margin-top:4px;}
 body.modal-open{overflow:hidden;}
-@media (max-width:520px){.modal{padding:42px 22px 28px;}}
+/* Phones: step 1 should fit without scrolling, so trim the card's padding
+   and the heading's air. The 40px top still clears the corner Back button. */
+@media (max-width:520px){
+  .modal{padding:40px 22px 24px;}
+  .modal-overlay{padding:2vh 14px;}
+  .modal h2{margin:14px 0 8px;font-size:2rem;}
+}
 @media (prefers-reduced-motion:reduce){.modal,.modal-overlay{transition:opacity .25s ease,visibility .25s ease;}.modal{transform:none;}}
 
-/* ---- "How should we reach you?" — email/text chooser (form step 1) ---- */
+/* ---- "How should we reach you?" — contact chooser (form step 1) ----
+   Check all that apply; each checked channel reveals its field. The reveals
+   live inside the fieldset (plain block flow), so while closed they add no
+   height and no grid gaps — the step reads as tight as any other field. */
 .reach-fieldset{border:0;margin:0;padding:0;min-width:0;}
 .reach-fieldset legend{display:block;font-size:.82rem;letter-spacing:.03em;color:var(--fg2);margin-bottom:8px;padding:0;}
 .reach-seg{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
 .reach-seg label{display:flex;align-items:center;justify-content:center;margin:0;font-size:1rem;letter-spacing:0;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:13px 16px;cursor:pointer;user-select:none;-webkit-user-select:none;transition:border-color .2s,background .2s,box-shadow .2s;}
-.reach-seg input[type="radio"]{position:absolute;opacity:0;width:1px;height:1px;padding:0;border:0;}
+.reach-seg input[type="checkbox"]{position:absolute;opacity:0;width:1px;height:1px;padding:0;border:0;}
 .reach-seg label:hover{border-color:oklch(60% .04 145);}
 /* Selected state twice over: the .sel class from JS, :has() for the no-JS
    page form. Separate rules on purpose — a browser without :has() must not
@@ -598,14 +614,15 @@ body.modal-open{overflow:hidden;}
 .reach-seg label.sel{border-color:var(--terra);box-shadow:inset 0 0 0 1px var(--terra);background:oklch(97% .012 145);font-weight:500;}
 .reach-seg label:has(input:checked){border-color:var(--terra);box-shadow:inset 0 0 0 1px var(--terra);background:oklch(97% .012 145);font-weight:500;}
 .reach-seg label:has(input:focus-visible){outline:2px solid var(--terra);outline-offset:2px;}
-/* The matching contact field slides in once a channel is chosen. Closed, it
-   also cancels the step grid's 18px gap so it reserves no space at all. */
-.reach-reveal{display:grid;grid-template-rows:0fr;opacity:0;visibility:hidden;margin-top:-18px;transition:grid-template-rows .3s ease,opacity .25s ease,margin-top .3s ease,visibility 0s .3s;}
-.reach-reveal.open{grid-template-rows:1fr;opacity:1;visibility:visible;margin-top:0;transition:grid-template-rows .3s ease,opacity .25s ease,margin-top .3s ease,visibility 0s;}
-.form-step-1:has([name="contact_method"][value="Email"]:checked) .reach-reveal[data-reach-email],
-.form-step-1:has([name="contact_method"][value="Text"]:checked) .reach-reveal[data-reach-phone]{grid-template-rows:1fr;opacity:1;visibility:visible;margin-top:0;transition:grid-template-rows .3s ease,opacity .25s ease,margin-top .3s ease,visibility 0s;}
+.reach-reveal{display:grid;grid-template-rows:0fr;opacity:0;visibility:hidden;margin-top:0;transition:grid-template-rows .3s ease,opacity .25s ease,margin-top .3s ease,visibility 0s .3s;}
+.reach-reveal.open{grid-template-rows:1fr;opacity:1;visibility:visible;margin-top:15px;transition:grid-template-rows .3s ease,opacity .25s ease,margin-top .3s ease,visibility 0s;}
+.reach-fieldset:has([name="contact_method"][value="Email"]:checked) .reach-reveal[data-reach-email],
+.reach-fieldset:has([name="contact_method"][value="Text"]:checked) .reach-reveal[data-reach-phone]{grid-template-rows:1fr;opacity:1;visibility:visible;margin-top:15px;transition:grid-template-rows .3s ease,opacity .25s ease,margin-top .3s ease,visibility 0s;}
 .reach-inner{overflow:hidden;min-width:0;}
-.reach-note{font-size:.8rem;color:var(--mute);line-height:1.5;margin-top:10px;}
+/* One shared no-spam line under whichever fields are open. */
+.reach-note{display:none;font-size:.8rem;color:var(--mute);line-height:1.5;margin-top:10px;}
+.reach-note.on{display:block;}
+.reach-fieldset:has([name="contact_method"]:checked) .reach-note{display:block;}
 @media (prefers-reduced-motion:reduce){.reach-reveal,.reach-reveal.open{transition:none;}}
 
 /* ---------- BLOG INDEX ---------- */
