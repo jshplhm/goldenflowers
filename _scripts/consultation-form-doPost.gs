@@ -1,5 +1,5 @@
 /**
- * Golden Flowers consultation form — hardened intake, v2 (July 2026).
+ * Golden Flowers consultation form — hardened intake, v3 (July 2026).
  *
  * Paste this into the Apps Script project attached to the leads spreadsheet
  * (Extensions -> Apps Script from the sheet), replacing everything currently
@@ -7,31 +7,34 @@
  * Using "New version" on the EXISTING deployment keeps the same /exec URL —
  * no need to touch _config.yml.
  *
- * After deploying, run setupStaleTrigger() once from the editor (select it in
- * the function dropdown, click Run). That installs the 30-minute timer that
- * emails you about people who filled step 1 and never finished step 2. It'll
- * ask for authorization the first time — that's normal, it's your own script.
+ * After deploying, run setupTriggers() once from the editor (select it in
+ * the function dropdown, click Run, authorize when asked). That installs the
+ * daily-digest timer and removes the old 30-minute stale-partial trigger.
  *
- * What changed from v1:
- *   - A step-1 partial and its step-2 completion now update ONE row (matched
- *     by a client-generated lead_id) instead of appending two separate lines.
- *   - Real date validation: must be a real calendar date, and within a
- *     sane engagement window (not 37 years ago, not the year 7081).
- *   - Real email validation: format check, a blocklist of placeholder/burner
- *     domains (example.com, test.com, mailinator, etc.), and a live DNS
- *     lookup (Google's free public DNS-over-HTTPS API — no signup, no cost)
- *     confirming the domain can actually receive mail.
- *   - A honeypot field (gf_hp) and a "too fast to be human" timing check.
- *   - Lead source (utm_source/medium/campaign, or a guess from referrer) is
- *     recorded per lead.
- *   - New columns are appended after the existing 8 (Submitted..Message) so
- *     nothing already in the sheet shifts. Every read/write below is by
- *     header NAME, not column letter — you can drag columns into any order
- *     you like afterward without touching this script.
+ * The spreadsheet's three tabs, named exactly (case matters):
+ *   lead          — completed submissions. Each new one emails immediately.
+ *   partial lead  — step-1-only submissions. One digest email per day.
+ *   spam          — rejected submissions. One digest email per day when
+ *                   anything new landed, so false positives get reviewed.
+ * The script creates any missing tab (with headers) on first use.
  *
- * Design goals, in priority order (unchanged from v1):
+ * What changed from v2:
+ *   - Three tabs instead of everything on one: partials live on their own
+ *     tab and MOVE to Full leads when step 2 arrives (same row count, no
+ *     duplicates, Submitted keeps the original step-1 time).
+ *   - The 30-minute stale nudge is replaced by one partial-leads digest per
+ *     day, formatted for scanning, wedding dates as mm/dd/yyyy (no times).
+ *   - New: a daily spam digest whenever anything new hit the Spam tab.
+ *   - Every email also BCCs jshplhm@gmail.com.
+ *   - The complete-lead email puts the message inline on its "Message:" line.
+ *   - LockService serializes concurrent posts (two posts landing together
+ *     could both read the same getLastRow() and silently overwrite a lead).
+ *   - A complete landing on an already-Complete row (browser retry/replay)
+ *     updates the row without re-sending the email.
+ *
+ * Design goals, in priority order (unchanged):
  *   1. Never lose a real lead. Nothing is ever discarded: submissions that
- *      fail the checks land on a "Spam" tab with all their data, so even a
+ *      fail the checks land on the Spam tab with all their data, so even a
  *      false positive is recoverable, not gone.
  *   2. Bots learn nothing. Rejected posts get the same success response as
  *      real ones, so the bot believes it worked and doesn't adapt.
@@ -40,14 +43,23 @@
  */
 
 var NOTIFY_EMAIL = 'brittany@goldenflorals.com';
+var BCC_EMAIL = 'jshplhm@gmail.com';
+
+var LEADS_SHEET = 'lead';
+var PARTIALS_SHEET = 'partial lead';
+var SPAM_SHEET = 'spam';
+
+// Hour of day (script timezone) the daily digests go out.
+var DIGEST_HOUR = 8;
+
+// A partial younger than this at digest time is someone possibly still
+// mid-form — hold it for tomorrow's digest rather than nudging too soon.
+var PARTIAL_MIN_AGE_MINUTES = 30;
 
 // Must match the value the JS sends. Posts without it are still accepted if
 // otherwise clean (keeps the no-JS fallback working) — just tagged
 // "(unverified)" in Status.
 var FORM_TOKEN = 'gf-lupine-26';
-
-// How long a step-1-only lead sits idle before you get a follow-up nudge.
-var STALE_MINUTES = 30;
 
 // Exact strings the two dropdowns can produce. The em-dash forms are the
 // current live wording (July 2026 form revision); the older parenthetical
@@ -87,16 +99,20 @@ var PLACEHOLDER_DOMAINS = [
 
 // Column order kept stable for anything already in the sheet; new columns
 // are appended, never inserted, so existing rows/headers never shift.
+// Every read/write is by header NAME, not column letter — columns can be
+// dragged into any order afterward without touching this script.
+// Deliberately ABSENT (deleting them from the sheet is permanent — the
+// script will not re-create them): Page, Button, Landing Page, Referrer,
+// Notified. The cta_page/cta_button/referrer values the form still sends
+// are simply ignored; arrival source survives as the Source column.
 var HEADERS = [
   'Submitted', 'Status', 'Name', 'Email', 'Wedding Date', 'Aesthetic',
-  'Budget', 'Message', 'Venue', 'Source', 'Page', 'Button',
-  'Updated', 'Notified', 'Lead ID'
+  'Budget', 'Message', 'Venue', 'Source', 'Updated', 'Lead ID'
 ];
 
 function doPost(e) {
   var p = (e && e.parameter) || {};
   var ss = SpreadsheetApp.getActive();
-  var leadsSheet = ss.getSheets()[0];
 
   // Serialize the whole read-find-write sequence. Without this, two posts
   // landing together (the step-1 partial racing the complete, or two bots)
@@ -110,16 +126,13 @@ function doPost(e) {
     // a tiny overwrite risk beats definitely dropping the submission.
   }
   try {
-    return handlePost_(p, ss, leadsSheet);
+    return handlePost_(p, ss);
   } finally {
     try { lock.releaseLock(); } catch (err) {}
   }
 }
 
-function handlePost_(p, ss, leadsSheet) {
-  var headerRow = ensureHeaders_(leadsSheet);
-  var cols = colMap_(headerRow);
-
+function handlePost_(p, ss) {
   var isPartial = String(p.status || '') === 'partial';
   var reasons = spamReasons_(p);
   var now = new Date();
@@ -129,31 +142,57 @@ function handlePost_(p, ss, leadsSheet) {
     return success_();
   }
 
-  var leadId = String(p.lead_id || '').trim();
-  var existingRow = leadId ? findRowByLeadId_(leadsSheet, cols, leadId) : 0;
-  var wasComplete = false;
+  var leads = sheet_(ss, LEADS_SHEET);
+  var partials = sheet_(ss, PARTIALS_SHEET);
+  var leadsCols = colMap_(ensureHeaders_(leads));
+  var partialCols = colMap_(ensureHeaders_(partials));
 
-  if (existingRow) {
-    var currentStatus = String(leadsSheet.getRange(existingRow, cols['Status']).getValue() || '');
-    wasComplete = /^Complete/.test(currentStatus);
-    if (isPartial && wasComplete) {
+  var leadId = String(p.lead_id || '').trim();
+  var rowInLeads = leadId ? findRowByLeadId_(leads, leadsCols, leadId) : 0;
+
+  if (isPartial) {
+    if (rowInLeads) {
       // A step-1 ping that arrived late (after step 2 already landed, e.g. a
       // network race from a fast double-tap) must never downgrade a
-      // completed lead back to "in progress" or blank out its details.
+      // completed lead or blank out its details.
       return success_();
     }
-    writeRow_(leadsSheet, existingRow, cols,
-      buildRowValues_(p, isPartial, leadsSheet.getRange(existingRow, cols['Submitted']).getValue(), now, leadId));
-  } else {
-    var newRow = leadsSheet.getLastRow() + 1;
-    writeRow_(leadsSheet, newRow, cols, buildRowValues_(p, isPartial, now, now, leadId || genLeadIdFallback_()));
+    var rowInPartials = leadId ? findRowByLeadId_(partials, partialCols, leadId) : 0;
+    if (rowInPartials) {
+      writeRow_(partials, rowInPartials, partialCols,
+        buildRowValues_(p, true, partials.getRange(rowInPartials, partialCols['Submitted']).getValue() || now, now, leadId));
+    } else {
+      writeRow_(partials, partials.getLastRow() + 1, partialCols,
+        buildRowValues_(p, true, now, now, leadId || genLeadIdFallback_()));
+    }
+    return success_();
   }
 
-  // One notification per lead: a complete that lands on an already-Complete
-  // row is a retry/replay (the browser resends after a false network error),
-  // and re-emailing every one would spam the inbox. The row still updates
-  // above, so nothing is lost either way.
-  if (!isPartial && !wasComplete) sendCompleteEmail_(p);
+  // Complete submission.
+  if (rowInLeads) {
+    // Usually a retry/replay of an already-complete lead (the browser
+    // resends after a false network error): update the row, but one email
+    // per lead — re-emailing every retry would spam the inbox. The status
+    // check keeps the email for the edge case of an old "Step 1 only" row
+    // that predates the three-tab split and still lives on the lead tab.
+    var wasComplete = /^Complete/.test(String(leads.getRange(rowInLeads, leadsCols['Status']).getValue() || ''));
+    writeRow_(leads, rowInLeads, leadsCols,
+      buildRowValues_(p, false, leads.getRange(rowInLeads, leadsCols['Submitted']).getValue() || now, now, leadId));
+    if (!wasComplete) sendCompleteEmail_(p);
+    return success_();
+  }
+
+  // Normal completion: pull the step-1 row off the Partial leads tab (keeping
+  // its original Submitted time as first contact) and land on Full leads.
+  var submittedAt = now;
+  var partialRow = leadId ? findRowByLeadId_(partials, partialCols, leadId) : 0;
+  if (partialRow) {
+    submittedAt = partials.getRange(partialRow, partialCols['Submitted']).getValue() || now;
+    partials.deleteRow(partialRow);
+  }
+  writeRow_(leads, leads.getLastRow() + 1, leadsCols,
+    buildRowValues_(p, false, submittedAt, now, leadId || genLeadIdFallback_()));
+  sendCompleteEmail_(p);
 
   return success_();
 }
@@ -161,6 +200,14 @@ function handlePost_(p, ss, leadsSheet) {
 function success_() {
   return ContentService.createTextOutput(JSON.stringify({ result: 'success' }))
     .setMimeType(ContentService.MimeType.JSON);
+}
+
+function sheet_(ss, name) {
+  return ss.getSheetByName(name) || ss.insertSheet(name);
+}
+
+function sendMail_(subject, body) {
+  GmailApp.sendEmail(NOTIFY_EMAIL, subject, body, { bcc: BCC_EMAIL });
 }
 
 function statusLabel_(p, isPartial) {
@@ -192,8 +239,6 @@ function buildRowValues_(p, isPartial, submittedAt, updatedAt, leadId) {
     'Budget': p.budget || '',
     'Message': p.message || '',
     'Source': sourceLabel_(p),
-    'Page': p.cta_page || '',
-    'Button': p.cta_button || '',
     'Lead ID': leadId || ''
   };
 }
@@ -205,7 +250,7 @@ function writeRow_(sheet, row, cols, values) {
 }
 
 function writeToSpam_(ss, p, isPartial, reasons, now) {
-  var spamSheet = ss.getSheetByName('Spam') || ss.insertSheet('Spam');
+  var spamSheet = sheet_(ss, SPAM_SHEET);
   var spamHeaders = ensureHeaders_(spamSheet);
   if (spamHeaders.indexOf('Reason') === -1) {
     spamSheet.getRange(1, spamHeaders.length + 1).setValue('Reason');
@@ -407,7 +452,7 @@ function sendCompleteEmail_(p) {
   var subject = 'New consult request: ' + (p.name || 'Unknown') + '  ·  ' + (p.date || 'no date');
   // Deliberately no Source / Opened-from lines: Brittany forwards these
   // emails to couples, and lead-gen internals shouldn't travel with them.
-  // That data still lands in the sheet (Source / Page / Button columns).
+  // Arrival source still lands in the sheet's Source column.
   var body = [
     'Name: ' + (p.name || ''),
     'Email: ' + (p.email || ''),
@@ -415,67 +460,124 @@ function sendCompleteEmail_(p) {
     'Venue: ' + (venueValue_(p) || '(not given)'),
     'Aesthetic: ' + (p.aesthetic || ''),
     'Budget: ' + (p.budget || ''),
-    '',
-    'Message:',
-    p.message || '(none)'
+    'Message: ' + (p.message || '(none)')
   ].join('\n');
-  GmailApp.sendEmail(NOTIFY_EMAIL, subject, body);
+  sendMail_(subject, body);
 }
 
-/** Time-driven trigger (install once via setupStaleTrigger). Emails a single
- *  batched digest of everyone who finished step 1 and went quiet, so you're
- *  not pinged once per abandoned form. */
-function notifyStalePartials() {
-  var sheet = SpreadsheetApp.getActive().getSheets()[0];
-  var lastRow = sheet.getLastRow();
-  if (lastRow < 2) return;
+/* Wedding dates land in the sheet as strings but Sheets often coerces them
+   to Dates, which print with a midnight time. Digests always show plain
+   mm/dd/yyyy either way. */
+function fmtWeddingDate_(v) {
+  if (v instanceof Date) return Utilities.formatDate(v, Session.getScriptTimeZone(), 'MM/dd/yyyy');
+  return String(v || '');
+}
+
+function fmtWhen_(v) {
+  if (v instanceof Date) return Utilities.formatDate(v, Session.getScriptTimeZone(), 'MMM d, h:mm a');
+  return String(v || '');
+}
+
+/** Both daily digests, run by the single time-driven trigger. */
+function dailyDigests() {
+  partialLeadsDigest_();
+  spamDigest_();
+}
+
+/** One email per day listing everyone currently sitting on Partial leads.
+ *  Skips silently when the tab is empty. */
+function partialLeadsDigest_() {
+  var ss = SpreadsheetApp.getActive();
+  var sheet = ss.getSheetByName(PARTIALS_SHEET);
+  if (!sheet || sheet.getLastRow() < 2) return;
   var headerRow = ensureHeaders_(sheet);
   var cols = colMap_(headerRow);
-  var values = sheet.getRange(2, 1, lastRow - 1, headerRow.length).getValues();
-  var cutoff = new Date(Date.now() - STALE_MINUTES * 60000);
-  var stale = [];
+  var values = sheet.getRange(2, 1, sheet.getLastRow() - 1, headerRow.length).getValues();
+  var minAge = new Date(Date.now() - PARTIAL_MIN_AGE_MINUTES * 60000);
+  var dayAgo = new Date(Date.now() - 24 * 3600000);
 
-  values.forEach(function (row, i) {
-    var status = String(row[cols['Status'] - 1] || '');
-    var notified = String(row[cols['Notified'] - 1] || '');
+  var fresh = [], older = [];
+  values.forEach(function (row) {
+    var name = row[cols['Name'] - 1], email = row[cols['Email'] - 1];
+    if (!name && !email) return; // blank spacer row
     var updated = row[cols['Updated'] - 1];
-    // "In progress" is the pre-July-2026 wording; matched so old rows still digest.
-    if (/^(Step 1 only|In progress)/.test(status) && notified !== 'Y' && updated instanceof Date && updated < cutoff) {
-      stale.push({
-        rowNum: i + 2,
-        name: row[cols['Name'] - 1],
-        email: row[cols['Email'] - 1],
-        date: row[cols['Wedding Date'] - 1],
-        updated: updated
-      });
-    }
+    if (updated instanceof Date && updated > minAge) return; // possibly still typing
+    var entry =
+      '• ' + (name || '(no name)') + ' — ' + (email || 'no email') + '\n' +
+      '  Wedding date: ' + (fmtWeddingDate_(row[cols['Wedding Date'] - 1]) || '(none)') +
+      '  ·  Started: ' + fmtWhen_(row[cols['Submitted'] - 1]);
+    var submitted = row[cols['Submitted'] - 1];
+    (submitted instanceof Date && submitted > dayAgo ? fresh : older).push(entry);
   });
 
-  if (!stale.length) return;
+  if (!fresh.length && !older.length) return;
 
-  var body = stale.map(function (s) {
-    return '- ' + (s.name || '(no name)') + ' <' + (s.email || 'no email') + '>' +
-      (s.date ? '  ·  wanting ' + s.date : '') +
-      '  ·  started ' + Utilities.formatDate(s.updated, Session.getScriptTimeZone(), 'MMM d, h:mm a');
-  }).join('\n');
+  var parts = [
+    'These couples filled in step 1 (name, email, wedding date) but never finished step 2.',
+    'A friendly note sometimes brings them back.',
+    ''
+  ];
+  if (fresh.length) parts = parts.concat(['NEW IN THE LAST 24 HOURS', ''], fresh, ['']);
+  if (older.length) parts = parts.concat([fresh.length ? 'STILL WAITING FROM BEFORE' : 'WAITING', ''], older, ['']);
+  parts.push('Full list: ' + SpreadsheetApp.getActive().getUrl());
 
-  GmailApp.sendEmail(
-    NOTIFY_EMAIL,
-    stale.length + ' partial consult submission' + (stale.length > 1 ? 's' : '') + ' — never finished step 2',
-    'These people filled in step 1 (name/email/date) ' + STALE_MINUTES + '+ minutes ago and never completed the form:\n\n' +
-    body + '\n\nMight be worth a friendly nudge email if you want to follow up.'
+  var total = fresh.length + older.length;
+  sendMail_(
+    total + ' partial lead' + (total > 1 ? 's' : '') + ' — finished step 1 only',
+    parts.join('\n')
   );
-
-  stale.forEach(function (s) { sheet.getRange(s.rowNum, cols['Notified']).setValue('Y'); });
 }
 
-/** Run once from the editor after deploying. Installs (or re-installs) the
- *  30-minute timer that powers notifyStalePartials. Safe to re-run. */
-function setupStaleTrigger() {
-  ScriptApp.getProjectTriggers().forEach(function (t) {
-    if (t.getHandlerFunction() === 'notifyStalePartials') ScriptApp.deleteTrigger(t);
+/** One email per day IF anything new landed on the Spam tab since the last
+ *  digest — so false positives actually get reviewed. */
+function spamDigest_() {
+  var ss = SpreadsheetApp.getActive();
+  var sheet = ss.getSheetByName(SPAM_SHEET);
+  if (!sheet || sheet.getLastRow() < 2) return;
+  var headerRow = ensureHeaders_(sheet);
+  var cols = colMap_(headerRow);
+  var values = sheet.getRange(2, 1, sheet.getLastRow() - 1, sheet.getLastColumn()).getValues();
+  var reasonCol = headerRow.indexOf('Reason'); // 0-based, -1 if absent
+
+  var props = PropertiesService.getScriptProperties();
+  var last = Number(props.getProperty('spamDigestAt') || 0);
+  var newest = last;
+  var fresh = [];
+
+  values.forEach(function (row) {
+    var submitted = row[cols['Submitted'] - 1];
+    if (!(submitted instanceof Date)) return;
+    if (submitted.getTime() > newest) newest = submitted.getTime();
+    if (submitted.getTime() <= last) return;
+    fresh.push(
+      '• ' + (row[cols['Name'] - 1] || '(no name)') + ' — ' + (row[cols['Email'] - 1] || 'no email') + '\n' +
+      '  Wedding date: ' + (fmtWeddingDate_(row[cols['Wedding Date'] - 1]) || '(none)') +
+      '  ·  Caught: ' + fmtWhen_(submitted) +
+      (reasonCol > -1 ? '\n  Why: ' + (row[reasonCol] || '') : '')
+    );
   });
-  ScriptApp.newTrigger('notifyStalePartials').timeBased().everyMinutes(30).create();
+
+  if (!fresh.length) { props.setProperty('spamDigestAt', String(newest)); return; }
+
+  sendMail_(
+    fresh.length + ' new spam submission' + (fresh.length > 1 ? 's' : '') + ' — worth a quick look',
+    'These were caught by the spam rules since the last digest. Real couples\n' +
+    'are never deleted, so if one of these looks legitimate it just needs a\n' +
+    'reply — everything they typed is on the Spam tab.\n\n' +
+    fresh.join('\n') + '\n\n' +
+    'Spam tab: ' + ss.getUrl()
+  );
+  props.setProperty('spamDigestAt', String(newest));
+}
+
+/** Run once from the editor after deploying. Replaces the old 30-minute
+ *  stale-partial trigger with the single daily digest timer. Safe to re-run. */
+function setupTriggers() {
+  ScriptApp.getProjectTriggers().forEach(function (t) {
+    var fn = t.getHandlerFunction();
+    if (fn === 'notifyStalePartials' || fn === 'dailyDigests') ScriptApp.deleteTrigger(t);
+  });
+  ScriptApp.newTrigger('dailyDigests').timeBased().everyDays(1).atHour(DIGEST_HOUR).create();
 }
 
 /** Run this in the editor (Run -> testVet) to sanity-check the rules: the
