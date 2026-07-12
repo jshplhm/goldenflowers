@@ -184,8 +184,8 @@ function appendCommon_(params, form){
     var chooser=form.querySelectorAll('input[name="contact_method"]');
     var reachBlocks={Email:form.querySelector('[data-reach-email]'),Text:form.querySelector('[data-reach-phone]')};
     var reachNote=form.querySelector('[data-reach-note]');
-    var NOTES={Email:"Wedding only. We don't send marketing email.",
-               Text:"Wedding only. We don't send marketing texts.",
+    var NOTES={Email:"We don't send marketing email.",
+               Text:"We don't send marketing texts.",
                both:"We don't send marketing emails or texts."};
     function checkedMethods(){
       return Array.prototype.filter.call(chooser,function(c){ return c.checked; })
@@ -281,7 +281,16 @@ function appendCommon_(params, form){
     else if(b==='0'){ if(i+1>=d.length) return out+'0'; if(d[i+1]==='0') return out+'0'; out+='0'+d[i+1]; i+=2; }
     else { if(i+1>=d.length) return out+b; out+=b+d[i+1]; i+=2; }
     if(i>=d.length) return advance?out+'/':out;
-    return out+'/'+d.slice(i,i+4);
+    // Year: it's always 20xx, so two digits finish it — "27" becomes 2027
+    // the moment it's typed (streaming "061127" works too). A lone "2" is
+    // ambiguous (start of "2027" typed in full vs shorthand "27"), so it
+    // waits for the next digit; "20…" passes through as a full year, which
+    // is safe because 2020 is outside the valid range and can only mean
+    // the century. Expansion happens only while typing forward, never on
+    // deletes, and never on a timer.
+    var y=d.slice(i,i+4);
+    if(!advance || y==='2' || (y.length>=2&&y.slice(0,2)==='20')) return out+'/'+y;
+    return out+'/'+('20'+y).slice(0,4);
   }
   document.querySelectorAll('[data-date-mask]').forEach(function(el){
     var field=document.createElement('span'); field.className='date-field';
@@ -290,16 +299,15 @@ function appendCommon_(params, form){
     var gt=document.createElement('span'); gt.className='gt'; var rest=document.createTextNode('');
     ghost.appendChild(gt); ghost.appendChild(rest); field.appendChild(ghost);
     el.removeAttribute('placeholder');
-    function render(){ gt.textContent=el.value; rest.nodeValue='mm/dd/yyyy'.slice(el.value.length); }
-    // "20" is ambiguous mid-type — the 2-digit shorthand for 2020 AND the
-    // first half of "2027" typed in full. Never guess on a timer (a slow
-    // typist pausing after "20" used to get hijacked to 2020 with further
-    // keystrokes bouncing off maxlength): a 2-digit year settles only at
-    // the moments typing is unambiguously done — leaving the field, or
-    // pressing Continue (the advance handler calls _finalizeYear).
+    function render(){ gt.textContent=el.value; rest.nodeValue='mm/dd/20yy'.slice(el.value.length); }
+    // Mostly vestigial now that the mask expands 2-digit years live, but a
+    // paste or delete can still leave a bare 2-digit year at blur/Continue.
+    // "20" is exempt: that's the century prefix mid-type (someone typing
+    // "2027" in full), not shorthand for 2020 — expanding it would revive
+    // the old hijack bug. It just fails the format check instead.
     function finalizeYear(){
       var m=el.value.match(/^(\d\d\/\d\d\/)(\d\d)$/);
-      if(m){ el.value=m[1]+'20'+m[2]; render(); }
+      if(m&&m[2]!=='20'){ el.value=m[1]+'20'+m[2]; render(); }
       applyDateValidity(el);
     }
     el._finalizeYear=finalizeYear;

@@ -1,5 +1,11 @@
 /**
- * Golden Flowers consultation form — hardened intake, v3.2 (July 2026).
+ * Golden Flowers consultation form — hardened intake, v3.3 (July 2026).
+ *
+ * What changed from v3.2 (v3.3):
+ *   - Page and Button columns are BACK (owner request): the page the couple
+ *     was on and the CTA they clicked, from the cta_page/cta_button params
+ *     the form has been sending all along. Sheet-only — deliberately still
+ *     absent from the notification email (Brittany forwards those).
  *
  * What changed from v3.1 (v3.2):
  *   - The chooser is now check-all-that-apply, so contact_method can be
@@ -124,13 +130,13 @@ var PLACEHOLDER_DOMAINS = [
 // Every read/write is by header NAME, not column letter — columns can be
 // dragged into any order afterward without touching this script.
 // Deliberately ABSENT (deleting them from the sheet is permanent — the
-// script will not re-create them): Page, Button, Landing Page, Referrer,
-// Notified. The cta_page/cta_button/referrer values the form still sends
-// are simply ignored; arrival source survives as the Source column.
+// script will not re-create them): Landing Page, Referrer, Notified.
+// The raw referrer the form sends is ignored; arrival source survives as
+// the Source column.
 var HEADERS = [
   'Submitted', 'Status', 'Name', 'Email', 'Wedding Date', 'Aesthetic',
   'Budget', 'Message', 'Venue', 'Source', 'Updated', 'Lead ID',
-  'Contact Method', 'Phone'
+  'Contact Method', 'Phone', 'Page', 'Button'
 ];
 
 function doPost(e) {
@@ -275,6 +281,8 @@ function buildRowValues_(p, isPartial, submittedAt, updatedAt, leadId) {
     'Budget': p.budget || '',
     'Message': p.message || '',
     'Source': sourceLabel_(p),
+    'Page': p.cta_page || '',
+    'Button': p.cta_button || '',
     'Lead ID': leadId || ''
   };
 }

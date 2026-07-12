@@ -4,11 +4,11 @@
     it appears on the thank-you screen as the natural "done" affordance. {%- endcomment -%}
     <button class="modal-close" type="button" aria-label="Close" data-consult-close hidden>&times;</button>
     <form action="{{ site.consult_endpoint }}" method="POST" data-multistep data-ajax>
-      {%- comment -%} Back sits in the card's top-left corner (mirroring the
-      thank-you X) so step 2 spends no vertical space on chrome. No step
-      counter: the progress bar says where you are. {%- endcomment -%}
-      <button type="button" class="form-back" data-form-back aria-label="Back" hidden>&larr;</button>
-      <div class="form-progress" aria-hidden="true"><span class="on"></span><span data-progress-step2></span></div>
+      {%- comment -%} No step counter: the progress bar says where you are.
+      On step 2 the Back arrow docks into the start of the first bar
+      segment (the bar shortens to make room) so it costs no vertical
+      space. {%- endcomment -%}
+      <div class="form-progress"><button type="button" class="form-back" data-form-back aria-label="Back" hidden>&larr;</button><span class="on"></span><span data-progress-step2></span></div>
       <h2 id="consult-modal-title" data-form-heading>Is your date open?</h2>
       <div class="hp-wrap" aria-hidden="true">
         <label for="m-hp">Company</label>
@@ -17,11 +17,11 @@
       <div class="form-step-1">
         <div class="field-full">
           <label for="m-date">Wedding date</label>
-          <input type="text" id="m-date" name="date" placeholder="mm/dd/yyyy" inputmode="numeric" maxlength="10" autocomplete="off" data-date-mask required>
+          <input type="text" id="m-date" name="date" placeholder="mm/dd/20yy" inputmode="numeric" maxlength="10" autocomplete="off" data-date-mask required>
         </div>
         <div class="field-full">
           <label for="m-name">Your name</label>
-          <input type="text" id="m-name" name="name" placeholder="Katie &amp; Aaron" autocomplete="name" required>
+          <input type="text" id="m-name" name="name" placeholder="First name is fine" autocomplete="name" required>
         </div>
         {%- comment -%} Contact chooser, check all that apply: each checked
         channel reveals its field (CSS :has() covers no-JS; JS enables/

@@ -46,8 +46,7 @@ redirect_from:
 <section class="form-section" id="consultation">
   <div data-form-wrap>
     <form action="{{ site.consult_endpoint }}" method="POST" id="consultation-form" data-multistep data-ajax>
-      <button type="button" class="form-back" data-form-back aria-label="Back" hidden>&larr;</button>
-      <div class="form-progress" aria-hidden="true"><span class="on"></span><span data-progress-step2></span></div>
+      <div class="form-progress"><button type="button" class="form-back" data-form-back aria-label="Back" hidden>&larr;</button><span class="on"></span><span data-progress-step2></span></div>
       <h2 class="form-heading" data-form-heading>Is your date open?</h2>
       <div class="hp-wrap" aria-hidden="true">
         <label for="hp">Company</label>
@@ -56,11 +55,11 @@ redirect_from:
       <div class="form-step-1">
         <div class="field-full">
           <label for="date">Wedding date</label>
-          <input type="text" id="date" name="date" placeholder="mm/dd/yyyy" inputmode="numeric" maxlength="10" autocomplete="off" data-date-mask required>
+          <input type="text" id="date" name="date" placeholder="mm/dd/20yy" inputmode="numeric" maxlength="10" autocomplete="off" data-date-mask required>
         </div>
         <div class="field-full">
           <label for="name">Your name</label>
-          <input type="text" id="name" name="name" placeholder="Katie &amp; Aaron" autocomplete="name" required>
+          <input type="text" id="name" name="name" placeholder="First name is fine" autocomplete="name" required>
         </div>
         <!-- Contact chooser, check all that apply: each checked channel
              reveals its field (CSS :has() covers no-JS; JS enables/disables
