@@ -35,8 +35,15 @@ jobs:
         uses: actions/cache@v4
         with:
           path: .rsp-cache
-          key: rsp-${{ hashFiles('assets/images/**/*.jpg') }}
-          restore-keys: rsp-
+          # run_id makes the key unique so the cache SAVES every run —
+          # actions/cache skips saving on an exact-key hit, which froze the
+          # cache contents and (with mtime-fragile skip logic) regenerated
+          # ~950 variants on every deploy. The script skips work by source
+          # content hash, so restoring any recent cache is always correct.
+          key: rsp-${{ hashFiles('assets/images/**/*.jpg') }}-${{ github.run_id }}
+          restore-keys: |
+            rsp-${{ hashFiles('assets/images/**/*.jpg') }}-
+            rsp-
       - name: Generate responsive image variants
         run: |
           command -v magick >/dev/null 2>&1 || command -v convert >/dev/null 2>&1 || sudo apt-get install -y --no-install-recommends imagemagick
