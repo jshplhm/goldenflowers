@@ -45,6 +45,7 @@ exclude:
   - Gemfile
   - Gemfile.lock
   - README.md
+  - CLAUDE.md
   - .gitignore
   - .jekyll-metadata
   # Internal design artifacts: keep out of the published site and sitemap
