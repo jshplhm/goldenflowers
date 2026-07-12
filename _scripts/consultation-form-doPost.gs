@@ -97,6 +97,26 @@ function doPost(e) {
   var p = (e && e.parameter) || {};
   var ss = SpreadsheetApp.getActive();
   var leadsSheet = ss.getSheets()[0];
+
+  // Serialize the whole read-find-write sequence. Without this, two posts
+  // landing together (the step-1 partial racing the complete, or two bots)
+  // can both read the same getLastRow() and one row silently overwrites the
+  // other — a lost lead, which is the one thing this script must never do.
+  var lock = LockService.getScriptLock();
+  try {
+    lock.waitLock(20000);
+  } catch (err) {
+    // Couldn't get the lock in 20s (stuck execution). Proceed anyway:
+    // a tiny overwrite risk beats definitely dropping the submission.
+  }
+  try {
+    return handlePost_(p, ss, leadsSheet);
+  } finally {
+    try { lock.releaseLock(); } catch (err) {}
+  }
+}
+
+function handlePost_(p, ss, leadsSheet) {
   var headerRow = ensureHeaders_(leadsSheet);
   var cols = colMap_(headerRow);
 
@@ -111,10 +131,12 @@ function doPost(e) {
 
   var leadId = String(p.lead_id || '').trim();
   var existingRow = leadId ? findRowByLeadId_(leadsSheet, cols, leadId) : 0;
+  var wasComplete = false;
 
   if (existingRow) {
     var currentStatus = String(leadsSheet.getRange(existingRow, cols['Status']).getValue() || '');
-    if (isPartial && /^Complete/.test(currentStatus)) {
+    wasComplete = /^Complete/.test(currentStatus);
+    if (isPartial && wasComplete) {
       // A step-1 ping that arrived late (after step 2 already landed, e.g. a
       // network race from a fast double-tap) must never downgrade a
       // completed lead back to "in progress" or blank out its details.
@@ -127,7 +149,11 @@ function doPost(e) {
     writeRow_(leadsSheet, newRow, cols, buildRowValues_(p, isPartial, now, now, leadId || genLeadIdFallback_()));
   }
 
-  if (!isPartial) sendCompleteEmail_(p);
+  // One notification per lead: a complete that lands on an already-Complete
+  // row is a retry/replay (the browser resends after a false network error),
+  // and re-emailing every one would spam the inbox. The row still updates
+  // above, so nothing is lost either way.
+  if (!isPartial && !wasComplete) sendCompleteEmail_(p);
 
   return success_();
 }

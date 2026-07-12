@@ -6,7 +6,7 @@
 media:
   - name: blog
     input: assets/images/blog
-    output: /goldenflowers/assets/images/blog
+    output: /assets/images/blog
 
 content:
   # ═══════════════════════════════════════════════════════════════════

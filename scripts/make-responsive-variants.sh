@@ -20,9 +20,18 @@ while IFS= read -r -d '' f; do
   rel=${f#"$SRC"/}
   case "$rel" in rsp/*) continue ;; esac
   stem=${rel%.*}
+  # Skip by CONTENT hash, not mtime: CI checkouts stamp every source file
+  # with the clone time, so an mtime comparison against the restored cache
+  # regenerated all ~950 variants on every deploy (confirmed in run logs).
+  shafile="$CACHE/${stem}.src.sha"
+  sha=$(shasum "$f" | cut -d' ' -f1)
+  if [ -f "$shafile" ] && [ "$(cat "$shafile")" = "$sha" ]; then
+    ok=1
+    for w in $WIDTHS; do [ -f "$CACHE/${stem}-${w}w.jpg" ] || ok=0; done
+    [ "$ok" = 1 ] && continue
+  fi
   for w in $WIDTHS; do
     dest="$CACHE/${stem}-${w}w.jpg"
-    [ -f "$dest" ] && [ ! "$f" -nt "$dest" ] && continue
     mkdir -p "$(dirname "$dest")"
     # resize by WIDTH (srcset w-descriptors are widths), never enlarge
     if command -v magick >/dev/null 2>&1; then
@@ -39,8 +48,11 @@ while IFS= read -r -d '' f; do
     fi
     count=$((count + 1))
   done
+  mkdir -p "$(dirname "$shafile")"
+  printf '%s' "$sha" > "$shafile"
 done < <(find "$SRC" -type f \( -iname '*.jpg' -o -iname '*.jpeg' \) -print0)
 
 mkdir -p "$OUT"
 cp -R "$CACHE"/. "$OUT"/
-echo "responsive variants: $count generated, $(find "$CACHE" -type f | wc -l | tr -d ' ') total"
+find "$OUT" -name '*.src.sha' -delete   # cache bookkeeping, not for publishing
+echo "responsive variants: $count generated, $(find "$CACHE" -name '*.jpg' | wc -l | tr -d ' ') total"

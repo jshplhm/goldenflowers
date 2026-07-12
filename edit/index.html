@@ -67,6 +67,10 @@ sitemap: false
     .ed-ph:hover .ed-ph-move{opacity:1;}
     .ed-ph-move button{border:0;border-radius:5px;background:rgba(34,48,31,.85);color:#fff;font-size:.8rem;line-height:1;padding:5px 9px;cursor:pointer;}
     .ed-ph-move button:hover{background:var(--ed-green);}
+    /* touch screens have no hover: keep the per-photo actions always visible */
+    @media (pointer:coarse){
+      .ed-ph .ed-ph-acts,.ed-ph .ed-ph-move{opacity:1;}
+    }
     .ed-ph .ed-ph-name{font-size:.66rem;color:var(--ed-mute);padding:4px 6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
     .ed-ph .ed-ph-acts{position:absolute;top:6px;right:6px;display:flex;gap:6px;opacity:0;transition:opacity .12s;}
     .ed-ph:hover .ed-ph-acts{opacity:1;}

@@ -185,6 +185,10 @@ function normalizeTree(parent) {
           const keep = POST_ATTRS[tag];
           if (!keep || !keep.includes(a.name.toLowerCase())) n.removeAttribute(a.name);
         }
+        /* pasted links can carry script-executing schemes; keep only web/mail links */
+        if (tag === "A" && n.hasAttribute("href") && !/^(https?:|mailto:|tel:|[/#])/i.test(n.getAttribute("href").trim())) {
+          n.removeAttribute("href");
+        }
         if (tag === "P" && !n.textContent.trim() && !n.querySelector("img")) n.remove();
       }
     }
@@ -1012,8 +1016,20 @@ phAdd.addEventListener("click", async () => {
   phAdd.disabled = false;
 });
 
-/* pages that hard-code specific gallery photos; deleting one of those would leave a hole */
-const PHOTO_USAGE_PAGES = ["index.md", "portfolio/index.md", "blog/index.md"];
+/* Every page whose source can hard-code a gallery photo (including via the
+ * swap flow, which can point ANY of these at a portfolio image) — deleting a
+ * photo one of them still uses would leave a broken image on the live site. */
+const PHOTO_USAGE_PAGES = [
+  "index.md", "portfolio/index.md", "blog/index.md", "about/index.md",
+  "sustainability/index.md", "weddings/index.md", "consultation-form/index.md",
+];
+const PAGE_LABELS = {
+  "index.md": "the home page", "portfolio/index.md": "the portfolio page",
+  "blog/index.md": "the blog page", "about/index.md": "the Our Story page",
+  "sustainability/index.md": "the sustainability page",
+  "weddings/index.md": "the Process & Pricing page",
+  "consultation-form/index.md": "the contact page",
+};
 
 async function deletePhoto(name) {
   if (name === curGallery.hero) { phNote("That's the big opening photo — make another photo the opener first.", "err"); return; }
@@ -1023,7 +1039,7 @@ async function deletePhoto(name) {
       if ((await rawFile(p)).text.includes(name)) {
         /* remember what's being removed so the swap picker won't offer it */
         sessionStorage.setItem("gfDeleting", name);
-        phNote(`Not deleted: this photo also appears on ${p === "index.md" ? "the home page" : "the " + p.split("/")[0] + " page"}. Swap it there first (click the photo on that page).`, "err");
+        phNote(`Not deleted: this photo also appears on ${PAGE_LABELS[p] || p}. Swap it there first (click the photo on that page).`, "err");
         return;
       }
     }
