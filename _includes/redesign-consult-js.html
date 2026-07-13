@@ -369,16 +369,17 @@ function appendCommon_(params, form){
     var dateVal=data.get('date');
     var dateLine=success.querySelector('[data-success-date-line]'), dateEl=success.querySelector('[data-success-date]');
     if(dateVal&&dateEl&&dateLine){ dateEl.textContent=fmtDate(dateVal); dateLine.hidden=false; }
-    var stepDate=success.querySelector('[data-success-step-date]');
-    if(stepDate&&dateVal) stepDate.textContent=' '+fmtDate(dateVal)+' is open';
-    // "You hear from us" names the channel they picked. Kept short so each
-    // line survives a phone screen unwrapped.
+    // Step 1 stays generic ("Making sure your date is open.") — the specific
+    // date already sits in the lede one line up, and repeating it there was
+    // the thing that wrapped on long months.
+    // "You hear from us" names the channel they picked. Kept short (no "you")
+    // so each line survives a phone screen unwrapped.
     var noteEl=success.querySelector('[data-success-note]');
     var methods=data.getAll?data.getAll('contact_method'):[];
     if(noteEl&&methods.length){
-      noteEl.textContent=(methods.length>1)?'Brittany reaches out within 48 hours.'
-        :(methods[0]==='Text'?'Brittany texts you within 48 hours.'
-        :'Brittany emails you within 48 hours.');
+      noteEl.textContent=(methods.length>1)?'Brittany messages within 48 hours.'
+        :(methods[0]==='Text'?'Brittany texts within 48 hours.'
+        :'Brittany emails within 48 hours.');
     }
     var closeBtn=wrap.querySelector('.modal-close');
     if(closeBtn) closeBtn.hidden=false; // X only appears once they're done

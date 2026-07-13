@@ -17,11 +17,11 @@
       <div class="form-step-1">
         <div class="field-full">
           <label for="m-date">Wedding date</label>
-          <input type="text" id="m-date" name="date" placeholder="mm/dd/20yy" inputmode="numeric" maxlength="10" autocomplete="off" data-date-mask required>
+          <input type="text" id="m-date" name="date" placeholder="mm/dd/yyyy" inputmode="numeric" maxlength="10" autocomplete="off" data-date-mask required>
         </div>
         <div class="field-full">
           <label for="m-name">Your name</label>
-          <input type="text" id="m-name" name="name" placeholder="First name is fine" autocomplete="name" required>
+          <input type="text" id="m-name" name="name" placeholder="Jordan" autocomplete="name" required>
         </div>
         {%- comment -%} Contact chooser, check all that apply: each checked
         channel reveals its field (CSS :has() covers no-JS; JS enables/
@@ -74,9 +74,8 @@
           <select id="m-budget" name="budget" required>
             <option value="" disabled selected>Estimated florals budget</option>
             <option>$5,000&ndash;$8,000</option>
-            <option>$8,000&ndash;$12,000</option>
-            <option>$12,000&ndash;$18,000</option>
-            <option>$18,000&ndash;$25,000</option>
+            <option>$8,000&ndash;$15,000</option>
+            <option>$15,000&ndash;$25,000</option>
             <option>$25,000+</option>
             <option>Not sure yet</option>
           </select>
@@ -86,7 +85,7 @@
           <textarea id="m-message" name="message" placeholder="Guest count, must-have flowers, inspiration..." rows="3"></textarea>
         </div>
         <div class="form-submit field-full">
-          <button type="submit" class="btn-primary">Check my date &rarr;</button>
+          <button type="submit" class="btn-primary">Check my date</button>
         </div>
       </div>
     </form>

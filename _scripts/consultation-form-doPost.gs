@@ -111,9 +111,8 @@ var AESTHETICS = [
 
 var BUDGETS = [
   "$5,000–$8,000",
-  "$8,000–$12,000",
-  "$12,000–$18,000",
-  "$18,000–$25,000",
+  "$8,000–$15,000",
+  "$15,000–$25,000",
   "$25,000+",
   "Not sure yet"
 ];
@@ -679,12 +678,12 @@ function testVet() {
   Logger.log(spamReasons_({ // new form, email channel
     name: 'Jordan & Sam', contact_method: 'Email', email: 'jpelham03@gmail.com',
     date: '06/11/2028', aesthetic: 'Wildflower Modern — wild, seasonal, editorial',
-    budget: '$12,000–$18,000', k: FORM_TOKEN, ts: String(Date.now() - 30000)
+    budget: '$15,000–$25,000', k: FORM_TOKEN, ts: String(Date.now() - 30000)
   }));
   Logger.log(spamReasons_({ // new form, text channel — no email at all
     name: 'Jordan & Sam', contact_method: 'Text', phone: '775-555-0123',
     date: '06/11/2028', aesthetic: 'Lush & Romantic — rich, dramatic, deep tones',
-    budget: '$8,000–$12,000', k: FORM_TOKEN, ts: String(Date.now() - 30000)
+    budget: '$8,000–$15,000', k: FORM_TOKEN, ts: String(Date.now() - 30000)
   }));
   Logger.log(spamReasons_({ // both channels checked
     name: 'Jordan & Sam', contact_method: 'Email, Text',
@@ -703,7 +702,7 @@ function testVet() {
   Logger.log(spamReasons_({ name: 'josh', email: 'test@g.com', date: '12/12/12' })); // your own test row
   Logger.log(spamReasons_({ // the RobertDuh row — should flag on date range + no ts/token
     name: 'RobertDuh', email: 'zekisuqic419@gmail.com', date: '10/11/1989',
-    aesthetic: 'Elevated Minimalist, clean, airy, restrained', budget: '$8,000–$12,000',
+    aesthetic: 'Elevated Minimalist, clean, airy, restrained', budget: '$8,000–$15,000',
     message: 'Прывітанне, я хацеў даведацца Ваш прайс.'
   }));
 }
