@@ -138,6 +138,13 @@ function phoneIssue(v){
   return '';
 }
 
+/* Google Ads conversion, fired at most once per site load per send_to.
+   Guarded so a missing/blocked gtag (ad-blocker, GA4 disabled off-domain)
+   never throws and never breaks the form. */
+function gfConversion_(sendTo){
+  if(typeof gtag==='function') gtag('event','conversion',{'send_to':sendTo});
+}
+
 function sourceParams_(){
   var out={}; try{ var raw=sessionStorage.getItem('gf_source'); if(raw) out=JSON.parse(raw); }catch(e){}
   return out;
@@ -261,6 +268,12 @@ function appendCommon_(params, form){
       step2.hidden=false;
       setStep(2);
       toTop();
+      // Genuine step-1 -> step-2 advance (all validation passed above).
+      // Once per form session, even if the couple goes Back and Continues again.
+      if(!form.dataset.gtagStep1){
+        form.dataset.gtagStep1='1';
+        gfConversion_('AW-18321282634/ses2CNj6_M8cEMqsoqBE');
+      }
     });
     if(backBtn) backBtn.addEventListener('click', function(){
       step2.hidden=true; if(step1) step1.hidden=false; if(advance) advance.hidden=false;
@@ -412,6 +425,12 @@ function appendCommon_(params, form){
       var beat=new Promise(function(r){ setTimeout(r,1000); });
       Promise.all([send,beat]).then(function(){
         showSuccess(form,data);
+        // Only reached on a real successful send (send throws on non-OK HTTP,
+        // routing failures to .catch). Once per form session.
+        if(!form.dataset.gtagConversion){
+          form.dataset.gtagConversion='1';
+          gfConversion_('AW-18321282634/z60CCNX6_M8cEMqsoqBE');
+        }
       }).catch(function(){
         if(btn){ btn.disabled=false; btn.textContent='Try again →'; }
         var note=document.createElement('p');
