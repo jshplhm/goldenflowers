@@ -299,7 +299,7 @@ function appendCommon_(params, form){
     var gt=document.createElement('span'); gt.className='gt'; var rest=document.createTextNode('');
     ghost.appendChild(gt); ghost.appendChild(rest); field.appendChild(ghost);
     el.removeAttribute('placeholder');
-    function render(){ gt.textContent=el.value; rest.nodeValue='mm/dd/20yy'.slice(el.value.length); }
+    function render(){ gt.textContent=el.value; rest.nodeValue='mm/dd/yyyy'.slice(el.value.length); }
     // Mostly vestigial now that the mask expands 2-digit years live, but a
     // paste or delete can still leave a bare 2-digit year at blur/Continue.
     // "20" is exempt: that's the century prefix mid-type (someone typing

@@ -55,11 +55,11 @@ redirect_from:
       <div class="form-step-1">
         <div class="field-full">
           <label for="date">Wedding date</label>
-          <input type="text" id="date" name="date" placeholder="mm/dd/20yy" inputmode="numeric" maxlength="10" autocomplete="off" data-date-mask required>
+          <input type="text" id="date" name="date" placeholder="mm/dd/yyyy" inputmode="numeric" maxlength="10" autocomplete="off" data-date-mask required>
         </div>
         <div class="field-full">
-          <label for="name">Your name</label>
-          <input type="text" id="name" name="name" placeholder="First name is fine" autocomplete="name" required>
+          <label for="name">What should we call you?</label>
+          <input type="text" id="name" name="name" placeholder="Your name" autocomplete="name" required>
         </div>
         <!-- Contact chooser, check all that apply: each checked channel
              reveals its field (CSS :has() covers no-JS; JS enables/disables
@@ -110,9 +110,8 @@ redirect_from:
           <select id="budget" name="budget" required>
             <option value="" disabled selected>Estimated florals budget</option>
             <option>$5,000–$8,000</option>
-            <option>$8,000–$12,000</option>
-            <option>$12,000–$18,000</option>
-            <option>$18,000–$25,000</option>
+            <option>$8,000–$15,000</option>
+            <option>$15,000–$25,000</option>
             <option>$25,000+</option>
             <option>Not sure yet</option>
           </select>
@@ -122,7 +121,7 @@ redirect_from:
           <textarea id="message" name="message" placeholder="Guest count, must-have flowers, inspiration..." rows="4"></textarea>
         </div>
         <div class="form-submit field-full">
-          <button type="submit" class="btn-primary">Check my date &rarr;</button>
+          <button type="submit" class="btn-primary">Check my date</button>
         </div>
       </div>
     </form>
