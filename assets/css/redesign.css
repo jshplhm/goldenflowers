@@ -69,7 +69,10 @@ nav.site-nav.up{top:calc(-1 * var(--nav-h));}
 .nav-r a.active{opacity:1;}
 .nav-r a.active::after{transform:scaleX(1);}
 .pill{border:1px solid currentColor;border-radius:100px;padding:9px 20px;font-size:.82rem;letter-spacing:.01em;transition:background .25s,color .25s,border-color .25s;}
-.pill:hover{background:var(--terra);color:var(--paper);border-color:var(--terra);}
+/* Neutral hover: a solid accent fill fought the imagery/photo. Ink on the solid
+   nav; frosted glass when the nav is transparent over the hero photo. */
+.pill:hover{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+nav.site-nav.over-hero .pill:hover{background:oklch(100% 0 0/.92);color:var(--ink);border-color:oklch(100% 0 0);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);}
 
 /* mobile menu */
 a,button{-webkit-tap-highlight-color:transparent;}
@@ -101,6 +104,11 @@ body.menu-open .mobile-menu{transform:none;visibility:visible;transition:transfo
 .btn.ghost:hover{background:var(--paper);color:var(--ink);border-color:var(--paper);filter:none;}
 .btn.ghost-ink{background:transparent;border:1px solid var(--line);color:var(--ink);}
 .btn.ghost-ink:hover{background:var(--ink);color:var(--paper);border-color:var(--ink);filter:none;}
+/* Home hero CTA sits on the full-bleed photo: a solid fill fought the image, so
+   use a frosted-glass treatment. Scoped to .hero (home only) — the /weddings CTA
+   is on a solid background and keeps its fill. Accent-independent. */
+.hero .btn{background:oklch(100% 0 0/.14);color:oklch(100% 0 0);border:1px solid oklch(100% 0 0/.5);-webkit-backdrop-filter:blur(7px);backdrop-filter:blur(7px);}
+.hero .btn:hover{background:oklch(100% 0 0);color:var(--ink);border-color:oklch(100% 0 0);transform:translateY(-2px);filter:none;}
 /* text header (interior pages that skip the full-bleed hero) */
 .text-hero{max-width:var(--content-max);margin:0 auto;padding:clamp(120px,15vw,180px) var(--pad) clamp(36px,5vw,56px);}
 .text-hero h1{font-family:var(--d);font-weight:430;font-optical-sizing:auto;font-size:clamp(2.6rem,6vw,5rem);line-height:1.02;letter-spacing:-.02em;margin:16px 0 22px;}
@@ -223,7 +231,7 @@ button.txt-link{background:none;border-top:0;border-left:0;border-right:0;cursor
 .foot-brand{font-family:var(--d);font-size:clamp(2.4rem,5vw,3.6rem);color:var(--paper);letter-spacing:-.01em;line-height:1;}
 .foot-tag{font-size:.98rem;line-height:1.6;color:oklch(82% .02 130);margin:20px 0 26px;}
 .foot-cta{display:inline-block;border:1px solid oklch(100% 0 0/.4);border-radius:100px;padding:11px 26px;font-size:.82rem;letter-spacing:.02em;color:var(--paper);transition:background .25s,color .25s,border-color .25s;}
-.foot-cta:hover{background:var(--terra);border-color:var(--terra);color:var(--paper);}
+.foot-cta:hover{background:var(--paper);border-color:var(--paper);color:var(--ink);}
 .foot-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(24px,3vw,48px);}
 .foot-cols h4{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--terra-soft);margin-bottom:16px;}
 .foot-cols a,.foot-cols p{display:block;font-size:.92rem;margin-bottom:10px;color:oklch(86% .02 130);line-height:1.4;}
