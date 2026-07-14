@@ -82,7 +82,14 @@
     /* Keep Tab cycling inside the open dialog. */
     if(e.key==='Tab'){
       var focusables=modal.querySelectorAll('a[href],button:not([disabled]),input:not([disabled]),select:not([disabled]),textarea:not([disabled]),[tabindex]:not([tabindex="-1"])');
-      var vis=Array.prototype.filter.call(focusables,function(el){ return el.offsetParent!==null; });
+      // offsetParent!==null drops hidden controls (step 2, the X on step 1).
+      // tabIndex>=0 and the aria-hidden check drop the off-screen honeypot,
+      // which is reachable to the selector but not to a real keyboard user —
+      // leaving it in made the first/last boundaries wrong, so Shift+Tab off
+      // the first field escaped the dialog to the browser chrome.
+      var vis=Array.prototype.filter.call(focusables,function(el){
+        return el.offsetParent!==null && el.tabIndex>=0 && !el.closest('[aria-hidden="true"]');
+      });
       if(!vis.length) return;
       var first=vis[0], last=vis[vis.length-1], active=document.activeElement;
       if(!modal.contains(active)){ e.preventDefault(); (e.shiftKey?last:first).focus(); }

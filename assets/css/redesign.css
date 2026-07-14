@@ -537,6 +537,11 @@ label .opt{color:var(--mute);}
 .form-back{position:absolute;left:-7px;top:50%;transform:translateY(-50%);width:30px;height:30px;border:none;background:transparent;font-size:1.25rem;line-height:1;color:var(--forest-deep);cursor:pointer;border-radius:50%;padding:0;text-align:center;font-family:var(--b);transition:background .2s,color .2s;}
 .form-back:hover{background:oklch(20% .02 150/.07);}
 .form-back:focus-visible{outline:2px solid var(--terra);outline-offset:2px;}
+/* Bar 2 is pinned to a fixed half-width so it never moves or resizes between
+   steps: the total bar spans the same length on step 1 and step 2, and the
+   Back arrow steals its room from bar 1 alone (bar 1 is flex:1, so it absorbs
+   the margin-left below). */
+.form-progress [data-progress-step2]{flex:0 0 calc(50% - 7px);}
 /* Bar 1 clears the arrow only while Back is visible (step 2). */
 .form-back:not([hidden])+span{margin-left:34px;}
 .form-submit{margin-top:8px;}
@@ -594,7 +599,10 @@ body.modal-open{overflow:hidden;}
    and the heading's air. The 40px top still clears the corner Back button. */
 @media (max-width:520px){
   .modal{padding:40px 22px 24px;}
-  .modal-overlay{padding:2vh 14px;}
+  /* Anchor the card to the top on phones so its top and side margins stay put
+     between steps — centering made the shorter step 1 float lower than the
+     taller step 2, so the card jumped when advancing. */
+  .modal-overlay{padding:2vh 14px;align-items:flex-start;}
   .modal h2{margin:14px 0 8px;font-size:2rem;}
 }
 @media (prefers-reduced-motion:reduce){.modal,.modal-overlay{transition:opacity .25s ease,visibility .25s ease;}.modal{transform:none;}}
