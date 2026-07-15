@@ -624,10 +624,9 @@ body.modal-open{overflow:hidden;}
     padding:22px 20px calc(26px + env(safe-area-inset-bottom));
     box-shadow:0 -14px 44px oklch(20% .02 150/.30);
     max-height:92vh;max-height:var(--sheeth,92vh);
-    margin-bottom:var(--kb,0px);
     overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;
     transform:translateY(100%);
-    transition:transform .36s cubic-bezier(.32,.72,0,1),margin-bottom .18s ease,max-height .18s ease;
+    transition:transform .36s cubic-bezier(.32,.72,0,1),max-height .18s ease;
   }
   .modal-overlay.open .modal{transform:none;}
   /* grab handle — the "pull me" affordance of a native sheet */
