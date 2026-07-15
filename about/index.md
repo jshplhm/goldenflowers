@@ -71,6 +71,28 @@ redirect_from:
 
 <hr class="hr-line">
 
+<!-- CERTAINTY -->
+<section class="block">
+  <div class="twocol">
+    <div>
+      <span class="lab"><span data-ed="about:certainty.label">{{ site.data.about.certainty.label }}</span></span>
+      <h2><span data-ed="about:certainty.heading">{{ site.data.about.certainty.heading }}</span></h2>
+    </div>
+    <div class="prose">
+      {%- for p in site.data.about.certainty.paragraphs %}
+      <p><span data-ed="about:certainty.paragraphs.{{ forloop.index0 }}">{{ p }}</span></p>
+      {%- endfor %}
+    </div>
+  </div>
+  <div class="cred-grid">
+    {%- for pt in site.data.about.certainty.points %}
+    <div class="cred-item"><h4><span data-ed="about:certainty.points.{{ forloop.index0 }}.title">{{ pt.title }}</span></h4><p><span data-ed="about:certainty.points.{{ forloop.index0 }}.body">{{ pt.body }}</span></p></div>
+    {%- endfor %}
+  </div>
+</section>
+
+<hr class="hr-line">
+
 <!-- THE TEAM -->
 <section class="block">
   <div class="story-split">
@@ -109,28 +131,6 @@ redirect_from:
       })();
       </script>
     </div>
-  </div>
-</section>
-
-<hr class="hr-line">
-
-<!-- CERTAINTY -->
-<section class="block">
-  <div class="twocol">
-    <div>
-      <span class="lab"><span data-ed="about:certainty.label">{{ site.data.about.certainty.label }}</span></span>
-      <h2><span data-ed="about:certainty.heading">{{ site.data.about.certainty.heading }}</span></h2>
-    </div>
-    <div class="prose">
-      {%- for p in site.data.about.certainty.paragraphs %}
-      <p><span data-ed="about:certainty.paragraphs.{{ forloop.index0 }}">{{ p }}</span></p>
-      {%- endfor %}
-    </div>
-  </div>
-  <div class="cred-grid">
-    {%- for pt in site.data.about.certainty.points %}
-    <div class="cred-item"><h4><span data-ed="about:certainty.points.{{ forloop.index0 }}.title">{{ pt.title }}</span></h4><p><span data-ed="about:certainty.points.{{ forloop.index0 }}.body">{{ pt.body }}</span></p></div>
-    {%- endfor %}
   </div>
 </section>
 

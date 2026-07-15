@@ -546,49 +546,32 @@ function appendCommon_(params, form){
      bottom-anchored sheet rides just above the keyboard, and its content scrolls
      internally. (A margin-based lift is unreliable on iOS with a fixed body.) */
   function resetSheet(){
+    lastH=-1; lastT=-1;
     modal.style.top=''; modal.style.height=''; modal.style.bottom='';
     if(sheet) sheet.style.removeProperty('--sheeth');
   }
-  /* Scroll the sheet's own overflow so a field sits centered in the visible
-     window. Direct scrollTop (not scrollIntoView, which unreliably picks the
-     scroller inside a fixed, height-capped sheet). */
-  function revealField(el){
-    if(!el||!sheet||sheet.scrollHeight<=sheet.clientHeight+2) return;
-    var sr=sheet.getBoundingClientRect(), er=el.getBoundingClientRect();
-    var delta=(er.top - sr.top) - (sr.height/2 - er.height/2);
-    if(Math.abs(delta)>4) sheet.scrollTo({top:sheet.scrollTop+delta, behavior:'smooth'});
-  }
-  /* Defer the reveal until AFTER the sheet has reflowed to the new (keyboard)
-     height — reading rects synchronously inside the resize gives stale values. */
-  var revealT;
-  function scheduleReveal(){
-    clearTimeout(revealT);
-    revealT=setTimeout(function(){
-      var a=document.activeElement;
-      if(a && a.matches && a.matches('input,select,textarea') && sheet.contains(a)) revealField(a);
-    }, 80);
-  }
+  /* Pin the overlay to the visual viewport so the bottom-anchored sheet always
+     sits ABOVE the on-screen keyboard. Only rewrite geometry when it actually
+     changed — rewriting on every viewport tick (and animating the height) is what
+     made the sheet jump/slide while tabbing between fields. Scrolling a focused
+     field into view is left to the browser's own (smooth, only-when-needed)
+     handling; the manual re-centering we did before was the whole problem. */
+  var lastH=-1, lastT=-1;
   function fitKeyboard(){
     if(!vv || !sheet) return;
     if(!modal.classList.contains('open') || window.innerWidth>600){ resetSheet(); return; }
-    modal.style.top=Math.round(vv.offsetTop)+'px';
-    modal.style.height=Math.round(vv.height)+'px';
+    var h=Math.round(vv.height), t=Math.round(vv.offsetTop);
+    if(h===lastH && t===lastT) return;
+    lastH=h; lastT=t;
+    modal.style.top=t+'px';
+    modal.style.height=h+'px';
     modal.style.bottom='auto';
-    sheet.style.setProperty('--sheeth', Math.round(vv.height*0.94)+'px');
-    scheduleReveal();
+    sheet.style.setProperty('--sheeth', Math.round(h*0.94)+'px');
   }
   if(vv){ vv.addEventListener('resize',fitKeyboard); vv.addEventListener('scroll',fitKeyboard); }
   new MutationObserver(function(){
     if(modal.classList.contains('open')) fitKeyboard(); else resetSheet();
   }).observe(modal,{attributes:true,attributeFilter:['class']});
-  /* Bring the field you just tapped into view once the keyboard has settled. */
-  modal.addEventListener('focusin', function(e){
-    if(window.innerWidth>600) return;
-    var el=e.target;
-    if(el && el.matches && el.matches('input,select,textarea')){
-      setTimeout(function(){ revealField(el); }, 280);
-    }
-  });
 
   /* Tapping Email/Text drops the cursor straight into its field (the sheet
      grows up to meet it). Runs after the form's own change handler enables it. */
