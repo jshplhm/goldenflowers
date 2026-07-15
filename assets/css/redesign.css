@@ -623,6 +623,22 @@ body.modal-open{overflow:hidden;}
 }
 @media (prefers-reduced-motion:reduce){.modal,.modal-overlay{transition:opacity .25s ease,visibility .25s ease;}.modal{transform:none;}}
 
+/* ---- Thank-you celebrate (decorative; JS adds .celebrate when the success
+   screen appears). Only here — the step 1->2 change is intentionally un-animated. */
+@keyframes gf-check-pop{0%{opacity:0;transform:scale(.4);}60%{opacity:1;transform:scale(1.08);}100%{transform:scale(1);}}
+@keyframes gf-ring{from{opacity:.5;transform:scale(.5);}to{opacity:0;transform:scale(1.6);}}
+@keyframes gf-rise{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:none;}}
+.form-success.celebrate .form-success-check{position:relative;animation:gf-check-pop .5s cubic-bezier(.2,.8,.2,1) both;}
+.form-success.celebrate .form-success-check::after{content:"";position:absolute;inset:-6px;border-radius:50%;border:1.5px solid var(--terra);animation:gf-ring .7s ease-out both;}
+.form-success.celebrate h3{animation:gf-rise .5s ease .12s both;}
+.form-success.celebrate .form-success-lede{animation:gf-rise .5s ease .2s both;}
+.form-success.celebrate .form-success-rule,.form-success.celebrate .form-success-steps{animation:gf-rise .5s ease .3s both;}
+.form-success.celebrate .success-steps li{animation:gf-rise .45s ease both;}
+.form-success.celebrate .success-steps li:nth-child(1){animation-delay:.36s;}
+.form-success.celebrate .success-steps li:nth-child(2){animation-delay:.44s;}
+.form-success.celebrate .success-steps li:nth-child(3){animation-delay:.52s;}
+@media (prefers-reduced-motion:reduce){.form-success.celebrate *,.form-success.celebrate .form-success-check::after{animation:none !important;}}
+
 /* ---- "How should we reach you?" — contact chooser (form step 1) ----
    Check all that apply; each checked channel reveals its field. The reveals
    live inside the fieldset (plain block flow), so while closed they add no

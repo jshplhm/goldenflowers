@@ -529,4 +529,17 @@ function appendCommon_(params, form){
     if(f) f.hidden=true; if(s) s.hidden=false;
   }
 })();
+
+/* Thank-you celebrate: a gentle check-pop + staggered rise when the success
+   screen appears. Fully decoupled — it only watches the success element's hidden
+   toggle and adds a class, so it can never affect validation or submission. */
+(function(){
+  var modal=document.getElementById('consult-modal');
+  var success=modal&&modal.querySelector('[data-form-success]');
+  if(!success) return;
+  if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion:reduce)').matches) return;
+  new MutationObserver(function(){
+    if(!success.hidden){ success.classList.remove('celebrate'); void success.offsetWidth; success.classList.add('celebrate'); }
+  }).observe(success,{attributes:true,attributeFilter:['hidden']});
+})();
 </script>
