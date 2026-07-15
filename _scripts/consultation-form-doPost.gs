@@ -206,7 +206,7 @@ function handlePost_(p, ss) {
     var wasComplete = /^Complete/.test(String(leads.getRange(rowInLeads, leadsCols['Status']).getValue() || ''));
     writeRow_(leads, rowInLeads, leadsCols,
       buildRowValues_(p, false, leads.getRange(rowInLeads, leadsCols['Submitted']).getValue() || now, now, leadId));
-    if (!wasComplete) sendCompleteEmail_(p);
+    if (!wasComplete) notifyComplete_(p);
     return success_();
   }
 
@@ -220,7 +220,7 @@ function handlePost_(p, ss) {
   }
   writeRow_(leads, leads.getLastRow() + 1, leadsCols,
     buildRowValues_(p, false, submittedAt, now, leadId || genLeadIdFallback_()));
-  sendCompleteEmail_(p);
+  notifyComplete_(p);
 
   return success_();
 }
@@ -536,6 +536,135 @@ function sendCompleteEmail_(p) {
     'Message: ' + (p.message || '(none)')
   ]);
   sendMail_(subject, lines.join('\n'));
+}
+
+/* One notification per completed lead. When we have their email we send THEM
+   the branded confirmation and BCC ourselves (we reply to that thread to start
+   the conversation, so a separate internal "new lead" email is redundant).
+   With no email (text-only lead) we fall back to the internal alert so it is
+   never missed. */
+function notifyComplete_(p) {
+  if (String(p.email || '').trim()) sendAutoReply_(p);
+  else sendCompleteEmail_(p);
+}
+
+/* Immediate branded confirmation to the couple. Getting an email into their
+   inbox seconds after they submit (while they are still on the page, primed by
+   the success screen to look for it) is our best shot at surviving spam
+   filters: they can fish it out now instead of missing our real reply later.
+   BCC lands the same thread in our inbox to reply from. */
+function sendAutoReply_(p) {
+  var email = String(p.email || '').trim();
+  if (!email) { sendCompleteEmail_(p); return; }  // safety net; caller already branches
+
+  var first = (String(p.name || '').trim().split(/\s+/)[0]) || '';
+  var dateLong = fmtDateLong_(p.date);
+  var subject = dateLong
+    ? 'Checking availability for ' + dateLong + ' · Golden Flowers'
+    : 'Checking your availability · Golden Flowers';
+
+  // Only the fields they actually filled in.
+  var rows = [];
+  if (dateLong) rows.push(['Wedding date', dateLong]);
+  var venue = venueValue_(p);
+  if (venue) rows.push(['Venue', venue]);
+  if (String(p.aesthetic || '').trim()) rows.push(['Style', String(p.aesthetic).trim()]);
+  if (String(p.budget || '').trim()) rows.push(['Budget', String(p.budget).trim()]);
+  // Their free-text note gets its own block (it can be long / multi-line), so
+  // it all lives in this one email and they never wonder if it went through.
+  var note = String(p.message || '').trim();
+
+  var hi = first ? 'Hi ' + first + ',' : 'Hi,';
+
+  // Plain-text fallback (kept in step with the HTML; no em dashes in copy).
+  var t = [hi, '',
+    'Thank you for reaching out. We have received your request and we are checking our calendar now.', ''];
+  if (rows.length || note) {
+    t.push('Here is what you sent us:');
+    rows.forEach(function (r) { t.push('  ' + r[0] + ': ' + r[1]); });
+    if (note) { t.push('  Your note: ' + note); }
+    t.push('');
+  }
+  t.push(
+    'We will be in touch within 48 hours to let you know if your date is open and how we would approach your florals.', '',
+    'In the meantime, you can text us anytime at 530-557-7689.', '',
+    'Warmly,', 'Brittany', 'Golden Flowers', 'Lake Tahoe wedding florist', 'goldenflorals.com');
+  var textBody = t.join('\n');
+
+  // Brand palette as hex (the site's oklch values do not render in email).
+  var GREEN = '#2e4034', INK = '#20281f', CREAM = '#f3efe6',
+      PAPER = '#fdfbf7', LINE = '#d9d2c4', MUTE = '#6f6e62';
+
+  var detailRows = rows.map(function (r) {
+    return '<tr>' +
+      '<td style="padding:3px 18px 3px 0;font:13px Helvetica,Arial,sans-serif;color:' + MUTE + ';white-space:nowrap;vertical-align:top;">' + escHtml_(r[0]) + '</td>' +
+      '<td style="padding:3px 0;font:14px Helvetica,Arial,sans-serif;color:' + INK + ';">' + escHtml_(r[1]) + '</td>' +
+    '</tr>';
+  }).join('');
+
+  var detailsHtml = rows.length
+    ? '<p style="margin:0 0 10px;font:11px Helvetica,Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:' + MUTE + ';">Here is what you sent us</p>' +
+      '<table role="presentation" cellpadding="0" cellspacing="0" style="margin:0 0 ' + (note ? '18px' : '24px') + ';">' + detailRows + '</table>'
+    : '';
+  var noteHtml = note
+    ? '<p style="margin:0 0 8px;font:11px Helvetica,Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:' + MUTE + ';">Your note</p>' +
+      '<p style="margin:0 0 24px;padding:12px 16px;background:' + CREAM + ';border-left:2px solid ' + GREEN + ';font:14px/1.6 Helvetica,Arial,sans-serif;color:' + INK + ';white-space:pre-wrap;">' + escHtml_(note) + '</p>'
+    : '';
+
+  var html =
+  '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:' + CREAM + ';margin:0;padding:28px 12px;">' +
+    '<tr><td align="center">' +
+      '<table role="presentation" width="520" cellpadding="0" cellspacing="0" style="max-width:520px;width:100%;background:' + PAPER + ';border:1px solid ' + LINE + ';border-radius:4px;">' +
+        '<tr><td style="padding:36px 40px 0;text-align:center;">' +
+          '<div style="font:400 30px Georgia,\'Times New Roman\',serif;letter-spacing:.02em;color:' + GREEN + ';">Golden&nbsp;Flowers</div>' +
+          '<div style="font:11px Helvetica,Arial,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:' + MUTE + ';margin-top:9px;">Lake&nbsp;Tahoe Wedding Florist</div>' +
+          '<div style="border-top:1px solid ' + LINE + ';margin:24px 0 0;"></div>' +
+        '</td></tr>' +
+        '<tr><td style="padding:22px 40px 0;font:15px/1.65 Helvetica,Arial,sans-serif;color:' + INK + ';">' +
+          '<p style="margin:0 0 16px;">' + escHtml_(hi) + '</p>' +
+          '<p style="margin:0 0 22px;">Thank you for reaching out. We have received your request and we are checking our calendar now.</p>' +
+          detailsHtml + noteHtml +
+          '<p style="margin:0 0 22px;">We will be in touch within 48 hours to let you know if your date is open and how we would approach your florals.</p>' +
+          '<p style="margin:0 0 26px;">In the meantime, you can text us anytime at <strong style="color:' + GREEN + ';white-space:nowrap;">530-557-7689</strong>.</p>' +
+          '<div style="border-top:1px solid ' + LINE + ';margin:0 0 20px;"></div>' +
+        '</td></tr>' +
+        '<tr><td style="padding:0 40px 36px;font:14px/1.6 Helvetica,Arial,sans-serif;color:' + INK + ';">' +
+          'Warmly,<br>' +
+          '<strong>Brittany</strong><br>' +
+          '<span style="color:' + GREEN + ';">Golden Flowers</span><br>' +
+          '<span style="color:' + MUTE + ';">Lake Tahoe wedding florist</span><br>' +
+          '<a href="https://goldenflorals.com" style="color:' + GREEN + ';text-decoration:none;">goldenflorals.com</a>' +
+        '</td></tr>' +
+      '</table>' +
+    '</td></tr>' +
+  '</table>';
+
+  GmailApp.sendEmail(email, subject, textBody, {
+    htmlBody: html,
+    name: 'Golden Flowers',
+    replyTo: NOTIFY_EMAIL,
+    bcc: NOTIFY_EMAIL + ',' + BCC_EMAIL
+  });
+}
+
+/* "06/12/2027" -> "June 12, 2027". Unknown shapes are shown exactly as typed
+   rather than guessed at. */
+function fmtDateLong_(raw) {
+  var s = String(raw || '').trim();
+  if (!s) return '';
+  var m = s.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/);
+  if (!m) return s;
+  var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July',
+    'August', 'September', 'October', 'November', 'December'];
+  var mo = parseInt(m[1], 10), d = parseInt(m[2], 10);
+  if (mo < 1 || mo > 12 || d < 1 || d > 31) return s;
+  return months[mo - 1] + ' ' + d + ', ' + m[3];
+}
+
+function escHtml_(v) {
+  return String(v == null ? '' : v)
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
 }
 
 /* One line of contact info for digest entries: whatever they gave (both,
