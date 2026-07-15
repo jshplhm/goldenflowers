@@ -386,12 +386,13 @@ function appendCommon_(params, form){
     var firstName=greetName(data.get('name'));
     var nameEl=success.querySelector('[data-success-name]');
     if(nameEl&&firstName) nameEl.textContent=', '+firstName;
-    var dateVal=data.get('date');
-    var dateLine=success.querySelector('[data-success-date-line]'), dateEl=success.querySelector('[data-success-date]');
-    if(dateVal&&dateEl&&dateLine){ dateEl.textContent=fmtDate(dateVal); dateLine.hidden=false; }
-    // Step 1 stays generic ("Making sure your date is open.") — the specific
-    // date already sits in the lede one line up, and repeating it there was
-    // the thing that wrapped on long months.
+    // Show the confirmation-email note only when we actually have an email to
+    // send it to (text-only leads get no such email, so no note).
+    var emailNote=success.querySelector('[data-success-email-note]');
+    if(emailNote&&String(data.get('email')||'').trim()) emailNote.hidden=false;
+    // Step 1 stays generic ("Making sure your date is open."). We no longer
+    // echo the specific date on this screen: it wrapped badly on long months
+    // and duplicated the "Thank you" personalization one line up.
     // "You hear from us" names the channel they picked. Kept short (no "you")
     // so each line survives a phone screen unwrapped.
     var noteEl=success.querySelector('[data-success-note]');
