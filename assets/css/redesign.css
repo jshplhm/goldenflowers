@@ -611,44 +611,17 @@ label .opt{color:var(--mute);}
 .modal form{display:grid;gap:15px;}
 .modal .form-submit{margin-top:4px;}
 body.modal-open{overflow:hidden;}
-/* Phones: present the modal as a native-style bottom sheet. It slides up from
-   and stays anchored to the bottom edge, then grows UPWARD as fields reveal
-   (the CTA stays under the thumb). Capped to the visible viewport, scrolling
-   internally past that. --kb / --sheeth are set live by the visualViewport
-   handler so the sheet lifts above the on-screen keyboard (0 / 92vh with none). */
-@media (max-width:600px){
-  .modal-overlay{padding:0;align-items:flex-end;overflow:hidden;}
-  .modal{
-    width:100%;max-width:none;
-    border-radius:22px 22px 0 0;
-    padding:22px 20px calc(26px + env(safe-area-inset-bottom));
-    box-shadow:0 -14px 44px oklch(20% .02 150/.30);
-    max-height:92vh;max-height:var(--sheeth,92vh);
-    overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;
-    transform:translateY(100%);
-    transition:transform .36s cubic-bezier(.32,.72,0,1);
-  }
-  .modal-overlay.open .modal{transform:none;}
+/* Phones: step 1 should fit without scrolling, so trim the card's padding
+   and the heading's air. The 40px top still clears the corner Back button. */
+@media (max-width:520px){
+  .modal{padding:40px 22px 24px;}
+  /* Anchor the card to the top on phones so its top and side margins stay put
+     between steps — centering made the shorter step 1 float lower than the
+     taller step 2, so the card jumped when advancing. */
+  .modal-overlay{padding:2vh 14px;align-items:flex-start;}
   .modal h2{margin:14px 0 8px;font-size:2rem;}
 }
 @media (prefers-reduced-motion:reduce){.modal,.modal-overlay{transition:opacity .25s ease,visibility .25s ease;}.modal{transform:none;}}
-
-/* ---- Step + thank-you motion (all viewports; decorative, JS-triggered) ---- */
-@keyframes step-in{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:none;}}
-.step-anim{animation:step-in .32s cubic-bezier(.22,.61,.36,1) both;}
-@keyframes gf-check-pop{0%{opacity:0;transform:scale(.4);}60%{opacity:1;transform:scale(1.08);}100%{transform:scale(1);}}
-@keyframes gf-ring{from{opacity:.5;transform:scale(.5);}to{opacity:0;transform:scale(1.6);}}
-@keyframes gf-rise{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:none;}}
-.form-success.celebrate .form-success-check{position:relative;animation:gf-check-pop .5s cubic-bezier(.2,.8,.2,1) both;}
-.form-success.celebrate .form-success-check::after{content:"";position:absolute;inset:-6px;border-radius:50%;border:1.5px solid var(--terra);animation:gf-ring .7s ease-out both;}
-.form-success.celebrate h3{animation:gf-rise .5s ease .12s both;}
-.form-success.celebrate .form-success-lede{animation:gf-rise .5s ease .2s both;}
-.form-success.celebrate .form-success-rule,.form-success.celebrate .form-success-steps{animation:gf-rise .5s ease .3s both;}
-.form-success.celebrate .success-steps li{animation:gf-rise .45s ease both;}
-.form-success.celebrate .success-steps li:nth-child(1){animation-delay:.36s;}
-.form-success.celebrate .success-steps li:nth-child(2){animation-delay:.44s;}
-.form-success.celebrate .success-steps li:nth-child(3){animation-delay:.52s;}
-@media (prefers-reduced-motion:reduce){.step-anim,.form-success.celebrate *,.form-success.celebrate .form-success-check::after{animation:none !important;}}
 
 /* ---- "How should we reach you?" — contact chooser (form step 1) ----
    Check all that apply; each checked channel reveals its field. The reveals
