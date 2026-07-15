@@ -1,11 +1,10 @@
 hero:
-  label: Working with us
-  heading: Full-service *wedding flowers.*
+  label: Full-service floral design
+  heading: Lake Tahoe Wedding Flowers
   subheading: Every couple works directly with our owner, Brittany, from the first
-    consultation through setup and breakdown. She designs alongside some of the
-    region's best florists, and the people who plan your wedding are the same
-    people who build it.
-  button_primary: Schedule a consultation
+    consultation through setup and breakdown. The people who plan your wedding are
+    the same people who build it.
+  button_primary: Check your date
   button_secondary: Meet Brittany
 process:
   label: How it works

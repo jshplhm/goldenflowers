@@ -245,6 +245,10 @@ button.txt-link{background:none;border-top:0;border-left:0;border-right:0;cursor
 .hero.hero-sm{height:64vh;min-height:460px;}
 .hero.hero-sm::after{background:linear-gradient(180deg,oklch(18% .03 150/.45) 0%,transparent 30%,oklch(12% .03 150/.5) 66%,oklch(12% .03 150/.85) 100%);}
 
+/* Landing hero: taller than interior for cold ad traffic (headline + CTA above the
+   fold on mobile), and keeps the default left+bottom scrim for text legibility. */
+.hero.hero-land{height:80vh;min-height:600px;}
+
 /* ---------- PORTFOLIO ---------- */
 .pf-note{text-align:center;color:var(--mute);font-size:.95rem;padding:26px var(--pad) 0;}
 .pf-note a{color:var(--forest);border-bottom:1px solid var(--terra);padding-bottom:2px;}

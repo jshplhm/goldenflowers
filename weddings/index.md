@@ -1,9 +1,10 @@
 ---
 layout: redesign
+hero_nav: true
 title: "Weddings"
 seo_title: "Lake Tahoe Wedding Flowers & Pricing | Golden Flowers"
 permalink: /weddings
-description: "Golden Flowers designs seasonal, foam-free wedding flowers for Lake Tahoe, Truckee, and the Sierra Nevada. How our process works and what to expect on pricing."
+description: "Golden Flowers designs seasonal, sustainable wedding flowers for Lake Tahoe, Truckee, and the Sierra Nevada. How our process works and what to expect on pricing."
 canonical_url: https://goldenflorals.com/weddings
 redirect_from:
   - /weddingflowers
@@ -37,14 +38,16 @@ redirect_from:
   - /a-la-carte-weddings/p/delivery-to-your-venue
 ---
 
-<!-- TEXT HEADER (no photo: distinct from the other pages) -->
-<header class="text-hero">
-  <span class="lab"><span data-ed="weddings:hero.label">{{ site.data.weddings.hero.label }}</span></span>
-  <h1>{% include em.html t=site.data.weddings.hero.heading k="weddings:hero.heading" %}</h1>
-  <p class="th-sub"><span data-ed="weddings:hero.subheading">{{ site.data.weddings.hero.subheading }}</span></p>
-  <div class="hero-btns">
-    <a class="btn" href="{{ site.baseurl }}/consultation-form"><span data-ed="weddings:hero.button_primary">{{ site.data.weddings.hero.button_primary }}</span></a>
-    <a class="btn ghost-ink" href="{{ site.baseurl }}/about"><span data-ed="weddings:hero.button_secondary">{{ site.data.weddings.hero.button_secondary }}</span> <span>&rarr;</span></a>
+<!-- HERO (photo: strengthened as a cold first impression for paid-ad traffic) -->
+<header class="hero hero-land">
+  <img class="bg" src="{{ site.baseurl }}/assets/images/portfolio/tori-tucker/tori-tucker-02.jpg" alt="Bride holding a lush garden-rose and ranunculus bouquet at a Lake Tahoe beach wedding by Golden Flowers" style="object-position:center 55%;">
+  <div class="hero-in">
+    <p class="ey lab"><span data-ed="weddings:hero.label">{{ site.data.weddings.hero.label }}</span></p>
+    <h1 class="disp">{% include em.html t=site.data.weddings.hero.heading k="weddings:hero.heading" %}</h1>
+    <div class="hero-foot">
+      <p class="hero-sub"><span data-ed="weddings:hero.subheading">{{ site.data.weddings.hero.subheading }}</span></p>
+      <a class="btn" href="{{ site.baseurl }}/consultation-form"><span data-ed="weddings:hero.button_primary">{{ site.data.weddings.hero.button_primary }}</span> <span>&rarr;</span></a>
+    </div>
   </div>
 </header>
 
