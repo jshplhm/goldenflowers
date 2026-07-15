@@ -134,15 +134,6 @@ redirect_from:
   </div>
 </section>
 
-<!-- EDITORIAL BREAK -->
-<section class="immersive">
-  <img class="bg" src="{{ site.baseurl }}/assets/images/portfolio/catherine-joaquin/catherine-joaquin-15.jpg" alt="Lake Tahoe wedding florals by Golden Flowers">
-  <div class="il">
-    <span class="lab"><span data-ed="about:editorial.label">{{ site.data.about.editorial.label }}</span></span>
-    <p class="disp"><span data-ed="about:editorial.heading">{{ site.data.about.editorial.heading }}</span></p>
-  </div>
-</section>
-
 <!-- SEASONAL AVAILABILITY -->
 <section class="block" id="seasonal-availability">
   <span class="lab"><span data-ed="about:seasonal.label">{{ site.data.about.seasonal.label }}</span></span>

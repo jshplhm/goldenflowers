@@ -529,4 +529,54 @@ function appendCommon_(params, form){
     if(f) f.hidden=true; if(s) s.hidden=false;
   }
 })();
+
+/* Mobile bottom-sheet polish + step/thank-you motion. PURELY presentational and
+   fully decoupled from the form logic above: it observes the same hidden/class
+   toggles the form already drives, so if any of this no-ops the form still
+   validates, submits, and shows the thank-you exactly as before. */
+(function(){
+  var modal=document.getElementById('consult-modal');
+  if(!modal) return;
+  var sheet=modal.querySelector('.modal');
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+  var vv=window.visualViewport;
+
+  /* Keep the bottom sheet lifted above the on-screen keyboard and capped to the
+     visible viewport (phones only). --kb lifts it; --sheeth caps its height. */
+  function fitKeyboard(){
+    if(!sheet) return;
+    if(!vv || !modal.classList.contains('open') || window.innerWidth>600){
+      sheet.style.removeProperty('--kb'); sheet.style.removeProperty('--sheeth'); return;
+    }
+    var kb=Math.max(0, Math.round(window.innerHeight - vv.height - vv.offsetTop));
+    sheet.style.setProperty('--kb', kb+'px');
+    sheet.style.setProperty('--sheeth', Math.round(vv.height*0.92)+'px');
+  }
+  if(vv){ vv.addEventListener('resize',fitKeyboard); vv.addEventListener('scroll',fitKeyboard); }
+  new MutationObserver(function(){
+    if(modal.classList.contains('open')) fitKeyboard();
+    else if(sheet){ sheet.style.removeProperty('--kb'); sheet.style.removeProperty('--sheeth'); }
+  }).observe(modal,{attributes:true,attributeFilter:['class']});
+
+  /* Tapping Email/Text drops the cursor straight into its field (the sheet
+     grows up to meet it). Runs after the form's own change handler enables it. */
+  modal.querySelectorAll('input[name="contact_method"]').forEach(function(c){
+    c.addEventListener('change', function(){
+      if(!c.checked) return;
+      var block=modal.querySelector(c.value==='Email'?'[data-reach-email]':'[data-reach-phone]');
+      var input=block&&block.querySelector('input');
+      if(input) setTimeout(function(){ if(!input.disabled) input.focus(); }, 60);
+    });
+  });
+
+  if(reduce) return; // everything below is decorative
+
+  function replay(el, cls){ if(!el) return; el.classList.remove(cls); void el.offsetWidth; el.classList.add(cls); }
+  var step1=modal.querySelector('.form-step-1'), step2=modal.querySelector('.form-step-2');
+  var success=modal.querySelector('[data-form-success]');
+  function watch(el, fn){ if(el) new MutationObserver(fn).observe(el,{attributes:true,attributeFilter:['hidden']}); }
+  watch(step2, function(){ if(!step2.hidden) replay(step2,'step-anim'); });
+  watch(step1, function(){ if(!step1.hidden) replay(step1,'step-anim'); }); // Back
+  watch(success, function(){ if(!success.hidden) replay(success,'celebrate'); });
+})();
 </script>
