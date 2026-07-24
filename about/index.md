@@ -19,6 +19,7 @@ redirect_from:
 @media(max-width:760px){
   .story-split{grid-template-columns:1fr;gap:22px;}
   .story-split.rev .ss-img{order:0;}
+  .story-split.img-first-mobile .ss-img{order:-1;}
   .story-split .ss-img img{min-height:0;aspect-ratio:4/5;}
 }
 </style>
@@ -95,7 +96,7 @@ redirect_from:
 
 <!-- THE TEAM -->
 <section class="block">
-  <div class="story-split">
+  <div class="story-split img-first-mobile">
     <div class="ss-text">
       <span class="lab"><span data-ed="about:team.label">{{ site.data.about.team.label }}</span></span>
       <h2 class="h-lg"><span data-ed="about:team.heading">{{ site.data.about.team.heading }}</span></h2>
