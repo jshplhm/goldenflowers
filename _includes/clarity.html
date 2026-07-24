@@ -1,0 +1,28 @@
+{%- comment -%}
+Microsoft Clarity (heatmaps + session recordings). Project ID xrj6tj28ow.
+Fires ONLY in production builds (JEKYLL_ENV=production, which the GitHub Actions
+deploy sets — see .github/workflows/pages.yml). Local `jekyll serve`/`build`
+default to the development environment, so looking at the site locally never
+pollutes Clarity with test sessions. Wrapped in try/catch so an ad-blocker or
+offline clarity.ms can never throw and break the page; the tag itself is async,
+so a blocked load just no-ops. Manage the project at clarity.microsoft.com.
+{%- endcomment -%}
+{%- if jekyll.environment == "production" -%}
+<script type="text/javascript">
+  try {
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "xrj6tj28ow");
+
+    // Tag Google Ads sessions. Clarity's loader defines window.clarity as a
+    // synchronous queue stub, so "set" calls made now are buffered until the
+    // tag script loads. The typeof guards mean an ad-blocked Clarity is a no-op.
+    if (typeof window.clarity === "function") {
+      var gclid = new URLSearchParams(window.location.search).get("gclid");
+      window.clarity("set", "source", gclid ? "google_ads" : "non_ads");
+    }
+  } catch (e) { /* Clarity blocked or unavailable — ignore */ }
+</script>
+{%- endif -%}
