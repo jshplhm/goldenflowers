@@ -26,7 +26,9 @@ redirect_from:
   - /sendflowers/p/i-love-you
   - /sendflowers/p/sympathy-arrangment
   - /sendflowers/p/the-haven-vessel-pfjys
+  - /sendflowers/p/uniquely-fancy-m2clb
   - /the-vday-shop
+  - /the-vday-shop-1
   - /the-vday-shop/p/y9uaydt8w2o28islosjxaevlkwpbbw
   - /the-vday-shop/p/hand-crafted-chocolates
 ---
