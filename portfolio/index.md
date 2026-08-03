@@ -96,7 +96,7 @@ redirect_from:
       <span class="pf-cap"><b>Jacqueline &amp; Brandon</b></span>
     </a>
     <a class="pf-card" href="{{ site.baseurl }}/portfolio/hannah-chance">
-      <img src="{{ site.baseurl }}/assets/images/portfolio/hannah-chance/hannah-chance-10.jpg" alt="Hannah &amp; Chance wedding flowers: The Stone House, Nevada County" loading="lazy">
+      <img src="{{ site.baseurl }}/assets/images/portfolio/hannah-chance/hannah-chance-23.jpg" alt="Hannah &amp; Chance wedding flowers: The Stone House, Nevada County" loading="lazy">
       <span class="pf-cap"><b>Hannah &amp; Chance</b></span>
     </a>
     <a class="pf-card" href="{{ site.baseurl }}/portfolio/lynn-aaron">
