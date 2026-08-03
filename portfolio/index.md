@@ -92,7 +92,7 @@ redirect_from:
       <span class="pf-cap"><b>Katie &amp; James</b></span>
     </a>
     <a class="pf-card" href="{{ site.baseurl }}/portfolio/jacqueline-brandon">
-      <img src="{{ site.baseurl }}/assets/images/portfolio/jacqueline-brandon/jacqueline-brandon-11.jpg" alt="Jacqueline &amp; Brandon wedding flowers: National Exchange Hotel, Nevada City" loading="lazy">
+      <img src="{{ site.baseurl }}/assets/images/portfolio/jacqueline-brandon/jacqueline-brandon-06.jpg" alt="Jacqueline &amp; Brandon wedding flowers: National Exchange Hotel, Nevada City" loading="lazy">
       <span class="pf-cap"><b>Jacqueline &amp; Brandon</b></span>
     </a>
     <a class="pf-card" href="{{ site.baseurl }}/portfolio/hannah-chance">
