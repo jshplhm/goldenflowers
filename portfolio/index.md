@@ -154,7 +154,7 @@ redirect_from:
       <span class="pf-cap"><b>Kelly &amp; Dylan</b></span>
     </a>
     <a class="pf-card" href="{{ site.baseurl }}/portfolio/tori-tucker">
-      <img src="{{ site.baseurl }}/assets/images/portfolio/tori-tucker/tori-tucker-12.jpg" alt="Tori &amp; Tucker wedding flowers: North Tahoe Event Center, Kings Beach" loading="lazy">
+      <img src="{{ site.baseurl }}/assets/images/portfolio/tori-tucker/tori-tucker-18.jpg" alt="Tori &amp; Tucker wedding flowers: North Tahoe Event Center, Kings Beach" loading="lazy">
       <span class="pf-cap"><b>Tori &amp; Tucker</b></span>
     </a>
   </div>
