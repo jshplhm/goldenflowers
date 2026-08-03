@@ -142,7 +142,7 @@ redirect_from:
   </div>
   <div class="pf-grid">
     <a class="pf-card" href="{{ site.baseurl }}/portfolio/camille-max">
-      <img src="{{ site.baseurl }}/assets/images/portfolio/camille-max/camille-max-23.jpg" alt="Camille &amp; Max wedding flowers: North Star House, Grass Valley" loading="lazy">
+      <img src="{{ site.baseurl }}/assets/images/portfolio/camille-max/camille-max-09.jpg" alt="Camille &amp; Max wedding flowers: North Star House, Grass Valley" loading="lazy">
       <span class="pf-cap"><b>Camille &amp; Max</b></span>
     </a>
     <a class="pf-card" href="{{ site.baseurl }}/portfolio/catherine-joaquin">
