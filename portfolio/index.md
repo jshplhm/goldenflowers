@@ -150,7 +150,7 @@ redirect_from:
       <span class="pf-cap"><b>Catherine &amp; Joaquin</b></span>
     </a>
     <a class="pf-card" href="{{ site.baseurl }}/portfolio/kelly-dylan">
-      <img src="{{ site.baseurl }}/assets/images/portfolio/kelly-dylan/kelly-dylan-04.jpg" alt="Kelly &amp; Dylan wedding flowers: blue delphinium beach ceremony installation, North Tahoe Event Center, Kings Beach" loading="lazy" style="object-position:center 40%;">
+      <img src="{{ site.baseurl }}/assets/images/portfolio/kelly-dylan/kelly-dylan-07.jpg" alt="Kelly &amp; Dylan wedding flowers: blue delphinium beach ceremony installation, North Tahoe Event Center, Kings Beach" loading="lazy" style="object-position:center 40%;">
       <span class="pf-cap"><b>Kelly &amp; Dylan</b></span>
     </a>
     <a class="pf-card" href="{{ site.baseurl }}/portfolio/tori-tucker">
