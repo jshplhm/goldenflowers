@@ -127,7 +127,7 @@ redirect_from:
       <span class="pf-cap"><b>Niamh &amp; Nick</b></span>
     </a>
     <a class="pf-card" href="{{ site.baseurl }}/portfolio/sarah-brian">
-      <img src="{{ site.baseurl }}/assets/images/portfolio/sarah-brian/sarah-brian-09.jpg" alt="Sarah &amp; Brian wedding flowers: hanging greenery and white floral ceremony installation, The Miner's Foundry, Nevada City" loading="lazy" style="object-position:center 40%;">
+      <img src="{{ site.baseurl }}/assets/images/portfolio/sarah-brian/sarah-brian-01.jpg" alt="Sarah &amp; Brian wedding flowers: hanging greenery and white floral ceremony installation, The Miner's Foundry, Nevada City" loading="lazy" style="object-position:center 40%;">
       <span class="pf-cap"><b>Sarah &amp; Brian</b></span>
     </a>
   </div>
