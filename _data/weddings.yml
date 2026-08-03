@@ -2,8 +2,7 @@ hero:
   label: Bold, Artful and sustainable floral design
   heading: Lake Tahoe Wedding Flowers
   subheading: "We take on fewer weddings so we can give yours more. The people who
-    design your flowers are the same people who install them: foam-free, from
-    California grown stems."
+    design your flowers are the same people who install them."
   button_primary: Check your date
   button_secondary: Meet Brittany
 process:
@@ -27,9 +26,9 @@ process:
     - number: "03"
       when: If we're a fit · held 7 days
       title: Proposal & a held date
-      body: "When it feels mutual, Brittany builds a custom proposal: mood board,
-        itemized estimate, and seasonal sourcing plan. We hold your date for 7
-        days while you review, so you can decide without losing it."
+      body: "When it feels mutual, we build a custom proposal that includes a mood
+        board, itemized estimate, and seasonal sourcing plan. We hold your date
+        for 7 days while you review, so you can decide without losing it."
     - number: "04"
       when: To lock it in
       title: Deposit to secure your date
@@ -41,7 +40,7 @@ process:
       title: Refinement
       body: As your final count, layout, and timeline settle, we refine the design and
         lock your stem list around what's at peak that week. Your remaining
-        balance is due 30 days before the wedding.
+        balance is due 60 days before the wedding.
     - number: "06"
       when: Wedding week & day
       title: Delivery, setup & install
