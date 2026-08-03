@@ -1129,15 +1129,45 @@ function imgPath(img) {
 }
 
 let repTarget = null;
+let repBusy = false;
 
-/* rewrite every reference to the clicked photo in this page's source */
+const REP_UNMATCHED = "This photo is placed by the site's design rather than this page, so it can't be swapped here. Tell Josh which photo you want changed.";
+
+/* the image path inside the card that links to /portfolio/<slug>, with its
+ * offset in the source (the src carries a {{ site.baseurl }} prefix we leave
+ * alone) */
+function cardPhotoInSource(text, slug) {
+  const link = text.indexOf(`/portfolio/${slug}"`);
+  if (link < 0) return null;
+  const stop = text.indexOf("</a>", link);
+  const seg = text.slice(link, stop < 0 ? link + 800 : stop);
+  const m = seg.match(/<img[^>]*\ssrc="(?:\{\{[^}]*\}\}\s*)?(\/[^"]+)"/);
+  return m ? { path: m[1], at: link + seg.indexOf(m[1], m.index) } : null;
+}
+
+/* the source text with the clicked photo pointed at newSrcPath, or null if
+ * this page doesn't place that photo at all */
+function sourceSwappedTo(text, newSrcPath) {
+  if (text.includes(repTarget.path)) return text.split(repTarget.path).join(newSrcPath);
+  /* the preview iframe can be a build behind main — a deploy takes ~2 minutes,
+   * so after a swap the photo on screen may no longer be the one in the
+   * source. Rewrite this wedding's card by its own link rather than failing. */
+  if (repTarget.cardSlug) {
+    const hit = cardPhotoInSource(text, repTarget.cardSlug);
+    if (hit) return text.slice(0, hit.at) + newSrcPath + text.slice(hit.at + hit.path.length);
+  }
+  return null;
+}
+
+/* rewrite every reference to the clicked photo in this page's source.
+ * Returns false when the source already shows that photo (nothing to commit). */
 async function swapSourceTo(newSrcPath) {
   const { text } = await rawFile(curPage);
-  if (!text.includes(repTarget.path)) {
-    throw new Error("This photo is placed by the site's design rather than this page, so it can't be swapped here. Tell Josh which photo you want changed.");
-  }
-  const updated = text.split(repTarget.path).join(newSrcPath);
+  const updated = sourceSwappedTo(text, newSrcPath);
+  if (updated === null) throw new Error(REP_UNMATCHED);
+  if (updated === text) return false;
   await commitFiles([{ path: curPage, text: updated }], `Swap a photo on ${curPage} via inline editor`);
+  return true;
 }
 
 function openReplace(img) {
@@ -1154,12 +1184,10 @@ function openReplace(img) {
    * same wedding instead of uploading. A cover swapped by upload lives in
    * assets/images/pages/, so fall back to the card's own link for the slug —
    * otherwise that tile loses the picker forever after one upload. */
-  let slug = (repTarget.path.match(/^\/assets\/images\/portfolio\/([^/]+)\//) || [])[1];
-  if (!slug) {
-    const card = img.closest('a[href*="/portfolio/"]');
-    const href = card && card.getAttribute("href").match(/\/portfolio\/([^/?#]+)/);
-    if (href && href[1] !== "index") slug = href[1];
-  }
+  const card = img.closest('a[href*="/portfolio/"]');
+  const href = card && card.getAttribute("href").match(/\/portfolio\/([^/?#]+)/);
+  if (href && href[1] !== "index") repTarget.cardSlug = href[1];
+  const slug = (repTarget.path.match(/^\/assets\/images\/portfolio\/([^/]+)\//) || [])[1] || repTarget.cardSlug;
   if (slug) {
     fetch(`${API}assets/images/portfolio/${slug}?ref=${encodeURIComponent(BRANCH)}`, { headers: ghHeaders(), cache: "no-store" })
       .then((r) => (r.ok ? r.json() : []))
@@ -1178,20 +1206,32 @@ function openReplace(img) {
           t.loading = "lazy";
           t.title = it.name;
           t.addEventListener("click", async () => {
+            /* one swap at a time: a second click landing mid-save used to
+             * commit the same change twice (empty commit) or fail against the
+             * source the first click had already rewritten */
+            if (repBusy) return;
+            repBusy = true;
+            repGal.classList.add("busy");
             repErr.style.display = "none";
             try {
               const newSrc = `/${it.path}`;
-              await swapSourceTo(newSrc);
+              const changed = await swapSourceTo(newSrc);
               repTarget.el.removeAttribute("srcset");
               repTarget.el.src = newSrc;
               repModal.hidden = true;
               repTarget = null;
               statusEl.className = "ed-status ok";
-              statusEl.textContent = DRYRUN ? "Dry run done — nothing committed" : "✓ Photo swapped — it's on the page now, live site in ~2 minutes";
+              statusEl.textContent = DRYRUN
+                ? "Dry run done — nothing committed"
+                : changed
+                  ? "✓ Photo swapped — it's on the page now, live site in ~2 minutes"
+                  : "✓ That photo is already the one on the live site";
             } catch (err) {
               repErr.textContent = err.message;
               repErr.style.display = "block";
             }
+            repBusy = false;
+            repGal.classList.remove("busy");
           });
           repGal.appendChild(t);
         }
@@ -1212,13 +1252,14 @@ repForm.addEventListener("submit", async (e) => {
   if (!DRYRUN && !token()) { repModal.hidden = true; await ensureAuth(); return; }
   try {
     const { text } = await rawFile(curPage);
-    if (!text.includes(repTarget.path)) {
-      throw new Error("This photo is placed by the site's design rather than this page, so it can't be swapped here. Tell Josh which photo you want changed.");
-    }
+    /* check before resizing so an unswappable photo fails fast */
+    if (sourceSwappedTo(text, "") === null) throw new Error(REP_UNMATCHED);
     const { base64, blobUrl } = await processImage(file, 2400);
-    const stem = repTarget.path.split("/").pop().replace(/\.[a-z]+$/i, "");
+    /* drop any suffix an earlier upload added so re-uploads don't grow a
+     * tail of timestamps (katie-james-01-msch3pw2-mschbtqy…) */
+    const stem = repTarget.path.split("/").pop().replace(/\.[a-z]+$/i, "").replace(/(?:-[a-z0-9]{8})+$/i, "");
     const newPath = `assets/images/pages/${stem}-${Date.now().toString(36)}.jpg`;
-    const updated = text.split(repTarget.path).join(`/${newPath}`);
+    const updated = sourceSwappedTo(text, `/${newPath}`);
     await commitFiles(
       [{ path: newPath, base64 }, { path: curPage, text: updated }],
       `Swap a photo on ${curPage} via inline editor`
