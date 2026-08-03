@@ -1151,10 +1151,16 @@ function openReplace(img) {
 
   /* if this photo belongs to a wedding gallery (e.g. a cover tile on the
    * portfolio or home page), offer picking a different photo from that
-   * same wedding instead of uploading */
-  const m = repTarget.path.match(/^\/assets\/images\/portfolio\/([^/]+)\//);
-  if (m) {
-    const slug = m[1];
+   * same wedding instead of uploading. A cover swapped by upload lives in
+   * assets/images/pages/, so fall back to the card's own link for the slug —
+   * otherwise that tile loses the picker forever after one upload. */
+  let slug = (repTarget.path.match(/^\/assets\/images\/portfolio\/([^/]+)\//) || [])[1];
+  if (!slug) {
+    const card = img.closest('a[href*="/portfolio/"]');
+    const href = card && card.getAttribute("href").match(/\/portfolio\/([^/?#]+)/);
+    if (href && href[1] !== "index") slug = href[1];
+  }
+  if (slug) {
     fetch(`${API}assets/images/portfolio/${slug}?ref=${encodeURIComponent(BRANCH)}`, { headers: ghHeaders(), cache: "no-store" })
       .then((r) => (r.ok ? r.json() : []))
       .then((items) => {
