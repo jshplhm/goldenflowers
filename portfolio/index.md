@@ -88,7 +88,7 @@ redirect_from:
   </div>
   <div class="pf-grid">
     <a class="pf-card" href="{{ site.baseurl }}/portfolio/katie-james">
-      <img src="{{ site.baseurl }}/assets/images/portfolio/katie-james/katie-james-07.jpg" alt="Katie &amp; James wedding flowers: The Miner's Foundry, Nevada City" loading="eager" fetchpriority="high">
+      <img src="{{ site.baseurl }}/assets/images/portfolio/katie-james/katie-james-08.jpg" alt="Katie &amp; James wedding flowers: The Miner's Foundry, Nevada City" loading="eager" fetchpriority="high">
       <span class="pf-cap"><b>Katie &amp; James</b></span>
     </a>
     <a class="pf-card" href="{{ site.baseurl }}/portfolio/jacqueline-brandon">
