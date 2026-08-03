@@ -146,7 +146,7 @@ redirect_from:
       <span class="pf-cap"><b>Camille &amp; Max</b></span>
     </a>
     <a class="pf-card" href="{{ site.baseurl }}/portfolio/catherine-joaquin">
-      <img src="{{ site.baseurl }}/assets/images/portfolio/catherine-joaquin/catherine-joaquin-15.jpg" alt="Catherine &amp; Joaquin wedding flowers: National Exchange Hotel, Nevada City" loading="lazy">
+      <img src="{{ site.baseurl }}/assets/images/portfolio/catherine-joaquin/catherine-joaquin-13.jpg" alt="Catherine &amp; Joaquin wedding flowers: National Exchange Hotel, Nevada City" loading="lazy">
       <span class="pf-cap"><b>Catherine &amp; Joaquin</b></span>
     </a>
     <a class="pf-card" href="{{ site.baseurl }}/portfolio/kelly-dylan">
