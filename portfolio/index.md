@@ -100,7 +100,7 @@ redirect_from:
       <span class="pf-cap"><b>Hannah &amp; Chance</b></span>
     </a>
     <a class="pf-card" href="{{ site.baseurl }}/portfolio/lynn-aaron">
-      <img src="{{ site.baseurl }}/assets/images/portfolio/lynn-aaron/lynn-aaron-16.jpg" alt="Lynn &amp; Aaron wedding flowers: long banquet table with wild foraged centerpieces during dinner, Palisades High Camp, Olympic Valley" loading="lazy" style="object-position:center 42%;">
+      <img src="{{ site.baseurl }}/assets/images/portfolio/lynn-aaron/lynn-aaron-21.jpg" alt="Lynn &amp; Aaron wedding flowers: long banquet table with wild foraged centerpieces during dinner, Palisades High Camp, Olympic Valley" loading="lazy" style="object-position:center 42%;">
       <span class="pf-cap"><b>Lynn &amp; Aaron</b></span>
     </a>
   </div>
