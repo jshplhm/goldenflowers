@@ -26,7 +26,8 @@
  *
  * The spreadsheet's three tabs, named exactly (case matters):
  *   leads          — completed submissions. Each new one emails immediately.
- *   partial leads  — step-1-only submissions. One digest email per day.
+ *   partial leads  — step-1-only submissions. Daily digest of NEW partials
+ *                    only; each is listed once, never re-nagged (watermark).
  *   spam           — rejected submissions. One digest email per day when
  *                    anything new landed, so false positives get reviewed.
  * The script creates any missing tab (with headers) on first use.
@@ -698,8 +699,10 @@ function dailyDigests() {
   spamDigest_();
 }
 
-/** One email per day listing everyone currently sitting on Partial leads.
- *  Skips silently when the tab is empty. */
+/** One email per day listing partials that landed since the last digest.
+ *  Each partial is emailed exactly once (watermark = newest Submitted time
+ *  already covered), the same way the spam digest works — no more daily
+ *  re-nagging about the same stragglers. Skips silently when nothing is new. */
 function partialLeadsDigest_() {
   var ss = SpreadsheetApp.getActive();
   var sheet = ss.getSheetByName(PARTIALS_SHEET);
@@ -710,22 +713,29 @@ function partialLeadsDigest_() {
   var minAge = new Date(Date.now() - PARTIAL_MIN_AGE_MINUTES * 60000);
   var dayAgo = new Date(Date.now() - 24 * 3600000);
 
+  var props = PropertiesService.getScriptProperties();
+  var last = Number(props.getProperty('partialDigestAt') || 0);
+  var newest = last;
+
   var fresh = [], older = [];
   values.forEach(function (row) {
     var name = row[cols['Name'] - 1], email = row[cols['Email'] - 1];
     var phone = cols['Phone'] ? row[cols['Phone'] - 1] : '';
     if (!name && !email && !phone) return; // blank spacer row
     var updated = row[cols['Updated'] - 1];
-    if (updated instanceof Date && updated > minAge) return; // possibly still typing
+    if (updated instanceof Date && updated > minAge) return; // possibly still typing, hold for tomorrow
+    var submitted = row[cols['Submitted'] - 1];
+    var subMs = submitted instanceof Date ? submitted.getTime() : 0;
+    if (subMs && subMs <= last) return; // already covered by an earlier digest
+    if (subMs > newest) newest = subMs; // only unemailed rows advance the watermark
     var entry =
       '• ' + (name || '(no name)') + ' — ' + contactLine_(row, cols) + '\n' +
       '  Wedding date: ' + (fmtWeddingDate_(row[cols['Wedding Date'] - 1]) || '(none)') +
       '  ·  Started: ' + fmtWhen_(row[cols['Submitted'] - 1]);
-    var submitted = row[cols['Submitted'] - 1];
     (submitted instanceof Date && submitted > dayAgo ? fresh : older).push(entry);
   });
 
-  if (!fresh.length && !older.length) return;
+  if (!fresh.length && !older.length) { props.setProperty('partialDigestAt', String(newest)); return; }
 
   var parts = [
     'These couples filled in step 1 (date, name, contact) but never finished step 2.',
@@ -741,6 +751,7 @@ function partialLeadsDigest_() {
     total + ' partial lead' + (total > 1 ? 's' : '') + ' — finished step 1 only',
     parts.join('\n')
   );
+  props.setProperty('partialDigestAt', String(newest));
 }
 
 /** One email per day IF anything new landed on the Spam tab since the last
