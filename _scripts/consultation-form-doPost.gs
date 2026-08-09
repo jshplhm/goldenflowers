@@ -700,9 +700,11 @@ function dailyDigests() {
 }
 
 /** One email per day listing partials that landed since the last digest.
- *  Each partial is emailed exactly once (watermark = newest Submitted time
+ *  Normally each partial is listed once (watermark = newest Submitted time
  *  already covered), the same way the spam digest works — no more daily
- *  re-nagging about the same stragglers. Skips silently when nothing is new. */
+ *  re-nagging about the same stragglers. Biased toward listing a straggler
+ *  twice rather than never: see the watermark cap below. Skips silently when
+ *  nothing is new. */
 function partialLeadsDigest_() {
   var ss = SpreadsheetApp.getActive();
   var sheet = ss.getSheetByName(PARTIALS_SHEET);
@@ -716,6 +718,7 @@ function partialLeadsDigest_() {
   var props = PropertiesService.getScriptProperties();
   var last = Number(props.getProperty('partialDigestAt') || 0);
   var newest = last;
+  var heldOldest = Infinity;
 
   var fresh = [], older = [];
   values.forEach(function (row) {
@@ -723,7 +726,11 @@ function partialLeadsDigest_() {
     var phone = cols['Phone'] ? row[cols['Phone'] - 1] : '';
     if (!name && !email && !phone) return; // blank spacer row
     var updated = row[cols['Updated'] - 1];
-    if (updated instanceof Date && updated > minAge) return; // possibly still typing, hold for tomorrow
+    if (updated instanceof Date && updated > minAge) { // possibly still typing, hold for tomorrow
+      var held = row[cols['Submitted'] - 1];
+      if (held instanceof Date && held.getTime() < heldOldest) heldOldest = held.getTime();
+      return;
+    }
     var submitted = row[cols['Submitted'] - 1];
     var subMs = submitted instanceof Date ? submitted.getTime() : 0;
     if (subMs && subMs <= last) return; // already covered by an earlier digest
@@ -734,6 +741,15 @@ function partialLeadsDigest_() {
       '  ·  Started: ' + fmtWhen_(row[cols['Submitted'] - 1]);
     (submitted instanceof Date && submitted > dayAgo ? fresh : older).push(entry);
   });
+
+  // Never let the watermark pass a row we held back: it started earlier than
+  // something we did email, so a plain high-water mark would skip it forever
+  // once it settles. Capping can re-list a newer partial one extra time, which
+  // is the right trade — a duplicate is visible, a dropped lead is silent.
+  if (heldOldest < Infinity) {
+    var cap = Math.max(heldOldest - 1, last); // and never move it backward
+    if (newest > cap) newest = cap;
+  }
 
   if (!fresh.length && !older.length) { props.setProperty('partialDigestAt', String(newest)); return; }
 
