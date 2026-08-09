@@ -449,6 +449,8 @@ body.lb-open{overflow:hidden;}
 .pricing-dark .price-list li{color:oklch(85% .02 130);border-color:oklch(100% 0 0/.16);}
 .pricing-dark .price-tagline{color:var(--terra-soft);}
 .pricing-dark .price-list li::before{background:var(--terra-soft);}
+.pricing-dark .price-guide{color:var(--paper);border-color:oklch(100% 0 0/.32);}
+.pricing-dark .price-guide:hover{border-color:var(--paper);}
 
 /* ---------- PRICING ---------- */
 .pricing{text-align:center;max-width:720px;margin:0 auto;}
@@ -457,6 +459,9 @@ body.lb-open{overflow:hidden;}
 .price-list{list-style:none;max-width:540px;margin:34px auto 0;text-align:left;}
 .price-list li{position:relative;padding:14px 0 14px 26px;border-top:1px solid var(--line);color:var(--fg2);font-size:.98rem;line-height:1.55;}
 .price-list li::before{content:"";position:absolute;left:0;top:21px;width:6px;height:6px;border-radius:50%;background:var(--terra);}
+.price-guide{display:inline-flex;align-items:center;gap:9px;margin-top:30px;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--forest);border-bottom:1px solid var(--line);padding-bottom:7px;transition:border-color .2s,gap .2s;}
+.price-guide:hover{gap:13px;}
+.price-guide-arw{flex:none;}
 .price-tagline{font-family:var(--d);font-style:normal;font-size:1.35rem;color:var(--forest);margin-top:30px;}
 
 /* ---------- CALLOUT (risk reversal) ---------- */
@@ -936,6 +941,8 @@ body.nav-hidden .venue-breadcrumb{top:0;}
    (padding offset by negative margins; desktop pointer:fine is untouched). */
 @media(pointer:coarse){
   .txt-link{padding-block:8px;margin-block:-8px;}
+  /* grow upward only: the underline must stay put */
+  .price-guide{padding-top:16px;margin-top:14px;}
   .mm-secondary a{padding-block:8px;margin-block:-8px;}
   .mobile-menu .m-meta a{display:inline-block;padding-block:6px;margin-block:-6px;}
   .foot-cols a{padding-block:6px;margin-top:-6px;margin-bottom:4px;}

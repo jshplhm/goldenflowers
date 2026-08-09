@@ -255,6 +255,8 @@ content:
           - {name: price, label: "Headline price", type: string}
           - {name: price_sub, label: "Under the price", type: string}
           - {name: points, label: "Bullet points", type: text, list: true, description: "**double asterisks** make text bold"}
+          - {name: guide_text, label: "Price guide link text", type: string, description: "Leave the link blank to hide it"}
+          - {name: guide_url, label: "Price guide link address", type: string, description: "Full address, starting with https://"}
           - {name: tagline, label: "Closing line", type: text}
       - name: risk
         label: "Section: if something goes wrong"

@@ -83,7 +83,8 @@ pricing:
   points:
     - Ambitious, installation-heavy visions run **$30,000+**
     - Simple a la carte weddings start at $5,000
-    - View our price guide here https://canva.link/goldenflowerspriceguide
+  guide_text: View our price guide
+  guide_url: https://canva.link/goldenflowerspriceguide
   tagline: Locally-grown flowers, refined floral artistry, and a design curated
     around your day.
 risk:
