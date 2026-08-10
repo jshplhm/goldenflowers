@@ -58,8 +58,27 @@ redirect_from:
           <input type="text" id="date" name="date" placeholder="mm/dd/yyyy" inputmode="numeric" maxlength="10" autocomplete="off" data-date-mask required>
         </div>
         <div class="field-full">
-          <label for="name">What should we call you?</label>
-          <input type="text" id="name" name="name" placeholder="Your name" autocomplete="name" required>
+          <label for="name">Your name</label>
+          <input type="text" id="name" name="name" placeholder="First and last name" autocomplete="name" required>
+        </div>
+        <!-- Who we're talking to changes how Brittany follows up, so it's a
+             closed set the server can whitelist, not free text. Anyone who
+             ISN'T the couple reveals an optional couple's-names field. -->
+        <div class="field-full">
+          <label for="role">Who's filling this out?</label>
+          <select id="role" name="role" required>
+            <option value="" disabled selected>Choose one</option>
+            <option>One of the couple</option>
+            <option>The wedding planner</option>
+            <option>Family or a friend of the couple</option>
+            <option>Someone else</option>
+          </select>
+          <div class="reach-reveal" data-couple-reveal>
+            <div class="reach-inner">
+              <label for="couple">Couple's names <span class="opt">(optional)</span></label>
+              <input type="text" id="couple" name="couple" placeholder="Who's getting married?" autocomplete="off">
+            </div>
+          </div>
         </div>
         <!-- Contact chooser, check all that apply: each checked channel
              reveals its field (CSS :has() covers no-JS; JS enables/disables
@@ -94,17 +113,9 @@ redirect_from:
           <input type="text" id="venue" name="venue" placeholder="Type your venue" autocomplete="off" role="combobox" aria-expanded="false" aria-autocomplete="list">
           <div class="venue-suggest" role="listbox" hidden></div>
         </div>
-        <div class="field-full">
-          <label for="aesthetic">Aesthetic direction</label>
-          <select id="aesthetic" name="aesthetic" required>
-            <option value="" disabled selected>Which direction resonates?</option>
-            <option>Lush &amp; Romantic &mdash; rich, dramatic, deep tones</option>
-            <option>Elevated Minimalist &mdash; clean, airy, restrained</option>
-            <option>Wildflower Modern &mdash; wild, seasonal, editorial</option>
-            <option>A mix or something else &mdash; I'll explain below</option>
-            <option>Not sure yet</option>
-          </select>
-        </div>
+        <!-- Aesthetic direction dropped 2026-08-10 (owner). Server keeps its
+             AESTHETICS whitelist and the sheet keeps its Aesthetic column so
+             stale cached pages are accepted, not flagged as spam. -->
         <div class="field-full">
           <label for="budget">Approximate budget</label>
           <select id="budget" name="budget" required>

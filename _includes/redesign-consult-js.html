@@ -235,6 +235,25 @@ function appendCommon_(params, form){
         });
       }
     }
+    /* Who's filling this out: anyone who isn't one of the couple reveals an
+       optional couple's-names field. Same .open/.reach-reveal mechanics as the
+       contact chooser. The input is disabled while hidden so a stale value can
+       never ride along on a later submit. */
+    var roleEl=form.querySelector('[name="role"]');
+    var coupleBlock=form.querySelector('[data-couple-reveal]');
+    if(roleEl&&coupleBlock){
+      var coupleInput=coupleBlock.querySelector('input');
+      var syncRole=function(){
+        var v=roleEl.value, show=!!v&&v!=='One of the couple';
+        coupleBlock.classList.toggle('open', show);
+        if(coupleInput){
+          coupleInput.disabled=!show;
+          if(!show) coupleInput.value='';
+        }
+      };
+      syncRole();
+      roleEl.addEventListener('change', syncRole);
+    }
     form.dataset.leadId=(window.crypto&&crypto.randomUUID)?crypto.randomUUID():('c-'+Date.now()+'-'+Math.random().toString(36).slice(2));
     form.dataset.renderedAt=String(Date.now());
     function toTop(){ var m=form.closest('.modal'); if(m) m.scrollTop=0; }
@@ -259,7 +278,10 @@ function appendCommon_(params, form){
         form.dataset.partialSent='1';
         try{
           var p=new URLSearchParams();
-          ['date','name','email','phone'].forEach(function(n){
+          /* Every step-1 field, or the partial-leads tab and its digest lose
+             them. role/couple were missed when they were added (2026-08-10) —
+             keep this list in sync with .form-step-1. */
+          ['date','name','role','couple','email','phone'].forEach(function(n){
             var f=form.querySelector('[name="'+n+'"]');
             p.append(n,(f&&!f.disabled)?f.value:'');
           });

@@ -110,6 +110,16 @@ var AESTHETICS = [
   "Not sure yet"
 ];
 
+// Who filled the form in. Added 2026-08-10. Empty is always accepted: a page
+// cached before that date never sends the field, and a stale cache must never
+// be the reason a real lead lands in spam.
+var ROLES = [
+  "One of the couple",
+  "The wedding planner",
+  "Family or a friend of the couple",
+  "Someone else"
+];
+
 var BUDGETS = [
   "$5,000–$8,000",
   "$8,000–$15,000",
@@ -133,10 +143,13 @@ var PLACEHOLDER_DOMAINS = [
 // script will not re-create them): Landing Page, Referrer, Notified.
 // The raw referrer the form sends is ignored; arrival source survives as
 // the Source column.
+// 'Aesthetic' stays even though the form stopped asking (2026-08-10): the
+// column holds real history, and stale cached pages still submit the field.
+// 'Role' and 'Couple' are appended last, per the never-insert rule above.
 var HEADERS = [
   'Submitted', 'Status', 'Name', 'Email', 'Wedding Date', 'Aesthetic',
   'Budget', 'Message', 'Venue', 'Source', 'Updated', 'Lead ID',
-  'Contact Method', 'Phone', 'Page', 'Button'
+  'Contact Method', 'Phone', 'Page', 'Button', 'Role', 'Couple'
 ];
 
 function doPost(e) {
@@ -283,7 +296,9 @@ function buildRowValues_(p, isPartial, submittedAt, updatedAt, leadId) {
     'Source': sourceLabel_(p),
     'Page': p.cta_page || '',
     'Button': p.cta_button || '',
-    'Lead ID': leadId || ''
+    'Lead ID': leadId || '',
+    'Role': p.role || '',
+    'Couple': p.couple || ''
   };
 }
 
@@ -356,6 +371,7 @@ function spamReasons_(p) {
   var venue = (String(p.venue || '') + ' ' + String(p.venue_other || '')).trim();
   var aesthetic = String(p.aesthetic || '').trim();
   var budget = String(p.budget || '').trim();
+  var role = String(p.role || '').trim();
 
   // Honeypot: a field real visitors never see or fill. Anything in it is a
   // bot filling every input it finds in the raw HTML.
@@ -434,6 +450,7 @@ function spamReasons_(p) {
   // Dropdowns can only submit their exact option strings (or empty).
   if (aesthetic && AESTHETICS.indexOf(aesthetic) === -1) r.push('bad aesthetic');
   if (budget && BUDGETS.indexOf(budget) === -1) r.push('bad budget');
+  if (role && ROLES.indexOf(role) === -1) r.push('bad role');
 
   // Crypto-spam vocabulary and links in fields where they can never
   // legitimately appear. Deliberately NOT applied to the message field,
@@ -526,16 +543,20 @@ function sendCompleteEmail_(p) {
   // emails to couples, and lead-gen internals shouldn't travel with them.
   // Arrival source still lands in the sheet's Source column.
   var lines = ['Name: ' + (p.name || '')];
+  // Who we're talking to leads, because it changes the whole reply.
+  if (String(p.role || '').trim()) lines.push('They are: ' + p.role);
+  if (String(p.couple || '').trim()) lines.push('Couple: ' + p.couple);
   if (String(p.contact_method || '').trim()) lines.push('Reach them by: ' + p.contact_method);
   lines = lines.concat([
     'Email: ' + (p.email || '(not given)'),
     'Phone: ' + (fmtPhone_(p.phone) || '(not given)'),
     'Wedding date: ' + (p.date || ''),
     'Venue: ' + (venueValue_(p) || '(not given)'),
-    'Aesthetic: ' + (p.aesthetic || ''),
     'Budget: ' + (p.budget || ''),
     'Message: ' + (p.message || '(none)')
   ]);
+  // Only surfaced when a stale cached page still sent it.
+  if (String(p.aesthetic || '').trim()) lines.push('Aesthetic: ' + p.aesthetic);
   sendMail_(subject, lines.join('\n'));
 }
 
@@ -823,9 +844,20 @@ function setupTriggers() {
 }
 
 /** Run this in the editor (Run -> testVet) to sanity-check the rules: the
- *  first FOUR logs should be [] (real submissions pass — old form, email
- *  lead, text lead, both-channels lead), the rest non-empty. */
+ *  first SIX logs should be [] (real submissions pass — old form, email
+ *  lead, text lead, both-channels lead, couple with role, planner with the
+ *  couple's names), the rest non-empty. */
 function testVet() {
+  Logger.log(spamReasons_({ // post-2026-08-10 form: role, no aesthetic
+    name: 'Jordan Reyes', contact_method: 'Email', email: 'jpelham03@gmail.com',
+    date: '06/11/2028', role: 'One of the couple', budget: '$15,000–$25,000',
+    k: FORM_TOKEN, ts: String(Date.now() - 30000)
+  }));
+  Logger.log(spamReasons_({ // planner filling it in for a couple
+    name: 'Alex Chen', contact_method: 'Email', email: 'jpelham03@gmail.com',
+    date: '06/11/2028', role: 'The wedding planner', couple: 'Jordan & Sam',
+    budget: '$25,000+', k: FORM_TOKEN, ts: String(Date.now() - 30000)
+  }));
   Logger.log(spamReasons_({
     name: 'Josh Pelham', email: 'jpelham03@gmail.com', date: '06/11/2028',
     aesthetic: 'Elevated Minimalist (clean, airy, restrained)', budget: '$25,000+',
@@ -848,6 +880,10 @@ function testVet() {
   }));
   Logger.log(spamReasons_({ // bot guessing the new fields wrong
     name: 'x', contact_method: 'Both', phone: '555-0123', date: '06/11/2028'
+  }));
+  Logger.log(spamReasons_({ // bot inventing a role string the select can't produce
+    name: 'x', contact_method: 'Email', email: 'a@b.com', date: '06/11/2028',
+    role: 'bride', k: FORM_TOKEN, ts: String(Date.now() - 30000)
   }));
   Logger.log(spamReasons_({ name: 'y', date: '06/11/2028' })); // no contact info at all
   Logger.log(spamReasons_({ // July bot wave
