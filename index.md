@@ -44,6 +44,7 @@ redirect_from:
     <source media="(max-width:700px)" srcset="{{ site.baseurl }}/assets/images/home-hero-laux-portrait.jpg">
     <img class="bg hero-3" data-boost="1" src="{{ site.baseurl }}/assets/images/home-hero-laux.jpg" alt="Golden hour in an Olympic Valley meadow: bride and groom in tall grass with the Sierra Nevada behind them, bride holding a green and lavender bouquet" loading="lazy">
   </picture>
+  <div class="hero-boost" aria-hidden="true"></div>
   <div class="hero-in">
     {% if site.data.home.hero.eyebrow and site.data.home.hero.eyebrow != "" %}<p class="ey lab"><span data-ed="home:hero.eyebrow">{{ site.data.home.hero.eyebrow }}</span></p>{% endif %}
     <h1 class="disp">{% include em.html t=site.data.home.hero.heading k="home:hero.heading" %}</h1>

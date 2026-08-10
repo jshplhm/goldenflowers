@@ -166,8 +166,16 @@ button.txt-link{background:none;border-top:0;border-left:0;border-right:0;cursor
 @keyframes hero-kb{from{transform:scale(1)}to{transform:scale(1.055)}}
 
 /* Photo 3 is high-key (pale sky, cream suit, white dress) and the standard
-   scrim leaves the headline thin on it, so deepen it while that photo is up. */
-.hero-rot[data-boost="1"]::after{background:linear-gradient(90deg,oklch(14% .03 150/.66) 0%,oklch(14% .03 150/.24) 46%,transparent 72%),linear-gradient(180deg,oklch(16% .03 150/.26) 0%,transparent 32%,transparent 55%,oklch(12% .03 150/.55) 100%);}
+   scrim leaves the headline thin on it, so deepen it while that photo is up.
+   This MUST be a separate layer faded by opacity, never a swapped gradient on
+   ::after: CSS cannot interpolate between two gradients, so swapping them
+   snaps the scrim in a single frame while the outgoing photo is still fully
+   opaque — a visible flash at the start of every transition into or out of
+   photo 3. Opacity is animatable, so this rides the same curve as the fade.
+   Values are the delta over the base scrim, composited to the same result. */
+.hero-rot .hero-boost{position:absolute;inset:0;z-index:2;opacity:0;pointer-events:none;transition:opacity 1200ms cubic-bezier(.4,0,.2,1);background:linear-gradient(90deg,oklch(14% .03 150/.30) 0%,oklch(14% .03 150/.15) 46%,transparent 72%),linear-gradient(180deg,transparent 55%,oklch(12% .03 150/.20) 100%);}
+.hero-rot[data-boost="1"] .hero-boost{opacity:1;}
+@media(prefers-reduced-motion:reduce){ .hero-rot .hero-boost{transition:none;} }
 
 /* Per-photo crops. Photo 2 centres on the couple and loses its left floral
    column on a phone, so bias it left there. Photo 3 sits low in its frame. */
