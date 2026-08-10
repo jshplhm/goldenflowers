@@ -1162,9 +1162,44 @@ function sourceSwappedTo(text, newSrcPath) {
   return null;
 }
 
+/* "…/lynn-aaron/lynn-aaron-26.jpg" -> "26"; null if it isn't one of this
+ * wedding's numbered gallery photos, which is all the data file can hold. */
+function bandPhotoNumber(path, slug) {
+  const m = path.match(new RegExp(`/assets/images/portfolio/${slug}/${slug}-(\\d+)\\.[a-z]+$`, "i"));
+  return m ? m[1] : null;
+}
+
+/* Point one band slot at a different photo by editing the portfolio list.
+ * Slots 0-2 are the three frames on the portfolio page, 3-4 the two extra
+ * frames phones swipe to. */
+async function swapBandTo(newSrcPath) {
+  const slug = repTarget.bandSlug;
+  const num = bandPhotoNumber(newSrcPath, slug);
+  if (!num) {
+    throw new Error("Cover photos have to come from this wedding's own gallery. Add the photo with the Photos button first, then pick it here.");
+  }
+  const f = await getFile(META_PATH);
+  const doc = parseDocument(b64decodeUtf8(f.content));
+  const rows = (doc.contents && doc.contents.items) || [];
+  let done = false;
+  rows.forEach((node, i) => {
+    if (node.get && node.get("slug") === slug) {
+      const key = repTarget.bandIndex < 3 ? "band" : "strip";
+      const at = repTarget.bandIndex < 3 ? repTarget.bandIndex : repTarget.bandIndex - 3;
+      doc.setIn([i, key, at], num);
+      done = true;
+    }
+  });
+  if (!done) throw new Error("Couldn't find this wedding in the portfolio list — tell Josh.");
+  await commitFiles([{ path: META_PATH, text: doc.toString() }],
+    `Swap a cover photo for ${slug} via inline editor`);
+  return true;
+}
+
 /* rewrite every reference to the clicked photo in this page's source.
  * Returns false when the source already shows that photo (nothing to commit). */
 async function swapSourceTo(newSrcPath) {
+  if (repTarget.bandSlug) return swapBandTo(newSrcPath);
   const { text } = await rawFile(curPage);
   const updated = sourceSwappedTo(text, newSrcPath);
   if (updated === null) throw new Error(REP_UNMATCHED);
@@ -1190,6 +1225,19 @@ function openReplace(img) {
   const card = img.closest('a[href*="/portfolio/"]');
   const href = card && card.getAttribute("href").match(/\/portfolio\/([^/?#]+)/);
   if (href && href[1] !== "index") repTarget.cardSlug = href[1];
+
+  /* A band photo on /portfolio isn't written in that page's source any more —
+   * it comes from _data/portfolio_meta.yml. Note which slot was clicked so the
+   * swap edits the data file instead of hunting for a path that isn't there. */
+  const band = img.closest("[data-ed-band]");
+  if (band) {
+    const frames = [...band.querySelectorAll(".pfx-ph")];
+    const idx = frames.indexOf(img.closest(".pfx-ph"));
+    if (idx > -1) {
+      repTarget.bandSlug = band.getAttribute("data-ed-band");
+      repTarget.bandIndex = idx;
+    }
+  }
   const slug = (repTarget.path.match(/^\/assets\/images\/portfolio\/([^/]+)\//) || [])[1] || repTarget.cardSlug;
   if (slug) {
     fetch(`${API}assets/images/portfolio/${slug}?ref=${encodeURIComponent(BRANCH)}`, { headers: ghHeaders(), cache: "no-store" })
@@ -1254,6 +1302,9 @@ repForm.addEventListener("submit", async (e) => {
   if (!file) return;
   if (!DRYRUN && !token()) { repModal.hidden = true; await ensureAuth(); return; }
   try {
+    if (repTarget.bandSlug) {
+      throw new Error("Cover photos have to come from this wedding's own gallery. Open the wedding, add the photo with the Photos button, then come back and pick it here.");
+    }
     const { text } = await rawFile(curPage);
     /* check before resizing so an unswappable photo fails fast */
     if (sourceSwappedTo(text, "") === null) throw new Error(REP_UNMATCHED);
