@@ -247,6 +247,22 @@ button.txt-link{background:none;border-top:0;border-left:0;border-right:0;cursor
 .fact .n{font-family:var(--d);font-style:normal;font-size:1.6rem;color:var(--terra);display:block;margin-bottom:16px;}
 .fact h3{font-family:var(--d);font-size:1.55rem;margin-bottom:10px;letter-spacing:-.01em;}
 .fact p{font-size:.96rem;color:var(--mute);max-width:34ch;line-height:1.62;}
+/* ---------- HOME INTRO ---------- */
+/* Two columns so the block resolves against the content rail. Left-aligned prose
+   capped at a reading measure ends ~680px short of the rail's right edge, and
+   unlike .credo or .work nothing full-width sits underneath to close that gap,
+   so a single column reads as a layout failure rather than as a measure. The
+   label column is the same device every other home section already uses. */
+.intro{padding-top:clamp(64px,8vw,104px);}
+.intro-band{display:grid;grid-template-columns:.8fr 1.6fr;gap:clamp(28px,5vw,90px);}
+.intro-side .lab{display:block;}
+.intro-body p{font-family:var(--d);font-weight:430;font-optical-sizing:auto;font-size:clamp(1.4rem,2.6vw,2rem);line-height:1.5;letter-spacing:-.01em;color:var(--ink);text-wrap:pretty;}
+.intro-body p + p{margin-top:28px;}
+/* One column below the point where the prose measure would drop under ~40ch. */
+@media(max-width:860px){
+  .intro-band{grid-template-columns:1fr;gap:20px;}
+}
+
 /* Adjacent sections that would otherwise share the page background are
    separated by a subtle full-bleed tint band instead of a hairline rule.
    (Was --paper back when the page itself was grey; on a near-white page the

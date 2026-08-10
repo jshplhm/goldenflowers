@@ -77,10 +77,15 @@ means there is nothing to transition on load. Reorder the photos, update this.
 
 <!-- INTRO (paper band) -->
 <div class="band-paper">
-<section class="credo" style="padding-top:clamp(64px,8vw,104px);">
-  <div style="max-width:960px;">
-    <p style="font-family:var(--d);font-weight:430;font-optical-sizing:auto;font-size:clamp(1.4rem,2.6vw,2rem);line-height:1.5;letter-spacing:-.01em;color:var(--ink);text-wrap:pretty;"><span data-ed="home:intro.paragraph1">{{ site.data.home.intro.paragraph1 }}</span></p>
-    <p style="font-family:var(--d);font-weight:430;font-optical-sizing:auto;font-size:clamp(1.4rem,2.6vw,2rem);line-height:1.5;letter-spacing:-.01em;color:var(--ink);text-wrap:pretty;margin-top:28px;"><span data-ed="home:intro.paragraph2">{{ site.data.home.intro.paragraph2 }}</span></p>
+<section class="credo intro">
+  <div class="intro-band">
+    <div class="intro-side">
+      {%- if site.data.home.intro.label and site.data.home.intro.label != "" %}<span class="lab"><span data-ed="home:intro.label">{{ site.data.home.intro.label }}</span></span>{% endif -%}
+    </div>
+    <div class="intro-body">
+      <p><span data-ed="home:intro.paragraph1">{{ site.data.home.intro.paragraph1 }}</span></p>
+      <p><span data-ed="home:intro.paragraph2">{{ site.data.home.intro.paragraph2 }}</span></p>
+    </div>
   </div>
 </section>
 </div>

@@ -35,6 +35,7 @@ content:
         label: Intro band
         type: object
         fields:
+          - {name: label, label: "Small label", type: string, description: "Left column. Leave empty to hide it."}
           - {name: paragraph1, label: "First paragraph", type: text}
           - {name: paragraph2, label: "Second paragraph", type: text}
       - name: why
