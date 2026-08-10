@@ -5,22 +5,29 @@
   a finished block. A name without a url renders as plain text.
 {%- endcomment -%}
 {%- comment -%}
-  Master switch. The venue is filled in for every wedding, so without this the
-  block renders as a "team" of one and looks like something failed to load.
-  Flip `enabled: true` in _data/credits.yml once the real vendor list is in.
+  Visibility is per wedding and automatic: fill in one real vendor in /edit and
+  the block appears on that page only.
+
+  The gate deliberately IGNORES venue and florals. Both are pre-filled for every
+  wedding (venue by us, florals is always Golden Flowers), so counting them would
+  show a "team" of two on all six pages the moment the block went live, which is
+  what the old global `enabled` switch existed to prevent. Once a real credit
+  exists the venue DOES render alongside it, it just cannot be the reason the
+  block appears.
 {%- endcomment -%}
 {%- assign c = site.data.credits[include.slug] -%}
 {%- assign wp = site.data.portfolio_page.wedding -%}
-{%- if c and site.data.credits.defaults.enabled -%}
+{%- if c -%}
 {%- assign leadKeys = "photography,planning,venue" | split: "," -%}
 {%- assign leadLabels = "Photography,Planning &amp; design,Venue" | split: "," -%}
 {%- assign restKeys = "catering,cake,rentals,beauty,gown,stationery,music,officiant" | split: "," -%}
 {%- assign restLabels = "Catering,Cake,Rentals,Hair &amp; makeup,Gown,Stationery,Music,Officiant" | split: "," -%}
+{%- assign gateKeys = "photography,planning,catering,cake,rentals,beauty,gown,stationery,music,officiant" | split: "," -%}
+{%- assign realCount = 0 -%}
+{%- for k in gateKeys -%}{%- assign v = c[k] -%}{%- if v.name and v.name != "" -%}{%- assign realCount = realCount | plus: 1 -%}{%- endif -%}{%- endfor -%}
 {%- assign leadCount = 0 -%}
 {%- for k in leadKeys -%}{%- assign v = c[k] -%}{%- if v.name and v.name != "" -%}{%- assign leadCount = leadCount | plus: 1 -%}{%- endif -%}{%- endfor -%}
-{%- assign restCount = 0 -%}
-{%- for k in restKeys -%}{%- assign v = c[k] -%}{%- if v.name and v.name != "" -%}{%- assign restCount = restCount | plus: 1 -%}{%- endif -%}{%- endfor -%}
-{%- if leadCount > 0 or restCount > 0 -%}
+{%- if realCount > 0 -%}
 <section class="wp-credits">
   <div class="wp-ch">
     <h2>{{ wp.credits_heading }}</h2>

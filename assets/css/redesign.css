@@ -247,6 +247,10 @@ button.txt-link{background:none;border-top:0;border-left:0;border-right:0;cursor
 .portrait{grid-column:span 4;height:clamp(360px,44vw,580px);}
 .third{grid-column:span 4;height:clamp(240px,25vw,360px);}
 .quarter{grid-column:span 3;height:clamp(240px,24vw,340px);}
+/* Closing tile of the home preview: full width, deliberately shorter than the
+   pair above it so the row reads as a coda rather than a third headline. */
+.wide{grid-column:span 12;height:clamp(220px,26vw,400px);}
+.work-more{margin-top:clamp(26px,3vw,38px);text-align:center;}
 
 /* ---------- IMMERSIVE ---------- */
 .immersive{position:relative;height:78vh;min-height:520px;margin-top:clamp(40px,5vw,70px);display:flex;align-items:center;justify-content:center;text-align:center;color:var(--paper);overflow:hidden;}
@@ -1035,6 +1039,9 @@ body.nav-hidden .venue-breadcrumb{top:0;}
   .facts,.aes-row{grid-template-columns:1fr;gap:36px;}
   .feature,.portrait{grid-column:span 12;height:auto;aspect-ratio:4/3;}
   .third,.quarter{grid-column:span 6;height:auto;aspect-ratio:1/1;}
+  /* Without this the vw-based height collapses to its 220px floor on a phone,
+     which crops the closing tile to a letterbox slot. */
+  .wide{height:auto;aspect-ratio:3/2;}
 }
 
 /* ============================================================================

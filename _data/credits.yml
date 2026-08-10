@@ -13,10 +13,10 @@
 # Everything else is waiting on Brittany.
 
 defaults:
-  # Set to true once the real vendor list is in. While it is false the whole
-  # "The team" block is hidden on every wedding page, because the venue alone
-  # is not a team and a near-empty block reads as broken.
-  enabled: false
+  # No master switch any more. Each wedding page shows "The team" as soon as it
+  # has at least one real vendor, and hides it otherwise. `venue` and `florals`
+  # do not count toward that: both are pre-filled everywhere, so counting them
+  # would put a team of two on every page. See _includes/wedding-credits.html.
   florals:
     name: "Golden Flowers"
     url: "/"

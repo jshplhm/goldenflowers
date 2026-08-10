@@ -93,11 +93,15 @@ redirect_from:
   <div class="grid">
     <a class="tile feature" href="{{ site.baseurl }}/portfolio/katie-james"><img src="{{ site.baseurl }}/assets/images/portfolio/katie-james/katie-james-08.jpg" alt="Katie &amp; James wedding flowers: lush pastel floral ceremony arch on a stone wall, The Miner's Foundry, Nevada City" style="object-position:center 45%;"><span class="cap"><b>Katie &amp; James</b><span>The Miner's Foundry</span></span></a>
     <a class="tile portrait" href="{{ site.baseurl }}/portfolio/lynn-aaron"><img src="{{ site.baseurl }}/assets/images/portfolio/lynn-aaron/lynn-aaron-17.jpg" alt="Lynn &amp; Aaron wedding flowers: reception tables with foraged bud-vase florals against green velvet drapery, Palisades High Camp, Olympic Valley" style="object-position:center 50%;"><span class="cap"><b>Lynn &amp; Aaron</b><span>Palisades High Camp</span></span></a>
-    <a class="tile quarter" href="{{ site.baseurl }}/portfolio/jenna-cal"><img src="{{ site.baseurl }}/assets/images/portfolio/jenna-cal/jenna-cal-12.jpg" sizes="(max-width:860px) 50vw, 25vw" alt="Jenna &amp; Cal wedding flowers: magnolia-and-greenery arch with red hanging lanterns above a sweetheart table, National Exchange Hotel, Nevada City" style="object-position:center 42%;"><span class="cap"><b>Jenna &amp; Cal</b><span>National Exchange Hotel</span></span></a>
-    <a class="tile quarter" href="{{ site.baseurl }}/portfolio/camille-max"><img src="{{ site.baseurl }}/assets/images/portfolio/camille-max/camille-max-30.jpg" sizes="(max-width:860px) 50vw, 25vw" alt="Camille &amp; Max wedding flowers: bride on a tree-lined path with a cascading bouquet of trailing amaranthus, North Star House, Grass Valley" style="object-position:center 28%;"><span class="cap"><b>Camille &amp; Max</b><span>North Star House</span></span></a>
-    <a class="tile quarter" href="{{ site.baseurl }}/portfolio/kelly-dylan"><img src="{{ site.baseurl }}/assets/images/portfolio/kelly-dylan/kelly-dylan-04.jpg" sizes="(max-width:860px) 50vw, 25vw" alt="Kelly &amp; Dylan wedding flowers: blue delphinium beach ceremony installation, North Tahoe Event Center, Kings Beach" style="object-position:center 40%;"><span class="cap"><b>Kelly &amp; Dylan</b><span>North Tahoe Event Center</span></span></a>
-    <a class="tile quarter" href="{{ site.baseurl }}/portfolio/tori-tucker"><img src="{{ site.baseurl }}/assets/images/portfolio/tori-tucker/tori-tucker-16.jpg" sizes="(max-width:860px) 50vw, 25vw" alt="Tori &amp; Tucker wedding flowers: lakeside beach ceremony with a wild peony and garden-rose arch, North Tahoe Event Center, Kings Beach" style="object-position:center 25%;"><span class="cap"><b>Tori &amp; Tucker</b><span>North Tahoe Event Center</span></span></a>
+    {%- comment -%} 60%, not the 25% this photo used as a tall tile: in a wide
+    crop 25% lands on sky and the backs of heads. {%- endcomment -%}
+    <a class="tile wide" href="{{ site.baseurl }}/portfolio/tori-tucker"><img src="{{ site.baseurl }}/assets/images/portfolio/tori-tucker/tori-tucker-16.jpg" sizes="100vw" alt="Tori &amp; Tucker wedding flowers: lakeside beach ceremony with a wild peony and garden-rose arch, North Tahoe Event Center, Kings Beach" style="object-position:center 60%;"><span class="cap"><b>Tori &amp; Tucker</b><span>North Tahoe Event Center</span></span></a>
   </div>
+  {%- comment -%} The grid is a preview, not the archive. Three weddings show the
+  range (historic indoor, mountain, lakeside); the rest live on /portfolio. This
+  closing link is the point of the section, so it gets its own line rather than
+  only sitting in the header. {%- endcomment -%}
+  <p class="work-more"><a href="{{ site.baseurl }}/portfolio" class="txt-link"><span data-ed="home:work.more">{{ site.data.home.work.more }}</span> &rarr;</a></p>
 </section>
 </div>
 

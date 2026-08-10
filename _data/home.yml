@@ -37,6 +37,10 @@ why:
 work:
   heading: Selected weddings
   link: Browse the full portfolio
+  # Closing invitation under the preview grid. The header link stays for anyone
+  # who scans headings first; this one catches the reader who just looked at all
+  # three photos and wants more.
+  more: See every wedding
 marquee:
   label: We design at 30+ venues across the Sierra
   link: See all venues
