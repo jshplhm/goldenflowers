@@ -34,7 +34,13 @@ redirect_from:
 ---
 
 <!-- HERO (three photos crossfading behind fixed copy — see HERO ROTATION in redesign.css) -->
-<header class="hero hero-rot" id="hero-rot">
+{%- comment -%} data-boost MUST match the data-boost of the FIRST .bg image below.
+The rotator only sets this attribute once JS runs, so if it starts absent while
+the lead photo wants the boost, the left-hand scrim fades in ~1.2s after the
+photo has already painted, which reads as a bug. Rendering the right value here
+means there is nothing to transition on load. Reorder the photos, update this.
+{%- endcomment -%}
+<header class="hero hero-rot" id="hero-rot" data-boost="1">
   {% comment %} The hero-1/2/3 classes identify the PHOTO, not its slot: each one
   carries that photo's own object-position (including the phone overrides in
   redesign.css), so reordering the slideshow means moving these elements and
