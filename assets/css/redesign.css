@@ -21,9 +21,14 @@
    exclusive with style.css — no class collisions).
    ============================================================ */
 :root{
-  --bg:oklch(95.8% .008 88);
-  --bg2:oklch(93.6% .012 78);
-  --paper:oklch(99% .004 90);
+  /* Surface ramp. The page default is near-white so the site reads fresh and
+     bright; section breaks are carried by the warm TINT (--bg2), not by a
+     white band on a grey page. Keep it to these three steps — a fourth tone
+     is what made the fixed-color header look grey on some pages and white on
+     others depending on which surface happened to sit under it. */
+  --bg:oklch(99% .004 90);      /* page + header + sticky breadcrumb */
+  --bg2:oklch(96.5% .008 84);   /* tint band: tempo breaks, CTAs, image wells */
+  --paper:oklch(100% 0 0);      /* cards/fields floating on --bg; also the on-dark text color */
   --ink:oklch(20% .02 150);
   --forest:oklch(27% .05 150);
   --forest-deep:oklch(19.5% .04 150);
@@ -218,9 +223,11 @@ button.txt-link{background:none;border-top:0;border-left:0;border-right:0;cursor
 .fact .n{font-family:var(--d);font-style:normal;font-size:1.6rem;color:var(--terra);display:block;margin-bottom:16px;}
 .fact h3{font-family:var(--d);font-size:1.55rem;margin-bottom:10px;letter-spacing:-.01em;}
 .fact p{font-size:.96rem;color:var(--mute);max-width:34ch;line-height:1.62;}
-/* Adjacent sections that would otherwise share the cream page background are
-   separated by a subtle full-bleed paper band instead of a hairline rule. */
-.band-paper{background:var(--paper);}
+/* Adjacent sections that would otherwise share the page background are
+   separated by a subtle full-bleed tint band instead of a hairline rule.
+   (Was --paper back when the page itself was grey; on a near-white page the
+   tint is the side that has to move.) */
+.band-paper{background:var(--bg2);}
 
 /* ---------- WORK ---------- */
 .work{padding:clamp(30px,4vw,50px) var(--pad) clamp(20px,3vw,40px);max-width:var(--content-max);margin:0 auto;}
@@ -285,7 +292,12 @@ button.txt-link{background:none;border-top:0;border-left:0;border-right:0;cursor
 .testi .by b{color:var(--ink);font-weight:500;}
 
 /* ---------- CLOSING CTA ---------- */
-.cta{background:var(--paper);padding:clamp(100px,14vw,200px) var(--pad);text-align:center;}
+/* Closing CTA: same tint band as .cta-section, which already used --bg2. */
+.cta{background:var(--bg2);padding:clamp(100px,14vw,200px) var(--pad);text-align:center;}
+/* Where a tint band butts straight into the CTA (sustainability: .pledge is the
+   previous sibling) the two would read as one slab, so carry the break on a
+   hairline instead of a tone change. */
+.pledge + .cta,.proc + .cta,.cta-section + .cta,.band-paper + .cta{border-top:1px solid var(--line);}
 .cta--tall{min-height:0;padding-top:clamp(64px,9vw,120px);padding-bottom:clamp(64px,9vw,120px);display:flex;flex-direction:column;align-items:center;justify-content:center;}
 .cta--tall p{max-width:56ch;}
 .cta h2{font-family:var(--d);font-weight:430;font-optical-sizing:auto;font-size:clamp(2.6rem,6.6vw,6.2rem);letter-spacing:-.025em;line-height:1;}
