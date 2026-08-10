@@ -258,8 +258,11 @@ button.txt-link{background:none;border-top:0;border-left:0;border-right:0;cursor
 .intro-side .lab{display:block;}
 .intro-body p{font-family:var(--d);font-weight:430;font-optical-sizing:auto;font-size:clamp(1.4rem,2.6vw,2rem);line-height:1.5;letter-spacing:-.01em;color:var(--ink);text-wrap:pretty;}
 .intro-body p + p{margin-top:28px;}
-/* One column below the point where the prose measure would drop under ~40ch. */
-@media(max-width:860px){
+/* One column below the point where the prose measure would drop under ~40ch.
+   NOT the usual 860px: two columns at 900px leave the prose ~30ch. Single
+   column is also simply correct down here, since the rail stops biting around
+   1050px and the text fills the width on its own. */
+@media(max-width:1100px){
   .intro-band{grid-template-columns:1fr;gap:20px;}
 }
 
