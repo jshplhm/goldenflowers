@@ -368,17 +368,14 @@ button.txt-link{background:none;border-top:0;border-left:0;border-right:0;cursor
 .wd-mosaic .mo-3 img{aspect-ratio:4/5;}
 .wd-mosaic .mo-2 img{aspect-ratio:3/4;}
 @media(max-width:600px){
-  /* Miniature of the desktop rhythm instead of one endless 4:5 column
-     (31 stacked photos made ~18,000px pages on phones): photos pair up
-     two across, and the shots that are wide cinematic bands on desktop
-     (mo-6) stay full-width bands here too. When the run of tiles after
-     the final band is odd, the template marks the LAST photo .mo-fin and
-     it widens into a closing band instead of sitting beside a gap. */
-  .wd-mosaic{grid-template-columns:1fr 1fr;gap:10px;}
-  .wd-mosaic .mo-3,.wd-mosaic .mo-2{grid-column:auto;}
-  .wd-mosaic .mo-6,.wd-mosaic .mo-fin{grid-column:1 / -1;}
-  .wd-mosaic .mo-3 img,.wd-mosaic .mo-2 img{aspect-ratio:4/5;}
-  .wd-mosaic .mo-6 img,.wd-mosaic .mo-fin img{aspect-ratio:16/9;}
+  /* One photo per row. Pairing them two-up kept the page short but you got
+     through a whole wedding in a few flicks, and every tile was cropped to a
+     common ratio to make the grid line up. Full width, each photo at its own
+     aspect ratio, means nothing is cropped and the gallery is paced to be
+     looked at. The .mo-fin orphan rule below is moot in a single column. */
+  .wd-mosaic{grid-template-columns:1fr;gap:12px;}
+  .wd-mosaic .mo-6,.wd-mosaic .mo-3,.wd-mosaic .mo-2,.wd-mosaic .mo-fin{grid-column:1 / -1;}
+  .wd-mosaic .mo img{aspect-ratio:auto;height:auto;}
 }
 
 /* Lightbox — click / arrow / swipe through a wedding's photos */
@@ -396,6 +393,11 @@ body.lb-open{overflow:hidden;}
 .lb-prev{left:10px;}
 .lb-next{right:10px;}
 .lb-prev:hover,.lb-next:hover,.lb-close:hover{opacity:1;}
+/* The gallery focuses this button when the lightbox opens, so the global
+   focus-visible ring drew a box around the X on every open. Glow instead: still
+   unmistakable on a keyboard, invisible as a rectangle. */
+.lb .lb-btn:focus-visible{outline:none;opacity:1;
+  text-shadow:0 0 10px rgba(255,255,255,.95),0 0 22px rgba(255,255,255,.55);}
 .lb-count{position:absolute;bottom:20px;left:0;right:0;text-align:center;color:#f4efe6;font-family:var(--b);font-size:.82rem;letter-spacing:.08em;opacity:.85;}
 .lb-sep{opacity:.5;margin:0 5px;}
 @media(max-width:600px){

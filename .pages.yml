@@ -69,20 +69,6 @@ content:
         fields:
           - {name: label, label: "Small label", type: string}
           - {name: heading, label: "Text over the photo", type: string}
-      - name: aesthetics
-        label: Three design languages
-        type: object
-        fields:
-          - {name: label, label: "Small label", type: string}
-          - {name: heading, label: "Heading", type: string}
-          - name: cards
-            label: The three cards
-            type: object
-            list: true
-            fields:
-              - {name: title, label: "Title", type: string}
-              - {name: body, label: "Text", type: text}
-              - {name: link, label: "Link text", type: string}
       - name: testimonial
         label: Featured review
         type: object
@@ -456,7 +442,6 @@ content:
           - {name: credits_note, label: "Credits note", type: text}
           - {name: more_heading, label: "More weddings heading", type: string}
           - {name: more_link, label: "More weddings link", type: string}
-          - {name: swipe_hint, label: "Phone swipe hint", type: string}
           - {name: strip_cta, label: "View the wedding link", type: string}
           - {name: strip_label, label: "Swipe end card label", type: string}
 

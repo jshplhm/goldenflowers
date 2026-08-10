@@ -5,13 +5,13 @@
 header:
   label: "Portfolio"
   heading: "A look into *our creative world.*"
-  subheading: "Weddings across Lake Tahoe and the Sierra Nevada, each one built
-    around a different landscape, venue, and couple."
+  subheading: "Selected weddings across Lake Tahoe and the Sierra Nevada, each one
+    built around a different landscape, venue, and couple."
 cta:
   label: "Where yours begins"
-  heading: "We've never built the same wedding *twice.*"
-  body: "These are a sample, not a menu. Bring a Pinterest board, a venue photo,
-    or a feeling you can't quite name yet, and we'll design from there."
+  heading: "Let's bring your vision *to life.*"
+  body: "Bring a Pinterest board, a venue photo, or a feeling you can't quite name
+    yet, and we'll design from there."
   button: "Share your inspiration"
 # Shared closing CTA on every individual wedding page.
 wedding_cta:
@@ -26,7 +26,6 @@ wedding:
   credits_note: "A wedding is never one vendor's work. Everyone who shaped this
     day is credited here."
   more_heading: "More weddings"
-  more_link: "All weddings"
-  swipe_hint: "Swipe for more"
+  more_link: "Browse the portfolio"
   strip_cta: "View the wedding"
   strip_label: "The full gallery"

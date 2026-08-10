@@ -17,7 +17,7 @@
   <div class="pfx-h">
     <span class="pfx-n">{{ include.n }}</span>
     <h2>{{ name }}</h2>
-    <span class="pfx-v">{{ m.venue }}<br>{{ m.place }}</span>
+    <span class="pfx-v">{{ m.venue }}</span>
   </div>
   <div class="pfx-row">
     {%- for p in m.band -%}
@@ -32,7 +32,6 @@
       <span class="pfx-eg">{{ wp.strip_cta }} <span aria-hidden="true">&rarr;</span></span>
     </a>
   </div>
-  <span class="pfx-hint" aria-hidden="true">{{ wp.swipe_hint }}</span>
   <div class="pfx-f">
     <p><span data-ed="portfolio_meta:{{ slug }}.lede">{{ m.lede }}</span></p>
     <a class="pfx-more" href="{{ href }}">{{ wp.strip_cta }} <span aria-hidden="true">&rarr;</span></a>

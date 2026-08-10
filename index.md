@@ -91,12 +91,12 @@ redirect_from:
     <a href="{{ site.baseurl }}/portfolio" class="txt-link"><span data-ed="home:work.link">{{ site.data.home.work.link }}</span> &rarr;</a>
   </div>
   <div class="grid">
-    <a class="tile feature" href="{{ site.baseurl }}/portfolio/katie-james"><img src="{{ site.baseurl }}/assets/images/portfolio/katie-james/katie-james-08.jpg" alt="Katie &amp; James wedding flowers: lush pastel floral ceremony arch on a stone wall, The Miner's Foundry, Nevada City" style="object-position:center 45%;"><span class="cap"><b>Katie &amp; James</b><span>Lush &amp; Romantic</span></span></a>
-    <a class="tile portrait" href="{{ site.baseurl }}/portfolio/lynn-aaron"><img src="{{ site.baseurl }}/assets/images/portfolio/lynn-aaron/lynn-aaron-17.jpg" alt="Lynn &amp; Aaron wedding flowers: reception tables with foraged bud-vase florals against green velvet drapery, Palisades High Camp, Olympic Valley" style="object-position:center 50%;"><span class="cap"><b>Lynn &amp; Aaron</b><span>Lush &amp; Romantic</span></span></a>
-    <a class="tile quarter" href="{{ site.baseurl }}/portfolio/jenna-cal"><img src="{{ site.baseurl }}/assets/images/portfolio/jenna-cal/jenna-cal-12.jpg" sizes="(max-width:860px) 50vw, 25vw" alt="Jenna &amp; Cal wedding flowers: magnolia-and-greenery arch with red hanging lanterns above a sweetheart table, National Exchange Hotel, Nevada City" style="object-position:center 42%;"><span class="cap"><b>Jenna &amp; Cal</b><span>Elevated Minimalist</span></span></a>
-    <a class="tile quarter" href="{{ site.baseurl }}/portfolio/camille-max"><img src="{{ site.baseurl }}/assets/images/portfolio/camille-max/camille-max-30.jpg" sizes="(max-width:860px) 50vw, 25vw" alt="Camille &amp; Max wedding flowers: bride on a tree-lined path with a cascading bouquet of trailing amaranthus, North Star House, Grass Valley" style="object-position:center 28%;"><span class="cap"><b>Camille &amp; Max</b><span>Wildflower Modern</span></span></a>
-    <a class="tile quarter" href="{{ site.baseurl }}/portfolio/kelly-dylan"><img src="{{ site.baseurl }}/assets/images/portfolio/kelly-dylan/kelly-dylan-04.jpg" sizes="(max-width:860px) 50vw, 25vw" alt="Kelly &amp; Dylan wedding flowers: blue delphinium beach ceremony installation, North Tahoe Event Center, Kings Beach" style="object-position:center 40%;"><span class="cap"><b>Kelly &amp; Dylan</b><span>Wildflower Modern</span></span></a>
-    <a class="tile quarter" href="{{ site.baseurl }}/portfolio/tori-tucker"><img src="{{ site.baseurl }}/assets/images/portfolio/tori-tucker/tori-tucker-16.jpg" sizes="(max-width:860px) 50vw, 25vw" alt="Tori &amp; Tucker wedding flowers: lakeside beach ceremony with a wild peony and garden-rose arch, North Tahoe Event Center, Kings Beach" style="object-position:center 25%;"><span class="cap"><b>Tori &amp; Tucker</b><span>Wildflower Modern</span></span></a>
+    <a class="tile feature" href="{{ site.baseurl }}/portfolio/katie-james"><img src="{{ site.baseurl }}/assets/images/portfolio/katie-james/katie-james-08.jpg" alt="Katie &amp; James wedding flowers: lush pastel floral ceremony arch on a stone wall, The Miner's Foundry, Nevada City" style="object-position:center 45%;"><span class="cap"><b>Katie &amp; James</b><span>The Miner's Foundry</span></span></a>
+    <a class="tile portrait" href="{{ site.baseurl }}/portfolio/lynn-aaron"><img src="{{ site.baseurl }}/assets/images/portfolio/lynn-aaron/lynn-aaron-17.jpg" alt="Lynn &amp; Aaron wedding flowers: reception tables with foraged bud-vase florals against green velvet drapery, Palisades High Camp, Olympic Valley" style="object-position:center 50%;"><span class="cap"><b>Lynn &amp; Aaron</b><span>Palisades High Camp</span></span></a>
+    <a class="tile quarter" href="{{ site.baseurl }}/portfolio/jenna-cal"><img src="{{ site.baseurl }}/assets/images/portfolio/jenna-cal/jenna-cal-12.jpg" sizes="(max-width:860px) 50vw, 25vw" alt="Jenna &amp; Cal wedding flowers: magnolia-and-greenery arch with red hanging lanterns above a sweetheart table, National Exchange Hotel, Nevada City" style="object-position:center 42%;"><span class="cap"><b>Jenna &amp; Cal</b><span>National Exchange Hotel</span></span></a>
+    <a class="tile quarter" href="{{ site.baseurl }}/portfolio/camille-max"><img src="{{ site.baseurl }}/assets/images/portfolio/camille-max/camille-max-30.jpg" sizes="(max-width:860px) 50vw, 25vw" alt="Camille &amp; Max wedding flowers: bride on a tree-lined path with a cascading bouquet of trailing amaranthus, North Star House, Grass Valley" style="object-position:center 28%;"><span class="cap"><b>Camille &amp; Max</b><span>North Star House</span></span></a>
+    <a class="tile quarter" href="{{ site.baseurl }}/portfolio/kelly-dylan"><img src="{{ site.baseurl }}/assets/images/portfolio/kelly-dylan/kelly-dylan-04.jpg" sizes="(max-width:860px) 50vw, 25vw" alt="Kelly &amp; Dylan wedding flowers: blue delphinium beach ceremony installation, North Tahoe Event Center, Kings Beach" style="object-position:center 40%;"><span class="cap"><b>Kelly &amp; Dylan</b><span>North Tahoe Event Center</span></span></a>
+    <a class="tile quarter" href="{{ site.baseurl }}/portfolio/tori-tucker"><img src="{{ site.baseurl }}/assets/images/portfolio/tori-tucker/tori-tucker-16.jpg" sizes="(max-width:860px) 50vw, 25vw" alt="Tori &amp; Tucker wedding flowers: lakeside beach ceremony with a wild peony and garden-rose arch, North Tahoe Event Center, Kings Beach" style="object-position:center 25%;"><span class="cap"><b>Tori &amp; Tucker</b><span>North Tahoe Event Center</span></span></a>
   </div>
 </section>
 </div>
@@ -119,37 +119,6 @@ redirect_from:
     <p class="disp"><span data-ed="home:immersive.heading">{{ site.data.home.immersive.heading }}</span></p>
   </div>
 </section>
-
-<!-- AESTHETICS -->
-<section class="aes">
-  <div class="aes-wrap">
-    <div class="aes-head">
-      <span class="lab"><span data-ed="home:aesthetics.label">{{ site.data.home.aesthetics.label }}</span></span>
-      <h2 class="disp"><span data-ed="home:aesthetics.heading">{{ site.data.home.aesthetics.heading }}</span></h2>
-    </div>
-    <div class="aes-row">
-      <a class="aes-card" href="{{ site.baseurl }}/portfolio/katie-james">
-        <div class="ph"><span class="idx">01</span><img src="{{ site.baseurl }}/assets/images/portfolio/katie-james/katie-james-01.jpg" alt="Lush and romantic floral design: candlelit reception tablescape with peach and burgundy blooms"></div>
-        <h3><span data-ed="home:aesthetics.cards.0.title">{{ site.data.home.aesthetics.cards[0].title }}</span></h3>
-        <p><span data-ed="home:aesthetics.cards.0.body">{{ site.data.home.aesthetics.cards[0].body }}</span></p>
-        <span class="more"><span data-ed="home:aesthetics.cards.0.link">{{ site.data.home.aesthetics.cards[0].link }}</span></span>
-      </a>
-      <a class="aes-card" href="{{ site.baseurl }}/portfolio/jenna-cal">
-        <div class="ph"><span class="idx">02</span><img src="{{ site.baseurl }}/assets/images/portfolio/jenna-cal/jenna-cal-10.jpg" alt="Elevated minimalist floral design: white tulips and candlelight, National Exchange Hotel"></div>
-        <h3><span data-ed="home:aesthetics.cards.1.title">{{ site.data.home.aesthetics.cards[1].title }}</span></h3>
-        <p><span data-ed="home:aesthetics.cards.1.body">{{ site.data.home.aesthetics.cards[1].body }}</span></p>
-        <span class="more"><span data-ed="home:aesthetics.cards.1.link">{{ site.data.home.aesthetics.cards[1].link }}</span></span>
-      </a>
-      <a class="aes-card" href="{{ site.baseurl }}/portfolio/camille-max">
-        <div class="ph"><span class="idx">03</span><img src="{{ site.baseurl }}/assets/images/portfolio/camille-max/camille-max-17.jpg" alt="Wildflower modern floral design: rose-lined aisle recessional, North Star House, Grass Valley"></div>
-        <h3><span data-ed="home:aesthetics.cards.2.title">{{ site.data.home.aesthetics.cards[2].title }}</span></h3>
-        <p><span data-ed="home:aesthetics.cards.2.body">{{ site.data.home.aesthetics.cards[2].body }}</span></p>
-        <span class="more"><span data-ed="home:aesthetics.cards.2.link">{{ site.data.home.aesthetics.cards[2].link }}</span></span>
-      </a>
-    </div>
-  </div>
-</section>
-
 
 <!-- TESTIMONIAL -->
 <section class="testi">
