@@ -1,0 +1,28 @@
+# Which weddings the home page previews, in order. Written by /edit ("Home
+# weddings" button, home page only). Exactly three, because the grid is a
+# designed triptych, not a feed:
+#
+#   slot 1 -> the large tile
+#   slot 2 -> the tall tile beside it
+#   slot 3 -> the wide closing band
+#
+#   slug  : must match a slug in portfolio_meta.yml. The couple's name and the
+#           venue are read from there, so the home page can never drift out of
+#           sync with /portfolio.
+#   photo : the NN of the file in assets/images/portfolio/<slug>/
+#   focus : object-position for this photo in THIS slot. Slot 3 is a wide
+#           letterbox, so the same photo usually wants a different value there
+#           than it would in a tall tile (tori-tucker at 25% framed sky and the
+#           backs of two heads; 60% frames the arch).
+#
+# These covers are intentionally independent of /portfolio's band photos and of
+# each wedding's own opening photo. All three can be different pictures.
+- slug: katie-james
+  photo: "08"
+  focus: center 45%
+- slug: lynn-aaron
+  photo: "17"
+  focus: center 50%
+- slug: tori-tucker
+  photo: "16"
+  focus: center 60%

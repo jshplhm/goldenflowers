@@ -101,6 +101,15 @@ sitemap: false
     .ed-ph.picked{outline:3px solid #1c5b34;outline-offset:-3px;}
     .ed-ph-pick{position:absolute;top:6px;left:6px;background:#1c5b34;color:#fff;border-radius:999px;
       width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-size:.78rem;font-weight:700;}
+    /* home weddings */
+    .ed-hw-list{display:flex;flex-direction:column;gap:8px;margin:14px 0 18px;}
+    .ed-hw-item{display:flex;align-items:center;gap:12px;padding:10px 12px;border:1px solid var(--ed-line);border-radius:8px;cursor:pointer;background:#fff;text-align:left;font:inherit;}
+    .ed-hw-item:hover{border-color:#8a8a8a;}
+    .ed-hw-item.on{border-color:#2f5d3a;box-shadow:inset 0 0 0 1px #2f5d3a;background:#f3f8f4;}
+    .ed-hw-item img{width:64px;height:44px;object-fit:cover;border-radius:4px;flex:none;}
+    .ed-hw-item .ed-hw-n{width:22px;height:22px;border-radius:50%;background:#2f5d3a;color:#fff;font-size:.72rem;display:flex;align-items:center;justify-content:center;flex:none;}
+    .ed-hw-item .ed-hw-n.off{background:transparent;color:transparent;border:1px solid var(--ed-line);}
+    .ed-hw-item .ed-hw-v{color:var(--ed-mute);font-size:.82rem;}
     /* vendors */
     .ed-ven-rows{display:flex;flex-direction:column;gap:10px;margin:14px 0 18px;}
     .ed-ven-row{display:grid;grid-template-columns:150px 1fr 1fr;gap:10px;align-items:center;}
@@ -117,6 +126,7 @@ sitemap: false
     <button class="ed-btn" id="ed-photos" hidden>Photos</button>
     <button class="ed-btn" id="ed-covers" hidden>Cover photos</button>
     <button class="ed-btn" id="ed-vendors" hidden>Vendors</button>
+    <button class="ed-btn" id="ed-homework" hidden>Home weddings</button>
     <button class="ed-btn" id="ed-wedrm" hidden>Remove wedding</button>
     <button class="ed-btn" id="ed-imgins" hidden>Insert photo</button>
     <button class="ed-btn" id="ed-new">New post</button>
@@ -125,7 +135,19 @@ sitemap: false
     <button class="ed-btn" id="ed-discard" disabled>Discard</button>
     <button class="ed-btn primary" id="ed-save" disabled>Save</button>
   </div>
-  <div class="ed-hint">Click any text to edit it, then press <b>Save</b>. Click any photo to swap it. On a wedding page, <b>Photos</b> manages the gallery, <b>Cover photos</b> picks what shows on the portfolio page, and <b>Vendors</b> credits everyone else who worked on it. Changes go live in about two minutes.</div>
+  <div class="ed-hint">Click any text to edit it, then press <b>Save</b>. Click any photo to swap it. On a wedding page, <b>Photos</b> manages the gallery, <b>Cover photos</b> picks what shows on the portfolio page, and <b>Vendors</b> credits everyone else who worked on it. On the home page, <b>Home weddings</b> chooses which three weddings it previews and in what order. Changes go live in about two minutes.</div>
+  <!-- Home weddings: which three weddings the home page previews, in order -->
+  <div class="ed-login" id="ed-hw-modal" hidden>
+    <form class="ed-card" id="ed-hw-form" style="max-width:720px;">
+      <h2>Home weddings</h2>
+      <p id="ed-hw-note">Pick the three weddings the home page shows, in the order you want them. The first is the large photo, the second sits beside it, the third is the wide one underneath. Click to add or remove.</p>
+      <div id="ed-hw-picked" class="ed-cov-picked"></div>
+      <div id="ed-hw-list" class="ed-hw-list"></div>
+      <button class="ed-btn primary" type="submit">Save home weddings</button>
+      <button class="ed-btn" type="button" id="ed-hw-cancel">Cancel</button>
+      <div class="ed-err" id="ed-hw-err"></div>
+    </form>
+  </div>
   <!-- Cover photos: which frames represent this wedding on /portfolio -->
   <div class="ed-login" id="ed-cov-modal" hidden>
     <form class="ed-card" id="ed-cov-form" style="max-width:900px;">

@@ -30,6 +30,7 @@ const delBtn = document.getElementById("ed-del");
 const photosBtn = document.getElementById("ed-photos");
 const coversBtn = document.getElementById("ed-covers");
 const vendorsBtn = document.getElementById("ed-vendors");
+const homeWorkBtn = document.getElementById("ed-homework");
 const imginsBtn = document.getElementById("ed-imgins");
 const phModal = document.getElementById("ed-ph-modal");
 const phTitle = document.getElementById("ed-ph-title");
@@ -356,6 +357,9 @@ function hookFrame() {
   wedRmBtn.hidden = !curGallery;
   coversBtn.hidden = !curGallery;
   vendorsBtn.hidden = !curGallery;
+  /* The home preview grid marks itself, so the button only exists on the one
+   * page it can act on. */
+  homeWorkBtn.hidden = !doc.querySelector("[data-ed-homework]");
   lastRange = null;
   doc.addEventListener("selectionchange", () => {
     const sel = doc.getSelection();
@@ -1196,10 +1200,32 @@ async function swapBandTo(newSrcPath) {
   return true;
 }
 
+/* Point one home preview slot at a different photo of the SAME wedding. Which
+ * wedding a slot shows is chosen in the Home weddings modal, not here, so this
+ * only ever rewrites the photo number. */
+async function swapHomeTo(newSrcPath) {
+  const i = repTarget.homeSlot;
+  const f = await getFile(HOME_WORK_PATH);
+  const doc = parseDocument(b64decodeUtf8(f.content));
+  const rows = (doc.contents && doc.contents.items) || [];
+  const node = rows[i];
+  if (!node || !node.get) throw new Error("Couldn't find that home slot in the list — tell Josh.");
+  const slug = node.get("slug");
+  const num = bandPhotoNumber(newSrcPath, slug);
+  if (!num) {
+    throw new Error("Home photos have to come from that wedding's own gallery. Open the wedding, add the photo with the Photos button, then come back and pick it here.");
+  }
+  doc.setIn([i, "photo"], num);
+  await commitFiles([{ path: HOME_WORK_PATH, text: doc.toString() }],
+    `Swap the home page photo for ${slug} via inline editor`);
+  return true;
+}
+
 /* rewrite every reference to the clicked photo in this page's source.
  * Returns false when the source already shows that photo (nothing to commit). */
 async function swapSourceTo(newSrcPath) {
   if (repTarget.bandSlug) return swapBandTo(newSrcPath);
+  if (repTarget.homeSlot != null) return swapHomeTo(newSrcPath);
   const { text } = await rawFile(curPage);
   const updated = sourceSwappedTo(text, newSrcPath);
   if (updated === null) throw new Error(REP_UNMATCHED);
@@ -1237,6 +1263,17 @@ function openReplace(img) {
       repTarget.bandSlug = band.getAttribute("data-ed-band");
       repTarget.bandIndex = idx;
     }
+  }
+
+  /* Same story for the home preview grid: since it became data-driven the photo
+   * is no longer written in index.md, so record the slot and edit
+   * _data/home_work.yml instead of searching page source for a path that is
+   * not there. */
+  const hw = img.closest("[data-ed-homework]");
+  if (hw) {
+    const tiles = [...hw.querySelectorAll(".tile")];
+    const idx = tiles.indexOf(img.closest(".tile"));
+    if (idx > -1) repTarget.homeSlot = idx;
   }
   const slug = (repTarget.path.match(/^\/assets\/images\/portfolio\/([^/]+)\//) || [])[1] || repTarget.cardSlug;
   if (slug) {
@@ -1304,6 +1341,12 @@ repForm.addEventListener("submit", async (e) => {
   try {
     if (repTarget.bandSlug) {
       throw new Error("Cover photos have to come from this wedding's own gallery. Open the wedding, add the photo with the Photos button, then come back and pick it here.");
+    }
+    /* Same rule for the home grid: _data/home_work.yml stores a photo NUMBER
+     * inside the wedding's own folder, so an upload to assets/images/pages/
+     * has nowhere to be recorded. */
+    if (repTarget.homeSlot != null) {
+      throw new Error("Home page photos have to come from that wedding's own gallery. Open the wedding, add the photo with the Photos button, then come back and pick it here.");
     }
     const { text } = await rawFile(curPage);
     /* check before resizing so an unswappable photo fails fast */
@@ -1748,6 +1791,138 @@ covForm.addEventListener("submit", async (e) => {
   } catch (err) {
     covErr.textContent = err.message;
     covErr.style.display = "block";
+  } finally {
+    btn.disabled = false;
+  }
+});
+
+/* ============================================================================
+   HOME WEDDINGS — which three weddings the home page previews, in order
+   (_data/home_work.yml). The grid is a designed triptych, so it is exactly
+   three: slot 1 large, slot 2 beside it, slot 3 the wide band underneath.
+   ========================================================================= */
+
+const HOME_WORK_PATH = "_data/home_work.yml";
+const HOME_WORK_TOTAL = 3;
+
+const hwModal = document.getElementById("ed-hw-modal");
+const hwForm = document.getElementById("ed-hw-form");
+const hwList = document.getElementById("ed-hw-list");
+const hwPicked = document.getElementById("ed-hw-picked");
+const hwErr = document.getElementById("ed-hw-err");
+const hwCancel = document.getElementById("ed-hw-cancel");
+
+let hwAll = [];    /* every wedding, from portfolio_meta */
+let hwPick = [];   /* chosen slugs, in slot order */
+let hwFocus = {};  /* slug -> the focus value it already had, so it survives a reorder */
+let hwPhoto = {};  /* slug -> the photo number it already had */
+
+const HW_SLOT_LABEL = ["Large", "Beside it", "Wide band"];
+
+function renderHomeWork() {
+  hwPicked.innerHTML = hwPick.length
+    ? hwPick.map((slug, i) => {
+        const m = hwAll.find((w) => w.slug === slug) || {};
+        return `<span class="ed-cov-chip">${i + 1}. ${escapeHtml(m.name || slug)} <small>${escapeHtml(HW_SLOT_LABEL[i] || "")}</small></span>`;
+      }).join("")
+    : `<span class="ed-cov-chip"><small>Nothing picked yet — click ${HOME_WORK_TOTAL} weddings below.</small></span>`;
+
+  hwList.innerHTML = hwAll.map((w) => {
+    const at = hwPick.indexOf(w.slug);
+    const num = w.band && w.band[0] ? w.band[0] : "01";
+    /* root-relative: /edit is served from the same origin as the site */
+    const thumb = `/assets/images/portfolio/${w.slug}/${w.slug}-${num}.jpg`;
+    return `<button type="button" class="ed-hw-item${at > -1 ? " on" : ""}" data-slug="${escapeHtml(w.slug)}">
+      <span class="ed-hw-n${at > -1 ? "" : " off"}">${at > -1 ? at + 1 : ""}</span>
+      <img src="${escapeHtml(thumb)}" alt="" loading="lazy">
+      <span><b>${escapeHtml(w.name || w.slug)}</b><br><span class="ed-hw-v">${escapeHtml(w.venue || "")}</span></span>
+    </button>`;
+  }).join("");
+}
+
+hwList.addEventListener("click", (e) => {
+  const item = e.target.closest(".ed-hw-item");
+  if (!item) return;
+  const slug = item.getAttribute("data-slug");
+  const at = hwPick.indexOf(slug);
+  if (at > -1) hwPick.splice(at, 1);
+  else if (hwPick.length < HOME_WORK_TOTAL) hwPick.push(slug);
+  else {
+    hwErr.textContent = `That's ${HOME_WORK_TOTAL} already — click one to remove it first.`;
+    hwErr.style.display = "block";
+    return;
+  }
+  hwErr.style.display = "none";
+  renderHomeWork();
+});
+
+homeWorkBtn.addEventListener("click", async () => {
+  if (!DRYRUN && !token()) { await ensureAuth(); if (!token()) return; }
+  hwErr.style.display = "none";
+  hwModal.hidden = false;
+  hwList.innerHTML = "<p>Loading…</p>";
+  try {
+    const metaFile = await getFile(META_PATH);
+    hwAll = parseDocument(b64decodeUtf8(metaFile.content)).toJS() || [];
+    /* A missing manifest is a legitimate starting state, not an error: saving
+     * creates the file. Without this the whole modal dies on a 404 and there is
+     * no way to pick the first three from inside the editor. */
+    const f = await getFile(HOME_WORK_PATH).catch((err) => {
+      if (/\(404\)/.test(err.message)) return null;
+      throw err;
+    });
+    const rows = f ? (parseDocument(b64decodeUtf8(f.content)).toJS() || []) : [];
+    hwPick = rows.map((r) => r.slug).filter((s) => hwAll.some((w) => w.slug === s)).slice(0, HOME_WORK_TOTAL);
+    hwFocus = {};
+    hwPhoto = {};
+    rows.forEach((r) => { hwFocus[r.slug] = r.focus; hwPhoto[r.slug] = r.photo; });
+    renderHomeWork();
+  } catch (err) {
+    hwErr.textContent = err.message;
+    hwErr.style.display = "block";
+  }
+});
+
+hwCancel.addEventListener("click", () => { hwModal.hidden = true; });
+
+hwForm.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  hwErr.style.display = "none";
+  if (hwPick.length !== HOME_WORK_TOTAL) {
+    hwErr.textContent = `Pick exactly ${HOME_WORK_TOTAL} weddings — the home grid has three slots.`;
+    hwErr.style.display = "block";
+    return;
+  }
+  const btn = hwForm.querySelector("button[type=submit]");
+  btn.disabled = true;
+  try {
+    /* Rebuild the list rather than editing in place: the whole point of this
+     * modal is that slots get reordered, and setIn against shifting indexes is
+     * how you write one wedding's photo onto another. A wedding new to the list
+     * keeps its own first band photo, which is already a chosen cover. */
+    const rows = hwPick.map((slug) => {
+      const m = hwAll.find((w) => w.slug === slug) || {};
+      const photo = hwPhoto[slug] || (m.band && m.band[0]) || "01";
+      return { slug, photo: String(photo), focus: hwFocus[slug] || "center center" };
+    });
+    const text =
+      "# Which weddings the home page previews, in order. Written by /edit\n" +
+      "# (\"Home weddings\"). Exactly three: slot 1 is the large tile, slot 2 the\n" +
+      "# tall tile beside it, slot 3 the wide closing band. Names and venues are\n" +
+      "# read from portfolio_meta.yml, never stored here.\n" +
+      "#\n" +
+      "# focus is object-position for that photo in that slot. Slot 3 is a wide\n" +
+      "# letterbox and usually wants a different value than a tall tile would.\n" +
+      rows.map((r) => `- slug: ${r.slug}\n  photo: "${r.photo}"\n  focus: ${r.focus}\n`).join("");
+    await commitFiles([{ path: HOME_WORK_PATH, text }], "Set the home page weddings via inline editor");
+    hwModal.hidden = true;
+    statusEl.className = "ed-status ok";
+    statusEl.textContent = DRYRUN
+      ? "Dry run done — nothing committed"
+      : "✓ Home weddings saved — the home page updates in about two minutes.";
+  } catch (err) {
+    hwErr.textContent = err.message;
+    hwErr.style.display = "block";
   } finally {
     btn.disabled = false;
   }

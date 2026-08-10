@@ -174,7 +174,12 @@
   var pauseBtn=hero.querySelector('.hd-pause');
   if(imgs.length<2) return;
 
-  var HOLD=6000, FADE=1200;          /* keep FADE in sync with .hero-rot .bg transition */
+  /* HOLD+FADE is how long one photo is actually on screen, so the Ken Burns
+     animation in redesign.css is set to exactly that (5200ms). If you change
+     HOLD, change that duration too or the zoom stops part-way through its
+     travel and the movement reads as weaker than it is. FADE must stay in sync
+     with the .hero-rot .bg opacity transition. */
+  var HOLD=4000, FADE=1200;
   var i=0, timer=null, paused=false;
   var still=window.matchMedia('(prefers-reduced-motion: reduce)');
 

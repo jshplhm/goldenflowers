@@ -35,15 +35,22 @@ redirect_from:
 
 <!-- HERO (three photos crossfading behind fixed copy — see HERO ROTATION in redesign.css) -->
 <header class="hero hero-rot" id="hero-rot">
-  <img class="bg is-on hero-1" src="{{ site.baseurl }}/assets/images/portfolio/kelly-dylan/kelly-dylan-07.jpg" alt="Lake Tahoe beach wedding: bride with veil blowing in the wind, blue delphinium ceremony aisle at Kings Beach" style="object-position:center 50%;" fetchpriority="high">
-  <img class="bg hero-2" src="{{ site.baseurl }}/assets/images/portfolio/lynn-aaron/lynn-aaron-19.jpg" alt="Snowy Sierra mountaintop wedding ceremony: couple kissing between two towering floral installations" loading="lazy">
-  {% comment %} Art-directed: a landscape photo in a portrait viewport crops the SIDES
-  and keeps the full height, so on a phone half the frame would be blown-out sky.
-  object-position cannot fix that, so phones get a crop cut from the original. {% endcomment %}
+  {% comment %} The hero-1/2/3 classes identify the PHOTO, not its slot: each one
+  carries that photo's own object-position (including the phone overrides in
+  redesign.css), so reordering the slideshow means moving these elements and
+  leaving every class attached to its own image. Laux leads as of 2026-08-10.
+
+  Art-directed: a landscape photo in a portrait viewport crops the SIDES and keeps
+  the full height, so on a phone half the frame would be blown-out sky.
+  object-position cannot fix that, so phones get a crop cut from the original.
+  The leading photo is the LCP image, so it is eager + fetchpriority high and the
+  phone crop is preloaded by the same media query. {% endcomment %}
   <picture>
     <source media="(max-width:700px)" srcset="{{ site.baseurl }}/assets/images/home-hero-laux-portrait.jpg">
-    <img class="bg hero-3" data-boost="1" src="{{ site.baseurl }}/assets/images/home-hero-laux.jpg" alt="Golden hour in an Olympic Valley meadow: bride and groom in tall grass with the Sierra Nevada behind them, bride holding a green and lavender bouquet" loading="lazy">
+    <img class="bg is-on hero-3" data-boost="1" src="{{ site.baseurl }}/assets/images/home-hero-laux.jpg" alt="Golden hour in an Olympic Valley meadow: bride and groom in tall grass with the Sierra Nevada behind them, bride holding a green and lavender bouquet" fetchpriority="high">
   </picture>
+  <img class="bg hero-1" src="{{ site.baseurl }}/assets/images/portfolio/kelly-dylan/kelly-dylan-07.jpg" alt="Lake Tahoe beach wedding: bride with veil blowing in the wind, blue delphinium ceremony aisle at Kings Beach" style="object-position:center 50%;" loading="lazy">
+  <img class="bg hero-2" src="{{ site.baseurl }}/assets/images/portfolio/lynn-aaron/lynn-aaron-19.jpg" alt="Snowy Sierra mountaintop wedding ceremony: couple kissing between two towering floral installations" loading="lazy">
   <div class="hero-boost" aria-hidden="true"></div>
   <div class="hero-in">
     {% if site.data.home.hero.eyebrow and site.data.home.hero.eyebrow != "" %}<p class="ey lab"><span data-ed="home:hero.eyebrow">{{ site.data.home.hero.eyebrow }}</span></p>{% endif %}
@@ -86,16 +93,29 @@ redirect_from:
 <!-- WORK (paper band) -->
 <div class="band-paper">
 <section class="work">
+  {%- comment -%} One way out of this section, not two. The link lives below the
+  photos rather than in the header: a reader decides they want more AFTER looking,
+  not before. {%- endcomment -%}
   <div class="work-head">
     <h2 class="disp"><span data-ed="home:work.heading">{{ site.data.home.work.heading }}</span></h2>
-    <a href="{{ site.baseurl }}/portfolio" class="txt-link"><span data-ed="home:work.link">{{ site.data.home.work.link }}</span> &rarr;</a>
   </div>
-  <div class="grid">
-    <a class="tile feature" href="{{ site.baseurl }}/portfolio/katie-james"><img src="{{ site.baseurl }}/assets/images/portfolio/katie-james/katie-james-08.jpg" alt="Katie &amp; James wedding flowers: lush pastel floral ceremony arch on a stone wall, The Miner's Foundry, Nevada City" style="object-position:center 45%;"><span class="cap"><b>Katie &amp; James</b><span>The Miner's Foundry</span></span></a>
-    <a class="tile portrait" href="{{ site.baseurl }}/portfolio/lynn-aaron"><img src="{{ site.baseurl }}/assets/images/portfolio/lynn-aaron/lynn-aaron-17.jpg" alt="Lynn &amp; Aaron wedding flowers: reception tables with foraged bud-vase florals against green velvet drapery, Palisades High Camp, Olympic Valley" style="object-position:center 50%;"><span class="cap"><b>Lynn &amp; Aaron</b><span>Palisades High Camp</span></span></a>
-    {%- comment -%} 60%, not the 25% this photo used as a tall tile: in a wide
-    crop 25% lands on sky and the backs of heads. {%- endcomment -%}
-    <a class="tile wide" href="{{ site.baseurl }}/portfolio/tori-tucker"><img src="{{ site.baseurl }}/assets/images/portfolio/tori-tucker/tori-tucker-16.jpg" sizes="100vw" alt="Tori &amp; Tucker wedding flowers: lakeside beach ceremony with a wild peony and garden-rose arch, North Tahoe Event Center, Kings Beach" style="object-position:center 60%;"><span class="cap"><b>Tori &amp; Tucker</b><span>North Tahoe Event Center</span></span></a>
+  {%- comment -%} Driven by _data/home_work.yml so /edit can choose which three
+  weddings appear and in what order. Names and venues come from portfolio_meta,
+  never from here, so a rename on /portfolio can never leave home stale. A slug
+  that no longer exists is skipped rather than rendering a broken tile, which
+  means a stale manifest can never break the build. {%- endcomment -%}
+  {%- assign slotClass = "feature,portrait,wide" | split: "," -%}
+  {%- assign slotSizes = "58vw,38vw,100vw" | split: "," -%}
+  <div class="grid" data-ed-homework>
+    {%- assign slot = 0 -%}
+    {%- for hw in site.data.home_work -%}
+    {%- assign m = site.data.portfolio_meta | where: "slug", hw.slug | first -%}
+    {%- if m and slot < 3 -%}
+    {%- assign base = '/assets/images/portfolio/' | append: hw.slug | append: '/' | append: hw.slug | append: '-' -%}
+    <a class="tile {{ slotClass[slot] }}" href="{{ site.baseurl }}/portfolio/{{ hw.slug }}"><img src="{{ site.baseurl }}{{ base }}{{ hw.photo }}.jpg" sizes="{{ slotSizes[slot] }}" alt="{{ m.name }} wedding flowers at {{ m.venue }}, {{ m.place }}" style="object-position:{{ hw.focus | default: 'center center' }};"><span class="cap"><b>{{ m.name }}</b><span>{{ m.venue }}</span></span></a>
+    {%- assign slot = slot | plus: 1 -%}
+    {%- endif -%}
+    {%- endfor -%}
   </div>
   {%- comment -%} The grid is a preview, not the archive. Three weddings show the
   range (historic indoor, mountain, lakeside); the rest live on /portfolio. This

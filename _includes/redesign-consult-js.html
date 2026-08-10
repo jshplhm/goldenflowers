@@ -417,6 +417,18 @@ function appendCommon_(params, form){
     // and duplicated the "Thank you" personalization one line up.
     // "You hear from us" names the channel they picked. Kept short (no "you")
     // so each line survives a phone screen unwrapped.
+    // "your date" is a statement of fact, and it is wrong for a planner or a
+    // friend: it is not their date. Swap the possessive for those roles and
+    // leave the rest of the screen alone. Deliberately NOT four variants of
+    // this screen: the visitor already knows who they are, the role exists so
+    // Brittany knows before she replies.
+    var role=String(data.get('role')||'').trim();
+    if(role && role!=='One of the couple'){
+      var stepHead=success.querySelector('[data-success-step-head]');
+      var stepDate=success.querySelector('[data-success-step-date]');
+      if(stepHead) stepHead.textContent='We check the date';
+      if(stepDate) stepDate.textContent=' the date is open';
+    }
     var noteEl=success.querySelector('[data-success-note]');
     var methods=data.getAll?data.getAll('contact_method'):[];
     if(noteEl&&methods.length){
