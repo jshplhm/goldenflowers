@@ -23,64 +23,68 @@
   name: "Lynn & Aaron"
   venue: "Palisades High Camp"
   place: "Olympic Valley"
-  band: ["26", "16", "22"]
-  strip: ["19", "17"]
-  lede: "A wedding at the top of the mountain, with snow still on the peaks. We met
-    the setting with jewel tones and installations scaled for a landscape that big."
+  band: [ "21", "16", "22" ]
+  strip: [ "19", "17" ]
+  lede: "A wedding at the top of the mountain, with snow still on the peaks. We
+    met the setting with jewel tones and installations scaled for a landscape
+    that big."
   palette: "Coral peony, oxblood dahlia, trailing amaranthus"
-  dots: ["#e8756a", "#5c1f2b", "#8fae5d", "#f0e3d2", "#b8365a"]
+  dots: [ "#e8756a", "#5c1f2b", "#8fae5d", "#f0e3d2", "#b8365a" ]
 
 - slug: tori-tucker
   name: "Tori & Tucker"
   venue: "North Tahoe Event Center"
   place: "Kings Beach"
-  band: ["13", "18", "03"]
-  strip: ["05", "08"]
+  band: [ "13", "18", "03" ]
+  strip: [ "05", "08" ]
   lede: "Pink, green and a little bit whimsical, on the shore of the lake. Garden
     roses and sweet peas against sage linen, styled with an editorial eye."
   palette: "Garden rose, coral peony, sweet pea, hydrangea, sage"
-  dots: ["#e8a3ae", "#f2c9b4", "#8f9b6f", "#f6efe4", "#c56a7a"]
+  dots: [ "#e8a3ae", "#f2c9b4", "#8f9b6f", "#f6efe4", "#c56a7a" ]
 
 - slug: katie-james
   name: "Katie & James"
   venue: "The Miner's Foundry"
   place: "Nevada City"
-  band: ["08", "04", "12"]
-  strip: ["09", "03"]
-  lede: "A garden fairytale inside a stone hall. A lavish arch over the tall arched
-    windows, moss runners down the banquet tables, and candlelight everywhere."
+  band: [ "08", "04", "12" ]
+  strip: [ "09", "03" ]
+  lede: "A garden fairytale inside a stone hall. A lavish arch over the tall
+    arched windows, moss runners down the banquet tables, and candlelight
+    everywhere."
   palette: "Blush garden rose, butter cream, moss"
-  dots: ["#f2cfc6", "#f6e9cf", "#7d8f5c", "#e9d9b8", "#c98d84"]
+  dots: [ "#f2cfc6", "#f6e9cf", "#7d8f5c", "#e9d9b8", "#c98d84" ]
 
 - slug: camille-max
   name: "Camille & Max"
   venue: "North Star House"
   place: "Grass Valley"
-  band: ["07", "16", "01"]
-  strip: ["23", "29"]
+  band: [ "07", "16", "01" ]
+  strip: [ "23", "29" ]
   lede: "An autumn celebration where craftsman architecture and old oaks set the
-    tone. An arbor that reads as though it grew in place rather than being installed."
+    tone. An arbor that reads as though it grew in place rather than being
+    installed."
   palette: "Blush and burgundy rose, trailing amaranthus"
-  dots: ["#e5b7a8", "#7a2338", "#9aa86e", "#f0e5d4", "#c4715f"]
+  dots: [ "#e5b7a8", "#7a2338", "#9aa86e", "#f0e5d4", "#c4715f" ]
 
 - slug: kelly-dylan
   name: "Kelly & Dylan"
   venue: "North Tahoe Event Center"
   place: "Kings Beach"
-  band: ["07", "04", "09"]
-  strip: ["03", "17"]
-  lede: "Blue and citrus on the shore. Delphinium and anemone planted into the sand
-    like a meadow, with pops of orange to match the open water."
+  band: [ "07", "04", "09" ]
+  strip: [ "03", "17" ]
+  lede: "Blue and citrus on the shore. Delphinium and anemone planted into the
+    sand like a meadow, with pops of orange to match the open water."
   palette: "Delphinium, anemone, orange ranunculus"
-  dots: ["#3f5aa6", "#8fa8d8", "#e8842f", "#f4efe2", "#6b7f4a"]
+  dots: [ "#3f5aa6", "#8fa8d8", "#e8842f", "#f4efe2", "#6b7f4a" ]
 
 - slug: jenna-cal
   name: "Jenna & Cal"
   venue: "National Exchange Hotel"
   place: "Nevada City"
-  band: ["13", "04", "10"]
-  strip: ["15", "12"]
+  band: [ "13", "04", "10" ]
+  strip: [ "15", "12" ]
   lede: "A white-and-green wedding with a thread of red running through it.
-    Phalaenopsis orchids and magnolia foliage, warmed by hanging red silk lanterns."
+    Phalaenopsis orchids and magnolia foliage, warmed by hanging red silk
+    lanterns."
   palette: "Phalaenopsis orchid, magnolia foliage, red silk"
-  dots: ["#f8f5ec", "#2f4a2c", "#c8202b", "#d8cdb4", "#8a9a6b"]
+  dots: [ "#f8f5ec", "#2f4a2c", "#c8202b", "#d8cdb4", "#8a9a6b" ]
