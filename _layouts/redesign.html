@@ -165,6 +165,63 @@
   },{passive:true});
 })();
 
+/* Home hero: three photos crossfading behind fixed copy. Home-only — every
+   other page has a single .hero image and this exits immediately. */
+(function(){
+  var hero=document.getElementById('hero-rot'); if(!hero) return;
+  var imgs=[].slice.call(hero.querySelectorAll('.bg'));
+  var dots=[].slice.call(hero.querySelectorAll('.hero-dots .hd'));
+  var pauseBtn=hero.querySelector('.hd-pause');
+  if(imgs.length<2) return;
+
+  var HOLD=6000, FADE=1200;          /* keep FADE in sync with .hero-rot .bg transition */
+  var i=0, timer=null, paused=false;
+  var still=window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  /* Mirror the active photo's scrim-boost flag onto the header. */
+  function boost(){ hero.setAttribute('data-boost', imgs[i].getAttribute('data-boost')||'0'); }
+
+  function show(n){
+    if(n===i) return;
+    var prev=i; i=(n+imgs.length)%imgs.length;
+    imgs.forEach(function(el,k){ el.classList.toggle('is-on', k===i); });
+    var on=imgs[i];
+    on.classList.remove('kb-run'); void on.offsetWidth; on.classList.add('kb-run');
+    /* The outgoing photo keeps its zoom until the crossfade is done, otherwise
+       it visibly snaps back to scale(1) behind the incoming one. */
+    var out=imgs[prev];
+    setTimeout(function(){ if(!out.classList.contains('is-on')) out.classList.remove('kb-run'); }, FADE+60);
+    boost();
+    dots.forEach(function(d,k){ d.classList.toggle('on', k===i); });
+  }
+
+  function start(){
+    clearInterval(timer);
+    if(paused || still.matches) return;
+    timer=setInterval(function(){ show(i+1); }, HOLD);
+  }
+
+  dots.forEach(function(d){
+    d.addEventListener('click', function(){ show(parseInt(d.getAttribute('data-go'),10)); start(); });
+  });
+  if(pauseBtn) pauseBtn.addEventListener('click', function(){
+    paused=!paused;
+    pauseBtn.innerHTML = paused ? '&#9654;' : '&#10073;&#10073;';
+    pauseBtn.setAttribute('aria-label', paused ? 'Play slideshow' : 'Pause slideshow');
+    start();
+  });
+  document.addEventListener('visibilitychange', function(){
+    if(document.hidden) clearInterval(timer); else start();
+  });
+  if(still.addEventListener) still.addEventListener('change', start);
+
+  /* Photo 1 is the LCP image: don't start decoding the other two or animating
+     anything until the page has finished loading. */
+  function begin(){ if(!still.matches) imgs[0].classList.add('kb-run'); boost(); start(); }
+  if(document.readyState==='complete') begin();
+  else window.addEventListener('load', begin);
+})();
+
 /* Mobile menu: any [data-menu-toggle] toggles; links + Esc close. */
 (function(){
   var toggles=document.querySelectorAll('[data-menu-toggle]'); if(!toggles.length) return;

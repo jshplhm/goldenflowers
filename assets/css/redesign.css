@@ -150,6 +150,46 @@ button.txt-link{background:none;border-top:0;border-left:0;border-right:0;cursor
 .hero-btns{display:flex;gap:14px;flex-wrap:wrap;align-items:center;}
 .side-label{position:absolute;right:calc(var(--pad) - 6px);top:50%;transform:rotate(90deg);transform-origin:right center;z-index:3;font-size:.72rem;letter-spacing:.3em;text-transform:uppercase;opacity:.8;}
 
+/* ---------- HERO ROTATION (home only) ----------
+   Three photos crossfade behind FIXED copy. The headline, subhead and CTA never
+   move: this is ambient texture, not a carousel of competing messages, which is
+   what the research against hero carousels is actually about. */
+.hero-rot .bg{opacity:0;transition:opacity 1200ms cubic-bezier(.4,0,.2,1);}
+.hero-rot .bg.is-on{opacity:1;}
+
+/* The slow push is bound to .kb-run rather than .is-on. Bound to .is-on, the
+   outgoing photo loses the animation the instant it stops being active and
+   snaps back to scale(1) while still visible for the whole 1.2s crossfade —
+   a very obvious bounce. JS strips .kb-run only after the fade has finished,
+   when the reset happens at opacity 0. Duration = hold + both fades. */
+.hero-rot .bg.kb-run{animation:hero-kb 8400ms linear forwards;}
+@keyframes hero-kb{from{transform:scale(1)}to{transform:scale(1.055)}}
+
+/* Photo 3 is high-key (pale sky, cream suit, white dress) and the standard
+   scrim leaves the headline thin on it, so deepen it while that photo is up. */
+.hero-rot[data-boost="1"]::after{background:linear-gradient(90deg,oklch(14% .03 150/.66) 0%,oklch(14% .03 150/.24) 46%,transparent 72%),linear-gradient(180deg,oklch(16% .03 150/.26) 0%,transparent 32%,transparent 55%,oklch(12% .03 150/.55) 100%);}
+
+/* Per-photo crops. Photo 2 centres on the couple and loses its left floral
+   column on a phone, so bias it left there. Photo 3 sits low in its frame. */
+.hero-rot .hero-3{object-position:center 62%;}
+@media(max-width:700px){
+  .hero-rot .hero-2{object-position:40% center;}
+  .hero-rot .hero-3{object-position:center center;}  /* phones get their own crop file */
+}
+
+/* Anyone who asked for less motion gets photo 1, held still. */
+@media(prefers-reduced-motion:reduce){
+  .hero-rot .bg{transition:none;animation:none!important;}
+}
+
+/* Indicator + pause. The pause is the WCAG 2.2.2 affordance for auto-advancing
+   motion, not decoration — don't drop it. */
+.hero-dots{position:absolute;z-index:4;right:clamp(20px,4vw,48px);bottom:clamp(48px,6.5vw,84px);display:flex;align-items:center;gap:10px;}
+.hero-dots .hd{width:8px;height:8px;padding:0;border-radius:50%;border:1px solid oklch(100% 0 0/.7);background:transparent;cursor:pointer;transition:background .3s;}
+.hero-dots .hd.on{background:oklch(100% 0 0);}
+.hero-dots .hd-pause{margin-left:6px;background:transparent;border:0;color:oklch(100% 0 0/.8);font-size:9px;letter-spacing:1px;line-height:1;cursor:pointer;}
+.hero-dots .hd-pause:hover{color:oklch(100% 0 0);}
+
 /* ---------- SPLIT HERO (Our Story — deliberately not full-bleed) ---------- */
 .studio-hero{display:grid;grid-template-columns:1.02fr .98fr;gap:clamp(32px,5vw,72px);align-items:center;max-width:1400px;margin:0 auto;padding:clamp(112px,14vw,170px) var(--pad) clamp(24px,3vw,44px);}
 .studio-hero h1{font-family:var(--d);font-weight:430;font-optical-sizing:auto;font-size:clamp(2.6rem,6vw,5rem);line-height:1.02;letter-spacing:-.02em;margin:18px 0 22px;}

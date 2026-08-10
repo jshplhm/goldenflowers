@@ -33,9 +33,17 @@ redirect_from:
   - /the-vday-shop/p/hand-crafted-chocolates
 ---
 
-<!-- HERO -->
-<header class="hero">
-  <img class="bg" src="{{ site.baseurl }}/assets/images/portfolio/kelly-dylan/kelly-dylan-07.jpg" alt="Lake Tahoe beach wedding: bride with veil blowing in the wind, blue delphinium ceremony aisle at Kings Beach" style="object-position:center 50%;">
+<!-- HERO (three photos crossfading behind fixed copy — see HERO ROTATION in redesign.css) -->
+<header class="hero hero-rot" id="hero-rot">
+  <img class="bg is-on hero-1" src="{{ site.baseurl }}/assets/images/portfolio/kelly-dylan/kelly-dylan-07.jpg" alt="Lake Tahoe beach wedding: bride with veil blowing in the wind, blue delphinium ceremony aisle at Kings Beach" style="object-position:center 50%;" fetchpriority="high">
+  <img class="bg hero-2" src="{{ site.baseurl }}/assets/images/portfolio/lynn-aaron/lynn-aaron-19.jpg" alt="Snowy Sierra mountaintop wedding ceremony: couple kissing between two towering floral installations" loading="lazy">
+  {% comment %} Art-directed: a landscape photo in a portrait viewport crops the SIDES
+  and keeps the full height, so on a phone half the frame would be blown-out sky.
+  object-position cannot fix that, so phones get a crop cut from the original. {% endcomment %}
+  <picture>
+    <source media="(max-width:700px)" srcset="{{ site.baseurl }}/assets/images/home-hero-laux-portrait.jpg">
+    <img class="bg hero-3" data-boost="1" src="{{ site.baseurl }}/assets/images/home-hero-laux.jpg" alt="Golden hour in an Olympic Valley meadow: bride and groom in tall grass with the Sierra Nevada behind them, bride holding a green and lavender bouquet" loading="lazy">
+  </picture>
   <div class="hero-in">
     {% if site.data.home.hero.eyebrow and site.data.home.hero.eyebrow != "" %}<p class="ey lab"><span data-ed="home:hero.eyebrow">{{ site.data.home.hero.eyebrow }}</span></p>{% endif %}
     <h1 class="disp">{% include em.html t=site.data.home.hero.heading k="home:hero.heading" %}</h1>
@@ -43,6 +51,13 @@ redirect_from:
       <p class="hero-sub"><span data-ed="home:hero.subheading">{{ site.data.home.hero.subheading }}</span></p>
       <a class="btn" href="{{ site.baseurl }}/portfolio"><span data-ed="home:hero.button">{{ site.data.home.hero.button }}</span> <span>&rarr;</span></a>
     </div>
+  </div>
+
+  <div class="hero-dots">
+    <button type="button" class="hd on" data-go="0" aria-label="Show photo 1"></button>
+    <button type="button" class="hd" data-go="1" aria-label="Show photo 2"></button>
+    <button type="button" class="hd" data-go="2" aria-label="Show photo 3"></button>
+    <button type="button" class="hd-pause" aria-label="Pause slideshow">&#10073;&#10073;</button>
   </div>
 </header>
 
