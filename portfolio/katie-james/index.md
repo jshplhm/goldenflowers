@@ -1,7 +1,7 @@
 ---
 layout: redesign
-title: "Katie & James · Lush & Romantic"
-seo_title: "Katie & James Wedding Flowers · Lush & Romantic | Golden Flowers"
+title: "Katie & James"
+seo_title: "Katie & James Wedding Flowers | Golden Flowers"
 permalink: /portfolio/katie-james
 portfolio_key: katie-james
 redirect_from:
@@ -12,14 +12,12 @@ hero_photo: katie-james-07.jpg
 
 {% include portfolio-subnav.html name="Katie & James" %}
 
-<header class="text-hero venue-hero">
-  <span class="lab">Lush & Romantic</span>
-  <h1>Katie & James</h1>
-  {%- assign subtitle = site.data.portfolio[page.portfolio_key] %}
-  {%- assign subtitle_k = page.portfolio_key | prepend: "portfolio:" %}
-  <p class="th-sub">{% include em.html t=subtitle k=subtitle_k %}</p>
-</header>
+{% include wedding-open.html slug="katie-james" name="Katie &amp; James" %}
 
-{% include portfolio-gallery.html slug="katie-james" hero="katie-james-07.jpg" name="Katie & James" %}
+{% include portfolio-gallery.html slug="katie-james" hero="katie-james-07.jpg" name="Katie & James" nohero=true %}
+
+{% include wedding-credits.html slug="katie-james" %}
+
+{% include wedding-more.html slug="katie-james" %}
 
 {% include wedding-cta.html %}

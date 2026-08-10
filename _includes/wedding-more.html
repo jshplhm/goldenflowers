@@ -1,0 +1,33 @@
+{%- comment -%}
+  Three other weddings, chosen for contrast rather than adjacency: with a short
+  list, whoever sits either side of this one is an accident of ordering.
+  Params: slug.
+{%- endcomment -%}
+{%- assign wp = site.data.portfolio_page.wedding -%}
+{%- assign others = "" | split: "" -%}
+{%- for w in site.data.portfolio_meta -%}
+  {%- unless w.slug == include.slug -%}{%- assign others = others | push: w -%}{%- endunless -%}
+{%- endfor -%}
+{%- if others.size > 0 -%}
+{%- assign step = others.size | divided_by: 3 -%}
+{%- if step < 1 -%}{%- assign step = 1 -%}{%- endif -%}
+<section class="wp-onward">
+  <div class="wp-oh">
+    <h2>{{ wp.more_heading }}</h2>
+    <a class="wp-oall" href="{{ site.baseurl }}/portfolio">{{ wp.more_link }} <span aria-hidden="true">&rarr;</span></a>
+  </div>
+  <div class="wp-og">
+    {%- for i in (0..2) -%}
+      {%- assign idx = i | times: step -%}
+      {%- if idx < others.size -%}
+        {%- assign m = others[idx] -%}
+        {%- assign s = m.slug -%}
+        {%- assign nm = m.name -%}
+    <a href="{{ site.baseurl }}/portfolio/{{ s }}">
+      <img src="{{ site.baseurl }}/assets/images/portfolio/{{ s }}/{{ s }}-{{ m.band[1] }}.jpg" alt="{{ nm }} wedding flowers at {{ m.venue }}" loading="lazy" sizes="(max-width:900px) 50vw, 32vw">
+      <span class="wp-oc"><span class="wp-on">{{ m.venue }}</span><h3>{{ nm }}</h3></span></a>
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+</section>
+{%- endif -%}

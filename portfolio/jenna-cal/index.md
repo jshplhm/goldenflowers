@@ -1,7 +1,7 @@
 ---
 layout: redesign
-title: "Jenna & Cal · Elevated Minimalist"
-seo_title: "Jenna & Cal Wedding Flowers · Elevated Minimalist | Golden Flowers"
+title: "Jenna & Cal"
+seo_title: "Jenna & Cal Wedding Flowers | Golden Flowers"
 permalink: /portfolio/jenna-cal
 portfolio_key: jenna-cal
 redirect_from:
@@ -12,14 +12,12 @@ hero_photo: jenna-cal-15.jpg
 
 {% include portfolio-subnav.html name="Jenna & Cal" %}
 
-<header class="text-hero venue-hero">
-  <span class="lab">Elevated Minimalist</span>
-  <h1>Jenna & Cal</h1>
-  {%- assign subtitle = site.data.portfolio[page.portfolio_key] %}
-  {%- assign subtitle_k = page.portfolio_key | prepend: "portfolio:" %}
-  <p class="th-sub">{% include em.html t=subtitle k=subtitle_k %}</p>
-</header>
+{% include wedding-open.html slug="jenna-cal" name="Jenna &amp; Cal" %}
 
-{% include portfolio-gallery.html slug="jenna-cal" hero="jenna-cal-15.jpg" name="Jenna & Cal" %}
+{% include portfolio-gallery.html slug="jenna-cal" hero="jenna-cal-15.jpg" name="Jenna & Cal" nohero=true %}
+
+{% include wedding-credits.html slug="jenna-cal" %}
+
+{% include wedding-more.html slug="jenna-cal" %}
 
 {% include wedding-cta.html %}

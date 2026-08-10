@@ -352,7 +352,6 @@ function hookFrame() {
   } : null;
   photosBtn.hidden = !curGallery;
   wedRmBtn.hidden = !curGallery;
-  styleBtn.hidden = !curGallery;
   lastRange = null;
   doc.addEventListener("selectionchange", () => {
     const sel = doc.getSelection();
@@ -1314,32 +1313,23 @@ imginsBtn.addEventListener("click", async () => {
   }
 });
 
-/* ---------- hub card surgery (shared by remove & change-style) ---------- */
+/* ---------- portfolio index surgery ---------- */
 
-/* Locates a wedding's pf-card on the portfolio page. Returns the card html,
- * the hub text without it, and which aesthetic section it sat in. */
-function cutHubCard(hubText, slug) {
-  const ref = hubText.indexOf(`/portfolio/${slug}"`);
-  if (ref === -1) throw new Error("Couldn't find this wedding on the portfolio page — tell Josh.");
-  const aOpen = hubText.lastIndexOf('<a class="pf-card"', ref);
-  const aClose = hubText.indexOf("</a>", ref) + 4;
-  const secStart = hubText.lastIndexOf('<section class="pf-group"', ref);
-  const groupId = (hubText.slice(secStart, secStart + 120).match(/id="([a-z-]+)"/) || [])[1] || "";
-  const secEnd = hubText.indexOf("</section>", ref);
-  const groupCards = (hubText.slice(secStart, secEnd).match(/class="pf-card"/g) || []).length;
-  const card = hubText.slice(aOpen, aClose);
-  const text = hubText.slice(0, aOpen).replace(/[ \t]*$/, "") + hubText.slice(aClose).replace(/^\s*\n/, "\n");
-  return { text, card, groupId, groupCards };
+/* The portfolio index is generated from _data/portfolio_meta.yml (one band per
+ * wedding, ordered by `order`), so adding and removing a wedding is a YAML edit
+ * rather than surgery on the page's markup. Numbering and the band width
+ * rotation follow from the list, so nothing else has to be renumbered. */
+const META_PATH = "_data/portfolio_meta.yml";
+
+async function readMetaDoc() {
+  const f = await getFile(META_PATH);
+  return { doc: parseDocument(b64decodeUtf8(f.content)) };
 }
 
-/* appends a ready-made card inside a group's grid (same anchor logic as New wedding) */
-function insertHubCard(hubText, groupId, card) {
-  const secStart = hubText.indexOf(`id="${groupId}"`);
-  if (secStart === -1) throw new Error("Couldn't find the aesthetic's section on the portfolio page — tell Josh.");
-  const secEnd = hubText.indexOf("</section>", secStart);
-  const gridEnd = hubText.lastIndexOf("</div>", secEnd);
-  if (secEnd === -1 || gridEnd === -1 || gridEnd < secStart) throw new Error("The portfolio page's layout changed — tell Josh.");
-  return hubText.slice(0, gridEnd) + "  " + card + "\n  " + hubText.slice(gridEnd);
+/* how many weddings the portfolio would have left */
+function metaCount(doc) {
+  const c = doc.contents;
+  return c && c.items ? c.items.length : 0;
 }
 
 /* ---------- remove wedding ---------- */
@@ -1370,20 +1360,24 @@ wedRmBtn.addEventListener("click", async () => {
       }
     }
 
-    /* the collage CSS adapts down to a single card, but an aesthetic with
-     * ZERO examples would show an empty section — that needs a human */
-    const hub = await rawFile("portfolio/index.md");
-    const cut = cutHubCard(hub.text, slug);
-    if (cut.groupCards <= 1) {
-      throw new Error(`Not removed: ${name} is the only wedding left in this style — the portfolio would show an empty section. Add another wedding to this style first, or tell Josh.`);
+    /* an empty portfolio page needs a human, not an editor button */
+    const { doc: metaDoc } = await readMetaDoc();
+    if (!metaDoc.hasIn([slug])) {
+      throw new Error("Couldn't find this wedding in the portfolio list — tell Josh.");
     }
+    if (metaCount(metaDoc) <= 1) {
+      throw new Error(`Not removed: ${name} is the only wedding left in the portfolio. Add another first, or tell Josh.`);
+    }
+    metaDoc.deleteIn([slug]);
     /* same commit: the old URL 301s to the portfolio (nothing may 404) */
-    const hubText = withRedirect(cut.text, `/portfolio/${slug}`, "portfolio/index.md");
+    const hub = await rawFile("portfolio/index.md");
+    const hubText = withRedirect(hub.text, `/portfolio/${slug}`, "portfolio/index.md");
 
     statusEl.textContent = "Removing…";
     const files = [
       { path: `portfolio/${slug}/index.md`, del: true },
       { path: "portfolio/index.md", text: hubText },
+      { path: META_PATH, text: metaDoc.toString() },
     ];
     for (const it of await listGallery()) {
       files.push({ path: `assets/images/portfolio/${slug}/${it.name}`, del: true });
@@ -1393,6 +1387,9 @@ wedRmBtn.addEventListener("click", async () => {
     if (pfDoc.hasIn([slug])) { pfDoc.deleteIn([slug]); files.push({ path: "_data/portfolio.yml", text: pfDoc.toString() }); }
     const orderDoc = await readOrderDoc();
     if (orderDoc.hasIn([slug])) { orderDoc.deleteIn([slug]); files.push({ path: ORDER_PATH, text: orderDoc.toString() }); }
+    const credFile = await getFile("_data/credits.yml");
+    const credDoc = parseDocument(b64decodeUtf8(credFile.content));
+    if (credDoc.hasIn([slug])) { credDoc.deleteIn([slug]); files.push({ path: "_data/credits.yml", text: credDoc.toString() }); }
 
     await commitFiles(files, `Remove the ${name} wedding from the portfolio via inline editor`);
     statusEl.className = "ed-status ok";
@@ -1406,69 +1403,9 @@ wedRmBtn.addEventListener("click", async () => {
   }
 });
 
-/* ---------- change style (redesignate a wedding's aesthetic) ---------- */
-
-const styleBtn = document.getElementById("ed-style");
-const styleModal = document.getElementById("ed-style-modal");
-const styleForm = document.getElementById("ed-style-form");
-const styleSel = document.getElementById("ed-style-sel");
-const styleErr = document.getElementById("ed-style-err");
-const styleCancel = document.getElementById("ed-style-cancel");
-
-const GROUP_AES = {
-  "lush-romantic": "Lush & Romantic",
-  "elevated-minimalist": "Elevated Minimalist",
-  "wildflower-modern": "Wildflower Modern",
-};
-
-styleBtn.addEventListener("click", () => {
-  styleErr.style.display = "none";
-  styleModal.hidden = false;
-});
-styleCancel.addEventListener("click", () => { styleModal.hidden = true; });
-
-styleForm.addEventListener("submit", async (e) => {
-  e.preventDefault();
-  styleErr.style.display = "none";
-  if (!curGallery || !curPage) return;
-  if (!DRYRUN && !token()) { styleModal.hidden = true; await ensureAuth(); return; }
-  const target = styleSel.value;
-  const btn = styleForm.querySelector("button[type=submit]");
-  btn.disabled = true;
-  try {
-    const hub = await rawFile("portfolio/index.md");
-    const cut = cutHubCard(hub.text, curGallery.slug);
-    const fromAes = GROUP_AES[cut.groupId];
-    if (!fromAes) throw new Error("Couldn't tell which style this wedding is in — tell Josh.");
-    if (fromAes === target) throw new Error(`${curGallery.name} is already ${target}.`);
-    if (cut.groupCards <= 1) throw new Error(`${curGallery.name} is the only wedding left in ${fromAes} — moving it would leave that section empty. Tell Josh if that's really wanted.`);
-    const hubText = insertHubCard(cut.text, AES_GROUP[target], cut.card);
-
-    /* the wedding page carries the aesthetic in its title, seo_title and the
-     * label above the couple's name — swap every occurrence */
-    const page = await rawFile(curPage);
-    if (!page.text.includes(fromAes)) throw new Error("This wedding's page doesn't mention its style where expected — tell Josh.");
-    const pageText = page.text.split(fromAes).join(target);
-
-    await commitFiles(
-      [{ path: "portfolio/index.md", text: hubText }, { path: curPage, text: pageText }],
-      `Move the ${curGallery.name} wedding from ${fromAes} to ${target} via inline editor`
-    );
-    styleModal.hidden = true;
-    statusEl.className = "ed-status ok";
-    statusEl.textContent = DRYRUN
-      ? "Dry run done — nothing committed"
-      : `✓ ${curGallery.name} is now ${target} — the portfolio page and this page's label update in ~2 minutes.`;
-    /* show the new label on the page behind immediately */
-    const doc = frameDoc();
-    const lab = doc && doc.querySelector(".venue-hero .lab");
-    if (lab && lab.textContent.trim() === fromAes) lab.textContent = target;
-  } catch (err) {
-    styleErr.textContent = err.message;
-    styleErr.style.display = "block";
-  }
-  btn.disabled = false;
-});
+/* "Change style" lived here. It moved a wedding's card between the three
+ * aesthetic sections; those sections are gone (portfolio v2, 2026-08-09), so
+ * the control and its modal were removed rather than left pointing at nothing. */
 
 /* ---------- new wedding ---------- */
 
@@ -1477,16 +1414,9 @@ const wedModal = document.getElementById("ed-wed-modal");
 const wedForm = document.getElementById("ed-wed-form");
 const wedNames = document.getElementById("ed-wed-names");
 const wedVenue = document.getElementById("ed-wed-venue");
-const wedAes = document.getElementById("ed-wed-aes");
 const wedDesc = document.getElementById("ed-wed-desc");
 const wedErr = document.getElementById("ed-wed-err");
 const wedCancel = document.getElementById("ed-wed-cancel");
-
-const AES_GROUP = {
-  "Lush & Romantic": "lush-romantic",
-  "Elevated Minimalist": "elevated-minimalist",
-  "Wildflower Modern": "wildflower-modern",
-};
 
 /* "Brittany & Chase" -> "brittany-chase", matching the existing gallery slugs */
 function weddingSlug(names) {
@@ -1501,13 +1431,13 @@ function weddingSlug(names) {
 
 function escAttr(s) { return escapeHtml(s).replace(/"/g, "&quot;"); }
 
-function weddingPage(slug, names, aesthetic, desc, heroName) {
+function weddingPage(slug, names, desc, heroName) {
   /* JSON strings are valid YAML double-quoted scalars */
   const q = (s) => JSON.stringify(s);
   return `---
 layout: redesign
-title: ${q(`${names} · ${aesthetic}`)}
-seo_title: ${q(`${names} Wedding Flowers · ${aesthetic} | Golden Flowers`)}
+title: ${q(names)}
+seo_title: ${q(`${names} Wedding Flowers | Golden Flowers`)}
 permalink: /portfolio/${slug}
 portfolio_key: ${slug}
 description: ${q(desc)}
@@ -1516,33 +1446,58 @@ hero_photo: ${heroName}
 
 {% include portfolio-subnav.html name=${q(names)} %}
 
-<header class="text-hero venue-hero">
-  <span class="lab">${escapeHtml(aesthetic)}</span>
-  <h1>${escapeHtml(names)}</h1>
-  {%- assign subtitle = site.data.portfolio[page.portfolio_key] %}
-  {%- assign subtitle_k = page.portfolio_key | prepend: "portfolio:" %}
-  <p class="th-sub">{% include em.html t=subtitle k=subtitle_k %}</p>
-</header>
+{% include wedding-open.html slug="${slug}" name=${q(names)} %}
 
-{% include portfolio-gallery.html slug="${slug}" hero="${heroName}" name=${q(names)} %}
+{% include portfolio-gallery.html slug="${slug}" hero="${heroName}" name=${q(names)} nohero=true %}
+
+{% include wedding-credits.html slug="${slug}" %}
+
+{% include wedding-more.html slug="${slug}" %}
 
 {% include wedding-cta.html %}
 `;
 }
 
-/* append the wedding's card to its aesthetic group on the portfolio page */
-function addHubCard(hubText, groupId, slug, names, venue, heroName) {
-  const secStart = hubText.indexOf(`id="${groupId}"`);
-  if (secStart === -1) throw new Error("Couldn't find the aesthetic's section on the portfolio page — tell Josh.");
-  const secEnd = hubText.indexOf("</section>", secStart);
-  const gridEnd = hubText.lastIndexOf("</div>", secEnd);
-  if (secEnd === -1 || gridEnd === -1 || gridEnd < secStart) throw new Error("The portfolio page's layout changed — tell Josh.");
-  const card =
-    `  <a class="pf-card" href="{{ site.baseurl }}/portfolio/${slug}">\n` +
-    `      <img src="{{ site.baseurl }}/assets/images/portfolio/${slug}/${heroName}" alt="${escAttr(`${names} wedding flowers: ${venue}`)}" loading="lazy">\n` +
-    `      <span class="pf-cap"><b>${escapeHtml(names)}</b></span>\n` +
-    `    </a>\n  `;
-  return hubText.slice(0, gridEnd) + card + hubText.slice(gridEnd);
+/* Appends the wedding to _data/portfolio_meta.yml. The band shows three photos
+ * and the phone strip three more; a brand new gallery has only the hero, so all
+ * six start as the hero and Brittany picks the real ones later. Duplicates are
+ * harmless: the same photograph simply repeats until she changes it. */
+function addMetaRow(doc, slug, names, venue, place, heroName, desc) {
+  const n = (heroName.match(/-(\d+)\.[a-z]+$/i) || [, "01"])[1];
+  let maxOrder = 0;
+  const c = doc.contents;
+  if (c && c.items) {
+    for (const it of c.items) {
+      const o = Number(it.value && it.value.get && it.value.get("order"));
+      if (o > maxOrder) maxOrder = o;
+    }
+  }
+  doc.setIn([slug], {
+    name: names,
+    order: maxOrder + 1,
+    venue: venue,
+    place: place || "",
+    band: [n, n, n],
+    strip: [n, n, n],
+    lede: desc,
+    opener: desc,
+    palette: "",
+    dots: [],
+  });
+  return doc;
+}
+
+/* An empty credits row so the wedding shows up in Pages CMS ready to fill in. */
+function addCreditsRow(doc, slug, venue) {
+  const blank = { name: "", url: "" };
+  doc.setIn([slug], {
+    photography: { ...blank }, planning: { ...blank },
+    venue: { name: venue || "", url: "" },
+    catering: { ...blank }, cake: { ...blank }, rentals: { ...blank },
+    beauty: { ...blank }, gown: { ...blank }, stationery: { ...blank },
+    music: { ...blank }, officiant: { ...blank },
+  });
+  return doc;
 }
 
 wedBtn.addEventListener("click", () => {
@@ -1559,11 +1514,9 @@ wedForm.addEventListener("submit", async (e) => {
 
   const names = wedNames.value.trim();
   const venue = wedVenue.value.trim();
-  const aesthetic = wedAes.value;
   const desc = wedDesc.value.trim().replace(/\s+/g, " ");
   if (!names) return fail("Who got married? Add the couple's names.");
   if (!venue) return fail("Add the venue (and town) — it helps Google find the wedding.");
-  if (!aesthetic) return fail("Pick the aesthetic — it decides where the wedding appears on the portfolio page.");
   if (!desc) return fail("Add a sentence or two about the wedding.");
   const slug = weddingSlug(names);
   if (!slug) return fail("Those names don't work as a web address — try e.g. “Brittany & Chase”.");
@@ -1590,7 +1543,7 @@ wedForm.addEventListener("submit", async (e) => {
     }
     wedErr.style.color = "";
 
-    commit.push({ path: `portfolio/${slug}/index.md`, text: weddingPage(slug, names, aesthetic, desc, heroName) });
+    commit.push({ path: `portfolio/${slug}/index.md`, text: weddingPage(slug, names, desc, heroName) });
 
     /* subtitle under the couple's name, same text Google gets */
     const pfMeta = await getFile("_data/portfolio.yml");
@@ -1598,8 +1551,18 @@ wedForm.addEventListener("submit", async (e) => {
     pfDoc.setIn([slug], desc);
     commit.push({ path: "_data/portfolio.yml", text: pfDoc.toString() });
 
-    const hub = await rawFile("portfolio/index.md");
-    commit.push({ path: "portfolio/index.md", text: addHubCard(hub.text, AES_GROUP[aesthetic], slug, names, venue, heroName) });
+    /* the band on /portfolio, plus an empty credits row ready to fill in */
+    const venueName = venue.split(",")[0].trim();
+    const place = venue.includes(",") ? venue.slice(venue.indexOf(",") + 1).trim() : "";
+    const metaFile = await getFile(META_PATH);
+    const metaDoc = parseDocument(b64decodeUtf8(metaFile.content));
+    addMetaRow(metaDoc, slug, names, venueName, place, heroName, desc);
+    commit.push({ path: META_PATH, text: metaDoc.toString() });
+
+    const credFile = await getFile("_data/credits.yml");
+    const credDoc = parseDocument(b64decodeUtf8(credFile.content));
+    addCreditsRow(credDoc, slug, venueName);
+    commit.push({ path: "_data/credits.yml", text: credDoc.toString() });
 
     await commitFiles(commit, `Add the ${names} wedding to the portfolio via inline editor`);
 

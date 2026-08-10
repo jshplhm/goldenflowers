@@ -1,0 +1,51 @@
+{%- comment -%}
+  Opening plate + story and fact panel for a wedding page.
+  Params: slug, name. Facts come from _data/portfolio_meta.yml, the story
+  paragraph from _data/portfolio.yml (unchanged, client-authored).
+{%- endcomment -%}
+{%- assign m = site.data.portfolio_meta | where: "slug", include.slug | first -%}
+{%- assign hero = page.hero_photo -%}
+{%- assign heroPath = '/assets/images/portfolio/' | append: include.slug | append: '/' | append: hero -%}
+<header class="wp-open">
+  <img src="{{ site.baseurl }}{{ heroPath }}" alt="{{ include.name }} wedding flowers at {{ m.venue }}, {{ m.place }}" loading="eager" fetchpriority="high" sizes="100vw">
+  <div class="wp-tt">
+    <div>
+      <span class="lab">Portfolio</span>
+      <h1>{{ include.name }}</h1>
+    </div>
+    <span class="wp-where">{{ m.venue }}<br>{{ m.place }}</span>
+  </div>
+</header>
+
+<section class="wp-story">
+  <div>
+    {%- comment -%}
+      The display line is the story's own first sentence, split out rather than
+      stored twice: a separate `opener` field drifted out of sync with
+      _data/portfolio.yml the moment either was edited, and printed the same
+      sentence twice on the page.
+    {%- endcomment -%}
+    {%- assign story = site.data.portfolio[include.slug] -%}
+    {%- assign story_k = include.slug | prepend: "portfolio:" -%}
+    {%- assign parts = story | split: ". " -%}
+    {%- if parts.size > 1 -%}
+      {%- assign opener = parts[0] | append: "." -%}
+      {%- assign rest = "" -%}
+      {%- for seg in parts offset:1 -%}
+        {%- if forloop.first -%}{%- assign rest = seg -%}
+        {%- else -%}{%- assign rest = rest | append: ". " | append: seg -%}{%- endif -%}
+      {%- endfor -%}
+    {%- else -%}
+      {%- assign opener = "" -%}{%- assign rest = story -%}
+    {%- endif -%}
+    {%- if opener != "" -%}<p class="wp-lede">{{ opener }}</p>{%- endif -%}
+    <p>{% include em.html t=rest k=story_k %}</p>
+  </div>
+  <div class="wp-panel">
+    <dl>
+      <dt>Venue</dt><dd>{{ m.venue }}, {{ m.place }}</dd>
+      <dt>Palette</dt><dd><span data-ed="portfolio_meta:{{ include.slug }}.palette">{{ m.palette }}</span>
+        {%- if m.dots -%}<span class="wp-dots" aria-hidden="true">{% for d in m.dots %}<i style="background:{{ d }}"></i>{% endfor %}</span>{%- endif -%}</dd>
+    </dl>
+  </div>
+</section>

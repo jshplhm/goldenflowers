@@ -128,19 +128,19 @@ redirect_from:
       <h2 class="disp"><span data-ed="home:aesthetics.heading">{{ site.data.home.aesthetics.heading }}</span></h2>
     </div>
     <div class="aes-row">
-      <a class="aes-card" href="{{ site.baseurl }}/portfolio#lush-romantic">
+      <a class="aes-card" href="{{ site.baseurl }}/portfolio/katie-james">
         <div class="ph"><span class="idx">01</span><img src="{{ site.baseurl }}/assets/images/portfolio/katie-james/katie-james-01.jpg" alt="Lush and romantic floral design: candlelit reception tablescape with peach and burgundy blooms"></div>
         <h3><span data-ed="home:aesthetics.cards.0.title">{{ site.data.home.aesthetics.cards[0].title }}</span></h3>
         <p><span data-ed="home:aesthetics.cards.0.body">{{ site.data.home.aesthetics.cards[0].body }}</span></p>
         <span class="more"><span data-ed="home:aesthetics.cards.0.link">{{ site.data.home.aesthetics.cards[0].link }}</span></span>
       </a>
-      <a class="aes-card" href="{{ site.baseurl }}/portfolio#elevated-minimalist">
-        <div class="ph"><span class="idx">02</span><img src="{{ site.baseurl }}/assets/images/portfolio/emma-ross/emma-ross-14.jpg" alt="Elevated minimalist floral design: ivory calla and ranunculus bouquet"></div>
+      <a class="aes-card" href="{{ site.baseurl }}/portfolio/jenna-cal">
+        <div class="ph"><span class="idx">02</span><img src="{{ site.baseurl }}/assets/images/portfolio/jenna-cal/jenna-cal-10.jpg" alt="Elevated minimalist floral design: white tulips and candlelight, National Exchange Hotel"></div>
         <h3><span data-ed="home:aesthetics.cards.1.title">{{ site.data.home.aesthetics.cards[1].title }}</span></h3>
         <p><span data-ed="home:aesthetics.cards.1.body">{{ site.data.home.aesthetics.cards[1].body }}</span></p>
         <span class="more"><span data-ed="home:aesthetics.cards.1.link">{{ site.data.home.aesthetics.cards[1].link }}</span></span>
       </a>
-      <a class="aes-card" href="{{ site.baseurl }}/portfolio#wildflower-modern">
+      <a class="aes-card" href="{{ site.baseurl }}/portfolio/camille-max">
         <div class="ph"><span class="idx">03</span><img src="{{ site.baseurl }}/assets/images/portfolio/camille-max/camille-max-17.jpg" alt="Wildflower modern floral design: rose-lined aisle recessional, North Star House, Grass Valley"></div>
         <h3><span data-ed="home:aesthetics.cards.2.title">{{ site.data.home.aesthetics.cards[2].title }}</span></h3>
         <p><span data-ed="home:aesthetics.cards.2.body">{{ site.data.home.aesthetics.cards[2].body }}</span></p>

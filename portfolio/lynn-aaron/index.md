@@ -1,7 +1,7 @@
 ---
 layout: redesign
-title: "Lynn & Aaron · Lush & Romantic"
-seo_title: "Lynn & Aaron Wedding Flowers · Lush & Romantic | Golden Flowers"
+title: "Lynn & Aaron"
+seo_title: "Lynn & Aaron Wedding Flowers | Golden Flowers"
 permalink: /portfolio/lynn-aaron
 portfolio_key: lynn-aaron
 redirect_from:
@@ -12,14 +12,12 @@ hero_photo: lynn-aaron-16.jpg
 
 {% include portfolio-subnav.html name="Lynn & Aaron" %}
 
-<header class="text-hero venue-hero">
-  <span class="lab">Lush & Romantic</span>
-  <h1>Lynn & Aaron</h1>
-  {%- assign subtitle = site.data.portfolio[page.portfolio_key] %}
-  {%- assign subtitle_k = page.portfolio_key | prepend: "portfolio:" %}
-  <p class="th-sub">{% include em.html t=subtitle k=subtitle_k %}</p>
-</header>
+{% include wedding-open.html slug="lynn-aaron" name="Lynn &amp; Aaron" %}
 
-{% include portfolio-gallery.html slug="lynn-aaron" hero="lynn-aaron-16.jpg" name="Lynn & Aaron" %}
+{% include portfolio-gallery.html slug="lynn-aaron" hero="lynn-aaron-16.jpg" name="Lynn & Aaron" nohero=true %}
+
+{% include wedding-credits.html slug="lynn-aaron" %}
+
+{% include wedding-more.html slug="lynn-aaron" %}
 
 {% include wedding-cta.html %}

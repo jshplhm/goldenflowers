@@ -1,0 +1,46 @@
+{%- comment -%}
+  Vendor credits for one wedding, from _data/credits.yml.
+  Params: slug.
+  A credit with no name is skipped entirely, so a half-filled set still reads as
+  a finished block. A name without a url renders as plain text.
+{%- endcomment -%}
+{%- assign c = site.data.credits[include.slug] -%}
+{%- assign wp = site.data.portfolio_page.wedding -%}
+{%- if c -%}
+{%- assign leadKeys = "photography,planning,venue" | split: "," -%}
+{%- assign leadLabels = "Photography,Planning &amp; design,Venue" | split: "," -%}
+{%- assign restKeys = "catering,cake,rentals,beauty,gown,stationery,music,officiant" | split: "," -%}
+{%- assign restLabels = "Catering,Cake,Rentals,Hair &amp; makeup,Gown,Stationery,Music,Officiant" | split: "," -%}
+{%- assign leadCount = 0 -%}
+{%- for k in leadKeys -%}{%- assign v = c[k] -%}{%- if v.name and v.name != "" -%}{%- assign leadCount = leadCount | plus: 1 -%}{%- endif -%}{%- endfor -%}
+{%- assign restCount = 0 -%}
+{%- for k in restKeys -%}{%- assign v = c[k] -%}{%- if v.name and v.name != "" -%}{%- assign restCount = restCount | plus: 1 -%}{%- endif -%}{%- endfor -%}
+{%- if leadCount > 0 or restCount > 0 -%}
+<section class="wp-credits">
+  <div class="wp-ch">
+    <h2>{{ wp.credits_heading }}</h2>
+    <p>{{ wp.credits_note }}</p>
+  </div>
+  {%- if leadCount > 0 -%}
+  <dl class="wp-lead">
+    {%- for k in leadKeys -%}{%- assign v = c[k] -%}
+    {%- if v.name and v.name != "" -%}
+    <div><dt>{{ leadLabels[forloop.index0] }}</dt>
+      <dd>{% if v.url and v.url != "" %}<a href="{{ v.url }}"{% unless v.url contains '/venues/' %} rel="noopener" target="_blank"{% endunless %}>{{ v.name }}</a>{% else %}{{ v.name }}{% endif %}</dd></div>
+    {%- endif -%}
+    {%- endfor -%}
+  </dl>
+  {%- endif -%}
+  <dl class="wp-rest">
+    {%- assign fl = site.data.credits.defaults.florals -%}
+    <div><dt>Florals</dt><dd>{{ fl.name }}</dd></div>
+    {%- for k in restKeys -%}{%- assign v = c[k] -%}
+    {%- if v.name and v.name != "" -%}
+    <div><dt>{{ restLabels[forloop.index0] }}</dt>
+      <dd>{% if v.url and v.url != "" %}<a href="{{ v.url }}" rel="noopener" target="_blank">{{ v.name }}</a>{% else %}{{ v.name }}{% endif %}</dd></div>
+    {%- endif -%}
+    {%- endfor -%}
+  </dl>
+</section>
+{%- endif -%}
+{%- endif -%}

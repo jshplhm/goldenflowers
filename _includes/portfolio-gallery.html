@@ -77,9 +77,16 @@
 {%- endfor -%}
 {%- assign lastWide = tailHalves | modulo: 2 -%}
 <section class="wd-gallery" data-ed-gallery="{{ include.slug }}" data-ed-ghero="{{ include.hero }}" data-ed-gname="{{ include.name | escape }}">
+  {%- comment -%}
+    nohero: the page already opened on this photograph full-bleed, so printing it
+    again at the top of the gallery just repeats it. It stays excluded from the
+    mosaic either way, and the editor still reads it from data-ed-ghero.
+  {%- endcomment -%}
+  {%- unless include.nohero -%}
   <a class="wd-hero-link wd-lb" href="{{ site.baseurl }}{{ prefix }}{{ include.hero }}" aria-label="View {{ include.name }} photo 1 full screen">
     <img src="{{ site.baseurl }}{{ prefix }}{{ include.hero }}" alt="{{ include.name }} wedding flowers by Golden Flowers" loading="eager" class="wd-hero-img" sizes="(min-width:1232px) 1164px, 100vw">
   </a>
+  {%- endunless -%}
   <div class="wd-mosaic">
   {%- assign j = 0 -%}
   {%- for f in allf -%}

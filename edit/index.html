@@ -99,7 +99,6 @@ sitemap: false
     <div class="ed-page" id="ed-page"></div>
     <div class="ed-status" id="ed-status"></div>
     <button class="ed-btn" id="ed-photos" hidden>Photos</button>
-    <button class="ed-btn" id="ed-style" hidden>Change style</button>
     <button class="ed-btn" id="ed-wedrm" hidden>Remove wedding</button>
     <button class="ed-btn" id="ed-imgins" hidden>Insert photo</button>
     <button class="ed-btn" id="ed-new">New post</button>
@@ -160,20 +159,6 @@ sitemap: false
     </form>
   </div>
 
-  <div class="ed-login" id="ed-style-modal" hidden>
-    <form class="ed-card" id="ed-style-form" style="max-width:440px;">
-      <h1>Change this wedding's style</h1>
-      <p id="ed-style-note">Moves it to a different aesthetic on the portfolio page and updates the label on its own page. The photos and words stay exactly the same.</p>
-      <select id="ed-style-sel" style="width:100%;padding:10px 12px;border:1px solid var(--ed-line);border-radius:6px;font-size:.9rem;background:#fff;">
-        <option>Lush &amp; Romantic</option>
-        <option>Elevated Minimalist</option>
-        <option>Wildflower Modern</option>
-      </select>
-      <button class="ed-btn primary" type="submit">Move it</button>
-      <button class="ed-btn" type="button" id="ed-style-cancel">Cancel</button>
-      <div class="ed-err" id="ed-style-err"></div>
-    </form>
-  </div>
 
   <div class="ed-login" id="ed-wed-modal" hidden>
     <form class="ed-card" id="ed-wed-form" style="max-width:520px;">
@@ -181,12 +166,6 @@ sitemap: false
       <p>This creates the wedding's own page, adds it to the portfolio, and uploads its photos. You'll pick the photos after this form; the first one you select becomes the big opening photo (changeable later in Photos).</p>
       <input type="text" id="ed-wed-names" placeholder="Couple, e.g. Brittany &amp; Chase" autocomplete="off">
       <input type="text" id="ed-wed-venue" placeholder="Venue &amp; town, e.g. Edgewood Tahoe, South Lake Tahoe" autocomplete="off" style="margin-top:10px;">
-      <select id="ed-wed-aes" style="width:100%;margin-top:10px;padding:10px 12px;border:1px solid var(--ed-line);border-radius:6px;font-size:.9rem;background:#fff;">
-        <option value="">The wedding's aesthetic…</option>
-        <option>Lush &amp; Romantic</option>
-        <option>Elevated Minimalist</option>
-        <option>Wildflower Modern</option>
-      </select>
       <textarea id="ed-wed-desc" placeholder="One or two sentences about the wedding — shown under the couple's name and used by Google. You can edit it later by clicking it on the page."></textarea>
       <button class="ed-btn primary" type="submit">Choose photos &amp; create</button>
       <button class="ed-btn" type="button" id="ed-wed-cancel">Cancel</button>

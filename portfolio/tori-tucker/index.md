@@ -1,7 +1,7 @@
 ---
 layout: redesign
-title: "Tori & Tucker · Wildflower Modern"
-seo_title: "Tori & Tucker Wedding Flowers · Wildflower Modern | Golden Flowers"
+title: "Tori & Tucker"
+seo_title: "Tori & Tucker Wedding Flowers | Golden Flowers"
 permalink: /portfolio/tori-tucker
 portfolio_key: tori-tucker
 redirect_from:
@@ -12,14 +12,12 @@ hero_photo: tori-tucker-12.jpg
 
 {% include portfolio-subnav.html name="Tori & Tucker" %}
 
-<header class="text-hero venue-hero">
-  <span class="lab">Wildflower Modern</span>
-  <h1>Tori & Tucker</h1>
-  {%- assign subtitle = site.data.portfolio[page.portfolio_key] %}
-  {%- assign subtitle_k = page.portfolio_key | prepend: "portfolio:" %}
-  <p class="th-sub">{% include em.html t=subtitle k=subtitle_k %}</p>
-</header>
+{% include wedding-open.html slug="tori-tucker" name="Tori &amp; Tucker" %}
 
-{% include portfolio-gallery.html slug="tori-tucker" hero="tori-tucker-12.jpg" name="Tori & Tucker" %}
+{% include portfolio-gallery.html slug="tori-tucker" hero="tori-tucker-12.jpg" name="Tori & Tucker" nohero=true %}
+
+{% include wedding-credits.html slug="tori-tucker" %}
+
+{% include wedding-more.html slug="tori-tucker" %}
 
 {% include wedding-cta.html %}

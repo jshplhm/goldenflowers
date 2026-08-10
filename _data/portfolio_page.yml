@@ -1,27 +1,17 @@
 # Portfolio page copy. Editable in Pages CMS and the inline editor (/edit).
 # *single asterisks* = italic, **double** = bold.
+# NOTE: deliberately no wedding count in the heading or subheading — the number
+# changes every time a wedding is added or retired.
 header:
   label: "Portfolio"
-  heading: "A few of our favorite weddings."
-  subheading: "Lake Tahoe and the Sierra Nevada weddings, grouped by the three
-    directions couples ask for most. These aesthetics are just a starting point.
-    We design in every style."
-groups:
-  lush_romantic:
-    title: "Lush & Romantic"
-    blurb: "Rich and cinematic, in deep shades of burgundy and plum."
-  elevated_minimalist:
-    title: "Elevated Minimalist"
-    blurb: "Clean lines, ivory and sage. Design that lets the view do the talking."
-  wildflower_modern:
-    title: "Wildflower Modern"
-    blurb: "Native blooms and grasses, styled with an editorial eye."
+  heading: "A look into *our creative world.*"
+  subheading: "Weddings across Lake Tahoe and the Sierra Nevada, each one built
+    around a different landscape, venue, and couple."
 cta:
-  label: "Something different in mind?"
-  heading: "We work in *every direction.*"
-  body: "These three are only a starting point. Bring your Pinterest board, a
-    venue photo, or a feeling you can't quite name yet, and we'll design from
-    there."
+  label: "Where yours begins"
+  heading: "We've never built the same wedding *twice.*"
+  body: "These are a sample, not a menu. Bring a Pinterest board, a venue photo,
+    or a feeling you can't quite name yet, and we'll design from there."
   button: "Share your inspiration"
 # Shared closing CTA on every individual wedding page.
 wedding_cta:
@@ -30,3 +20,13 @@ wedding_cta:
   body: "Our calendar is capped each season. Send your date and venue and we'll
     let you know if yours is still open."
   button: "Check your date"
+# Headings for the blocks on an individual wedding page.
+wedding:
+  credits_heading: "The team"
+  credits_note: "A wedding is never one vendor's work. Everyone who shaped this
+    day is credited here."
+  more_heading: "More weddings"
+  more_link: "All weddings"
+  swipe_hint: "Swipe for more"
+  strip_cta: "View the wedding"
+  strip_label: "The full gallery"

@@ -1,7 +1,7 @@
 ---
 layout: redesign
-title: "Camille & Max · Wildflower Modern"
-seo_title: "Camille & Max Wedding Flowers · Wildflower Modern | Golden Flowers"
+title: "Camille & Max"
+seo_title: "Camille & Max Wedding Flowers | Golden Flowers"
 permalink: /portfolio/camille-max
 portfolio_key: camille-max
 redirect_from:
@@ -12,14 +12,12 @@ hero_photo: camille-max-16.jpg
 
 {% include portfolio-subnav.html name="Camille & Max" %}
 
-<header class="text-hero venue-hero">
-  <span class="lab">Wildflower Modern</span>
-  <h1>Camille & Max</h1>
-  {%- assign subtitle = site.data.portfolio[page.portfolio_key] %}
-  {%- assign subtitle_k = page.portfolio_key | prepend: "portfolio:" %}
-  <p class="th-sub">{% include em.html t=subtitle k=subtitle_k %}</p>
-</header>
+{% include wedding-open.html slug="camille-max" name="Camille &amp; Max" %}
 
-{% include portfolio-gallery.html slug="camille-max" hero="camille-max-16.jpg" name="Camille & Max" %}
+{% include portfolio-gallery.html slug="camille-max" hero="camille-max-16.jpg" name="Camille & Max" nohero=true %}
+
+{% include wedding-credits.html slug="camille-max" %}
+
+{% include wedding-more.html slug="camille-max" %}
 
 {% include wedding-cta.html %}

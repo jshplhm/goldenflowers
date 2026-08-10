@@ -1,0 +1,96 @@
+# Vendor credits, per wedding. Shown in "The team" block on each wedding page.
+#
+# Every row is optional. Leave a `name` blank and the row disappears entirely,
+# so a half-filled set still looks deliberate rather than broken. Give a `name`
+# with no `url` and it renders as plain text; add a `url` and it links out.
+#
+# `photography`, `planning` and `venue` are the lead credits (set large). The
+# rest render as a quiet three-column list in the order written here.
+#
+# Two credits are already known from the photographers' own file names:
+#   kelly-dylan  -> Emma Wynn Paul Photography, planning by Honeysuckle Traditions
+#   camille-max  -> Mountain Time Photo
+# Everything else is waiting on Brittany.
+
+defaults:
+  florals:
+    name: "Golden Flowers"
+    url: "/"
+
+lynn-aaron:
+  photography: { name: "", url: "" }
+  planning:    { name: "", url: "" }
+  venue:       { name: "Palisades High Camp", url: "/venues/palisades-high-camp" }
+  catering:    { name: "", url: "" }
+  cake:        { name: "", url: "" }
+  rentals:     { name: "", url: "" }
+  beauty:      { name: "", url: "" }
+  gown:        { name: "", url: "" }
+  stationery:  { name: "", url: "" }
+  music:       { name: "", url: "" }
+  officiant:   { name: "", url: "" }
+
+katie-james:
+  photography: { name: "", url: "" }
+  planning:    { name: "", url: "" }
+  venue:       { name: "The Miner's Foundry", url: "" }
+  catering:    { name: "", url: "" }
+  cake:        { name: "", url: "" }
+  rentals:     { name: "", url: "" }
+  beauty:      { name: "", url: "" }
+  gown:        { name: "", url: "" }
+  stationery:  { name: "", url: "" }
+  music:       { name: "", url: "" }
+  officiant:   { name: "", url: "" }
+
+tori-tucker:
+  photography: { name: "", url: "" }
+  planning:    { name: "", url: "" }
+  venue:       { name: "North Tahoe Event Center", url: "/venues/north-tahoe-event-center" }
+  catering:    { name: "", url: "" }
+  cake:        { name: "", url: "" }
+  rentals:     { name: "", url: "" }
+  beauty:      { name: "", url: "" }
+  gown:        { name: "", url: "" }
+  stationery:  { name: "", url: "" }
+  music:       { name: "", url: "" }
+  officiant:   { name: "", url: "" }
+
+camille-max:
+  photography: { name: "Mountain Time Photo", url: "" }
+  planning:    { name: "", url: "" }
+  venue:       { name: "North Star House", url: "" }
+  catering:    { name: "", url: "" }
+  cake:        { name: "", url: "" }
+  rentals:     { name: "", url: "" }
+  beauty:      { name: "", url: "" }
+  gown:        { name: "", url: "" }
+  stationery:  { name: "", url: "" }
+  music:       { name: "", url: "" }
+  officiant:   { name: "", url: "" }
+
+kelly-dylan:
+  photography: { name: "Emma Wynn Paul Photography", url: "" }
+  planning:    { name: "Honeysuckle Traditions", url: "" }
+  venue:       { name: "North Tahoe Event Center", url: "/venues/north-tahoe-event-center" }
+  catering:    { name: "", url: "" }
+  cake:        { name: "", url: "" }
+  rentals:     { name: "", url: "" }
+  beauty:      { name: "", url: "" }
+  gown:        { name: "", url: "" }
+  stationery:  { name: "", url: "" }
+  music:       { name: "", url: "" }
+  officiant:   { name: "", url: "" }
+
+jenna-cal:
+  photography: { name: "", url: "" }
+  planning:    { name: "", url: "" }
+  venue:       { name: "National Exchange Hotel", url: "" }
+  catering:    { name: "", url: "" }
+  cake:        { name: "", url: "" }
+  rentals:     { name: "", url: "" }
+  beauty:      { name: "", url: "" }
+  gown:        { name: "", url: "" }
+  stationery:  { name: "", url: "" }
+  music:       { name: "", url: "" }
+  officiant:   { name: "", url: "" }

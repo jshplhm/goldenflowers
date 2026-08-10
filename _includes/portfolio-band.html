@@ -1,0 +1,40 @@
+{%- comment -%}
+  One wedding on the portfolio index.
+  Params: w (one record from _data/portfolio_meta.yml), n (display number).
+  Adding or retiring a wedding is a data edit, not a markup edit.
+
+  Photo order in .pfx-row is (landscape-tolerant, hero, detail); the column
+  widths rotate by :nth-child in redesign.css. Frames 4-6 are display:none on
+  desktop and only appear in the phone swipe strip.
+{%- endcomment -%}
+{%- assign m = include.w -%}
+{%- assign slug = m.slug -%}
+{%- assign name = m.name -%}
+{%- assign wp = site.data.portfolio_page.wedding -%}
+{%- assign base = '/assets/images/portfolio/' | append: slug | append: '/' | append: slug | append: '-' -%}
+{%- assign href = site.baseurl | append: '/portfolio/' | append: slug -%}
+<article class="pfx-bd" data-ed-band="{{ slug }}">
+  <div class="pfx-h">
+    <span class="pfx-n">{{ include.n }}</span>
+    <h2>{{ name }}</h2>
+    <span class="pfx-v">{{ m.venue }}<br>{{ m.place }}</span>
+  </div>
+  <div class="pfx-row">
+    {%- for p in m.band -%}
+    <a class="pfx-ph" href="{{ href }}"><img src="{{ site.baseurl }}{{ base }}{{ p }}.jpg" alt="{{ name }} wedding flowers at {{ m.venue }}, {{ m.place }}" loading="{% if include.n == '01' and forloop.first %}eager{% else %}lazy{% endif %}"{% if include.n == '01' and forloop.first %} fetchpriority="high"{% endif %} sizes="(max-width:900px) 72vw, 40vw"></a>
+    {%- endfor -%}
+    {%- for p in m.strip -%}
+    <a class="pfx-ph pfx-extra" href="{{ href }}"><img src="{{ site.baseurl }}{{ base }}{{ p }}.jpg" alt="{{ name }} wedding florals by Golden Flowers" loading="lazy" sizes="72vw"></a>
+    {%- endfor -%}
+    <a class="pfx-end" href="{{ href }}">
+      <span class="pfx-en">{{ wp.strip_label }}</span>
+      <h3>{{ name }}</h3>
+      <span class="pfx-eg">{{ wp.strip_cta }} <span aria-hidden="true">&rarr;</span></span>
+    </a>
+  </div>
+  <span class="pfx-hint" aria-hidden="true">{{ wp.swipe_hint }}</span>
+  <div class="pfx-f">
+    <p><span data-ed="portfolio_meta:{{ slug }}.lede">{{ m.lede }}</span></p>
+    <a class="pfx-more" href="{{ href }}">{{ wp.strip_cta }} <span aria-hidden="true">&rarr;</span></a>
+  </div>
+</article>
