@@ -28,6 +28,8 @@ const discardBtn = document.getElementById("ed-discard");
 const newBtn = document.getElementById("ed-new");
 const delBtn = document.getElementById("ed-del");
 const photosBtn = document.getElementById("ed-photos");
+const coversBtn = document.getElementById("ed-covers");
+const vendorsBtn = document.getElementById("ed-vendors");
 const imginsBtn = document.getElementById("ed-imgins");
 const phModal = document.getElementById("ed-ph-modal");
 const phTitle = document.getElementById("ed-ph-title");
@@ -352,6 +354,8 @@ function hookFrame() {
   } : null;
   photosBtn.hidden = !curGallery;
   wedRmBtn.hidden = !curGallery;
+  coversBtn.hidden = !curGallery;
+  vendorsBtn.hidden = !curGallery;
   lastRange = null;
   doc.addEventListener("selectionchange", () => {
     const sel = doc.getSelection();
@@ -1580,3 +1584,208 @@ wedForm.addEventListener("submit", async (e) => {
 });
 
 if (!DRYRUN) ensureAuth();
+
+
+/* ============================================================================
+   COVER PHOTOS — which frames represent this wedding on /portfolio
+   Three show on the band at desktop widths; phones swipe through those three
+   plus two more. Stored as `band` and `strip` in _data/portfolio_meta.yml.
+   ========================================================================= */
+
+const COVERS_TOTAL = 5;
+const covModal = document.getElementById("ed-cov-modal");
+const covForm = document.getElementById("ed-cov-form");
+const covGrid = document.getElementById("ed-cov-grid");
+const covPicked = document.getElementById("ed-cov-picked");
+const covTitle = document.getElementById("ed-cov-title");
+const covErr = document.getElementById("ed-cov-err");
+const covCancel = document.getElementById("ed-cov-cancel");
+
+let covItems = [];   /* every photo in the gallery */
+let covPick = [];    /* chosen photo numbers, in order */
+
+/* "lynn-aaron-16.jpg" -> "16" — the data file stores the number, not the name */
+function photoNum(name) {
+  const m = name.match(/-(\d+)\.[a-z]+$/i);
+  return m ? m[1] : null;
+}
+
+function renderCovers() {
+  covPicked.innerHTML = covPick.length
+    ? covPick.map((n, i) => `<span class="ed-cov-chip"><b>${i + 1}</b> photo ${n}` +
+        `<small>${i < 3 ? "portfolio page" : "phone only"}</small></span>`).join("")
+    : `<span class="ed-cov-chip"><small>Nothing picked yet — click ${COVERS_TOTAL} photos below.</small></span>`;
+
+  covGrid.innerHTML = "";
+  covItems.forEach((it) => {
+    const n = photoNum(it.name);
+    const at = covPick.indexOf(n);
+    const d = document.createElement("div");
+    d.className = "ed-ph" + (at > -1 ? " picked" : "");
+    d.dataset.num = n;
+    d.innerHTML = `<img src="${it.download_url}" loading="lazy" alt="">` +
+      (at > -1 ? `<span class="ed-ph-pick">${at + 1}</span>` : "");
+    covGrid.appendChild(d);
+  });
+}
+
+covGrid.addEventListener("click", (e) => {
+  const tile = e.target.closest(".ed-ph");
+  if (!tile) return;
+  const n = tile.dataset.num;
+  const at = covPick.indexOf(n);
+  if (at > -1) covPick.splice(at, 1);
+  else if (covPick.length < COVERS_TOTAL) covPick.push(n);
+  else { covErr.textContent = `That's ${COVERS_TOTAL} already — click one to remove it first.`; covErr.style.display = "block"; return; }
+  covErr.style.display = "none";
+  renderCovers();
+});
+
+coversBtn.addEventListener("click", async () => {
+  if (!curGallery) return;
+  if (!DRYRUN && !token()) { await ensureAuth(); if (!token()) return; }
+  covErr.style.display = "none";
+  covTitle.textContent = `${curGallery.name} — cover photos`;
+  covModal.hidden = false;
+  covGrid.innerHTML = "<p>Loading photos…</p>";
+  try {
+    covItems = await listGallery();
+    const f = await getFile(META_PATH);
+    const doc = parseDocument(b64decodeUtf8(f.content));
+    const rows = doc.toJS() || [];
+    const row = rows.find((r) => r.slug === curGallery.slug) || {};
+    covPick = [...(row.band || []), ...(row.strip || [])].slice(0, COVERS_TOTAL);
+    renderCovers();
+  } catch (err) {
+    covErr.textContent = err.message;
+    covErr.style.display = "block";
+  }
+});
+
+covCancel.addEventListener("click", () => { covModal.hidden = true; });
+
+covForm.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  covErr.style.display = "none";
+  if (covPick.length !== COVERS_TOTAL) {
+    covErr.textContent = `Pick exactly ${COVERS_TOTAL} photos — the first three show on the portfolio page.`;
+    covErr.style.display = "block";
+    return;
+  }
+  const btn = covForm.querySelector("button[type=submit]");
+  btn.disabled = true;
+  try {
+    const f = await getFile(META_PATH);
+    const doc = parseDocument(b64decodeUtf8(f.content));
+    const rows = (doc.contents && doc.contents.items) || [];
+    let found = false;
+    rows.forEach((node, i) => {
+      if (node.get && node.get("slug") === curGallery.slug) {
+        doc.setIn([i, "band"], covPick.slice(0, 3));
+        doc.setIn([i, "strip"], covPick.slice(3));
+        found = true;
+      }
+    });
+    if (!found) throw new Error("Couldn't find this wedding in the portfolio list — tell Josh.");
+    await commitFiles([{ path: META_PATH, text: doc.toString() }],
+      `Set the ${curGallery.name} cover photos via inline editor`);
+    covModal.hidden = true;
+    statusEl.className = "ed-status ok";
+    statusEl.textContent = DRYRUN
+      ? "Dry run done — nothing committed"
+      : "✓ Cover photos saved — the portfolio page updates in about two minutes.";
+  } catch (err) {
+    covErr.textContent = err.message;
+    covErr.style.display = "block";
+  } finally {
+    btn.disabled = false;
+  }
+});
+
+/* ============================================================================
+   VENDORS — everyone else who worked on this wedding (_data/credits.yml)
+   ========================================================================= */
+
+const VENDOR_ROLES = [
+  ["photography", "Photography"],
+  ["planning", "Planning & design"],
+  ["venue", "Venue"],
+  ["catering", "Catering"],
+  ["cake", "Cake"],
+  ["rentals", "Rentals"],
+  ["beauty", "Hair & makeup"],
+  ["gown", "Gown"],
+  ["stationery", "Stationery"],
+  ["music", "Music"],
+  ["officiant", "Officiant"],
+];
+const CREDITS_PATH = "_data/credits.yml";
+
+const venModal = document.getElementById("ed-ven-modal");
+const venForm = document.getElementById("ed-ven-form");
+const venRows = document.getElementById("ed-ven-rows");
+const venTitle = document.getElementById("ed-ven-title");
+const venErr = document.getElementById("ed-ven-err");
+const venCancel = document.getElementById("ed-ven-cancel");
+
+function renderVendors(cur) {
+  venRows.innerHTML = VENDOR_ROLES.map(([key, label]) => {
+    const v = (cur && cur[key]) || {};
+    return `<div class="ed-ven-row" data-key="${key}">
+      <label for="ven-${key}">${escapeHtml(label)}</label>
+      <input id="ven-${key}" type="text" data-f="name" placeholder="Name" value="${escapeHtml(v.name || "").replace(/"/g, "&quot;")}">
+      <input type="url" data-f="url" placeholder="https://their-website.com" value="${escapeHtml(v.url || "").replace(/"/g, "&quot;")}">
+    </div>`;
+  }).join("");
+}
+
+vendorsBtn.addEventListener("click", async () => {
+  if (!curGallery) return;
+  if (!DRYRUN && !token()) { await ensureAuth(); if (!token()) return; }
+  venErr.style.display = "none";
+  venTitle.textContent = `${curGallery.name} — vendors`;
+  venModal.hidden = false;
+  venRows.innerHTML = "<p>Loading…</p>";
+  try {
+    const f = await getFile(CREDITS_PATH);
+    const doc = parseDocument(b64decodeUtf8(f.content));
+    renderVendors((doc.toJS() || {})[curGallery.slug]);
+  } catch (err) {
+    venErr.textContent = err.message;
+    venErr.style.display = "block";
+  }
+});
+
+venCancel.addEventListener("click", () => { venModal.hidden = true; });
+
+venForm.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  venErr.style.display = "none";
+  const btn = venForm.querySelector("button[type=submit]");
+  btn.disabled = true;
+  try {
+    const f = await getFile(CREDITS_PATH);
+    const doc = parseDocument(b64decodeUtf8(f.content));
+    for (const [key] of VENDOR_ROLES) {
+      const row = venRows.querySelector(`[data-key="${key}"]`);
+      const name = row.querySelector('[data-f="name"]').value.trim();
+      let url = row.querySelector('[data-f="url"]').value.trim();
+      /* a bare domain is what people paste; make it a real link */
+      if (url && !/^https?:\/\//i.test(url) && !url.startsWith("/")) url = "https://" + url;
+      doc.setIn([curGallery.slug, key, "name"], name);
+      doc.setIn([curGallery.slug, key, "url"], name ? url : "");
+    }
+    await commitFiles([{ path: CREDITS_PATH, text: doc.toString() }],
+      `Update the ${curGallery.name} vendor credits via inline editor`);
+    venModal.hidden = true;
+    statusEl.className = "ed-status ok";
+    statusEl.textContent = DRYRUN
+      ? "Dry run done — nothing committed"
+      : "✓ Vendors saved — the wedding page updates in about two minutes.";
+  } catch (err) {
+    venErr.textContent = err.message;
+    venErr.style.display = "block";
+  } finally {
+    btn.disabled = false;
+  }
+});

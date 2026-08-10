@@ -91,6 +91,22 @@ sitemap: false
     .ed-rep-gal img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:6px;cursor:pointer;border:2px solid transparent;}
     .ed-rep-gal img:hover{border-color:var(--ed-green);}
     .ed-rep-gal.busy{pointer-events:none;opacity:.55;}
+  
+    /* cover photos */
+    .ed-cov-picked{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 14px;min-height:34px;}
+    .ed-cov-chip{display:inline-flex;align-items:center;gap:8px;background:var(--ed-bg2,#f2efe8);
+      border:1px solid var(--ed-line);border-radius:999px;padding:5px 12px;font-size:.8rem;}
+    .ed-cov-chip b{font-weight:600;}
+    .ed-cov-chip small{color:var(--ed-mute);}
+    .ed-ph.picked{outline:3px solid #1c5b34;outline-offset:-3px;}
+    .ed-ph-pick{position:absolute;top:6px;left:6px;background:#1c5b34;color:#fff;border-radius:999px;
+      width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-size:.78rem;font-weight:700;}
+    /* vendors */
+    .ed-ven-rows{display:flex;flex-direction:column;gap:10px;margin:14px 0 18px;}
+    .ed-ven-row{display:grid;grid-template-columns:150px 1fr 1fr;gap:10px;align-items:center;}
+    .ed-ven-row label{font-size:.8rem;color:var(--ed-mute);}
+    .ed-ven-row input{padding:9px 11px;border:1px solid var(--ed-line);border-radius:6px;font-size:.88rem;}
+    @media(max-width:640px){.ed-ven-row{grid-template-columns:1fr;gap:4px;}}
   </style>
 </head>
 <body>
@@ -99,6 +115,8 @@ sitemap: false
     <div class="ed-page" id="ed-page"></div>
     <div class="ed-status" id="ed-status"></div>
     <button class="ed-btn" id="ed-photos" hidden>Photos</button>
+    <button class="ed-btn" id="ed-covers" hidden>Cover photos</button>
+    <button class="ed-btn" id="ed-vendors" hidden>Vendors</button>
     <button class="ed-btn" id="ed-wedrm" hidden>Remove wedding</button>
     <button class="ed-btn" id="ed-imgins" hidden>Insert photo</button>
     <button class="ed-btn" id="ed-new">New post</button>
@@ -107,7 +125,32 @@ sitemap: false
     <button class="ed-btn" id="ed-discard" disabled>Discard</button>
     <button class="ed-btn primary" id="ed-save" disabled>Save</button>
   </div>
-  <div class="ed-hint">Click any text to edit it, then press <b>Save</b>. Click any photo to swap it. On a wedding page, <b>Photos</b> manages the whole gallery. Changes go live in about two minutes.</div>
+  <div class="ed-hint">Click any text to edit it, then press <b>Save</b>. Click any photo to swap it. On a wedding page, <b>Photos</b> manages the gallery, <b>Cover photos</b> picks what shows on the portfolio page, and <b>Vendors</b> credits everyone else who worked on it. Changes go live in about two minutes.</div>
+  <!-- Cover photos: which frames represent this wedding on /portfolio -->
+  <div class="ed-login" id="ed-cov-modal" hidden>
+    <form class="ed-card" id="ed-cov-form" style="max-width:900px;">
+      <h2 id="ed-cov-title">Cover photos</h2>
+      <p id="ed-cov-note">The first three show on the portfolio page. Phones swipe through all five. Click a photo to add or remove it; the order you click is the order they appear.</p>
+      <div id="ed-cov-picked" class="ed-cov-picked"></div>
+      <div id="ed-cov-grid" class="ed-ph-grid"></div>
+      <button class="ed-btn primary" type="submit">Save cover photos</button>
+      <button class="ed-btn" type="button" id="ed-cov-cancel">Cancel</button>
+      <div class="ed-err" id="ed-cov-err"></div>
+    </form>
+  </div>
+
+  <!-- Vendors: everyone else who worked on this wedding -->
+  <div class="ed-login" id="ed-ven-modal" hidden>
+    <form class="ed-card" id="ed-ven-form" style="max-width:720px;">
+      <h2 id="ed-ven-title">Vendors</h2>
+      <p>Leave a name blank and that row is hidden on the page. Add a website and the name becomes a link.</p>
+      <div id="ed-ven-rows" class="ed-ven-rows"></div>
+      <button class="ed-btn primary" type="submit">Save vendors</button>
+      <button class="ed-btn" type="button" id="ed-ven-cancel">Cancel</button>
+      <div class="ed-err" id="ed-ven-err"></div>
+    </form>
+  </div>
+
   <div class="ed-frame-wrap">
     <iframe id="ed-frame" src="{{ site.baseurl }}/" title="Golden Flowers website"></iframe>
   </div>
