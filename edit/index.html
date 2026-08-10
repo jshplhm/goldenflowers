@@ -137,6 +137,15 @@ sitemap: false
     .ed-hw-item .ed-hw-n{width:22px;height:22px;border-radius:50%;background:#2f5d3a;color:#fff;font-size:.72rem;display:flex;align-items:center;justify-content:center;flex:none;}
     .ed-hw-item .ed-hw-n.off{background:transparent;color:transparent;border:1px solid var(--ed-line);}
     .ed-hw-item .ed-hw-v{color:var(--ed-mute);font-size:.82rem;}
+    .ed-hw-sub{font-size:.85rem;color:var(--ed-mute);margin:16px 0 8px!important;border-top:1px solid var(--ed-line);padding-top:14px;}
+    .ed-hw-slots{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:4px;flex:none;}
+    .ed-hw-slot{text-align:left;}
+    .ed-hw-slot button{display:block;width:100%;padding:0;border:1px solid var(--ed-line);border-radius:8px;overflow:hidden;background:#fff;cursor:pointer;}
+    .ed-hw-slot button:hover{border-color:var(--ed-green);}
+    .ed-hw-slot img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;}
+    .ed-hw-slot .ed-hw-cap{font-size:.76rem;color:var(--ed-mute);margin-top:5px;line-height:1.35;}
+    .ed-hw-slot .ed-hw-cap b{display:block;color:#222;font-size:.82rem;}
+    @media(max-width:560px){.ed-hw-slots{grid-template-columns:1fr;}}
     /* vendors */
     .ed-ven-rows{display:flex;flex-direction:column;gap:10px;margin:14px 0 18px;}
     .ed-ven-row{display:grid;grid-template-columns:150px 1fr 1fr;gap:10px;align-items:center;}
@@ -167,10 +176,21 @@ sitemap: false
   <div class="ed-login" id="ed-hw-modal" hidden>
     <form class="ed-card" id="ed-hw-form" style="max-width:720px;">
       <h2>Home weddings</h2>
-      <p id="ed-hw-note">Pick the three weddings the home page shows, in the order you want them. The first is the large photo, the second sits beside it, the third is the wide one underneath. Click to add or remove.<br>This chooses <b>which weddings</b>. To change <b>which photo</b> one of them shows, close this and click that photo on the page behind.</p>
+      <p id="ed-hw-note">Pick the three weddings the home page shows, in the order you want them. The first is the large photo, the second sits beside it, the third is the wide one underneath. Click to add or remove.</p>
       <div id="ed-hw-picked" class="ed-cov-picked"></div>
       <div id="ed-hw-list" class="ed-hw-list"></div>
-      <button class="ed-btn primary" type="submit">Save home weddings</button>
+      <!-- Slot photos: which picture each chosen wedding shows on the home page -->
+      <div id="ed-hw-slotwrap" hidden>
+        <p class="ed-hw-sub">The photo each one shows on the home page. Click a photo to pick a different one from that wedding.</p>
+        <div id="ed-hw-slots" class="ed-hw-slots"></div>
+      </div>
+      <!-- Sub-view: pick a photo out of one wedding's gallery -->
+      <div id="ed-hw-pickwrap" hidden>
+        <p class="ed-hw-sub" id="ed-hw-picktitle"></p>
+        <div id="ed-hw-photos" class="ed-ph-grid"></div>
+        <button class="ed-btn" type="button" id="ed-hw-pickback">Back</button>
+      </div>
+      <button class="ed-btn primary" type="submit" id="ed-hw-save">Save home weddings</button>
       <button class="ed-btn" type="button" id="ed-hw-cancel">Cancel</button>
       <div class="ed-err" id="ed-hw-err"></div>
     </form>

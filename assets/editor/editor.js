@@ -1819,6 +1819,89 @@ let hwPhoto = {};  /* slug -> the photo number it already had */
 
 const HW_SLOT_LABEL = ["Large", "Beside it", "Wide band"];
 
+const hwSlotWrap = document.getElementById("ed-hw-slotwrap");
+const hwSlots = document.getElementById("ed-hw-slots");
+const hwPickWrap = document.getElementById("ed-hw-pickwrap");
+const hwPhotos = document.getElementById("ed-hw-photos");
+const hwPickTitle = document.getElementById("ed-hw-picktitle");
+const hwPickBack = document.getElementById("ed-hw-pickback");
+const hwSave = document.getElementById("ed-hw-save");
+const hwList2 = hwList;
+
+function hwPhotoFor(slug) {
+  const m = hwAll.find((w) => w.slug === slug) || {};
+  return hwPhoto[slug] || (m.band && m.band[0]) || "01";
+}
+
+/* The slot strip is the answer to "where do I change the home photo?". It was
+ * always possible by clicking the tile on the page, but nobody found it, so the
+ * one modal named after the home grid now owns the photo too. */
+function renderHomeSlots() {
+  const ready = hwPick.length === HOME_WORK_TOTAL;
+  hwSlotWrap.hidden = !ready;
+  if (!ready) return;
+  hwSlots.innerHTML = hwPick.map((slug, i) => {
+    const m = hwAll.find((w) => w.slug === slug) || {};
+    const num = hwPhotoFor(slug);
+    return `<div class="ed-hw-slot">
+      <button type="button" data-slot="${i}" title="Pick a different photo">
+        <img src="/assets/images/portfolio/${slug}/${slug}-${num}.jpg" alt="" loading="lazy">
+      </button>
+      <div class="ed-hw-cap"><b>${escapeHtml(m.name || slug)}</b>${escapeHtml(HW_SLOT_LABEL[i] || "")} · photo ${escapeHtml(num)}</div>
+    </div>`;
+  }).join("");
+}
+
+/* Swap the wedding list for that wedding's gallery, in place. Choosing only
+ * updates pending state; nothing commits until Save, which is what the rest of
+ * this modal already promises. */
+let hwOpenSlot = -1;
+async function openHomePhotoPicker(slotIndex) {
+  hwOpenSlot = slotIndex;
+  const slug = hwPick[slotIndex];
+  const m = hwAll.find((w) => w.slug === slug) || {};
+  hwErr.style.display = "none";
+  hwPickTitle.textContent = `${m.name || slug} — pick the photo for the home page`;
+  hwPhotos.innerHTML = "<p>Loading…</p>";
+  hwList2.hidden = true; hwSlotWrap.hidden = true; hwSave.hidden = true;
+  hwPickWrap.hidden = false;
+  try {
+    const r = await fetch(`${API}assets/images/portfolio/${slug}?ref=${encodeURIComponent(BRANCH)}`, { headers: ghHeaders(), cache: "no-store" });
+    if (!r.ok) throw new Error(`Couldn't load that wedding's photos (${r.status})`);
+    const items = (await r.json()).filter((f) => /\.(jpe?g|png)$/i.test(f.name));
+    const cur = hwPhotoFor(slug);
+    hwPhotos.innerHTML = items.map((f) => {
+      const num = (f.name.match(/-(\d+)\.[a-z]+$/i) || [])[1] || "";
+      return `<div class="ed-ph" data-num="${escapeHtml(num)}" style="cursor:pointer;${num === cur ? "outline:3px solid #2f5d3a;outline-offset:-3px;" : ""}">
+        <img src="${escapeHtml(f.download_url)}" alt="" loading="lazy">
+      </div>`;
+    }).join("");
+  } catch (err) {
+    hwErr.textContent = err.message;
+    hwErr.style.display = "block";
+    closeHomePhotoPicker();
+  }
+}
+
+function closeHomePhotoPicker() {
+  hwPickWrap.hidden = true;
+  hwList2.hidden = false; hwSave.hidden = false;
+  renderHomeSlots();
+}
+
+hwSlots.addEventListener("click", (e) => {
+  const b = e.target.closest("button[data-slot]");
+  if (b) openHomePhotoPicker(Number(b.getAttribute("data-slot")));
+});
+hwPickBack.addEventListener("click", closeHomePhotoPicker);
+hwPhotos.addEventListener("click", (e) => {
+  const tile = e.target.closest(".ed-ph[data-num]");
+  if (!tile || hwOpenSlot < 0) return;
+  hwPhoto[hwPick[hwOpenSlot]] = tile.getAttribute("data-num");
+  hwOpenSlot = -1;
+  closeHomePhotoPicker();
+});
+
 function renderHomeWork() {
   hwPicked.innerHTML = hwPick.length
     ? hwPick.map((slug, i) => {
@@ -1838,6 +1921,7 @@ function renderHomeWork() {
       <span><b>${escapeHtml(w.name || w.slug)}</b><br><span class="ed-hw-v">${escapeHtml(w.venue || "")}</span></span>
     </button>`;
   }).join("");
+  renderHomeSlots();
 }
 
 hwList.addEventListener("click", (e) => {
@@ -1860,6 +1944,8 @@ homeWorkBtn.addEventListener("click", async () => {
   if (!DRYRUN && !token()) { await ensureAuth(); if (!token()) return; }
   hwErr.style.display = "none";
   hwModal.hidden = false;
+  /* reopening must never land in the photo sub-view left over from last time */
+  hwPickWrap.hidden = true; hwList.hidden = false; hwSave.hidden = false; hwOpenSlot = -1;
   hwList.innerHTML = "<p>Loading…</p>";
   try {
     const metaFile = await getFile(META_PATH);
