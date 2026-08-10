@@ -13,6 +13,10 @@
 # Everything else is waiting on Brittany.
 
 defaults:
+  # Set to true once the real vendor list is in. While it is false the whole
+  # "The team" block is hidden on every wedding page, because the venue alone
+  # is not a team and a near-empty block reads as broken.
+  enabled: false
   florals:
     name: "Golden Flowers"
     url: "/"

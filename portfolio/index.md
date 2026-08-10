@@ -43,8 +43,7 @@ redirect_from:
 {%- endcomment -%}
 <div class="pfx-bands">
 {%- for w in site.data.portfolio_meta -%}
-{%- assign n = forloop.index | prepend: '0' | slice: -2, 2 -%}
-{% include portfolio-band.html w=w n=n %}
+{% include portfolio-band.html w=w %}
 {%- endfor -%}
 </div>
 

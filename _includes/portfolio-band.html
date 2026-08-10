@@ -1,6 +1,6 @@
 {%- comment -%}
   One wedding on the portfolio index.
-  Params: w (one record from _data/portfolio_meta.yml), n (display number).
+  Params: w (one record from _data/portfolio_meta.yml).
   Adding or retiring a wedding is a data edit, not a markup edit.
 
   Photo order in .pfx-row is (landscape-tolerant, hero, detail); the column
@@ -15,7 +15,6 @@
 {%- assign href = site.baseurl | append: '/portfolio/' | append: slug -%}
 <article class="pfx-bd" data-ed-band="{{ slug }}">
   <div class="pfx-h">
-    <span class="pfx-n">{{ include.n }}</span>
     <h2>{{ name }}</h2>
     <span class="pfx-v">{{ m.venue }}</span>
   </div>

@@ -4,9 +4,14 @@
   A credit with no name is skipped entirely, so a half-filled set still reads as
   a finished block. A name without a url renders as plain text.
 {%- endcomment -%}
+{%- comment -%}
+  Master switch. The venue is filled in for every wedding, so without this the
+  block renders as a "team" of one and looks like something failed to load.
+  Flip `enabled: true` in _data/credits.yml once the real vendor list is in.
+{%- endcomment -%}
 {%- assign c = site.data.credits[include.slug] -%}
 {%- assign wp = site.data.portfolio_page.wedding -%}
-{%- if c -%}
+{%- if c and site.data.credits.defaults.enabled -%}
 {%- assign leadKeys = "photography,planning,venue" | split: "," -%}
 {%- assign leadLabels = "Photography,Planning &amp; design,Venue" | split: "," -%}
 {%- assign restKeys = "catering,cake,rentals,beauty,gown,stationery,music,officiant" | split: "," -%}
