@@ -39,9 +39,31 @@ sitemap: false
     #ed-frame{position:absolute;inset:0;width:100%;height:100%;border:0;}
 
     /* login overlay */
-    .ed-login{position:fixed;inset:0;background:rgba(34,48,31,.55);display:grid;place-items:center;z-index:50;}
+    /* safe center: a card taller than the viewport must fall back to top
+       aligned, otherwise centring pushes its top edge off screen where no
+       amount of scrolling can reach it. overflow-y makes the overlay itself
+       scrollable as the last resort for any modal that outgrows the screen. */
+    .ed-login{position:fixed;inset:0;background:rgba(34,48,31,.55);display:grid;place-items:safe center;z-index:50;overflow-y:auto;padding:20px 0;}
     .ed-login[hidden]{display:none;}
-    .ed-card{background:#fff;border-radius:10px;max-width:440px;width:calc(100% - 40px);padding:30px 32px;box-shadow:0 18px 60px rgba(0,0,0,.25);}
+    /* Every modal is capped and scrolls internally, so Save and Cancel can
+       never end up below the fold with no way to reach them. */
+    .ed-card{background:#fff;border-radius:10px;max-width:440px;width:calc(100% - 40px);padding:30px 32px;box-shadow:0 18px 60px rgba(0,0,0,.25);max-height:calc(100dvh - 40px);display:flex;flex-direction:column;overflow:hidden;}
+    /* The long lists are the flexible part, so they absorb the height limit and
+       the buttons underneath them stay on screen. min-height:0 is required or a
+       flex item refuses to shrink below its content and pushes them off again. */
+    .ed-ph-grid,.ed-hw-list,.ed-ven-rows{flex:1 1 auto;min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch;}
+    /* Once these have a bounded height their own children try to absorb it:
+       grid rows stretch to fill, flex rows shrink. Both squash the thumbnails
+       into strips. Pin the children to their intrinsic size and let the
+       container scroll, which is the whole point of bounding it. */
+    .ed-ph-grid{align-content:start;grid-auto-rows:max-content;}
+    .ed-hw-item,.ed-ven-row{flex:none;}
+    /* The tile carries the ratio, not the img inside it. Once the grid had a
+       bounded height the row stopped taking its size from an aspect-ratio'd
+       child, collapsed to ~23px, and .ed-ph's overflow:hidden clipped every
+       photo to a strip. A ratio on the grid item itself cannot collapse. */
+    .ed-ph{aspect-ratio:4/5;}
+    .ed-ph img{height:100%;aspect-ratio:auto;}
     .ed-card h1{font-size:1.15rem;margin:0 0 6px;}
     .ed-card p{font-size:.85rem;color:var(--ed-mute);line-height:1.55;margin:0 0 14px;}
     .ed-card input{width:100%;padding:10px 12px;border:1px solid var(--ed-line);border-radius:6px;font-size:.9rem;font-family:ui-monospace,Menlo,monospace;}
@@ -59,7 +81,10 @@ sitemap: false
     .ed-ph-head{display:flex;align-items:baseline;gap:12px;margin-bottom:4px;}
     .ed-ph-head h1{flex:1;}
     .ed-ph-note{font-size:.78rem;color:var(--ed-mute);margin:0 0 14px;}
-    .ed-ph-grid{overflow:auto;display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;padding:2px;}
+    /* max-height is what makes the overflow:auto here actually do anything. A
+       wedding with 29 photos used to grow this grid past the bottom of the
+       screen, taking Save and Cancel with it. */
+    .ed-ph-grid{overflow:auto;display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;padding:2px;max-height:min(52vh,420px);}
     .ed-ph{position:relative;border:1px solid var(--ed-line);border-radius:8px;overflow:hidden;background:#f4f1ea;cursor:grab;}
     .ed-ph.dragging{opacity:.35;}
     .ed-ph img{width:100%;aspect-ratio:4/5;object-fit:cover;display:block;pointer-events:none;}
@@ -93,7 +118,9 @@ sitemap: false
     .ed-rep-gal.busy{pointer-events:none;opacity:.55;}
   
     /* cover photos */
-    .ed-cov-picked{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 14px;min-height:34px;}
+    /* flex:none so a second row of chips is not squeezed back to min-height and
+       left overlapping the grid below it. */
+    .ed-cov-picked{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 14px;min-height:34px;flex:none;}
     .ed-cov-chip{display:inline-flex;align-items:center;gap:8px;background:var(--ed-bg2,#f2efe8);
       border:1px solid var(--ed-line);border-radius:999px;padding:5px 12px;font-size:.8rem;}
     .ed-cov-chip b{font-weight:600;}
@@ -102,7 +129,7 @@ sitemap: false
     .ed-ph-pick{position:absolute;top:6px;left:6px;background:#1c5b34;color:#fff;border-radius:999px;
       width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-size:.78rem;font-weight:700;}
     /* home weddings */
-    .ed-hw-list{display:flex;flex-direction:column;gap:8px;margin:14px 0 18px;}
+    .ed-hw-list{display:flex;flex-direction:column;gap:8px;margin:14px 0 18px;overflow-y:auto;max-height:min(52vh,420px);}
     .ed-hw-item{display:flex;align-items:center;gap:12px;padding:10px 12px;border:1px solid var(--ed-line);border-radius:8px;cursor:pointer;background:#fff;text-align:left;font:inherit;}
     .ed-hw-item:hover{border-color:#8a8a8a;}
     .ed-hw-item.on{border-color:#2f5d3a;box-shadow:inset 0 0 0 1px #2f5d3a;background:#f3f8f4;}
@@ -140,7 +167,7 @@ sitemap: false
   <div class="ed-login" id="ed-hw-modal" hidden>
     <form class="ed-card" id="ed-hw-form" style="max-width:720px;">
       <h2>Home weddings</h2>
-      <p id="ed-hw-note">Pick the three weddings the home page shows, in the order you want them. The first is the large photo, the second sits beside it, the third is the wide one underneath. Click to add or remove.</p>
+      <p id="ed-hw-note">Pick the three weddings the home page shows, in the order you want them. The first is the large photo, the second sits beside it, the third is the wide one underneath. Click to add or remove.<br>This chooses <b>which weddings</b>. To change <b>which photo</b> one of them shows, close this and click that photo on the page behind.</p>
       <div id="ed-hw-picked" class="ed-cov-picked"></div>
       <div id="ed-hw-list" class="ed-hw-list"></div>
       <button class="ed-btn primary" type="submit">Save home weddings</button>
@@ -152,7 +179,7 @@ sitemap: false
   <div class="ed-login" id="ed-cov-modal" hidden>
     <form class="ed-card" id="ed-cov-form" style="max-width:900px;">
       <h2 id="ed-cov-title">Cover photos</h2>
-      <p id="ed-cov-note">The first three show on the portfolio page. Phones swipe through all five. Click a photo to add or remove it; the order you click is the order they appear.</p>
+      <p id="ed-cov-note">The first three show on the portfolio page. Phones swipe through all five. Click a photo to add or remove it; the order you click is the order they appear.<br><b>This is the portfolio page only.</b> The home page keeps its own three photos: go to the home page and click the photo you want to change.</p>
       <div id="ed-cov-picked" class="ed-cov-picked"></div>
       <div id="ed-cov-grid" class="ed-ph-grid"></div>
       <button class="ed-btn primary" type="submit">Save cover photos</button>

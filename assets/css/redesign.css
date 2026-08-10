@@ -271,9 +271,12 @@ button.txt-link{background:none;border-top:0;border-left:0;border-right:0;cursor
 .portrait{grid-column:span 4;height:clamp(360px,44vw,580px);}
 .third{grid-column:span 4;height:clamp(240px,25vw,360px);}
 .quarter{grid-column:span 3;height:clamp(240px,24vw,340px);}
-/* Closing tile of the home preview: full width, deliberately shorter than the
-   pair above it so the row reads as a coda rather than a third headline. */
-.wide{grid-column:span 12;height:clamp(220px,26vw,400px);}
+/* Closing tile of the home preview: full width, and shorter than the pair above
+   it so the row reads as a coda rather than a third headline. A RATIO, not a vw
+   height: a vw height silently restretches the crop at every viewport width,
+   which is what made this read as a letterbox slot (3.46:1 at desktop). 5:2
+   keeps the composition fixed and still lands under the top row's height. */
+.wide{grid-column:span 12;aspect-ratio:5/2;}
 .work-more{margin-top:clamp(26px,3vw,38px);text-align:center;}
 
 /* ---------- IMMERSIVE ---------- */
