@@ -36,10 +36,10 @@ why:
         production line. "
 work:
   heading: Selected weddings
-  link: Browse the full portfolio
-  # Closing invitation under the preview grid. The header link stays for anyone
-  # who scans headings first; this one catches the reader who just looked at all
-  # three photos and wants more.
+  # The only way out of the preview grid, sitting under the photos: a reader
+  # decides they want more after looking, not before. The old header link
+  # (work.link) was removed 2026-08-10 because two exits from one section is
+  # one too many.
   more: See more weddings
 marquee:
   label: We design at 30+ venues across the Sierra
