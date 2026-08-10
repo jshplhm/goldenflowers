@@ -248,23 +248,18 @@ button.txt-link{background:none;border-top:0;border-left:0;border-right:0;cursor
 .fact h3{font-family:var(--d);font-size:1.55rem;margin-bottom:10px;letter-spacing:-.01em;}
 .fact p{font-size:.96rem;color:var(--mute);max-width:34ch;line-height:1.62;}
 /* ---------- HOME INTRO ---------- */
-/* Two columns so the block resolves against the content rail. Left-aligned prose
-   capped at a reading measure ends ~680px short of the rail's right edge, and
-   unlike .credo or .work nothing full-width sits underneath to close that gap,
-   so a single column reads as a layout failure rather than as a measure. The
-   label column is the same device every other home section already uses. */
+/* The rail is 1356px at 1920 but a comfortable measure for this display face at
+   32px is ~950px, so ~400px has to go somewhere. Centering spends it as equal
+   gutters on both sides: symmetric space reads as a deliberate measure, where
+   the same space banked entirely on one side reads as a layout failure. (Tried
+   a label column on the left instead; at .8fr it was not a gutter, it was an
+   empty column ~280px wide running the full height of the text.)
+   Below ~950px the cap stops biting and the prose simply fills the rail. */
 .intro{padding-top:clamp(64px,8vw,104px);}
-.intro-band{display:grid;grid-template-columns:.8fr 1.6fr;gap:clamp(28px,5vw,90px);}
-.intro-side .lab{display:block;}
+.intro-band{max-width:950px;margin-inline:auto;}
+.intro-side .lab{display:block;margin-bottom:clamp(20px,2.5vw,30px);}
 .intro-body p{font-family:var(--d);font-weight:430;font-optical-sizing:auto;font-size:clamp(1.4rem,2.6vw,2rem);line-height:1.5;letter-spacing:-.01em;color:var(--ink);text-wrap:pretty;}
 .intro-body p + p{margin-top:28px;}
-/* One column below the point where the prose measure would drop under ~40ch.
-   NOT the usual 860px: two columns at 900px leave the prose ~30ch. Single
-   column is also simply correct down here, since the rail stops biting around
-   1050px and the text fills the width on its own. */
-@media(max-width:1100px){
-  .intro-band{grid-template-columns:1fr;gap:20px;}
-}
 
 /* Adjacent sections that would otherwise share the page background are
    separated by a subtle full-bleed tint band instead of a hairline rule.
