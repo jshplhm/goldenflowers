@@ -100,12 +100,13 @@ redirect_from:
 </section>
 
 
-<!-- ASSURANCE (quiet beat between the price and the proof: no card, hangs off
-     the same left rail as every other section on the page) -->
-<section class="block tight assurance">
-  <span class="lab"><span data-ed="weddings:assurance.label">{{ site.data.weddings.assurance.label }}</span></span>
-  <h2 class="h-lg"><span data-ed="weddings:assurance.heading">{{ site.data.weddings.assurance.heading }}</span></h2>
-  <p><span data-ed="weddings:assurance.body">{{ site.data.weddings.assurance.body }}</span></p>
+<!-- ASSURANCE -->
+<section class="callout-sec">
+  <div class="callout">
+    <span class="lab"><span data-ed="weddings:assurance.label">{{ site.data.weddings.assurance.label }}</span></span>
+    <h2><span data-ed="weddings:assurance.heading">{{ site.data.weddings.assurance.heading }}</span></h2>
+    <p style="max-width:540px;margin:0 auto;color:var(--fg2);"><span data-ed="weddings:assurance.body">{{ site.data.weddings.assurance.body }}</span></p>
+  </div>
 </section>
 
 <!-- TESTIMONIALS -->

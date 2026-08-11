@@ -22,6 +22,22 @@ redirect_from:
   .story-split.img-first-mobile .ss-img{order:-1;}
   .story-split .ss-img img{min-height:0;aspect-ratio:4/5;}
 }
+
+/* Tonal bands. The page was a single near-white surface end to end, with a 1px
+   hairline asked to carry every structural break across 7000px of scroll.
+   Two bands now do that work, which also gives the divider rule something to be
+   consistent about: a hairline only ever separates two sections that SHARE a
+   background. A change of background is its own divider.
+   Full-bleed pattern (background + padding on the section, measure on an inner
+   wrapper) rather than .block, so the bands still span the viewport past the
+   1500px content max. */
+.band{padding:clamp(70px,9vw,120px) var(--pad);}
+.band > .band-in{max-width:var(--content-max);margin:0 auto;}
+.band-dark{background:var(--forest-deep);color:var(--paper);}
+.band-dark .lab{color:var(--terra-soft);}
+.band-dark h2{color:var(--paper);}
+.band-dark .prose p{color:oklch(85% .02 130);}
+.band-tint{background:var(--bg2);}
 </style>
 
 <!-- STUDIO HERO (split: deliberately not full-bleed) -->
@@ -35,6 +51,8 @@ redirect_from:
     <img src="{{ site.baseurl }}/assets/images/our-story.jpg" alt="Brittany of Golden Flowers arranging a floral installation at an outdoor wedding" loading="eager">
   </div>
 </section>
+
+<hr class="hr-line">
 
 <!-- STUDIO INTRO -->
 <section class="block">
@@ -51,11 +69,10 @@ redirect_from:
   </div>
 </section>
 
-<hr class="hr-line">
-
-<!-- ONE WEDDING A DAY: BY CHOICE -->
-<section class="block">
-  <div class="story-split rev">
+<!-- ONE WEDDING A DAY: BY CHOICE (the page's one dark moment: this is the
+     central claim, and it has the strongest photo to carry it) -->
+<section class="band band-dark">
+  <div class="band-in story-split rev">
     <div class="ss-img">
       <img src="{{ site.baseurl }}/assets/images/studio-hero.jpg" alt="Brittany of Golden Flowers with a large floral installation" loading="lazy">
     </div>
@@ -69,8 +86,6 @@ redirect_from:
     </div>
   </div>
 </section>
-
-<hr class="hr-line">
 
 <!-- CERTAINTY -->
 <section class="block">
@@ -135,8 +150,10 @@ redirect_from:
   </div>
 </section>
 
-<!-- SEASONAL AVAILABILITY -->
-<section class="block" id="seasonal-availability">
+<!-- SEASONAL AVAILABILITY (tint band: it's the reference section, and the tint
+     brackets it away from the two card grids either side of it) -->
+<section class="band band-tint" id="seasonal-availability">
+  <div class="band-in">
   <span class="lab"><span data-ed="about:seasonal.label">{{ site.data.about.seasonal.label }}</span></span>
   <h2 class="h-lg"><span data-ed="about:seasonal.heading">{{ site.data.about.seasonal.heading }}</span></h2>
   <p class="prose" style="max-width:560px;margin-top:14px;"><span style="color:var(--fg2);"><span data-ed="about:seasonal.intro">{{ site.data.about.seasonal.intro }}</span></span></p>
@@ -153,9 +170,8 @@ redirect_from:
     {%- endfor %}
   </div>
   <p class="season-foot"><span data-ed="about:seasonal.footnote">{{ site.data.about.seasonal.footnote }}</span></p>
+  </div>
 </section>
-
-<hr class="hr-line">
 
 <!-- VALUES -->
 <section class="block">
