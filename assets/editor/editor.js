@@ -403,7 +403,10 @@ function hookFrame() {
         return;
       }
       const img = e.target.closest && e.target.closest("img");
-      if (img && img.closest("[data-ed-gallery]")) {
+      /* [data-ed-hero] is the big opening photo. It belongs to the gallery too,
+       * so it goes to the same manager — which is also the only place that can
+       * change it, via "Make opening photo". */
+      if (img && img.closest("[data-ed-gallery],[data-ed-hero]")) {
         e.preventDefault();
         e.stopPropagation();
         if (editing) stopEdit();
@@ -1138,7 +1141,16 @@ function imgPath(img) {
 let repTarget = null;
 let repBusy = false;
 
-const REP_UNMATCHED = "This photo is placed by the site's design rather than this page, so it can't be swapped here. Tell Josh which photo you want changed.";
+/* A photo the page source doesn't place can't be swapped by rewriting that
+ * source. If it lives in a wedding's own gallery folder there IS a way to
+ * change it, so say which one instead of dead-ending on "tell Josh". */
+function repUnmatchedMsg() {
+  const slug = repTarget && (repTarget.path.match(/^\/assets\/images\/portfolio\/([^/]+)\//) || [])[1];
+  if (slug) {
+    return `This photo is placed by the site's design rather than this page. To change it, open the ${slug.replace(/-/g, " ")} wedding and use the Photos button.`;
+  }
+  return "This photo is placed by the site's design rather than this page, so it can't be swapped here. Tell Josh which photo you want changed.";
+}
 
 /* the image path inside the card that links to /portfolio/<slug>, with its
  * offset in the source (the src carries a {{ site.baseurl }} prefix we leave
@@ -1228,7 +1240,7 @@ async function swapSourceTo(newSrcPath) {
   if (repTarget.homeSlot != null) return swapHomeTo(newSrcPath);
   const { text } = await rawFile(curPage);
   const updated = sourceSwappedTo(text, newSrcPath);
-  if (updated === null) throw new Error(REP_UNMATCHED);
+  if (updated === null) throw new Error(repUnmatchedMsg());
   if (updated === text) return false;
   await commitFiles([{ path: curPage, text: updated }], `Swap a photo on ${curPage} via inline editor`);
   return true;
@@ -1350,7 +1362,7 @@ repForm.addEventListener("submit", async (e) => {
     }
     const { text } = await rawFile(curPage);
     /* check before resizing so an unswappable photo fails fast */
-    if (sourceSwappedTo(text, "") === null) throw new Error(REP_UNMATCHED);
+    if (sourceSwappedTo(text, "") === null) throw new Error(repUnmatchedMsg());
     const { base64, blobUrl } = await processImage(file, 2400);
     /* drop any suffix an earlier upload added so re-uploads don't grow a
      * tail of timestamps (katie-james-01-msch3pw2-mschbtqy…) */

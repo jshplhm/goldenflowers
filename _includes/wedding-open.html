@@ -6,7 +6,13 @@
 {%- assign m = site.data.portfolio_meta | where: "slug", include.slug | first -%}
 {%- assign hero = page.hero_photo -%}
 {%- assign heroPath = '/assets/images/portfolio/' | append: include.slug | append: '/' | append: hero -%}
-<header class="wp-open">
+{%- comment -%}
+  data-ed-hero sends an editor click on the opening photo to the Photos
+  manager, the same place a gallery photo click goes. This image's path is
+  built from the page's hero_photo front matter, so it never appears literally
+  in the page source and the generic swap flow can't find anything to rewrite.
+{%- endcomment -%}
+<header class="wp-open" data-ed-hero="{{ include.slug }}">
   <img src="{{ site.baseurl }}{{ heroPath }}" alt="{{ include.name }} wedding flowers at {{ m.venue }}, {{ m.place }}" loading="eager" fetchpriority="high" sizes="100vw">
   <div class="wp-tt">
     <div>
