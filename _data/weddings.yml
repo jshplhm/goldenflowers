@@ -97,25 +97,9 @@ assurance:
 testimonials:
   label: What couples say
   heading: Loved by couples across the Sierra.
-seasonal:
-  label: Seasonal flowers
-  heading: What's growing for your date.
-  body: "California's seasons produce dramatically different palettes: ranunculus
-    and anemone in spring, garden roses and dahlias in summer, rich harvest
-    tones in fall. Your proposal is built around what will be at peak on your
-    date."
-  link: See what's in season
 faq:
   label: Frequently asked questions
   heading: What makes Golden Flowers different?
-venue_cta:
-  label: Browse by venue
-  heading: Planning at a specific venue?
-  body: "We know the region's best venues: the load-in, the light, the
-    proportions. From Edgewood's lakeside lawn to the mountaintop lodge at
-    Schaffer's Camp. See how we think about the flowers at each, and find
-    yours."
-  link: Explore venues
 closing:
   label: Begin here
   heading: Is your date *still open?*

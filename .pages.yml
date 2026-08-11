@@ -258,28 +258,12 @@ content:
         fields:
           - {name: label, label: "Small label", type: string}
           - {name: heading, label: "Heading", type: string}
-      - name: seasonal
-        label: "Section: seasonal flowers"
-        type: object
-        fields:
-          - {name: label, label: "Small label", type: string}
-          - {name: heading, label: "Heading", type: string}
-          - {name: body, label: "Text", type: text}
-          - {name: link, label: "Link text", type: string}
       - name: faq
         label: "Section: FAQ heading"
         type: object
         fields:
           - {name: label, label: "Small label", type: string}
           - {name: heading, label: "Heading", type: string}
-      - name: venue_cta
-        label: "Section: browse by venue"
-        type: object
-        fields:
-          - {name: label, label: "Small label", type: string}
-          - {name: heading, label: "Heading", type: string}
-          - {name: body, label: "Text", type: text}
-          - {name: link, label: "Link text", type: string}
       - name: closing
         label: Closing call to action
         type: object

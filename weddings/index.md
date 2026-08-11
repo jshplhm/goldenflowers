@@ -78,15 +78,6 @@ redirect_from:
 
 <hr class="hr-line">
 
-<!-- SEASONAL CALLOUT (sits between the deliverables and the price: what you get,
-     then what the flowers will actually be, then what it costs) -->
-<section class="mini">
-  <span class="lab"><span data-ed="weddings:seasonal.label">{{ site.data.weddings.seasonal.label }}</span></span>
-  <h2><span data-ed="weddings:seasonal.heading">{{ site.data.weddings.seasonal.heading }}</span></h2>
-  <p><span data-ed="weddings:seasonal.body">{{ site.data.weddings.seasonal.body }}</span></p>
-  <a href="{{ site.baseurl }}/about#seasonal-availability" class="txt-link"><span data-ed="weddings:seasonal.link">{{ site.data.weddings.seasonal.link }}</span> &rarr;</a>
-</section>
-
 <!-- PRICING (dark: the page premium moment) -->
 <section class="block pricing-dark" id="pricing">
   <div class="pricing">
@@ -132,14 +123,6 @@ redirect_from:
   <span class="lab"><span data-ed="weddings:faq.label">{{ site.data.weddings.faq.label }}</span></span>
   <h2 class="h-lg"><span data-ed="weddings:faq.heading">{{ site.data.weddings.faq.heading }}</span></h2>
   {% include redesign-faq.html %}
-</section>
-
-<!-- VENUE CTA -->
-<section class="mini">
-  <span class="lab"><span data-ed="weddings:venue_cta.label">{{ site.data.weddings.venue_cta.label }}</span></span>
-  <h2><span data-ed="weddings:venue_cta.heading">{{ site.data.weddings.venue_cta.heading }}</span></h2>
-  <p><span data-ed="weddings:venue_cta.body">{{ site.data.weddings.venue_cta.body }}</span></p>
-  <a href="{{ site.baseurl }}/venues" class="txt-link"><span data-ed="weddings:venue_cta.link">{{ site.data.weddings.venue_cta.link }}</span> &rarr;</a>
 </section>
 
 <!-- CLOSING -->
