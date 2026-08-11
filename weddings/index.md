@@ -78,6 +78,15 @@ redirect_from:
 
 <hr class="hr-line">
 
+<!-- SEASONAL CALLOUT (sits between the deliverables and the price: what you get,
+     then what the flowers will actually be, then what it costs) -->
+<section class="mini">
+  <span class="lab"><span data-ed="weddings:seasonal.label">{{ site.data.weddings.seasonal.label }}</span></span>
+  <h2><span data-ed="weddings:seasonal.heading">{{ site.data.weddings.seasonal.heading }}</span></h2>
+  <p><span data-ed="weddings:seasonal.body">{{ site.data.weddings.seasonal.body }}</span></p>
+  <a href="{{ site.baseurl }}/about#seasonal-availability" class="txt-link"><span data-ed="weddings:seasonal.link">{{ site.data.weddings.seasonal.link }}</span> &rarr;</a>
+</section>
+
 <!-- PRICING (dark: the page premium moment) -->
 <section class="block pricing-dark" id="pricing">
   <div class="pricing">
@@ -114,16 +123,6 @@ redirect_from:
   <span class="lab"><span data-ed="weddings:testimonials.label">{{ site.data.weddings.testimonials.label }}</span></span>
   <h2 class="h-lg"><span data-ed="weddings:testimonials.heading">{{ site.data.weddings.testimonials.heading }}</span></h2>
   {% include redesign-testimonials.html %}
-</section>
-
-<hr class="hr-line">
-
-<!-- SEASONAL CALLOUT -->
-<section class="mini">
-  <span class="lab"><span data-ed="weddings:seasonal.label">{{ site.data.weddings.seasonal.label }}</span></span>
-  <h2><span data-ed="weddings:seasonal.heading">{{ site.data.weddings.seasonal.heading }}</span></h2>
-  <p><span data-ed="weddings:seasonal.body">{{ site.data.weddings.seasonal.body }}</span></p>
-  <a href="{{ site.baseurl }}/about#seasonal-availability" class="txt-link"><span data-ed="weddings:seasonal.link">{{ site.data.weddings.seasonal.link }}</span> &rarr;</a>
 </section>
 
 <hr class="hr-line">

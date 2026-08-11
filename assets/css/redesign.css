@@ -1088,6 +1088,13 @@ body.nav-hidden .venue-breadcrumb{top:0;}
   .wide{height:auto;aspect-ratio:3/2;}
 }
 
+/* Phones get the cred cards one-up, not 2x2: at half a phone's width the
+   display headings ("Calm under pressure") wrap to two lines. Placed after the
+   860px block so it wins the cascade. */
+@media(max-width:600px){
+  .cred-grid{grid-template-columns:1fr;gap:26px;}
+}
+
 /* ============================================================================
    PORTFOLIO v2 — one band per wedding
    Replaces the three aesthetic collages. Each wedding is one full-width row of
