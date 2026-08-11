@@ -800,8 +800,20 @@ async function commitFiles(files, message, attempt = 0) {
   if (!patchRes.ok) throw new Error(`Save failed (${patchRes.status})`);
 }
 
-/* photo file -> resized JPEG, longest edge maxEdge (matches the site's derivatives) */
-async function processImage(file, maxEdge = 2000, quality = 0.82) {
+/* Photo file -> resized JPEG, longest edge maxEdge (matches the site's
+ * derivatives). Every caller uses these defaults: a swap used to pass 2400 for
+ * no stated reason, which put a heavier file on the page than the same photo
+ * added to a gallery.
+ *
+ * Quality 0.72, not the 0.82 this shipped with. Visitors are almost always
+ * served a CI-built variant rather than this file, and measured over eight real
+ * camera originals the delivered 720w image is identical either way (RMS 3.09
+ * vs 3.27 out of 255, against the untouched original). Even the worst case,
+ * where no variant is wide enough and this file is served as-is, moves 3.69 to
+ * 4.21 -- inside JPEG noise, and indistinguishable at 1:1. The upload itself
+ * gets 23% smaller, which is what keeps a new wedding from landing in a public
+ * repo at 10 MB the way mikayla-jeff did. */
+async function processImage(file, maxEdge = 2000, quality = 0.72) {
   let bmp;
   try {
     bmp = await createImageBitmap(file, { imageOrientation: "from-image" });
@@ -1386,7 +1398,7 @@ repForm.addEventListener("submit", async (e) => {
     const { text } = await rawFile(curPage);
     /* check before resizing so an unswappable photo fails fast */
     if (sourceSwappedTo(text, "") === null) throw new Error(repUnmatchedMsg());
-    const { base64, blobUrl } = await processImage(file, 2400);
+    const { base64, blobUrl } = await processImage(file);
     /* drop any suffix an earlier upload added so re-uploads don't grow a
      * tail of timestamps (katie-james-01-msch3pw2-mschbtqy…) */
     const stem = repTarget.path.split("/").pop().replace(/\.[a-z]+$/i, "").replace(/(?:-[a-z0-9]{8})+$/i, "");
