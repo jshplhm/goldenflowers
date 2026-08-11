@@ -93,8 +93,13 @@
   name: Mikayla and Jeff
   venue: PlumpJack Inn Truckee
   place: ""
-  band: [ "01", "01", "01" ]
-  strip: [ "01", "01" ]
+  band:
+    - "11"
+    - "05"
+    - "07"
+  strip:
+    - "10"
+    - "04"
   lede: A modern and unique wedding inspired by Dr. Seuss
   palette: ""
   dots: []
