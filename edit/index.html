@@ -303,6 +303,8 @@ sitemap: false
       baseurl: "{{ site.baseurl }}"
     };
   </script>
-  <script type="module" src="{{ site.baseurl }}/assets/editor/editor.js"></script>
+  <!-- Cache-busted like the stylesheet: without it a stale editor.js can sit in
+       the browser cache for a long time and an editor fix never reaches anyone. -->
+  <script type="module" src="{{ site.baseurl }}/assets/editor/editor.js?v={{ site.time | date: '%s' }}"></script>
 </body>
 </html>

@@ -1620,13 +1620,19 @@ wedForm.addEventListener("submit", async (e) => {
   if (!slug) return fail("Those names don't work as a web address — try e.g. “Brittany & Chase”.");
   if (!DRYRUN && !token()) { wedModal.hidden = true; await ensureAuth(); return; }
 
+  /* The file picker has to be opened before anything is awaited. pickFiles ends
+   * in input.click(), and a synthetic click only opens the OS dialog while the
+   * browser still considers us inside the user gesture that submitted the form.
+   * Awaiting a network call first spends that activation and the click becomes
+   * a silent no-op, which read as the button doing nothing at all. That's why
+   * the duplicate check below runs after the photos are chosen and not before. */
+  const files = await pickFiles(filesInput);
+  if (!files.length) return fail("Pick at least one photo — the first becomes the opening photo.");
+
   /* already exists? (missing = good here) */
   let exists = true;
   try { await getFile(`portfolio/${slug}/index.md`); } catch { exists = false; }
   if (exists) return fail(`There's already a ${names} wedding at /portfolio/${slug}. Open it from the portfolio page to edit it.`);
-
-  const files = await pickFiles(filesInput);
-  if (!files.length) return fail("Pick at least one photo — the first becomes the opening photo.");
 
   const submitBtn = wedForm.querySelector("button[type=submit]");
   submitBtn.disabled = true;
