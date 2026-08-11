@@ -245,15 +245,13 @@ content:
           - {name: guide_text, label: "Price guide link text", type: string, description: "Leave the link blank to hide it"}
           - {name: guide_url, label: "Price guide link address", type: string, description: "Full address, starting with https://"}
           - {name: tagline, label: "Closing line", type: text}
-      - name: risk
-        label: "Section: if something goes wrong"
+      - name: assurance
+        label: "Section: how we work"
         type: object
         fields:
           - {name: label, label: "Small label", type: string}
           - {name: heading, label: "Heading", type: string}
           - {name: body, label: "Text", type: text}
-          - {name: quote, label: "Quote", type: text}
-          - {name: source, label: "Quote source", type: string}
       - name: testimonials
         label: "Section: reviews heading"
         type: object

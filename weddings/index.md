@@ -100,14 +100,12 @@ redirect_from:
 </section>
 
 
-<!-- RISK REVERSAL -->
+<!-- ASSURANCE -->
 <section class="block">
   <div class="callout">
-    <span class="lab"><span data-ed="weddings:risk.label">{{ site.data.weddings.risk.label }}</span></span>
-    <h2><span data-ed="weddings:risk.heading">{{ site.data.weddings.risk.heading }}</span></h2>
-    <p style="max-width:540px;margin:0 auto 22px;color:var(--fg2);"><span data-ed="weddings:risk.body">{{ site.data.weddings.risk.body }}</span></p>
-    <p class="q"><span data-ed="weddings:risk.quote">{{ site.data.weddings.risk.quote }}</span></p>
-    <p class="src"><span data-ed="weddings:risk.source">{{ site.data.weddings.risk.source }}</span></p>
+    <span class="lab"><span data-ed="weddings:assurance.label">{{ site.data.weddings.assurance.label }}</span></span>
+    <h2><span data-ed="weddings:assurance.heading">{{ site.data.weddings.assurance.heading }}</span></h2>
+    <p style="max-width:540px;margin:0 auto;color:var(--fg2);"><span data-ed="weddings:assurance.body">{{ site.data.weddings.assurance.body }}</span></p>
   </div>
 </section>
 

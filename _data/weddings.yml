@@ -85,19 +85,15 @@ pricing:
     - Simple a la carte weddings start at $5,000
   guide_text: View our price guide
   guide_url: https://canva.link/goldenflowerspriceguide
-  tagline: Locally-grown flowers, refined floral artistry, and a design curated
-    around your day.
-risk:
-  label: When it matters most
-  heading: What happens if something goes wrong?
-  body: A wedding day has no do-overs, so we plan like it, with backups in place
-    for the things that matter most and a team deep enough to absorb surprises.
-    You learn what a florist is really made of on the morning something doesn't
-    go to plan.
-  quote: '"We had a floral emergency on the morning of the wedding. Without any
-    prior consultation, they nailed it. Our bouquets were exactly what the bride
-    wanted. 10/10."'
-  source: Janelle · National Exchange Hotel, Nevada City
+  tagline: You're paying for flowers we grew ourselves, and time we chose not to
+    sell to anyone else.
+assurance:
+  label: How we work
+  heading: Everything is planned twice.
+  body: We over-source every wedding, build redundancy into the pieces you'll
+    carry and stand under, and staff your day with a full team from load-in
+    through breakdown. It's the reason we cap how many weddings we take each
+    season.
 testimonials:
   label: What couples say
   heading: Loved by couples across the Sierra.
