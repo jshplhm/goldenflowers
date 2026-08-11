@@ -98,8 +98,8 @@
     - "05"
     - "07"
   strip:
-    - "10"
     - "04"
+    - "02"
   lede: A modern and unique wedding inspired by Dr. Seuss
   palette: ""
   dots: []
