@@ -49,8 +49,20 @@
   <div class="wp-panel">
     <dl>
       <dt>Venue</dt><dd>{{ m.venue }}</dd>
+      {%- comment -%}
+        A wedding with no palette yet drops the row entirely rather than
+        printing a bare "Palette" label with nothing beside it, the same way a
+        blank vendor disappears from the credits block: half-filled should look
+        deliberate, not broken. Liquid counts "" as truthy, so these have to be
+        compared rather than tested with a plain `if`; the `size` filter is
+        what makes a missing `dots` count as 0 instead of erroring.
+      {%- endcomment -%}
+      {%- assign pal = m.palette | strip -%}
+      {%- assign ndots = m.dots | size -%}
+      {%- if pal != "" or ndots > 0 %}
       <dt>Palette</dt><dd><span data-ed="portfolio_meta:{{ include.slug }}.palette">{{ m.palette }}</span>
-        {%- if m.dots -%}<span class="wp-dots" aria-hidden="true">{% for d in m.dots %}<i style="background:{{ d }}"></i>{% endfor %}</span>{%- endif -%}</dd>
+        {%- if ndots > 0 -%}<span class="wp-dots" aria-hidden="true">{% for d in m.dots %}<i style="background:{{ d }}"></i>{% endfor %}</span>{%- endif -%}</dd>
+      {%- endif %}
     </dl>
   </div>
 </section>

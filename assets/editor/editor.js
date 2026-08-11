@@ -13,7 +13,7 @@
  * Query params: ?branch=<name> commits to a branch other than main;
  * ?dryrun=1 skips the commit and exposes results on window.__gfDryrun.
  */
-import { parseDocument, stringify } from "https://cdn.jsdelivr.net/npm/yaml@2/+esm";
+import { parseDocument, stringify, isSeq } from "https://cdn.jsdelivr.net/npm/yaml@2/+esm";
 
 const CFG = window.GF_ED;
 const params = new URLSearchParams(location.search);
@@ -511,6 +511,26 @@ function keyPath(dotPath) {
   return dotPath.split(".").map((s) => (/^\d+$/.test(s) ? Number(s) : s));
 }
 
+/* _data/portfolio_meta.yml is a LIST of weddings, each carrying its own `slug`
+ * field, not a map keyed by slug (portfolio v2, 2026-08-09). Everything in the
+ * editor still addresses a wedding by slug, so translate that slug into the
+ * row's position before handing a path to the yaml document. Skipping this is
+ * silent on reads (getIn returns undefined) and loud on writes: setIn on a
+ * sequence throws "Expected a valid index, not mikayla-jeff". */
+function slugIndex(doc, slug) {
+  const c = doc.contents;
+  if (!isSeq(c)) return -1;
+  return c.items.findIndex((n) => n && typeof n.get === "function" && n.get("slug") === slug);
+}
+
+/* keyPath output, with a leading slug rewritten to its row index when the file
+ * turns out to be one of those lists. Map-rooted files pass through untouched. */
+function docPath(doc, p) {
+  if (!isSeq(doc.contents) || typeof p[0] !== "string") return p;
+  const i = slugIndex(doc, p[0]);
+  return i === -1 ? p : [i, ...p.slice(1)];
+}
+
 async function getFile(path) {
   /* no-store: GitHub's contents API allows 60s of browser caching, which made
    * read-after-write checks (e.g. "is this photo still used?") see stale files */
@@ -537,7 +557,7 @@ async function saveFile(file, entries, attempt = 0) {
   const doc = parseDocument(b64decodeUtf8(meta.content));
 
   for (const [dotPath, value] of entries) {
-    const p = keyPath(dotPath);
+    const p = docPath(doc, keyPath(dotPath));
     if (doc.getIn(p) === undefined) throw new Error(`"${dotPath}" not found in ${path} — it may have moved. Refresh and retry.`);
     doc.setIn(p, value);
   }
@@ -598,9 +618,12 @@ saveBtn.addEventListener("click", async () => {
     statusEl.className = "ed-status ok";
     statusEl.textContent = DRYRUN ? "Dry run done — nothing committed" : "Saved ✓ Live in ~2 minutes";
   } catch (err) {
+    /* refreshBar re-enables the buttons but also rewrites the status to
+     * "Unsaved changes", so it has to run BEFORE the reason goes up or a failed
+     * save looks like a save that was never pressed. */
+    refreshBar();
     statusEl.className = "ed-status err";
     statusEl.textContent = err.message;
-    refreshBar();
   }
 });
 
@@ -1472,13 +1495,14 @@ wedRmBtn.addEventListener("click", async () => {
 
     /* an empty portfolio page needs a human, not an editor button */
     const { doc: metaDoc } = await readMetaDoc();
-    if (!metaDoc.hasIn([slug])) {
+    const metaAt = slugIndex(metaDoc, slug);
+    if (metaAt === -1) {
       throw new Error("Couldn't find this wedding in the portfolio list — tell Josh.");
     }
     if (metaCount(metaDoc) <= 1) {
       throw new Error(`Not removed: ${name} is the only wedding left in the portfolio. Add another first, or tell Josh.`);
     }
-    metaDoc.deleteIn([slug]);
+    metaDoc.deleteIn([metaAt]);
     /* same commit: the old URL 301s to the portfolio (nothing may 404) */
     const hub = await rawFile("portfolio/index.md");
     const hubText = withRedirect(hub.text, `/portfolio/${slug}`, "portfolio/index.md");
@@ -1568,32 +1592,31 @@ hero_photo: ${heroName}
 `;
 }
 
-/* Appends the wedding to _data/portfolio_meta.yml. The band shows three photos
- * and the phone strip three more; a brand new gallery has only the hero, so all
- * six start as the hero and Brittany picks the real ones later. Duplicates are
- * harmless: the same photograph simply repeats until she changes it. */
+/* Appends the wedding to _data/portfolio_meta.yml. The list's own order is the
+ * order of the bands on /portfolio, so a new wedding goes on the end and
+ * nothing else has to be renumbered. The band shows three photos and the phone
+ * strip two more; a brand new gallery has only the hero, so all five start as
+ * the hero and Brittany picks the real ones later in Cover photos. Duplicates
+ * are harmless: the same photograph simply repeats until she changes them. */
 function addMetaRow(doc, slug, names, venue, place, heroName, desc) {
   const n = (heroName.match(/-(\d+)\.[a-z]+$/i) || [, "01"])[1];
-  let maxOrder = 0;
-  const c = doc.contents;
-  if (c && c.items) {
-    for (const it of c.items) {
-      const o = Number(it.value && it.value.get && it.value.get("order"));
-      if (o > maxOrder) maxOrder = o;
-    }
-  }
-  doc.setIn([slug], {
+  const row = doc.createNode({
+    slug: slug,
     name: names,
-    order: maxOrder + 1,
     venue: venue,
     place: place || "",
     band: [n, n, n],
-    strip: [n, n, n],
+    strip: [n, n],
     lede: desc,
-    opener: desc,
     palette: "",
     dots: [],
   });
+  /* Match how the file is written by hand, since it stays hand- and CMS-edited:
+   * photo numbers on one line, a blank line between weddings. */
+  row.get("band").flow = true;
+  row.get("strip").flow = true;
+  row.spaceBefore = true;
+  doc.addIn([], row);
   return doc;
 }
 
