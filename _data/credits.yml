@@ -23,78 +23,112 @@ defaults:
 
 lynn-aaron:
   photography: { name: "", url: "" }
-  planning:    { name: "", url: "" }
-  venue:       { name: "Palisades High Camp", url: "/venues/palisades-high-camp" }
-  catering:    { name: "", url: "" }
-  cake:        { name: "", url: "" }
-  rentals:     { name: "", url: "" }
-  beauty:      { name: "", url: "" }
-  gown:        { name: "", url: "" }
-  stationery:  { name: "", url: "" }
-  music:       { name: "", url: "" }
-  officiant:   { name: "", url: "" }
+  planning: { name: "", url: "" }
+  venue: { name: "Palisades High Camp", url: "/venues/palisades-high-camp" }
+  catering: { name: "", url: "" }
+  cake: { name: "", url: "" }
+  rentals: { name: "", url: "" }
+  beauty: { name: "", url: "" }
+  gown: { name: "", url: "" }
+  stationery: { name: "", url: "" }
+  music: { name: "", url: "" }
+  officiant: { name: "", url: "" }
 
 katie-james:
   photography: { name: "", url: "" }
-  planning:    { name: "", url: "" }
-  venue:       { name: "The Miner's Foundry", url: "" }
-  catering:    { name: "", url: "" }
-  cake:        { name: "", url: "" }
-  rentals:     { name: "", url: "" }
-  beauty:      { name: "", url: "" }
-  gown:        { name: "", url: "" }
-  stationery:  { name: "", url: "" }
-  music:       { name: "", url: "" }
-  officiant:   { name: "", url: "" }
+  planning: { name: "", url: "" }
+  venue: { name: "The Miner's Foundry", url: "" }
+  catering: { name: "", url: "" }
+  cake: { name: "", url: "" }
+  rentals: { name: "", url: "" }
+  beauty: { name: "", url: "" }
+  gown: { name: "", url: "" }
+  stationery: { name: "", url: "" }
+  music: { name: "", url: "" }
+  officiant: { name: "", url: "" }
 
 tori-tucker:
   photography: { name: "", url: "" }
-  planning:    { name: "", url: "" }
-  venue:       { name: "North Tahoe Event Center", url: "/venues/north-tahoe-event-center" }
-  catering:    { name: "", url: "" }
-  cake:        { name: "", url: "" }
-  rentals:     { name: "", url: "" }
-  beauty:      { name: "", url: "" }
-  gown:        { name: "", url: "" }
-  stationery:  { name: "", url: "" }
-  music:       { name: "", url: "" }
-  officiant:   { name: "", url: "" }
+  planning: { name: "", url: "" }
+  venue: { name: "North Tahoe Event Center", url: "/venues/north-tahoe-event-center" }
+  catering: { name: "", url: "" }
+  cake: { name: "", url: "" }
+  rentals: { name: "", url: "" }
+  beauty: { name: "", url: "" }
+  gown: { name: "", url: "" }
+  stationery: { name: "", url: "" }
+  music: { name: "", url: "" }
+  officiant: { name: "", url: "" }
 
 camille-max:
   photography: { name: "Mountain Time Photo", url: "" }
-  planning:    { name: "", url: "" }
-  venue:       { name: "North Star House", url: "" }
-  catering:    { name: "", url: "" }
-  cake:        { name: "", url: "" }
-  rentals:     { name: "", url: "" }
-  beauty:      { name: "", url: "" }
-  gown:        { name: "", url: "" }
-  stationery:  { name: "", url: "" }
-  music:       { name: "", url: "" }
-  officiant:   { name: "", url: "" }
+  planning: { name: "", url: "" }
+  venue: { name: "North Star House", url: "" }
+  catering: { name: "", url: "" }
+  cake: { name: "", url: "" }
+  rentals: { name: "", url: "" }
+  beauty: { name: "", url: "" }
+  gown: { name: "", url: "" }
+  stationery: { name: "", url: "" }
+  music: { name: "", url: "" }
+  officiant: { name: "", url: "" }
 
 kelly-dylan:
   photography: { name: "Emma Wynn Paul Photography", url: "" }
-  planning:    { name: "Honeysuckle Traditions", url: "" }
-  venue:       { name: "North Tahoe Event Center", url: "/venues/north-tahoe-event-center" }
-  catering:    { name: "", url: "" }
-  cake:        { name: "", url: "" }
-  rentals:     { name: "", url: "" }
-  beauty:      { name: "", url: "" }
-  gown:        { name: "", url: "" }
-  stationery:  { name: "", url: "" }
-  music:       { name: "", url: "" }
-  officiant:   { name: "", url: "" }
+  planning: { name: "Honeysuckle Traditions", url: "" }
+  venue: { name: "North Tahoe Event Center", url: "/venues/north-tahoe-event-center" }
+  catering: { name: "", url: "" }
+  cake: { name: "", url: "" }
+  rentals: { name: "", url: "" }
+  beauty: { name: "", url: "" }
+  gown: { name: "", url: "" }
+  stationery: { name: "", url: "" }
+  music: { name: "", url: "" }
+  officiant: { name: "", url: "" }
 
 jenna-cal:
   photography: { name: "", url: "" }
-  planning:    { name: "", url: "" }
-  venue:       { name: "National Exchange Hotel", url: "" }
-  catering:    { name: "", url: "" }
-  cake:        { name: "", url: "" }
-  rentals:     { name: "", url: "" }
-  beauty:      { name: "", url: "" }
-  gown:        { name: "", url: "" }
-  stationery:  { name: "", url: "" }
-  music:       { name: "", url: "" }
-  officiant:   { name: "", url: "" }
+  planning: { name: "", url: "" }
+  venue: { name: "National Exchange Hotel", url: "" }
+  catering: { name: "", url: "" }
+  cake: { name: "", url: "" }
+  rentals: { name: "", url: "" }
+  beauty: { name: "", url: "" }
+  gown: { name: "", url: "" }
+  stationery: { name: "", url: "" }
+  music: { name: "", url: "" }
+  officiant: { name: "", url: "" }
+mikayla-jeff:
+  photography:
+    name: ""
+    url: ""
+  planning:
+    name: ""
+    url: ""
+  venue:
+    name: PlumpJack Inn Truckee
+    url: ""
+  catering:
+    name: ""
+    url: ""
+  cake:
+    name: ""
+    url: ""
+  rentals:
+    name: ""
+    url: ""
+  beauty:
+    name: ""
+    url: ""
+  gown:
+    name: ""
+    url: ""
+  stationery:
+    name: ""
+    url: ""
+  music:
+    name: ""
+    url: ""
+  officiant:
+    name: ""
+    url: ""

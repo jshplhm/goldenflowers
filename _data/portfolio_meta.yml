@@ -88,3 +88,13 @@
     lanterns."
   palette: "Phalaenopsis orchid, magnolia foliage, red silk"
   dots: [ "#f8f5ec", "#2f4a2c", "#c8202b", "#d8cdb4", "#8a9a6b" ]
+
+- slug: mikayla-jeff
+  name: Mikayla and Jeff
+  venue: PlumpJack Inn Truckee
+  place: ""
+  band: [ "01", "01", "01" ]
+  strip: [ "01", "01" ]
+  lede: A modern and unique wedding inspired by Dr. Seuss
+  palette: ""
+  dots: []
