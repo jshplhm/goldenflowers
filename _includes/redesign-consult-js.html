@@ -33,7 +33,17 @@
     modal.classList.add('open');
     modal.setAttribute('aria-hidden','false');
     lockBody();
-    var first=modal.querySelector('input, select, textarea, button');
+    /* First VISIBLE control, not simply the first one in the markup. The close
+       button is the first <button> in the dialog and carries `hidden` until the
+       thank-you screen, and the honeypot is the first <input>; focus() on
+       either does nothing, so focus stayed outside an aria-modal dialog until
+       the visitor pressed Tab. Same three tests the Tab handler below uses to
+       decide what counts as reachable: rendered, tabbable, not inside the
+       aria-hidden honeypot wrapper. */
+    var first=Array.prototype.filter.call(
+      modal.querySelectorAll('input,select,textarea,button,a[href]'),
+      function(el){ return el.offsetParent!==null && el.tabIndex>=0 && !el.closest('[aria-hidden="true"]'); }
+    )[0];
     if(first) setTimeout(function(){ first.focus(); },60);
   }
   function closeModal(){
@@ -97,6 +107,25 @@
       else if(!e.shiftKey && active===last){ e.preventDefault(); first.focus(); }
     }
   });
+
+  /* Pages flagged data-consult-autoopen (currently only /consultation-form)
+     raise the lightbox on arrival.
+
+     Every CTA on the site is a real link to that page which the handler above
+     intercepts, so the page itself only ever loads for someone who got there
+     another way: an old link, a bookmark, an ad, or a browser running none of
+     this. Opening the modal hands the first three the same experience every
+     button gives, and costs the fourth nothing, because the page's own form is
+     still sitting underneath untouched. That form stays the no-JS fallback and
+     stays what a visitor sees if they close the lightbox, so there is no state
+     where someone arrives here and cannot reach us.
+
+     Two frames, not zero: .modal-overlay transitions opacity from a starting
+     style that has to be applied before .open lands on it, or the overlay snaps
+     in without the fade. */
+  if(modal && document.body.hasAttribute('data-consult-autoopen')){
+    requestAnimationFrame(function(){ requestAnimationFrame(openModal); });
+  }
 })();
 
 /* Captures how a visitor arrived (utm params + referrer) once per session, on

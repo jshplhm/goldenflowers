@@ -20,8 +20,8 @@
           <input type="text" id="m-date" name="date" placeholder="mm/dd/yyyy" inputmode="numeric" maxlength="10" autocomplete="off" data-date-mask required>
         </div>
         <div class="field-full">
-          <label for="m-name">Your name</label>
-          <input type="text" id="m-name" name="name" placeholder="First and last name" autocomplete="name" required>
+          <label for="m-name">What is your name?</label>
+          <input type="text" id="m-name" name="name" placeholder="Your name" autocomplete="name" required>
         </div>
         {%- comment -%} Who we're talking to changes how Brittany follows up (a
         planner gets a different reply than a couple), so it's a closed set the
@@ -32,7 +32,13 @@
           <label for="m-role">Who's filling this out?</label>
           <select id="m-role" name="role" required>
             <option value="" disabled selected>Choose one</option>
-            <option>One of the couple</option>
+            {%- comment -%} Label and value differ on purpose. The Apps Script
+            whitelists the exact submitted string and editing that file deploys
+            nothing, so changing the value here would start rejecting real leads
+            until it is redeployed. Reword the label freely; the value is the
+            wire format, and redesign-consult-js.html tests against it too.
+            {%- endcomment -%}
+            <option value="One of the couple">The couple</option>
             <option>The wedding planner</option>
             <option>Family or a friend of the couple</option>
             <option>Someone else</option>

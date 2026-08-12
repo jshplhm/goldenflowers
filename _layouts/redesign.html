@@ -22,6 +22,15 @@
   <link rel="preload" href="{{ site.baseurl }}/assets/fonts/dm-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/redesign.css?v={{ site.time | date: '%s' }}">
 
+  {%- comment -%}
+    noindex: true keeps a page working and linkable while taking it out of
+    search. jekyll-seo-tag emits no robots directive of its own, so this is the
+    only one on the page and nothing overrides it. Pair it with sitemap: false
+    in the same front matter, or Search Console reports a page that is both
+    submitted for indexing and refusing it.
+  {%- endcomment -%}
+  {% if page.noindex %}<meta name="robots" content="noindex,follow">{% endif %}
+
   {% seo title=false %}
 
   {% comment %} Business identity for search + AI answer engines. Brand domain is hardcoded
@@ -121,7 +130,7 @@
   {% include analytics.html %}
   {% include clarity.html %}
 </head>
-<body data-ed-page="{{ page.path }}">
+<body data-ed-page="{{ page.path }}"{% if page.auto_consult %} data-consult-autoopen{% endif %}>
 
 {% include redesign-nav.html %}
 
@@ -239,7 +248,7 @@
 
   /* Photo 1 is the LCP image: don't start decoding the other two or animating
      anything until the page has finished loading. */
-  function begin(){ if(!still.matches) imgs[0].classList.add('kb-run'); boost(); start(); }
+  function begin(){ if(!still.matches) imgs[0].classList.add('kb-run'); boost(); start(true); }
   if(document.readyState==='complete') begin();
   else window.addEventListener('load', begin);
 })();

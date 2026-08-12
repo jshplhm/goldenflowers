@@ -7,6 +7,19 @@ description: "Check your date with Golden Flowers, a Lake Tahoe wedding florist.
 canonical_url: https://goldenflorals.com/consultation-form
 redirect_from:
   - /contact
+# This page is kept, not promoted. Nothing links to it any more (the footer's
+# "Contact us" is gone), but it stays alive because every .btn/.pill/.m-cta on
+# the site is a real link here that JS upgrades into the lightbox, and because
+# /contact still 301s in. So it is the fallback for anyone whose JS never ran,
+# and the landing spot for old links, bookmarks and ads.
+#
+# auto_consult raises the lightbox for people who do arrive, so a stray link
+# gives them the same form every button gives. noindex + sitemap:false take it
+# out of search without breaking any of the above: noindex is not a block, so
+# the URL keeps resolving, ads keep landing, and the 301 keeps working.
+auto_consult: true
+noindex: true
+sitemap: false
 ---
 
 <!-- TEXT HEADER (no hero image) -->
@@ -58,8 +71,8 @@ redirect_from:
           <input type="text" id="date" name="date" placeholder="mm/dd/yyyy" inputmode="numeric" maxlength="10" autocomplete="off" data-date-mask required>
         </div>
         <div class="field-full">
-          <label for="name">Your name</label>
-          <input type="text" id="name" name="name" placeholder="First and last name" autocomplete="name" required>
+          <label for="name">What is your name?</label>
+          <input type="text" id="name" name="name" placeholder="Your name" autocomplete="name" required>
         </div>
         <!-- Who we're talking to changes how Brittany follows up, so it's a
              closed set the server can whitelist, not free text. Anyone who
@@ -68,7 +81,12 @@ redirect_from:
           <label for="role">Who's filling this out?</label>
           <select id="role" name="role" required>
             <option value="" disabled selected>Choose one</option>
-            <option>One of the couple</option>
+            <!-- Label and value differ on purpose. The Apps Script whitelists
+                 the exact submitted string, and editing this file deploys
+                 nothing, so changing the value here would start rejecting real
+                 leads until the script is redeployed. Reword the label freely;
+                 the value is the wire format. -->
+            <option value="One of the couple">The couple</option>
             <option>The wedding planner</option>
             <option>Family or a friend of the couple</option>
             <option>Someone else</option>
