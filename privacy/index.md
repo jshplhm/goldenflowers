@@ -37,7 +37,7 @@ canonical_url: https://goldenflorals.com/privacy
     <p>Two third-party tools run on this site and start collecting as soon as a page loads, before you fill anything in:</p>
     <ul>
       <li><strong>Google Analytics 4</strong> records which pages you visit, how you arrived (a search, a link, an ad), roughly where you are based on your IP address, and what browser and device you're using. It does not tell us who you are by name.</li>
-      <li><strong>Microsoft Clarity</strong> records how you use a page: mouse movement, clicks, taps and scrolling, assembled into heatmaps and into replayable recordings of individual sessions. Clarity is configured to mask the text typed into form fields, so we see that a field was filled rather than what was typed, but you should assume a session on this site can be watched back as a video of the pointer moving around the page. If you arrive from a Google ad, we tag the session so we can tell ad traffic from everything else.</li>
+      <li><strong>Microsoft Clarity</strong> records how you use a page: mouse movement, clicks, taps and scrolling. From that we can see heatmaps and anonymised recordings of how visitors move through pages, which helps us find where the site is confusing. Clarity is configured to mask the text typed into form fields, so we see that a field was filled rather than what was typed. If you arrive from a Google ad, we tag the session so we can tell ad traffic from everything else.</li>
     </ul>
     <p>Both tools set cookies or store identifiers in your browser to recognise a returning visit. Neither runs when the site is being previewed or developed locally; they run on the live goldenflorals.com only.</p>
 
