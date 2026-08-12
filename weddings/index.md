@@ -89,12 +89,6 @@ redirect_from:
       <li>{% include em.html t=point k="weddings:pricing.points" i=forloop.index0 %}</li>
       {%- endfor %}
     </ul>
-    {%- if site.data.weddings.pricing.guide_url != empty %}
-    <a class="price-guide" href="{{ site.data.weddings.pricing.guide_url }}" target="_blank" rel="noopener">
-      <span data-ed="weddings:pricing.guide_text">{{ site.data.weddings.pricing.guide_text }}</span>
-      <svg class="price-guide-arw" width="11" height="11" viewBox="0 0 11 11" fill="none" aria-hidden="true"><path d="M1.5 9.5 9.5 1.5M3.6 1.5h5.9v5.9" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    </a>
-    {%- endif %}
     <p class="price-tagline"><span data-ed="weddings:pricing.tagline">{{ site.data.weddings.pricing.tagline }}</span></p>
   </div>
 </section>
