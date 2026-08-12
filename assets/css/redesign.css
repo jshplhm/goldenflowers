@@ -705,26 +705,33 @@ body.lb-open{overflow:hidden;}
   font-size:clamp(1.1rem,1.7vw,1.35rem);letter-spacing:-.005em;}
 
 @media(max-width:760px){
-  /* A seven-row table can't hold three columns on a phone without either a
-     sideways scroll or unreadable type, so it stops being a grid: each row
-     becomes a labelled block and every cell names its own column. */
-  .compare,.compare tbody,.compare tr,.compare th,.compare td{display:block;width:auto;}
-  .compare thead{display:none;}
-  .compare tbody tr{border-top:1px solid var(--line);padding:20px 0 4px;}
+  /* Three columns won't fit, but collapsing to one destroyed the comparison:
+     every cell announced its own column, so "A LA CARTE" and "FULL SERVICE"
+     each printed seven times, 14 labels for 7 facts, and the reader had to hold
+     one value in their head while scrolling to its opposite number.
+
+     The two columns stay. Only the row label moves, from beside the pair to
+     above it, which buys back the width they need. Tier names are named once,
+     in the head, and the tint running down the lead column is what keeps them
+     attached that far down the table. */
+  .compare,.compare thead,.compare tbody,.compare tr{display:block;width:auto;}
+  /* The desktop 22/39/39 split has to be cleared or each cell takes 39% of its
+     new grid column instead of the table, and the text ladders down two words
+     to a line. */
+  .compare th,.compare td{width:auto;}
+  .compare thead tr,.compare tbody tr{display:grid;grid-template-columns:1fr 1fr;
+    column-gap:10px;align-items:start;}
+  .compare thead td{display:none;}                 /* the empty corner cell */
+  .compare thead th{padding:0 10px 16px;}
+  .compare tbody th{grid-column:1 / -1;padding:18px 0 10px;width:auto;}
+  .compare td{padding:0 10px 18px;border-top:0;font-size:.92rem;}
+  .compare tbody tr{border-top:1px solid var(--line);}
   .compare tbody tr:first-child{border-top:0;}
-  .compare tbody th{padding:0 0 12px;width:auto;}
-  .compare td{padding:0 0 14px 0;border-top:0;position:relative;}
-  /* Font family is set explicitly, not inherited: the last row switches its
-     cells to the display face for the money, and without this the little
-     column labels above them switched too. */
-  .compare td::before{content:attr(data-tier);display:block;font-family:var(--b);
-    font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;
-    color:var(--accent);margin-bottom:4px;}
-  .compare .is-off::before{color:var(--mute);}
-  /* The tint would band awkwardly across a stacked cell, so the lead column is
-     marked with a rule down its edge instead. */
-  .compare .ct-lead{background:none;border-left:2px solid var(--accent);padding-left:14px;}
+  .compare td::before{display:none;}               /* named once in the head now */
+  .compare .ct-name{font-size:1.15rem;}
+  .compare .ct-sub{font-size:.74rem;}
   .compare tbody tr:last-child td{font-size:1.05rem;}
+}
 }
 
 .pricing{text-align:center;max-width:720px;margin:0 auto;}
