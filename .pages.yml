@@ -552,7 +552,6 @@ content:
       - {name: tagline, label: "Tagline", type: text}
       - {name: cta, label: "Button text", type: string}
       - {name: studio, label: "Studio lines", type: string, list: true}
-      - {name: bottom_right, label: "Bottom-right line", type: string}
 
   # ── Page FAQs ────────────────────────────────────────────────────
   # Edits the FAQ accordions on the venue pages + the Weddings page. These
