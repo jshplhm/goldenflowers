@@ -427,9 +427,13 @@ button.txt-link{background:none;border-top:0;border-left:0;border-right:0;cursor
 /* The Studio column ends in address lines, which are not links and shouldn't
    sit tight against the ones above them. */
 .foot-cols p:first-of-type{margin-top:18px;}
+/* The quietest links in the footer, because legal is not navigation. A standing
+   rule under them made them the loudest thing in the bottom bar and louder than
+   the nav columns above, which is backwards, and no other footer link carries
+   one. Underline on hover keeps the affordance where it is actually wanted. */
 .foot-legal{display:flex;gap:18px;}
-.foot-legal a{border-bottom:1px solid oklch(68% .02 130/.4);transition:color .15s,border-color .15s;}
-.foot-legal a:hover{color:var(--paper);border-color:currentColor;}
+.foot-legal a{transition:color .15s;}
+.foot-legal a:hover{color:var(--paper);text-decoration:underline;text-underline-offset:3px;}
 @media(max-width:860px){.foot-in{grid-template-columns:1fr;gap:40px;}.foot-cols{gap:28px 24px;}}
 @media(max-width:520px){.foot-cols{grid-template-columns:1fr 1fr;}}
 
