@@ -19,12 +19,25 @@
   {%- unless w.slug == include.slug -%}{%- assign others = others | push: w -%}{%- endunless -%}
 {%- endfor -%}
 {%- if others.size > 0 -%}
-<section class="wp-onward">
+<section class="wp-onward" data-onward>
+  {%- comment -%}
+    Arrows sit where "Browse the portfolio" used to. The rail already holds
+    every other wedding and ends on a card back to /portfolio, so the header
+    link was a third route to the same place, and it was occupying the one spot
+    on the page where a desktop visitor needed a control: a rail that only
+    scrolls is unusable with a plain mouse wheel.
+
+    Desktop only. On a phone the swipe is the control and the arrows would just
+    take up room in the stacked header.
+  {%- endcomment -%}
   <div class="wp-oh">
     <h2>{{ wp.more_heading }}</h2>
-    <a class="wp-oall" href="{{ site.baseurl }}/portfolio">{{ wp.more_link }} <span aria-hidden="true">&rarr;</span></a>
+    <div class="wp-onav">
+      <button class="testi-nav" type="button" data-onward-prev aria-label="Previous weddings">&larr;</button>
+      <button class="testi-nav" type="button" data-onward-next aria-label="Next weddings">&rarr;</button>
+    </div>
   </div>
-  <div class="wp-og" role="group" aria-label="{{ wp.more_heading }}">
+  <div class="wp-og" data-onward-row tabindex="0" role="group" aria-label="{{ wp.more_heading }}, scrollable">
     {%- for m in others -%}
       {%- assign s = m.slug -%}
     <a class="wp-ocard" href="{{ site.baseurl }}/portfolio/{{ s }}">
@@ -37,5 +50,35 @@
     <a class="wp-ocard wp-oend" href="{{ site.baseurl }}/portfolio">
       <span>{{ wp.more_link }} <span aria-hidden="true">&rarr;</span></span></a>
   </div>
+
+{%- comment -%}
+  This script lives INSIDE the section on purpose. Sitting between </section>
+  and the closing .cta it became an element between them, and the
+  `.wp-onward + .cta` hairline that keeps the two tint bands from reading as one
+  slab stopped matching.
+{%- endcomment -%}
+<script>
+/* Arrows for the rail. Same wrap-at-the-ends behaviour as the testimonials
+   carousel so the two scrollers on the site don't answer differently. */
+(function(){
+  var sec=document.querySelector('[data-onward]'); if(!sec) return;
+  var row=sec.querySelector('[data-onward-row]');
+  var prev=sec.querySelector('[data-onward-prev]'), next=sec.querySelector('[data-onward-next]');
+  function step(){
+    var card=row.querySelector('.wp-ocard');
+    var gap=parseFloat(getComputedStyle(row).columnGap)||14;
+    return card ? card.getBoundingClientRect().width+gap : row.clientWidth*0.8;
+  }
+  function maxLeft(){ return row.scrollWidth-row.clientWidth-2; }
+  next.addEventListener('click',function(){
+    if(row.scrollLeft>=maxLeft()) row.scrollTo({left:0,behavior:'smooth'});
+    else row.scrollBy({left:step(),behavior:'smooth'});
+  });
+  prev.addEventListener('click',function(){
+    if(row.scrollLeft<=2) row.scrollTo({left:maxLeft(),behavior:'smooth'});
+    else row.scrollBy({left:-step(),behavior:'smooth'});
+  });
+})();
+</script>
 </section>
 {%- endif -%}

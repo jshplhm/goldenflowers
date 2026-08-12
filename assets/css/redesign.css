@@ -396,7 +396,7 @@ button.txt-link{background:none;border-top:0;border-left:0;border-right:0;cursor
 /* Where a tint band butts straight into the CTA (sustainability: .pledge is the
    previous sibling) the two would read as one slab, so carry the break on a
    hairline instead of a tone change. */
-.pledge + .cta,.proc + .cta,.cta-section + .cta,.band-paper + .cta{border-top:1px solid var(--line);}
+.pledge + .cta,.proc + .cta,.cta-section + .cta,.band-paper + .cta,.wp-onward + .cta{border-top:1px solid var(--line);}
 .cta--tall{min-height:0;padding-top:var(--sp-m);padding-bottom:var(--sp-m);display:flex;flex-direction:column;align-items:center;justify-content:center;}
 .cta--tall p{max-width:56ch;}
 .cta h2{font-family:var(--d);font-weight:430;font-optical-sizing:auto;font-size:clamp(2.1rem,5vw,4.2rem);letter-spacing:-.025em;line-height:1;}
@@ -1396,16 +1396,24 @@ body.nav-hidden .venue-breadcrumb{top:0;}
 
 /* ---- more weddings (not prev/next: with a short list the neighbours either
    side are an accident of ordering and carry no meaning) ---- */
-/* Bottom padding is not optional here: without it the rail sits flush against
-   the .cta band below and the two sections read as one. */
-.wp-onward{padding:clamp(40px,5vw,72px) var(--pad-col) clamp(56px,7vw,104px);}
-.wp-oh{display:flex;align-items:baseline;gap:20px;padding-bottom:18px;
+/* The rail sits on the tint, not on the page surface. Leaving another wedding
+   for a rail of other weddings is a real change of subject, and on the page
+   default there was nothing between the last full-bleed photo of the wedding
+   you were reading and the first photo of a different one: the gallery just
+   kept going. The tint band is how the rest of the site carries a section
+   break (see the surface ramp), and it does the work that "The team" would do
+   if any wedding had its vendors filled in yet. Bottom padding is not optional
+   either, or the rail sits flush against the .cta below. */
+.wp-onward{background:var(--bg2);border-top:1px solid var(--line);
+  padding:clamp(52px,6.5vw,92px) var(--pad-col) clamp(56px,7vw,104px);}
+.wp-oh{display:flex;align-items:center;justify-content:space-between;gap:20px;padding-bottom:18px;
   margin-bottom:clamp(16px,2vw,26px);border-bottom:1px solid var(--line);}
 .wp-oh h2{font-family:var(--d);font-weight:430;font-size:clamp(1.7rem,2.4vw,2.6rem);
   letter-spacing:-.012em;}
-.wp-oall{margin-left:auto;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;
-  color:var(--accent);border-bottom:1px solid currentColor;padding-bottom:3px;
-  white-space:nowrap;}
+.wp-onav{display:flex;gap:10px;flex:none;}
+/* Reuses .testi-nav so the site's two scrollers carry the same control. On the
+   tint the buttons need the page surface behind them to stay legible. */
+.wp-onav .testi-nav{background:var(--bg);}
 
 /* The rail. --per is how many cards fit across the text column; the rest hang
    off the right edge, so there is always one part-visible card saying "keep
@@ -1430,12 +1438,14 @@ body.nav-hidden .venue-breadcrumb{top:0;}
   bottom:clamp(16px,1.8vw,26px);z-index:2;color:var(--paper);}
 .wp-oc .wp-on{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;opacity:.72;}
 .wp-oc h3{font-family:var(--d);font-weight:430;font-size:clamp(1.3rem,2vw,1.9rem);margin-top:5px;}
-/* Closing card: the way off the rail, quiet enough not to compete with a photo. */
-.wp-oend{background:var(--bg2);border:1px solid var(--line);display:flex;
+/* Closing card: the way off the rail, quiet enough not to compete with a photo.
+   Carries the page surface so it still reads as a card now that the section
+   around it is the tint. */
+.wp-oend{background:var(--bg);border:1px solid var(--line);display:flex;
   align-items:center;justify-content:center;text-align:center;
-  padding:0 clamp(16px,2vw,26px);transition:background .25s ease,border-color .25s ease;}
+  padding:0 clamp(16px,2vw,26px);transition:border-color .25s ease;}
 .wp-oend span{font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);}
-.wp-oend:hover{background:var(--bg);border-color:var(--accent);}
+.wp-oend:hover{border-color:var(--accent);}
 
 @media(max-width:900px){
   .wp-story{grid-template-columns:1fr;}
@@ -1446,9 +1456,7 @@ body.nav-hidden .venue-breadcrumb{top:0;}
   .wp-ch{flex-direction:column;gap:12px;}
   .wp-ch p{margin-left:0;text-align:left;}
   .wp-og{--per:1.25;}
-  /* Side by side, "More weddings" and the link each got squeezed onto two
-     lines and the arrow fell to a line of its own. Neither should ever wrap:
-     give them the full width and stack. */
-  .wp-oh{flex-direction:column;align-items:flex-start;gap:10px;}
-  .wp-oall{margin-left:0;}
+  /* The swipe is the control on a phone, so the arrows go rather than take up
+     room in the header. */
+  .wp-onav{display:none;}
 }
