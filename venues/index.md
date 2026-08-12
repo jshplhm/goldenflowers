@@ -84,7 +84,15 @@ canonical_url: https://goldenflorals.com/venues
       <g class="t-pin t-minor" data-venue="sunnyside" tabindex="0" role="img" aria-label="Sunnyside"><circle class="t-hit" cx="140.2" cy="363.0" r="22"/><circle class="t-dot sm" cx="140.2" cy="363.0" r="4.5"/><text class="t-vlabel" text-anchor="end" x="130.7" y="367.6">Sunnyside</text></g>
       <g class="t-pin t-minor" data-venue="granlibakken" tabindex="0" role="img" aria-label="Granlibakken Tahoe"><circle class="t-hit" cx="147.0" cy="322.0" r="22"/><circle class="t-dot sm" cx="147.0" cy="322.0" r="4.5"/><text class="t-vlabel" text-anchor="end" x="137.5" y="326.6">Granlibakken</text></g>
       <g class="t-pin t-minor" data-venue="camp-richardson" tabindex="0" role="img" aria-label="Camp Richardson Resort"><circle class="t-hit" cx="289.0" cy="740.0" r="22"/><circle class="t-dot sm" cx="289.0" cy="740.0" r="4.5"/><text class="t-vlabel" text-anchor="end" x="279.5" y="744.6">Camp Richardson</text></g>
-      <g class="t-pin t-minor" data-venue="sugar-bowl" tabindex="0" role="img" aria-label="Sugar Bowl Resort"><circle class="t-hit" cx="46.0" cy="13.0" r="22"/><circle class="t-dot sm" cx="46.0" cy="13.0" r="4.5"/><text class="t-vlabel" x="55.5" y="17.6">Sugar Bowl</text></g>
+      <!-- Sugar Bowl sits at Donner Summit (39.3045, -120.3345), which this
+           map cannot actually reach: the projection here runs ~14.6px/km, so
+           its true position is x -84, and the viewBox starts at -12. It was
+           drawn at (46, 13), which put it NORTH of the I-80/89 junction and
+           only ~4km off it, when it is really ~13km west and ~2.5km south.
+           Latitude is representable, so y is now correct; x is pushed as far
+           west as the canvas allows. Still compressed, but it no longer reads
+           as hugging Truckee. -->
+      <g class="t-pin t-minor" data-venue="sugar-bowl" tabindex="0" role="img" aria-label="Sugar Bowl Resort"><circle class="t-hit" cx="12.0" cy="71.0" r="22"/><circle class="t-dot sm" cx="12.0" cy="71.0" r="4.5"/><text class="t-vlabel" x="21.5" y="75.6">Sugar Bowl</text></g>
       <g class="t-pin t-minor" data-venue="lahontan" tabindex="0" role="img" aria-label="Lahontan"><circle class="t-hit" cx="97.2" cy="52.2" r="22"/><circle class="t-dot sm" cx="97.2" cy="52.2" r="4.5"/><text class="t-vlabel" text-anchor="end" x="87.7" y="56.8">Lahontan</text></g>
       <g class="t-pin t-minor" data-venue="plumpjack" tabindex="0" role="img" aria-label="PlumpJack"><circle class="t-hit" cx="18.4" cy="251.1" r="22"/><circle class="t-dot sm" cx="18.4" cy="251.1" r="4.5"/><text class="t-vlabel" x="27.9" y="255.7">PlumpJack</text></g>
       <g class="t-pin t-minor" data-venue="ovec" tabindex="0" role="img" aria-label="OVEC"><circle class="t-hit" cx="18.5" cy="244.5" r="22"/><circle class="t-dot sm" cx="18.5" cy="244.5" r="4.5"/><text class="t-vlabel" x="28.0" y="249.1">OVEC</text></g>
