@@ -404,6 +404,15 @@ button.txt-link{background:none;border-top:0;border-left:0;border-right:0;cursor
 .cta--tall p{max-width:56ch;}
 .cta h2{font-family:var(--d);font-weight:430;font-optical-sizing:auto;font-size:clamp(2.1rem,5vw,4.2rem);letter-spacing:-.025em;line-height:1;}
 .cta h2 em{color:var(--accent);}
+/* Display headings never leave one word alone on the last line.
+   "Let's bring your vision *to life.*" broke as "…your vision to / life." on a
+   phone, which lands the whole sentence on an orphan and splits the green
+   phrase across the break. This is the rule rather than a non-breaking space
+   per string: the copy is CMS-editable, so any fix typed into the YAML is one
+   edit away from being lost, and it has to hold for headings nobody has
+   written yet. Balance only ever moves a break earlier, so it cannot push a
+   heading wider than its box. */
+.cta h2,.cta-section h2,.disp,.hero h1{text-wrap:balance;}
 .cta p{color:var(--mute);margin:24px auto 38px;max-width:42ch;font-size:1.06rem;}
 
 /* ---------- FOOTER ---------- */
