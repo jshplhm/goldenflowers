@@ -13,25 +13,38 @@
       {%- endcomment -%}
     </div>
     <nav class="foot-cols" aria-label="Footer">
+      {%- comment -%}
+        Explore carries the work; Studio carries the pages that are about the
+        studio. Studio used to be two lines of address with no links in it,
+        which read as a column that had run out of things to say. It now holds
+        the three pages that were making Explore top-heavy, with the location
+        underneath.
+      {%- endcomment -%}
       <div>
         <h4>Explore</h4>
         <a href="{{ site.baseurl }}/">Home</a>
         <a href="{{ site.baseurl }}/portfolio">Portfolio</a>
         <a href="{{ site.baseurl }}/venues">Venues</a>
         <a href="{{ site.baseurl }}/weddings">Process &amp; Pricing</a>
-        <a href="{{ site.baseurl }}/about">Our Story</a>
-        <a href="{{ site.baseurl }}/sustainability">Sustainability</a>
-        <a href="{{ site.baseurl }}/blog">Blog</a>
       </div>
       <div>
         <h4>Studio</h4>
+        <a href="{{ site.baseurl }}/about">Our Story</a>
+        <a href="{{ site.baseurl }}/sustainability">Sustainability</a>
+        <a href="{{ site.baseurl }}/blog">Blog</a>
         {%- for line in site.data.footer.studio %}
         <p><span data-ed="footer:studio.{{ forloop.index0 }}">{{ line }}</span></p>
         {%- endfor %}
       </div>
       <div>
         <h4>Contact</h4>
-        <a href="{{ site.baseurl }}/consultation-form">Contact us</a>
+        {%- comment -%}
+          No "Contact us" link. It pointed at /consultation-form, one line above
+          the phone number and email that ARE the contact details, and every
+          button on the site already opens that form as a lightbox. The page
+          stays reachable by URL and remains the no-JS fallback for those
+          buttons; it just isn't advertised.
+        {%- endcomment -%}
         <a href="tel:5305577689">(530) 557-7689</a>
         <a href="mailto:brittany@goldenflorals.com">brittany@goldenflorals.com</a>
         <a href="https://www.instagram.com/goldenflowersfloraldesign/" target="_blank" rel="noopener">@goldenflowersfloraldesign</a>
@@ -40,6 +53,15 @@
   </div>
   <div class="foot-bottom">
     <span>&copy; {{ site.time | date: "%Y" }} Golden Flowers · Incline Village, NV</span>
+    {%- comment -%}
+      Privacy and Terms live down here rather than in a column: it's where
+      people look for them, and putting them in the nav would give two legal
+      pages the same weight as the portfolio.
+    {%- endcomment -%}
+    <span class="foot-legal">
+      <a href="{{ site.baseurl }}/privacy">Privacy Policy</a>
+      <a href="{{ site.baseurl }}/terms">Terms</a>
+    </span>
     <span><span data-ed="footer:bottom_right">{{ site.data.footer.bottom_right }}</span></span>
   </div>
 </footer>

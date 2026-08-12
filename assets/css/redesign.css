@@ -424,6 +424,12 @@ button.txt-link{background:none;border-top:0;border-left:0;border-right:0;cursor
 .foot-cols a{transition:color .15s;}
 .foot-cols a:hover{color:var(--paper);}
 .foot-bottom{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-top:26px;font-size:.82rem;color:oklch(68% .02 130);letter-spacing:.02em;}
+/* The Studio column ends in address lines, which are not links and shouldn't
+   sit tight against the ones above them. */
+.foot-cols p:first-of-type{margin-top:18px;}
+.foot-legal{display:flex;gap:18px;}
+.foot-legal a{border-bottom:1px solid oklch(68% .02 130/.4);transition:color .15s,border-color .15s;}
+.foot-legal a:hover{color:var(--paper);border-color:currentColor;}
 @media(max-width:860px){.foot-in{grid-template-columns:1fr;gap:40px;}.foot-cols{gap:28px 24px;}}
 @media(max-width:520px){.foot-cols{grid-template-columns:1fr 1fr;}}
 
@@ -536,6 +542,16 @@ body.lb-open{overflow:hidden;}
 .block h3,.band h3{font-family:var(--d);font-weight:430;font-size:clamp(1.3rem,2.6vw,1.9rem);letter-spacing:-.01em;}
 .prose p{font-size:1.06rem;line-height:1.72;color:var(--fg2);margin-bottom:16px;max-width:66ch;}
 .prose p.lead{font-family:var(--d);font-size:1.45rem;color:var(--ink);line-height:1.42;letter-spacing:-.005em;}
+/* Legal pages: long prose nobody reads for pleasure, so the job is scanning.
+   Headings sit close to what they introduce and far from what came before. */
+.legal h2{font-family:var(--d);font-weight:430;font-size:clamp(1.25rem,2.2vw,1.6rem);
+  letter-spacing:-.01em;color:var(--ink);margin:38px 0 12px;}
+.legal ul{margin:0 0 16px;padding-left:1.1em;max-width:66ch;}
+.legal li{font-size:1.06rem;line-height:1.72;color:var(--fg2);margin-bottom:9px;}
+.legal li::marker{color:var(--accent);}
+.legal a{color:var(--accent);border-bottom:1px solid var(--line);transition:border-color .2s;}
+.legal a:hover{border-color:var(--accent);}
+.legal .meta{font-size:.88rem;color:var(--mute);}
 .hr-line{border:none;border-top:1px solid var(--line);max-width:var(--content-max);margin:0 auto;}
 
 /* two-column: heading left, body right */
