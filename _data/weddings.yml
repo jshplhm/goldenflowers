@@ -80,58 +80,13 @@ pricing:
   label: Investment
   price: $10,000–$30,000
   price_sub: Typical Full service Lake Tahoe wedding
-  # "Simple a la carte weddings start at $5,000" lived here too. It is now the
-  # last row of the comparison table directly above, and printing it twice on
-  # one page, ~300px apart, was the duplication that made the two sections read
-  # as competing rather than sequential. What is left is the top of the ladder:
-  # the table gives the floor, this gives the typical, this bullet gives the
-  # ceiling.
   points:
     - Ambitious, installation-heavy visions run **$30,000+**
+    - Simple a la carte weddings start at $5,000
+  guide_text: View our price guide
+  guide_url: https://canva.link/goldenflowerspriceguide
   tagline: Locally-grown flowers, refined floral artistry, and a design curated
     around your day.
-# The two service levels, side by side, directly under the pricing band. This
-# sells the DIFFERENCE between the tiers rather than pricing components: an
-# itemized per-stem list lets a couple total up their own wedding and argue
-# their way under the range above, which is what the linked price guide did.
-#
-# `a_off: true` mutes the a la carte cell, so the gap between the columns is
-# visible before a word is read. Use it only where a la carte genuinely doesn't
-# offer the thing.
-compare:
-  label: Choosing a level
-  heading: "Two ways to *work with us.*"
-  intro: "Both are the same flowers and the same hands. What changes is how much
-    of the day we design, and how much of it we are there for."
-  col_a: A la carte
-  col_b: Full service
-  col_a_sub: For couples who want something simple
-  col_b_sub: For couples who want the whole space transformed
-  rows:
-    - label: Design process
-      a: "Designer's choice, seasonally informed, in your colors"
-      b: "Custom, built around your venue, your favorite flowers and your vision"
-    - label: Consultations
-      a: "By email"
-      b: "In person or over Zoom"
-    - label: Custom installations
-      a: "Not offered. Ground florals and aisle markers are the closest we go."
-      a_off: true
-      b: "Arbors, aisle work, hanging and suspended pieces, bar and lounge florals"
-    - label: On the day
-      a: "Delivery and setup available"
-      b: "Delivery, setup, repurposing and cleanup included"
-    - label: Ceremony to reception flip
-      a: "Not offered"
-      a_off: true
-      b: "Included"
-    - label: Breakdown
-      a: "Not offered"
-      a_off: true
-      b: "Included"
-    - label: Where it starts
-      a: "$5,000 minimum"
-      b: "$7,500 minimum"
 assurance:
   label: How we work
   heading: Everything is planned twice.

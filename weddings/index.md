@@ -78,51 +78,7 @@ redirect_from:
 
 <hr class="hr-line">
 
-<!-- SERVICE LEVELS. Deliberately BEFORE the number: the dark band used to open
-     with "$10,000-$30,000 / Typical Full service" at a point where the reader
-     had never been told there were two service levels, so the figure arrived
-     with nothing to attach to and the table then answered the same question
-     again with different numbers. What you are choosing comes first; what it
-     typically costs lands after it.
-
-     A real <table> because this is genuinely tabular; on phones the head is
-     hidden and each cell announces its own column via data-tier, which turns
-     the grid into two readable stacks instead of a sideways scroll. -->
-{%- assign cmp = site.data.weddings.compare -%}
-<section class="block compare-sec" id="service-levels">
-  <div class="compare-intro">
-    <span class="lab"><span data-ed="weddings:compare.label">{{ cmp.label }}</span></span>
-    <h2 class="h-lg">{% include em.html t=cmp.heading k="weddings:compare.heading" %}</h2>
-    <p><span data-ed="weddings:compare.intro">{{ cmp.intro }}</span></p>
-  </div>
-  <table class="compare">
-    <thead>
-      <tr>
-        <td></td>
-        <th scope="col">
-          <span class="ct-name" data-ed="weddings:compare.col_a">{{ cmp.col_a }}</span>
-          <span class="ct-sub" data-ed="weddings:compare.col_a_sub">{{ cmp.col_a_sub }}</span>
-        </th>
-        <th scope="col" class="ct-lead">
-          <span class="ct-name" data-ed="weddings:compare.col_b">{{ cmp.col_b }}</span>
-          <span class="ct-sub" data-ed="weddings:compare.col_b_sub">{{ cmp.col_b_sub }}</span>
-        </th>
-      </tr>
-    </thead>
-    <tbody>
-      {%- for row in cmp.rows %}
-      <tr>
-        <th scope="row"><span data-ed="weddings:compare.rows.{{ forloop.index0 }}.label">{{ row.label }}</span></th>
-        <td data-tier="{{ cmp.col_a }}"{% if row.a_off %} class="is-off"{% endif %}><span data-ed="weddings:compare.rows.{{ forloop.index0 }}.a">{{ row.a }}</span></td>
-        <td data-tier="{{ cmp.col_b }}" class="ct-lead"><span data-ed="weddings:compare.rows.{{ forloop.index0 }}.b">{{ row.b }}</span></td>
-      </tr>
-      {%- endfor %}
-    </tbody>
-  </table>
-</section>
-
-<!-- PRICING (dark: the page premium moment). Reads as the last rung of a
-     ladder the table starts: floor, then typical, then ambitious. -->
+<!-- PRICING (dark: the page premium moment) -->
 <section class="block pricing-dark" id="pricing">
   <div class="pricing">
     <span class="lab"><span data-ed="weddings:pricing.label">{{ site.data.weddings.pricing.label }}</span></span>
@@ -133,9 +89,16 @@ redirect_from:
       <li>{% include em.html t=point k="weddings:pricing.points" i=forloop.index0 %}</li>
       {%- endfor %}
     </ul>
+    {%- if site.data.weddings.pricing.guide_url != empty %}
+    <a class="price-guide" href="{{ site.data.weddings.pricing.guide_url }}" target="_blank" rel="noopener">
+      <span data-ed="weddings:pricing.guide_text">{{ site.data.weddings.pricing.guide_text }}</span>
+      <svg class="price-guide-arw" width="11" height="11" viewBox="0 0 11 11" fill="none" aria-hidden="true"><path d="M1.5 9.5 9.5 1.5M3.6 1.5h5.9v5.9" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+    {%- endif %}
     <p class="price-tagline"><span data-ed="weddings:pricing.tagline">{{ site.data.weddings.pricing.tagline }}</span></p>
   </div>
 </section>
+
 
 <!-- ASSURANCE -->
 <section class="callout-sec">

@@ -666,74 +666,14 @@ body.lb-open{overflow:hidden;}
 .pricing-dark .price-sub{color:oklch(82% .02 130);}
 .pricing-dark .price-list li{color:oklch(85% .02 130);border-color:oklch(100% 0 0/.16);}
 .pricing-dark .price-tagline{color:var(--accent-soft);}
+.pricing-dark .price-guide{color:var(--paper);border-color:oklch(100% 0 0/.32);}
+.pricing-dark .price-guide:hover{border-color:var(--paper);}
 .pricing-dark .price-list li::before{background:var(--accent-soft);}
 
 /* ---------- PRICING ---------- */
-/* ---- service levels: a la carte vs full service ----
-   Sells the gap between the tiers rather than pricing components. The full
-   service column is the one carrying the argument, so it gets the tint and the
-   ink; a la carte stays legible but plainer, and cells it doesn't offer go
-   muted so the shape of the difference reads before a word does. */
-.compare-sec{padding-top:clamp(48px,6vw,84px);}
-.compare-intro{max-width:600px;margin:0 auto clamp(32px,4vw,52px);text-align:center;}
-.compare-intro p{color:var(--fg2);line-height:1.7;margin-top:18px;}
-.compare{width:100%;border-collapse:collapse;table-layout:fixed;}
-/* th defaults to bold, which made the column subtitles and every row label read
-   heavier than the answers they label. */
-.compare th,.compare td{padding:18px clamp(14px,1.6vw,24px);text-align:left;vertical-align:top;
-  border-top:1px solid var(--line);font-size:.98rem;line-height:1.55;color:var(--fg2);font-weight:400;}
-.compare thead td,.compare thead th{border-top:0;padding-bottom:22px;}
-.compare thead th{vertical-align:bottom;}
-.compare .ct-name{display:block;font-family:var(--d);font-weight:430;font-size:clamp(1.3rem,2.2vw,1.75rem);
-  letter-spacing:-.01em;color:var(--ink);}
-.compare .ct-sub{display:block;margin-top:6px;font-size:.82rem;line-height:1.45;color:var(--mute);}
-.compare tbody th{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--mute);
-  width:22%;padding-top:22px;}
-.compare td{width:39%;}
-/* The recommended column, carried on a tint rather than a border so it reads as
-   one continuous panel down the table instead of seven stacked boxes. */
-.compare .ct-lead{background:var(--bg2);color:var(--ink);}
-.compare thead .ct-lead{border-radius:3px 3px 0 0;}
-.compare tbody tr:last-child .ct-lead{border-radius:0 0 3px 3px;}
-.compare .is-off{color:var(--mute);}
-/* The money row is set in the display face. Only the VALUES: the row label is a
-   row label like every other one. It used to be caught by this selector and
-   handed back its font and size by a second rule, but not its tracking, so
-   "WHERE IT STARTS" sat at -.005em while every label above it was at .16em and
-   it read as a different typeface. */
-.compare tbody tr:last-child td{font-family:var(--d);
-  font-size:clamp(1.1rem,1.7vw,1.35rem);letter-spacing:-.005em;}
-
-@media(max-width:760px){
-  /* Three columns won't fit, but collapsing to one destroyed the comparison:
-     every cell announced its own column, so "A LA CARTE" and "FULL SERVICE"
-     each printed seven times, 14 labels for 7 facts, and the reader had to hold
-     one value in their head while scrolling to its opposite number.
-
-     The two columns stay. Only the row label moves, from beside the pair to
-     above it, which buys back the width they need. Tier names are named once,
-     in the head, and the tint running down the lead column is what keeps them
-     attached that far down the table. */
-  .compare,.compare thead,.compare tbody,.compare tr{display:block;width:auto;}
-  /* The desktop 22/39/39 split has to be cleared or each cell takes 39% of its
-     new grid column instead of the table, and the text ladders down two words
-     to a line. */
-  .compare th,.compare td{width:auto;}
-  .compare thead tr,.compare tbody tr{display:grid;grid-template-columns:1fr 1fr;
-    column-gap:10px;align-items:start;}
-  .compare thead td{display:none;}                 /* the empty corner cell */
-  .compare thead th{padding:0 10px 16px;}
-  .compare tbody th{grid-column:1 / -1;padding:18px 0 10px;width:auto;}
-  .compare td{padding:0 10px 18px;border-top:0;font-size:.92rem;}
-  .compare tbody tr{border-top:1px solid var(--line);}
-  .compare tbody tr:first-child{border-top:0;}
-  .compare td::before{display:none;}               /* named once in the head now */
-  .compare .ct-name{font-size:1.15rem;}
-  .compare .ct-sub{font-size:.74rem;}
-  .compare tbody tr:last-child td{font-size:1.05rem;}
-}
-}
-
+.price-guide{display:inline-flex;align-items:center;gap:9px;margin-top:30px;font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;color:var(--forest);border-bottom:1px solid var(--line);padding-bottom:7px;transition:border-color .2s,gap .2s;}
+.price-guide:hover{gap:13px;}
+.price-guide-arw{flex:none;}
 .pricing{text-align:center;max-width:720px;margin:0 auto;}
 .price-num{font-family:var(--d);font-size:clamp(2.6rem,6vw,4.2rem);letter-spacing:-.02em;line-height:1;margin-top:14px;}
 .price-sub{font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);margin-top:14px;}
@@ -1222,6 +1162,8 @@ body.nav-hidden .venue-breadcrumb{top:0;}
    (padding offset by negative margins; desktop pointer:fine is untouched). */
 @media(pointer:coarse){
   .txt-link{padding-block:8px;margin-block:-8px;}
+  /* grow upward only: the underline must stay put */
+  .price-guide{padding-top:16px;margin-top:14px;}
   /* grow upward only: the underline must stay put */
     .mm-secondary a{padding-block:8px;margin-block:-8px;}
   .mobile-menu .m-meta a{display:inline-block;padding-block:6px;margin-block:-6px;}
