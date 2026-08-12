@@ -3,7 +3,14 @@
     <div class="foot-lead">
       <div class="foot-brand">Golden Flowers</div>
       <p class="foot-tag"><span data-ed="footer:tagline">{{ site.data.footer.tagline }}</span></p>
-      <a class="foot-cta" href="{{ site.baseurl }}/consultation-form" data-consult-open><span data-ed="footer:cta">{{ site.data.footer.cta }}</span></a>
+      {%- comment -%}
+        No CTA button here. Every page but the consultation form itself ends in
+        a .cta / .cta-section immediately above this footer, so a second
+        identical button ~200px below a much louder one read as filler and
+        diluted both. On /consultation-form it was worse than redundant: a
+        button pointing at the page you are already on. The Contact column
+        still carries the phone, email and contact link.
+      {%- endcomment -%}
     </div>
     <nav class="foot-cols" aria-label="Footer">
       <div>

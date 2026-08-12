@@ -406,8 +406,6 @@ button.txt-link{background:none;border-top:0;border-left:0;border-right:0;cursor
 .foot-lead{max-width:34ch;}
 .foot-brand{font-family:var(--d);font-size:clamp(2.6rem,5vw,3.4rem);color:var(--paper);letter-spacing:-.01em;line-height:1;}
 .foot-tag{font-size:1rem;line-height:1.6;color:oklch(82% .02 130);margin:20px 0 26px;}
-.foot-cta{display:inline-block;border:1px solid oklch(100% 0 0/.4);border-radius:100px;padding:11px 26px;font-size:.82rem;letter-spacing:.02em;color:var(--paper);transition:background .25s,color .25s,border-color .25s;}
-.foot-cta:hover{background:var(--paper);border-color:var(--paper);color:var(--ink);}
 .foot-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(24px,3vw,48px);}
 .foot-cols h4{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--accent-soft);margin-bottom:16px;}
 .foot-cols a,.foot-cols p{display:block;font-size:.92rem;margin-bottom:10px;color:oklch(86% .02 130);line-height:1.4;}
