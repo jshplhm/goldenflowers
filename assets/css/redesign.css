@@ -1313,24 +1313,46 @@ body.nav-hidden .venue-breadcrumb{top:0;}
 
 /* ---- more weddings (not prev/next: with a short list the neighbours either
    side are an accident of ordering and carry no meaning) ---- */
-.wp-onward{padding:clamp(20px,3vw,44px) var(--pad-col) 0;}
+/* Bottom padding is not optional here: without it the rail sits flush against
+   the .cta band below and the two sections read as one. */
+.wp-onward{padding:clamp(40px,5vw,72px) var(--pad-col) clamp(56px,7vw,104px);}
 .wp-oh{display:flex;align-items:baseline;gap:20px;padding-bottom:18px;
   margin-bottom:clamp(16px,2vw,26px);border-bottom:1px solid var(--line);}
 .wp-oh h2{font-family:var(--d);font-weight:430;font-size:clamp(1.7rem,2.4vw,2.6rem);
   letter-spacing:-.012em;}
 .wp-oall{margin-left:auto;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;
-  color:var(--accent);border-bottom:1px solid currentColor;padding-bottom:3px;}
-.wp-og{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(10px,1.1vw,18px);}
-.wp-og a{position:relative;aspect-ratio:4/5;overflow:hidden;display:block;background:var(--bg2);}
+  color:var(--accent);border-bottom:1px solid currentColor;padding-bottom:3px;
+  white-space:nowrap;}
+
+/* The rail. --per is how many cards fit across the text column; the rest hang
+   off the right edge, so there is always one part-visible card saying "keep
+   going". It bleeds the full viewport width via negative margins and pays the
+   padding back inside, which is what lets a card sit under the edge of the
+   screen instead of stopping at the column. */
+.wp-og{--per:3.4;--rail-gap:clamp(10px,1.1vw,18px);
+  display:flex;gap:var(--rail-gap);overflow-x:auto;overscroll-behavior-x:contain;
+  scroll-snap-type:x mandatory;scroll-padding-inline:var(--pad-col);
+  margin-inline:calc(var(--pad-col) * -1);padding-inline:var(--pad-col);
+  scrollbar-width:none;-webkit-overflow-scrolling:touch;}
+.wp-og::-webkit-scrollbar{display:none;}
+.wp-ocard{flex:0 0 calc((100% - (var(--per) - 1) * var(--rail-gap)) / var(--per));
+  scroll-snap-align:start;position:relative;aspect-ratio:4/5;overflow:hidden;
+  display:block;background:var(--bg2);}
 .wp-og img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
   transition:transform 1.2s cubic-bezier(.2,.7,.3,1);}
 .wp-og a:hover img{transform:scale(1.04);}
-.wp-og a::after{content:"";position:absolute;inset:0;
+.wp-og a:not(.wp-oend)::after{content:"";position:absolute;inset:0;
   background:linear-gradient(to top,oklch(18% .02 150 / .62),transparent 58%);}
 .wp-oc{position:absolute;left:clamp(18px,1.9vw,28px);right:clamp(18px,1.9vw,28px);
   bottom:clamp(16px,1.8vw,26px);z-index:2;color:var(--paper);}
 .wp-oc .wp-on{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;opacity:.72;}
 .wp-oc h3{font-family:var(--d);font-weight:430;font-size:clamp(1.3rem,2vw,1.9rem);margin-top:5px;}
+/* Closing card: the way off the rail, quiet enough not to compete with a photo. */
+.wp-oend{background:var(--bg2);border:1px solid var(--line);display:flex;
+  align-items:center;justify-content:center;text-align:center;
+  padding:0 clamp(16px,2vw,26px);transition:background .25s ease,border-color .25s ease;}
+.wp-oend span{font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);}
+.wp-oend:hover{background:var(--bg);border-color:var(--accent);}
 
 @media(max-width:900px){
   .wp-story{grid-template-columns:1fr;}
@@ -1340,6 +1362,10 @@ body.nav-hidden .venue-breadcrumb{top:0;}
   .wp-rest{grid-template-columns:1fr;}
   .wp-ch{flex-direction:column;gap:12px;}
   .wp-ch p{margin-left:0;text-align:left;}
-  .wp-og{grid-template-columns:1fr 1fr;}
-  .wp-og a:last-child{display:none;}
+  .wp-og{--per:1.25;}
+  /* Side by side, "More weddings" and the link each got squeezed onto two
+     lines and the arrow fell to a line of its own. Neither should ever wrap:
+     give them the full width and stack. */
+  .wp-oh{flex-direction:column;align-items:flex-start;gap:10px;}
+  .wp-oall{margin-left:0;}
 }

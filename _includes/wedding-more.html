@@ -1,6 +1,16 @@
 {%- comment -%}
-  Three other weddings, chosen for contrast rather than adjacency: with a short
-  list, whoever sits either side of this one is an accident of ordering.
+  Every other wedding, in portfolio order, on a rail you swipe.
+
+  This used to pick three by stepping through the list, which meant the page
+  quietly decided which weddings you were allowed to see next and hid the third
+  card on phones anyway. With a list this short there is no reason to choose:
+  show them all and let the reader keep going.
+
+  Cover photo = band[1], the middle of the three photos on the /portfolio band,
+  which portfolio_meta.yml reserves for the hero shot (the other two slots are
+  the landscape-tolerant one and the detail). Change the cover by reordering
+  that wedding's `band` list, or in /edit under Cover photos.
+
   Params: slug.
 {%- endcomment -%}
 {%- assign wp = site.data.portfolio_page.wedding -%}
@@ -9,25 +19,23 @@
   {%- unless w.slug == include.slug -%}{%- assign others = others | push: w -%}{%- endunless -%}
 {%- endfor -%}
 {%- if others.size > 0 -%}
-{%- assign step = others.size | divided_by: 3 -%}
-{%- if step < 1 -%}{%- assign step = 1 -%}{%- endif -%}
 <section class="wp-onward">
   <div class="wp-oh">
     <h2>{{ wp.more_heading }}</h2>
     <a class="wp-oall" href="{{ site.baseurl }}/portfolio">{{ wp.more_link }} <span aria-hidden="true">&rarr;</span></a>
   </div>
-  <div class="wp-og">
-    {%- for i in (0..2) -%}
-      {%- assign idx = i | times: step -%}
-      {%- if idx < others.size -%}
-        {%- assign m = others[idx] -%}
-        {%- assign s = m.slug -%}
-        {%- assign nm = m.name -%}
-    <a href="{{ site.baseurl }}/portfolio/{{ s }}">
-      <img src="{{ site.baseurl }}/assets/images/portfolio/{{ s }}/{{ s }}-{{ m.band[1] }}.jpg" alt="{{ nm }} wedding flowers at {{ m.venue }}" loading="lazy" sizes="(max-width:900px) 50vw, 32vw">
-      <span class="wp-oc"><span class="wp-on">{{ m.venue }}</span><h3>{{ nm }}</h3></span></a>
-      {%- endif -%}
+  <div class="wp-og" role="group" aria-label="{{ wp.more_heading }}">
+    {%- for m in others -%}
+      {%- assign s = m.slug -%}
+    <a class="wp-ocard" href="{{ site.baseurl }}/portfolio/{{ s }}">
+      <img src="{{ site.baseurl }}/assets/images/portfolio/{{ s }}/{{ s }}-{{ m.band[1] }}.jpg" alt="{{ m.name }} wedding flowers at {{ m.venue }}{% if m.place != '' %}, {{ m.place }}{% endif %}" loading="lazy" sizes="(max-width:900px) 76vw, 28vw">
+      <span class="wp-oc"><span class="wp-on">{{ m.venue }}</span><h3>{{ m.name }}</h3></span></a>
     {%- endfor -%}
+    {%- comment -%}
+      The rail ends somewhere, so end it on the way out rather than on a wall.
+    {%- endcomment -%}
+    <a class="wp-ocard wp-oend" href="{{ site.baseurl }}/portfolio">
+      <span>{{ wp.more_link }} <span aria-hidden="true">&rarr;</span></span></a>
   </div>
 </section>
 {%- endif -%}
