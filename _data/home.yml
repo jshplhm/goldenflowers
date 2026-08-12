@@ -21,17 +21,14 @@ why:
   heading: We grow our own flowers on California soil, an hour from where you'll
     *say I do.*
   facts:
-    - number: "01"
-      title: Locally grown
+    - title: Locally grown
       body: Field-grown on our own Nevada County organic and regenerative farm, where
         Brittany's expertise in agronomy and soil science shapes every planting,
         and sourced from local growers we trust.
-    - number: "02"
-      title: Sustainable, always
+    - title: Sustainable, always
       body: Seasonal sourcing, foam-free, reusable mechanics, and growing practices
         that give back to the soil. Our full pledge is written down, in public.
-    - number: "03"
-      title: Depth over volume
+    - title: Depth over volume
       body: "Fewer weddings per season, more time on yours. We intentionally take
         fewer weddings than most studios, so that yours isn't slotted into a
         production line. "

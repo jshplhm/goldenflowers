@@ -96,7 +96,7 @@ means there is nothing to transition on load. Reorder the photos, update this.
   <h2 class="disp">{% include em.html t=site.data.home.why.heading k="home:why.heading" %}</h2>
   <div class="facts">
     {%- for fact in site.data.home.why.facts %}
-    <div class="fact"><span class="n">{{ fact.number }}</span><h3><span data-ed="home:why.facts.{{ forloop.index0 }}.title">{{ fact.title }}</span></h3><p><span data-ed="home:why.facts.{{ forloop.index0 }}.body">{{ fact.body }}</span></p></div>
+    <div class="fact"><div class="fact-head"><h3><span data-ed="home:why.facts.{{ forloop.index0 }}.title">{{ fact.title }}</span></h3></div><p><span data-ed="home:why.facts.{{ forloop.index0 }}.body">{{ fact.body }}</span></p></div>
     {%- endfor %}
   </div>
 </section>
@@ -148,7 +148,7 @@ means there is nothing to transition on load. Reorder the photos, update this.
 
 <!-- IMMERSIVE -->
 <section class="immersive">
-  <img class="bg" src="{{ site.baseurl }}/assets/images/portfolio/lynn-aaron/lynn-aaron-19.jpg" alt="First kiss at a mountain wedding ceremony at Palisades High Camp, dramatic floral installations by Golden Flowers">
+  <img class="bg" src="{{ site.baseurl }}/assets/images/portfolio/lynn-aaron/lynn-aaron-23.jpg" alt="Long reception table at Palisades High Camp under string lights, set with garden roses, olive foliage and green velvet napkins">
   <div class="il">
     <span class="lab"><span data-ed="home:immersive.label">{{ site.data.home.immersive.label }}</span></span>
     <p class="disp"><span data-ed="home:immersive.heading">{{ site.data.home.immersive.heading }}</span></p>
