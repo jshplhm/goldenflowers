@@ -1,18 +1,18 @@
 ---
 layout: redesign
-title: "Mikayla and Jeff"
-seo_title: "Mikayla and Jeff Wedding Flowers | Golden Flowers"
+title: "Mikayla & Jeff"
+seo_title: "Mikayla & Jeff Wedding Flowers | Golden Flowers"
 permalink: /portfolio/mikayla-jeff
 portfolio_key: mikayla-jeff
 description: "A modern and unique wedding inspired by Dr. Seuss"
 hero_photo: mikayla-jeff-11.jpg
 ---
 
-{% include portfolio-subnav.html name="Mikayla and Jeff" %}
+{% include portfolio-subnav.html name="Mikayla & Jeff" %}
 
-{% include wedding-open.html slug="mikayla-jeff" name="Mikayla and Jeff" %}
+{% include wedding-open.html slug="mikayla-jeff" name="Mikayla & Jeff" %}
 
-{% include portfolio-gallery.html slug="mikayla-jeff" hero="mikayla-jeff-11.jpg" name="Mikayla and Jeff" nohero=true %}
+{% include portfolio-gallery.html slug="mikayla-jeff" hero="mikayla-jeff-11.jpg" name="Mikayla & Jeff" nohero=true %}
 
 {% include wedding-credits.html slug="mikayla-jeff" %}
 
