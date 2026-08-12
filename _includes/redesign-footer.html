@@ -56,7 +56,12 @@
     </nav>
   </div>
   <div class="foot-bottom">
-    <span>&copy; {{ site.time | date: "%Y" }} Golden Flowers · Incline Village, NV</span>
+    {%- comment -%}
+      No locality on the copyright line. Incline Village now sits in the Contact
+      column above, where it is an address doing real work; repeating it ~150px
+      lower was filler next to a copyright notice.
+    {%- endcomment -%}
+    <span>&copy; {{ site.time | date: "%Y" }} Golden Flowers</span>
     {%- comment -%}
       Privacy and Terms live down here rather than in a column: it's where
       people look for them, and putting them in the nav would give two legal
