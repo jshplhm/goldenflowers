@@ -17,7 +17,7 @@ Pill-shaped filled CTA button. Two filled variants; use ghost variants for secon
 
 ## Rules
 
-- `.btn` alone = terra fill (`var(--terra)`), white text. The default CTA.
+- `.btn` alone = terra fill (`var(--accent)`), white text. The default CTA.
 - Add `.btn-ink` for dark (`var(--ink)`) fill. Use as secondary alongside `.btn`.
 - Add `.btn-primary` as an alias to `.btn` — same visual, used in some page templates.
 - Never use inline `background-color` — always the class.

@@ -25,7 +25,7 @@ Centered closing CTA section. Background is `var(--bg2)`. Used at the bottom of 
 ## Rules
 
 - Background: always `var(--bg2)` (built into `.cta`).
-- `<em>` in headline → `var(--terra)` color (not italic — this DS uses `em` for color, not style).
+- `<em>` in headline → `var(--accent)` color (not italic — this DS uses `em` for color, not style).
 - Body copy: `var(--mute)`, max-width 42ch, centered.
 - CTA: always `.btn` (terra). One CTA per section.
 - `.cta--tall` adds `min-height: 86vh` and flex-centers content — for standalone confirmation pages.

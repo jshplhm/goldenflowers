@@ -31,7 +31,7 @@ Philosophy/value statement section: eyebrow + large display headline + 3-column 
 ## Rules
 
 - `.credo` max-width 1500px with generous top/bottom padding.
-- `.n` class: Cormorant Garamond italic, 1.6rem, `var(--terra)` color. Use as a decorative numeric label.
+- `.n` class: Cormorant Garamond italic, 1.6rem, `var(--accent)` color. Use as a decorative numeric label.
 - `.facts` is a 3-column grid separated by a top border (`var(--line)`). Use 2–4 `.fact` items.
 - `<em>` in headline renders in `var(--forest)` (not italic — `em{font-style:normal}` in this DS).
 - Body text in `.fact p`: `var(--mute)` color, max-width 34ch.

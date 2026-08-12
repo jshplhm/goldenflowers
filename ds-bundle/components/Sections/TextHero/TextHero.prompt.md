@@ -16,7 +16,7 @@ Text-only page header for interior pages that skip the full-bleed hero image. Us
 ## Rules
 
 - `padding-top: clamp(120px, 15vw, 180px)` — built into the class. Accounts for the fixed nav.
-- Eyebrow: `.lab` class, `var(--terra)` color, uppercase tracking.
+- Eyebrow: `.lab` class, `var(--accent)` color, uppercase tracking.
 - Headline: `.disp` class for Cormorant Garamond. `<em>` inside renders in `var(--forest)`.
 - Subhead `.th-sub`: `var(--fg2)` color, max-width 42ch.
 - CTA is optional — omit if the page has a CTA elsewhere.

@@ -28,7 +28,7 @@
 
 - `.quote-grid`: 3-column CSS grid, `var(--paper)` cards with `var(--line)` border, border-radius 8px.
 - Always use exactly 3 cards — the grid is designed for 3 columns. Use the carousel variant for more.
-- `.stars`: `var(--terra)`, 0.8rem, letter-spacing 0.2em.
+- `.stars`: `var(--accent)`, 0.8rem, letter-spacing 0.2em.
 - Quote text: Cormorant Garamond (`.disp`), 1.22rem, no surrounding quotes in HTML (include `"` in the text).
 - Attribution `.src`: 0.76rem, uppercase, `var(--mute)`. Bold the name.
 - Real couples from the portfolio: Emma & Ross (Edgewood), Niamh & Nick (Hellman-Ehrman), Allie & Devin (Ritz-Carlton), Katie & James (Martis Camp), Lynn & Aaron (Old Greenwood), Sam & Matt (Palisades), Tori & Tucker, Dylan & Josh, Jacqueline & Brandon, Camille & Max.

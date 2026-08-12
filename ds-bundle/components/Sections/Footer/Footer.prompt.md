@@ -45,6 +45,6 @@ Site-wide footer. Dark `var(--forest-deep)` background, warm gray text. Two-colu
 - Brand `.foot-brand`: Cormorant Garamond (`.disp`), clamp(2.4rem, 5vw, 3.6rem), `var(--paper)`.
 - Tagline `.foot-tag`: `oklch(82% .02 130)` (warm muted white), 0.98rem.
 - CTA `.foot-cta`: outline button (semi-transparent white border), not a `.btn`. Turns terra on hover.
-- Column headings `h4`: 0.72rem, uppercase, `var(--terra-soft)`.
+- Column headings `h4`: 0.72rem, uppercase, `var(--accent-soft)`.
 - Links/text: `oklch(86% .02 130)`.
 - Bottom bar: small copyright + secondary tagline, `oklch(68% .02 130)`.

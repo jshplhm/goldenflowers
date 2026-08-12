@@ -34,7 +34,7 @@ redirect_from:
 .band{padding:clamp(70px,9vw,120px) var(--pad);}
 .band > .band-in{max-width:var(--content-max);margin:0 auto;}
 .band-dark{background:var(--forest-deep);color:var(--paper);}
-.band-dark .lab{color:var(--terra-soft);}
+.band-dark .lab{color:var(--accent-soft);}
 .band-dark h2{color:var(--paper);}
 .band-dark .prose p{color:oklch(85% .02 130);}
 .band-tint{background:var(--bg2);}

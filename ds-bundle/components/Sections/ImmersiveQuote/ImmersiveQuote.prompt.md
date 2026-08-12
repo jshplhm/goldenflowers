@@ -20,6 +20,6 @@ Full-bleed dark section with a single large display statement. 78vh height. Used
 - `height: 78vh; min-height: 520px` — built into `.immersive`.
 - Background: `<img class="bg">` covers the section. A dark overlay (`oklch(15% .03 150/.42)`) is applied via `.immersive::after` — always legible.
 - Without an image: apply `background: linear-gradient(...)` using forest colors directly on `.immersive`.
-- Text is always `var(--paper)` (white). The `.lab` inside `.immersive` automatically uses `var(--terra-soft)` (lighter terra).
+- Text is always `var(--paper)` (white). The `.lab` inside `.immersive` automatically uses `var(--accent-soft)` (lighter terra).
 - Quote text `.disp`: clamp(1.9rem, 4.4vw, 3.6rem), centered, max-width 20ch.
 - One short phrase or sentence only — this is not a paragraph block.

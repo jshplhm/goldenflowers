@@ -26,8 +26,8 @@ This is a **CSS class system**. No inline styles, no CSS-in-JS, no Tailwind. App
 | `var(--forest-deep)` | deeper green | footer, dark hero backgrounds |
 | `var(--fg2)` | medium dark | body copy, secondary text |
 | `var(--mute)` | muted gray | captions, metadata, placeholders |
-| `var(--terra)` | terracotta / burnt orange | CTA buttons, accent bullets, stars |
-| `var(--terra-soft)` | lighter terracotta | text on dark backgrounds |
+| `var(--accent)` | terracotta / burnt orange | CTA buttons, accent bullets, stars |
+| `var(--accent-soft)` | lighter terracotta | text on dark backgrounds |
 | `var(--line)` | subtle warm border | dividers, card borders |
 | `var(--d)` | Cormorant Garamond, Georgia | display / heading font |
 | `var(--b)` | DM Sans, system-ui | body font |
@@ -38,7 +38,7 @@ This is a **CSS class system**. No inline styles, no CSS-in-JS, no Tailwind. App
 | Class | Font | Use |
 |-------|------|-----|
 | `.disp` | `var(--d)`, weight 430 | all headings, display quotes, brand names |
-| `.lab` | `var(--b)` | eyebrow labels: 0.74rem, 0.22em tracking, uppercase, `var(--terra)` |
+| `.lab` | `var(--b)` | eyebrow labels: 0.74rem, 0.22em tracking, uppercase, `var(--accent)` |
 | `.prose p` | `var(--b)` | article body: 1.05rem, 1.72 line-height, `var(--fg2)` |
 | `.txt-link` | `var(--b)` | inline text links with terra underline |
 
