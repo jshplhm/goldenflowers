@@ -26,11 +26,16 @@
       <h1><span data-ed="portfolio_meta:{{ include.slug }}.name">{{ m.name }}</span></h1>
     </div>
     {%- comment -%}
-      Venue and town are two fields, shown as one line. Editing either one here
-      would need the line split back apart on save, so the editable copies live
-      in the fact panel below, one span each.
+      Venue and town are two fields shown as one line, so they get one span
+      each with the comma as plain text between them, rather than one span over
+      the whole line that would have to be split apart again on save. The
+      editor updates every node sharing a key, so editing either here also
+      updates its copy in the fact panel below, and vice versa.
+
+      With no town yet there is no comma and nothing to click for it here; the
+      hidden Town slot in the panel is where that gets started.
     {%- endcomment -%}
-    <span class="wp-where">{{ m.venue }}{% if m.place != "" %}, {{ m.place }}{% endif %}</span>
+    <span class="wp-where"><span data-ed="portfolio_meta:{{ include.slug }}.venue">{{ m.venue }}</span>{% if m.place != "" %}, <span data-ed="portfolio_meta:{{ include.slug }}.place">{{ m.place }}</span>{% endif %}</span>
   </div>
 </header>
 
