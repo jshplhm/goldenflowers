@@ -27,10 +27,6 @@ jobs:
           bundler-cache: true
       - name: Configure Pages
         uses: actions/configure-pages@v5
-      - name: Build with Jekyll
-        run: bundle exec jekyll build
-        env:
-          JEKYLL_ENV: production
       - name: Restore responsive image cache
         uses: actions/cache@v4
         with:
@@ -44,10 +40,19 @@ jobs:
           restore-keys: |
             rsp-${{ hashFiles('assets/images/**/*.jpg') }}-
             rsp-
+      # BEFORE the build: the plugin reads .rsp-cache/manifest.txt to know which
+      # variants exist, and will not advertise a WebP <source> that is missing.
       - name: Generate responsive image variants
         run: |
-          command -v magick >/dev/null 2>&1 || command -v convert >/dev/null 2>&1 || sudo apt-get install -y --no-install-recommends imagemagick
-          bash scripts/make-responsive-variants.sh
+          command -v magick >/dev/null 2>&1 || command -v convert >/dev/null 2>&1 || sudo apt-get install -y --no-install-recommends imagemagick webp
+          RSP_PUBLISH=0 bash scripts/make-responsive-variants.sh
+      - name: Build with Jekyll
+        run: bundle exec jekyll build
+        env:
+          JEKYLL_ENV: production
+      # jekyll build wipes _site, so the variants are copied in afterwards.
+      - name: Publish responsive image variants
+        run: bash scripts/make-responsive-variants.sh --publish-only
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
 

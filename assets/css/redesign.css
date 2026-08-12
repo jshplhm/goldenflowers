@@ -56,6 +56,11 @@
 html{scroll-behavior:smooth;scroll-padding-top:calc(var(--nav-h) + 12px);}
 body{background:var(--bg);color:var(--ink);font-family:var(--b);font-weight:400;line-height:1.6;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow-x:clip;}
 img{display:block;max-width:100%;height:auto;}
+/* Production wraps images in <picture> to offer WebP. display:contents takes
+   that wrapper out of layout entirely so every rule written against the <img>
+   still applies to the box it was written for -- .wd-mosaic .mo img is
+   height:100% of its grid cell, which an inline wrapper would silently break. */
+picture{display:contents;}
 a{color:inherit;text-decoration:none;}
 /* Make the hidden attribute authoritative so JS-toggled steps/success actually hide
    (class rules like .form-step-2{display:grid} would otherwise override the UA [hidden] rule). */
