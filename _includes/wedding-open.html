@@ -81,6 +81,13 @@
     {%- endcomment -%}
     {%- if rest == "" -%}
       <p class="wp-lede">{% include em.html t=opener %}</p>
+      {%- comment -%}
+        No body paragraph yet, so nothing on the page to click to start one.
+        This empty paragraph is the target: hidden from visitors, revealed in
+        /edit with its hint, the same trick the palette row uses. Keep it in
+        step with STORY_SLOT in editor.js.
+      {%- endcomment -%}
+      <p class="ed-empty" data-ed-hint="Add more about this wedding"></p>
     {%- else -%}
       <p class="wp-lede">{% include em.html t=opener %}.</p>
       <p>{% include em.html t=rest %}</p>

@@ -169,11 +169,18 @@ function splitStory(v) {
   return { opener, rest };
 }
 
+/* A story that is still one sentence has no body paragraph, so there is nothing
+ * on the page to click to start one. This empty paragraph is that target: hidden
+ * from visitors by .ed-empty, revealed in the editor with its hint. Must match
+ * the markup wedding-open.html emits, or the block changes shape the moment the
+ * editor repaints it. */
+const STORY_SLOT = '<p class="ed-empty" data-ed-hint="Add more about this wedding"></p>';
+
 /* A one-sentence story keeps its own punctuation and stands alone as the
  * display line; only a real split has to put back the "." that split() ate. */
 function renderStory(v) {
   const { opener, rest } = splitStory(v);
-  if (rest === "") return `<p class="wp-lede">${inlineHtml(opener)}</p>`;
+  if (rest === "") return `<p class="wp-lede">${inlineHtml(opener)}</p>${STORY_SLOT}`;
   return `<p class="wp-lede">${inlineHtml(opener)}.</p><p>${inlineHtml(rest)}</p>`;
 }
 
@@ -185,6 +192,33 @@ function cleanValueOfHtml(html) {
   const tmp = document.createElement("div");
   tmp.innerHTML = html;
   return cleanValue(tmp);
+}
+
+/* A wedding story is one YAML scalar shown as two paragraphs, so joining them
+ * back up has to put the sentence break in. Plain serialize() only inserts a
+ * space, which was fine while both paragraphs came from a story that already
+ * had a ". " in it, but not once Brittany can type the second one herself: a
+ * display line that doesn't end in punctuation (the Mikayla & Jeff story ends
+ * "…Dr. Seuss") would weld to the new sentence, splitStory would find no break
+ * and fold the whole thing back into one display line. Supplying the period is
+ * what makes the two visible boxes behave like the two parts they look like. */
+function cleanStory(el) {
+  const blocks = Array.prototype.filter.call(el.children, (n) => n.tagName === "P" || n.tagName === "DIV");
+  const parts = blocks.map(cleanValue).filter(Boolean);
+  if (!parts.length) return cleanValue(el);
+  return parts.reduce((a, b) => a + (/[.!?…]["')\]]?$/.test(a) ? " " : ". ") + b);
+}
+
+/* The editable value of an element, however it stores it. */
+function valueOf(el) {
+  return el.hasAttribute("data-ed-story") ? cleanStory(el) : cleanValue(el);
+}
+
+function valueOfHtml(html, el) {
+  const tmp = document.createElement("div");
+  tmp.innerHTML = html;
+  if (el && el.hasAttribute("data-ed-story")) tmp.setAttribute("data-ed-story", "");
+  return valueOf(tmp);
 }
 
 /* ---------- post body round-trip ---------- */
@@ -329,7 +363,7 @@ function startEdit(el) {
       ? (postDirty.get(el.getAttribute("data-ed-src")) || {})[fmField] !== undefined
       : dirty.has(key);
     if (el.dataset.gfBaseline === undefined && !alreadyDirty) {
-      el.dataset.gfBaseline = cleanValueOfHtml(el.innerHTML);
+      el.dataset.gfBaseline = valueOfHtml(el.innerHTML, el);
     }
   }
   el.dataset.gfOriginal = el.innerHTML;
@@ -359,8 +393,8 @@ function stopEdit(revert) {
     return;
   }
 
-  const val = cleanValue(el);
-  const before = el.dataset.gfBaseline !== undefined ? el.dataset.gfBaseline : cleanValueOfHtml(el.dataset.gfOriginal);
+  const val = valueOf(el);
+  const before = el.dataset.gfBaseline !== undefined ? el.dataset.gfBaseline : valueOfHtml(el.dataset.gfOriginal, el);
   const doc = frameDoc();
   const fmField = el.getAttribute("data-ed-fm");
 
