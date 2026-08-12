@@ -56,6 +56,8 @@
   --sp-s:clamp(40px,5vw,64px);
   --sp-m:clamp(60px,8vw,104px);
   --sp-l:clamp(84px,10vw,136px);
+  /* Numeral column on the process timeline; the rail centres on it. */
+  --proc-col:clamp(42px,6vw,74px);
   /* Layout system: one deterministic header height (sticky offsets dock against it)
      and one content column width (nav/footer inner content aligns to it; color/photo
      bands stay full-bleed). */
@@ -595,12 +597,26 @@ body.lb-open{overflow:hidden;}
 .proc-head .lab{color:var(--accent);}
 .proc-head h2{font-family:var(--d);font-weight:430;font-optical-sizing:auto;font-size:clamp(1.9rem,4.6vw,3.4rem);letter-spacing:-.02em;line-height:1.05;margin:20px 0 18px;color:var(--ink);}
 .proc-head p{color:var(--fg2);max-width:60ch;line-height:1.6;}
-.proc-step{display:grid;grid-template-columns:74px 1fr;gap:clamp(20px,3vw,44px);padding:30px 0;position:relative;}
+/* The rail: one line per step, knocked out where the numeral's own background
+   sits on top of it. The numeral column stays a column at every width -- it
+   used to collapse to a single column below 860px, which meant the timeline
+   device disappeared on phones and tablets, i.e. on most of the traffic. */
+.proc-step{display:grid;grid-template-columns:var(--proc-col) 1fr;gap:clamp(14px,3vw,44px);padding:30px 0;position:relative;}
 /* vertical timeline rail connecting the numbered nodes */
-.proc-step::before{content:"";position:absolute;left:37px;top:0;bottom:0;width:1.5px;background:var(--line);}
-.proc-step:first-child::before{top:52px;}
+.proc-step::before{content:"";position:absolute;left:calc(var(--proc-col)/2 - .75px);top:0;bottom:0;width:1.5px;background:var(--line);}
+/* First step must not draw above its own numeral. :first-child never matched:
+   .proc-head is the real first child of .proc-wrap, so step 01 kept the full
+   -height default and hung a stub above itself. :last-child DID match, which
+   is why only the top end was wrong. Match "a step with no step before it"
+   instead, which holds whatever else lives in the wrapper. */
+.proc-step:not(.proc-step + .proc-step)::before{top:52px;}
 .proc-step:last-child::before{bottom:auto;height:52px;}
-.proc-num{position:relative;z-index:2;width:74px;text-align:center;font-family:var(--d);font-style:normal;font-size:1.9rem;color:var(--accent);line-height:1;background:var(--bg2);padding:8px 0;}
+/* align-self:start matters more than it looks. As a stretched grid item the
+   numeral filled the whole row, and its --bg2 background knocked the rail out
+   across almost all of each step, leaving a short floating dash between steps
+   rather than a line connecting them. Sized to its own glyph, it knocks out
+   just enough to sit ON a continuous rail. */
+.proc-num{align-self:start;position:relative;z-index:2;width:var(--proc-col);text-align:center;font-family:var(--d);font-style:normal;font-size:clamp(1.2rem,3vw,1.9rem);color:var(--accent);line-height:1;background:var(--bg2);padding:8px 0;}
 .proc-when{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);}
 .proc-step h3{font-family:var(--d);font-size:clamp(1.3rem,2.4vw,1.9rem);letter-spacing:-.01em;margin:8px 0 10px;color:var(--ink);}
 .proc-step p{color:var(--fg2);line-height:1.65;max-width:62ch;}
@@ -1119,9 +1135,7 @@ body.nav-hidden .venue-breadcrumb{top:0;}
   .nav-r{display:none;}
   .nav-toggle{display:flex;}
   .twocol,.twoup{grid-template-columns:1fr;gap:28px;}
-  .proc-step{grid-template-columns:1fr;gap:6px;}
-  .proc-step::before{display:none;}
-  .proc-num{font-size:1.9rem;width:auto;text-align:left;padding:0;}
+  /* .proc-step keeps its numeral column and rail at every width now. */
   .quote-grid{grid-template-columns:1fr;}
   .venue-grid{grid-template-columns:1fr 1fr;}
   .two-col,.philosophy-grid,.pricing-box{grid-template-columns:1fr;gap:28px;}
