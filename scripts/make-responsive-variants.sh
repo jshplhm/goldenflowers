@@ -48,23 +48,34 @@ if [ "${1:-}" = "--publish-only" ]; then
   exit 0
 fi
 
-if command -v magick >/dev/null 2>&1; then IM="magick"
-elif command -v convert >/dev/null 2>&1; then IM="convert"
-else IM=""
+# ImageMagick 6 (what Ubuntu still ships) has no `magick` binary and no
+# `magick identify` subcommand -- it has separate `convert` and `identify`.
+# Getting this wrong killed a deploy: `convert identify ...` failed, and the
+# failure rode out through `sw=$(srcwidth ...)` under `set -e` before the
+# script had printed a single line.
+if command -v magick >/dev/null 2>&1; then IM="magick"; IDENTIFY="magick identify"
+elif command -v convert >/dev/null 2>&1; then IM="convert"; IDENTIFY="identify"
+else IM=""; IDENTIFY=""
 fi
 
-# WebP needs a delegate. Without one we simply do not write .webp files, and
-# because the plugin follows the manifest the pages quietly stay JPEG-only.
+# WebP goes through cwebp (the reference encoder, from the `webp` package)
+# rather than an ImageMagick delegate, because Ubuntu's imagemagick 6 is not
+# guaranteed to have one. ImageMagick still does the decode and resize, so
+# -auto-orient and the shrink-only rule behave identically to the JPEG path.
+# No cwebp, or RSP_WEBP=0, means no .webp is written -- and because the plugin
+# follows the manifest, the pages quietly stay JPEG-only rather than breaking.
 webp_ok=0
-if [ -n "$IM" ] && [ "${RSP_WEBP:-1}" = "1" ]; then
-  $IM -list format 2>/dev/null | grep -qiE '^ *WEBP.*[rw+]' && webp_ok=1
+if [ -n "$IM" ] && [ "${RSP_WEBP:-1}" = "1" ] && command -v cwebp >/dev/null 2>&1; then
+  webp_ok=1
 fi
 
+# Never returns non-zero: an unreadable width is handled by the caller, and
+# under `set -e` a failure here would take the whole run down.
 srcwidth() {
-  if [ -n "$IM" ]; then
-    $IM identify -format '%w' "$1[0]" 2>/dev/null
+  if [ -n "$IDENTIFY" ]; then
+    $IDENTIFY -format '%w' "$1[0]" 2>/dev/null || true
   else
-    sips -g pixelWidth "$1" 2>/dev/null | awk '/pixelWidth/{print $2}'
+    sips -g pixelWidth "$1" 2>/dev/null | awk '/pixelWidth/{print $2}' || true
   fi
 }
 
@@ -143,7 +154,10 @@ while IFS= read -r -d '' f; do
     for w in $wwant; do
       dest="$CACHE/${stem}-${w}w.webp"
       mkdir -p "$(dirname "$dest")"
-      $IM "$f" -auto-orient -resize "${w}x>" -quality 78 -define webp:method=4 -strip "$dest"
+      # ImageMagick decodes/orients/resizes, cwebp encodes. PNG on the pipe
+      # keeps it lossless between the two.
+      $IM "$f" -auto-orient -resize "${w}x>" -strip png:- \
+        | cwebp -quiet -q 78 -m 4 -o "$dest" -- -
       # A WebP heavier than the file it would replace is worth nothing. Drop it
       # and let the manifest leave it unadvertised, rather than ship a
       # regression to browsers that prefer it.

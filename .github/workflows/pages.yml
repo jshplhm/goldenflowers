@@ -44,7 +44,12 @@ jobs:
       # variants exist, and will not advertise a WebP <source> that is missing.
       - name: Generate responsive image variants
         run: |
-          command -v magick >/dev/null 2>&1 || command -v convert >/dev/null 2>&1 || sudo apt-get install -y --no-install-recommends imagemagick webp
+          # cwebp is installed on its own: gating it behind "is ImageMagick
+          # missing" meant a runner that already had ImageMagick would silently
+          # produce a JPEG-only site.
+          command -v convert >/dev/null 2>&1 || command -v magick >/dev/null 2>&1 || sudo apt-get install -y --no-install-recommends imagemagick
+          command -v cwebp >/dev/null 2>&1 || sudo apt-get install -y --no-install-recommends webp
+          echo "convert=$(command -v convert || true) identify=$(command -v identify || true) cwebp=$(command -v cwebp || true)"
           RSP_PUBLISH=0 bash scripts/make-responsive-variants.sh
       - name: Build with Jekyll
         run: bundle exec jekyll build
