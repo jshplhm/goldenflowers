@@ -175,11 +175,11 @@
   if(imgs.length<2) return;
 
   /* HOLD+FADE is how long one photo is actually on screen, so the Ken Burns
-     animation in redesign.css is set to exactly that (5200ms). If you change
+     animation in redesign.css is set to exactly that (7200ms). If you change
      HOLD, change that duration too or the zoom stops part-way through its
      travel and the movement reads as weaker than it is. FADE must stay in sync
      with the .hero-rot .bg opacity transition. */
-  var HOLD=4000, FADE=1200;
+  var HOLD=6000, FADE=1200;
   var i=0, timer=null, paused=false;
   var still=window.matchMedia('(prefers-reduced-motion: reduce)');
 
@@ -200,9 +200,26 @@
     dots.forEach(function(d,k){ d.classList.toggle('on', k===i); });
   }
 
-  function start(){
+  /* `first` shortens only the very first hold. Photo 1 is painted at first
+     contentful paint but the rotator isn't allowed to start until `load` (it
+     must not compete with the LCP image for bandwidth), so the opening photo
+     used to sit for load-time PLUS a full hold — visibly longer than every
+     photo after it, which is why the slideshow felt like it stalled and then
+     sped up. Charging the already-elapsed time against the first hold puts
+     every photo on the same clock. The floor stops a slow connection from
+     flipping the photo the instant it finishes loading. */
+  function start(first){
     clearInterval(timer);
+    clearTimeout(timer);
     if(paused || still.matches) return;
+    if(first){
+      var shown=0;
+      try{ var fcp=performance.getEntriesByName('first-contentful-paint')[0];
+           shown=fcp ? performance.now()-fcp.startTime : performance.now(); }
+      catch(e){ shown=performance.now(); }
+      timer=setTimeout(function(){ show(i+1); start(); }, Math.max(HOLD-shown, 1500));
+      return;
+    }
     timer=setInterval(function(){ show(i+1); }, HOLD);
   }
 

@@ -187,20 +187,17 @@ button.txt-link{background:none;border-top:0;border-left:0;border-right:0;cursor
    snaps back to scale(1) while still visible for the whole 1.2s crossfade —
    a very obvious bounce. JS strips .kb-run only after the fade has finished,
    when the reset happens at opacity 0. Duration = hold + both fades. */
-/* Ken Burns. Duration = HOLD + FADE from the rotator in redesign.html (4000 +
+/* Ken Burns. Duration = HOLD + FADE from the rotator in redesign.html (6000 +
    1200), so the zoom completes its travel in exactly the time the photo is on
-   screen. It used to run 8400ms against a 7200ms window, so it never got past
-   ~1.047 before being swapped out; left alone at a 4s hold it would have
-   reached ~1.03, invisible on a phone.
+   screen. Keep the two in step: at 8400ms against a 7200ms window the zoom
+   never got past ~1.047 before the photo was swapped out, and the movement
+   read as weaker than the number suggested.
 
-   THROW: the keyframe always SAID 1.055, but nobody ever saw 1.055 — the photo
-   was swapped out at ~1.047, so that cut-off value is the end state this site
-   actually shipped with. Now that the animation finishes inside its window the
-   full number is real, which made a nominally unchanged 1.055 read as further
-   and faster than before. 1.05 lands the end state back on what the eye is used
-   to. Rate is still ~1.5x the old one, which is the point: at a 4s hold the old
-   rate would not have been visible at all. */
-.hero-rot .bg.kb-run{animation:hero-kb 5200ms linear forwards;}
+   THROW stays at 1.05. Over a 7200ms window that is a slower push than the
+   same 1.05 over 5200ms, which is the point of going back to a 6s hold: the
+   photo has longer to travel the same distance, so the movement is calmer
+   rather than merely less frequent. */
+.hero-rot .bg.kb-run{animation:hero-kb 7200ms linear forwards;}
 @keyframes hero-kb{from{transform:scale(1)}to{transform:scale(1.05)}}
 
 /* Photo 3 is high-key (pale sky, cream suit, white dress) and the standard
