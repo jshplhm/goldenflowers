@@ -38,7 +38,7 @@ WIDTHS="480 720 960 1440"
 publish() {
   mkdir -p "$OUT"
   cp -R "$CACHE"/. "$OUT"/
-  find "$OUT" \( -name '*.src.sha' -o -name 'manifest.txt' \) -delete
+  find "$OUT" \( -name '*.src.sha' -o -name 'manifest.txt' -o -name '*.webp.skip' \) -delete
 }
 
 if [ "${1:-}" = "--publish-only" ]; then
@@ -117,6 +117,14 @@ while IFS= read -r -d '' f; do
     # only the widths we actually intend to make, or a photo narrower than the
     # whole ladder would look permanently incomplete and regenerate every run
     for w in $want; do [ -f "$CACHE/${stem}-${w}w.jpg" ] || fresh=0; done
+    # WebP has to count too. Judging freshness on the JPEGs alone meant that
+    # the first deploy after WebP shipped restored a warm JPEG cache, called
+    # every photo done, and wrote no WebP at all -- a green build that quietly
+    # delivered nothing. A .skip marker records a WebP deliberately dropped for
+    # being no smaller, so those do not look missing forever.
+    for w in $wwant; do
+      [ -f "$CACHE/${stem}-${w}w.webp" ] || [ -f "$CACHE/${stem}-${w}w.webp.skip" ] || fresh=0
+    done
   fi
 
   if [ "$fresh" = 0 ]; then
@@ -124,7 +132,7 @@ while IFS= read -r -d '' f; do
     # over from an earlier ladder stay in the cache and get published.
     for w in $WIDTHS $sw; do
       case " $want " in *" $w "*) ;; *) rm -f "$CACHE/${stem}-${w}w.jpg" ;; esac
-      case " $wwant " in *" $w "*) ;; *) rm -f "$CACHE/${stem}-${w}w.webp" ;; esac
+      case " $wwant " in *" $w "*) ;; *) rm -f "$CACHE/${stem}-${w}w.webp" "$CACHE/${stem}-${w}w.webp.skip" ;; esac
     done
 
     for w in $want; do
@@ -163,8 +171,9 @@ while IFS= read -r -d '' f; do
       # regression to browsers that prefer it.
       rival="$CACHE/${stem}-${w}w.jpg"
       [ -f "$rival" ] || rival="$f"
+      rm -f "$dest.skip"
       if [ "$(wc -c <"$dest")" -ge "$(wc -c <"$rival")" ]; then
-        rm -f "$dest"; webpdropped=$((webpdropped + 1))
+        rm -f "$dest"; : > "$dest.skip"; webpdropped=$((webpdropped + 1))
       else
         webpcount=$((webpcount + 1))
       fi
