@@ -99,6 +99,44 @@ redirect_from:
   </div>
 </section>
 
+<!-- SERVICE LEVELS (directly under the number: range first, then what the
+     range buys). A real <table> because this is genuinely tabular; on phones
+     the head is hidden and each cell announces its own column via data-tier,
+     which turns the grid into two readable stacks instead of a sideways
+     scroll. -->
+{%- assign cmp = site.data.weddings.compare -%}
+<section class="block compare-sec" id="service-levels">
+  <div class="compare-intro">
+    <span class="lab"><span data-ed="weddings:compare.label">{{ cmp.label }}</span></span>
+    <h2 class="h-lg">{% include em.html t=cmp.heading k="weddings:compare.heading" %}</h2>
+    <p><span data-ed="weddings:compare.intro">{{ cmp.intro }}</span></p>
+  </div>
+  <table class="compare">
+    <thead>
+      <tr>
+        <td></td>
+        <th scope="col">
+          <span class="ct-name" data-ed="weddings:compare.col_a">{{ cmp.col_a }}</span>
+          <span class="ct-sub" data-ed="weddings:compare.col_a_sub">{{ cmp.col_a_sub }}</span>
+        </th>
+        <th scope="col" class="ct-lead">
+          <span class="ct-name" data-ed="weddings:compare.col_b">{{ cmp.col_b }}</span>
+          <span class="ct-sub" data-ed="weddings:compare.col_b_sub">{{ cmp.col_b_sub }}</span>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      {%- for row in cmp.rows %}
+      <tr>
+        <th scope="row"><span data-ed="weddings:compare.rows.{{ forloop.index0 }}.label">{{ row.label }}</span></th>
+        <td data-tier="{{ cmp.col_a }}"{% if row.a_off %} class="is-off"{% endif %}><span data-ed="weddings:compare.rows.{{ forloop.index0 }}.a">{{ row.a }}</span></td>
+        <td data-tier="{{ cmp.col_b }}" class="ct-lead"><span data-ed="weddings:compare.rows.{{ forloop.index0 }}.b">{{ row.b }}</span></td>
+      </tr>
+      {%- endfor %}
+    </tbody>
+  </table>
+</section>
+
 
 <!-- ASSURANCE -->
 <section class="callout-sec">

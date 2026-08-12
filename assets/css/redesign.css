@@ -661,6 +661,60 @@ body.lb-open{overflow:hidden;}
 .pricing-dark .price-guide:hover{border-color:var(--paper);}
 
 /* ---------- PRICING ---------- */
+/* ---- service levels: a la carte vs full service ----
+   Sells the gap between the tiers rather than pricing components. The full
+   service column is the one carrying the argument, so it gets the tint and the
+   ink; a la carte stays legible but plainer, and cells it doesn't offer go
+   muted so the shape of the difference reads before a word does. */
+.compare-sec{padding-top:clamp(48px,6vw,84px);}
+.compare-intro{max-width:600px;margin:0 auto clamp(32px,4vw,52px);text-align:center;}
+.compare-intro p{color:var(--fg2);line-height:1.7;margin-top:18px;}
+.compare{width:100%;border-collapse:collapse;table-layout:fixed;}
+/* th defaults to bold, which made the column subtitles and every row label read
+   heavier than the answers they label. */
+.compare th,.compare td{padding:18px clamp(14px,1.6vw,24px);text-align:left;vertical-align:top;
+  border-top:1px solid var(--line);font-size:.98rem;line-height:1.55;color:var(--fg2);font-weight:400;}
+.compare thead td,.compare thead th{border-top:0;padding-bottom:22px;}
+.compare thead th{vertical-align:bottom;}
+.compare .ct-name{display:block;font-family:var(--d);font-weight:430;font-size:clamp(1.3rem,2.2vw,1.75rem);
+  letter-spacing:-.01em;color:var(--ink);}
+.compare .ct-sub{display:block;margin-top:6px;font-size:.82rem;line-height:1.45;color:var(--mute);}
+.compare tbody th{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--mute);
+  width:22%;padding-top:22px;}
+.compare td{width:39%;}
+/* The recommended column, carried on a tint rather than a border so it reads as
+   one continuous panel down the table instead of seven stacked boxes. */
+.compare .ct-lead{background:var(--bg2);color:var(--ink);}
+.compare thead .ct-lead{border-radius:3px 3px 0 0;}
+.compare tbody tr:last-child .ct-lead{border-radius:0 0 3px 3px;}
+.compare .is-off{color:var(--mute);}
+.compare tbody tr:last-child th,.compare tbody tr:last-child td{font-family:var(--d);
+  font-size:clamp(1.1rem,1.7vw,1.35rem);letter-spacing:-.005em;}
+.compare tbody tr:last-child th{font-family:inherit;font-size:.72rem;}
+
+@media(max-width:760px){
+  /* A seven-row table can't hold three columns on a phone without either a
+     sideways scroll or unreadable type, so it stops being a grid: each row
+     becomes a labelled block and every cell names its own column. */
+  .compare,.compare tbody,.compare tr,.compare th,.compare td{display:block;width:auto;}
+  .compare thead{display:none;}
+  .compare tbody tr{border-top:1px solid var(--line);padding:20px 0 4px;}
+  .compare tbody tr:first-child{border-top:0;}
+  .compare tbody th{padding:0 0 12px;width:auto;}
+  .compare td{padding:0 0 14px 0;border-top:0;position:relative;}
+  /* Font family is set explicitly, not inherited: the last row switches its
+     cells to the display face for the money, and without this the little
+     column labels above them switched too. */
+  .compare td::before{content:attr(data-tier);display:block;font-family:var(--b);
+    font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--accent);margin-bottom:4px;}
+  .compare .is-off::before{color:var(--mute);}
+  /* The tint would band awkwardly across a stacked cell, so the lead column is
+     marked with a rule down its edge instead. */
+  .compare .ct-lead{background:none;border-left:2px solid var(--accent);padding-left:14px;}
+  .compare tbody tr:last-child td{font-size:1.05rem;}
+}
+
 .pricing{text-align:center;max-width:720px;margin:0 auto;}
 .price-num{font-family:var(--d);font-size:clamp(2.6rem,6vw,4.2rem);letter-spacing:-.02em;line-height:1;margin-top:14px;}
 .price-sub{font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);margin-top:14px;}
