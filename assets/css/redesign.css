@@ -43,6 +43,16 @@
   --d:'Cormorant Garamond',Georgia,serif;  /* display — swap here to change face */
   --b:'DM Sans',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;
   --pad:clamp(24px,5vw,72px);
+  /* Vertical rhythm. Was nine unrelated values across the sheet (64/80/90/100/
+     110/150/160/200 plus an asymmetric .credo) which read as drift rather than
+     hierarchy. Three steps, ~1.3x apart, and every section picks one:
+       --sp-s  a break inside a section          (page heads, tight bands)
+       --sp-m  an ordinary section break
+       --sp-l  a major break / tempo change      (credo, testimonial, CTAs)
+     Sections are symmetric unless there is a reason not to be. */
+  --sp-s:clamp(40px,5vw,64px);
+  --sp-m:clamp(60px,8vw,104px);
+  --sp-l:clamp(84px,10vw,136px);
   /* Layout system: one deterministic header height (sticky offsets dock against it)
      and one content column width (nav/footer inner content aligns to it; color/photo
      bands stay full-bleed). */
@@ -154,7 +164,7 @@ button.txt-link{background:none;border-top:0;border-left:0;border-right:0;cursor
 .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,oklch(14% .03 150/.52) 0%,oklch(14% .03 150/.14) 40%,transparent 66%),linear-gradient(180deg,oklch(16% .03 150/.26) 0%,transparent 32%,transparent 60%,oklch(12% .03 150/.44) 100%);}
 .hero-in{position:relative;z-index:3;width:100%;max-width:var(--content-max);margin:0 auto;padding:0 var(--pad) clamp(48px,6.5vw,84px);}
 .hero .ey{color:var(--paper);opacity:.95;margin-bottom:26px;}
-.hero h1{font-family:var(--d);font-weight:430;font-optical-sizing:auto;font-size:clamp(2.6rem,6vw,5.6rem);line-height:1.0;letter-spacing:-.02em;max-width:15ch;}
+.hero h1{font-family:var(--d);font-weight:430;font-optical-sizing:auto;font-size:clamp(2.6rem,6vw,5.6rem);line-height:1.06;letter-spacing:-.02em;max-width:15ch;}
 .hero-foot{display:flex;flex-direction:column;align-items:flex-start;gap:26px;margin-top:clamp(30px,4vw,44px);}
 .hero-sub{font-size:1.02rem;max-width:34ch;opacity:.95;line-height:1.55;}
 .hero-btns{display:flex;gap:14px;flex-wrap:wrap;align-items:center;}
@@ -245,13 +255,32 @@ button.txt-link{background:none;border-top:0;border-left:0;border-right:0;cursor
 }
 
 /* ---------- CREDO ---------- */
-.credo{padding:clamp(80px,11vw,150px) var(--pad) clamp(60px,7vw,90px);max-width:var(--content-max);margin:0 auto;}
-.credo h2{font-family:var(--d);font-weight:430;font-optical-sizing:auto;font-size:clamp(2.1rem,5.3vw,4.8rem);line-height:1.05;letter-spacing:-.02em;max-width:24ch;text-wrap:balance;margin-top:26px;}
+.credo{padding:var(--sp-l) var(--pad);max-width:var(--content-max);margin:0 auto;}
+.credo h2{font-family:var(--d);font-weight:430;font-optical-sizing:auto;font-size:clamp(2.1rem,5.3vw,4.8rem);line-height:1.1;letter-spacing:-.02em;max-width:24ch;text-wrap:balance;margin-top:26px;}
 .credo h2 em{color:var(--forest);}
 .facts{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(28px,4vw,60px);margin-top:clamp(56px,7vw,90px);border-top:1px solid var(--line);padding-top:46px;}
-.fact .n{font-family:var(--d);font-style:normal;font-size:1.6rem;color:var(--terra);display:block;margin-bottom:16px;}
-.fact h3{font-family:var(--d);font-size:1.55rem;margin-bottom:10px;letter-spacing:-.01em;}
-.fact p{font-size:.96rem;color:var(--mute);max-width:34ch;line-height:1.62;}
+.facts .fact h3{font-family:var(--d);font-size:1.55rem;margin-bottom:10px;letter-spacing:-.01em;}
+/* The 34ch cap is right inside a narrow column and wrong inside a wide one, so
+   it only applies where the 3-up grid actually holds. Below that the tablet
+   row-list and the phone stack both want the paragraph to fill its cell. */
+.facts .fact p{font-size:.96rem;color:var(--mute);line-height:1.62;}
+@media(min-width:1025px){.facts .fact p{max-width:34ch;}}
+/* Tablet: three parallel claims, so a 2-up grid would orphan the third. A row
+   list can't orphan anything and it fills the width the 1-up stack wasted.
+   .fact-head keeps the heading in its own grid cell -- if the paragraph spans
+   rows instead, the rows grow to fit it and shove the heading down. */
+@media(min-width:601px) and (max-width:1024px){
+  .facts{grid-template-columns:1fr;gap:0;}
+  .facts .fact{display:grid;grid-template-columns:minmax(190px,250px) 1fr;gap:0 40px;
+        padding:26px 0;border-bottom:1px solid var(--line);align-items:start;}
+  .facts .fact:last-child{border-bottom:0;padding-bottom:0;}
+  .facts .fact h3{margin-bottom:0;}
+  .facts .fact p{margin-top:2px;}
+}
+/* Phones stack. This has to be stated here rather than inherited from the
+   860px block, because .facts was removed from that block to protect the
+   row list above -- without it the base repeat(3,1fr) reaches the phone. */
+@media(max-width:600px){.facts{grid-template-columns:1fr;gap:36px;}}
 /* ---------- HOME INTRO ---------- */
 /* Capped at a reading measure (~950px; the rail is 1356px at 1920) and LEFT on
    the rail, not centered. The home page runs one left axis at 282px from the
@@ -264,9 +293,12 @@ button.txt-link{background:none;border-top:0;border-left:0;border-right:0;cursor
    1265), and this is the smallest of them. Below ~950px the cap stops biting
    and the prose fills the rail on its own. */
 .intro{padding-top:clamp(64px,8vw,104px);}
-.intro-band{max-width:950px;}
+.intro-band{max-width:none;}
 .intro-side .lab{display:block;margin-bottom:clamp(20px,2.5vw,30px);}
-.intro-body p{font-family:var(--d);font-weight:430;font-optical-sizing:auto;font-size:clamp(1.4rem,2.6vw,2rem);line-height:1.5;letter-spacing:-.01em;color:var(--ink);text-wrap:pretty;}
+.intro-body p{font-family:var(--d);font-weight:430;font-optical-sizing:auto;font-size:clamp(1.4rem,2.6vw,2rem);line-height:1.5;letter-spacing:-.01em;color:var(--ink);text-wrap:pretty;
+  /* Capped in ch, not px. A px cap stops biting once the rail is narrower than
+     it, which is exactly what let tablet run to 76 characters per line. */
+  max-width:62ch;}
 .intro-body p + p{margin-top:28px;}
 
 /* Adjacent sections that would otherwise share the page background are
@@ -310,7 +342,7 @@ button.txt-link{background:none;border-top:0;border-left:0;border-right:0;cursor
 .immersive .lab{color:var(--terra-soft);}
 
 /* ---------- AESTHETICS (dark) ---------- */
-.aes{background:var(--forest-deep);color:var(--paper);padding:clamp(80px,11vw,150px) var(--pad);}
+.aes{background:var(--forest-deep);color:var(--paper);padding:var(--sp-l) var(--pad-col);}
 .aes-wrap{max-width:var(--content-max);margin:0 auto;}
 .aes-head{max-width:44ch;margin-bottom:clamp(48px,6vw,70px);}
 .aes-head .lab{color:var(--terra-soft);}
@@ -327,7 +359,11 @@ button.txt-link{background:none;border-top:0;border-left:0;border-right:0;cursor
 .aes-card .more{display:inline-block;margin-top:16px;font-size:.8rem;letter-spacing:.06em;text-transform:uppercase;color:var(--terra-soft);border-bottom:1px solid currentColor;padding-bottom:3px;}
 
 /* ---------- VENUE MARQUEE ---------- */
-.marq{padding:clamp(60px,8vw,110px) 0;text-align:center;overflow:hidden;}
+.marq{padding:var(--sp-m) 0;text-align:center;overflow:hidden;
+  /* A scrolling marquee should dissolve at its edges, not be sliced by them.
+     Without this, names are cut mid-letterform at both margins. */
+  -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 7%,#000 93%,transparent 100%);
+  mask-image:linear-gradient(90deg,transparent 0,#000 7%,#000 93%,transparent 100%);}
 .marq .lab{margin-bottom:34px;}
 .marq-track{display:flex;gap:0;white-space:nowrap;animation:scroll 46s linear infinite;width:max-content;}
 .marq-track span{font-family:var(--d);font-size:clamp(1.8rem,3.4vw,2.9rem);letter-spacing:-.01em;color:var(--ink);padding:0 .55em;opacity:.85;}
@@ -337,7 +373,7 @@ button.txt-link{background:none;border-top:0;border-left:0;border-right:0;cursor
 .marq-foot{margin-top:36px;}
 
 /* ---------- TESTIMONIAL ---------- */
-.testi{padding:clamp(90px,12vw,160px) var(--pad);max-width:1100px;margin:0 auto;text-align:center;}
+.testi{padding:var(--sp-l) var(--pad);max-width:1100px;margin:0 auto;text-align:center;}
 .stars{color:var(--terra);letter-spacing:.3em;font-size:.9rem;margin-bottom:28px;}
 .testi blockquote{font-family:var(--d);font-weight:430;font-optical-sizing:auto;font-size:clamp(1.8rem,3.9vw,3.1rem);line-height:1.22;letter-spacing:-.01em;}
 .testi blockquote em{color:var(--forest);}
@@ -346,20 +382,20 @@ button.txt-link{background:none;border-top:0;border-left:0;border-right:0;cursor
 
 /* ---------- CLOSING CTA ---------- */
 /* Closing CTA: same tint band as .cta-section, which already used --bg2. */
-.cta{background:var(--bg2);padding:clamp(100px,14vw,200px) var(--pad);text-align:center;}
+.cta{background:var(--bg2);padding:var(--sp-l) var(--pad-col);text-align:center;}
 /* Where a tint band butts straight into the CTA (sustainability: .pledge is the
    previous sibling) the two would read as one slab, so carry the break on a
    hairline instead of a tone change. */
 .pledge + .cta,.proc + .cta,.cta-section + .cta,.band-paper + .cta{border-top:1px solid var(--line);}
-.cta--tall{min-height:0;padding-top:clamp(64px,9vw,120px);padding-bottom:clamp(64px,9vw,120px);display:flex;flex-direction:column;align-items:center;justify-content:center;}
+.cta--tall{min-height:0;padding-top:var(--sp-m);padding-bottom:var(--sp-m);display:flex;flex-direction:column;align-items:center;justify-content:center;}
 .cta--tall p{max-width:56ch;}
 .cta h2{font-family:var(--d);font-weight:430;font-optical-sizing:auto;font-size:clamp(2.6rem,6.6vw,6.2rem);letter-spacing:-.025em;line-height:1;}
 .cta h2 em{color:var(--terra);}
 .cta p{color:var(--mute);margin:24px auto 38px;max-width:42ch;font-size:1.06rem;}
 
 /* ---------- FOOTER ---------- */
-.site-footer{background:var(--forest-deep);color:oklch(86% .02 130);padding:clamp(64px,8vw,100px) var(--pad-col) 34px;}
-.foot-in{display:grid;grid-template-columns:1.05fr 1.35fr;gap:clamp(40px,6vw,80px);align-items:start;border-bottom:1px solid oklch(100% 0 0/.12);padding-bottom:clamp(40px,5vw,60px);}
+.site-footer{background:var(--forest-deep);color:oklch(86% .02 130);padding:var(--sp-m) var(--pad-col) 34px;}
+.foot-in{display:grid;grid-template-columns:.85fr 1.6fr;gap:clamp(40px,6vw,80px);align-items:start;border-bottom:1px solid oklch(100% 0 0/.12);padding-bottom:clamp(40px,5vw,60px);}
 .foot-lead{max-width:34ch;}
 .foot-brand{font-family:var(--d);font-size:clamp(2.4rem,5vw,3.6rem);color:var(--paper);letter-spacing:-.01em;line-height:1;}
 .foot-tag{font-size:.98rem;line-height:1.6;color:oklch(82% .02 130);margin:20px 0 26px;}
@@ -385,7 +421,7 @@ button.txt-link{background:none;border-top:0;border-left:0;border-right:0;cursor
 /* ---------- PORTFOLIO ---------- */
 .pf-note{text-align:center;color:var(--mute);font-size:.95rem;padding:26px var(--pad) 0;}
 .pf-note a{color:var(--forest);border-bottom:1px solid var(--terra);padding-bottom:2px;}
-.pf-wrap{max-width:var(--content-max);margin:0 auto;padding:clamp(36px,5vw,64px) var(--pad) clamp(60px,8vw,110px);}
+.pf-wrap{max-width:var(--content-max);margin:0 auto;padding:var(--sp-s) var(--pad) var(--sp-m);}
 .pf-grid{column-count:3;column-gap:16px;}
 .pf-card{break-inside:avoid;margin-bottom:16px;position:relative;border-radius:3px;overflow:hidden;display:block;}
 .pf-card img{width:100%;transition:transform 1s cubic-bezier(.2,.7,.2,1);}
@@ -472,9 +508,9 @@ body.lb-open{overflow:hidden;}
 }
 
 /* ---------- INTERIOR CONTENT (shared: Studio / Process / Venues) ---------- */
-.block{max-width:var(--content-max);margin:0 auto;padding:clamp(60px,8vw,110px) var(--pad);}
+.block{max-width:var(--content-max);margin:0 auto;padding:var(--sp-m) var(--pad);}
 .block.tight{padding-top:clamp(40px,5vw,64px);padding-bottom:clamp(40px,5vw,64px);}
-.block-narrow{max-width:780px;margin:0 auto;padding:clamp(60px,8vw,100px) var(--pad);}
+.block-narrow{max-width:780px;margin:0 auto;padding:var(--sp-m) var(--pad);}
 /* .band is the full-bleed tonal-band wrapper (see /about); it gets the same
    heading treatment as .block so a section keeps its type when it changes
    surface. */
@@ -544,7 +580,7 @@ body.lb-open{overflow:hidden;}
 .pledge-closing p{font-family:var(--d);font-style:normal;font-size:clamp(1.5rem,2.8vw,2.1rem);line-height:1.3;color:var(--forest);max-width:30ch;}
 
 /* ---------- PROCESS ---------- */
-.proc{background:var(--bg2);color:var(--ink);padding:clamp(72px,10vw,130px) var(--pad);}
+.proc{background:var(--bg2);color:var(--ink);padding:var(--sp-l) var(--pad-col);}
 .proc-wrap{max-width:1100px;margin:0 auto;}
 .proc-head{max-width:48ch;margin-bottom:clamp(44px,6vw,68px);}
 .proc-head .lab{color:var(--terra);}
@@ -587,7 +623,7 @@ body.lb-open{overflow:hidden;}
 /* ---------- CALLOUT (how we work) ----------
    The section wrapper carries no padding of its own: the card's own padding is
    the section's breathing room, so the two don't stack into a moat. */
-.callout-sec{max-width:var(--content-max);margin:0 auto;padding:clamp(64px,8vw,110px) var(--pad) clamp(30px,4vw,52px);}
+.callout-sec{max-width:var(--content-max);margin:0 auto;padding:var(--sp-m) var(--pad) var(--sp-s);}
 .callout{max-width:820px;margin:0 auto;background:var(--bg2);border:1px solid var(--line);border-radius:10px;padding:clamp(40px,5vw,64px);text-align:center;}
 .callout h2{font-family:var(--d);font-weight:430;font-optical-sizing:auto;font-size:clamp(1.7rem,3.4vw,2.6rem);letter-spacing:-.01em;margin:10px 0 16px;}
 
@@ -892,7 +928,7 @@ body.nav-hidden .venue-breadcrumb{top:0;}
 .price-note{font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);margin-top:10px;}
 .price-details p{margin-bottom:14px;}
 
-.cta-section{background:var(--bg2);padding:clamp(80px,12vw,160px) var(--pad);text-align:center;}
+.cta-section{background:var(--bg2);padding:var(--sp-l) var(--pad-col);text-align:center;}
 .cta-section .label{display:block;}
 .cta-section h2{font-family:var(--d);font-weight:430;font-optical-sizing:auto;font-size:clamp(2.2rem,5vw,4rem);letter-spacing:-.02em;line-height:1.05;margin:12px 0;}
 .cta-section p{max-width:46ch;margin:0 auto 28px;color:var(--fg2);}
@@ -1091,7 +1127,10 @@ body.nav-hidden .venue-breadcrumb{top:0;}
   .values-grid{grid-template-columns:1fr;}
   .season-grid,.pledge-grid{grid-template-columns:1fr;}
   .side-label{display:none;}
-  .facts,.aes-row{grid-template-columns:1fr;gap:36px;}
+  /* .facts is NOT here: it runs a row list from 601-1024px (see the .facts
+     block above) and only stacks 1-up below 600px. Adding it back to this
+     rule would win on specificity-tie-by-order and kill the row list. */
+  .aes-row{grid-template-columns:1fr;gap:36px;}
   .feature,.portrait{grid-column:span 12;height:auto;aspect-ratio:4/3;}
   .third,.quarter{grid-column:span 6;height:auto;aspect-ratio:1/1;}
   /* Without this the vw-based height collapses to its 220px floor on a phone,
