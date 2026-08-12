@@ -396,7 +396,7 @@ button.txt-link{background:none;border-top:0;border-left:0;border-right:0;cursor
 .pledge + .cta,.proc + .cta,.cta-section + .cta,.band-paper + .cta{border-top:1px solid var(--line);}
 .cta--tall{min-height:0;padding-top:var(--sp-m);padding-bottom:var(--sp-m);display:flex;flex-direction:column;align-items:center;justify-content:center;}
 .cta--tall p{max-width:56ch;}
-.cta h2{font-family:var(--d);font-weight:430;font-optical-sizing:auto;font-size:clamp(2.1rem,6.6vw,4.2rem);letter-spacing:-.025em;line-height:1;}
+.cta h2{font-family:var(--d);font-weight:430;font-optical-sizing:auto;font-size:clamp(2.1rem,5vw,4.2rem);letter-spacing:-.025em;line-height:1;}
 .cta h2 em{color:var(--accent);}
 .cta p{color:var(--mute);margin:24px auto 38px;max-width:42ch;font-size:1.06rem;}
 
@@ -908,7 +908,7 @@ body.nav-hidden .venue-breadcrumb{top:0;}
 .hero--interior .hero-media img{width:100%;height:100%;object-fit:cover;}
 .hero--interior .hero-copy{position:relative;z-index:3;width:100%;padding:0 var(--pad) clamp(40px,6vw,60px);}
 .hero-eyebrow{font-size:.82rem;letter-spacing:.22em;text-transform:uppercase;color:var(--accent-soft);display:block;margin-bottom:18px;}
-.hero--interior .hero-display{font-family:var(--d);font-weight:430;font-optical-sizing:auto;font-size:clamp(2.6rem,7vw,5.6rem);line-height:1;letter-spacing:-.02em;}
+.hero--interior .hero-display{font-family:var(--d);font-weight:430;font-optical-sizing:auto;font-size:clamp(2.6rem,6vw,5.6rem);line-height:1;letter-spacing:-.02em;}
 .hero--interior .hero-sub{font-size:1rem;opacity:.95;margin-top:18px;max-width:40ch;}
 
 .section{padding:clamp(60px,8vw,100px) 0;}
@@ -1243,7 +1243,7 @@ body.nav-hidden .venue-breadcrumb{top:0;}
   align-items:flex-end;gap:40px;}
 .wp-tt .lab{color:var(--accent-soft);opacity:.85;}
 .wp-tt h1{font-family:var(--d);font-weight:430;letter-spacing:-.022em;line-height:1.02;
-  font-size:clamp(2.6rem,7.6vw,5.6rem);margin-top:12px;}
+  font-size:clamp(2.6rem,6vw,5.6rem);margin-top:12px;}
 .wp-where{font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;opacity:.88;
   text-align:right;white-space:nowrap;}
 
