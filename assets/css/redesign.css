@@ -696,9 +696,13 @@ body.lb-open{overflow:hidden;}
 .compare thead .ct-lead{border-radius:3px 3px 0 0;}
 .compare tbody tr:last-child .ct-lead{border-radius:0 0 3px 3px;}
 .compare .is-off{color:var(--mute);}
-.compare tbody tr:last-child th,.compare tbody tr:last-child td{font-family:var(--d);
+/* The money row is set in the display face. Only the VALUES: the row label is a
+   row label like every other one. It used to be caught by this selector and
+   handed back its font and size by a second rule, but not its tracking, so
+   "WHERE IT STARTS" sat at -.005em while every label above it was at .16em and
+   it read as a different typeface. */
+.compare tbody tr:last-child td{font-family:var(--d);
   font-size:clamp(1.1rem,1.7vw,1.35rem);letter-spacing:-.005em;}
-.compare tbody tr:last-child th{font-family:inherit;font-size:.72rem;}
 
 @media(max-width:760px){
   /* A seven-row table can't hold three columns on a phone without either a
