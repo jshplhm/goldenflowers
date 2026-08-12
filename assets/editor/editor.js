@@ -63,6 +63,10 @@ const newCancel = document.getElementById("ed-new-cancel");
 
 /* dirty[key] = new plain-text value with *asterisk* markup */
 const dirty = new Map();
+/* dirtyPrev[key] = the value that was on the page before it was touched.
+ * Renaming a couple has to find their old name inside the page's seo_title to
+ * replace it, and dirty only carries the new one. */
+const dirtyPrev = new Map();
 /* postDirty[path] = { title?, body? } — pending edits to a _posts file */
 const postDirty = new Map();
 /* postBaseline[path] = { title?, body? } — what was on disk before editing */
@@ -113,6 +117,11 @@ function serialize(node) {
       if (tag === "EM" || tag === "I") out += "*" + serialize(n) + "*";
       else if (tag === "STRONG" || tag === "B") out += "**" + serialize(n) + "**";
       else if (tag === "BR") out += " ";
+      /* Block children need a gap or they weld together. A wedding story is one
+       * YAML scalar shown as two paragraphs (wedding-open.html), so without
+       * this its display line ran straight into its body: "…mountain.Palisades".
+       * cleanValue collapses the run of spaces afterwards. */
+      else if (tag === "P" || tag === "DIV" || tag === "LI") out += serialize(n) + " ";
       else out += serialize(n);
     }
   }
@@ -128,11 +137,48 @@ function escapeHtml(s) {
 }
 
 /* "text with *markers*" -> HTML matching what em.html renders */
-function renderValue(v) {
+function inlineHtml(v) {
   let h = escapeHtml(v);
   h = h.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
   h = h.replace(/\*([^*]+)\*/g, "<em>$1</em>");
   return h;
+}
+
+/* Sentence one of a wedding story, mirroring the split in wedding-open.html.
+ * "Dr." and initials like "J." are not sentence ends, which is what stranded
+ * "Seuss" on its own in the body paragraph. Keep the two in step: the editor
+ * repaints this element as you type, so a different rule here would show
+ * Brittany a layout the built page doesn't produce. */
+const STORY_ABBR = new Set(
+  ("Dr,Mr,Mrs,Ms,Messrs,Prof,Rev,Fr,Sr,Jr,St,Ste,Mt,Ft,Ave,Rd,Blvd,Ln,Hwy,No,Nos," +
+   "vs,etc,approx,est,Inc,Co,Ltd,Dept,Univ").split(",")
+);
+
+function splitStory(v) {
+  const chunks = v.split(". ");
+  let opener = "", rest = "", closed = false;
+  for (const c of chunks) {
+    if (closed) {
+      rest = rest === "" ? c : `${rest}. ${c}`;
+      continue;
+    }
+    opener = opener === "" ? c : `${opener}. ${c}`;
+    const tail = opener.split(" ").pop();
+    if (tail.length >= 2 && !STORY_ABBR.has(tail)) closed = true;
+  }
+  return { opener, rest };
+}
+
+/* A one-sentence story keeps its own punctuation and stands alone as the
+ * display line; only a real split has to put back the "." that split() ate. */
+function renderStory(v) {
+  const { opener, rest } = splitStory(v);
+  if (rest === "") return `<p class="wp-lede">${inlineHtml(opener)}</p>`;
+  return `<p class="wp-lede">${inlineHtml(opener)}.</p><p>${inlineHtml(rest)}</p>`;
+}
+
+function renderValue(v, el) {
+  return el && el.hasAttribute && el.hasAttribute("data-ed-story") ? renderStory(v) : inlineHtml(v);
 }
 
 function cleanValueOfHtml(html) {
@@ -242,6 +288,12 @@ const FRAME_CSS = `
   .gf-dirty{box-shadow:0 0 0 2px rgba(200,150,30,.45);}
   img:hover{outline:2px dashed rgba(47,93,58,.55);outline-offset:-2px;cursor:pointer;}
   [data-ed-post] img:hover{outline:none;cursor:text;}
+  /* Fields with nothing in them yet are display:none on the live site (.ed-empty
+   * in redesign.css) so half-filled pages don't look broken. Show them in here,
+   * or there is no way to ever put anything in them. data-ed-hint names the
+   * field, since an empty span is a zero-pixel click target. */
+  .ed-empty{display:revert !important;}
+  [data-ed-hint]:empty::before{content:attr(data-ed-hint);color:rgba(47,93,58,.65);font-style:italic;}
 `;
 
 /* current page context, set on every iframe load */
@@ -320,12 +372,14 @@ function stopEdit(revert) {
     const key = el.getAttribute("data-ed");
     if (val !== before) {
       dirty.set(key, val);
+      if (!dirtyPrev.has(key)) dirtyPrev.set(key, before);
       doc && doc.querySelectorAll(`[data-ed="${CSS.escape(key)}"]`).forEach((n) => {
         n.classList.add("gf-dirty");
-        if (n !== el) n.innerHTML = renderValue(val);
+        if (n !== el) n.innerHTML = renderValue(val, n);
       });
     } else {
       dirty.delete(key);
+      dirtyPrev.delete(key);
       el.classList.remove("gf-dirty");
     }
   }
@@ -371,7 +425,7 @@ function hookFrame() {
   /* re-apply unsaved edits after in-site navigation */
   for (const [key, val] of dirty) {
     doc.querySelectorAll(`[data-ed="${CSS.escape(key)}"]`).forEach((n) => {
-      n.innerHTML = renderValue(val);
+      n.innerHTML = renderValue(val, n);
       n.classList.add("gf-dirty");
     });
   }
@@ -472,6 +526,7 @@ function refreshBar() {
 
 discardBtn.addEventListener("click", () => {
   dirty.clear();
+  dirtyPrev.clear();
   postDirty.clear();
   postBaseline.clear();
   refreshBar();
@@ -588,6 +643,35 @@ async function savePostFile(path, edits, attempt = 0) {
   if (!res.ok) throw new Error(`Couldn't save ${path} (${res.status})`);
 }
 
+/* The couple's name is one field in portfolio_meta.yml behind every place a
+ * visitor sees it, but the wedding page's own front matter carries the <title>
+ * and seo_title Google reads. A rename that reached only the heading left the
+ * page called two different things, so a name edit patches both.
+ *
+ * seo_title is only rewritten when it still reads as the generated line for the
+ * OLD name; a hand-tuned one is left alone rather than clobbered. */
+async function syncWeddingName(slug, name, prev, attempt = 0) {
+  const path = `portfolio/${slug}/index.md`;
+  let meta;
+  try { meta = await getFile(path); } catch { return; }
+  const raw = b64decodeUtf8(meta.content);
+  const m = raw.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n?/);
+  if (!m) return;
+
+  const fmDoc = parseDocument(m[1]);
+  fmDoc.setIn(["title"], name);
+  const seo = fmDoc.getIn(["seo_title"]);
+  if (typeof seo === "string" && prev && seo === `${prev} Wedding Flowers | Golden Flowers`) {
+    fmDoc.setIn(["seo_title"], `${name} Wedding Flowers | Golden Flowers`);
+  }
+
+  const body = raw.slice(m[0].length).replace(/^\n+/, "");
+  const out = `---\n${fmDoc.toString().replace(/\n+$/, "")}\n---\n\n${body}`;
+  const res = await putFile(path, `Rename ${slug} to ${name} via inline editor`, out, meta.sha);
+  if (res.status === 409 && attempt === 0) return syncWeddingName(slug, name, prev, 1);
+  if (!res.ok) throw new Error(`Renamed the heading but couldn't update ${path} (${res.status}) — the page title still says the old name.`);
+}
+
 saveBtn.addEventListener("click", async () => {
   if (!dirtyCount()) return;
   if (!DRYRUN && !token()) { await ensureAuth(); if (!token()) return; }
@@ -606,10 +690,19 @@ saveBtn.addEventListener("click", async () => {
     byFile.get(file).push([key.slice(i + 1), val]);
   }
 
+  /* Grab these before the maps are cleared below. */
+  const renames = [];
+  for (const [key, val] of dirty) {
+    const m = key.match(/^portfolio_meta:([a-z0-9-]+)\.name$/);
+    if (m) renames.push([m[1], val, dirtyPrev.get(key)]);
+  }
+
   try {
     for (const [file, entries] of byFile) await saveFile(file, entries);
+    for (const [slug, name, prev] of renames) await syncWeddingName(slug, name, prev);
     for (const [path, edits] of postDirty) await savePostFile(path, edits);
     dirty.clear();
+    dirtyPrev.clear();
     postDirty.clear();
     postBaseline.clear();
     const doc = frameDoc();
@@ -1560,6 +1653,7 @@ const wedModal = document.getElementById("ed-wed-modal");
 const wedForm = document.getElementById("ed-wed-form");
 const wedNames = document.getElementById("ed-wed-names");
 const wedVenue = document.getElementById("ed-wed-venue");
+const wedPlace = document.getElementById("ed-wed-place");
 const wedDesc = document.getElementById("ed-wed-desc");
 const wedErr = document.getElementById("ed-wed-err");
 const wedCancel = document.getElementById("ed-wed-cancel");
@@ -1659,9 +1753,11 @@ wedForm.addEventListener("submit", async (e) => {
 
   const names = wedNames.value.trim();
   const venue = wedVenue.value.trim();
+  const place = wedPlace.value.trim();
   const desc = wedDesc.value.trim().replace(/\s+/g, " ");
   if (!names) return fail("Who got married? Add the couple's names.");
-  if (!venue) return fail("Add the venue (and town) — it helps Google find the wedding.");
+  if (!venue) return fail("Add the venue — it helps Google find the wedding.");
+  if (!place) return fail("Add the town the venue is in.");
   if (!desc) return fail("Add a sentence or two about the wedding.");
   const slug = weddingSlug(names);
   if (!slug) return fail("Those names don't work as a web address — try e.g. “Brittany & Chase”.");
@@ -1702,17 +1798,18 @@ wedForm.addEventListener("submit", async (e) => {
     pfDoc.setIn([slug], desc);
     commit.push({ path: "_data/portfolio.yml", text: pfDoc.toString() });
 
-    /* the band on /portfolio, plus an empty credits row ready to fill in */
-    const venueName = venue.split(",")[0].trim();
-    const place = venue.includes(",") ? venue.slice(venue.indexOf(",") + 1).trim() : "";
+    /* the band on /portfolio, plus an empty credits row ready to fill in.
+     * Venue and town arrive as separate fields; this used to split one string
+     * on its comma, which silently produced venue "PlumpJack Inn Truckee" with
+     * no town whenever the comma wasn't typed. */
     const metaFile = await getFile(META_PATH);
     const metaDoc = parseDocument(b64decodeUtf8(metaFile.content));
-    addMetaRow(metaDoc, slug, names, venueName, place, heroName, desc);
+    addMetaRow(metaDoc, slug, names, venue, place, heroName, desc);
     commit.push({ path: META_PATH, text: metaDoc.toString() });
 
     const credFile = await getFile("_data/credits.yml");
     const credDoc = parseDocument(b64decodeUtf8(credFile.content));
-    addCreditsRow(credDoc, slug, venueName);
+    addCreditsRow(credDoc, slug, venue);
     commit.push({ path: "_data/credits.yml", text: credDoc.toString() });
 
     await commitFiles(commit, `Add the ${names} wedding to the portfolio via inline editor`);

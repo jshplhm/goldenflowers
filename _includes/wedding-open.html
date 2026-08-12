@@ -13,56 +13,107 @@
   in the page source and the generic swap flow can't find anything to rewrite.
 {%- endcomment -%}
 <header class="wp-open" data-ed-hero="{{ include.slug }}">
-  <img src="{{ site.baseurl }}{{ heroPath }}" alt="{{ include.name }} wedding flowers at {{ m.venue }}, {{ m.place }}" loading="eager" fetchpriority="high" sizes="100vw">
+  <img src="{{ site.baseurl }}{{ heroPath }}" alt="{{ m.name }} wedding flowers at {{ m.venue }}{% if m.place != '' %}, {{ m.place }}{% endif %}" loading="eager" fetchpriority="high" sizes="100vw">
   <div class="wp-tt">
     <div>
-      <h1>{{ include.name }}</h1>
+      {%- comment -%}
+        The couple's name renders from portfolio_meta rather than the include
+        param so there is one field behind every place it appears. Editing it
+        here also rewrites the page's own title/seo_title (syncWeddingName in
+        editor.js) — those drive the browser tab and the Google result, and a
+        rename that only reached the visible heading left the two disagreeing.
+      {%- endcomment -%}
+      <h1><span data-ed="portfolio_meta:{{ include.slug }}.name">{{ m.name }}</span></h1>
     </div>
-    <span class="wp-where">{{ m.venue }}</span>
+    {%- comment -%}
+      Venue and town are two fields, shown as one line. Editing either one here
+      would need the line split back apart on save, so the editable copies live
+      in the fact panel below, one span each.
+    {%- endcomment -%}
+    <span class="wp-where">{{ m.venue }}{% if m.place != "" %}, {{ m.place }}{% endif %}</span>
   </div>
 </header>
 
 <section class="wp-story">
-  <div>
+  {%- comment -%}
+    The display line is the story's own first sentence, split out rather than
+    stored twice: a separate `opener` field drifted out of sync with
+    _data/portfolio.yml the moment either was edited, and printed the same
+    sentence twice on the page.
+
+    data-ed sits on this wrapper, NOT on the two paragraphs. The split is
+    presentation, so the editable unit has to stay the whole story: with the
+    span around the body paragraph only, saving an edit wrote the body back to
+    portfolio.yml[slug] and silently deleted the first sentence, because that
+    key holds both. editor.js walks block children with a separator and
+    re-splits on the way back in (renderStory), so what it paints matches this.
+  {%- endcomment -%}
+  {%- assign story = site.data.portfolio[include.slug] | strip -%}
+  <div data-ed-story data-ed="portfolio:{{ include.slug }}">
     {%- comment -%}
-      The display line is the story's own first sentence, split out rather than
-      stored twice: a separate `opener` field drifted out of sync with
-      _data/portfolio.yml the moment either was edited, and printed the same
-      sentence twice on the page.
+      Sentence one, found by splitting on ". " — except that "Dr. Seuss" is not
+      two sentences. A chunk only closes the opener if it doesn't end in a known
+      abbreviation or a single letter (an initial), which is what put "Seuss"
+      alone in the body paragraph on the Mikayla & Jeff page.
     {%- endcomment -%}
-    {%- assign story = site.data.portfolio[include.slug] -%}
-    {%- assign story_k = include.slug | prepend: "portfolio:" -%}
-    {%- assign parts = story | split: ". " -%}
-    {%- if parts.size > 1 -%}
-      {%- assign opener = parts[0] | append: "." -%}
-      {%- assign rest = "" -%}
-      {%- for seg in parts offset:1 -%}
-        {%- if forloop.first -%}{%- assign rest = seg -%}
-        {%- else -%}{%- assign rest = rest | append: ". " | append: seg -%}{%- endif -%}
-      {%- endfor -%}
+    {%- assign abbr = "Dr,Mr,Mrs,Ms,Messrs,Prof,Rev,Fr,Sr,Jr,St,Ste,Mt,Ft,Ave,Rd,Blvd,Ln,Hwy,No,Nos,vs,etc,approx,est,Inc,Co,Ltd,Dept,Univ" | split: "," -%}
+    {%- assign chunks = story | split: ". " -%}
+    {%- assign opener = "" -%}
+    {%- assign rest = "" -%}
+    {%- assign closed = false -%}
+    {%- for c in chunks -%}
+      {%- if closed -%}
+        {%- if rest == "" -%}{%- assign rest = c -%}
+        {%- else -%}{%- assign rest = rest | append: ". " | append: c -%}{%- endif -%}
+      {%- else -%}
+        {%- if opener == "" -%}{%- assign opener = c -%}
+        {%- else -%}{%- assign opener = opener | append: ". " | append: c -%}{%- endif -%}
+        {%- assign tail = opener | split: " " | last -%}
+        {%- assign is_abbr = false -%}
+        {%- if tail.size < 2 -%}{%- assign is_abbr = true -%}{%- endif -%}
+        {%- for a in abbr -%}{%- if tail == a -%}{%- assign is_abbr = true -%}{%- endif -%}{%- endfor -%}
+        {%- unless is_abbr -%}{%- assign closed = true -%}{%- endunless -%}
+      {%- endif -%}
+    {%- endfor -%}
+    {%- comment -%}
+      A one-sentence story keeps its own punctuation and stands alone as the
+      display line; only a real split has to put back the "." that `split` ate.
+    {%- endcomment -%}
+    {%- if rest == "" -%}
+      <p class="wp-lede">{% include em.html t=opener %}</p>
     {%- else -%}
-      {%- assign opener = "" -%}{%- assign rest = story -%}
+      <p class="wp-lede">{% include em.html t=opener %}.</p>
+      <p>{% include em.html t=rest %}</p>
     {%- endif -%}
-    {%- if opener != "" -%}<p class="wp-lede">{{ opener }}</p>{%- endif -%}
-    <p>{% include em.html t=rest k=story_k %}</p>
   </div>
   <div class="wp-panel">
     <dl>
-      <dt>Venue</dt><dd>{{ m.venue }}</dd>
+      <dt>Venue</dt><dd><span data-ed="portfolio_meta:{{ include.slug }}.venue">{{ m.venue }}</span></dd>
       {%- comment -%}
-        A wedding with no palette yet drops the row entirely rather than
-        printing a bare "Palette" label with nothing beside it, the same way a
-        blank vendor disappears from the credits block: half-filled should look
-        deliberate, not broken. Liquid counts "" as truthy, so these have to be
-        compared rather than tested with a plain `if`; the `size` filter is
-        what makes a missing `dots` count as 0 instead of erroring.
+        A wedding with no palette or town yet hides the row rather than printing
+        a bare label with nothing beside it, the same way a blank vendor
+        disappears from the credits block: half-filled should look deliberate,
+        not broken.
+
+        `.ed-empty` HIDES rather than skips. Rendering nothing meant there was
+        no span for the inline editor to click, so an empty palette could never
+        be filled in from /edit and could never stop being empty: the only way
+        out was Pages CMS or a commit. editor.js reveals .ed-empty inside its
+        iframe with a "click to add" placeholder, so the row is invisible to
+        visitors and reachable to Brittany.
+
+        Liquid counts "" as truthy, so these have to be compared rather than
+        tested with a plain `if`; the `size` filter is what makes a missing
+        `dots` count as 0 instead of erroring.
       {%- endcomment -%}
       {%- assign pal = m.palette | strip -%}
       {%- assign ndots = m.dots | size -%}
-      {%- if pal != "" or ndots > 0 %}
-      <dt>Palette</dt><dd><span data-ed="portfolio_meta:{{ include.slug }}.palette">{{ m.palette }}</span>
+      {%- assign town = m.place | strip -%}
+      <dt{% if town == "" %} class="ed-empty"{% endif %}>Town</dt><dd{% if town == "" %} class="ed-empty"{% endif %}><span data-ed="portfolio_meta:{{ include.slug }}.place" data-ed-hint="Add the town">{{ m.place }}</span></dd>
+      {%- assign palempty = false -%}
+      {%- if pal == "" and ndots == 0 -%}{%- assign palempty = true -%}{%- endif %}
+      <dt{% if palempty %} class="ed-empty"{% endif %}>Palette</dt><dd{% if palempty %} class="ed-empty"{% endif %}><span data-ed="portfolio_meta:{{ include.slug }}.palette" data-ed-hint="Add the palette">{{ m.palette }}</span>
         {%- if ndots > 0 -%}<span class="wp-dots" aria-hidden="true">{% for d in m.dots %}<i style="background:{{ d }}"></i>{% endfor %}</span>{%- endif -%}</dd>
-      {%- endif %}
     </dl>
   </div>
 </section>

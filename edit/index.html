@@ -277,7 +277,12 @@ sitemap: false
       <h1>Add a wedding to the portfolio</h1>
       <p>This creates the wedding's own page, adds it to the portfolio, and uploads its photos. You'll pick the photos after this form; the first one you select becomes the big opening photo (changeable later in Photos).</p>
       <input type="text" id="ed-wed-names" placeholder="Couple, e.g. Brittany &amp; Chase" autocomplete="off">
-      <input type="text" id="ed-wed-venue" placeholder="Venue &amp; town, e.g. Edgewood Tahoe, South Lake Tahoe" autocomplete="off" style="margin-top:10px;">
+      <!-- Two fields, not one: venue and town are stored separately in
+           portfolio_meta.yml and shown apart on the wedding page. Asking for
+           them on one line put "PlumpJack Inn Truckee" in the venue and left
+           the town empty. -->
+      <input type="text" id="ed-wed-venue" placeholder="Venue, e.g. Edgewood Tahoe" autocomplete="off" style="margin-top:10px;">
+      <input type="text" id="ed-wed-place" placeholder="Town, e.g. South Lake Tahoe" autocomplete="off" style="margin-top:10px;">
       <textarea id="ed-wed-desc" placeholder="One or two sentences about the wedding — shown under the couple's name and used by Google. You can edit it later by clicking it on the page."></textarea>
       <button class="ed-btn primary" type="submit">Choose photos &amp; create</button>
       <button class="ed-btn" type="button" id="ed-wed-cancel">Cancel</button>
