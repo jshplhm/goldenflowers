@@ -78,26 +78,16 @@ redirect_from:
 
 <hr class="hr-line">
 
-<!-- PRICING (dark: the page premium moment) -->
-<section class="block pricing-dark" id="pricing">
-  <div class="pricing">
-    <span class="lab"><span data-ed="weddings:pricing.label">{{ site.data.weddings.pricing.label }}</span></span>
-    <p class="price-num"><span data-ed="weddings:pricing.price">{{ site.data.weddings.pricing.price }}</span></p>
-    <p class="price-sub"><span data-ed="weddings:pricing.price_sub">{{ site.data.weddings.pricing.price_sub }}</span></p>
-    <ul class="price-list">
-      {%- for point in site.data.weddings.pricing.points %}
-      <li>{% include em.html t=point k="weddings:pricing.points" i=forloop.index0 %}</li>
-      {%- endfor %}
-    </ul>
-    <p class="price-tagline"><span data-ed="weddings:pricing.tagline">{{ site.data.weddings.pricing.tagline }}</span></p>
-  </div>
-</section>
+<!-- SERVICE LEVELS. Deliberately BEFORE the number: the dark band used to open
+     with "$10,000-$30,000 / Typical Full service" at a point where the reader
+     had never been told there were two service levels, so the figure arrived
+     with nothing to attach to and the table then answered the same question
+     again with different numbers. What you are choosing comes first; what it
+     typically costs lands after it.
 
-<!-- SERVICE LEVELS (directly under the number: range first, then what the
-     range buys). A real <table> because this is genuinely tabular; on phones
-     the head is hidden and each cell announces its own column via data-tier,
-     which turns the grid into two readable stacks instead of a sideways
-     scroll. -->
+     A real <table> because this is genuinely tabular; on phones the head is
+     hidden and each cell announces its own column via data-tier, which turns
+     the grid into two readable stacks instead of a sideways scroll. -->
 {%- assign cmp = site.data.weddings.compare -%}
 <section class="block compare-sec" id="service-levels">
   <div class="compare-intro">
@@ -131,6 +121,21 @@ redirect_from:
   </table>
 </section>
 
+<!-- PRICING (dark: the page premium moment). Reads as the last rung of a
+     ladder the table starts: floor, then typical, then ambitious. -->
+<section class="block pricing-dark" id="pricing">
+  <div class="pricing">
+    <span class="lab"><span data-ed="weddings:pricing.label">{{ site.data.weddings.pricing.label }}</span></span>
+    <p class="price-num"><span data-ed="weddings:pricing.price">{{ site.data.weddings.pricing.price }}</span></p>
+    <p class="price-sub"><span data-ed="weddings:pricing.price_sub">{{ site.data.weddings.pricing.price_sub }}</span></p>
+    <ul class="price-list">
+      {%- for point in site.data.weddings.pricing.points %}
+      <li>{% include em.html t=point k="weddings:pricing.points" i=forloop.index0 %}</li>
+      {%- endfor %}
+    </ul>
+    <p class="price-tagline"><span data-ed="weddings:pricing.tagline">{{ site.data.weddings.pricing.tagline }}</span></p>
+  </div>
+</section>
 
 <!-- ASSURANCE -->
 <section class="callout-sec">

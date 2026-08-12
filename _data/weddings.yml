@@ -80,9 +80,14 @@ pricing:
   label: Investment
   price: $10,000–$30,000
   price_sub: Typical Full service Lake Tahoe wedding
+  # "Simple a la carte weddings start at $5,000" lived here too. It is now the
+  # last row of the comparison table directly above, and printing it twice on
+  # one page, ~300px apart, was the duplication that made the two sections read
+  # as competing rather than sequential. What is left is the top of the ladder:
+  # the table gives the floor, this gives the typical, this bullet gives the
+  # ceiling.
   points:
     - Ambitious, installation-heavy visions run **$30,000+**
-    - Simple a la carte weddings start at $5,000
   tagline: Locally-grown flowers, refined floral artistry, and a design curated
     around your day.
 # The two service levels, side by side, directly under the pricing band. This
