@@ -396,7 +396,7 @@ button.txt-link{background:none;border-top:0;border-left:0;border-right:0;cursor
 /* Where a tint band butts straight into the CTA (sustainability: .pledge is the
    previous sibling) the two would read as one slab, so carry the break on a
    hairline instead of a tone change. */
-.pledge + .cta,.proc + .cta,.cta-section + .cta,.band-paper + .cta,.wp-onward + .cta{border-top:1px solid var(--line);}
+.pledge + .cta,.proc + .cta,.cta-section + .cta,.band-paper + .cta{border-top:1px solid var(--line);}
 .cta--tall{min-height:0;padding-top:var(--sp-m);padding-bottom:var(--sp-m);display:flex;flex-direction:column;align-items:center;justify-content:center;}
 .cta--tall p{max-width:56ch;}
 .cta h2{font-family:var(--d);font-weight:430;font-optical-sizing:auto;font-size:clamp(2.1rem,5vw,4.2rem);letter-spacing:-.025em;line-height:1;}
@@ -427,7 +427,12 @@ button.txt-link{background:none;border-top:0;border-left:0;border-right:0;cursor
    "this is a link", and the address lines sitting in the same column are not
    links, so the columns needed a signal that only the links answer to. */
 .foot-cols a:hover,.foot-legal a:hover{color:var(--paper);text-decoration:underline;text-underline-offset:3px;}
-.foot-bottom{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-top:26px;font-size:.82rem;color:oklch(68% .02 130);letter-spacing:.02em;}
+/* The copyright and the legal links are one run of small print, so they sit
+   together on the left rather than being flung to opposite ends of the bar. */
+.foot-bottom{display:flex;justify-content:flex-start;align-items:baseline;gap:0;flex-wrap:wrap;margin-top:26px;font-size:.82rem;color:oklch(68% .02 130);letter-spacing:.02em;}
+/* Middots as separators, drawn by CSS so the markup stays a plain list of links
+   and the first one never gets a leading dot. */
+.foot-bottom > * + *::before,.foot-legal a + a::before{content:"·";margin:0 9px;color:oklch(68% .02 130/.65);}
 /* The Studio column ends in address lines, which are not links and shouldn't
    sit tight against the ones above them. */
 .foot-cols p:first-of-type{margin-top:18px;}
@@ -435,7 +440,7 @@ button.txt-link{background:none;border-top:0;border-left:0;border-right:0;cursor
    rule under them made them the loudest thing in the bottom bar and louder than
    the nav columns above, which is backwards, and no other footer link carries
    one. Underline on hover keeps the affordance where it is actually wanted. */
-.foot-legal{display:flex;gap:18px;}
+.foot-legal{display:inline;}
 .foot-legal a{transition:color .15s;}
 @media(max-width:860px){.foot-in{grid-template-columns:1fr;gap:40px;}.foot-cols{gap:28px 24px;}}
 @media(max-width:520px){.foot-cols{grid-template-columns:1fr 1fr;}}
@@ -480,7 +485,12 @@ button.txt-link{background:none;border-top:0;border-left:0;border-right:0;cursor
   .pf-feature .pf-card.big{height:78vw;}
 }
 /* Wedding (portfolio detail) page gallery */
-.wd-gallery{max-width:1200px;margin:0 auto;padding:clamp(18px,3vw,38px) var(--pad);}
+/* Asymmetric on purpose. The top is tight because the story above it already
+   ends on its own generous padding, but the bottom is the last thing before a
+   ruled section boundary, and at 18-38px the rule sat almost against the final
+   photo while the heading below it had 52-92px of air. Bottom now matches what
+   .wp-credits uses above its own border, so the rule sits in a balanced gap. */
+.wd-gallery{max-width:1200px;margin:0 auto;padding:clamp(18px,3vw,38px) var(--pad) clamp(60px,7vw,104px);}
 .wd-hero-img{width:100%;height:clamp(360px,52vw,640px);object-fit:cover;border-radius:4px;}
 .wd-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px;}
 .wd-grid img{width:100%;height:clamp(220px,28vw,360px);object-fit:cover;border-radius:4px;}
@@ -1361,11 +1371,14 @@ body.nav-hidden .venue-breadcrumb{top:0;}
 
 /* ---- credits ---- */
 .wp-credits{padding:clamp(60px,7vw,104px) var(--pad-col);border-top:1px solid var(--line);}
-.wp-ch{display:flex;align-items:baseline;gap:20px;margin-bottom:clamp(28px,3.4vw,48px);}
+/* The note reads as a subtitle to "The team", so it sits under the heading
+   rather than opposite it. Pushed to the far right it was a separate object
+   the eye had to travel to, and it landed level with the heading's baseline as
+   though the two were peers. */
+.wp-ch{margin-bottom:clamp(28px,3.4vw,48px);}
 .wp-ch h2{font-family:var(--d);font-weight:430;font-size:clamp(1.9rem,2.8vw,2.6rem);
   letter-spacing:-.012em;}
-.wp-ch p{margin-left:auto;max-width:34ch;text-align:right;font-size:.82rem;color:var(--mute);
-  line-height:1.55;}
+.wp-ch p{max-width:44ch;margin-top:10px;font-size:.88rem;color:var(--mute);line-height:1.6;}
 /* Two ranks: whoever's work is actually in these photographs reads first and
    larger, everyone else settles into a quiet three-column list underneath. */
 .wp-lead{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(10px,1.1vw,18px);
@@ -1390,24 +1403,18 @@ body.nav-hidden .venue-breadcrumb{top:0;}
 
 /* ---- more weddings (not prev/next: with a short list the neighbours either
    side are an accident of ordering and carry no meaning) ---- */
-/* The rail sits on the tint, not on the page surface. Leaving another wedding
-   for a rail of other weddings is a real change of subject, and on the page
-   default there was nothing between the last full-bleed photo of the wedding
-   you were reading and the first photo of a different one: the gallery just
-   kept going. The tint band is how the rest of the site carries a section
-   break (see the surface ramp), and it does the work that "The team" would do
-   if any wedding had its vendors filled in yet. Bottom padding is not optional
-   either, or the rail sits flush against the .cta below. */
-.wp-onward{background:var(--bg2);border-top:1px solid var(--line);
+/* The rule carries the break on its own; a tint here made the section shout,
+   and it butted into the tinted .cta below so the page ended on one long band.
+   The gallery's bottom padding above it does the rest. Bottom padding is not
+   optional, or the rail sits flush against the .cta. */
+.wp-onward{border-top:1px solid var(--line);
   padding:clamp(52px,6.5vw,92px) var(--pad-col) clamp(56px,7vw,104px);}
 .wp-oh{display:flex;align-items:center;justify-content:space-between;gap:20px;padding-bottom:18px;
   margin-bottom:clamp(16px,2vw,26px);border-bottom:1px solid var(--line);}
 .wp-oh h2{font-family:var(--d);font-weight:430;font-size:clamp(1.7rem,2.4vw,2.6rem);
   letter-spacing:-.012em;}
 .wp-onav{display:flex;gap:10px;flex:none;}
-/* Reuses .testi-nav so the site's two scrollers carry the same control. On the
-   tint the buttons need the page surface behind them to stay legible. */
-.wp-onav .testi-nav{background:var(--bg);}
+/* Reuses .testi-nav so the site's two scrollers carry the same control. */
 
 /* The rail. --per is how many cards fit across the text column; the rest hang
    off the right edge, so there is always one part-visible card saying "keep
@@ -1432,10 +1439,8 @@ body.nav-hidden .venue-breadcrumb{top:0;}
   bottom:clamp(16px,1.8vw,26px);z-index:2;color:var(--paper);}
 .wp-oc .wp-on{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;opacity:.72;}
 .wp-oc h3{font-family:var(--d);font-weight:430;font-size:clamp(1.3rem,2vw,1.9rem);margin-top:5px;}
-/* Closing card: the way off the rail, quiet enough not to compete with a photo.
-   Carries the page surface so it still reads as a card now that the section
-   around it is the tint. */
-.wp-oend{background:var(--bg);border:1px solid var(--line);display:flex;
+/* Closing card: the way off the rail, quiet enough not to compete with a photo. */
+.wp-oend{background:var(--bg2);border:1px solid var(--line);display:flex;
   align-items:center;justify-content:center;text-align:center;
   padding:0 clamp(16px,2vw,26px);transition:border-color .25s ease;}
 .wp-oend span{font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);}
@@ -1447,8 +1452,6 @@ body.nav-hidden .venue-breadcrumb{top:0;}
   .wp-where{text-align:left;white-space:normal;}
   .wp-lead{grid-template-columns:1fr;gap:22px;}
   .wp-rest{grid-template-columns:1fr;}
-  .wp-ch{flex-direction:column;gap:12px;}
-  .wp-ch p{margin-left:0;text-align:left;}
   .wp-og{--per:1.25;}
   /* The swipe is the control on a phone, so the arrows go rather than take up
      room in the header. */
