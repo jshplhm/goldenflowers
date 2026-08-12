@@ -422,7 +422,11 @@ button.txt-link{background:none;border-top:0;border-left:0;border-right:0;cursor
 .foot-cols h4{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--accent-soft);margin-bottom:16px;}
 .foot-cols a,.foot-cols p{display:block;font-size:.92rem;margin-bottom:10px;color:oklch(86% .02 130);line-height:1.4;}
 .foot-cols a{transition:color .15s;}
-.foot-cols a:hover{color:var(--paper);}
+/* Every footer link underlines on hover. Brightening alone was ambiguous
+   against a dark ground: it reads as a slight weight change rather than as
+   "this is a link", and the address lines sitting in the same column are not
+   links, so the columns needed a signal that only the links answer to. */
+.foot-cols a:hover,.foot-legal a:hover{color:var(--paper);text-decoration:underline;text-underline-offset:3px;}
 .foot-bottom{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-top:26px;font-size:.82rem;color:oklch(68% .02 130);letter-spacing:.02em;}
 /* The Studio column ends in address lines, which are not links and shouldn't
    sit tight against the ones above them. */
@@ -433,7 +437,6 @@ button.txt-link{background:none;border-top:0;border-left:0;border-right:0;cursor
    one. Underline on hover keeps the affordance where it is actually wanted. */
 .foot-legal{display:flex;gap:18px;}
 .foot-legal a{transition:color .15s;}
-.foot-legal a:hover{color:var(--paper);text-decoration:underline;text-underline-offset:3px;}
 @media(max-width:860px){.foot-in{grid-template-columns:1fr;gap:40px;}.foot-cols{gap:28px 24px;}}
 @media(max-width:520px){.foot-cols{grid-template-columns:1fr 1fr;}}
 

@@ -14,11 +14,15 @@
     </div>
     <nav class="foot-cols" aria-label="Footer">
       {%- comment -%}
-        Explore carries the work; Studio carries the pages that are about the
+        Explore carries the work; Studio carries the pages that are ABOUT the
         studio. Studio used to be two lines of address with no links in it,
-        which read as a column that had run out of things to say. It now holds
-        the three pages that were making Explore top-heavy, with the location
-        underneath.
+        which read as a column that had run out of things to say, so it took
+        the three pages that were making Explore top-heavy.
+
+        Where we are and when we're open are contact details, not a page
+        category, so they sit under Contact with the phone and email. "By
+        appointment only" also does more work directly beneath a phone number,
+        where it reads as how to reach us rather than as a stray fact.
       {%- endcomment -%}
       <div>
         <h4>Explore</h4>
@@ -32,9 +36,6 @@
         <a href="{{ site.baseurl }}/about">Our Story</a>
         <a href="{{ site.baseurl }}/sustainability">Sustainability</a>
         <a href="{{ site.baseurl }}/blog">Blog</a>
-        {%- for line in site.data.footer.studio %}
-        <p><span data-ed="footer:studio.{{ forloop.index0 }}">{{ line }}</span></p>
-        {%- endfor %}
       </div>
       <div>
         <h4>Contact</h4>
@@ -48,6 +49,9 @@
         <a href="tel:5305577689">(530) 557-7689</a>
         <a href="mailto:brittany@goldenflorals.com">brittany@goldenflorals.com</a>
         <a href="https://www.instagram.com/goldenflowersfloraldesign/" target="_blank" rel="noopener">@goldenflowersfloraldesign</a>
+        {%- for line in site.data.footer.studio %}
+        <p><span data-ed="footer:studio.{{ forloop.index0 }}">{{ line }}</span></p>
+        {%- endfor %}
       </div>
     </nav>
   </div>
