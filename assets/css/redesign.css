@@ -315,7 +315,11 @@ button.txt-link{background:none;border-top:0;border-left:0;border-right:0;cursor
 .band-paper{background:var(--bg2);}
 
 /* ---------- WORK ---------- */
-.work{padding:clamp(30px,4vw,50px) var(--pad) clamp(20px,3vw,40px);max-width:var(--content-max);margin:0 auto;}
+/* .work closes a tint band, so its bottom padding IS the visible gap between
+   "See more weddings" and the colour transition. On ad-hoc 50/40 that gap was
+   40px against 136px under the intro band above it, and the transition read as
+   crowding the link. Matches the intro band exactly now. */
+.work{padding:var(--sp-m) var(--pad) var(--sp-l);max-width:var(--content-max);margin:0 auto;}
 .work-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:46px;}
 .work-head h2{font-family:var(--d);font-weight:430;font-optical-sizing:auto;font-size:clamp(1.9rem,4.6vw,3.4rem);letter-spacing:-.02em;line-height:1;}
 .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px;}
