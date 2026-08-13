@@ -1,6 +1,11 @@
 ---
 layout: redesign
 hero_nav: true
+# Phones only: the nav (and with it the "Check your date" pill) is display:none
+# below 860px and the header auto-hides on scroll, so between the hero and the
+# closing CTA there was no visible way to book. See STICKY MOBILE CTA in
+# redesign.html / redesign.css.
+sticky_cta: true
 title: "Golden Flowers"
 seo_title: "Lake Tahoe & Sierra Nevada Wedding Florist | Golden Flowers"
 permalink: /
@@ -85,6 +90,9 @@ means there is nothing to transition on load. Reorder the photos, update this.
     <div class="intro-body">
       <p><span data-ed="home:intro.paragraph1">{{ site.data.home.intro.paragraph1 }}</span></p>
       <p><span data-ed="home:intro.paragraph2">{{ site.data.home.intro.paragraph2 }}</span></p>
+      {%- if site.data.home.intro.link and site.data.home.intro.link != "" %}
+      <p class="intro-more"><a href="{{ site.baseurl }}/about" class="txt-link"><span data-ed="home:intro.link">{{ site.data.home.intro.link }}</span> &rarr;</a></p>
+      {%- endif %}
     </div>
   </div>
 </section>
@@ -96,7 +104,11 @@ means there is nothing to transition on load. Reorder the photos, update this.
   <h2 class="disp">{% include em.html t=site.data.home.why.heading k="home:why.heading" %}</h2>
   <div class="facts">
     {%- for fact in site.data.home.why.facts %}
-    <div class="fact"><div class="fact-head"><h3><span data-ed="home:why.facts.{{ forloop.index0 }}.title">{{ fact.title }}</span></h3></div><p><span data-ed="home:why.facts.{{ forloop.index0 }}.body">{{ fact.body }}</span></p></div>
+    <div class="fact"><div class="fact-head"><h3><span data-ed="home:why.facts.{{ forloop.index0 }}.title">{{ fact.title }}</span></h3></div><p><span data-ed="home:why.facts.{{ forloop.index0 }}.body">{{ fact.body }}</span></p>
+    {%- comment -%} A fact links onward only when the YAML gives it both a label
+    and a URL, so the link travels with its own card if the facts are reordered. {%- endcomment -%}
+    {%- if fact.link and fact.link != "" and fact.link_url and fact.link_url != "" %}<p class="fact-more"><a href="{{ site.baseurl }}{{ fact.link_url }}" class="txt-link"><span data-ed="home:why.facts.{{ forloop.index0 }}.link">{{ fact.link }}</span> &rarr;</a></p>{% endif -%}
+    </div>
     {%- endfor %}
   </div>
 </section>
@@ -160,7 +172,16 @@ means there is nothing to transition on load. Reorder the photos, update this.
   <div class="stars" aria-label="Five stars">★★★★★</div>
   <blockquote class="disp">{% include em.html t=site.data.home.testimonial.quote k="home:testimonial.quote" %}</blockquote>
   <p class="by"><b><span data-ed="home:testimonial.name">{{ site.data.home.testimonial.name }}</span></b> &nbsp;·&nbsp; <span data-ed="home:testimonial.context">{{ site.data.home.testimonial.context }}</span></p>
-  <p class="marq-foot" style="margin-top:24px;"><a href="{{ site.baseurl }}/weddings#reviews" class="txt-link"><span data-ed="home:testimonial.link">{{ site.data.home.testimonial.link }}</span> &rarr;</a></p>
+  {%- comment -%} Two exits, deliberately: the reviews link continues the quote,
+  and the pricing link is the only thing on the page that answers the question
+  most people arrive with. Separate hrefs (#reviews vs #pricing) so each lands
+  on what its label promises. {%- endcomment -%}
+  <p class="marq-foot testi-exits" style="margin-top:24px;">
+    <a href="{{ site.baseurl }}/weddings#reviews" class="txt-link"><span data-ed="home:testimonial.link">{{ site.data.home.testimonial.link }}</span> &rarr;</a>
+    {%- if site.data.home.testimonial.cost_link and site.data.home.testimonial.cost_link != "" %}
+    <a href="{{ site.baseurl }}/weddings#pricing" class="txt-link"><span data-ed="home:testimonial.cost_link">{{ site.data.home.testimonial.cost_link }}</span> &rarr;</a>
+    {%- endif %}
+  </p>
 </section>
 
 <!-- CLOSING -->

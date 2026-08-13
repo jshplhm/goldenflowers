@@ -16,6 +16,10 @@ intro:
     Our designs are refined and grounded in texture and movement, curated around
     your venue and your season. The flowers we use to create are grown as close
     to the Sierra Nevada as the season allows.
+  # Exit to /about. The section is titled "Who we are" and used to be the one
+  # place on the page that raised the question without answering it. Blank hides
+  # the link.
+  link: Read our story
 why:
   label: Why Golden Flowers
   heading: We grow our own flowers on California soil, an hour from where you'll
@@ -28,6 +32,11 @@ why:
     - title: Sustainable, always
       body: Seasonal sourcing, foam-free, reusable mechanics, and growing practices
         that give back to the soil. Our full pledge is written down, in public.
+      # Any fact can carry a link. Set both fields or neither; the card renders
+      # the link only when both are filled, so reordering the facts in the CMS
+      # keeps each link with its own card.
+      link: Read the pledge
+      link_url: /sustainability
     - title: Depth over volume
       body: "Fewer weddings per season, more time on yours. We intentionally take
         fewer weddings than most studios, so that yours isn't slotted into a
@@ -51,6 +60,10 @@ testimonial:
   name: Brian
   context: Tahoe lakeside estate
   link: Read more reviews
+  # The page most visitors are actually hunting for. It used to be reachable
+  # from the body only through the reviews link above, which lands PAST the
+  # pricing block, so the word never appeared on the home page at all.
+  cost_link: What weddings cost
 cta:
   heading: Is your date *still open?*
   body: Tell us your date and venue, and we'll let you know, usually within 48 hours.

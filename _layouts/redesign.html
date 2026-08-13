@@ -3,14 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18321282634"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'AW-18321282634');
-  </script>
+  {%- comment -%}
+    The Google tag used to be duplicated here (Ads) and in analytics.html (GA4),
+    which downloaded the same gtag.js twice. Both products now share the one
+    loader in the analytics.html include lower in this head — see that file.
+  {%- endcomment -%}
   <title>{% if page.seo_title %}{{ page.seo_title }}{% elsif page.title %}{{ page.title }} · Golden Flowers{% else %}Lake Tahoe Wedding Florist | Golden Flowers{% endif %}</title>
   <link rel="icon" href="{{ site.baseurl }}/favicon.ico" sizes="any">
   <link rel="icon" type="image/png" sizes="32x32" href="{{ site.baseurl }}/assets/favicon-32.png">
@@ -138,6 +135,23 @@
 
 {% include redesign-footer.html %}
 
+{%- comment -%}
+  STICKY MOBILE CTA — opt in per page with `sticky_cta: true` in front matter.
+  It exists because .nav-r (which holds the "Check your date" pill) is
+  display:none below 860px and the header hides itself on scroll-down, so on a
+  phone the only booking button was the one in the closing section near the
+  bottom of the page.
+
+  It is a real link to /consultation-form, so it is caught by the same TRIGGER
+  selector as every other .btn CTA and opens the lightbox (and still navigates
+  with JS off). Hidden above 860px, while the mobile menu is open, until the
+  hero is behind you, and again once the page's own closing CTA is on screen —
+  two identical buttons on one screen is what the footer comment warns about.
+{%- endcomment -%}
+{%- if page.sticky_cta %}
+<a class="btn sticky-cta" id="sticky-cta" href="{{ site.baseurl }}/consultation-form">Check your date <span>&rarr;</span></a>
+{%- endif %}
+
 {% include consult-modal.html %}
 {% include redesign-consult-js.html %}
 
@@ -172,6 +186,31 @@
   window.addEventListener('scroll',function(){
     if(!ticking){ requestAnimationFrame(update); ticking=true; }
   },{passive:true});
+})();
+
+/* Sticky mobile CTA (pages with sticky_cta:true). Appears once the hero is
+   behind you, retreats while the page's own closing CTA is on screen. All of
+   the phone-only gating is CSS; this only decides "on" vs "off". */
+(function(){
+  var cta=document.getElementById('sticky-cta'); if(!cta) return;
+  var hero=document.querySelector('.hero');
+  /* First .cta/.cta-section/.cta-strip in document order is the closing block. */
+  var closing=document.querySelector('.cta,.cta-section,.cta-strip');
+  var pastHero=false, atClosing=false;
+  function apply(){ cta.classList.toggle('on', pastHero && !atClosing); }
+  function onScroll(){
+    /* 90% of the hero, so it turns up just before the photo is fully gone
+       rather than a beat after, which read as a late pop-in. */
+    pastHero = window.pageYOffset > (hero ? hero.offsetHeight*0.9 : 500);
+    apply();
+  }
+  if(closing && 'IntersectionObserver' in window){
+    new IntersectionObserver(function(entries){
+      atClosing=entries[0].isIntersecting; apply();
+    },{rootMargin:'0px 0px -15% 0px'}).observe(closing);
+  }
+  onScroll();
+  window.addEventListener('scroll',onScroll,{passive:true});
 })();
 
 /* Home hero: three photos crossfading behind fixed copy. Home-only — every

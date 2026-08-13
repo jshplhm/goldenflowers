@@ -30,6 +30,11 @@ consult_endpoint: "https://script.google.com/macros/s/AKfycbxYl9LaejM3x9ntYuXwWD
 # analytics off (safe for staging). The _includes/analytics.html tag only fires when set.
 google_analytics: "G-LSEQ0EKDLD"
 
+# Google Ads conversion/remarketing ID (AW-XXXXXXXXX). Shares the ONE gtag.js
+# loader with GA4 above — see _includes/analytics.html. The conversion labels
+# themselves live in _includes/redesign-consult-js.html (gfConversion_ calls).
+google_ads: "AW-18321282634"
+
 # SEO
 author:
   name: "Brittany"

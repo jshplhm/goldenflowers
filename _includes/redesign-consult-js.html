@@ -62,6 +62,7 @@
     if(el.closest('.nav-r')) return 'Nav';
     if(el.closest('.mobile-menu')) return 'Mobile menu';
     if(el.closest('footer.site-footer')) return 'Footer';
+    if(el.classList.contains('sticky-cta')) return 'Sticky';
     return '';
   }
   function recordCtaClick(trigger){

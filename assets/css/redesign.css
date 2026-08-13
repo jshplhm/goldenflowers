@@ -154,6 +154,36 @@ body.menu-open .mobile-menu{transform:none;visibility:visible;transition:transfo
    is on a solid background and keeps its fill. Accent-independent. */
 .hero .btn{background:oklch(100% 0 0/.14);color:oklch(100% 0 0);border:1px solid oklch(100% 0 0/.5);-webkit-backdrop-filter:blur(7px);backdrop-filter:blur(7px);}
 .hero .btn:hover{background:oklch(100% 0 0);color:var(--ink);border-color:oklch(100% 0 0);transform:translateY(-2px);filter:none;}
+/* Sticky mobile CTA. Phones only: from 861px up the nav keeps its own
+   "Check your date" pill on screen at all times, so this would be a second
+   copy of a button the visitor can already see. Sits below the mobile menu
+   (z 45) and the nav (55) so neither can ever be overlapped by it, and clears
+   the iPhone home indicator via the safe-area inset. Hidden entirely until JS
+   adds .on, so no-JS phones never get a button stuck over the footer. */
+.sticky-cta{display:none;}
+@media(max-width:860px){
+  .sticky-cta{
+    display:inline-flex;position:fixed;z-index:44;
+    left:50%;bottom:calc(18px + env(safe-area-inset-bottom,0px));
+    padding:14px 26px;font-size:.8rem;
+    box-shadow:0 10px 30px oklch(20% .02 150/.28);
+    opacity:0;pointer-events:none;
+    transform:translateX(-50%) translateY(140%);
+    transition:transform .38s cubic-bezier(.2,.7,.2,1),opacity .28s ease;
+  }
+  .sticky-cta.on{opacity:1;pointer-events:auto;transform:translateX(-50%);}
+  /* Tapping it should not also leave it hovering over the open lightbox or
+     the full-screen menu. */
+  body.menu-open .sticky-cta{opacity:0;pointer-events:none;transform:translateX(-50%) translateY(140%);}
+  /* The lift-on-hover of .btn would fight the translateX centering. */
+  .sticky-cta:hover{transform:translateX(-50%);filter:brightness(1.07);}
+}
+@media(max-width:860px) and (prefers-reduced-motion:reduce){
+  .sticky-cta{transition:opacity .28s ease;transform:translateX(-50%);}
+  .sticky-cta.on{transform:translateX(-50%);}
+  body.menu-open .sticky-cta{transform:translateX(-50%);}
+}
+
 /* text header (interior pages that skip the full-bleed hero) */
 .text-hero{max-width:var(--content-max);margin:0 auto;padding:clamp(120px,15vw,180px) var(--pad) clamp(36px,5vw,56px);}
 .text-hero h1{font-family:var(--d);font-weight:430;font-optical-sizing:auto;font-size:clamp(2.6rem,6vw,5.6rem);line-height:1.02;letter-spacing:-.02em;margin:16px 0 22px;}
@@ -287,6 +317,13 @@ button.txt-link{background:none;border-top:0;border-left:0;border-right:0;cursor
    860px block, because .facts was removed from that block to protect the
    row list above -- without it the base repeat(3,1fr) reaches the phone. */
 @media(max-width:600px){.facts{grid-template-columns:1fr;gap:36px;}}
+/* Optional per-fact link (see index.md). Only one card carries one today, so it
+   is spaced to read as part of that card rather than as a row of buttons. */
+.facts .fact-more{margin-top:14px;}
+/* In the tablet row layout the card is a 2-column grid, so the link has to be
+   told to stay under the paragraph instead of starting a row in the title
+   column. */
+@media(min-width:601px) and (max-width:1024px){.facts .fact-more{grid-column:2;}}
 /* ---------- HOME INTRO ---------- */
 /* Capped at a reading measure (~950px; the rail is 1356px at 1920) and LEFT on
    the rail, not centered. The home page runs one left axis at 282px from the
@@ -306,6 +343,10 @@ button.txt-link{background:none;border-top:0;border-left:0;border-right:0;cursor
      it, which is exactly what let tablet run to 76 characters per line. */
   max-width:62ch;}
 .intro-body p + p{margin-top:28px;}
+/* The onward link is a paragraph inside .intro-body, so it inherits the big
+   editorial serif meant for the prose. Put it back on the UI face at the same
+   weight as the page's other section exits ("See more weddings"). */
+.intro-body .intro-more{font-family:var(--b);line-height:1.5;letter-spacing:0;max-width:none;margin-top:clamp(26px,3vw,36px);}
 
 /* Adjacent sections that would otherwise share the page background are
    separated by a subtle full-bleed tint band instead of a hairline rule.
@@ -388,6 +429,10 @@ button.txt-link{background:none;border-top:0;border-left:0;border-right:0;cursor
 .testi blockquote{font-family:var(--d);font-weight:430;font-optical-sizing:auto;font-size:clamp(1.9rem,3.9vw,3.4rem);line-height:1.22;letter-spacing:-.01em;}
 .testi blockquote em{color:var(--forest);}
 .testi .by{margin-top:34px;font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);}
+/* Two exits under the quote (reviews, pricing). Flex so the pair centres as a
+   unit and wraps to two centred lines on a phone instead of breaking mid-link;
+   the row gap is what keeps them apart once they stack. */
+.testi-exits{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:14px 30px;}
 .testi .by b{color:var(--ink);font-weight:500;}
 
 /* ---------- CLOSING CTA ---------- */

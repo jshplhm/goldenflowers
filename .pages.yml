@@ -38,6 +38,7 @@ content:
           - {name: label, label: "Small label", type: string, description: "Left column. Leave empty to hide it."}
           - {name: paragraph1, label: "First paragraph", type: text}
           - {name: paragraph2, label: "Second paragraph", type: text}
+          - {name: link, label: "Link to Our Story", type: string, description: "Text of the link under the paragraphs. Leave empty to hide it."}
       - name: why
         label: Why Golden Flowers
         type: object
@@ -51,6 +52,8 @@ content:
             fields:
               - {name: title, label: "Title", type: string}
               - {name: body, label: "Text", type: text}
+              - {name: link, label: "Link text (optional)", type: string, description: "Shows a link under this card, but only if the URL below is filled in too."}
+              - {name: link_url, label: "Link URL (optional)", type: string, description: "A path on this site, e.g. /sustainability"}
       - name: work
         label: Selected weddings
         type: object
@@ -76,7 +79,8 @@ content:
           - {name: quote, label: "Quote", type: text, description: "*asterisks* = italics"}
           - {name: name, label: "Name", type: string}
           - {name: context, label: "Context (e.g. Lake Tahoe Wedding)", type: string}
-          - {name: link, label: "Link text", type: string}
+          - {name: link, label: "Link text", type: string, description: "Goes to the reviews on Process & Pricing."}
+          - {name: cost_link, label: "Pricing link text", type: string, description: "Goes to the pricing block on Process & Pricing. Leave empty to hide it."}
       - name: cta
         label: Closing call to action
         type: object
