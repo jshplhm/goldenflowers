@@ -48,6 +48,15 @@ work:
   # (work.link) was removed 2026-08-10 because two exits from one section is
   # one too many.
   more: See more weddings
+# Sits directly under the wedding previews, where "what would this cost?" is
+# the next question a reader has. Deliberately carries no numbers: the figures
+# live on one page (/weddings) so they can never drift out of step here.
+process:
+  label: Process & pricing
+  heading: What it costs, and how it works.
+  body: Full service design from the first conversation through breakdown at the
+    end of the night, with real numbers before you ask for them.
+  link: See our process and pricing
 marquee:
   label: We design at 30+ venues across the Sierra
   link: See all venues
@@ -60,10 +69,6 @@ testimonial:
   name: Brian
   context: Tahoe lakeside estate
   link: Read more reviews
-  # The page most visitors are actually hunting for. It used to be reachable
-  # from the body only through the reviews link above, which lands PAST the
-  # pricing block, so the word never appeared on the home page at all.
-  cost_link: What weddings cost
 cta:
   heading: Is your date *still open?*
   body: Tell us your date and venue, and we'll let you know, usually within 48 hours.

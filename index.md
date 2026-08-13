@@ -1,11 +1,6 @@
 ---
 layout: redesign
 hero_nav: true
-# Phones only: the nav (and with it the "Check your date" pill) is display:none
-# below 860px and the header auto-hides on scroll, so between the hero and the
-# closing CTA there was no visible way to book. See STICKY MOBILE CTA in
-# redesign.html / redesign.css.
-sticky_cta: true
 title: "Golden Flowers"
 seo_title: "Lake Tahoe & Sierra Nevada Wedding Florist | Golden Flowers"
 permalink: /
@@ -148,6 +143,18 @@ means there is nothing to transition on load. Reorder the photos, update this.
 </section>
 </div>
 
+<!-- PROCESS & PRICING -->
+{%- comment -%} Straight after the wedding previews, because "what does this
+cost?" is the question looking at the work produces. It is a signpost, not a
+price list: no figures live here, so /weddings stays the single place a number
+can be wrong. {%- endcomment -%}
+<section class="proc-signpost">
+  <span class="lab"><span data-ed="home:process.label">{{ site.data.home.process.label }}</span></span>
+  <h2 class="disp"><span data-ed="home:process.heading">{{ site.data.home.process.heading }}</span></h2>
+  <p><span data-ed="home:process.body">{{ site.data.home.process.body }}</span></p>
+  <p class="marq-foot"><a href="{{ site.baseurl }}/weddings" class="txt-link"><span data-ed="home:process.link">{{ site.data.home.process.link }}</span> &rarr;</a></p>
+</section>
+
 <!-- VENUE MARQUEE -->
 <section class="marq">
   <span class="lab"><span data-ed="home:marquee.label">{{ site.data.home.marquee.label }}</span></span>
@@ -172,16 +179,7 @@ means there is nothing to transition on load. Reorder the photos, update this.
   <div class="stars" aria-label="Five stars">★★★★★</div>
   <blockquote class="disp">{% include em.html t=site.data.home.testimonial.quote k="home:testimonial.quote" %}</blockquote>
   <p class="by"><b><span data-ed="home:testimonial.name">{{ site.data.home.testimonial.name }}</span></b> &nbsp;·&nbsp; <span data-ed="home:testimonial.context">{{ site.data.home.testimonial.context }}</span></p>
-  {%- comment -%} Two exits, deliberately: the reviews link continues the quote,
-  and the pricing link is the only thing on the page that answers the question
-  most people arrive with. Separate hrefs (#reviews vs #pricing) so each lands
-  on what its label promises. {%- endcomment -%}
-  <p class="marq-foot testi-exits" style="margin-top:24px;">
-    <a href="{{ site.baseurl }}/weddings#reviews" class="txt-link"><span data-ed="home:testimonial.link">{{ site.data.home.testimonial.link }}</span> &rarr;</a>
-    {%- if site.data.home.testimonial.cost_link and site.data.home.testimonial.cost_link != "" %}
-    <a href="{{ site.baseurl }}/weddings#pricing" class="txt-link"><span data-ed="home:testimonial.cost_link">{{ site.data.home.testimonial.cost_link }}</span> &rarr;</a>
-    {%- endif %}
-  </p>
+  <p class="marq-foot" style="margin-top:24px;"><a href="{{ site.baseurl }}/weddings#reviews" class="txt-link"><span data-ed="home:testimonial.link">{{ site.data.home.testimonial.link }}</span> &rarr;</a></p>
 </section>
 
 <!-- CLOSING -->

@@ -135,23 +135,6 @@
 
 {% include redesign-footer.html %}
 
-{%- comment -%}
-  STICKY MOBILE CTA — opt in per page with `sticky_cta: true` in front matter.
-  It exists because .nav-r (which holds the "Check your date" pill) is
-  display:none below 860px and the header hides itself on scroll-down, so on a
-  phone the only booking button was the one in the closing section near the
-  bottom of the page.
-
-  It is a real link to /consultation-form, so it is caught by the same TRIGGER
-  selector as every other .btn CTA and opens the lightbox (and still navigates
-  with JS off). Hidden above 860px, while the mobile menu is open, until the
-  hero is behind you, and again once the page's own closing CTA is on screen —
-  two identical buttons on one screen is what the footer comment warns about.
-{%- endcomment -%}
-{%- if page.sticky_cta %}
-<a class="btn sticky-cta" id="sticky-cta" href="{{ site.baseurl }}/consultation-form">Check your date <span>&rarr;</span></a>
-{%- endif %}
-
 {% include consult-modal.html %}
 {% include redesign-consult-js.html %}
 
@@ -186,31 +169,6 @@
   window.addEventListener('scroll',function(){
     if(!ticking){ requestAnimationFrame(update); ticking=true; }
   },{passive:true});
-})();
-
-/* Sticky mobile CTA (pages with sticky_cta:true). Appears once the hero is
-   behind you, retreats while the page's own closing CTA is on screen. All of
-   the phone-only gating is CSS; this only decides "on" vs "off". */
-(function(){
-  var cta=document.getElementById('sticky-cta'); if(!cta) return;
-  var hero=document.querySelector('.hero');
-  /* First .cta/.cta-section/.cta-strip in document order is the closing block. */
-  var closing=document.querySelector('.cta,.cta-section,.cta-strip');
-  var pastHero=false, atClosing=false;
-  function apply(){ cta.classList.toggle('on', pastHero && !atClosing); }
-  function onScroll(){
-    /* 90% of the hero, so it turns up just before the photo is fully gone
-       rather than a beat after, which read as a late pop-in. */
-    pastHero = window.pageYOffset > (hero ? hero.offsetHeight*0.9 : 500);
-    apply();
-  }
-  if(closing && 'IntersectionObserver' in window){
-    new IntersectionObserver(function(entries){
-      atClosing=entries[0].isIntersecting; apply();
-    },{rootMargin:'0px 0px -15% 0px'}).observe(closing);
-  }
-  onScroll();
-  window.addEventListener('scroll',onScroll,{passive:true});
 })();
 
 /* Home hero: three photos crossfading behind fixed copy. Home-only — every

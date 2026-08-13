@@ -101,6 +101,7 @@ body.menu-open nav.site-nav{background:transparent;border-bottom-color:transpare
 nav.site-nav.over-hero{background:transparent;color:var(--paper);border-bottom-color:transparent;}
 nav.site-nav.up{top:calc(-1 * var(--nav-h));}
 .brand{font-family:var(--d);font-size:1.45rem;letter-spacing:-.01em;}
+.brand-short{display:none;}
 .nav-r{display:flex;gap:36px;align-items:center;}
 .nav-r a:not(.pill){font-size:.82rem;letter-spacing:.02em;opacity:.92;position:relative;padding-bottom:3px;}
 /* Hover feedback: underline grows from the left */
@@ -154,36 +155,6 @@ body.menu-open .mobile-menu{transform:none;visibility:visible;transition:transfo
    is on a solid background and keeps its fill. Accent-independent. */
 .hero .btn{background:oklch(100% 0 0/.14);color:oklch(100% 0 0);border:1px solid oklch(100% 0 0/.5);-webkit-backdrop-filter:blur(7px);backdrop-filter:blur(7px);}
 .hero .btn:hover{background:oklch(100% 0 0);color:var(--ink);border-color:oklch(100% 0 0);transform:translateY(-2px);filter:none;}
-/* Sticky mobile CTA. Phones only: from 861px up the nav keeps its own
-   "Check your date" pill on screen at all times, so this would be a second
-   copy of a button the visitor can already see. Sits below the mobile menu
-   (z 45) and the nav (55) so neither can ever be overlapped by it, and clears
-   the iPhone home indicator via the safe-area inset. Hidden entirely until JS
-   adds .on, so no-JS phones never get a button stuck over the footer. */
-.sticky-cta{display:none;}
-@media(max-width:860px){
-  .sticky-cta{
-    display:inline-flex;position:fixed;z-index:44;
-    left:50%;bottom:calc(18px + env(safe-area-inset-bottom,0px));
-    padding:14px 26px;font-size:.8rem;
-    box-shadow:0 10px 30px oklch(20% .02 150/.28);
-    opacity:0;pointer-events:none;
-    transform:translateX(-50%) translateY(140%);
-    transition:transform .38s cubic-bezier(.2,.7,.2,1),opacity .28s ease;
-  }
-  .sticky-cta.on{opacity:1;pointer-events:auto;transform:translateX(-50%);}
-  /* Tapping it should not also leave it hovering over the open lightbox or
-     the full-screen menu. */
-  body.menu-open .sticky-cta{opacity:0;pointer-events:none;transform:translateX(-50%) translateY(140%);}
-  /* The lift-on-hover of .btn would fight the translateX centering. */
-  .sticky-cta:hover{transform:translateX(-50%);filter:brightness(1.07);}
-}
-@media(max-width:860px) and (prefers-reduced-motion:reduce){
-  .sticky-cta{transition:opacity .28s ease;transform:translateX(-50%);}
-  .sticky-cta.on{transform:translateX(-50%);}
-  body.menu-open .sticky-cta{transform:translateX(-50%);}
-}
-
 /* text header (interior pages that skip the full-bleed hero) */
 .text-hero{max-width:var(--content-max);margin:0 auto;padding:clamp(120px,15vw,180px) var(--pad) clamp(36px,5vw,56px);}
 .text-hero h1{font-family:var(--d);font-weight:430;font-optical-sizing:auto;font-size:clamp(2.6rem,6vw,5.6rem);line-height:1.02;letter-spacing:-.02em;margin:16px 0 22px;}
@@ -317,6 +288,15 @@ button.txt-link{background:none;border-top:0;border-left:0;border-right:0;cursor
    860px block, because .facts was removed from that block to protect the
    row list above -- without it the base repeat(3,1fr) reaches the phone. */
 @media(max-width:600px){.facts{grid-template-columns:1fr;gap:36px;}}
+/* Wordmark swap. Measured: "Golden Flowers" + pill + hamburger needs 399px, so
+   it fits a 414px phone and up; "Golden" needs 326px and clears a 360px phone
+   with room. The pill also tightens here so the smallest handsets (320px) are
+   not the exception. */
+@media(max-width:429px){
+  .brand-full{display:none;}
+  .brand-short{display:inline;}
+  nav.site-nav .pill{padding:8px 16px;font-size:.78rem;}
+}
 /* Optional per-fact link (see index.md). Only one card carries one today, so it
    is spaced to read as part of that card rather than as a row of buttons. */
 .facts .fact-more{margin-top:14px;}
@@ -409,6 +389,19 @@ button.txt-link{background:none;border-top:0;border-left:0;border-right:0;cursor
 .aes-card p{font-size:.92rem;color:oklch(83% .02 130);line-height:1.6;max-width:34ch;}
 .aes-card .more{display:inline-block;margin-top:16px;font-size:.82rem;letter-spacing:.06em;text-transform:uppercase;color:var(--accent-soft);border-bottom:1px solid currentColor;padding-bottom:3px;}
 
+/* ---------- PROCESS & PRICING SIGNPOST ---------- */
+/* Sits between the work grid and the marquee, on the page background so the
+   tint band that closes .work is what separates them. Shorter padding than a
+   full section (--sp-m, not --sp-l): it is a doorway, not a destination, and
+   at full height it read as a section with nothing in it. */
+.proc-signpost{padding:var(--sp-m) var(--pad);max-width:720px;margin:0 auto;text-align:center;}
+.proc-signpost .lab{display:block;margin-bottom:18px;}
+.proc-signpost h2{font-size:clamp(1.8rem,3.6vw,2.7rem);}
+.proc-signpost p{color:var(--mute);margin:18px auto 0;max-width:46ch;font-size:1.02rem;line-height:1.62;}
+/* .marq-foot's 36px is tuned to clear a 2.6rem marquee; against a paragraph
+   this needs less. */
+.proc-signpost .marq-foot{margin-top:26px;}
+
 /* ---------- VENUE MARQUEE ---------- */
 .marq{padding:var(--sp-m) 0;text-align:center;overflow:hidden;
   /* A scrolling marquee should dissolve at its edges, not be sliced by them.
@@ -429,10 +422,6 @@ button.txt-link{background:none;border-top:0;border-left:0;border-right:0;cursor
 .testi blockquote{font-family:var(--d);font-weight:430;font-optical-sizing:auto;font-size:clamp(1.9rem,3.9vw,3.4rem);line-height:1.22;letter-spacing:-.01em;}
 .testi blockquote em{color:var(--forest);}
 .testi .by{margin-top:34px;font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);}
-/* Two exits under the quote (reviews, pricing). Flex so the pair centres as a
-   unit and wraps to two centred lines on a phone instead of breaking mid-link;
-   the row gap is what keeps them apart once they stack. */
-.testi-exits{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:14px 30px;}
 .testi .by b{color:var(--ink);font-weight:500;}
 
 /* ---------- CLOSING CTA ---------- */
@@ -1217,7 +1206,19 @@ body.nav-hidden .venue-breadcrumb{top:0;}
 }
 
 @media(max-width:860px){
-  .nav-r{display:none;}
+  /* The nav links collapse into the hamburger, but the "Check your date" pill
+     stays in the header. It used to go with them, which left phones with no
+     visible booking button anywhere between the hero and the closing section;
+     the header hides on scroll-down and comes back on any upward flick, so the
+     CTA now behaves exactly as it does on desktop. Grouping it against the
+     hamburger (rather than letting space-between centre it) keeps the two
+     tappable things in the same corner. */
+  nav.site-nav{justify-content:flex-start;gap:10px;}
+  .brand{margin-right:auto;}
+  .nav-r{display:flex;gap:0;}
+  .nav-r a:not(.pill){display:none;}
+  /* The menu has its own full-width CTA on the same screen. */
+  body.menu-open .nav-r{display:none;}
   .nav-toggle{display:flex;}
   .twocol,.twoup{grid-template-columns:1fr;gap:28px;}
   /* .proc-step keeps its numeral column and rail at every width now. */

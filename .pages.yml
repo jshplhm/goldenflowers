@@ -60,6 +60,14 @@ content:
         fields:
           - {name: heading, label: "Heading", type: string}
           - {name: link, label: "Link text", type: string}
+      - name: process
+        label: Process & pricing signpost
+        type: object
+        fields:
+          - {name: label, label: "Small label", type: string}
+          - {name: heading, label: "Heading", type: string}
+          - {name: body, label: "Text", type: text, description: "Keep prices off this page: the numbers live on Process & Pricing only."}
+          - {name: link, label: "Link text", type: string}
       - name: marquee
         label: Scrolling venue strip
         type: object
@@ -80,7 +88,6 @@ content:
           - {name: name, label: "Name", type: string}
           - {name: context, label: "Context (e.g. Lake Tahoe Wedding)", type: string}
           - {name: link, label: "Link text", type: string, description: "Goes to the reviews on Process & Pricing."}
-          - {name: cost_link, label: "Pricing link text", type: string, description: "Goes to the pricing block on Process & Pricing. Leave empty to hide it."}
       - name: cta
         label: Closing call to action
         type: object
