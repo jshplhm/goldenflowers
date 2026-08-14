@@ -123,20 +123,31 @@ reviews it had no job the page was not already doing. Copy is still in
 _data/weddings.yml under `assurance:` if it is ever wanted back.
 {%- endcomment -%}
 
-<!-- TESTIMONIALS -->
-<section class="block tight" id="reviews">
-  <span class="lab"><span data-ed="weddings:testimonials.label">{{ site.data.weddings.testimonials.label }}</span></span>
-  <h2 class="h-lg"><span data-ed="weddings:testimonials.heading">{{ site.data.weddings.testimonials.heading }}</span></h2>
-  {% include redesign-testimonials.html %}
-</section>
-
-<hr class="hr-line">
+{%- comment -%} FAQ before the reviews: the questions a five-figure number
+provokes come first, and other couples' words are a warmer handoff into "is your
+date still open" than an accordion of logistics.
+Dividers follow from the order: the dark band into the FAQ is a change of
+background and carries itself, the FAQ and the reviews share a surface so the
+hairline sits between them, and the reviews into the tinted CTA is another
+background change. {%- endcomment -%}
 
 <!-- FAQ -->
 <section class="block">
   <span class="lab"><span data-ed="weddings:faq.label">{{ site.data.weddings.faq.label }}</span></span>
   <h2 class="h-lg"><span data-ed="weddings:faq.heading">{{ site.data.weddings.faq.heading }}</span></h2>
   {% include redesign-faq.html %}
+</section>
+
+<hr class="hr-line">
+
+{%- comment -%} .tight is gone: it assumed a quiet neighbour, and the reviews are
+now the last content section before the CTA, so they take the ordinary section
+break like everything else. It also keeps the hairline above them centred. {%- endcomment -%}
+<!-- TESTIMONIALS -->
+<section class="block" id="reviews">
+  <span class="lab"><span data-ed="weddings:testimonials.label">{{ site.data.weddings.testimonials.label }}</span></span>
+  <h2 class="h-lg"><span data-ed="weddings:testimonials.heading">{{ site.data.weddings.testimonials.heading }}</span></h2>
+  {% include redesign-testimonials.html %}
 </section>
 
 <!-- CLOSING -->
