@@ -1,5 +1,14 @@
 /**
- * Golden Flowers consultation form — hardened intake, v3.3 (July 2026).
+ * Golden Flowers consultation form — hardened intake, v3.4 (August 2026).
+ *
+ * What changed from v3.3 (v3.4):
+ *   - A resubmitted lead that carries NEW details now emails us the diff
+ *     ("Lead updated after confirmation"). Before, the second post updated
+ *     the row in silence, so the sheet could hold a venue that the couple's
+ *     confirmation (which we are BCC'd on) never showed. That is exactly what
+ *     happened on 2026-08-13: complete post with an empty venue sent the
+ *     confirmation, the retry after a failed-looking send added the venue to
+ *     the row, and nothing said so. The couple is still emailed only once.
  *
  * What changed from v3.2 (v3.3):
  *   - Page and Button columns are BACK (owner request): the page the couple
@@ -218,9 +227,22 @@ function handlePost_(p, ss) {
     // check keeps the email for the edge case of an old "Step 1 only" row
     // that predates the three-tab split and still lives on the lead tab.
     var wasComplete = /^Complete/.test(String(leads.getRange(rowInLeads, leadsCols['Status']).getValue() || ''));
-    writeRow_(leads, rowInLeads, leadsCols,
-      buildRowValues_(p, false, leads.getRange(rowInLeads, leadsCols['Submitted']).getValue() || now, now, leadId));
-    if (!wasComplete) notifyComplete_(p);
+    // Snapshot BEFORE the write. A resend is usually identical, but it can
+    // carry details the first post didn't have: the send-failed path leaves
+    // the filled form on screen under "Try again", so anything typed before
+    // that second tap lands in the sheet AFTER the couple's confirmation has
+    // already gone out. Silently absorbing that is how a venue ended up in a
+    // row but not in the email Brittany was BCC'd on (2026-08-13).
+    var before = wasComplete ? rowSnapshot_(leads, rowInLeads, leadsCols) : null;
+    var values = buildRowValues_(p, false, leads.getRange(rowInLeads, leadsCols['Submitted']).getValue() || now, now, leadId);
+    writeRow_(leads, rowInLeads, leadsCols, values);
+    if (!wasComplete) {
+      notifyComplete_(p);
+    } else {
+      // The couple is deliberately NOT emailed twice; we get the correction.
+      var changes = changedFields_(before, values);
+      if (changes.length) notifyLeadUpdated_(p, changes);
+    }
     return success_();
   }
 
@@ -266,6 +288,63 @@ function venueValue_(p) {
   if (typed) return typed;
   var v = String(p.venue || '').trim();
   return /^Somewhere else/i.test(v) ? '' : v;
+}
+
+/* The fields worth telling us about when an already-confirmed lead comes back
+   with different answers. Deliberately not Status/Updated/Source/Page/Button:
+   those change on every resend and would make every retry look like news. */
+var WATCHED_FIELDS = ['Name', 'Email', 'Phone', 'Wedding Date', 'Venue',
+  'Budget', 'Message', 'Role', 'Couple'];
+
+/* Sheet cells come back as strings OR as Date objects depending on how the
+   column was formatted, and 'Wedding Date' is the one that flips. Comparing a
+   Date object to the form's "09/19/2026" would report a change on every
+   single resend, so both sides go through here first. */
+function cellText_(v) {
+  if (Object.prototype.toString.call(v) === '[object Date]') {
+    return Utilities.formatDate(v, Session.getScriptTimeZone(), 'MM/dd/yyyy');
+  }
+  return String(v == null ? '' : v).trim();
+}
+
+function rowSnapshot_(sheet, row, cols) {
+  var out = {};
+  WATCHED_FIELDS.forEach(function (h) {
+    if (cols[h]) out[h] = cellText_(sheet.getRange(row, cols[h]).getValue());
+  });
+  return out;
+}
+
+function changedFields_(before, after) {
+  var out = [];
+  if (!before) return out;
+  WATCHED_FIELDS.forEach(function (h) {
+    if (!(h in before)) return;
+    var was = before[h], now = cellText_(after[h]);
+    if (now !== was) out.push({ field: h, from: was, to: now });
+  });
+  return out;
+}
+
+/* Internal only. The couple already has a confirmation showing the older
+   details; emailing them a second, contradictory one would read as a mistake.
+   Brittany gets the correction instead, because she is the one who replies. */
+function notifyLeadUpdated_(p, changes) {
+  var lines = [
+    'This lead was already confirmed, then resubmitted with different details.',
+    'The sheet row is now up to date. The couple was NOT emailed again, so the',
+    'confirmation in their inbox still shows the older version.',
+    '',
+    'Name: ' + (p.name || ''),
+    'Email: ' + (p.email || '(not given)'),
+    'Phone: ' + (fmtPhone_(p.phone) || '(not given)'),
+    '',
+    'What changed:'
+  ];
+  changes.forEach(function (c) {
+    lines.push('  ' + c.field + ': ' + (c.from || '(empty)') + '  ->  ' + (c.to || '(empty)'));
+  });
+  sendMail_('Lead updated after confirmation: ' + (p.name || 'unknown'), lines.join('\n'));
 }
 
 /* Phones land in the sheet as 775-555-0123 (the same shape the form's
