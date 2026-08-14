@@ -46,6 +46,7 @@ const repCancel = document.getElementById("ed-rep-cancel");
 const repGalWrap = document.getElementById("ed-rep-gal-wrap");
 const repGalLabel = document.getElementById("ed-rep-gal-label");
 const repGal = document.getElementById("ed-rep-gal");
+const repWeddingSel = document.getElementById("ed-rep-wedding");
 const fileInput = document.getElementById("ed-file");
 const filesInput = document.getElementById("ed-files");
 const statusEl = document.getElementById("ed-status");
@@ -1449,58 +1450,112 @@ function openReplace(img) {
     const idx = tiles.indexOf(img.closest(".tile"));
     if (idx > -1) repTarget.homeSlot = idx;
   }
-  const slug = (repTarget.path.match(/^\/assets\/images\/portfolio\/([^/]+)\//) || [])[1] || repTarget.cardSlug;
-  if (slug) {
-    fetch(`${API}assets/images/portfolio/${slug}?ref=${encodeURIComponent(BRANCH)}`, { headers: ghHeaders(), cache: "no-store" })
-      .then((r) => (r.ok ? r.json() : []))
-      .then((items) => {
-        /* leave out the photo a blocked delete is trying to remove — clicking
-         * here means "feature this photo", the opposite of deleting it */
-        const deleting = sessionStorage.getItem("gfDeleting");
-        items = items.filter((f) => /\.(jpe?g|png)$/i.test(f.name) && `/${f.path}` !== repTarget.path && f.name !== deleting);
-        if (!items.length || repModal.hidden) return;
-        repGalLabel.textContent = deleting
-          ? `Pick the photo to show here instead (${deleting} isn't offered — you're deleting it):`
-          : `Pick another photo from this wedding's gallery to show here instead:`;
-        for (const it of items) {
-          const t = document.createElement("img");
-          t.src = it.download_url;
-          t.loading = "lazy";
-          t.title = it.name;
-          t.addEventListener("click", async () => {
-            /* one swap at a time: a second click landing mid-save used to
-             * commit the same change twice (empty commit) or fail against the
-             * source the first click had already rewritten */
-            if (repBusy) return;
-            repBusy = true;
-            repGal.classList.add("busy");
-            repErr.style.display = "none";
-            try {
-              const newSrc = `/${it.path}`;
-              const changed = await swapSourceTo(newSrc);
-              repTarget.el.removeAttribute("srcset");
-              repTarget.el.src = newSrc;
-              repModal.hidden = true;
-              repTarget = null;
-              statusEl.className = "ed-status ok";
-              statusEl.textContent = DRYRUN
-                ? "Dry run done — nothing committed"
-                : changed
-                  ? "✓ Photo swapped — it's on the page now, live site in ~2 minutes"
-                  : "✓ That photo is already the one on the live site";
-            } catch (err) {
-              repErr.textContent = err.message;
-              repErr.style.display = "block";
-            }
-            repBusy = false;
-            repGal.classList.remove("busy");
-          });
-          repGal.appendChild(t);
-        }
-        repGalWrap.hidden = false;
-      })
-      .catch(() => {});
+  /* Which wedding's photos to offer. Default to the one this photo already
+   * belongs to, but let any wedding be browsed: almost every swap is "use a
+   * photo we already have", and upload-only made that the hard path.
+   *
+   * LOCKED for band and home-grid slots. Those write a photo NUMBER into
+   * _data/portfolio_meta.yml / _data/home_work.yml, and the number is resolved
+   * inside that wedding's own folder, so a photo from another wedding would
+   * commit a path that does not exist. */
+  const ownSlug = (repTarget.path.match(/^\/assets\/images\/portfolio\/([^/]+)\//) || [])[1] || repTarget.cardSlug;
+  const locked = !!(repTarget.bandSlug || repTarget.homeSlot != null);
+  repWeddingSel.onchange = null;
+  fillWeddingChooser(ownSlug, locked).then((initial) => {
+    if (initial) renderRepGallery(initial, ownSlug);
+    if (!locked) repWeddingSel.onchange = () => renderRepGallery(repWeddingSel.value, ownSlug);
+  });
+}
+
+/* Options for the "show photos from" chooser. Locked targets get their own
+ * wedding and nothing else, so the control still explains itself rather than
+ * silently disappearing. */
+async function fillWeddingChooser(ownSlug, locked) {
+  repWeddingSel.innerHTML = "";
+  let slugs = ownSlug ? [ownSlug] : [];
+  if (!locked) {
+    try {
+      const r = await fetch(`${API}assets/images/portfolio?ref=${encodeURIComponent(BRANCH)}`, { headers: ghHeaders(), cache: "no-store" });
+      if (r.ok) {
+        const items = await r.json();
+        slugs = items.filter((i) => i.type === "dir").map((i) => i.name).sort();
+        if (ownSlug && !slugs.includes(ownSlug)) slugs.unshift(ownSlug);
+      }
+    } catch (e) { /* keep the fallback list */ }
   }
+  for (const sl of slugs) {
+    const o = document.createElement("option");
+    o.value = sl;
+    o.textContent = sl.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
+    if (sl === ownSlug) o.selected = true;
+    repWeddingSel.appendChild(o);
+  }
+  repWeddingSel.disabled = locked || slugs.length < 2;
+  repWeddingSel.parentElement.querySelector('label[for="ed-rep-wedding"]').hidden = slugs.length < 2;
+  repWeddingSel.hidden = slugs.length < 2;
+  return repWeddingSel.value || ownSlug || "";
+}
+
+/* Thumbnails for one wedding. */
+function renderRepGallery(slug, ownSlug) {
+  if (!slug) return;
+  repGal.innerHTML = "";
+  fetch(`${API}assets/images/portfolio/${slug}?ref=${encodeURIComponent(BRANCH)}`, { headers: ghHeaders(), cache: "no-store" })
+    .then((r) => (r.ok ? r.json() : []))
+    .then((items) => {
+      /* leave out the photo a blocked delete is trying to remove — clicking
+       * here means "feature this photo", the opposite of deleting it */
+      const deleting = sessionStorage.getItem("gfDeleting");
+      items = items.filter((f) => /\.(jpe?g|png)$/i.test(f.name) && `/${f.path}` !== repTarget.path && f.name !== deleting);
+      if (repModal.hidden) return;
+      if (!items.length) {
+        repGalLabel.textContent = "No photos in that wedding yet.";
+        repGalWrap.hidden = false;
+        return;
+      }
+      repGalLabel.textContent = deleting
+        ? `Pick the photo to show here instead (${deleting} isn't offered — you're deleting it):`
+        : slug === ownSlug
+          ? `Pick another photo already on the site to show here instead:`
+          : `Photos from ${slug.replace(/-/g, " ")}:`;
+      for (const it of items) {
+        const t = document.createElement("img");
+        t.src = it.download_url;
+        t.loading = "lazy";
+        t.title = it.name;
+        t.addEventListener("click", async () => {
+          /* one swap at a time: a second click landing mid-save used to
+           * commit the same change twice (empty commit) or fail against the
+           * source the first click had already rewritten */
+          if (repBusy) return;
+          repBusy = true;
+          repGal.classList.add("busy");
+          repErr.style.display = "none";
+          try {
+            const newSrc = `/${it.path}`;
+            const changed = await swapSourceTo(newSrc);
+            repTarget.el.removeAttribute("srcset");
+            repTarget.el.src = newSrc;
+            repModal.hidden = true;
+            repTarget = null;
+            statusEl.className = "ed-status ok";
+            statusEl.textContent = DRYRUN
+              ? "Dry run done — nothing committed"
+              : changed
+                ? "✓ Photo swapped — it's on the page now, live site in ~2 minutes"
+                : "✓ That photo is already the one on the live site";
+          } catch (err) {
+            repErr.textContent = err.message;
+            repErr.style.display = "block";
+          }
+          repBusy = false;
+          repGal.classList.remove("busy");
+        });
+        repGal.appendChild(t);
+      }
+      repGalWrap.hidden = false;
+    })
+    .catch(() => {});
 }
 
 repCancel.addEventListener("click", () => { repModal.hidden = true; repTarget = null; });
