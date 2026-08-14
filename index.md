@@ -155,6 +155,13 @@ can be wrong. {%- endcomment -%}
   <p class="marq-foot"><a href="{{ site.baseurl }}/weddings" class="txt-link"><span data-ed="home:process.link">{{ site.data.home.process.link }}</span> &rarr;</a></p>
 </section>
 
+{%- comment -%} The one adjacency on this page that a background change does not
+already carry: .work above closes a tint band, and .immersive below opens on a
+photo, but the signpost and the marquee share the default surface. Per the rule
+the bands are built on (see about/index.md), sections that share a background
+get a hairline. {%- endcomment -%}
+<hr class="hr-line">
+
 <!-- VENUE MARQUEE -->
 <section class="marq">
   <span class="lab"><span data-ed="home:marquee.label">{{ site.data.home.marquee.label }}</span></span>
