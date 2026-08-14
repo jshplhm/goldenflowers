@@ -8,7 +8,11 @@
  *     confirmation (which we are BCC'd on) never showed. That is exactly what
  *     happened on 2026-08-13: complete post with an empty venue sent the
  *     confirmation, the retry after a failed-looking send added the venue to
- *     the row, and nothing said so. The couple is still emailed only once.
+ *     the row, and nothing said so.
+ *   - When those details change, the couple also gets a corrected confirmation
+ *     (same subject, so Gmail threads it under the first) instead of being left
+ *     holding the stale one. Only the opening line differs. An identical
+ *     replay changes nothing, so it still sends no second email to anyone.
  *
  * What changed from v3.2 (v3.3):
  *   - Page and Button columns are BACK (owner request): the page the couple
@@ -239,9 +243,17 @@ function handlePost_(p, ss) {
     if (!wasComplete) {
       notifyComplete_(p);
     } else {
-      // The couple is deliberately NOT emailed twice; we get the correction.
       var changes = changedFields_(before, values);
-      if (changes.length) notifyLeadUpdated_(p, changes);
+      if (changes.length) {
+        // Their first confirmation is now out of date, so replace it rather
+        // than leaving them holding the wrong details. Same subject line, so
+        // Gmail threads it under the original instead of looking like a
+        // duplicate. Identical replays never reach here, so a couple only
+        // gets a second email when something they sent actually changed.
+        var resent = String(p.email || '').trim() !== '';
+        if (resent) sendAutoReply_(p, true);
+        notifyLeadUpdated_(p, changes, resent);
+      }
     }
     return success_();
   }
@@ -329,11 +341,13 @@ function changedFields_(before, after) {
 /* Internal only. The couple already has a confirmation showing the older
    details; emailing them a second, contradictory one would read as a mistake.
    Brittany gets the correction instead, because she is the one who replies. */
-function notifyLeadUpdated_(p, changes) {
+function notifyLeadUpdated_(p, changes, resent) {
   var lines = [
     'This lead was already confirmed, then resubmitted with different details.',
-    'The sheet row is now up to date. The couple was NOT emailed again, so the',
-    'confirmation in their inbox still shows the older version.',
+    'The sheet row is now up to date.',
+    resent
+      ? 'A corrected confirmation has been sent to them, threaded under the first.'
+      : 'They gave no email address, so nothing was sent to them.',
     '',
     'Name: ' + (p.name || ''),
     'Email: ' + (p.email || '(not given)'),
@@ -654,7 +668,12 @@ function notifyComplete_(p) {
    the success screen to look for it) is our best shot at surviving spam
    filters: they can fish it out now instead of missing our real reply later.
    BCC lands the same thread in our inbox to reply from. */
-function sendAutoReply_(p) {
+/* isUpdate: this is the corrected copy of a confirmation we already sent,
+   because the lead came back with different details. Only the opening line
+   changes. It does not apologize or mention a first email: from where they are
+   sitting the first attempt looked like it failed, so "we have your latest
+   details" is both true and the least confusing thing we can say. */
+function sendAutoReply_(p, isUpdate) {
   var email = String(p.email || '').trim();
   if (!email) { sendCompleteEmail_(p); return; }  // safety net; caller already branches
 
@@ -676,10 +695,13 @@ function sendAutoReply_(p) {
   var note = String(p.message || '').trim();
 
   var hi = first ? 'Hi ' + first + ',' : 'Hi,';
+  var opener = isUpdate
+    ? 'Thank you, we have your latest details. Here is what we have on file for you now.'
+    : 'Thank you for reaching out. We have received your request and we are checking our calendar now.';
 
   // Plain-text fallback (kept in step with the HTML; no em dashes in copy).
   var t = [hi, '',
-    'Thank you for reaching out. We have received your request and we are checking our calendar now.', ''];
+    opener, ''];
   if (rows.length || note) {
     t.push('Here is what you sent us:');
     rows.forEach(function (r) { t.push('  ' + r[0] + ': ' + r[1]); });
@@ -723,7 +745,7 @@ function sendAutoReply_(p) {
         '</td></tr>' +
         '<tr><td style="padding:22px 40px 0;font:15px/1.65 Helvetica,Arial,sans-serif;color:' + INK + ';">' +
           '<p style="margin:0 0 16px;">' + escHtml_(hi) + '</p>' +
-          '<p style="margin:0 0 22px;">Thank you for reaching out. We have received your request and we are checking our calendar now.</p>' +
+          '<p style="margin:0 0 22px;">' + escHtml_(opener) + '</p>' +
           detailsHtml + noteHtml +
           '<p style="margin:0 0 22px;">We will be in touch within 48 hours to let you know if your date is open and how we would approach your florals.</p>' +
           '<p style="margin:0 0 26px;">In the meantime, you can text us anytime at <strong style="color:' + GREEN + ';white-space:nowrap;">530-557-7689</strong>.</p>' +

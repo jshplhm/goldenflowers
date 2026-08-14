@@ -491,8 +491,29 @@ function appendCommon_(params, form){
       // from the endpoint (quota, misdeploy) must be thrown explicitly or
       // a lost lead would still see the thank-you. The 1s floor keeps fast
       // sends from feeling abrupt; a cold start just holds "Sending…".
-      var send=fetch(form.action,{method:'POST',body:params,keepalive:true})
-        .then(function(r){ if(!r.ok) throw new Error('send failed: HTTP '+r.status); });
+      // Apps Script answers a POST with a 302 to a DIFFERENT host
+      // (script.googleusercontent.com), and doPost has already written the row
+      // and sent the couple's confirmation BEFORE that redirect is issued. So
+      // everything after the request lands — the redirect, a fresh TLS
+      // handshake to the second host, the response coming back over several
+      // seconds of spreadsheet and Gmail calls — can break on a phone while
+      // the submission itself succeeded. That is a false failure, and it is
+      // expensive: "Try again" leaves the filled form on screen and invites
+      // the couple to add a field before resubmitting, which lands in the
+      // sheet AFTER their confirmation went out (see 2026-08-13).
+      // One silent retry costs a real failure ~1.5s and removes most of them.
+      // Resending is safe because lead_id makes the server idempotent: the
+      // same values simply overwrite the same row, no second email.
+      function attempt(keepalive){
+        return fetch(form.action,{method:'POST',body:params,keepalive:keepalive})
+          .then(function(r){ if(!r.ok) throw new Error('send failed: HTTP '+r.status); });
+      }
+      // keepalive on the first try so a backgrounded tab still delivers it.
+      // The retry drops it: by then we know the page is alive, and keepalive
+      // requests are the ones browsers treat least reliably.
+      var send=attempt(true).catch(function(){
+        return new Promise(function(r){ setTimeout(r,1500); }).then(function(){ return attempt(false); });
+      });
       var beat=new Promise(function(r){ setTimeout(r,1000); });
       Promise.all([send,beat]).then(function(){
         showSuccess(form,data);
