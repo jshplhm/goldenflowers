@@ -1338,6 +1338,26 @@ function sourceSwappedTo(text, newSrcPath) {
     const hit = cardPhotoInSource(text, repTarget.cardSlug);
     if (hit) return text.slice(0, hit.at) + newSrcPath + text.slice(hit.at + hit.path.length);
   }
+  /* Last resort: match on the file name alone. The rendered path and the path
+   * written in the source do not always agree -- a src can be assembled around
+   * {{ site.baseurl }} or another tag, and production serves srcset variants
+   * that canonicalise back approximately. The file name is the stable part.
+   * Only act when it appears EXACTLY once: the home hero rotator carries three
+   * .bg images, and a wrong guess would rewrite the wrong one silently. */
+  const file = repTarget.path.split("/").pop();
+  if (file) {
+    const esc = file.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    /* `}` is allowed as a lead-in and `{}` excluded from the path itself, or a
+       src assembled as "{{ site.baseurl }}/assets/..." matches from the space
+       inside the tag and the replacement eats the closing braces. */
+    const re = new RegExp(`(["'\\s}])([^"'\\s{}]*${esc})(?=["'\\s])`, "g");
+    const hits = [...text.matchAll(re)];
+    if (hits.length === 1) {
+      const h = hits[0];
+      const at = h.index + h[1].length;
+      return text.slice(0, at) + newSrcPath + text.slice(at + h[2].length);
+    }
+  }
   return null;
 }
 
