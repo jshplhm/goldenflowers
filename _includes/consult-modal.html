@@ -94,10 +94,16 @@
           <label for="m-budget">Approximate budget</label>
           <select id="m-budget" name="budget" required>
             <option value="" disabled selected>Estimated florals budget</option>
-            <option>$5,000&ndash;$8,000</option>
-            <option>$8,000&ndash;$15,000</option>
-            <option>$15,000&ndash;$25,000</option>
-            <option>$25,000+</option>
+            {%- comment -%} Boundaries are the published ladder on /weddings:
+            7,500 floor, 12,000-20,000 typical, 20,000 up. These strings must
+            match the BUDGETS whitelist in _scripts/consultation-form-doPost.gs
+            EXACTLY, en dashes included, or the server files a real lead as spam.
+            The script also still accepts the four brackets these replace, so a
+            cached page cannot be rejected. {%- endcomment -%}
+            <option>$7,500&ndash;$12,000</option>
+            <option>$12,000&ndash;$20,000</option>
+            <option>$20,000&ndash;$30,000</option>
+            <option>$30,000+</option>
             <option>Not sure yet</option>
           </select>
         </div>
