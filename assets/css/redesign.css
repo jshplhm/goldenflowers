@@ -66,6 +66,13 @@
   /* Inline padding that aligns to the text edge of a centered --content-max
      container that itself carries var(--pad) inner padding. */
   --pad-col:calc(max(0px,(100% - var(--content-max))/2) + var(--pad));
+  /* Margin rail for the eyebrow label on desktop prose blocks (.intro-band,
+     .mini). The label sits out in the margin and the prose keeps its reading
+     measure, so the block spans the rail without the line length growing.
+     One definition because the two components must agree, or the home intro
+     and the .mini blocks below it start on different axes. */
+  --lab-rail:clamp(150px,15vw,220px);
+  --lab-gap:clamp(32px,4vw,64px);
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;scroll-padding-top:calc(var(--nav-h) + 12px);}
@@ -305,22 +312,32 @@ button.txt-link{background:none;border-top:0;border-left:0;border-right:0;cursor
    column. */
 @media(min-width:601px) and (max-width:1024px){.facts .fact-more{grid-column:2;}}
 /* ---------- HOME INTRO ---------- */
-/* Capped at a reading measure (~950px; the rail is 1356px at 1920) and LEFT on
-   the rail, not centered. The home page runs one left axis at 282px from the
-   hero through the photo grid, then switches to centered for the marquee,
-   immersive, testimonial and CTA, then returns left for the footer. Centering
-   this block put it on a third axis between two rail-aligned neighbours, which
-   read as a zigzag at the top of the scroll.
-   The leftover ~690px sits on the right, which is the page's existing idiom:
-   every left-rail block rags out (why heading 888, work heading 1224, footer
-   1265), and this is the smallest of them. Below ~950px the cap stops biting
-   and the prose fills the rail on its own. */
+/* Capped at a reading measure and LEFT on the rail, not centered. The home page
+   runs one left axis at 282px from the hero through the photo grid, then
+   switches to centered for the marquee, immersive, testimonial and CTA, then
+   returns left for the footer. Centering this block put it on a third axis
+   between two rail-aligned neighbours, which read as a zigzag at the top of
+   the scroll.
+   The measure stays put; the LABEL moves out into the margin rail on desktop
+   (see --lab-rail), which spends the leftover width on structure instead of
+   leaving it as an unfinished right edge: 66% -> 87% of the rail at 1920 with
+   the line length unchanged. Below 1025px the label stacks again and the prose
+   fills the rail on its own. */
 .intro{padding-top:clamp(64px,8vw,104px);}
 .intro-band{max-width:none;}
 .intro-side .lab{display:block;margin-bottom:clamp(20px,2.5vw,30px);}
+@media(min-width:1025px){
+  .intro-band{display:grid;grid-template-columns:var(--lab-rail) minmax(0,1fr);column-gap:var(--lab-gap);align-items:start;}
+  /* sits the label's cap height on the first prose baseline */
+  .intro-side{padding-top:13px;}
+  .intro-side .lab{margin-bottom:0;}
+}
 .intro-body p{font-family:var(--d);font-weight:430;font-optical-sizing:auto;font-size:clamp(1.3rem,2.6vw,1.9rem);line-height:1.5;letter-spacing:-.01em;color:var(--ink);text-wrap:pretty;
   /* Capped in ch, not px. A px cap stops biting once the rail is narrower than
-     it, which is exactly what let tablet run to 76 characters per line. */
+     it, which is exactly what let tablet run to 76 characters per line.
+     NOTE: ch is the width of "0", and Cormorant's figures are narrow relative
+     to its lowercase, so 62ch renders ~75 characters. Tune against the rendered
+     count, not this number. */
   max-width:62ch;}
 .intro-body p + p{margin-top:28px;}
 /* The onward link is a paragraph inside .intro-body, so it inherits the big
@@ -749,7 +766,11 @@ body.lb-open{overflow:hidden;}
 .testi-row .quote-card .src{margin-top:auto;}
 
 /* ---------- FAQ ---------- */
-.faq-list{max-width:860px;margin:clamp(32px,4vw,48px) auto 0;}
+/* Left, not centered. The label and <h2> that introduce this list are on the
+   section's left edge; `margin: … auto 0` centered the list under them, so the
+   heading started at the rail edge and its own list started ~250px in. Same
+   markup on /weddings and on every venue page (_layouts/venue.html). */
+.faq-list{max-width:860px;margin:clamp(32px,4vw,48px) 0 0;}
 .faq-card{border-top:1px solid var(--line);}
 .faq-card:last-child{border-bottom:1px solid var(--line);}
 .faq-card summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:20px;padding:24px 4px;}
@@ -1191,6 +1212,21 @@ body.nav-hidden .venue-breadcrumb{top:0;}
 .mini{max-width:var(--content-max);margin:0 auto;padding:clamp(56px,7vw,90px) var(--pad);}
 .mini h2{font-family:var(--d);font-weight:430;font-optical-sizing:auto;font-size:clamp(1.9rem,3.6vw,2.6rem);letter-spacing:-.02em;margin:16px 0 12px;}
 .mini p{color:var(--fg2);max-width:62ch;line-height:1.6;margin-bottom:24px;}
+/* Same margin-rail treatment as the home intro (--lab-rail). These were the
+   worst instances of it on the site: label stacked on a 62ch paragraph left the
+   text ending at 45% (/about) and 50% (/venues) of the rail. The section is flat
+   markup, so the grid goes on the section and every non-label child is pushed to
+   column 2. */
+@media(min-width:1025px){
+  .mini{display:grid;grid-template-columns:var(--lab-rail) minmax(0,1fr);column-gap:var(--lab-gap);align-items:start;}
+  .mini > .lab{grid-column:1;grid-row:1;padding-top:9px;}
+  .mini > :not(.lab){grid-column:2;}
+  /* The exit link is a grid item now, so without this it stretches the full
+     column and drags its underline across the page. /about uses an <a>,
+     /venues a <button data-consult-open>. */
+  .mini > a,.mini > button{justify-self:start;}
+  .mini h2{margin-top:0;}
+}
 
 /* Touch devices: grow small text-link/footer/menu targets without moving layout
    (padding offset by negative margins; desktop pointer:fine is untouched). */
