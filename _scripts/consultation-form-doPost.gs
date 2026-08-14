@@ -250,9 +250,15 @@ function handlePost_(p, ss) {
         // Gmail threads it under the original instead of looking like a
         // duplicate. Identical replays never reach here, so a couple only
         // gets a second email when something they sent actually changed.
-        var resent = String(p.email || '').trim() !== '';
-        if (resent) sendAutoReply_(p, true);
-        notifyLeadUpdated_(p, changes, resent);
+        // The alert to us must survive a failed send to them: if Gmail
+        // refuses (quota, a bounced address), that is exactly when Brittany
+        // most needs to know the couple is holding stale details.
+        var coupleState = 'none';
+        if (String(p.email || '').trim()) {
+          try { sendAutoReply_(p, true); coupleState = 'sent'; }
+          catch (err) { coupleState = 'failed'; }
+        }
+        notifyLeadUpdated_(p, changes, coupleState);
       }
     }
     return success_();
@@ -338,16 +344,22 @@ function changedFields_(before, after) {
   return out;
 }
 
-/* Internal only. The couple already has a confirmation showing the older
-   details; emailing them a second, contradictory one would read as a mistake.
-   Brittany gets the correction instead, because she is the one who replies. */
-function notifyLeadUpdated_(p, changes, resent) {
+/* Internal alert, sent alongside (not instead of) the couple's corrected
+   confirmation, because Brittany is the one who replies and needs to see what
+   moved. `coupleState` is 'sent', 'none' (no email address to send to) or
+   'failed' (Gmail refused, e.g. quota) — a failure has to be visible here,
+   since it means the couple is still holding the stale details. */
+function notifyLeadUpdated_(p, changes, coupleState) {
+  var coupleLine = coupleState === 'sent'
+    ? 'A corrected confirmation has been sent to them, threaded under the first.'
+    : coupleState === 'failed'
+      ? 'WARNING: the corrected confirmation to them FAILED to send. They still'
+        + ' have the old details, so mention the change when you reply.'
+      : 'They gave no email address, so nothing was sent to them.';
   var lines = [
     'This lead was already confirmed, then resubmitted with different details.',
     'The sheet row is now up to date.',
-    resent
-      ? 'A corrected confirmation has been sent to them, threaded under the first.'
-      : 'They gave no email address, so nothing was sent to them.',
+    coupleLine,
     '',
     'Name: ' + (p.name || ''),
     'Email: ' + (p.email || '(not given)'),
@@ -667,8 +679,9 @@ function notifyComplete_(p) {
    inbox seconds after they submit (while they are still on the page, primed by
    the success screen to look for it) is our best shot at surviving spam
    filters: they can fish it out now instead of missing our real reply later.
-   BCC lands the same thread in our inbox to reply from. */
-/* isUpdate: this is the corrected copy of a confirmation we already sent,
+   BCC lands the same thread in our inbox to reply from.
+
+   isUpdate: this is the corrected copy of a confirmation we already sent,
    because the lead came back with different details. Only the opening line
    changes. It does not apologize or mention a first email: from where they are
    sitting the first attempt looked like it failed, so "we have your latest
