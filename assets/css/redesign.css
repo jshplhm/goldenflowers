@@ -253,6 +253,10 @@ button.txt-link{background:none;border-top:0;border-left:0;border-right:0;cursor
 .hero-dots .hd-pause:hover{color:oklch(100% 0 0);}
 
 /* ---------- SPLIT HERO (Our Story — deliberately not full-bleed) ---------- */
+/* Deliberately 1400, not --content-max: the hero's text edge sits at 332px
+   rather than the site's 282px rail. Tried aligning it and the owner preferred
+   the inset -- the hero reads as its own opening rather than as the first of
+   the page's sections. Leave it. */
 .studio-hero{display:grid;grid-template-columns:1.02fr .98fr;gap:clamp(32px,5vw,72px);align-items:center;max-width:1400px;margin:0 auto;padding:clamp(112px,14vw,170px) var(--pad) clamp(24px,3vw,44px);}
 .studio-hero h1{font-family:var(--d);font-weight:430;font-optical-sizing:auto;font-size:clamp(2.6rem,6vw,5.6rem);line-height:1.02;letter-spacing:-.02em;margin:18px 0 22px;}
 .studio-hero h1 em{color:var(--forest);}
@@ -266,7 +270,14 @@ button.txt-link{background:none;border-top:0;border-left:0;border-right:0;cursor
 
 /* ---------- CREDO ---------- */
 .credo{padding:var(--sp-l) var(--pad);max-width:var(--content-max);margin:0 auto;}
-.credo h2{font-family:var(--d);font-weight:430;font-optical-sizing:auto;font-size:clamp(2.1rem,5.3vw,4.2rem);line-height:1.1;letter-spacing:-.02em;max-width:24ch;text-wrap:balance;margin-top:26px;}
+/* Fills the rail. `max-width:24ch` + `text-wrap:balance` was two constraints
+   stacked: the cap decided there would be three lines, then balance evened those
+   three to ~650px each, so the heading stopped at 48% of the rail while its own
+   facts grid below spanned 100%. Note the cap alone controls only the LINE
+   COUNT -- widening it to the 2-of-3 grid line (884px) still gave three balanced
+   lines at 656px, i.e. no visible change at all. Uncapped + `pretty` is what
+   actually fills: 2 lines, 1313/650, 97%. */
+.credo h2{font-family:var(--d);font-weight:430;font-optical-sizing:auto;font-size:clamp(2.1rem,5.3vw,4.2rem);line-height:1.1;letter-spacing:-.02em;text-wrap:pretty;margin-top:26px;}
 .credo h2 em{color:var(--forest);}
 .facts{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(28px,4vw,60px);margin-top:clamp(56px,7vw,90px);border-top:1px solid var(--line);padding-top:46px;}
 /* Everything below is scoped to .facts on purpose. `.fact` on its own also
@@ -411,10 +422,20 @@ button.txt-link{background:none;border-top:0;border-left:0;border-right:0;cursor
    tint band that closes .work is what separates them. Shorter padding than a
    full section (--sp-m, not --sp-l): it is a doorway, not a destination, and
    at full height it read as a section with nothing in it. */
-.proc-signpost{padding:var(--sp-m) var(--pad);max-width:720px;margin:0 auto;text-align:center;}
+/* 1100px to match .testi, the other centered text-only beat. At 720px the
+   heading had a 576px content box, which forced the larger type below onto
+   three cramped lines. */
+.proc-signpost{padding:var(--sp-l) var(--pad);max-width:1100px;margin:0 auto;text-align:center;}
 .proc-signpost .lab{display:block;margin-bottom:18px;}
-.proc-signpost h2{font-size:clamp(1.8rem,3.6vw,2.7rem);}
-.proc-signpost p{color:var(--mute);margin:18px auto 0;max-width:46ch;font-size:1.02rem;line-height:1.62;}
+/* Scaled with the rest of the centered run, not below it. This is the first of
+   five consecutive centered beats (signpost, marquee, immersive, pull-quote,
+   CTA) and it was the only one whose heading was knocked down: 2.7rem against
+   3.4rem for the immersive and pull-quote and 4.2rem for the CTA it rhymes
+   with. At 43px next to a 67px CTA it read as a caption between sections rather
+   than as a section, which is why it felt both small and misplaced. Same ramp
+   as .cta h2. */
+.proc-signpost h2{font-family:var(--d);font-weight:430;font-optical-sizing:auto;font-size:clamp(2.1rem,5vw,4.2rem);letter-spacing:-.025em;line-height:1;}
+.proc-signpost p{color:var(--mute);margin:22px auto 0;max-width:46ch;font-size:1.06rem;line-height:1.62;}
 /* .marq-foot's 36px is tuned to clear a 2.6rem marquee; against a paragraph
    this needs less. */
 .proc-signpost .marq-foot{margin-top:26px;}
@@ -682,7 +703,11 @@ body.lb-open{overflow:hidden;}
 
 /* ---------- PROCESS ---------- */
 .proc{background:var(--bg2);color:var(--ink);padding:var(--sp-l) var(--pad-col);}
-.proc-wrap{max-width:1100px;margin:0 auto;}
+/* Left on the rail, not centered. .proc is already padded with --pad-col, so a
+   centered 1100px wrapper inside it started the timeline at 410px while the
+   blocks above and below start at 282px. The step rows are structure and span;
+   the prose inside them keeps its own measure (.proc-head p, .proc-step p). */
+.proc-wrap{max-width:none;margin:0;}
 .proc-head{max-width:48ch;margin-bottom:clamp(44px,6vw,68px);}
 .proc-head .lab{color:var(--accent);}
 .proc-head h2{font-family:var(--d);font-weight:430;font-optical-sizing:auto;font-size:clamp(1.9rem,4.6vw,3.4rem);letter-spacing:-.02em;line-height:1.05;margin:20px 0 18px;color:var(--ink);}
@@ -766,11 +791,12 @@ body.lb-open{overflow:hidden;}
 .testi-row .quote-card .src{margin-top:auto;}
 
 /* ---------- FAQ ---------- */
-/* Left, not centered. The label and <h2> that introduce this list are on the
-   section's left edge; `margin: … auto 0` centered the list under them, so the
-   heading started at the rail edge and its own list started ~250px in. Same
-   markup on /weddings and on every venue page (_layouts/venue.html). */
-.faq-list{max-width:860px;margin:clamp(32px,4vw,48px) 0 0;}
+/* Fills the rail, like the content blocks either side of it. An 860px centered
+   list sat on a different axis from the label and <h2> that introduce it; an
+   860px LEFT list fixed the axis but left the section at 68% fill between
+   neighbours at 97% and 137%, which reads as neither. The rows are structure,
+   so they span; the answer prose keeps its own measure below (.faq-a). */
+.faq-list{max-width:none;margin:clamp(32px,4vw,48px) 0 0;}
 .faq-card{border-top:1px solid var(--line);}
 .faq-card:last-child{border-bottom:1px solid var(--line);}
 .faq-card summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:20px;padding:24px 4px;}

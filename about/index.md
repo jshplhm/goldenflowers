@@ -31,8 +31,13 @@ redirect_from:
    Full-bleed pattern (background + padding on the section, measure on an inner
    wrapper) rather than .block, so the bands still span the viewport past the
    1500px content max. */
-.band{padding:clamp(70px,9vw,120px) var(--pad);}
-.band > .band-in{max-width:var(--content-max);margin:0 auto;}
+/* Padded with --pad-col, not --pad. A centered `max-width:1500px` inner wrapper
+   has no inner padding of its own, so its text edge landed at 210px while every
+   .block on the site starts at 282px: the bands sat 72px (one --pad) left of the
+   site's text rail. --pad-col is exactly the offset that puts a full-bleed
+   section's content on that rail. */
+.band{padding:clamp(70px,9vw,120px) var(--pad-col);}
+.band > .band-in{max-width:none;margin:0;}
 .band-dark{background:var(--forest-deep);color:var(--paper);}
 .band-dark .lab{color:var(--accent-soft);}
 .band-dark h2{color:var(--paper);}
