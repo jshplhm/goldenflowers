@@ -228,6 +228,7 @@ content:
             list: true
             fields:
               - {name: number, label: "Number", type: string}
+              - {name: phase, label: "Start a new group here", type: string, description: "Leave blank on most steps. Fill it in to start a new group, e.g. 'Before you book'. The heading shows above that step."}
               - {name: when, label: "Timing label", type: string}
               - {name: title, label: "Title", type: string}
               - {name: body, label: "Text", type: text}
@@ -249,12 +250,16 @@ content:
         type: object
         fields:
           - {name: label, label: "Small label", type: string}
-          - {name: price, label: "Headline price", type: string}
-          - {name: price_sub, label: "Under the price", type: string}
-          - {name: points, label: "Bullet points", type: text, list: true, description: "**double asterisks** make text bold"}
-          - {name: guide_text, label: "Price guide link text", type: string, description: "Leave the link blank to hide it"}
-          - {name: guide_url, label: "Price guide link address", type: string, description: "Full address, starting with https://"}
-          - {name: tagline, label: "Closing line", type: text}
+          - name: tiers
+            label: "Price scale"
+            type: object
+            list: true
+            description: "Three rows, cheapest first. Tick 'Most weddings' on exactly one row: it is the one shown larger."
+            fields:
+              - {name: label, label: "What it covers", type: string}
+              - {name: amount, label: "Amount", type: string}
+              - {name: lead, label: "Most weddings land here", type: boolean}
+          - {name: note, label: "Line under the scale", type: text}
       - name: assurance
         label: "Section: how we work"
         type: object

@@ -59,7 +59,17 @@ redirect_from:
       <h2><span data-ed="weddings:process.heading">{{ site.data.weddings.process.heading }}</span></h2>
       <p><span data-ed="weddings:process.intro">{{ site.data.weddings.process.intro }}</span></p>
     </div>
+    {%- comment -%} Steps carry an optional `phase`; a heading is emitted wherever
+    it changes, which breaks the timeline into "before you book" and "once you're
+    booked" without restructuring the data or moving any step's data-ed path.
+    Leave every phase blank and it renders as one continuous run, as before.
+    {%- endcomment -%}
+    {%- assign seen_phase = "" %}
     {%- for step in site.data.weddings.process.steps %}
+    {%- if step.phase and step.phase != seen_phase %}
+    <p class="proc-phase"><span data-ed="weddings:process.steps.{{ forloop.index0 }}.phase">{{ step.phase }}</span></p>
+    {%- assign seen_phase = step.phase %}
+    {%- endif %}
     <div class="proc-step"><div class="proc-num">{{ step.number }}</div><div><span class="proc-when"><span data-ed="weddings:process.steps.{{ forloop.index0 }}.when">{{ step.when }}</span></span><h3><span data-ed="weddings:process.steps.{{ forloop.index0 }}.title">{{ step.title }}</span></h3><p><span data-ed="weddings:process.steps.{{ forloop.index0 }}.body">{{ step.body }}</span></p></div></div>
     {%- endfor %}
   </div>
@@ -71,43 +81,47 @@ redirect_from:
   <h2 class="h-lg"><span data-ed="weddings:included.heading">{{ site.data.weddings.included.heading }}</span></h2>
   <div class="included-grid">
     {%- for item in site.data.weddings.included.items %}
-    <div class="value-item"><h3><span data-ed="weddings:included.items.{{ forloop.index0 }}.title">{{ item.title }}</span></h3><p><span data-ed="weddings:included.items.{{ forloop.index0 }}.body">{{ item.body }}</span></p></div>
+    <div class="value-item">
+      {%- if item.icon %}{% include icon.html name=item.icon %}{% endif %}
+      <h3><span data-ed="weddings:included.items.{{ forloop.index0 }}.title">{{ item.title }}</span></h3>
+      <p><span data-ed="weddings:included.items.{{ forloop.index0 }}.body">{{ item.body }}</span></p>
+    </div>
     {%- endfor %}
   </div>
 </section>
 
-<hr class="hr-line">
+{%- comment -%} No hairline here: the band is full bleed now, so the change of
+background is its own divider. A rule only separates two sections that SHARE a
+surface. {%- endcomment -%}
 
 <!-- PRICING (dark: the page premium moment) -->
-<section class="block pricing-dark" id="pricing">
+{%- comment -%} One figure and one label per tier. No cards: a card implies a
+package, and we are deliberately not saying what each figure buys. {%- endcomment -%}
+<section class="pricing-dark" id="pricing">
   <div class="pricing">
     <span class="lab"><span data-ed="weddings:pricing.label">{{ site.data.weddings.pricing.label }}</span></span>
-    <p class="price-num"><span data-ed="weddings:pricing.price">{{ site.data.weddings.pricing.price }}</span></p>
-    <p class="price-sub"><span data-ed="weddings:pricing.price_sub">{{ site.data.weddings.pricing.price_sub }}</span></p>
-    <ul class="price-list">
-      {%- for point in site.data.weddings.pricing.points %}
-      <li>{% include em.html t=point k="weddings:pricing.points" i=forloop.index0 %}</li>
+    <h2 class="h-lg"><span data-ed="weddings:pricing.heading">{{ site.data.weddings.pricing.heading }}</span></h2>
+    <p class="price-basis"><span data-ed="weddings:pricing.note">{{ site.data.weddings.pricing.note }}</span></p>
+    <dl class="price-scale">
+      {%- for tier in site.data.weddings.pricing.tiers %}
+      <div class="price-row{% if tier.lead %} is-lead{% endif %}">
+        {%- if tier.photo %}
+        <img class="price-shot" src="{{ site.baseurl }}/assets/images/portfolio/{{ tier.photo }}" alt="{{ tier.alt }}" loading="lazy" sizes="(max-width:900px) 90vw, 30vw">
+        {%- endif %}
+        <dd><span data-ed="weddings:pricing.tiers.{{ forloop.index0 }}.amount">{{ tier.amount }}</span></dd>
+        <dt><span data-ed="weddings:pricing.tiers.{{ forloop.index0 }}.label">{{ tier.label }}</span></dt>
+      </div>
       {%- endfor %}
-    </ul>
-    {%- if site.data.weddings.pricing.guide_url != empty %}
-    <a class="price-guide" href="{{ site.data.weddings.pricing.guide_url }}" target="_blank" rel="noopener">
-      <span data-ed="weddings:pricing.guide_text">{{ site.data.weddings.pricing.guide_text }}</span>
-      <svg class="price-guide-arw" width="11" height="11" viewBox="0 0 11 11" fill="none" aria-hidden="true"><path d="M1.5 9.5 9.5 1.5M3.6 1.5h5.9v5.9" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    </a>
-    {%- endif %}
-    <p class="price-tagline"><span data-ed="weddings:pricing.tagline">{{ site.data.weddings.pricing.tagline }}</span></p>
+    </dl>
   </div>
 </section>
 
-
-<!-- ASSURANCE -->
-<section class="callout-sec">
-  <div class="callout">
-    <span class="lab"><span data-ed="weddings:assurance.label">{{ site.data.weddings.assurance.label }}</span></span>
-    <h2><span data-ed="weddings:assurance.heading">{{ site.data.weddings.assurance.heading }}</span></h2>
-    <p style="max-width:540px;margin:0 auto;color:var(--fg2);"><span data-ed="weddings:assurance.body">{{ site.data.weddings.assurance.body }}</span></p>
-  </div>
-</section>
+{%- comment -%} The "everything is planned twice" callout was cut here. Both of
+its claims (over-sourcing, and capping the calendar) are already answered at
+length in the FAQ below, and as a short paragraph between the price and the
+reviews it had no job the page was not already doing. Copy is still in
+_data/weddings.yml under `assurance:` if it is ever wanted back.
+{%- endcomment -%}
 
 <!-- TESTIMONIALS -->
 <section class="block tight" id="reviews">

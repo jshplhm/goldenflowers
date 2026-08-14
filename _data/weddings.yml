@@ -14,6 +14,7 @@ process:
     rather than handed a catalog."
   steps:
     - number: "01"
+      phase: Before you book
       when: Today · no commitment
       title: Check your date
       body: Tell us your date and venue and we'll confirm it's still open.
@@ -37,6 +38,7 @@ process:
         applied toward your balance, secure your date in full. From here, the
         date is officially yours.
     - number: "05"
+      phase: Once you're booked
       when: 30–60 days out
       title: Refinement
       body: As your final count, layout, and timeline settle, we refine the design and
@@ -59,34 +61,58 @@ included:
   heading: Full-service means all of it.
   items:
     - title: Bridal & party florals
+      icon: bouquet
       body: "Bridal bouquet, bridesmaids, boutonnieres, flower crown, corsages: all
         designed as a cohesive system."
     - title: Ceremony installation
+      icon: arch
       body: Arch, altar arrangement, aisle florals, or hanging installation, designed
         for your specific venue and ceremony setup.
     - title: Reception centerpieces
+      icon: compote
       body: "Table arrangements designed to work at scale in your space: low-profile,
         elevated, or dramatic, based on your vision and room."
     - title: Environmental florals
+      icon: budvase
       body: Cocktail-hour arrangements, bar florals, lounge pieces, escort-card
         styling, and any other environmental design.
     - title: Setup & breakdown
+      icon: ladder
       body: We coordinate with your venue and planner, handle full setup on the day,
         and break down and remove everything at the end of the night.
     - title: Mood board & proposal
+      icon: moodboard
       body: A visual design document and itemized proposal before you commit to
         anything. You know exactly what you're getting, and why.
 pricing:
   label: Investment
-  price: $10,000–$50,000
-  price_sub: Typical Full service Lake Tahoe wedding
-  points:
-    - Ambitious, installation-heavy visions run **$30,000+**
-    - Our order minimum is $5,000
-  guide_text: ""
-  guide_url: ""
-  tagline: Locally-grown flowers, refined floral artistry, and a design curated
-    around your day.
+  heading: What it costs.
+  note: Every wedding is quoted on its own. What moves the number most is the
+    scale of the ceremony installation and how much of the room you want
+    designed, not the number of bouquets.
+  # One figure and one short label each. Claims are about OUR book, not about
+  # the Lake Tahoe market: we have no data on what other studios charge, and
+  # "most couples spend X" also quietly grades the couple reading it.
+  # `lead` marks the tier most of our weddings land on.
+  # PLACEHOLDER PHOTO PAIRINGS: attaching a photo to a figure implies that
+  # wedding cost roughly that, so Brittany picks the final three.
+  tiers:
+    - amount: $7,500
+      label: Our full service minimum
+      photo: kelly-dylan/kelly-dylan-07.jpg
+      alt: Couple on a Lake Tahoe beach beside tall purple and white ceremony
+        florals
+    - amount: $12,000 to $20,000
+      label: A typical 100 guest wedding
+      photo: katie-james/katie-james-04.jpg
+      alt: Long reception table at The Miner's Foundry running the length of the
+        room, set with candles and seasonal arrangements
+      lead: true
+    - amount: $20,000+
+      label: Larger weddings and bigger installations
+      photo: lynn-aaron/lynn-aaron-27.jpg
+      alt: Suspended greenery installations hanging above the reception at
+        Palisades High Camp
 assurance:
   label: How we work
   heading: Everything is planned twice.

@@ -133,12 +133,21 @@ var ROLES = [
   "Someone else"
 ];
 
+// Brackets were realigned to the published ladder on /weddings (full service
+// begins at $7,500). The OLD four are still accepted on purpose: a visitor with
+// the previous page cached will post an old string, and rejecting a real lead as
+// spam is far worse than accepting a retired label. Delete the four marked
+// RETIRED once the sheet has stopped seeing them (a season is plenty).
 var BUDGETS = [
-  "$5,000–$8,000",
-  "$8,000–$15,000",
-  "$15,000–$25,000",
-  "$25,000+",
-  "Not sure yet"
+  "$7,500–$12,000",
+  "$12,000–$20,000",
+  "$20,000–$30,000",
+  "$30,000+",
+  "Not sure yet",
+  "$5,000–$8,000",    // RETIRED
+  "$8,000–$15,000",   // RETIRED
+  "$15,000–$25,000",  // RETIRED
+  "$25,000+"          // RETIRED
 ];
 
 var PLACEHOLDER_DOMAINS = [
