@@ -99,20 +99,19 @@ pricing:
   tiers:
     - amount: $7,500
       label: Our full service minimum
-      photo: kelly-dylan/kelly-dylan-07.jpg
-      alt: Couple on a Lake Tahoe beach beside tall purple and white ceremony
-        florals
+      photo: camille-max/camille-max-17.jpg
+      alt: Couple on a Lake Tahoe beach beside tall purple and white ceremony florals
     - amount: $12,000 to $20,000
       label: A typical 100 guest wedding
       photo: katie-james/katie-james-04.jpg
-      alt: Long reception table at The Miner's Foundry running the length of the
-        room, set with candles and seasonal arrangements
+      alt: Long reception table at The Miner's Foundry running the length of the room,
+        set with candles and seasonal arrangements
       lead: true
     - amount: $20,000+
       label: Larger weddings and bigger installations
       photo: lynn-aaron/lynn-aaron-27.jpg
-      alt: Suspended greenery installations hanging above the reception at
-        Palisades High Camp
+      alt: Suspended greenery installations hanging above the reception at Palisades
+        High Camp
 assurance:
   label: How we work
   heading: Everything is planned twice.
