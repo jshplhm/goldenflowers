@@ -106,7 +106,12 @@ package, and we are deliberately not saying what each figure buys. {%- endcommen
       {%- for tier in site.data.weddings.pricing.tiers %}
       <div class="price-row{% if tier.lead %} is-lead{% endif %}">
         {%- if tier.photo %}
-        <img class="price-shot" src="{{ site.baseurl }}/assets/images/portfolio/{{ tier.photo }}" alt="{{ tier.alt }}" loading="lazy" sizes="(max-width:900px) 90vw, 30vw">
+        {%- comment -%} `photo:` is a wedding gallery path (kelly-dylan/kelly-dylan-07.jpg),
+        or a full site-root path when /edit swapped in an upload. {%- endcomment -%}
+        {%- assign tier_src = tier.photo | prepend: "/assets/images/portfolio/" -%}
+        {%- assign tier_lead = tier.photo | slice: 0, 1 -%}
+        {%- if tier_lead == "/" %}{% assign tier_src = tier.photo %}{% endif -%}
+        <img class="price-shot" src="{{ site.baseurl }}{{ tier_src }}" alt="{{ tier.alt }}" loading="lazy" sizes="(max-width:900px) 90vw, 30vw" data-ed-photo="weddings:pricing.tiers.{{ forloop.index0 }}.photo">
         {%- endif %}
         <dd><span data-ed="weddings:pricing.tiers.{{ forloop.index0 }}.amount">{{ tier.amount }}</span></dd>
         <dt><span data-ed="weddings:pricing.tiers.{{ forloop.index0 }}.label">{{ tier.label }}</span></dt>

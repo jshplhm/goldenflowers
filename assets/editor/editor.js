@@ -1273,8 +1273,7 @@ async function makeHero(name) {
       galEl.setAttribute("data-ed-ghero", name);
       const heroImg = galEl.querySelector(".wd-hero-img");
       if (heroImg) {
-        heroImg.removeAttribute("srcset");
-        heroImg.src = `${CFG.baseurl}/assets/images/portfolio/${curGallery.slug}/${name}`;
+        showSwapped(heroImg, `${CFG.baseurl}/assets/images/portfolio/${curGallery.slug}/${name}`);
       }
     }
     phNote(`✓ ${name} is the opening photo now — you can see it on the page behind this panel. Live site follows in ~2 minutes.`, "ok");
@@ -1290,11 +1289,30 @@ async function makeHero(name) {
 /* Production HTML gets srcset variants at /assets/images/rsp/<stem>-<w>w.jpg
  * (responsive_images.rb), and img.currentSrc usually picks one of those.
  * Variant paths never appear in any source file, so map them back to the
- * committed original before matching against page source. */
+ * committed original before matching against page source.
+ *
+ * Match ANY width and BOTH extensions. Pinning this to a width list and to
+ * .jpg quietly broke every swap on the live site once the rungs grew a 720w,
+ * a full-size rung named after the source's own pixel width, and a WebP twin:
+ * Chrome takes the <source type="image/webp">, so currentSrc was
+ * "…-1440w.webp", canonicalised to nothing, and the swap dead-ended on "this
+ * photo is placed by the site's design". Only the plugin writes under rsp/,
+ * and only from a .jpg/.jpeg source, so the original is always the stem+.jpg. */
 function canonicalImagePath(p) {
   if (CFG.baseurl && p.startsWith(CFG.baseurl)) p = p.slice(CFG.baseurl.length);
-  const m = p.match(/^\/assets\/images\/rsp\/(.+)-(?:480|960|1440)w\.jpg$/);
+  const m = p.match(/^\/assets\/images\/rsp\/(.+)-\d+w\.(?:jpe?g|webp)$/i);
   return m ? `/assets/images/${m[1]}.jpg` : p;
+}
+
+/* Put a just-swapped photo on screen behind the panel. On the live site the
+ * <img> sits inside a <picture> whose WebP <source> the browser prefers, so
+ * dropping srcset alone leaves the OLD photo showing and "it's on the page
+ * now" reads as a lie. Clear both. */
+function showSwapped(img, src) {
+  img.removeAttribute("srcset");
+  const pic = img.parentElement;
+  if (pic && pic.tagName === "PICTURE") pic.querySelectorAll("source").forEach((s) => s.remove());
+  img.src = src;
 }
 
 function imgPath(img) {
@@ -1416,11 +1434,37 @@ async function swapHomeTo(newSrcPath) {
   return true;
 }
 
+/* Photos a page renders out of a data file (the three figures on Process &
+ * Pricing) carry data-ed-photo="file:dot.path" on the <img>. The page source
+ * holds the template, never the path, so point the data value at the new photo
+ * instead of rewriting the page.
+ *
+ * Gallery photos are stored the way the file already writes them, relative to
+ * assets/images/portfolio/; anything else (an upload) is stored as a full
+ * site-root path, which the template also accepts. */
+async function swapDataPhotoTo(newSrcPath) {
+  const [file, dot] = repTarget.dataPhoto.split(":");
+  const path = `_data/${file}.yml`;
+  const meta = await getFile(path);
+  const doc = parseDocument(b64decodeUtf8(meta.content));
+  const p = docPath(doc, keyPath(dot));
+  if (doc.getIn(p) === undefined) {
+    throw new Error(`"${dot}" isn't in ${path} any more — refresh the page and try again.`);
+  }
+  const gal = newSrcPath.match(/^\/assets\/images\/portfolio\/(.+)$/);
+  const value = gal ? gal[1] : newSrcPath;
+  if (doc.getIn(p) === value) return false;
+  doc.setIn(p, value);
+  await commitFiles([{ path, text: doc.toString() }], `Swap a photo on ${curPage} via inline editor`);
+  return true;
+}
+
 /* rewrite every reference to the clicked photo in this page's source.
  * Returns false when the source already shows that photo (nothing to commit). */
 async function swapSourceTo(newSrcPath) {
   if (repTarget.bandSlug) return swapBandTo(newSrcPath);
   if (repTarget.homeSlot != null) return swapHomeTo(newSrcPath);
+  if (repTarget.dataPhoto) return swapDataPhotoTo(newSrcPath);
   const { text } = await rawFile(curPage);
   const updated = sourceSwappedTo(text, newSrcPath);
   if (updated === null) throw new Error(repUnmatchedMsg());
@@ -1470,6 +1514,11 @@ function openReplace(img) {
     const idx = tiles.indexOf(img.closest(".tile"));
     if (idx > -1) repTarget.homeSlot = idx;
   }
+
+  /* A photo whose path lives in _data/<file>.yml says so on the tag itself.
+   * Unlike the band and home slots this stores a whole path, not a number, so
+   * any wedding's photos — and an upload — are fair game. */
+  if (img.hasAttribute("data-ed-photo")) repTarget.dataPhoto = img.getAttribute("data-ed-photo");
   /* Which wedding's photos to offer. Default to the one this photo already
    * belongs to, but let any wedding be browsed: almost every swap is "use a
    * photo we already have", and upload-only made that the hard path.
@@ -1554,8 +1603,7 @@ function renderRepGallery(slug, ownSlug) {
           try {
             const newSrc = `/${it.path}`;
             const changed = await swapSourceTo(newSrc);
-            repTarget.el.removeAttribute("srcset");
-            repTarget.el.src = newSrc;
+            showSwapped(repTarget.el, newSrc);
             repModal.hidden = true;
             repTarget = null;
             statusEl.className = "ed-status ok";
@@ -1597,21 +1645,28 @@ repForm.addEventListener("submit", async (e) => {
     if (repTarget.homeSlot != null) {
       throw new Error("Home page photos have to come from that wedding's own gallery. Open the wedding, add the photo with the Photos button, then come back and pick it here.");
     }
-    const { text } = await rawFile(curPage);
+    /* A data-file photo has no path in the page source to rewrite, so skip
+     * that check and let swapDataPhotoTo record the upload. */
+    const text = repTarget.dataPhoto ? null : (await rawFile(curPage)).text;
     /* check before resizing so an unswappable photo fails fast */
-    if (sourceSwappedTo(text, "") === null) throw new Error(repUnmatchedMsg());
+    if (text !== null && sourceSwappedTo(text, "") === null) throw new Error(repUnmatchedMsg());
     const { base64, blobUrl } = await processImage(file);
     /* drop any suffix an earlier upload added so re-uploads don't grow a
      * tail of timestamps (katie-james-01-msch3pw2-mschbtqy…) */
     const stem = repTarget.path.split("/").pop().replace(/\.[a-z]+$/i, "").replace(/(?:-[a-z0-9]{8})+$/i, "");
     const newPath = `assets/images/pages/${stem}-${Date.now().toString(36)}.jpg`;
-    const updated = sourceSwappedTo(text, `/${newPath}`);
-    await commitFiles(
-      [{ path: newPath, base64 }, { path: curPage, text: updated }],
-      `Swap a photo on ${curPage} via inline editor`
-    );
-    repTarget.el.removeAttribute("srcset");
-    repTarget.el.src = blobUrl;
+    if (text === null) {
+      /* the photo has to exist before the data file points at it */
+      await commitFiles([{ path: newPath, base64 }], `Add ${newPath} via inline editor`);
+      await swapDataPhotoTo(`/${newPath}`);
+    } else {
+      const updated = sourceSwappedTo(text, `/${newPath}`);
+      await commitFiles(
+        [{ path: newPath, base64 }, { path: curPage, text: updated }],
+        `Swap a photo on ${curPage} via inline editor`
+      );
+    }
+    showSwapped(repTarget.el, blobUrl);
     repModal.hidden = true;
     repTarget = null;
     statusEl.className = "ed-status ok";
