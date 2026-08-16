@@ -187,13 +187,15 @@
   if(TOTAL<2) return;
 
   /* HOLD+FADE is how long one photo is actually on screen, so the Ken Burns
-     animation in redesign.css is set to exactly that (3500ms). If you change
+     animation in redesign.css is set to exactly that (3700ms). If you change
      HOLD, change that duration too or the zoom stops part-way through its
      travel and the movement reads as weaker than it is. FADE must stay in sync
-     with the .hero-rot .bg opacity transition. FIRST is deliberately shorter
-     than HOLD: most visitors scroll before the second photo, so the hero has
-     to show it moves before it has earned a full hold. */
-  var HOLD=3000, FADE=500, FIRST=1500;
+     with the .hero-rot .bg opacity transition.
+
+     Every photo gets the same hold, the opening one included. A deliberately
+     short first flip was tried and cut: it announced that the hero moves, but
+     it made the first photo the one nobody got to look at. */
+  var HOLD=3200, FADE=500;
   var i=0, timer=null, paused=false;
   var still=window.matchMedia('(prefers-reduced-motion: reduce)');
 
@@ -234,14 +236,14 @@
     dots.forEach(function(d,k){ d.classList.toggle('on', k===i); });
   }
 
-  /* `first` shortens only the very first hold. Photo 1 is painted at first
-     contentful paint but the rotator isn't allowed to start until `load` (it
-     must not compete with the LCP image for bandwidth), so the opening photo
-     used to sit for load-time PLUS a full hold — visibly longer than every
-     photo after it, which is why the slideshow felt like it stalled and then
-     sped up. Charging the already-elapsed time against the first hold puts
-     every photo on the same clock. The floor stops a slow connection from
-     flipping the photo the instant it finishes loading. */
+  /* `first` does not shorten the opening hold, it CORRECTS it. Photo 1 is
+     painted at first contentful paint but the rotator isn't allowed to start
+     until `load` (it must not compete with the LCP image for bandwidth), so the
+     opening photo would otherwise sit for load-time PLUS a full hold — visibly
+     longer than every photo after it, which is why the slideshow felt like it
+     stalled and then sped up. Charging the already-elapsed time against the
+     first hold is what puts every photo on the same clock. The floor stops a
+     slow connection from flipping the photo the instant it finishes loading. */
   function start(first){
     clearInterval(timer);
     clearTimeout(timer);
@@ -251,7 +253,7 @@
       try{ var fcp=performance.getEntriesByName('first-contentful-paint')[0];
            shown=fcp ? performance.now()-fcp.startTime : performance.now(); }
       catch(e){ shown=performance.now(); }
-      timer=setTimeout(function(){ show(i+1); start(); }, Math.max(FIRST-shown, 600));
+      timer=setTimeout(function(){ show(i+1); start(); }, Math.max(HOLD-shown, 1500));
       return;
     }
     timer=setInterval(function(){ show(i+1); }, HOLD);
