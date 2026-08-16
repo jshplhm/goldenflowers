@@ -187,29 +187,35 @@ button.txt-link{background:none;border-top:0;border-left:0;border-right:0;cursor
 .side-label{position:absolute;right:calc(var(--pad) - 6px);top:50%;transform:rotate(90deg);transform-origin:right center;z-index:3;font-size:.72rem;letter-spacing:.3em;text-transform:uppercase;opacity:.8;}
 
 /* ---------- HERO ROTATION (home only) ----------
-   Three photos crossfade behind FIXED copy. The headline, subhead and CTA never
+   Nine photos crossfade behind FIXED copy. The headline, subhead and CTA never
    move: this is ambient texture, not a carousel of competing messages, which is
    what the research against hero carousels is actually about. */
-.hero-rot .bg{opacity:0;transition:opacity 1200ms cubic-bezier(.4,0,.2,1);}
+.hero-rot .bg{opacity:0;transition:opacity 500ms cubic-bezier(.4,0,.2,1);}
 .hero-rot .bg.is-on{opacity:1;}
 
 /* The slow push is bound to .kb-run rather than .is-on. Bound to .is-on, the
    outgoing photo loses the animation the instant it stops being active and
-   snaps back to scale(1) while still visible for the whole 1.2s crossfade —
+   snaps back to scale(1) while still visible for the whole crossfade —
    a very obvious bounce. JS strips .kb-run only after the fade has finished,
    when the reset happens at opacity 0. Duration = hold + both fades. */
-/* Ken Burns. Duration = HOLD + FADE from the rotator in redesign.html (6000 +
-   1200), so the zoom completes its travel in exactly the time the photo is on
+/* Ken Burns. Duration = HOLD + FADE from the rotator in redesign.html (3000 +
+   500), so the zoom completes its travel in exactly the time the photo is on
    screen. Keep the two in step: at 8400ms against a 7200ms window the zoom
    never got past ~1.047 before the photo was swapped out, and the movement
    read as weaker than the number suggested.
 
-   THROW stays at 1.05. Over a 7200ms window that is a slower push than the
-   same 1.05 over 5200ms, which is the point of going back to a 6s hold: the
-   photo has longer to travel the same distance, so the movement is calmer
-   rather than merely less frequent. */
-.hero-rot .bg.kb-run{animation:hero-kb 7200ms linear forwards;}
-@keyframes hero-kb{from{transform:scale(1)}to{transform:scale(1.05)}}
+   THROW is 1.06 over a 3500ms window, roughly two and a half times the movement
+   per second of the 1.05-over-7200ms this replaces. That is deliberate, not a
+   side effect of shortening the hold: the brief was that the hero read as
+   boring, and a shorter hold on its own makes the photo change more often
+   without making any one photo feel more alive.
+
+   The ORIGIN of the push is per-photo and lives inline in index.md, because a
+   centred zoom drifts away from an off-centre subject. Do not add a
+   transform-origin here; it would apply to whichever photo happened to be in
+   that slot. */
+.hero-rot .bg.kb-run{animation:hero-kb 3500ms linear forwards;}
+@keyframes hero-kb{from{transform:scale(1)}to{transform:scale(1.06)}}
 
 /* Photo 3 is high-key (pale sky, cream suit, white dress) and the standard
    scrim leaves the headline thin on it, so deepen it while that photo is up.
@@ -228,19 +234,21 @@ button.txt-link{background:none;border-top:0;border-left:0;border-right:0;cursor
 .hero-rot::after{background:
   linear-gradient(90deg,oklch(14% .03 150/.30) 0%,oklch(14% .03 150/.09) 38%,transparent 62%),
   linear-gradient(180deg,oklch(16% .03 150/.20) 0%,transparent 30%,transparent 58%,oklch(12% .03 150/.42) 100%);}
-.hero-rot .hero-boost{position:absolute;inset:0;z-index:2;opacity:0;pointer-events:none;transition:opacity 1200ms cubic-bezier(.4,0,.2,1);background:
+.hero-rot .hero-boost{position:absolute;inset:0;z-index:2;opacity:0;pointer-events:none;transition:opacity 500ms cubic-bezier(.4,0,.2,1);background:
   radial-gradient(130% 95% at 0% 100%,oklch(13% .03 150/.38) 0%,oklch(13% .03 150/.15) 48%,transparent 74%),
   linear-gradient(180deg,transparent 60%,oklch(12% .03 150/.12) 100%);}
 .hero-rot[data-boost="1"] .hero-boost{opacity:1;}
 @media(prefers-reduced-motion:reduce){ .hero-rot .hero-boost{transition:none;} }
 
-/* Per-photo crops. Photo 2 centres on the couple and loses its left floral
-   column on a phone, so bias it left there. Photo 3 sits low in its frame. */
-.hero-rot .hero-3{object-position:center 62%;}
-@media(max-width:700px){
-  .hero-rot .hero-2{object-position:40% center;}
-  .hero-rot .hero-3{object-position:center center;}  /* phones get their own crop file */
-}
+/* Per-photo crops used to live here, keyed to .hero-1/.hero-2/.hero-3. They are
+   inline in index.md now, one pair of values per photograph, so that reordering
+   the slideshow carries each crop and zoom origin with its own image. Anything
+   added back here would lose to the inline style anyway.
+
+   Note the phone consequence: these rules included a `max-width:700px` override
+   per photo, and a single inline value cannot vary by breakpoint. A photo that
+   needs a different frame on a phone now needs its own crop file, the way the
+   lead photo already has one. */
 
 /* Anyone who asked for less motion gets photo 1, held still. */
 @media(prefers-reduced-motion:reduce){

@@ -178,23 +178,51 @@
   var imgs=[].slice.call(hero.querySelectorAll('.bg'));
   var dots=[].slice.call(hero.querySelectorAll('.hero-dots .hd'));
   var pauseBtn=hero.querySelector('.hd-pause');
-  if(imgs.length<2) return;
+  var pool=hero.querySelector('#hero-rest');
+  var boostEl=hero.querySelector('.hero-boost');
+  /* Count the DOTS, not the images. Photos 2-9 are parked in a <template> at
+     load and only join the DOM as the rotation reaches them, so imgs.length is
+     not the slideshow length until the loop has been round once. */
+  var TOTAL=dots.length;
+  if(TOTAL<2) return;
 
   /* HOLD+FADE is how long one photo is actually on screen, so the Ken Burns
-     animation in redesign.css is set to exactly that (7200ms). If you change
+     animation in redesign.css is set to exactly that (3500ms). If you change
      HOLD, change that duration too or the zoom stops part-way through its
      travel and the movement reads as weaker than it is. FADE must stay in sync
-     with the .hero-rot .bg opacity transition. */
-  var HOLD=6000, FADE=1200;
+     with the .hero-rot .bg opacity transition. FIRST is deliberately shorter
+     than HOLD: most visitors scroll before the second photo, so the hero has
+     to show it moves before it has earned a full hold. */
+  var HOLD=3000, FADE=500, FIRST=1500;
   var i=0, timer=null, paused=false;
   var still=window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  /* Pull photos out of the template as they are needed. Called one step ahead
+     of the rotation, so each photo has a full hold to arrive before its turn.
+     In production the plugin wraps each one in a <picture>, so take the <img>
+     from inside whatever comes out. */
+  function arm(n){
+    if(!pool) return;
+    while(imgs.length<=n && pool.content.firstElementChild){
+      var node=pool.content.firstElementChild;
+      hero.insertBefore(node, boostEl);
+      var im=node.tagName==='IMG' ? node : node.querySelector('img');
+      /* Resolve style once at opacity 0 before anyone can set .is-on, or a
+         photo attached and revealed in the same task jumps in with no fade. */
+      void im.offsetWidth;
+      imgs.push(im);
+    }
+  }
 
   /* Mirror the active photo's scrim-boost flag onto the header. */
   function boost(){ hero.setAttribute('data-boost', imgs[i].getAttribute('data-boost')||'0'); }
 
   function show(n){
     if(n===i) return;
-    var prev=i; i=(n+imgs.length)%imgs.length;
+    var prev=i; i=(n+TOTAL)%TOTAL;
+    /* The one being shown, then the one after it. A dot click can jump to a
+       photo the rotation has not reached, so arm(i) is not redundant. */
+    arm(i); arm(i+1<TOTAL ? i+1 : 0);
     imgs.forEach(function(el,k){ el.classList.toggle('is-on', k===i); });
     var on=imgs[i];
     on.classList.remove('kb-run'); void on.offsetWidth; on.classList.add('kb-run');
@@ -223,7 +251,7 @@
       try{ var fcp=performance.getEntriesByName('first-contentful-paint')[0];
            shown=fcp ? performance.now()-fcp.startTime : performance.now(); }
       catch(e){ shown=performance.now(); }
-      timer=setTimeout(function(){ show(i+1); start(); }, Math.max(HOLD-shown, 1500));
+      timer=setTimeout(function(){ show(i+1); start(); }, Math.max(FIRST-shown, 600));
       return;
     }
     timer=setInterval(function(){ show(i+1); }, HOLD);
@@ -243,9 +271,14 @@
   });
   if(still.addEventListener) still.addEventListener('change', start);
 
-  /* Photo 1 is the LCP image: don't start decoding the other two or animating
-     anything until the page has finished loading. */
-  function begin(){ if(!still.matches) imgs[0].classList.add('kb-run'); boost(); start(true); }
+  /* Photo 1 is the LCP image: don't start fetching photo 2 or animating
+     anything until the page has finished loading. Anyone who asked for reduced
+     motion never rotates, so the other eight are never requested at all. */
+  function begin(){
+    if(!still.matches){ imgs[0].classList.add('kb-run'); arm(1); }
+    boost();
+    start(true);
+  }
   if(document.readyState==='complete') begin();
   else window.addEventListener('load', begin);
 })();
