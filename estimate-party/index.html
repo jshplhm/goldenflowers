@@ -1,0 +1,532 @@
+---
+layout: redesign
+title: "Wedding party input: four variations (mockup)"
+seo_title: "Wedding party input comparison | Golden Flowers"
+permalink: /estimate-party
+sitemap: false
+noindex: true
+description: "Internal mockup: four ways to ask about the wedding party in the floral estimator, side by side and live. Not linked from anywhere."
+---
+
+<!-- =====================================================================
+     INTERNAL COMPARISON PAGE. Not linked from the site, noindex, sitemap
+     off. Built to answer one piece of feedback: "Wedding party / 8 people"
+     is confusing, and it should say out loud how many bouquets and how many
+     boutonnieres.
+
+     All four variants below are LIVE. Each one drives the real estimator
+     model (_data/estimator.yml, same arithmetic as _includes/estimator.html)
+     with every other answer held at its default, so the only thing moving
+     the number is the wedding party. Pick one and it gets built into the
+     component properly; this page then gets deleted.
+
+     Nothing here shows a unit price, on purpose. See the "how the money
+     moves" switch at the top for the per-person versus banded question.
+     ===================================================================== -->
+
+{% assign E = site.data.estimator %}
+
+<style>
+/* Mockup-only, scoped .cmp. Slider and option-card styles are lifted from
+   _includes/estimator.html so the variants look exactly like the real tool. */
+.cmp{--f:oklch(97.5% .006 100);max-width:1240px;margin:0 auto;padding:clamp(30px,5vw,54px) var(--pad) clamp(60px,7vw,90px);}
+.cmp-head h1{font-family:var(--d);font-weight:430;font-optical-sizing:auto;font-size:clamp(2.1rem,4.4vw,3.2rem);letter-spacing:-.025em;line-height:1.04;margin:14px 0 0;max-width:18ch;}
+.cmp-lede{color:var(--fg2);font-size:1.03rem;line-height:1.65;max-width:56ch;margin-top:18px;}
+
+/* how the money moves */
+.cmp-switch{margin-top:28px;border:1px solid var(--line);border-radius:16px;background:var(--bg2);padding:18px 20px 20px;max-width:640px;}
+.cmp-switch b{display:block;font-weight:500;font-size:.96rem;}
+.cmp-switch p{color:var(--mute);font-size:.86rem;line-height:1.55;margin:6px 0 14px;}
+.cmp-seg{display:inline-flex;border:1px solid var(--line);border-radius:100px;background:var(--paper);padding:3px;gap:3px;}
+.cmp-seg label{position:relative;cursor:pointer;}
+.cmp-seg input{position:absolute;opacity:0;pointer-events:none;}
+.cmp-seg span{display:block;padding:9px 17px;border-radius:100px;font-size:.85rem;line-height:1;transition:background .16s,color .16s;white-space:nowrap;}
+.cmp-seg label:has(input:checked) span{background:var(--forest);color:var(--paper);}
+.cmp-seg label:has(input:focus-visible) span{box-shadow:0 0 0 3px oklch(38% .105 150/.3);}
+.cmp-switch em{display:block;font-style:normal;color:var(--mute);font-size:.82rem;line-height:1.5;margin-top:12px;}
+
+/* the grid of variants */
+.cmp-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,2.2vw,28px);margin-top:clamp(32px,4vw,46px);align-items:start;}
+@media(max-width:900px){ .cmp-grid{grid-template-columns:1fr;} }
+.cmp-card{border:1px solid var(--line);border-radius:18px;background:var(--paper);overflow:hidden;box-shadow:0 1px 3px oklch(20% .02 150/.05),0 14px 34px -24px oklch(20% .02 150/.3);}
+.cmp-card-h{display:flex;align-items:baseline;gap:12px;padding:20px 22px 0;}
+.cmp-card-h .k{font-family:var(--d);font-size:1.6rem;font-weight:500;line-height:1;color:var(--accent);}
+.cmp-card-h h2{font-family:var(--d);font-weight:430;font-size:1.45rem;letter-spacing:-.015em;line-height:1.15;}
+.cmp-pitch{color:var(--mute);font-size:.87rem;line-height:1.55;margin:8px 22px 0;}
+.cmp-live{margin:18px 0 0;padding:20px 22px;border-top:1px solid var(--line);background:var(--f);}
+
+/* controls, matching the real tool */
+.cmp-fld + .cmp-fld{margin-top:22px;}
+.cmp-lbl{display:flex;align-items:baseline;justify-content:space-between;gap:14px;font-size:.95rem;font-weight:500;margin-bottom:4px;}
+.cmp-val{font-family:var(--d);font-size:1.5rem;font-weight:500;letter-spacing:-.01em;line-height:1;color:var(--forest);white-space:nowrap;font-variant-numeric:tabular-nums;}
+.cmp-val span{font-family:var(--b);font-size:.78rem;font-weight:400;color:var(--mute);margin-left:5px;}
+.cmp-help{color:var(--mute);font-size:.85rem;line-height:1.5;margin:0 0 12px;}
+.cmp-range{-webkit-appearance:none;appearance:none;width:100%;height:34px;background:transparent;cursor:pointer;display:block;margin:2px 0 0;}
+.cmp-range:focus{outline:none;}
+.cmp-range::-webkit-slider-runnable-track{height:6px;border-radius:100px;background:linear-gradient(90deg,var(--accent) 0 var(--fill,50%),oklch(85% .012 120) var(--fill,50%) 100%);}
+.cmp-range::-moz-range-track{height:6px;border-radius:100px;background:linear-gradient(90deg,var(--accent) 0 var(--fill,50%),oklch(85% .012 120) var(--fill,50%) 100%);}
+.cmp-range::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:28px;height:28px;margin-top:-11px;border-radius:50%;background:var(--paper);border:1px solid var(--line);box-shadow:0 1px 4px oklch(20% .02 150/.18);transition:transform .12s;}
+.cmp-range::-moz-range-thumb{width:28px;height:28px;border:1px solid var(--line);border-radius:50%;background:var(--paper);box-shadow:0 1px 4px oklch(20% .02 150/.18);}
+.cmp-range:active::-webkit-slider-thumb{transform:scale(1.08);}
+.cmp-range:focus-visible::-webkit-slider-thumb{box-shadow:0 0 0 3px oklch(38% .105 150/.35);}
+.cmp-ticks{display:flex;justify-content:space-between;font-size:.76rem;color:var(--mute);margin-top:-2px;}
+.cmp-derived{font-size:.85rem;line-height:1.5;color:var(--fg2);margin-top:10px;padding-top:10px;border-top:1px solid var(--line);}
+.cmp-derived b{font-weight:500;color:var(--ink);}
+
+.cmp-opts{display:grid;gap:9px;}
+.cmp-opt{position:relative;display:block;border:1px solid var(--line);border-radius:13px;background:var(--paper);padding:13px 15px 13px 44px;cursor:pointer;transition:border-color .16s,background .16s,box-shadow .16s;}
+.cmp-opt:hover{border-color:oklch(60% .04 145);}
+.cmp-opt input{position:absolute;opacity:0;pointer-events:none;}
+.cmp-opt .mk{position:absolute;left:16px;top:15px;width:17px;height:17px;border:1px solid oklch(72% .02 130);border-radius:50%;background:var(--paper);transition:.16s;}
+.cmp-opt .mk::after{content:"";position:absolute;inset:3px;border-radius:50%;background:var(--paper);transform:scale(0);transition:transform .16s;}
+.cmp-opt b{display:block;font-weight:500;font-size:.94rem;line-height:1.3;}
+.cmp-opt i{display:block;font-style:normal;color:var(--mute);font-size:.83rem;line-height:1.45;margin-top:3px;}
+.cmp-opt:has(input:checked){border-color:var(--accent);background:oklch(38% .105 150/.05);box-shadow:inset 0 0 0 1px var(--accent);}
+.cmp-opt:has(input:checked) .mk{border-color:var(--accent);background:var(--accent);}
+.cmp-opt:has(input:checked) .mk::after{transform:scale(1);}
+.cmp-opt:has(input:focus-visible){box-shadow:0 0 0 3px oklch(38% .105 150/.3);}
+
+/* stepper */
+.cmp-step{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:12px 0;border-bottom:1px solid var(--line);}
+.cmp-step:last-of-type{border-bottom:0;}
+.cmp-step-l{min-width:0;}
+.cmp-step-l b{display:block;font-weight:500;font-size:.94rem;line-height:1.3;}
+.cmp-step-l i{display:block;font-style:normal;color:var(--mute);font-size:.82rem;line-height:1.4;margin-top:2px;}
+.cmp-step-c{display:flex;align-items:center;gap:4px;flex:none;border:1px solid var(--line);border-radius:100px;padding:3px;background:var(--paper);}
+.cmp-step-c button{width:38px;height:38px;border:0;border-radius:50%;background:none;cursor:pointer;font-size:1.25rem;line-height:1;color:var(--forest);display:flex;align-items:center;justify-content:center;transition:background .16s;}
+.cmp-step-c button:hover{background:oklch(38% .105 150/.09);}
+.cmp-step-c button:disabled{color:oklch(80% .01 130);cursor:default;background:none;}
+.cmp-step-c output{font-family:var(--d);font-size:1.3rem;font-weight:500;min-width:2ch;text-align:center;font-variant-numeric:tabular-nums;color:var(--forest);}
+.cmp-foot{color:var(--mute);font-size:.82rem;line-height:1.5;margin-top:12px;}
+
+/* live readout */
+.cmp-out{display:grid;gap:9px;}
+.cmp-row{display:flex;align-items:baseline;justify-content:space-between;gap:12px;font-size:.88rem;}
+.cmp-row span{color:var(--mute);}
+.cmp-row b{font-weight:500;font-variant-numeric:tabular-nums;white-space:nowrap;}
+.cmp-row--big b{font-family:var(--d);font-size:1.24rem;font-weight:500;letter-spacing:-.015em;color:var(--forest);}
+.cmp-recap{margin-top:14px;padding:12px 14px;border:1px dashed var(--line);border-radius:11px;background:var(--paper);font-size:.83rem;line-height:1.5;color:var(--fg2);}
+.cmp-recap span{display:block;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);margin-bottom:5px;}
+
+/* verdict lists */
+.cmp-notes{padding:0 22px 22px;display:grid;gap:10px;}
+.cmp-note{display:grid;grid-template-columns:auto minmax(0,1fr);gap:9px;align-items:start;font-size:.86rem;line-height:1.55;color:var(--fg2);}
+.cmp-note i{font-style:normal;flex:none;width:16px;text-align:center;color:var(--accent);}
+.cmp-note.bad i{color:oklch(58% .04 60);}
+
+/* closing */
+.cmp-close{margin-top:clamp(40px,5vw,64px);border-top:1px solid var(--line);padding-top:clamp(28px,3.4vw,40px);max-width:66ch;}
+.cmp-close h2{font-family:var(--d);font-weight:430;font-size:clamp(1.5rem,2.6vw,2rem);letter-spacing:-.015em;line-height:1.15;}
+.cmp-close p{color:var(--fg2);font-size:.95rem;line-height:1.7;margin-top:14px;}
+.cmp-close ul{margin:14px 0 0;padding-left:20px;}
+.cmp-close li{color:var(--fg2);font-size:.95rem;line-height:1.7;margin-top:6px;}
+
+@media(prefers-reduced-motion:reduce){ .cmp-opt,.cmp-opt .mk,.cmp-opt .mk::after,.cmp-seg span{transition:none;} }
+</style>
+
+<div class="cmp">
+
+  <header class="cmp-head">
+    <span class="lab">Internal mockup</span>
+    <h1>Four ways to ask about the wedding party</h1>
+    <p class="cmp-lede">Every variant below is live and drives the real estimator model, with all
+      the other answers held at their defaults, so the only thing moving the numbers is the wedding
+      party. Tap through them and pick the one that reads clearest. None of them ever shows a price
+      per bouquet or per boutonniere.</p>
+
+    <div class="cmp-switch">
+      <b>How the money moves</b>
+      <p>The thing to avoid is a tool that feels like a per item order form. This switch changes the
+        arithmetic behind all four variants at once, so you can see whether it matters.</p>
+      <div class="cmp-seg" role="radiogroup" aria-label="How the money moves">
+        <label><input type="radio" name="cmp-mode" value="unit" checked><span>Per person</span></label>
+        <label><input type="radio" name="cmp-mode" value="band"><span>In bands</span></label>
+      </div>
+      <em id="cmp-mode-note"></em>
+    </div>
+  </header>
+
+  <div class="cmp-grid">
+
+    <!-- ============ A. two sliders ============ -->
+    <section class="cmp-card" data-v="a">
+      <div class="cmp-card-h"><span class="k">A</span><h2>Two sliders</h2></div>
+      <p class="cmp-pitch">Split the one slider into the two things we actually make. Plain nouns,
+        nothing to interpret.</p>
+
+      <div class="cmp-live">
+        <div class="cmp-fld">
+          <label class="cmp-lbl" for="a-bq">Bridesmaid bouquets
+            <output class="cmp-val" id="a-bq-out" for="a-bq"></output></label>
+          <p class="cmp-help">Anyone standing with you who carries flowers.</p>
+          <input class="cmp-range" type="range" id="a-bq" min="0" max="12" step="1" value="5">
+          <div class="cmp-ticks"><span>0</span><span>12</span></div>
+        </div>
+        <div class="cmp-fld">
+          <label class="cmp-lbl" for="a-bt">Boutonnieres
+            <output class="cmp-val" id="a-bt-out" for="a-bt"></output></label>
+          <p class="cmp-help">Groomsmen, and anyone else wearing one.</p>
+          <input class="cmp-range" type="range" id="a-bt" min="0" max="12" step="1" value="5">
+          <div class="cmp-ticks"><span>0</span><span>12</span></div>
+        </div>
+        <p class="cmp-foot">Your own bouquet is always included, so it is not on this list.</p>
+
+        <div class="cmp-out" style="margin-top:18px;padding-top:16px;border-top:1px solid var(--line)">
+          <div class="cmp-row"><span>Personal florals</span><b data-out="personal"></b></div>
+          <div class="cmp-row cmp-row--big"><span>Whole wedding</span><b data-out="total"></b></div>
+        </div>
+        <div class="cmp-recap"><span>Hands off to the form as</span><em data-out="recap" style="font-style:normal"></em></div>
+      </div>
+
+      <div class="cmp-notes">
+        <p class="cmp-note"><i>+</i><span>Answers the feedback literally. Nobody has to work out what
+          "people" means.</span></p>
+        <p class="cmp-note"><i>+</i><span>Kills the hidden even split. Six bridesmaids and two
+          groomsmen prices correctly for the first time.</span></p>
+        <p class="cmp-note bad"><i>&minus;</i><span>Two controls where there was one, and a slider at
+          step one is fiddly on a phone.</span></p>
+      </div>
+    </section>
+
+    <!-- ============ B. one slider, visible split ============ -->
+    <section class="cmp-card" data-v="b">
+      <div class="cmp-card-h"><span class="k">B</span><h2>One slider, split shown</h2></div>
+      <p class="cmp-pitch">Keep today's control exactly as it is and say out loud what the number
+        turns into.</p>
+
+      <div class="cmp-live">
+        <div class="cmp-fld">
+          <label class="cmp-lbl" for="b-party">Wedding party
+            <output class="cmp-val" id="b-party-out" for="b-party"></output></label>
+          <p class="cmp-help">People standing with you who carry or wear flowers.</p>
+          <input class="cmp-range" type="range" id="b-party" min="0" max="20" step="1" value="10">
+          <div class="cmp-ticks"><span>0</span><span>20</span></div>
+          <p class="cmp-derived" id="b-derived"></p>
+        </div>
+
+        <div class="cmp-out" style="margin-top:18px;padding-top:16px;border-top:1px solid var(--line)">
+          <div class="cmp-row"><span>Personal florals</span><b data-out="personal"></b></div>
+          <div class="cmp-row cmp-row--big"><span>Whole wedding</span><b data-out="total"></b></div>
+        </div>
+        <div class="cmp-recap"><span>Hands off to the form as</span><em data-out="recap" style="font-style:normal"></em></div>
+      </div>
+
+      <div class="cmp-notes">
+        <p class="cmp-note"><i>+</i><span>A one line change to the component. Nothing else moves.</span></p>
+        <p class="cmp-note"><i>+</i><span>Shortest form of the four, which matters on a phone.</span></p>
+        <p class="cmp-note bad"><i>&minus;</i><span>The even split is still our assumption. It is now
+          visible enough to be argued with, which is better than hidden but is not the same as
+          asking.</span></p>
+      </div>
+    </section>
+
+    <!-- ============ C. preset tiers ============ -->
+    <section class="cmp-card" data-v="c">
+      <div class="cmp-card-h"><span class="k">C</span><h2>Preset sizes</h2></div>
+      <p class="cmp-pitch">Cards with a note, like every other question in the tool. The only variant
+        where no multiplication happens anywhere.</p>
+
+      <div class="cmp-live">
+        <div class="cmp-fld">
+          <p class="cmp-lbl">Wedding party</p>
+          <p class="cmp-help">Bouquets to carry and boutonnieres to wear, for the people standing
+            with you.</p>
+          <div class="cmp-opts" id="c-opts"></div>
+        </div>
+
+        <div class="cmp-out" style="margin-top:18px;padding-top:16px;border-top:1px solid var(--line)">
+          <div class="cmp-row"><span>Personal florals</span><b data-out="personal"></b></div>
+          <div class="cmp-row cmp-row--big"><span>Whole wedding</span><b data-out="total"></b></div>
+        </div>
+        <div class="cmp-recap"><span>Hands off to the form as</span><em data-out="recap" style="font-style:normal"></em></div>
+      </div>
+
+      <div class="cmp-notes">
+        <p class="cmp-note"><i>+</i><span>Matches the rest of the page, which is all cards with a
+          note underneath.</span></p>
+        <p class="cmp-note"><i>+</i><span>Genuinely not per item. Each size carries its own range, so
+          there is no stem count to reverse engineer.</span></p>
+        <p class="cmp-note"><i>+</i><span>The only one that can name the partner's boutonniere, which
+          today's tool forgets entirely.</span></p>
+        <p class="cmp-note bad"><i>&minus;</i><span>Least explicit about how many, which is the thing
+          the feedback actually asked for.</span></p>
+      </div>
+    </section>
+
+    <!-- ============ D. steppers ============ -->
+    <section class="cmp-card" data-v="d">
+      <div class="cmp-card-h"><span class="k">D</span><h2>Two steppers</h2></div>
+      <p class="cmp-pitch">Same question as A, but you land on the exact number with one tap instead
+        of dragging to it.</p>
+
+      <div class="cmp-live">
+        <div class="cmp-fld">
+          <p class="cmp-lbl">Wedding party</p>
+          <p class="cmp-help">The people standing with you.</p>
+          <div class="cmp-step">
+            <span class="cmp-step-l"><b>Carrying a bouquet</b><i>Bridesmaids, and anyone else with
+              flowers in hand.</i></span>
+            <span class="cmp-step-c">
+              <button type="button" data-step="d-bq" data-d="-1" aria-label="One fewer bouquet">&minus;</button>
+              <output id="d-bq-out">5</output>
+              <button type="button" data-step="d-bq" data-d="1" aria-label="One more bouquet">+</button>
+            </span>
+          </div>
+          <div class="cmp-step">
+            <span class="cmp-step-l"><b>Wearing a boutonniere</b><i>Groomsmen, and anyone else
+              pinned.</i></span>
+            <span class="cmp-step-c">
+              <button type="button" data-step="d-bt" data-d="-1" aria-label="One fewer boutonniere">&minus;</button>
+              <output id="d-bt-out">5</output>
+              <button type="button" data-step="d-bt" data-d="1" aria-label="One more boutonniere">+</button>
+            </span>
+          </div>
+          <p class="cmp-foot">Your own bouquet is always included, so it is not on this list.</p>
+        </div>
+
+        <div class="cmp-out" style="margin-top:18px;padding-top:16px;border-top:1px solid var(--line)">
+          <div class="cmp-row"><span>Personal florals</span><b data-out="personal"></b></div>
+          <div class="cmp-row cmp-row--big"><span>Whole wedding</span><b data-out="total"></b></div>
+        </div>
+        <div class="cmp-recap"><span>Hands off to the form as</span><em data-out="recap" style="font-style:normal"></em></div>
+      </div>
+
+      <div class="cmp-notes">
+        <p class="cmp-note"><i>+</i><span>Exact on the first tap. Nobody overshoots by one at 0 to 12
+          on a phone.</span></p>
+        <p class="cmp-note"><i>+</i><span>Reads as a checklist of what gets made, not as a dial.</span></p>
+        <p class="cmp-note bad"><i>&minus;</i><span>Tapping eleven times to reach eleven. Fine at
+          these counts, tedious past a dozen.</span></p>
+        <p class="cmp-note bad"><i>&minus;</i><span>The only variant with no slider, so it sits
+          slightly apart from the guest count above it.</span></p>
+      </div>
+    </section>
+
+  </div>
+
+  <section class="cmp-close">
+    <h2>Two things worth deciding at the same time</h2>
+    <p><b>Whether the money moves per person or in bands.</b> Flip the switch at the top and watch
+      variant A. Per person, one more boutonniere moves the total most of the time. In bands, it
+      only moves when the party crosses into a bigger size, which is closer to how a real quote
+      behaves and makes it much harder to read a unit price back out of the tool. Bands also fix
+      something that currently looks broken: with the total rounded to the nearest $250, adding a
+      single boutonniere often changes nothing at all, and there is no way for anyone to tell that
+      is on purpose.</p>
+    <p><b>The partner's boutonniere.</b> Today's slider counts people standing with you, which
+      excludes the two of you, so the second boutonniere is priced nowhere. Variant C names it. A, B
+      and D need a line of copy or a quiet plus one in the math.</p>
+    <p>Whichever wins, two small things change downstream: the handoff recap line in
+      <code>_includes/estimator.html</code> stops saying "carrying or wearing flowers", and
+      <code>copy.handoff.party_none</code> in <code>_data/estimator.yml</code> needs wording that
+      still makes sense.</p>
+  </section>
+
+</div>
+
+<script>
+/* ===========================================================================
+   COMPARISON ENGINE
+   Ports the real model out of _includes/estimator.html and runs it four times,
+   once per variant. Everything except the wedding party is pinned to the
+   defaults declared in _data/estimator.yml, so any difference you see between
+   the cards is caused by the wedding party question alone.
+   =========================================================================== */
+(function(){
+  var CFG = {{ E | jsonify }};
+  var S = CFG.settings;
+
+  function money(n){ return '$' + Math.round(n).toLocaleString('en-US'); }
+  function pick(list){ /* the option carrying `default: true`, else the first */
+    for(var i=0;i<list.length;i++){ if(list[i].default) return list[i]; }
+    return list[0];
+  }
+
+  /* --- everything that is NOT the wedding party, computed once -------------
+     Guests sit at their default, every radio takes its default option, every
+     checkbox its default state. This is the same wedding in all four cards. */
+  var BASE = (function(){
+    var cat = { ceremony:[0,0], reception:[0,0], personal:[0,0], environmental:[0,0], service:[0,0] };
+    function add(k,r,n){ if(!r) return; n=(n===undefined)?1:n; cat[k][0]+=r.low*n; cat[k][1]+=r.high*n; }
+
+    var guests = CFG.sliders.guests.default;
+    add('personal', CFG.personal.bridal_bouquet);
+    if(CFG.personal.family.default)      add('personal', CFG.personal.family);
+    if(CFG.personal.flower_kids.default) add('personal', CFG.personal.flower_kids);
+
+    add('ceremony', pick(CFG.ceremony.focal.options));
+    add('ceremony', pick(CFG.ceremony.ground.options));
+
+    var tLow  = Math.max(1, Math.ceil(guests / S.seats_per_table.max));
+    var tHigh = Math.max(tLow, Math.ceil(guests / S.seats_per_table.min));
+    var per = pick(CFG.reception.style.options);
+    cat.reception[0] += per.low * tLow; cat.reception[1] += per.high * tHigh;
+    add('reception', pick(CFG.reception.installation.options));
+    if(CFG.reception.head_table.default) add('reception', CFG.reception.head_table);
+
+    CFG.environmental.options.forEach(function(o){ if(o.default) add('environmental', o); });
+    return { cat:cat, guests:guests, tLow:tLow, tHigh:tHigh };
+  })();
+
+  /* --- the bands ----------------------------------------------------------
+     MOCKUP NUMBERS. Each band is the per person arithmetic already in
+     _data/estimator.yml evaluated at the edges of that band, so nothing new
+     has been invented: a small party is two to three a side, which is two
+     bouquets and two boutonnieres at the low end and three and three at the
+     high end. If bands win, these move into the yml as real entries and the
+     unit prices come out. */
+  var BANDS = [
+    { key:'just_us',  label:'Just the two of us', note:'Your bouquet and one boutonniere.',
+      max:0,   low:65,   high:95,   recap:'No wedding party' },
+    { key:'small',    label:'A small party',      note:'Two or three on each side.',
+      max:6,   low:380,  high:840,  recap:'A small party, two or three a side' },
+    { key:'standard', label:'A standard party',   note:'Four to six on each side.',
+      max:12,  low:760,  high:1680, recap:'A standard party, four to six a side', default:true },
+    { key:'large',    label:'A large party',      note:'Seven or more on each side.',
+      max:999, low:1330, high:2800, recap:'A large party, seven or more a side' }
+  ];
+  function bandFor(total){
+    for(var i=0;i<BANDS.length;i++){ if(total <= BANDS[i].max) return BANDS[i]; }
+    return BANDS[BANDS.length-1];
+  }
+
+  /* --- the model, finished off with a given personal florals addition ------
+     Identical tighten, round and floor behaviour to the live component. */
+  function finish(addLow, addHigh){
+    var cat = {};
+    Object.keys(BASE.cat).forEach(function(k){ cat[k] = BASE.cat[k].slice(); });
+    cat.personal[0] += addLow; cat.personal[1] += addHigh;
+
+    var subLow  = cat.ceremony[0]+cat.reception[0]+cat.personal[0]+cat.environmental[0];
+    var subHigh = cat.ceremony[1]+cat.reception[1]+cat.personal[1]+cat.environmental[1];
+    cat.service = [
+      Math.max(S.service.floor, subLow  * S.service.low_pct  / 100),
+      Math.max(S.service.floor, subHigh * S.service.high_pct / 100)
+    ];
+
+    var t = S.band_tighten, low = 0, high = 0;
+    Object.keys(cat).forEach(function(k){
+      var m = (cat[k][0] + cat[k][1]) / 2;
+      cat[k][0] = cat[k][0] + (m - cat[k][0]) * t;
+      cat[k][1] = cat[k][1] - (cat[k][1] - m) * t;
+      low += cat[k][0]; high += cat[k][1];
+    });
+
+    var cr = S.category_round;
+    var pLow  = Math.floor(cat.personal[0] / cr) * cr;
+    var pHigh = Math.ceil (cat.personal[1] / cr) * cr;
+    var r = S.round_to;
+    low  = Math.floor(low  / r) * r;
+    high = Math.ceil (high / r) * r;
+
+    return { personal:[pLow,pHigh], low:Math.max(low, S.minimum), high:high };
+  }
+
+  /* Per person or banded, decided once for all four cards. */
+  function mode(){
+    var el = document.querySelector('input[name="cmp-mode"]:checked');
+    return el ? el.value : 'unit';
+  }
+  function personalFor(bouquets, bouts){
+    if(mode() === 'band'){
+      var b = bandFor(bouquets + bouts);
+      return [b.low, b.high];
+    }
+    return [
+      bouquets * CFG.personal.attendant_bouquet.low  + bouts * CFG.personal.boutonniere.low,
+      bouquets * CFG.personal.attendant_bouquet.high + bouts * CFG.personal.boutonniere.high
+    ];
+  }
+
+  /* --- rendering ---------------------------------------------------------- */
+  function $(id){ return document.getElementById(id); }
+  function fill(el){ el.style.setProperty('--fill', (el.value - el.min) / (el.max - el.min) * 100 + '%'); }
+
+  function paint(card, bouquets, bouts, recap){
+    var p = personalFor(bouquets, bouts);
+    var r = finish(p[0], p[1]);
+    card.querySelector('[data-out="personal"]').textContent = money(r.personal[0]) + ' to ' + money(r.personal[1]);
+    card.querySelector('[data-out="total"]').textContent    = money(r.low) + ' to ' + money(r.high);
+    card.querySelector('[data-out="recap"]').textContent    = 'Wedding party: ' + recap;
+  }
+  function card(v){ return document.querySelector('.cmp-card[data-v="' + v + '"]'); }
+
+  function plural(n, one, many){ return n + ' ' + (n === 1 ? one : many); }
+
+  /* A: two sliders */
+  function renderA(){
+    var bq = +$('a-bq').value, bt = +$('a-bt').value;
+    fill($('a-bq')); fill($('a-bt'));
+    $('a-bq-out').innerHTML = bq + ' <span>to carry</span>';
+    $('a-bt-out').innerHTML = bt + ' <span>to wear</span>';
+    paint(card('a'), bq, bt, (bq + bt) === 0 ? 'None'
+      : plural(bq,'bouquet','bouquets') + ', ' + plural(bt,'boutonniere','boutonnieres'));
+  }
+
+  /* B: one slider, split shown */
+  function renderB(){
+    var n = +$('b-party').value;
+    fill($('b-party'));
+    $('b-party-out').innerHTML = n + ' <span>people</span>';
+    var bq = Math.round(n * CFG.sliders.party.bouquet_share), bt = n - bq;
+    $('b-derived').innerHTML = n === 0
+      ? 'No attendant flowers, just your own bouquet.'
+      : 'About <b>' + plural(bq,'bouquet','bouquets') + '</b> and <b>' +
+        plural(bt,'boutonniere','boutonnieres') + '</b>.';
+    paint(card('b'), bq, bt, n === 0 ? 'None'
+      : n + ' people, about ' + plural(bq,'bouquet','bouquets') + ' and ' +
+        plural(bt,'boutonniere','boutonnieres'));
+  }
+
+  /* C: preset sizes. Counts feed the per person mode at the middle of the
+       band, so switching modes changes the money and not the question. */
+  var C_MID = { just_us:[0,0], small:[3,3], standard:[5,5], large:[8,8] };
+  function renderC(){
+    var el = document.querySelector('input[name="c-size"]:checked');
+    var b = BANDS.filter(function(x){ return x.key === (el ? el.value : ''); })[0] || BANDS[0];
+    var mid = C_MID[b.key];
+    paint(card('c'), mid[0], mid[1], b.recap);
+  }
+
+  /* D: two steppers */
+  var D = { 'd-bq':5, 'd-bt':5 };
+  function renderD(){
+    var bq = D['d-bq'], bt = D['d-bt'];
+    $('d-bq-out').textContent = bq;
+    $('d-bt-out').textContent = bt;
+    document.querySelectorAll('[data-step]').forEach(function(btn){
+      var v = D[btn.dataset.step], d = +btn.dataset.d;
+      btn.disabled = (v + d < 0) || (v + d > 12);
+    });
+    paint(card('d'), bq, bt, (bq + bt) === 0 ? 'None'
+      : plural(bq,'bouquet','bouquets') + ', ' + plural(bt,'boutonniere','boutonnieres'));
+  }
+
+  function renderAll(){
+    $('cmp-mode-note').textContent = mode() === 'band'
+      ? 'Banded: the number only moves when the party crosses into a bigger size. Nothing in the tool can be divided back into a price per stem.'
+      : 'Per person: each bouquet and boutonniere adds its own amount. Simple, but a determined couple can work out what one costs.';
+    renderA(); renderB(); renderC(); renderD();
+  }
+
+  /* --- wiring ------------------------------------------------------------- */
+  $('c-opts').innerHTML = BANDS.map(function(b){
+    return '<label class="cmp-opt"><input type="radio" name="c-size" value="' + b.key + '"' +
+           (b.default ? ' checked' : '') + '><span class="mk" aria-hidden="true"></span>' +
+           '<b>' + b.label + '</b><i>' + b.note + '</i></label>';
+  }).join('');
+
+  ['a-bq','a-bt','b-party'].forEach(function(id){ $(id).addEventListener('input', renderAll); });
+  document.querySelectorAll('input[name="c-size"]').forEach(function(el){ el.addEventListener('change', renderAll); });
+  document.querySelectorAll('input[name="cmp-mode"]').forEach(function(el){ el.addEventListener('change', renderAll); });
+  document.querySelectorAll('[data-step]').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var k = btn.dataset.step;
+      D[k] = Math.min(12, Math.max(0, D[k] + (+btn.dataset.d)));
+      renderD();
+    });
+  });
+
+  renderAll();
+})();
+</script>
