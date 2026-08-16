@@ -23,3 +23,9 @@ seo-report/
 
 # Proposal system archive: removed from the public repo 2026-07-11, kept local-only
 proposal-archive/
+
+# Hero timing tool: an internal instrument for tuning the home hero, not a page
+# of the site. Deliberately local-only, so run it with `jekyll serve` and open
+# /hero-lab. Ignored rather than merely untracked because the repo is public and
+# a stray `git add -A` would put it, and every future edit, in public history.
+hero-lab/
