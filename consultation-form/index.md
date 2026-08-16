@@ -109,16 +109,19 @@ sitemap: false
                    the exact submitted string, and editing this file deploys
                    nothing, so a changed `value` is rejected as spam until the
                    script is redeployed. Reword the visible text freely. -->
-              <fieldset class="reach-fieldset">
-                <legend>Who's filling this out?</legend>
+              <!-- Names BEFORE role: the box they just ticked says they are
+                   filling this out for someone else, so "for whom" is the
+                   question that follows it. -->
+              <label for="couple">Couple's names <span class="opt">(optional)</span></label>
+              <input type="text" id="couple" name="couple" placeholder="Who's getting married?" autocomplete="off" disabled>
+              <fieldset class="reach-fieldset stack-label">
+                <legend>Your role</legend>
                 <div class="reach-seg role-seg">
                   <label><input type="radio" name="role" value="The wedding planner" disabled required>The wedding planner</label>
                   <label><input type="radio" name="role" value="Family or a friend of the couple" disabled required>Family or a friend</label>
                   <label><input type="radio" name="role" value="Someone else" disabled required>Someone else</label>
                 </div>
               </fieldset>
-              <label for="couple" class="stack-label">Couple's names <span class="opt">(optional)</span></label>
-              <input type="text" id="couple" name="couple" placeholder="Who's getting married?" autocomplete="off" disabled>
             </div>
           </div>
         </div>
@@ -188,7 +191,7 @@ sitemap: false
         <ol class="success-steps">
           <li><span class="n">1</span><strong data-success-step-head>We check your date</strong><span class="success-step-body">Making sure<span data-success-step-date> your date is open</span>.</span></li>
           <li><span class="n">2</span><strong>You hear from us</strong><span class="success-step-body" data-success-note>Brittany replies within 48 hours.</span></li>
-          <li><span class="n">3</span><strong>We design together</strong><span class="success-step-body">If your date's open, we'll book a call to plan your florals.</span></li>
+          <li><span class="n">3</span><strong>We design together</strong><span class="success-step-body" data-success-step-plan>If your date&#39;s open, we&#39;ll book a call to plan your florals.</span></li>
         </ol>
       </div>
     </div>

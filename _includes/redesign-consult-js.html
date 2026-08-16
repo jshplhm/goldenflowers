@@ -345,10 +345,17 @@ function appendCommon_(params, form){
           var p=new URLSearchParams();
           /* Every step-1 field, or the partial-leads tab and its digest lose
              them. role/couple were missed when they were added (2026-08-10) —
-             keep this list in sync with .form-step-1. */
+             keep this list in sync with .form-step-1.
+
+             Read through FormData, not querySelector('[name=x]'). Two controls
+             share name="role" (the hidden "One of the couple" default and the
+             radios), and querySelector returns the hidden one either way: once
+             the box is ticked that input is disabled, so the partial posted an
+             EMPTY role for exactly the visitor whose role we most want to know.
+             FormData returns whichever control is currently enabled. */
+          var fd1=new FormData(form);
           ['date','name','role','couple','email','phone'].forEach(function(n){
-            var f=form.querySelector('[name="'+n+'"]');
-            p.append(n,(f&&!f.disabled)?f.value:'');
+            p.append(n, fd1.get(n)||'');
           });
           p.append('contact_method', form._checkedMethods?form._checkedMethods().join(', '):'');
           p.append('status','partial');
@@ -492,8 +499,13 @@ function appendCommon_(params, form){
     if(role && role!=='One of the couple'){
       var stepHead=success.querySelector('[data-success-step-head]');
       var stepDate=success.querySelector('[data-success-step-date]');
+      var stepPlan=success.querySelector('[data-success-step-plan]');
       if(stepHead) stepHead.textContent='We check the date';
       if(stepDate) stepDate.textContent=' the date is open';
+      /* Step 3 said "your date" and "your florals" twice over, which is the
+         same error as step 1 and reads worse, because it is describing the
+         call we would book. A planner is not planning her own florals. */
+      if(stepPlan) stepPlan.textContent="If the date is open, we'll book a call to plan the florals.";
     }
     var noteEl=success.querySelector('[data-success-note]');
     var methods=data.getAll?data.getAll('contact_method'):[];

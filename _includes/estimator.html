@@ -419,6 +419,9 @@
   index('tables', CFG.reception.style.options);
   index('recinstall', CFG.reception.installation.options);
   index('env',    CFG.environmental.options);
+  /* The three es-extra checkboxes live in two different blocks and were never
+     indexed, which is why the handoff note could not name them. */
+  index('extra',  [CFG.personal.family, CFG.personal.flower_kids, CFG.reception.head_table]);
 
   var $ = function(id){ return document.getElementById(id); };
   function radio(name){ var el=form.querySelector('input[name="es-'+name+'"]:checked'); return el?el.value:null; }
@@ -626,10 +629,26 @@
          dropped rather than listed, so the note says what they want instead of
          reciting every control on the page. */
       var bits = ['Guests: ' + last.guests + ', roughly ' + tableCount(last) + ' tables'];
+      /* Personal florals were missing from this note entirely: the party size
+         and the two extras are the first thing Brittany prices, and a summary
+         that skips them reads as if they want no bouquets at all. Zero is a
+         real answer (an elopement), so it is stated rather than dropped. */
+      var extras = checks('extra');
+      var party = +$('es-party').value;
+      /* Not "just the two of them": a planner may be the one sending this, and
+         the rest of the note is written in nobody's voice. */
+      bits.push(party
+        ? 'Wedding party: ' + party + ' carrying or wearing flowers'
+        : 'Wedding party: none');
+      var personal = ['family','flower_kids']
+        .filter(function(k){ return extras.indexOf(k) > -1; })
+        .map(function(k){ return labelOf('extra', k); });
+      if(personal.length) bits.push('Also personal: ' + personal.join(', '));
       var ceremony = [labelOf('focal', radio('focal')), labelOf('ground', radio('ground'))]
         .filter(function(s){ return s && s !== 'none' && s !== 'nothing built'; });
       if(ceremony.length) bits.push('Ceremony: ' + ceremony.join(' with '));
-      bits.push('Guest tables: ' + labelOf('tables', radio('tables')));
+      bits.push('Guest tables: ' + labelOf('tables', radio('tables')) +
+        (extras.indexOf('head_table') > -1 ? ', plus a ' + labelOf('extra','head_table') : ''));
       var recInstall = labelOf('recinstall', radio('recinstall'));
       if(recInstall && recInstall !== 'nothing built') bits.push('Reception installation: ' + recInstall);
       var envNames = checks('env').map(function(k){ return MAP['env:'+k].label.toLowerCase(); });
