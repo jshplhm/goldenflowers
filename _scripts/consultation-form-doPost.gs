@@ -132,6 +132,11 @@ var ROLES = [
   "Family or a friend of the couple",
   "Someone else"
 ];
+// The default, and the only role worth NOT repeating back: telling a bride she
+// is one of the couple is noise. Every other answer changes who we are writing
+// to, so it travels with the lead. Must stay identical to ROLES[0] and to the
+// hidden input's value in _includes/consult-modal.html.
+var ROLE_DEFAULT = ROLES[0];
 
 // Brackets were realigned to the published ladder on /weddings (full service
 // begins at $7,500). The OLD four are still accepted on purpose: a visitor with
@@ -706,7 +711,25 @@ function sendAutoReply_(p, isUpdate) {
     : 'Checking your availability · Golden Flowers';
 
   // Only the fields they actually filled in.
+  //
+  // This email is BOTH the couple's receipt and, via the BCC, the only
+  // notification we get for a lead that gave an email: the internal
+  // sendCompleteEmail_ alert never fires for them. So everything they told us
+  // has to be here, or it exists only in the sheet.
   var rows = [];
+  // Their full name. The greeting is on a first name, and the To: header is
+  // just an address, so without this a surname reaches us nowhere.
+  var fullName = String(p.name || '').trim();
+  if (fullName) rows.push(['Your name', fullName]);
+  // Who is writing, when it is not one of the couple. Both lines are step 1
+  // answers, and together they are the difference between replying to a bride
+  // and replying to a planner about someone else's wedding.
+  var role = String(p.role || '').trim();
+  if (role && role !== ROLE_DEFAULT) {
+    var couple = String(p.couple || '').trim();
+    if (couple) rows.push(['Getting married', couple]);
+    rows.push(['You are', role]);
+  }
   if (dateLong) rows.push(['Wedding date', dateLong]);
   var venue = venueValue_(p);
   if (venue) rows.push(['Venue', venue]);
@@ -893,6 +916,16 @@ function partialLeadsDigest_() {
       '• ' + (name || '(no name)') + ' — ' + contactLine_(row, cols) + '\n' +
       '  Wedding date: ' + (fmtWeddingDate_(row[cols['Wedding Date'] - 1]) || '(none)') +
       '  ·  Started: ' + fmtWhen_(row[cols['Submitted'] - 1]);
+    // Role and couple are step 1 answers, so a partial always has them, and
+    // they decide whether "a friendly note" goes to a bride or to a planner
+    // holding several weddings. Columns are guarded: a sheet created before
+    // 2026-08-10 has neither.
+    var pRole = cols['Role'] ? String(row[cols['Role'] - 1] || '').trim() : '';
+    var pCouple = cols['Couple'] ? String(row[cols['Couple'] - 1] || '').trim() : '';
+    if (pRole && pRole !== ROLE_DEFAULT) {
+      entry += '\n  They are: ' + pRole +
+        (pCouple ? '  ·  Getting married: ' + pCouple : '');
+    }
     (submitted instanceof Date && submitted > dayAgo ? fresh : older).push(entry);
   });
 
