@@ -203,6 +203,38 @@ reception:
         note: Florals running the length of the table, or a designed piece per seat.
         low: 700
         high: 1100
+  # Custom work built for the room, not carried over from the ceremony and not
+  # sitting on a guest table. Kept clear of the table styles on purpose:
+  # "mixed heights" already covers an elevated centerpiece, so anything here
+  # has to be freestanding or suspended or it is charged twice.
+  installation:
+    label: Built for the room
+    help: Anything designed and installed for the reception itself, separate
+      from what is on the tables.
+    options:
+      - key: none
+        label: Nothing built
+        note: The tables and the room carry the reception.
+        low: 0
+        high: 0
+        default: true
+      - key: freestanding
+        label: Freestanding pieces
+        note: Pillars or plinths flanking the head table, the dance floor, or
+          the entrance.
+        low: 1500
+        high: 3500
+      - key: suspended
+        label: Suspended overhead
+        note: Greenery or florals hung above the tables or the dance floor.
+        low: 4000
+        high: 9000
+      - key: full
+        label: A full installation
+        note: Several suspended and freestanding structures built for the space.
+        low: 9000
+        high: 20000
+
   head_table:
     key: head_table
     label: Head or sweetheart table
@@ -249,7 +281,7 @@ categories:
   - key: ceremony
     label: Ceremony
   - key: reception
-    label: Reception tables
+    label: Reception
   - key: personal
     label: Personal florals
   - key: environmental

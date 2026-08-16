@@ -288,6 +288,21 @@
       </div>
 
       <div class="es-fld">
+        <p class="es-lbl">{{ E.reception.installation.label }}</p>
+        <p class="es-help">{{ E.reception.installation.help }}</p>
+        <div class="es-opts">
+          {%- for o in E.reception.installation.options %}
+          <label class="es-opt">
+            <input type="radio" name="es-recinstall" value="{{ o.key }}"{% if o.default %} checked{% endif %}>
+            <span class="es-mark" aria-hidden="true"></span>
+            <b>{{ o.label }}</b>
+            {%- if o.note != "" %}<i>{{ o.note }}</i>{% endif %}
+          </label>
+          {%- endfor %}
+        </div>
+      </div>
+
+      <div class="es-fld">
         <div class="es-opts">
           <label class="es-opt es-opt--chk">
             <input type="checkbox" name="es-extra" value="head_table"{% if E.reception.head_table.default %} checked{% endif %}>
@@ -402,6 +417,7 @@
   index('focal',  CFG.ceremony.focal.options);
   index('ground', CFG.ceremony.ground.options);
   index('tables', CFG.reception.style.options);
+  index('recinstall', CFG.reception.installation.options);
   index('env',    CFG.environmental.options);
 
   var $ = function(id){ return document.getElementById(id); };
@@ -438,6 +454,7 @@
     var tHigh = Math.max(tLow, Math.ceil(guests / S.seats_per_table.min));
     var perTable = MAP['tables:' + radio('tables')];
     if(perTable){ cat.reception[0] += perTable.low * tLow; cat.reception[1] += perTable.high * tHigh; }
+    add('reception', MAP['recinstall:' + radio('recinstall')]);
     if(extras.indexOf('head_table') > -1) add('reception', CFG.reception.head_table);
 
     checks('env').forEach(function(k){ add('environmental', MAP['env:'+k]); });
@@ -612,6 +629,8 @@
         .filter(function(s){ return s && s !== 'none' && s !== 'nothing built'; });
       if(ceremony.length) bits.push('Ceremony: ' + ceremony.join(' with '));
       bits.push('Guest tables: ' + labelOf('tables', radio('tables')));
+      var recInstall = labelOf('recinstall', radio('recinstall'));
+      if(recInstall && recInstall !== 'nothing built') bits.push('Reception installation: ' + recInstall);
       var envNames = checks('env').map(function(k){ return MAP['env:'+k].label.toLowerCase(); });
       if(envNames.length) bits.push('Also: ' + envNames.join(', '));
       bits.push(under ? 'It put me under your minimum, but I would like to talk anyway'
