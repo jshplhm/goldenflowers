@@ -28,33 +28,37 @@
         server can whitelist, not free text. Anyone who ISN'T the couple reveals
         an optional couple's-names field, using the same reveal pattern as the
         contact chooser: it costs zero height for the common case. {%- endcomment -%}
+        {%- comment -%} Most of the time this is the couple, so we assume it
+        and charge nobody the cost of saying so. Ticking the box reveals the
+        role select and the optional couple's-names field together.
+
+        The wire format did NOT change: unticked, the hidden input submits
+        "One of the couple"; ticked, it is disabled and the select submits one
+        of the other three. Every value is still in the ROLES whitelist in
+        consultation-form-doPost.gs, so no redeploy of the script was needed.
+        FormData drops disabled fields, and the Continue validator already
+        skips disabled required ones, so exactly one `role` is ever sent.
+        {%- endcomment -%}
         <div class="field-full">
-          <label for="m-role">Who's filling this out?</label>
-          <select id="m-role" name="role" required>
-            <option value="" disabled selected>Choose one</option>
-            {%- comment -%} Label and value differ on purpose. The Apps Script
-            whitelists the exact submitted string and editing that file deploys
-            nothing, so changing the value here would start rejecting real leads
-            until it is redeployed. Reword the label freely; the value is the
-            wire format, and redesign-consult-js.html tests against it too.
-            {%- endcomment -%}
-            <option value="One of the couple">The couple</option>
-            <option>The wedding planner</option>
-            <option>Family or a friend of the couple</option>
-            <option>Someone else</option>
-          </select>
+          <input type="hidden" name="role" value="One of the couple" data-role-default>
+          <label class="not-couple"><input type="checkbox" data-not-couple> I'm not one of the couple</label>
           <div class="reach-reveal" data-couple-reveal>
             <div class="reach-inner">
-              <label for="m-couple">Couple's names <span class="opt">(optional)</span></label>
-              <input type="text" id="m-couple" name="couple" placeholder="Who's getting married?" autocomplete="off">
+              <label for="m-role">Who's filling this out?</label>
+              {%- comment -%} Label and value differ on purpose: the Apps Script
+              whitelists the exact submitted string, so reword labels freely but
+              never the values. {%- endcomment -%}
+              <select id="m-role" name="role" disabled required>
+                <option value="" disabled selected>Choose one</option>
+                <option>The wedding planner</option>
+                <option>Family or a friend of the couple</option>
+                <option>Someone else</option>
+              </select>
+              <label for="m-couple" class="stack-label">Couple's names <span class="opt">(optional)</span></label>
+              <input type="text" id="m-couple" name="couple" placeholder="Who's getting married?" autocomplete="off" disabled>
             </div>
           </div>
         </div>
-        {%- comment -%} Contact chooser, check all that apply: each checked
-        channel reveals its field (CSS :has() covers no-JS; JS enables/
-        disables the inputs so unchosen ones neither validate nor submit).
-        Reveals live INSIDE the fieldset so nothing reserves grid rows or
-        gaps while closed. {%- endcomment -%}
         <fieldset class="field-full reach-fieldset">
           <legend>How should we reach you?</legend>
           <div class="reach-seg">

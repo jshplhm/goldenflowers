@@ -522,6 +522,9 @@
   /* "10 to 13" when the seating range gives two answers, "10" when it does not. */
   function tableCount(r){ return r.tLow === r.tHigh ? String(r.tLow) : r.tLow + '\u2013' + r.tHigh; }
 
+  var stick, panelSeen = false, pastTop = false, isUnder = false;
+  function toggle(){ if(stick) stick.classList.toggle('on', pastTop && !panelSeen && !isUnder); }
+
   var last = null;
   function render(){
     var r = compute(); last = r;
@@ -563,14 +566,12 @@
        main CTA steps aside. Without a referral configured it falls back to
        "Ask us anyway" on the primary button, which is the convert-up posture. */
     var ref = $('es-ref'), ask = $('es-ask');
-    if(ref){
-      ref.hidden = !under;
-      ask.hidden  = !under;
-      $('es-cta').hidden = under;
-      $('es-cta-note').hidden = under;
-    } else {
-      $('es-cta').innerHTML = (under ? CFG.copy.under_min_cta : CFG.copy.cta_button) + ' &rarr;';
-    }
+    if(ref){ ref.hidden = !under; ask.hidden = !under; }
+    $('es-cta').hidden = under;
+    $('es-cta-note').hidden = under;
+    if(!under) $('es-cta').innerHTML = CFG.copy.cta_button + ' &rarr;';
+    isUnder = under;
+    toggle();
 
     /* allocation */
     var rows = shares(r.cat), bar = $('es-bar'), leg = $('es-legend');
@@ -633,9 +634,10 @@
       if(recInstall && recInstall !== 'nothing built') bits.push('Reception installation: ' + recInstall);
       var envNames = checks('env').map(function(k){ return MAP['env:'+k].label.toLowerCase(); });
       if(envNames.length) bits.push('Also: ' + envNames.join(', '));
-      bits.push(under ? 'It put me under your minimum, but I would like to talk anyway'
+      bits.push(under ? 'It put me under your minimum'
                       : 'Range it gave me: ' + money(Math.max(last.low, S.minimum)) + ' to ' + money(last.high));
-      msg.value = 'From the estimator on your site. ' + bits.join('. ') + '.';
+      msg.value = 'From the estimator on your site:\n' +
+        bits.map(function(b){ return '\u2022 ' + b; }).join('\n') + '\n';
     }
   }
   Array.prototype.forEach.call(document.querySelectorAll('[data-consult-open]'), function(b){
@@ -652,9 +654,8 @@
      including the first render() -- never ran, so the panel sat blank until
      you touched a control. Anchor on an element the component itself owns,
      and guard anyway. */
-  var stick = $('es-stick'), panel = $('es-panel'), tool = document.querySelector('.es-wrap');
-  var panelSeen = false, pastTop = false;
-  function toggle(){ stick.classList.toggle('on', pastTop && !panelSeen); }
+  stick = $('es-stick');
+  var panel = $('es-panel'), tool = document.querySelector('.es-wrap');
   if('IntersectionObserver' in window && panel && tool){
     new IntersectionObserver(function(e){ panelSeen = e[0].isIntersecting; toggle(); }, { threshold:0.25 }).observe(panel);
     new IntersectionObserver(function(e){ pastTop = !e[0].isIntersecting; toggle(); }, { threshold:0 }).observe(tool);

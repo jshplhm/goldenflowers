@@ -33,6 +33,10 @@
     modal.classList.add('open');
     modal.setAttribute('aria-hidden','false');
     lockBody();
+    /* After any prefill (the estimator writes into #m-message on the click
+       that opens this), so the box is already the right height on arrival. */
+    var f=modal.querySelector('form');
+    if(f&&f._growMsg) f._growMsg();
     /* First VISIBLE control, not simply the first one in the markup. The close
        button is the first <button> in the dialog and carries `hidden` until the
        thank-you screen, and the honeypot is the first <input>; focus() on
@@ -268,20 +272,35 @@ function appendCommon_(params, form){
        optional couple's-names field. Same .open/.reach-reveal mechanics as the
        contact chooser. The input is disabled while hidden so a stale value can
        never ride along on a later submit. */
-    var roleEl=form.querySelector('[name="role"]');
+    var roleEl=form.querySelector('#m-role');   /* the select, NOT the hidden default: both are name="role" */
+    /* "I'm not one of the couple" gates BOTH the role select and the couple's
+       names field. Exactly one `role` is ever submitted: the hidden default
+       when unticked, the select when ticked, the other always disabled.
+       FormData drops disabled controls and the Continue validator already
+       skips disabled required ones, so this needs no server change. */
     var coupleBlock=form.querySelector('[data-couple-reveal]');
-    if(roleEl&&coupleBlock){
-      var coupleInput=coupleBlock.querySelector('input');
+    var notCouple=form.querySelector('[data-not-couple]');
+    var roleDefault=form.querySelector('[data-role-default]');
+    if(coupleBlock&&notCouple&&roleEl&&roleDefault){
+      var coupleInput=form.querySelector('#m-couple');
       var syncRole=function(){
-        var v=roleEl.value, show=!!v&&v!=='One of the couple';
+        var show=notCouple.checked;
         coupleBlock.classList.toggle('open', show);
-        if(coupleInput){
-          coupleInput.disabled=!show;
-          if(!show) coupleInput.value='';
-        }
+        roleDefault.disabled=show;
+        roleEl.disabled=!show;
+        if(coupleInput) coupleInput.disabled=!show;
+        if(!show){ roleEl.value=''; if(coupleInput) coupleInput.value=''; }
       };
       syncRole();
-      roleEl.addEventListener('change', syncRole);
+      notCouple.addEventListener('change', syncRole);
+    }
+    /* The estimator prefills several lines here, and rows="3" clipped them.
+       Grow to fit on input and whenever the dialog opens. */
+    var msgEl=form.querySelector('#m-message');
+    if(msgEl){
+      var growMsg=function(){ if(msgEl.offsetParent===null) return; msgEl.style.height='auto'; msgEl.style.height=(msgEl.scrollHeight+2)+'px'; };
+      msgEl.addEventListener('input', growMsg);
+      form._growMsg=growMsg;
     }
     form.dataset.leadId=(window.crypto&&crypto.randomUUID)?crypto.randomUUID():('c-'+Date.now()+'-'+Math.random().toString(36).slice(2));
     form.dataset.renderedAt=String(Date.now());
@@ -324,6 +343,7 @@ function appendCommon_(params, form){
       if(step1) step1.hidden=true;
       if(advance) advance.hidden=true;
       step2.hidden=false;
+      if(form._growMsg) form._growMsg();   /* only measurable once it is on screen */
       setStep(2);
       toTop();
       // Genuine step-1 -> step-2 advance (all validation passed above).
