@@ -213,16 +213,24 @@
         <div class="es-ticks"><span>{{ E.sliders.guests.min }}</span><span>{{ E.sliders.guests.max }}+</span></div>
       </div>
 
+      {%- comment -%} Sizes, not a headcount. A "wedding party: 8 people"
+      slider told nobody what they were buying, and multiplying that headcount
+      by a bouquet price and a boutonniere price was the last per-unit
+      arithmetic in the tool. See the long note in _data/estimator.yml.
+      {%- endcomment -%}
       <div class="es-fld">
-        <label class="es-lbl" for="es-party">
-          {{ E.sliders.party.label }}
-          <output class="es-val" id="es-party-out" for="es-party"></output>
-        </label>
-        <p class="es-help">{{ E.sliders.party.help }}</p>
-        <input class="es-range" type="range" id="es-party" name="party"
-               min="{{ E.sliders.party.min }}" max="{{ E.sliders.party.max }}"
-               step="{{ E.sliders.party.step }}" value="{{ E.sliders.party.default }}">
-        <div class="es-ticks"><span>{{ E.sliders.party.min }}</span><span>{{ E.sliders.party.max }}</span></div>
+        <p class="es-lbl">{{ E.personal.party.label }}</p>
+        <p class="es-help">{{ E.personal.party.help }}</p>
+        <div class="es-opts">
+          {%- for o in E.personal.party.options %}
+          <label class="es-opt">
+            <input type="radio" name="es-party" value="{{ o.key }}"{% if o.default %} checked{% endif %}>
+            <span class="es-mark" aria-hidden="true"></span>
+            <b>{{ o.label }}</b>
+            {%- if o.note != "" %}<i>{{ o.note }}</i>{% endif %}
+          </label>
+          {%- endfor %}
+        </div>
       </div>
 
       <div class="es-fld">
@@ -424,6 +432,7 @@
   /* price lookups keyed "group:key" so the compute step is one line each */
   var MAP = {};
   function index(prefix, list){ (list||[]).forEach(function(o){ MAP[prefix+':'+o.key]=o; }); }
+  index('party',  CFG.personal.party.options);
   index('focal',  CFG.ceremony.focal.options);
   index('ground', CFG.ceremony.ground.options);
   index('tables', CFG.reception.style.options);
@@ -443,15 +452,15 @@
     var cat = { ceremony:[0,0], reception:[0,0], personal:[0,0], environmental:[0,0], service:[0,0] };
     function add(k, r, n){ if(!r) return; n = (n===undefined) ? 1 : n; cat[k][0]+=r.low*n; cat[k][1]+=r.high*n; }
 
-    var guests = +$('es-guests').value, party = +$('es-party').value;
+    var guests = +$('es-guests').value;
     var extras = checks('extra');
 
-    /* personal: one bridal bouquet, then the party split into bouquets and
-       boutonnieres, then optional bundles. Never rendered per unit. */
+    /* personal: one bridal bouquet, one wedding-party size, then optional
+       bundles. Nothing here is multiplied by a headcount: the party sizes are
+       whole ranges, so there is no unit price in the tool to divide back out.
+       `just_us` is what carries the partner's boutonniere. */
     add('personal', CFG.personal.bridal_bouquet);
-    var bouquets = Math.round(party * CFG.sliders.party.bouquet_share);
-    add('personal', CFG.personal.attendant_bouquet, bouquets);
-    add('personal', CFG.personal.boutonniere, party - bouquets);
+    add('personal', MAP['party:' + radio('party')]);
     if(extras.indexOf('family') > -1)      add('personal', CFG.personal.family);
     if(extras.indexOf('flower_kids') > -1) add('personal', CFG.personal.flower_kids);
 
@@ -546,14 +555,12 @@
   var last = null;
   function render(){
     var r = compute(); last = r;
-    var gs = CFG.sliders.guests, ps = CFG.sliders.party;
+    var gs = CFG.sliders.guests;
 
     /* slider readouts */
-    fillTrack($('es-guests')); fillTrack($('es-party'));
+    fillTrack($('es-guests'));
     var atMax = r.guests >= gs.max;
     $('es-guests-out').innerHTML = r.guests + (atMax ? '+' : '') + ' <span>' + (atMax ? gs.max_suffix : gs.suffix) + '</span>';
-    var party = +$('es-party').value;
-    $('es-party-out').innerHTML = party + ' <span>' + ps.suffix + '</span>';
     $('es-tables-out').innerHTML = tableCount(r) + ' <span>tables</span>';
 
     var under = r.high < S.minimum;
@@ -670,11 +677,14 @@
     var rows = [[H.guests, last.guests + ', roughly ' + tableCount(last) + ' tables']];
     /* Personal florals were missing from this summary entirely: the party size
        and the two extras are the first thing Brittany prices, and a recap that
-       skips them reads as if they want no bouquets at all. Zero is a real
-       answer (an elopement), so it is stated rather than dropped. */
+       skips them reads as if they want no bouquets at all. "Just the two of us"
+       is a real answer (an elopement), so it is stated rather than dropped, and
+       it uses the option's own `recap` phrasing because the button label
+       ("Just the two of us") does not read as a value in a "Wedding party:"
+       line. */
     var extras = checks('extra');
-    var party = +$('es-party').value;
-    rows.push([H.party, party ? party + ' carrying or wearing flowers' : H.party_none]);
+    var partyOpt = MAP['party:' + radio('party')];
+    if(partyOpt) rows.push([H.party, partyOpt.recap || partyOpt.label]);
     var personal = ['family','flower_kids']
       .filter(function(k){ return extras.indexOf(k) > -1; })
       .map(function(k){ return labelOf('extra', k); });

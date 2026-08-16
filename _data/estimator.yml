@@ -13,6 +13,11 @@
 # describes full-service weddings. THEY ARE NOT BRITTANY'S CONFIRMED PRICES.
 # She should walk this file once before it ships.
 #
+# NOTE ON THE PER-UNIT NUMBERS ABOVE: they are provenance, not live values.
+# Nothing in this file is multiplied by a headcount any more (see
+# `personal.party`), so a bridesmaid bouquet and a boutonniere no longer have
+# a price of their own anywhere in the tool.
+#
 # HOW TO EDIT SAFELY
 #   - low/high are dollars. Always keep low <= high.
 #   - Deleting an option from a list removes the button from the page. Adding
@@ -86,17 +91,6 @@ sliders:
     default: 100
     suffix: guests
     max_suffix: or more
-  party:
-    label: Wedding party
-    help: People standing with you who carry or wear flowers.
-    min: 0
-    max: 20
-    step: 1
-    default: 10
-    suffix: people
-    # Of the wedding party, the share that carries a bouquet rather than
-    # wearing a boutonniere. 0.5 splits them evenly.
-    bouquet_share: 0.5
 
 # --- Personal florals ------------------------------------------------------
 personal:
@@ -104,12 +98,62 @@ personal:
   bridal_bouquet:
     low: 300
     high: 550
-  attendant_bouquet:
-    low: 125
-    high: 185
-  boutonniere:
-    low: 65
-    high: 95
+
+  # THE WEDDING PARTY, AS SIZES RATHER THAN A HEADCOUNT (2026-08-16).
+  # This replaced a 0-20 "people" slider. Two reasons, in order:
+  #
+  #   1. Brittany's feedback: "Wedding party / 8 people" did not tell anyone
+  #      what they were buying. These options name bouquets and boutonnieres
+  #      out loud, which is what she is actually asked about on a call.
+  #   2. It takes the last piece of per-unit arithmetic out of the tool. The
+  #      old slider multiplied a headcount by a bridesmaid bouquet price and a
+  #      boutonniere price, which is exactly the order-form feeling we do not
+  #      want: a couple who can divide can work out what one boutonniere costs
+  #      and then work out which one to cut.
+  #
+  # Each low/high below is the old per-unit arithmetic evaluated at the EDGES
+  # of that size, so no number here was invented: a small party is two a side
+  # at the low end (2 x $125 + 2 x $65) and three a side at the high end
+  # (3 x $185 + 3 x $95). If Brittany retunes these, they are just four ranges
+  # now and can be moved freely without any headcount to keep them consistent
+  # with.
+  #
+  # A useful side effect: `just_us` finally prices the partner's boutonniere,
+  # which the old slider missed entirely (it counted people standing WITH you,
+  # so the second of the two of you was never in the total).
+  #
+  # `recap` is what the consultation form shows, so it has to read as a phrase
+  # in a sentence, not as a button label.
+  party:
+    label: Wedding party
+    help: Bouquets to carry and boutonnieres to wear, for the people standing
+      with you.
+    options:
+      - key: just_us
+        label: Just the two of us
+        note: Your bouquet and one boutonniere.
+        recap: No wedding party
+        low: 65
+        high: 95
+      - key: small
+        label: A small party
+        note: Two or three on each side.
+        recap: A small party, two or three a side
+        low: 380
+        high: 840
+      - key: standard
+        label: A standard party
+        note: Four to six on each side.
+        recap: A standard party, four to six a side
+        low: 760
+        high: 1680
+        default: true
+      - key: large
+        label: A large party
+        note: Seven or more on each side.
+        recap: A large party, seven or more a side
+        low: 1330
+        high: 2800
   # One bundle, not a unit price: parents, grandparents, readers, ushers.
   family:
     key: family
@@ -333,7 +377,6 @@ copy:
     adjust: Adjust these answers
     guests: Guests
     party: Wedding party
-    party_none: None
     personal: Family florals
     ceremony: Ceremony
     tables: Guest tables
