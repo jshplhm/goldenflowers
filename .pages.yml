@@ -213,8 +213,7 @@ content:
           - {name: label, label: "Small label", type: string}
           - {name: heading, label: "Headline", type: string, description: "*asterisks* = italics"}
           - {name: subheading, label: "Sub-headline", type: text}
-          - {name: button_primary, label: "Main button text", type: string}
-          - {name: button_secondary, label: "Second button text", type: string}
+          - {name: button_primary, label: "Main button text", type: string, description: "Jumps down to the pricing estimator."}
       - name: process
         label: "Section: how it works"
         type: object
@@ -227,50 +226,24 @@ content:
             type: object
             list: true
             fields:
-              - {name: number, label: "Number", type: string}
+              - {name: icon, label: "Icon", type: string, description: "Name of a line icon: calendar, moodboard, lock, contract, stem, van, cycle. Also available: bouquet, arch, compote, budvase, ladder, pencil, checklist."}
               - {name: phase, label: "Start a new group here", type: string, description: "Leave blank on most steps. Fill it in to start a new group, e.g. 'Before you book'. The heading shows above that step."}
               - {name: when, label: "Timing label", type: string}
               - {name: title, label: "Title", type: string}
               - {name: body, label: "Text", type: text}
-      - name: included
-        label: "Section: what's included"
+      - name: estimator_intro
+        label: "Section: investment (heading above the estimator)"
         type: object
-        fields:
-          - {name: label, label: "Small label", type: string}
-          - {name: heading, label: "Heading", type: string}
-          - name: items
-            label: The items
-            type: object
-            list: true
-            fields:
-              - {name: title, label: "Title", type: string}
-              - {name: body, label: "Text", type: text}
-      - name: pricing
-        label: "Section: investment"
-        type: object
-        fields:
-          - {name: label, label: "Small label", type: string}
-          - name: tiers
-            label: "Price scale"
-            type: object
-            list: true
-            description: "Three rows, cheapest first. Tick 'Most weddings' on exactly one row: it is the one shown larger."
-            fields:
-              - {name: label, label: "What it covers", type: string}
-              - {name: amount, label: "Amount", type: string}
-              - {name: lead, label: "Most weddings land here", type: boolean}
-          - {name: note, label: "Line under the scale", type: text}
-      - name: assurance
-        label: "Section: how we work"
-        type: object
+        description: "The estimator's own numbers and wording live under 'Estimator prices'."
         fields:
           - {name: label, label: "Small label", type: string}
           - {name: heading, label: "Heading", type: string}
           - {name: body, label: "Text", type: text}
       - name: testimonials
-        label: "Section: reviews heading"
+        label: "Section: reviews"
         type: object
         fields:
+          - {name: show, label: "Show the reviews section", type: boolean, description: "Off. The reviews themselves are kept under 'Reviews (carousel)' and still feed search-engine markup. Turning this on also means restoring the home page's 'Read more reviews' link."}
           - {name: label, label: "Small label", type: string}
           - {name: heading, label: "Heading", type: string}
       - name: faq
@@ -672,3 +645,216 @@ content:
         label: Body
         type: rich-text
 
+
+  # ═══════════════════════════════════════════════════════════════════
+  #  PRICING ENGINE (mockup: /estimate)
+  #  The numbers behind the floral planning estimator. Nothing here is
+  #  shown to a visitor as a unit price; the tool only ever renders
+  #  whole-category ranges and shares.
+  #
+  #  NOTE: Pages CMS strips YAML comments on save, and _data/estimator.yml
+  #  is heavily commented. The guidance that matters is repeated in the
+  #  `description` fields below so it survives the first save.
+  # ═══════════════════════════════════════════════════════════════════
+
+  - name: estimator
+    label: Estimator prices
+    type: file
+    path: _data/estimator.yml
+    format: yaml
+    icon: calculator
+    description: "Every number behind the estimator at /estimate. Low and high are dollars; always keep low at or below high. Prices here are never shown as unit prices."
+    fields:
+      - name: settings
+        label: How the math works
+        type: object
+        fields:
+          - {name: minimum, label: "Full-service minimum", type: number, description: "Anything that prices out below this stops showing a figure and offers the smaller-scope path instead."}
+          - {name: guests_per_table, label: "Guests per reception table", type: number, description: "Turns the guest slider into a table count."}
+          - {name: round_to, label: "Round the headline range to", type: number, description: "Dollars. 250 means the range always ends in 000, 250, 500 or 750."}
+          - {name: category_round, label: "Round the breakdown rows to", type: number}
+          - {name: band_tighten, label: "Tighten the range", type: number, description: "0 shows the full raw spread, which is usually about 2x and too wide to plan against. 0.35 is a good middle. 0.5 collapses it to a single number."}
+          - name: service
+            label: "Delivery, setup and strike"
+            type: object
+            fields:
+              - {name: low_pct, label: "Low end (% of the design subtotal)", type: number}
+              - {name: high_pct, label: "High end (% of the design subtotal)", type: number}
+              - {name: floor, label: "Never less than ($)", type: number}
+      - name: sliders
+        label: Sliders
+        type: object
+        fields:
+          - name: guests
+            label: Guest count
+            type: object
+            fields:
+              - {name: label, label: "Label", type: string}
+              - {name: min, label: "Lowest", type: number}
+              - {name: max, label: "Highest", type: number}
+              - {name: step, label: "Moves in steps of", type: number}
+              - {name: default, label: "Starts at", type: number}
+              - {name: suffix, label: "Word after the number", type: string}
+              - {name: max_suffix, label: "Word at the top of the slider", type: string}
+          - name: party
+            label: Wedding party
+            type: object
+            fields:
+              - {name: label, label: "Label", type: string}
+              - {name: help, label: "Help text", type: text}
+              - {name: min, label: "Lowest", type: number}
+              - {name: max, label: "Highest", type: number}
+              - {name: step, label: "Moves in steps of", type: number}
+              - {name: default, label: "Starts at", type: number}
+              - {name: suffix, label: "Word after the number", type: string}
+              - {name: bouquet_share, label: "Share of the party carrying a bouquet", type: number, description: "0.5 splits the party evenly between bouquets and boutonnieres."}
+      - name: personal
+        label: Personal florals
+        type: object
+        fields:
+          - {name: label, label: "Category name in the breakdown", type: string}
+          - name: bridal_bouquet
+            label: Bridal bouquet
+            type: object
+            fields: [{name: low, label: Low, type: number}, {name: high, label: High, type: number}]
+          - name: attendant_bouquet
+            label: Attendant bouquet (each)
+            type: object
+            fields: [{name: low, label: Low, type: number}, {name: high, label: High, type: number}]
+          - name: boutonniere
+            label: Boutonniere (each)
+            type: object
+            fields: [{name: low, label: Low, type: number}, {name: high, label: High, type: number}]
+          - name: family
+            label: "Flowers for family (one bundle, not per person)"
+            type: object
+            fields:
+              - {name: label, label: "Button text", type: string}
+              - {name: note, label: "Small print", type: text}
+              - {name: low, label: Low, type: number}
+              - {name: high, label: High, type: number}
+          - name: flower_kids
+            label: Flower girl or ring bearer
+            type: object
+            fields:
+              - {name: label, label: "Button text", type: string}
+              - {name: note, label: "Small print", type: text}
+              - {name: low, label: Low, type: number}
+              - {name: high, label: High, type: number}
+      - name: ceremony
+        label: Ceremony
+        type: object
+        fields:
+          - {name: label, label: "Category name in the breakdown", type: string}
+          - name: focal
+            label: "The piece you stand under"
+            type: object
+            fields:
+              - {name: label, label: "Question", type: string}
+              - {name: help, label: "Help text", type: text}
+              - name: options
+                label: Choices
+                type: object
+                list: true
+                description: "Deleting a choice removes its button from the page. Leave the key alone."
+                fields:
+                  - {name: key, label: "Key (do not change)", type: string}
+                  - {name: label, label: "Button text", type: string}
+                  - {name: note, label: "Small print", type: text}
+                  - {name: low, label: Low, type: number}
+                  - {name: high, label: High, type: number}
+          - name: ground
+            label: "Aisle and ground florals"
+            type: object
+            fields:
+              - {name: label, label: "Question", type: string}
+              - name: options
+                label: Choices
+                type: object
+                list: true
+                fields:
+                  - {name: key, label: "Key (do not change)", type: string}
+                  - {name: label, label: "Button text", type: string}
+                  - {name: note, label: "Small print", type: text}
+                  - {name: low, label: Low, type: number}
+                  - {name: high, label: High, type: number}
+      - name: reception
+        label: Reception tables
+        type: object
+        fields:
+          - {name: label, label: "Category name in the breakdown", type: string}
+          - name: style
+            label: Guest tables
+            type: object
+            fields:
+              - {name: label, label: "Question", type: string}
+              - {name: help, label: "Help text", type: text}
+              - name: options
+                label: Choices
+                type: object
+                list: true
+                description: "Low and high here are PER TABLE. The tool multiplies by the table count."
+                fields:
+                  - {name: key, label: "Key (do not change)", type: string}
+                  - {name: label, label: "Button text", type: string}
+                  - {name: note, label: "Small print", type: text}
+                  - {name: low, label: "Low (per table)", type: number}
+                  - {name: high, label: "High (per table)", type: number}
+          - name: head_table
+            label: Head or sweetheart table
+            type: object
+            fields:
+              - {name: label, label: "Button text", type: string}
+              - {name: note, label: "Small print", type: text}
+              - {name: low, label: Low, type: number}
+              - {name: high, label: High, type: number}
+      - name: environmental
+        label: Environmental
+        type: object
+        fields:
+          - {name: label, label: "Category name in the breakdown", type: string}
+          - {name: help, label: "Help text", type: text}
+          - name: options
+            label: Choices
+            type: object
+            list: true
+            description: "Each of these is a pill the couple can tap on or off."
+            fields:
+              - {name: key, label: "Key (do not change)", type: string}
+              - {name: label, label: "Pill text", type: string}
+              - {name: low, label: Low, type: number}
+              - {name: high, label: High, type: number}
+      - name: categories
+        label: Breakdown rows
+        type: object
+        list: true
+        description: "The order of the slices in the bar and the rows under it. Keys must stay as they are."
+        fields:
+          - {name: key, label: "Key (do not change)", type: string}
+          - {name: label, label: "Row name", type: string}
+      - name: copy
+        label: Wording on the page
+        type: object
+        fields:
+          - {name: eyebrow, label: "Small label above the headline", type: string}
+          - {name: heading, label: "Headline", type: string}
+          - {name: lede, label: "Opening paragraph", type: text}
+          - {name: disclaimer, label: "Not-a-quote note", type: text}
+          - {name: result_label, label: "Label above the range", type: string}
+          - {name: result_caption_prefix, label: "Caption under the range starts with", type: string}
+          - {name: allocation_label, label: "Label above the breakdown", type: string}
+          - {name: cta_button, label: "Button text", type: string}
+          - {name: cta_note, label: "Note under the button", type: text}
+          - {name: under_min_label, label: "Under-minimum: small label", type: string}
+          - {name: under_min_heading, label: "Under-minimum: headline", type: string}
+          - {name: under_min_body, label: "Under-minimum: paragraph", type: text}
+          - {name: under_min_cta, label: "Under-minimum: button text", type: string}
+          - {name: notes_label, label: "Bottom section: small label", type: string}
+          - {name: notes_heading, label: "Bottom section: headline", type: string}
+          - name: notes
+            label: "Bottom section: the four points"
+            type: object
+            list: true
+            fields:
+              - {name: title, label: Title, type: string}
+              - {name: body, label: Body, type: text}

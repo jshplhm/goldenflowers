@@ -186,7 +186,13 @@ get a hairline. {%- endcomment -%}
   <div class="stars" aria-label="Five stars">★★★★★</div>
   <blockquote class="disp">{% include em.html t=site.data.home.testimonial.quote k="home:testimonial.quote" %}</blockquote>
   <p class="by"><b><span data-ed="home:testimonial.name">{{ site.data.home.testimonial.name }}</span></b> &nbsp;·&nbsp; <span data-ed="home:testimonial.context">{{ site.data.home.testimonial.context }}</span></p>
+  {%- comment -%} Points at the #reviews anchor on /weddings, which is hidden
+  while weddings.yml `testimonials.show` is false. Guarded on empty so blanking
+  the link text in the CMS removes it cleanly rather than leaving a bare arrow.
+  Restore both together. {%- endcomment -%}
+  {%- if site.data.home.testimonial.link != "" %}
   <p class="marq-foot" style="margin-top:24px;"><a href="{{ site.baseurl }}/weddings#reviews" class="txt-link"><span data-ed="home:testimonial.link">{{ site.data.home.testimonial.link }}</span> &rarr;</a></p>
+  {%- endif %}
 </section>
 
 <!-- CLOSING -->

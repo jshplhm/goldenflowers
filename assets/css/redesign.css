@@ -1577,3 +1577,28 @@ body.nav-hidden .venue-breadcrumb{top:0;}
      room in the header. */
   .wp-onav{display:none;}
 }
+
+/* ============================================================
+   §35  PROCESS & PRICING: estimator + icon timeline (2026-08-15)
+   ============================================================ */
+/* Step numerals became icons. .proc-num already supplies the column width,
+   the accent colour, and -- load-bearing -- the background that punches a
+   hole in the absolutely-positioned timeline rail running behind it. This
+   only centres and sizes the glyph, so both must stay on the element. */
+.proc-icon{display:flex;justify-content:center;}
+.proc-icon svg{width:clamp(26px,3vw,32px);height:clamp(26px,3vw,32px);stroke-width:1.5;}
+
+/* The estimator IS the pricing section, so it sits on the page's own surface
+   rather than in a well; boxing it would read as an aside.
+
+   The section break lives on the WRAPPER, not on the heading, because
+   #pricing is the heading and "Jump to pricing" scrolls to it. With the
+   padding on the heading itself you landed on ~230px of empty page: html's
+   scroll-padding-top clears the nav, and then the heading's own --sp-l
+   pushed the words that far down again. */
+.est-section{padding-top:var(--sp-l);}
+.est-section-head{max-width:var(--content-max);margin:0 auto;padding:0 var(--pad);}
+.est-section-head h2{font-family:var(--d);font-weight:430;font-optical-sizing:auto;font-size:clamp(2.1rem,5vw,3.6rem);letter-spacing:-.025em;line-height:1.02;margin-top:14px;}
+.est-section-head p{color:var(--fg2);font-size:1.04rem;line-height:1.7;margin-top:18px;max-width:56ch;}
+/* The include carries its own top padding, which would double under this. */
+.est-section .es-wrap{padding-top:clamp(26px,3.4vw,40px);}

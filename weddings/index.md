@@ -38,7 +38,17 @@ redirect_from:
   - /a-la-carte-weddings/p/delivery-to-your-venue
 ---
 
-<!-- HERO (photo: strengthened as a cold first impression for paid-ad traffic) -->
+<!-- ===================================================================
+     PROCESS & PRICING. The estimator (_includes/estimator.html) replaced
+     the published price ladder on 2026-08-15. See the header of
+     _data/weddings.yml for what came out and where it went, and the
+     header of _data/estimator.yml before touching any dollar figure.
+
+     Order: hero -> process -> estimator -> honesty notes (inside the
+     include) -> reviews (hidden) -> FAQ -> closing CTA.
+     =================================================================== -->
+
+<!-- HERO -->
 <header class="hero hero-land">
   <img class="bg" src="{{ site.baseurl }}/assets/images/portfolio/kelly-dylan/kelly-dylan-13.jpg" alt="Bride holding a lush garden-rose and ranunculus bouquet at a Lake Tahoe beach wedding by Golden Flowers" style="object-position:center 55%;">
   <div class="hero-in">
@@ -46,12 +56,15 @@ redirect_from:
     <h1 class="disp">{% include em.html t=site.data.weddings.hero.heading k="weddings:hero.heading" %}</h1>
     <div class="hero-foot">
       <p class="hero-sub"><span data-ed="weddings:hero.subheading">{{ site.data.weddings.hero.subheading }}</span></p>
-      <a class="btn" href="{{ site.baseurl }}/consultation-form"><span data-ed="weddings:hero.button_primary">{{ site.data.weddings.hero.button_primary }}</span> <span>&rarr;</span></a>
+      {%- comment -%} Deliberately NOT "Check your date": the nav carries that
+      on every screen, so the hero can serve the reason someone opened this
+      page. It jumps to the estimator. {%- endcomment -%}
+      <a class="btn" href="#pricing"><span data-ed="weddings:hero.button_primary">{{ site.data.weddings.hero.button_primary }}</span> <span>&darr;</span></a>
     </div>
   </div>
 </header>
 
-<!-- PROCESS (dark) -->
+<!-- PROCESS -->
 <section class="proc">
   <div class="proc-wrap">
     <div class="proc-head">
@@ -61,8 +74,7 @@ redirect_from:
     </div>
     {%- comment -%} Steps carry an optional `phase`; a heading is emitted wherever
     it changes, which breaks the timeline into "before you book" and "once you're
-    booked" without restructuring the data or moving any step's data-ed path.
-    Leave every phase blank and it renders as one continuous run, as before.
+    booked". Leave every phase blank and it renders as one continuous run.
     {%- endcomment -%}
     {%- assign seen_phase = "" %}
     {%- for step in site.data.weddings.process.steps %}
@@ -70,89 +82,48 @@ redirect_from:
     <p class="proc-phase"><span data-ed="weddings:process.steps.{{ forloop.index0 }}.phase">{{ step.phase }}</span></p>
     {%- assign seen_phase = step.phase %}
     {%- endif %}
-    <div class="proc-step"><div class="proc-num">{{ step.number }}</div><div><span class="proc-when"><span data-ed="weddings:process.steps.{{ forloop.index0 }}.when">{{ step.when }}</span></span><h3><span data-ed="weddings:process.steps.{{ forloop.index0 }}.title">{{ step.title }}</span></h3><p><span data-ed="weddings:process.steps.{{ forloop.index0 }}.body">{{ step.body }}</span></p></div></div>
-    {%- endfor %}
-  </div>
-</section>
-
-<!-- WHAT'S INCLUDED -->
-<section class="block">
-  <span class="lab"><span data-ed="weddings:included.label">{{ site.data.weddings.included.label }}</span></span>
-  <h2 class="h-lg"><span data-ed="weddings:included.heading">{{ site.data.weddings.included.heading }}</span></h2>
-  <div class="included-grid">
-    {%- for item in site.data.weddings.included.items %}
-    <div class="value-item">
-      {%- if item.icon %}{% include icon.html name=item.icon %}{% endif %}
-      <h3><span data-ed="weddings:included.items.{{ forloop.index0 }}.title">{{ item.title }}</span></h3>
-      <p><span data-ed="weddings:included.items.{{ forloop.index0 }}.body">{{ item.body }}</span></p>
+    <div class="proc-step">
+      {%- comment -%} The icon replaced the numeral, and inherits .proc-num
+      wholesale: that rule's background is what punches a hole in the timeline
+      rail behind it. Without it the rail draws through the icon. {%- endcomment -%}
+      <div class="proc-num proc-icon">{% include icon.html name=step.icon %}</div>
+      <div><span class="proc-when"><span data-ed="weddings:process.steps.{{ forloop.index0 }}.when">{{ step.when }}</span></span><h3><span data-ed="weddings:process.steps.{{ forloop.index0 }}.title">{{ step.title }}</span></h3><p><span data-ed="weddings:process.steps.{{ forloop.index0 }}.body">{{ step.body }}</span></p></div>
     </div>
     {%- endfor %}
   </div>
 </section>
 
-{%- comment -%} No hairline here: the band is full bleed now, so the change of
-background is its own divider. A rule only separates two sections that SHARE a
-surface. {%- endcomment -%}
-
-<!-- PRICING (dark: the page premium moment) -->
-{%- comment -%} One figure and one label per tier. No cards: a card implies a
-package, and we are deliberately not saying what each figure buys. {%- endcomment -%}
-<section class="pricing-dark" id="pricing">
-  <div class="pricing">
-    <span class="lab"><span data-ed="weddings:pricing.label">{{ site.data.weddings.pricing.label }}</span></span>
-    <h2 class="h-lg"><span data-ed="weddings:pricing.heading">{{ site.data.weddings.pricing.heading }}</span></h2>
-    <p class="price-basis"><span data-ed="weddings:pricing.note">{{ site.data.weddings.pricing.note }}</span></p>
-    <dl class="price-scale">
-      {%- for tier in site.data.weddings.pricing.tiers %}
-      <div class="price-row{% if tier.lead %} is-lead{% endif %}">
-        {%- if tier.photo %}
-        {%- comment -%} `photo:` is a wedding gallery path (kelly-dylan/kelly-dylan-07.jpg),
-        or a full site-root path when /edit swapped in an upload. {%- endcomment -%}
-        {%- assign tier_src = tier.photo | prepend: "/assets/images/portfolio/" -%}
-        {%- assign tier_lead = tier.photo | slice: 0, 1 -%}
-        {%- if tier_lead == "/" %}{% assign tier_src = tier.photo %}{% endif -%}
-        <img class="price-shot" src="{{ site.baseurl }}{{ tier_src }}" alt="{{ tier.alt }}" loading="lazy" sizes="(max-width:900px) 90vw, 30vw" data-ed-photo="weddings:pricing.tiers.{{ forloop.index0 }}.photo">
-        {%- endif %}
-        <dd><span data-ed="weddings:pricing.tiers.{{ forloop.index0 }}.amount">{{ tier.amount }}</span></dd>
-        <dt><span data-ed="weddings:pricing.tiers.{{ forloop.index0 }}.label">{{ tier.label }}</span></dt>
-      </div>
-      {%- endfor %}
-    </dl>
+<!-- INVESTMENT: the estimator IS the pricing section -->
+<div class="est-section">
+  <div class="est-section-head" id="pricing">
+    <span class="lab"><span data-ed="weddings:estimator_intro.label">{{ site.data.weddings.estimator_intro.label }}</span></span>
+    <h2><span data-ed="weddings:estimator_intro.heading">{{ site.data.weddings.estimator_intro.heading }}</span></h2>
+    <p><span data-ed="weddings:estimator_intro.body">{{ site.data.weddings.estimator_intro.body }}</span></p>
   </div>
+  {% include estimator.html %}
+</div>
+
+{%- comment -%} REVIEWS: hidden by `testimonials.show: false` in
+_data/weddings.yml, not deleted. The 13 quotes still live in
+_data/testimonials.yml and still feed the Review/aggregateRating JSON-LD in
+the layout. Flip show: true to bring the section back, and restore the home
+page's "Read more reviews" link (home.yml testimonial.link) in the same
+change, because it points at the #reviews anchor below. {%- endcomment -%}
+{%- if site.data.weddings.testimonials.show %}
+<section class="block" id="reviews">
+  <span class="lab"><span data-ed="weddings:testimonials.label">{{ site.data.weddings.testimonials.label }}</span></span>
+  <h2 class="h-lg"><span data-ed="weddings:testimonials.heading">{{ site.data.weddings.testimonials.heading }}</span></h2>
+  {% include redesign-testimonials.html %}
 </section>
 
-{%- comment -%} The "everything is planned twice" callout was cut here. Both of
-its claims (over-sourcing, and capping the calendar) are already answered at
-length in the FAQ below, and as a short paragraph between the price and the
-reviews it had no job the page was not already doing. Copy is still in
-_data/weddings.yml under `assurance:` if it is ever wanted back.
-{%- endcomment -%}
-
-{%- comment -%} FAQ before the reviews: the questions a five-figure number
-provokes come first, and other couples' words are a warmer handoff into "is your
-date still open" than an accordion of logistics.
-Dividers follow from the order: the dark band into the FAQ is a change of
-background and carries itself, the FAQ and the reviews share a surface so the
-hairline sits between them, and the reviews into the tinted CTA is another
-background change. {%- endcomment -%}
+<hr class="hr-line">
+{%- endif %}
 
 <!-- FAQ -->
 <section class="block">
   <span class="lab"><span data-ed="weddings:faq.label">{{ site.data.weddings.faq.label }}</span></span>
   <h2 class="h-lg"><span data-ed="weddings:faq.heading">{{ site.data.weddings.faq.heading }}</span></h2>
   {% include redesign-faq.html %}
-</section>
-
-<hr class="hr-line">
-
-{%- comment -%} .tight is gone: it assumed a quiet neighbour, and the reviews are
-now the last content section before the CTA, so they take the ordinary section
-break like everything else. It also keeps the hairline above them centred. {%- endcomment -%}
-<!-- TESTIMONIALS -->
-<section class="block" id="reviews">
-  <span class="lab"><span data-ed="weddings:testimonials.label">{{ site.data.weddings.testimonials.label }}</span></span>
-  <h2 class="h-lg"><span data-ed="weddings:testimonials.heading">{{ site.data.weddings.testimonials.heading }}</span></h2>
-  {% include redesign-testimonials.html %}
 </section>
 
 <!-- CLOSING -->

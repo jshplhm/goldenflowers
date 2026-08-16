@@ -1,0 +1,323 @@
+# ===========================================================================
+# FLORAL PLANNING ESTIMATOR  ->  /estimate  (mockup)
+#
+# EVERY number the estimator uses lives in this file. Nothing is hardcoded in
+# the page or the JavaScript, so the whole model can be retuned here (or in
+# Pages CMS) without touching code.
+#
+# STARTING NUMBERS ARE CLAUDE'S ESTIMATES, extrapolated from Brittany's own
+# price guide (bridal bouquet $150-500, bridesmaid $125-150, boutonniere $65,
+# corsage $125, ceremony installation $1,500-$10,000+, aisle/ground $300-450,
+# large low+lush table $225-350, small $75-150, bud vases $25-35 each) and
+# nudged toward the full-service end of each spread, since this tool only ever
+# describes full-service weddings. THEY ARE NOT BRITTANY'S CONFIRMED PRICES.
+# She should walk this file once before it ships.
+#
+# HOW TO EDIT SAFELY
+#   - low/high are dollars. Always keep low <= high.
+#   - Deleting an option from a list removes the button from the page. Adding
+#     one adds a button. The `key` is what the JS stores, so keep keys unique
+#     and lowercase; you can reword `label` and `note` freely.
+#   - Quote any value that contains a colon or a comma.
+#   - Prices here are NEVER shown to visitors as unit prices. The page only
+#     ever renders whole-category ranges and shares, on purpose: publishing
+#     "boutonniere $65" teaches a couple which line to cut.
+# ===========================================================================
+
+settings:
+  # A wedding under this number is not a full-service wedding, so the tool
+  # stops estimating and offers the smaller-scope path instead of a figure.
+  minimum: 7500
+
+  # Seats per reception table, as a RANGE, because a 100 guest wedding is
+  # 10 tables at ten a table or 13 at eight, and we do not know which until we
+  # see the floor plan. The tool shows both ends ("10 to 13 tables") and prices
+  # the low end of reception against the low table count, the high against the
+  # high. Set min and max to the same number to go back to one fixed count.
+  seats_per_table:
+    min: 8      # tighter seating, so MORE tables
+    max: 10     # roomier seating, so FEWER tables
+
+  # Displayed figures round out to this increment (low rounds down, high
+  # rounds up) so the result never reads like a quote to the dollar.
+  round_to: 250
+  # The same for the per-category rows in the breakdown. Finer, because a
+  # $250 step is most of a small category.
+  category_round: 50
+
+  # The raw sum of every low and every high is honest but very wide (often
+  # 2x). This pulls both ends toward the midpoint so the range stays useful.
+  # 0 = show the full raw spread. 0.5 = collapse to a single number.
+  band_tighten: 0.35
+
+  # Delivery, setup, repurposing, strike and the team on site. A percentage
+  # of the design subtotal, never below the floor.
+  service:
+    low_pct: 15
+    high_pct: 22
+    floor: 450
+
+# --- The four input sections -----------------------------------------------
+# Titles and the line icon at the head of each. The icons are the "what's
+# included" pictures folded into the tool: they name the four things we make,
+# in the place where the couple is actually choosing them, instead of in a
+# separate grid of cards further up the page.
+blocks:
+  - key: basics
+    title: The basics
+    icon: bouquet
+  - key: ceremony
+    title: The ceremony
+    icon: arch
+  - key: reception
+    title: The reception
+    icon: compote
+  - key: environmental
+    title: Environmental
+    icon: budvase
+
+# --- Sliders ---------------------------------------------------------------
+sliders:
+  guests:
+    label: Guest count
+    min: 20
+    max: 300
+    step: 10
+    default: 100
+    suffix: guests
+    max_suffix: or more
+  party:
+    label: Wedding party
+    help: People standing with you who carry or wear flowers.
+    min: 0
+    max: 20
+    step: 1
+    default: 10
+    suffix: people
+    # Of the wedding party, the share that carries a bouquet rather than
+    # wearing a boutonniere. 0.5 splits them evenly.
+    bouquet_share: 0.5
+
+# --- Personal florals ------------------------------------------------------
+personal:
+  label: Personal florals
+  bridal_bouquet:
+    low: 300
+    high: 550
+  attendant_bouquet:
+    low: 125
+    high: 185
+  boutonniere:
+    low: 65
+    high: 95
+  # One bundle, not a unit price: parents, grandparents, readers, ushers.
+  family:
+    key: family
+    label: Flowers for family
+    note: Corsages and boutonnieres for parents, grandparents and readers.
+    low: 550
+    high: 950
+    default: true
+  flower_kids:
+    key: flower_kids
+    label: Flower girl or ring bearer
+    note: Petals, a small basket, or a mini bouquet.
+    low: 85
+    high: 175
+    default: false
+
+# --- Ceremony --------------------------------------------------------------
+ceremony:
+  label: Ceremony
+  focal:
+    label: The piece you stand under
+    help: The single biggest lever on the whole number.
+    options:
+      - key: none
+        label: Nothing built
+        note: The setting carries the ceremony on its own.
+        low: 0
+        high: 0
+      - key: modest
+        label: A focal arrangement
+        note: An altar pair, a small arbor corner, or a single asymmetric piece.
+        low: 1500
+        high: 3000
+      - key: statement
+        label: A full arch or arbor
+        note: Covered structure, designed to be the photograph.
+        low: 3500
+        high: 7000
+        default: true
+      - key: immersive
+        label: An installation
+        note: Suspended, oversized or multi-structure work built for the space.
+        low: 7500
+        high: 15000
+  ground:
+    label: Aisle and ground florals
+    options:
+      - key: none
+        label: None
+        note: ""
+        low: 0
+        high: 0
+      - key: markers
+        label: A few markers
+        note: Meadow clusters or petals at the ends of the rows.
+        low: 300
+        high: 800
+        default: true
+      - key: lined
+        label: A lined aisle
+        note: Repeating florals down the full length of the walk.
+        low: 900
+        high: 2200
+
+# --- Reception -------------------------------------------------------------
+reception:
+  label: Reception tables
+  style:
+    label: Guest tables
+    help: Table count comes from your guest count, figuring eight to ten guests
+      a table. Move the guest slider and this moves with it.
+    options:
+      - key: budvase
+        label: Candles and bud vases
+        note: A cluster of small stems per table, low and quiet.
+        low: 55
+        high: 95
+      - key: lush
+        label: Low and lush
+        note: One full seasonal arrangement per table.
+        low: 225
+        high: 350
+        default: true
+      - key: mixed
+        label: Mixed heights
+        note: An elevated centerpiece with low pieces and candles around it.
+        low: 400
+        high: 650
+      - key: statement
+        label: Runners and statement work
+        note: Florals running the length of the table, or a designed piece per seat.
+        low: 700
+        high: 1100
+  head_table:
+    key: head_table
+    label: Head or sweetheart table
+    note: A designed piece for the table you sit at.
+    low: 350
+    high: 900
+    default: true
+
+# --- Environmental ---------------------------------------------------------
+environmental:
+  label: Environmental
+  help: Everything the room gets that is not a guest table.
+  options:
+    - key: bar
+      label: The bar
+      low: 250
+      high: 600
+      default: true
+    - key: cocktail
+      label: Cocktail hour
+      low: 300
+      high: 750
+    - key: lounge
+      label: Lounge or entry
+      low: 350
+      high: 900
+    - key: escort
+      label: Escort cards and signage
+      low: 200
+      high: 500
+    - key: cake
+      label: Cake and dessert table
+      low: 100
+      high: 250
+      default: true
+    - key: restroom
+      label: Restrooms and small moments
+      low: 100
+      high: 250
+
+# --- The five slices of the allocation visual ------------------------------
+# Order here is the order they appear in the bar and the legend.
+categories:
+  - key: ceremony
+    label: Ceremony
+  - key: reception
+    label: Reception tables
+  - key: personal
+    label: Personal florals
+  - key: environmental
+    label: Environmental
+  - key: service
+    label: Delivery, setup and cleanup
+
+# --- Page copy -------------------------------------------------------------
+copy:
+  eyebrow: Planning tool
+  heading: What might your flowers cost?
+  lede: Move a few sliders and see a planning range, and where the money
+    actually goes. It takes about thirty seconds and nobody has to email you
+    anything.
+  disclaimer: This is not a quote. It is the arithmetic we do in our heads on
+    a first call, made visible.
+
+  result_label: Your planning range
+  result_caption_prefix: Based on
+  allocation_label: Where it goes
+  cta_button: Check your date
+  cta_note: Availability first. It takes about a minute and costs nothing.
+
+  # Shown instead of a range when the scope lands under the minimum.
+  under_min_label: Under our full-service minimum
+  under_min_heading: What you have described sits below where we start.
+  # Written to hand off, not to haggle. It deliberately does NOT offer our own
+  # smaller-scope service, because the referral card sits directly beneath it
+  # and the two would contradict each other. If you turn the referral off,
+  # put the designer's choice sentence back.
+  under_min_body: Our full-service minimum is $7,500, and what you have
+    described comes in under it. That is not a judgment about your wedding. It
+    means the way we work, with a full team on site from load-in through
+    breakdown, is more than the scope you have in mind needs. Here is who we
+    would point you to instead.
+  under_min_cta: Ask us anyway
+
+  # The referral path. When `enabled: true` the under-minimum panel offers
+  # somewhere else to go FIRST and demotes "Ask us anyway" to a quiet link, so
+  # a lead we do not want costs nobody a reply. Set `enabled: false` and it
+  # reverts to a plain "Ask us anyway" button, which is the convert-up posture.
+  # NAME AND URL ARE PLACEHOLDERS. Do not ship a referral to a studio that has
+  # not agreed to receive one.
+  under_min_referral:
+    enabled: true
+    label: Somewhere better suited
+    name: "[Partner studio name]"
+    url: ""
+    note: They take on a la carte weddings with a smaller order minimum, and
+      they are good. Tell them we sent you.
+    ask_anyway: Or ask us anyway
+
+  notes_label: Before you trust this number
+  notes_heading: What a real quote does that a slider cannot.
+  notes:
+    - title: Your venue changes the math
+      body: A room with fourteen foot ceilings, a ceremony site you cannot
+        drive to, or a two hour flip between ceremony and reception all cost
+        real money that no guest count predicts.
+    - title: Flowers have seasons and so do prices
+      body: The same design costs differently in May than in September. We
+        source to what is at peak that week, which is usually cheaper and
+        always better.
+    - title: Scale matters more than count
+      body: What moves the number most is the scale of the ceremony
+        installation and how much of the room you want designed, not the
+        number of bouquets.
+    - title: We quote the whole wedding, not the parts
+      body: A proposal comes with a mood board, a seasonal sourcing plan and
+        one itemized number, after a conversation about what you actually
+        want.

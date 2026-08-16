@@ -1,0 +1,646 @@
+{%- comment -%} =====================================================================
+  ESTIMATOR COMPONENT. Used by /estimate (standalone) and /process-v5 (inline
+  on Process & Pricing). Every price comes from _data/estimator.yml; nothing
+  numeric is hardcoded here.
+
+  The host page supplies its own heading above this include. Everything below
+  is the tool itself, the honesty notes, and the engine.
+
+  Sales-flow rule the component is built around: it must never stand between
+  someone and the consultation form. The primary CTA in every state is "Check
+  your date", the result is never gated behind an email, and the estimate
+  hands its own answers to the consult modal instead of making anyone start
+  over.
+  ===================================================================== {%- endcomment -%}
+{% assign E = site.data.estimator %}
+{% assign C = E.copy %}
+
+<style>
+/* ==========================================================================
+   MOCKUP-ONLY STYLES for /estimate. Scoped .es-*; nothing here touches a live
+   page. Tokens only, plus one green ramp for the allocation bar (all forest
+   hue 145-150, no warm accent anywhere).
+   ========================================================================== */
+.es-page{
+  --es-c1:oklch(27% .05 150);
+  --es-c2:oklch(38% .105 150);
+  --es-c3:oklch(52% .07 148);
+  --es-c4:oklch(68% .05 145);
+  --es-c5:oklch(83% .03 142);
+  --es-field:oklch(97.5% .006 100);
+}
+
+/* --- head ----------------------------------------------------------------
+   This page runs narrower than --content-max on purpose. A slider stretched
+   across 1170px is unreadable as a control: the label and its value end up a
+   foot apart and the thumb travels further than the eye tracks. */
+.es-page{--es-max:1240px;}
+.es-head{max-width:var(--es-max);margin:0 auto;padding:clamp(30px,5vw,54px) var(--pad) 0;}
+.es-head h1{font-family:var(--d);font-weight:430;font-optical-sizing:auto;font-size:clamp(2.3rem,5vw,3.9rem);letter-spacing:-.025em;line-height:1.02;margin:16px 0 0;max-width:16ch;}
+.es-lede{color:var(--fg2);font-size:1.06rem;line-height:1.65;max-width:52ch;margin-top:20px;}
+.es-disc{display:inline-flex;align-items:flex-start;gap:9px;margin-top:22px;padding:10px 16px 10px 13px;border:1px solid var(--line);border-radius:100px;font-size:.86rem;color:var(--mute);max-width:56ch;line-height:1.45;}
+.es-disc svg{flex:none;margin-top:2px;color:var(--accent);}
+@media(max-width:600px){ .es-disc{border-radius:14px;} }
+
+/* --- two column shell ---------------------------------------------------- */
+.es-wrap{max-width:var(--es-max);margin:0 auto;padding:clamp(34px,4.5vw,52px) var(--pad) clamp(60px,7vw,90px);}
+.es-cols{display:grid;grid-template-columns:minmax(0,1fr) 390px;gap:clamp(28px,3.5vw,60px);align-items:start;}
+@media(max-width:1020px){ .es-cols{grid-template-columns:minmax(0,1fr);} }
+
+/* --- an input block ------------------------------------------------------ */
+.es-blk{border-top:1px solid var(--line);padding:clamp(28px,3.4vw,40px) 0;}
+.es-blk:first-child{border-top:0;padding-top:0;}
+.es-blk-h{display:flex;align-items:center;gap:13px;margin-bottom:24px;}
+.es-ico{flex:none;color:var(--accent);display:flex;align-self:center;}
+.es-ico svg{width:30px;height:30px;}
+.es-blk-h h2{font-family:var(--d);font-weight:430;font-size:clamp(1.5rem,2.6vw,2rem);letter-spacing:-.015em;line-height:1.1;}
+.es-sub{color:var(--mute);font-size:.9rem;line-height:1.55;margin:-12px 0 22px;max-width:54ch;}
+.es-lbl{display:flex;align-items:baseline;justify-content:space-between;gap:16px;font-size:.95rem;font-weight:500;margin-bottom:4px;}
+.es-lbl .es-val{font-family:var(--d);font-size:1.55rem;font-weight:500;letter-spacing:-.01em;line-height:1;color:var(--forest);white-space:nowrap;}
+.es-lbl .es-val span{font-family:var(--b);font-size:.8rem;font-weight:400;letter-spacing:.01em;color:var(--mute);margin-left:5px;}
+.es-help{color:var(--mute);font-size:.86rem;line-height:1.5;margin:0 0 16px;max-width:52ch;}
+.es-fld + .es-fld{margin-top:30px;}
+
+/* --- slider -------------------------------------------------------------- */
+.es-range{-webkit-appearance:none;appearance:none;width:100%;height:34px;background:transparent;cursor:pointer;display:block;margin:2px 0 0;}
+.es-range:focus{outline:none;}
+.es-range::-webkit-slider-runnable-track{height:6px;border-radius:100px;background:linear-gradient(90deg,var(--accent) 0 var(--fill,50%),oklch(85% .012 120) var(--fill,50%) 100%);}
+.es-range::-moz-range-track{height:6px;border-radius:100px;background:linear-gradient(90deg,var(--accent) 0 var(--fill,50%),oklch(85% .012 120) var(--fill,50%) 100%);}
+.es-range::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:28px;height:28px;margin-top:-11px;border-radius:50%;background:var(--paper);border:1px solid var(--line);box-shadow:0 1px 4px oklch(20% .02 150/.18);transition:transform .12s,box-shadow .12s;}
+.es-range::-moz-range-thumb{width:28px;height:28px;border:1px solid var(--line);border-radius:50%;background:var(--paper);box-shadow:0 1px 4px oklch(20% .02 150/.18);}
+.es-range:active::-webkit-slider-thumb{transform:scale(1.08);}
+.es-range:focus-visible::-webkit-slider-thumb{box-shadow:0 0 0 3px oklch(38% .105 150/.35);}
+.es-range:focus-visible::-moz-range-thumb{box-shadow:0 0 0 3px oklch(38% .105 150/.35);}
+.es-ticks{display:flex;justify-content:space-between;font-size:.76rem;color:var(--mute);margin-top:-2px;}
+
+/* --- choice buttons ------------------------------------------------------ */
+.es-opts{display:grid;gap:10px;}
+.es-opts--2{grid-template-columns:1fr 1fr;}
+@media(max-width:560px){ .es-opts--2{grid-template-columns:1fr;} }
+.es-opt{position:relative;display:block;border:1px solid var(--line);border-radius:13px;background:var(--paper);padding:15px 17px 15px 46px;cursor:pointer;transition:border-color .16s,background .16s,box-shadow .16s;}
+.es-opt:hover{border-color:oklch(60% .04 145);}
+.es-opt input{position:absolute;opacity:0;pointer-events:none;}
+.es-opt .es-mark{position:absolute;left:17px;top:17px;width:17px;height:17px;border:1px solid oklch(72% .02 130);border-radius:50%;background:var(--paper);transition:.16s;}
+.es-opt .es-mark::after{content:"";position:absolute;inset:3px;border-radius:50%;background:var(--paper);transform:scale(0);transition:transform .16s;}
+.es-opt b{display:block;font-weight:500;font-size:.96rem;line-height:1.3;}
+.es-opt i{display:block;font-style:normal;color:var(--mute);font-size:.85rem;line-height:1.45;margin-top:4px;}
+.es-opt:has(input:checked){border-color:var(--accent);background:oklch(38% .105 150/.05);box-shadow:inset 0 0 0 1px var(--accent);}
+.es-opt:has(input:checked) .es-mark{border-color:var(--accent);background:var(--accent);}
+.es-opt:has(input:checked) .es-mark::after{transform:scale(1);}
+.es-opt:has(input:focus-visible){box-shadow:0 0 0 3px oklch(38% .105 150/.3);}
+/* checkbox variant: square mark */
+.es-opt--chk .es-mark{border-radius:5px;}
+.es-opt--chk .es-mark::after{border-radius:1px;inset:4px;}
+
+/* --- chips (multi select) ------------------------------------------------ */
+.es-chips{display:flex;flex-wrap:wrap;gap:9px;}
+.es-chip{position:relative;display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:100px;background:var(--paper);padding:11px 18px 11px 15px;cursor:pointer;font-size:.92rem;transition:border-color .16s,background .16s,color .16s;}
+.es-chip input{position:absolute;opacity:0;pointer-events:none;}
+.es-chip .es-plus{width:15px;height:15px;flex:none;position:relative;transition:transform .18s;}
+.es-chip .es-plus::before,.es-chip .es-plus::after{content:"";position:absolute;background:currentColor;border-radius:2px;}
+.es-chip .es-plus::before{left:0;right:0;top:7px;height:1.5px;}
+.es-chip .es-plus::after{top:0;bottom:0;left:7px;width:1.5px;transition:opacity .18s;}
+.es-chip:hover{border-color:oklch(60% .04 145);}
+.es-chip:has(input:checked){background:var(--forest);border-color:var(--forest);color:var(--paper);}
+.es-chip:has(input:checked) .es-plus{transform:rotate(45deg);}
+.es-chip:has(input:focus-visible){box-shadow:0 0 0 3px oklch(38% .105 150/.3);}
+
+/* --- result panel -------------------------------------------------------- */
+.es-panel{position:sticky;top:calc(var(--nav-h) + 20px);border:1px solid var(--line);border-radius:18px;background:var(--paper);overflow:hidden;box-shadow:0 1px 3px oklch(20% .02 150/.05),0 14px 34px -22px oklch(20% .02 150/.3);}
+@media(max-width:1020px){ .es-panel{position:static;} }
+.es-panel-top{background:var(--forest-deep);color:var(--paper);padding:clamp(24px,2.4vw,30px) clamp(22px,2.2vw,28px) clamp(22px,2.2vw,26px);}
+.es-panel-top .lab{color:var(--accent-soft);}
+.es-figure{font-family:var(--d);font-weight:430;font-optical-sizing:auto;font-size:clamp(1.85rem,3vw,2.35rem);letter-spacing:-.025em;line-height:1.08;margin-top:12px;font-variant-numeric:tabular-nums;}
+.es-figure .es-to{font-family:var(--b);font-size:.92rem;font-weight:400;letter-spacing:.01em;opacity:.65;margin:0 3px;vertical-align:.16em;}
+.es-caption{font-size:.86rem;line-height:1.5;color:oklch(87% .02 130);margin-top:12px;}
+.es-floornote{font-size:.78rem;line-height:1.45;color:oklch(80% .02 130);margin-top:10px;padding-top:10px;border-top:1px solid oklch(100% 0 0/.16);}
+.es-panel-body{padding:clamp(20px,2.2vw,26px) clamp(22px,2.2vw,28px) clamp(22px,2.2vw,28px);}
+.es-alloc-h{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:13px;}
+.es-alloc-h .lab{color:var(--mute);}
+.es-bar{display:flex;height:13px;border-radius:100px;overflow:hidden;background:oklch(92% .01 120);}
+.es-seg{transition:flex-basis .35s cubic-bezier(.4,0,.2,1),background .2s;min-width:2px;}
+.es-legend{margin-top:16px;display:grid;gap:2px;}
+.es-leg{display:grid;grid-template-columns:11px minmax(0,1fr) auto;align-items:baseline;gap:10px;padding:7px 0;border-bottom:1px solid oklch(90% .01 120/.7);}
+.es-legend .es-leg:last-child{border-bottom:0;}
+.es-dot{width:11px;height:11px;border-radius:3px;transform:translateY(1px);}
+.es-leg-n{font-size:.9rem;line-height:1.3;}
+.es-leg-n em{display:block;font-style:normal;font-size:.78rem;color:var(--mute);font-variant-numeric:tabular-nums;margin-top:1px;}
+.es-leg-p{font-size:.95rem;font-weight:500;font-variant-numeric:tabular-nums;white-space:nowrap;}
+.es-cta{display:block;width:100%;text-align:center;margin-top:20px;background:var(--accent);color:var(--paper);border:0;padding:17px 22px;border-radius:100px;font-family:var(--b);font-size:.84rem;letter-spacing:.03em;font-weight:500;cursor:pointer;transition:.22s;}
+.es-cta:hover{filter:brightness(1.07);transform:translateY(-1px);}
+.es-cta-note{font-size:.8rem;color:var(--mute);text-align:center;line-height:1.5;margin-top:11px;}
+.es-reset{display:block;margin:14px auto 0;background:none;border:0;font-family:var(--b);font-size:.78rem;color:var(--mute);text-decoration:underline;text-underline-offset:3px;cursor:pointer;padding:4px;}
+.es-reset:hover{color:var(--ink);}
+
+/* Under-minimum state. The breakdown comes off: we are declining to put a
+   number on this scope, so showing how that number divides is incoherent, and
+   the fixed delivery floor made "delivery, setup and strike" read as a third
+   of a tiny order. */
+.es-panel[data-under="1"] .es-panel-top{background:var(--forest);}
+.es-panel[data-under="1"] .es-alloc-h,
+.es-panel[data-under="1"] .es-bar,
+.es-panel[data-under="1"] .es-legend{display:none;}
+.es-panel[data-under="1"] .es-cta{margin-top:0;}
+
+/* The referral path. When it is on, the way OUT is the primary action in the
+   under-minimum state and "ask us anyway" drops to a quiet link, so a lead we
+   are declining costs nobody a reply. */
+.es-ref{border:1px solid var(--line);border-radius:14px;background:var(--bg2);padding:18px 18px 20px;}
+.es-ref .lab{display:block;color:var(--mute);}
+.es-ref b{display:block;font-family:var(--d);font-weight:500;font-size:1.35rem;letter-spacing:-.01em;line-height:1.2;margin-top:9px;}
+.es-ref p{color:var(--fg2);font-size:.88rem;line-height:1.6;margin-top:8px;}
+.es-ref a.es-ref-go{display:inline-flex;align-items:center;gap:7px;margin-top:14px;font-size:.84rem;font-weight:500;color:var(--accent);border-bottom:1px solid var(--accent);padding-bottom:2px;}
+.es-ask{display:block;margin:16px auto 0;background:none;border:0;font-family:var(--b);font-size:.84rem;color:var(--fg2);text-decoration:underline;text-underline-offset:3px;cursor:pointer;padding:6px;}
+.es-ask:hover{color:var(--ink);}
+.es-under h3{font-family:var(--d);font-weight:430;font-size:1.3rem;line-height:1.2;letter-spacing:-.01em;margin-top:12px;}
+.es-under p{font-size:.88rem;line-height:1.6;color:oklch(88% .02 130);margin-top:12px;}
+
+/* --- mobile sticky bar --------------------------------------------------- */
+.es-stick{position:fixed;left:0;right:0;bottom:0;z-index:60;display:none;align-items:center;gap:12px;padding:11px 14px calc(11px + env(safe-area-inset-bottom));background:oklch(99% .004 90/.94);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border-top:1px solid var(--line);transform:translateY(110%);transition:transform .3s cubic-bezier(.4,0,.2,1);}
+.es-stick.on{transform:none;}
+.es-stick-l{min-width:0;flex:1;}
+.es-stick-l span{display:block;font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--mute);font-weight:500;}
+.es-stick-l b{display:block;font-family:var(--d);font-weight:500;font-size:1.12rem;letter-spacing:-.015em;line-height:1.15;margin-top:2px;font-variant-numeric:tabular-nums;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.es-stick .es-cta{width:auto;margin:0;flex:none;padding:14px 20px;font-size:.8rem;}
+@media(max-width:1020px){ .es-stick{display:flex;} .es-page{padding-bottom:72px;} }
+
+@media(prefers-reduced-motion:reduce){
+  .es-seg,.es-opt,.es-chip,.es-chip .es-plus,.es-opt .es-mark,.es-opt .es-mark::after,.es-stick{transition:none;}
+}
+
+/* --- honesty notes ------------------------------------------------------- */
+.es-notes{background:var(--bg2);padding:var(--sp-m) var(--pad-col);}
+.es-notes-in{max-width:1080px;margin:0 auto;}
+.es-notes h2{font-family:var(--d);font-weight:430;font-size:clamp(1.8rem,3.4vw,2.6rem);letter-spacing:-.02em;line-height:1.08;margin-top:14px;max-width:20ch;}
+.es-note-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;margin-top:clamp(32px,4vw,46px);background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden;}
+.es-note{background:var(--paper);padding:clamp(22px,2.6vw,32px);}
+.es-note h3{font-family:var(--b);font-weight:500;font-size:1rem;letter-spacing:0;margin-bottom:8px;}
+.es-note p{color:var(--fg2);font-size:.92rem;line-height:1.65;margin:0;}
+@media(max-width:760px){ .es-note-grid{grid-template-columns:1fr;} }
+</style>
+
+<div class="es-page">
+
+
+
+<div class="es-wrap">
+<div class="es-cols">
+
+  <!-- ============ INPUTS ============ -->
+  <form class="es-inputs" id="es-form" novalidate>
+
+    <section class="es-blk">
+      <div class="es-blk-h">{% assign B = E.blocks[0] %}<span class="es-ico">{% include icon.html name=B.icon %}</span><h2>{{ B.title }}</h2></div>
+
+      <div class="es-fld">
+        <label class="es-lbl" for="es-guests">
+          {{ E.sliders.guests.label }}
+          <output class="es-val" id="es-guests-out" for="es-guests"></output>
+        </label>
+        <input class="es-range" type="range" id="es-guests" name="guests"
+               min="{{ E.sliders.guests.min }}" max="{{ E.sliders.guests.max }}"
+               step="{{ E.sliders.guests.step }}" value="{{ E.sliders.guests.default }}">
+        <div class="es-ticks"><span>{{ E.sliders.guests.min }}</span><span>{{ E.sliders.guests.max }}+</span></div>
+      </div>
+
+      <div class="es-fld">
+        <label class="es-lbl" for="es-party">
+          {{ E.sliders.party.label }}
+          <output class="es-val" id="es-party-out" for="es-party"></output>
+        </label>
+        <p class="es-help">{{ E.sliders.party.help }}</p>
+        <input class="es-range" type="range" id="es-party" name="party"
+               min="{{ E.sliders.party.min }}" max="{{ E.sliders.party.max }}"
+               step="{{ E.sliders.party.step }}" value="{{ E.sliders.party.default }}">
+        <div class="es-ticks"><span>{{ E.sliders.party.min }}</span><span>{{ E.sliders.party.max }}</span></div>
+      </div>
+
+      <div class="es-fld">
+        <div class="es-opts es-opts--2">
+          <label class="es-opt es-opt--chk">
+            <input type="checkbox" name="es-extra" value="family"{% if E.personal.family.default %} checked{% endif %}>
+            <span class="es-mark" aria-hidden="true"></span>
+            <b>{{ E.personal.family.label }}</b>
+            <i>{{ E.personal.family.note }}</i>
+          </label>
+          <label class="es-opt es-opt--chk">
+            <input type="checkbox" name="es-extra" value="flower_kids"{% if E.personal.flower_kids.default %} checked{% endif %}>
+            <span class="es-mark" aria-hidden="true"></span>
+            <b>{{ E.personal.flower_kids.label }}</b>
+            <i>{{ E.personal.flower_kids.note }}</i>
+          </label>
+        </div>
+      </div>
+    </section>
+
+    <section class="es-blk">
+      <div class="es-blk-h">{% assign B = E.blocks[1] %}<span class="es-ico">{% include icon.html name=B.icon %}</span><h2>{{ B.title }}</h2></div>
+
+      <div class="es-fld">
+        <p class="es-lbl">{{ E.ceremony.focal.label }}</p>
+        <p class="es-help">{{ E.ceremony.focal.help }}</p>
+        <div class="es-opts">
+          {%- for o in E.ceremony.focal.options %}
+          <label class="es-opt">
+            <input type="radio" name="es-focal" value="{{ o.key }}"{% if o.default %} checked{% endif %}>
+            <span class="es-mark" aria-hidden="true"></span>
+            <b>{{ o.label }}</b>
+            {%- if o.note != "" %}<i>{{ o.note }}</i>{% endif %}
+          </label>
+          {%- endfor %}
+        </div>
+      </div>
+
+      <div class="es-fld">
+        <p class="es-lbl">{{ E.ceremony.ground.label }}</p>
+        <div class="es-opts">
+          {%- for o in E.ceremony.ground.options %}
+          <label class="es-opt">
+            <input type="radio" name="es-ground" value="{{ o.key }}"{% if o.default %} checked{% endif %}>
+            <span class="es-mark" aria-hidden="true"></span>
+            <b>{{ o.label }}</b>
+            {%- if o.note != "" %}<i>{{ o.note }}</i>{% endif %}
+          </label>
+          {%- endfor %}
+        </div>
+      </div>
+    </section>
+
+    <section class="es-blk">
+      <div class="es-blk-h">{% assign B = E.blocks[2] %}<span class="es-ico">{% include icon.html name=B.icon %}</span><h2>{{ B.title }}</h2></div>
+
+      <div class="es-fld">
+        <p class="es-lbl">
+          {{ E.reception.style.label }}
+          <output class="es-val" id="es-tables-out"></output>
+        </p>
+        <p class="es-help">{{ E.reception.style.help }}</p>
+        <div class="es-opts">
+          {%- for o in E.reception.style.options %}
+          <label class="es-opt">
+            <input type="radio" name="es-tables" value="{{ o.key }}"{% if o.default %} checked{% endif %}>
+            <span class="es-mark" aria-hidden="true"></span>
+            <b>{{ o.label }}</b>
+            {%- if o.note != "" %}<i>{{ o.note }}</i>{% endif %}
+          </label>
+          {%- endfor %}
+        </div>
+      </div>
+
+      <div class="es-fld">
+        <div class="es-opts">
+          <label class="es-opt es-opt--chk">
+            <input type="checkbox" name="es-extra" value="head_table"{% if E.reception.head_table.default %} checked{% endif %}>
+            <span class="es-mark" aria-hidden="true"></span>
+            <b>{{ E.reception.head_table.label }}</b>
+            <i>{{ E.reception.head_table.note }}</i>
+          </label>
+        </div>
+      </div>
+    </section>
+
+    <section class="es-blk">
+      <div class="es-blk-h">{% assign B = E.blocks[3] %}<span class="es-ico">{% include icon.html name=B.icon %}</span><h2>{{ B.title }}</h2></div>
+      <p class="es-sub">{{ E.environmental.help }}</p>
+      <div class="es-chips">
+        {%- for o in E.environmental.options %}
+        <label class="es-chip">
+          <input type="checkbox" name="es-env" value="{{ o.key }}"{% if o.default %} checked{% endif %}>
+          <span class="es-plus" aria-hidden="true"></span>{{ o.label }}
+        </label>
+        {%- endfor %}
+      </div>
+    </section>
+
+  </form>
+
+  <!-- ============ RESULT ============ -->
+  <aside class="es-panel" id="es-panel" data-under="0" aria-live="polite">
+    <div class="es-panel-top">
+      <div id="es-range-view">
+        <span class="lab" id="es-range-label">{{ C.result_label }}</span>
+        <p class="es-figure"><span id="es-low"></span><span class="es-to">to</span><span id="es-high"></span></p>
+        <p class="es-caption" id="es-caption"></p>
+        <p class="es-floornote" id="es-floornote" hidden></p>
+      </div>
+      <div class="es-under" id="es-under-view" hidden>
+        <span class="lab">{{ C.under_min_label }}</span>
+        <h3>{{ C.under_min_heading }}</h3>
+        <p>{{ C.under_min_body }}</p>
+      </div>
+    </div>
+    <div class="es-panel-body">
+      {%- comment -%} No "updates as you change your answers" note here: it
+      wrapped to two lines beside the label and read as a second heading, and
+      the sliders demonstrate it the first time anyone touches one. {%- endcomment -%}
+      <div class="es-alloc-h">
+        <span class="lab">{{ C.allocation_label }}</span>
+      </div>
+      <div class="es-bar" id="es-bar" role="img" aria-label="Share of the total by category"></div>
+      <div class="es-legend" id="es-legend"></div>
+      {%- assign R = C.under_min_referral %}
+      {%- if R.enabled %}
+      <div class="es-ref" id="es-ref" hidden>
+        <span class="lab">{{ R.label }}</span>
+        <b>{{ R.name }}</b>
+        <p>{{ R.note }}</p>
+        {%- if R.url != "" %}<a class="es-ref-go" href="{{ R.url }}" rel="noopener">Visit their site <span>&rarr;</span></a>{% endif %}
+      </div>
+      <button type="button" class="es-ask" id="es-ask" data-consult-open hidden>{{ R.ask_anyway }}</button>
+      {%- endif %}
+      <button type="button" class="es-cta" id="es-cta" data-consult-open>{{ C.cta_button }} &rarr;</button>
+      <p class="es-cta-note" id="es-cta-note">{{ C.cta_note }}</p>
+      <button type="button" class="es-reset" id="es-reset">Start over</button>
+    </div>
+  </aside>
+
+</div>
+</div>
+
+<!-- mobile sticky: the range follows you down the page, and so does the CTA -->
+<div class="es-stick" id="es-stick">
+  <div class="es-stick-l">
+    <span id="es-stick-label">{{ C.result_label }}</span>
+    <b id="es-stick-fig"></b>
+  </div>
+  <button type="button" class="es-cta" data-consult-open>{{ C.cta_button }} &rarr;</button>
+</div>
+
+<section class="es-notes">
+  <div class="es-notes-in">
+    <span class="lab">{{ C.notes_label }}</span>
+    <h2>{{ C.notes_heading }}</h2>
+    <div class="es-note-grid">
+      {%- for n in C.notes %}
+      <div class="es-note">
+        <h3>{{ n.title }}</h3>
+        <p>{{ n.body }}</p>
+      </div>
+      {%- endfor %}
+    </div>
+  </div>
+</section>
+
+</div><!-- /.es-page -->
+
+<script>
+/* ===========================================================================
+   ESTIMATOR ENGINE
+   Reads the DOM as the single source of truth (no parallel state object to
+   drift), reads every price from _data/estimator.yml, and recomputes on any
+   change. Rounding, the band, the minimum and the labor percentage are all
+   settings, not constants.
+   =========================================================================== */
+(function(){
+  var CFG = {{ E | jsonify }};
+  var S = CFG.settings, form = document.getElementById('es-form');
+  if(!form) return;
+
+  /* price lookups keyed "group:key" so the compute step is one line each */
+  var MAP = {};
+  function index(prefix, list){ (list||[]).forEach(function(o){ MAP[prefix+':'+o.key]=o; }); }
+  index('focal',  CFG.ceremony.focal.options);
+  index('ground', CFG.ceremony.ground.options);
+  index('tables', CFG.reception.style.options);
+  index('env',    CFG.environmental.options);
+
+  var $ = function(id){ return document.getElementById(id); };
+  function radio(name){ var el=form.querySelector('input[name="es-'+name+'"]:checked'); return el?el.value:null; }
+  function checks(name){ return Array.prototype.map.call(form.querySelectorAll('input[name="es-'+name+'"]:checked'), function(el){ return el.value; }); }
+  function money(n){ return '$' + Math.round(n).toLocaleString('en-US'); }
+
+  /* --- the model --------------------------------------------------------- */
+  function compute(){
+    var cat = { ceremony:[0,0], reception:[0,0], personal:[0,0], environmental:[0,0], service:[0,0] };
+    function add(k, r, n){ if(!r) return; n = (n===undefined) ? 1 : n; cat[k][0]+=r.low*n; cat[k][1]+=r.high*n; }
+
+    var guests = +$('es-guests').value, party = +$('es-party').value;
+    var extras = checks('extra');
+
+    /* personal: one bridal bouquet, then the party split into bouquets and
+       boutonnieres, then optional bundles. Never rendered per unit. */
+    add('personal', CFG.personal.bridal_bouquet);
+    var bouquets = Math.round(party * CFG.sliders.party.bouquet_share);
+    add('personal', CFG.personal.attendant_bouquet, bouquets);
+    add('personal', CFG.personal.boutonniere, party - bouquets);
+    if(extras.indexOf('family') > -1)      add('personal', CFG.personal.family);
+    if(extras.indexOf('flower_kids') > -1) add('personal', CFG.personal.flower_kids);
+
+    add('ceremony', MAP['focal:'  + radio('focal')]);
+    add('ceremony', MAP['ground:' + radio('ground')]);
+
+    /* Table count is a RANGE, not a number: 100 guests is 10 tables at ten a
+       table or 13 at eight, and which one it is depends on a floor plan we
+       have not seen. The low end of reception prices the low table count, the
+       high end the high, so the spread carries the uncertainty honestly
+       instead of us picking a seating density on the couple's behalf. */
+    var tLow  = Math.max(1, Math.ceil(guests / S.seats_per_table.max));
+    var tHigh = Math.max(tLow, Math.ceil(guests / S.seats_per_table.min));
+    var perTable = MAP['tables:' + radio('tables')];
+    if(perTable){ cat.reception[0] += perTable.low * tLow; cat.reception[1] += perTable.high * tHigh; }
+    if(extras.indexOf('head_table') > -1) add('reception', CFG.reception.head_table);
+
+    checks('env').forEach(function(k){ add('environmental', MAP['env:'+k]); });
+
+    /* delivery, setup and strike: a share of the design subtotal, floored */
+    var subLow = cat.ceremony[0]+cat.reception[0]+cat.personal[0]+cat.environmental[0];
+    var subHigh = cat.ceremony[1]+cat.reception[1]+cat.personal[1]+cat.environmental[1];
+    cat.service = [
+      Math.max(S.service.floor, subLow  * S.service.low_pct  / 100),
+      Math.max(S.service.floor, subHigh * S.service.high_pct / 100)
+    ];
+
+    /* Pull both ends toward the midpoint: the raw spread is honest but too
+       wide to plan against. Applied PER CATEGORY rather than to the total,
+       which is arithmetically the same number and keeps the legend adding up
+       to the headline range. Doing it once on the total left the five rows
+       summing to noticeably less than the figure above them. */
+    var t = S.band_tighten, low = 0, high = 0;
+    Object.keys(cat).forEach(function(k){
+      var m = (cat[k][0] + cat[k][1]) / 2;
+      cat[k][0] = cat[k][0] + (m - cat[k][0]) * t;
+      cat[k][1] = cat[k][1] - (cat[k][1] - m) * t;
+      low += cat[k][0]; high += cat[k][1];
+    });
+
+    /* Round outward at both levels so nothing reads as a quote to the dollar.
+       Rows carry a finer increment than the total, so the rows can never
+       round up past a total that rounded down. */
+    var cr = S.category_round;
+    Object.keys(cat).forEach(function(k){
+      cat[k][0] = Math.floor(cat[k][0] / cr) * cr;
+      cat[k][1] = Math.ceil (cat[k][1] / cr) * cr;
+    });
+    var r = S.round_to;
+    low  = Math.floor(low  / r) * r;
+    high = Math.ceil (high / r) * r;
+
+    return { cat:cat, low:low, high:high, mid:(low+high)/2, guests:guests, tLow:tLow, tHigh:tHigh };
+  }
+
+  /* --- allocation shares, rounded to integers that still total 100 -------- */
+  function shares(cat){
+    var rows = CFG.categories.map(function(c){
+      var v = cat[c.key];
+      return { key:c.key, label:c.label, low:v[0], high:v[1], mid:(v[0]+v[1])/2 };
+    }).filter(function(r){ return r.mid > 0; });
+    var total = rows.reduce(function(a,r){ return a + r.mid; }, 0) || 1;
+    rows.forEach(function(r){ r.raw = r.mid / total * 100; r.pct = Math.floor(r.raw); });
+    var drift = 100 - rows.reduce(function(a,r){ return a + r.pct; }, 0);
+    rows.slice().sort(function(a,b){ return (b.raw-b.pct) - (a.raw-a.pct); })
+        .slice(0, Math.max(0, drift)).forEach(function(r){ r.pct += 1; });
+    return rows;
+  }
+
+  /* --- render ------------------------------------------------------------ */
+  var COLORS = ['var(--es-c1)','var(--es-c2)','var(--es-c3)','var(--es-c4)','var(--es-c5)'];
+  var colorOf = {};
+  CFG.categories.forEach(function(c,i){ colorOf[c.key] = COLORS[i % COLORS.length]; });
+
+  function fillTrack(el){
+    var pct = (el.value - el.min) / (el.max - el.min) * 100;
+    el.style.setProperty('--fill', pct + '%');
+  }
+
+  /* "10 to 13" when the seating range gives two answers, "10" when it does not. */
+  function tableCount(r){ return r.tLow === r.tHigh ? String(r.tLow) : r.tLow + '\u2013' + r.tHigh; }
+
+  var last = null;
+  function render(){
+    var r = compute(); last = r;
+    var gs = CFG.sliders.guests, ps = CFG.sliders.party;
+
+    /* slider readouts */
+    fillTrack($('es-guests')); fillTrack($('es-party'));
+    var atMax = r.guests >= gs.max;
+    $('es-guests-out').innerHTML = r.guests + (atMax ? '+' : '') + ' <span>' + (atMax ? gs.max_suffix : gs.suffix) + '</span>';
+    var party = +$('es-party').value;
+    $('es-party-out').innerHTML = party + ' <span>' + ps.suffix + '</span>';
+    $('es-tables-out').innerHTML = tableCount(r) + ' <span>tables</span>';
+
+    var under = r.high < S.minimum;
+    $('es-panel').setAttribute('data-under', under ? '1' : '0');
+    $('es-range-view').hidden = under;
+    $('es-under-view').hidden = !under;
+
+    if(!under){
+      /* a scope that straddles the floor still starts at the floor */
+      var low = Math.max(r.low, S.minimum), clamped = r.low < S.minimum;
+      $('es-low').textContent  = money(low);
+      $('es-high').textContent = money(r.high);
+      $('es-caption').textContent = CFG.copy.result_caption_prefix + ' ' + r.guests +
+        ' guests, ' + tableCount(r) + ' guest ' + (r.tHigh === 1 ? 'table' : 'tables') +
+        ', and everything you have selected.';
+      /* Says out loud why the rows below can add up to less than the figure
+         above them, which is what clamping to the floor does. */
+      $('es-floornote').hidden = !clamped;
+      if(clamped) $('es-floornote').textContent = 'What you have selected prices out just under our ' +
+        money(S.minimum) + ' full-service minimum, so the range starts there.';
+      $('es-stick-label').textContent = CFG.copy.result_label;
+      $('es-stick-fig').textContent = money(low) + ' to ' + money(r.high);
+    } else {
+      $('es-stick-label').textContent = CFG.copy.under_min_label;
+      $('es-stick-fig').textContent = 'Below ' + money(S.minimum);
+    }
+    /* Under the minimum, the referral becomes the whole panel body and the
+       main CTA steps aside. Without a referral configured it falls back to
+       "Ask us anyway" on the primary button, which is the convert-up posture. */
+    var ref = $('es-ref'), ask = $('es-ask');
+    if(ref){
+      ref.hidden = !under;
+      ask.hidden  = !under;
+      $('es-cta').hidden = under;
+      $('es-cta-note').hidden = under;
+    } else {
+      $('es-cta').innerHTML = (under ? CFG.copy.under_min_cta : CFG.copy.cta_button) + ' &rarr;';
+    }
+
+    /* allocation */
+    var rows = shares(r.cat), bar = $('es-bar'), leg = $('es-legend');
+    bar.innerHTML = rows.map(function(row){
+      return '<span class="es-seg" style="flex:0 0 ' + row.raw.toFixed(2) + '%;background:' + colorOf[row.key] + '"></span>';
+    }).join('');
+    leg.innerHTML = rows.map(function(row){
+      return '<div class="es-leg">' +
+        '<span class="es-dot" style="background:' + colorOf[row.key] + '"></span>' +
+        '<span class="es-leg-n">' + row.label + '<em>' + money(row.low) + ' to ' + money(row.high) + '</em></span>' +
+        '<span class="es-leg-p">' + row.pct + '%</span>' +
+      '</div>';
+    }).join('');
+  }
+
+  form.addEventListener('input', render);
+  form.addEventListener('change', render);
+
+  $('es-reset').addEventListener('click', function(){
+    form.reset();
+    render();
+    form.scrollIntoView({ behavior:'smooth', block:'start' });
+  });
+
+  /* --- hand the answers to the consult modal -----------------------------
+     The whole point of the tool: nobody who has just done this work should
+     have to describe their wedding again from scratch. We pick the budget
+     bracket by parsing the select's own options (so the ladder can change on
+     /weddings without breaking this) and drop a plain summary in the message
+     box, labeled as coming from the estimator so it never reads as words the
+     couple typed. Listeners are on the buttons themselves, which run before
+     the document-level handler that opens the modal. */
+  function bracketFor(mid){
+    var sel = document.getElementById('m-budget');
+    if(!sel) return;
+    for(var i=0;i<sel.options.length;i++){
+      var nums = sel.options[i].text.replace(/,/g,'').match(/\d+/g);
+      if(!nums) continue;
+      var lo = +nums[0], hi = nums[1] ? +nums[1] : Infinity;
+      if(mid >= lo && mid < hi){ sel.value = sel.options[i].value; return; }
+    }
+  }
+  function labelOf(prefix, key){ var o = MAP[prefix+':'+key]; return o ? o.label.toLowerCase() : ''; }
+
+  function handoff(){
+    if(!last) return;
+    var msg = document.getElementById('m-message');
+    var under = last.high < S.minimum;
+    if(!under) bracketFor(last.mid);
+    if(msg && !msg.value){
+      /* Reads as a summary, not as words the couple typed. "None" answers are
+         dropped rather than listed, so the note says what they want instead of
+         reciting every control on the page. */
+      var bits = ['Guests: ' + last.guests + ', roughly ' + tableCount(last) + ' tables'];
+      var ceremony = [labelOf('focal', radio('focal')), labelOf('ground', radio('ground'))]
+        .filter(function(s){ return s && s !== 'none' && s !== 'nothing built'; });
+      if(ceremony.length) bits.push('Ceremony: ' + ceremony.join(' with '));
+      bits.push('Guest tables: ' + labelOf('tables', radio('tables')));
+      var envNames = checks('env').map(function(k){ return MAP['env:'+k].label.toLowerCase(); });
+      if(envNames.length) bits.push('Also: ' + envNames.join(', '));
+      bits.push(under ? 'It put me under your minimum, but I would like to talk anyway'
+                      : 'Range it gave me: ' + money(Math.max(last.low, S.minimum)) + ' to ' + money(last.high));
+      msg.value = 'From the estimator on your site. ' + bits.join('. ') + '.';
+    }
+  }
+  Array.prototype.forEach.call(document.querySelectorAll('[data-consult-open]'), function(b){
+    b.addEventListener('click', handoff);
+  });
+
+  /* --- mobile sticky bar: show it once the inputs are in play, hide it
+     while the full result panel is on screen so nothing is doubled.
+
+     The bar appears once the top of the TOOL has scrolled away. It used to
+     watch .es-head, the standalone page's own heading, which does not exist
+     when the component is embedded on Process & Pricing: querySelector
+     returned null, observe() threw, and everything after it in this IIFE --
+     including the first render() -- never ran, so the panel sat blank until
+     you touched a control. Anchor on an element the component itself owns,
+     and guard anyway. */
+  var stick = $('es-stick'), panel = $('es-panel'), tool = document.querySelector('.es-wrap');
+  var panelSeen = false, pastTop = false;
+  function toggle(){ stick.classList.toggle('on', pastTop && !panelSeen); }
+  if('IntersectionObserver' in window && panel && tool){
+    new IntersectionObserver(function(e){ panelSeen = e[0].isIntersecting; toggle(); }, { threshold:0.25 }).observe(panel);
+    new IntersectionObserver(function(e){ pastTop = !e[0].isIntersecting; toggle(); }, { threshold:0 }).observe(tool);
+  }
+
+  render();
+})();
+</script>
