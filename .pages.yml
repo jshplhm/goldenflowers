@@ -845,6 +845,24 @@ content:
           - {name: allocation_label, label: "Label above the breakdown", type: string}
           - {name: cta_button, label: "Button text", type: string}
           - {name: cta_note, label: "Note under the button", type: text}
+          - name: handoff
+            label: "The recap carried into the consultation form"
+            type: object
+            description: "Tapping the button opens the form with a read-only summary of what was picked here. These are the row labels only; every answer beside them is worked out by the tool."
+            fields:
+              - {name: heading, label: "Small label above the recap", type: string}
+              - {name: note, label: "Note under the recap", type: text, description: "Explains why the rows cannot be typed in."}
+              - {name: adjust, label: "Button back to the tool", type: string}
+              - {name: guests, label: "Row label: guests", type: string}
+              - {name: party, label: "Row label: wedding party", type: string}
+              - {name: party_none, label: "Wedding party of nobody reads", type: string}
+              - {name: personal, label: "Row label: family florals", type: string}
+              - {name: ceremony, label: "Row label: ceremony", type: string}
+              - {name: tables, label: "Row label: guest tables", type: string}
+              - {name: reception, label: "Row label: reception installation", type: string}
+              - {name: environmental, label: "Row label: other areas", type: string}
+              - {name: range, label: "Row label: the range", type: string}
+              - {name: under_min, label: "Range row when it lands under the minimum", type: string}
           - {name: under_min_label, label: "Under-minimum: small label", type: string}
           - {name: under_min_heading, label: "Under-minimum: headline", type: string}
           - {name: under_min_body, label: "Under-minimum: paragraph", type: text}

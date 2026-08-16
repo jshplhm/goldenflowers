@@ -630,13 +630,23 @@
      The whole point of the tool: nobody who has just done this work should
      have to describe their wedding again from scratch. We pick the budget
      bracket by parsing the select's own options (so the ladder can change on
-     /weddings without breaking this) and drop a plain summary in the message
-     box, labeled as coming from the estimator so it never reads as words the
-     couple typed. Listeners are on the buttons themselves, which run before
-     the document-level handler that opens the modal. */
+     /weddings without breaking this) and render a recap into the form's own
+     read-only block. Listeners are on the buttons themselves, which run
+     before the document-level handler that opens the modal.
+
+     This used to write into #m-message, the "Anything else?" box. Two things
+     were wrong with that: it spent the couple's field on our text (they had
+     to delete it to say anything), and to excuse itself it wrote in their
+     voice ("the range it gave me"), which is nobody's voice. The recap block
+     in _includes/consult-modal.html holds it instead, the free-text box stays
+     theirs, and the summary can speak plainly as our own. */
   function bracketFor(mid){
     var sel = document.getElementById('m-budget');
     if(!sel) return;
+    /* Their own answer outranks ours. Someone who set the bracket by hand and
+       then went back to tweak a slider would otherwise find it silently reset
+       on the way in, which is the same trust problem as an editable recap. */
+    if(sel.dataset.userSet) return;
     for(var i=0;i<sel.options.length;i++){
       var nums = sel.options[i].text.replace(/,/g,'').match(/\d+/g);
       if(!nums) continue;
@@ -648,46 +658,82 @@
 
   function handoff(){
     if(!last) return;
-    var msg = document.getElementById('m-message');
+    var box = document.querySelector('[data-est-recap]');
     var under = last.high < S.minimum;
     if(!under) bracketFor(last.mid);
-    if(msg && !msg.value){
-      /* Reads as a summary, not as words the couple typed. "None" answers are
-         dropped rather than listed, so the note says what they want instead of
-         reciting every control on the page. */
-      var bits = ['Guests: ' + last.guests + ', roughly ' + tableCount(last) + ' tables'];
-      /* Personal florals were missing from this note entirely: the party size
-         and the two extras are the first thing Brittany prices, and a summary
-         that skips them reads as if they want no bouquets at all. Zero is a
-         real answer (an elopement), so it is stated rather than dropped. */
-      var extras = checks('extra');
-      var party = +$('es-party').value;
-      /* Not "just the two of them": a planner may be the one sending this, and
-         the rest of the note is written in nobody's voice. */
-      bits.push(party
-        ? 'Wedding party: ' + party + ' carrying or wearing flowers'
-        : 'Wedding party: none');
-      var personal = ['family','flower_kids']
-        .filter(function(k){ return extras.indexOf(k) > -1; })
-        .map(function(k){ return labelOf('extra', k); });
-      if(personal.length) bits.push('Also personal: ' + personal.join(', '));
-      var ceremony = [labelOf('focal', radio('focal')), labelOf('ground', radio('ground'))]
-        .filter(function(s){ return s && s !== 'none' && s !== 'nothing built'; });
-      if(ceremony.length) bits.push('Ceremony: ' + ceremony.join(' with '));
-      bits.push('Guest tables: ' + labelOf('tables', radio('tables')) +
-        (extras.indexOf('head_table') > -1 ? ', plus a ' + labelOf('extra','head_table') : ''));
-      var recInstall = labelOf('recinstall', radio('recinstall'));
-      if(recInstall && recInstall !== 'nothing built') bits.push('Reception installation: ' + recInstall);
-      var envNames = checks('env').map(function(k){ return MAP['env:'+k].label.toLowerCase(); });
-      if(envNames.length) bits.push('Also: ' + envNames.join(', '));
-      bits.push(under ? 'It put me under your minimum'
-                      : 'Range it gave me: ' + money(Math.max(last.low, S.minimum)) + ' to ' + money(last.high));
-      msg.value = 'From the estimator on your site:\n' +
-        bits.map(function(b){ return '\u2022 ' + b; }).join('\n') + '\n';
-    }
+    if(!box) return;
+    var H = (CFG.copy && CFG.copy.handoff) || {};
+
+    /* Label / value pairs. "None" answers are dropped rather than listed, so
+       the recap says what they want instead of reciting every control on the
+       page. */
+    var rows = [[H.guests, last.guests + ', roughly ' + tableCount(last) + ' tables']];
+    /* Personal florals were missing from this summary entirely: the party size
+       and the two extras are the first thing Brittany prices, and a recap that
+       skips them reads as if they want no bouquets at all. Zero is a real
+       answer (an elopement), so it is stated rather than dropped. */
+    var extras = checks('extra');
+    var party = +$('es-party').value;
+    rows.push([H.party, party ? party + ' carrying or wearing flowers' : H.party_none]);
+    var personal = ['family','flower_kids']
+      .filter(function(k){ return extras.indexOf(k) > -1; })
+      .map(function(k){ return labelOf('extra', k); });
+    if(personal.length) rows.push([H.personal, personal.join(', ')]);
+    var ceremony = [labelOf('focal', radio('focal')), labelOf('ground', radio('ground'))]
+      .filter(function(s){ return s && s !== 'none' && s !== 'nothing built'; });
+    if(ceremony.length) rows.push([H.ceremony, ceremony.join(' with ')]);
+    rows.push([H.tables, labelOf('tables', radio('tables')) +
+      (extras.indexOf('head_table') > -1 ? ', plus a ' + labelOf('extra','head_table') : '')]);
+    var recInstall = labelOf('recinstall', radio('recinstall'));
+    if(recInstall && recInstall !== 'nothing built') rows.push([H.reception, recInstall]);
+    var envNames = checks('env').map(function(k){ return MAP['env:'+k].label.toLowerCase(); });
+    if(envNames.length) rows.push([H.environmental, envNames.join(', ')]);
+    rows.push([H.range, under ? H.under_min
+      : money(Math.max(last.low, S.minimum)) + ' to ' + money(last.high)]);
+
+    /* Rebuilt every time the modal is opened, because the answers behind it
+       may have changed since the last time: a recap that is one edit stale is
+       worse than none. */
+    var list = box.querySelector('[data-est-recap-list]');
+    list.textContent = '';
+    rows.forEach(function(r, i){
+      var li = document.createElement('li');
+      if(i === rows.length - 1) li.className = 'is-range';
+      var k = document.createElement('span'); k.className = 'k'; k.textContent = r[0];
+      var v = document.createElement('span'); v.className = 'v'; v.textContent = r[1];
+      li.appendChild(k); li.appendChild(v); list.appendChild(li);
+    });
+    /* What Brittany actually reads, in the sheet and in her email. Plain
+       "Label: value" lines, no bullet characters: they survive a spreadsheet
+       cell and a plain-text email intact. */
+    box.querySelector('[data-est-recap-value]').value =
+      rows.map(function(r){ return r[0] + ': ' + r[1]; }).join('\n');
+    box.hidden = false;
   }
   Array.prototype.forEach.call(document.querySelectorAll('[data-consult-open]'), function(b){
     b.addEventListener('click', handoff);
+  });
+  /* BOTH of these are delegated, and must stay that way: the modal is
+     included by the layout AFTER the page content, so at the moment this
+     script runs there is no #m-budget and no recap button to bind to. (Bound
+     directly, they silently did nothing, which on a phone looked like the
+     Adjust button closing the lightbox and dumping you at the footer.)
+     handoff() below is safe either way, since it only ever runs on a click. */
+  document.addEventListener('change', function(e){
+    if(e.target && e.target.id === 'm-budget') e.target.dataset.userSet = '1';
+  });
+
+  /* "Adjust these answers": back to the tool without losing the form. The
+     lightbox closes on its own (data-consult-close on the button), the fields
+     keep everything already typed because closing never clears them, and
+     tapping the tool's own CTA again reopens the form with a fresh recap. */
+  document.addEventListener('click', function(e){
+    if(!e.target || !e.target.closest || !e.target.closest('[data-est-recap-adjust]')) return;
+    /* Has to come AFTER the modal's own close work, or the scroll is undone
+       by it: closing releases a position:fixed body lock by scrolling back to
+       where the page was when the lightbox opened, which on a phone is a
+       thousand pixels from here. */
+    setTimeout(function(){ form.scrollIntoView({ behavior:'smooth', block:'start' }); }, 220);
   });
 
   /* --- mobile sticky bar --------------------------------------------------

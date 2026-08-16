@@ -130,9 +130,49 @@
             <option>Not sure yet</option>
           </select>
         </div>
+        {%- comment -%} The estimator's handoff. It used to write its summary
+        into "Anything else?", which put OUR generated text in the box meant
+        for THEIR words: they had to delete it to say anything, and whatever
+        survived read as if the couple had typed it.
+
+        So it gets its own block, above the free-text box and outside it.
+        Deliberately not a disabled textarea: this is a generated recap, not a
+        field, so it renders as text and travels in the hidden input. Nothing
+        here is editable, and "Anything else?" is left empty for them.
+
+        Not editable, and that is the point: hand-editing "10 tables" to "30"
+        would leave the range beside it describing a wedding nobody picked,
+        and we would have published a number that was never computed. So the
+        answers stay where the math is. "Adjust these answers" is the escape
+        hatch, and it costs nothing: closing the lightbox does not clear the
+        form, so whatever they have already filled in is still there when the
+        tool reopens it.
+
+        Hidden until _includes/estimator.html fills it (only pages carrying
+        the estimator ever do), so every other CTA opens the form unchanged
+        and the Adjust button can never appear without a tool to go back to.
+        The `estimate` param needs the Estimate column in
+        _scripts/consultation-form-doPost.gs; an older deployment ignores it
+        rather than flagging it, but it drops the recap, so paste and redeploy
+        the script BEFORE this ships. {%- endcomment -%}
+        {%- assign HO = site.data.estimator.copy.handoff -%}
+        <div class="field-full est-recap" data-est-recap hidden>
+          <span class="est-recap-head">{{ HO.heading }}</span>
+          <ul class="est-recap-list" data-est-recap-list></ul>
+          <div class="est-recap-foot">
+            <p class="est-recap-note">{{ HO.note }}</p>
+            {%- comment -%} data-consult-close is what shuts the lightbox (the
+            document-level handler); the estimator adds the scroll. {%- endcomment -%}
+            <button type="button" class="est-recap-adjust" data-est-recap-adjust data-consult-close>{{ HO.adjust }}</button>
+          </div>
+          <input type="hidden" name="estimate" data-est-recap-value>
+        </div>
         <div class="field-full">
           <label for="m-message">Anything else? <span class="opt">(optional)</span></label>
-          <textarea id="m-message" name="message" placeholder="Guest count, must-have flowers, inspiration..." rows="3"></textarea>
+          {%- comment -%} "Guest count" came out of the placeholder when the
+          estimate recap moved above this box: it was asking for a number the
+          recap states two inches higher. {%- endcomment -%}
+          <textarea id="m-message" name="message" placeholder="Must-have flowers, inspiration..." rows="3"></textarea>
         </div>
         <div class="form-submit field-full">
           <button type="submit" class="btn-primary">Check my date</button>

@@ -174,7 +174,7 @@ sitemap: false
         </div>
         <div class="field-full">
           <label for="message">Anything else? <span class="opt">(optional)</span></label>
-          <textarea id="message" name="message" placeholder="Guest count, must-have flowers, inspiration..." rows="4"></textarea>
+          <textarea id="message" name="message" placeholder="Must-have flowers, inspiration..." rows="4"></textarea>
         </div>
         <div class="form-submit field-full">
           <button type="submit" class="btn-primary">Check my date</button>

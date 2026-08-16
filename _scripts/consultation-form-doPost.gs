@@ -1,5 +1,16 @@
 /**
- * Golden Flowers consultation form — hardened intake, v3.4 (August 2026).
+ * Golden Flowers consultation form — hardened intake, v3.5 (August 2026).
+ *
+ * What changed from v3.4 (v3.5):
+ *   - New `estimate` param and Estimate column (auto-appended on first use):
+ *     the planning tool's recap of what the couple picked, which the form now
+ *     carries in its own read-only block instead of dumping into the message
+ *     box. Message is their words, Estimate is the tool's arithmetic, and
+ *     neither has to be untangled from the other any more.
+ *   - Both emails show it under its own "From your estimate" heading.
+ *   - DEPLOY THIS BEFORE the site change ships. An older deployment does not
+ *     reject the new param (nothing unknown is ever a spam reason), it simply
+ *     ignores it, so every estimate would land nowhere until this is pasted.
  *
  * What changed from v3.3 (v3.4):
  *   - A resubmitted lead that carries NEW details now emails us the diff
@@ -173,10 +184,15 @@ var PLACEHOLDER_DOMAINS = [
 // 'Aesthetic' stays even though the form stopped asking (2026-08-10): the
 // column holds real history, and stale cached pages still submit the field.
 // 'Role' and 'Couple' are appended last, per the never-insert rule above.
+// 'Estimate' (2026-08-16) is the planning-tool recap, machine-written by
+// _includes/estimator.html and carried in its own read-only block on the
+// form. It has its own column because it is not their words: Message is what
+// the couple typed, Estimate is what the tool worked out, and mixing the two
+// (which is what the form did until now) made both harder to read.
 var HEADERS = [
   'Submitted', 'Status', 'Name', 'Email', 'Wedding Date', 'Aesthetic',
   'Budget', 'Message', 'Venue', 'Source', 'Updated', 'Lead ID',
-  'Contact Method', 'Phone', 'Page', 'Button', 'Role', 'Couple'
+  'Contact Method', 'Phone', 'Page', 'Button', 'Role', 'Couple', 'Estimate'
 ];
 
 function doPost(e) {
@@ -326,7 +342,7 @@ function venueValue_(p) {
    with different answers. Deliberately not Status/Updated/Source/Page/Button:
    those change on every resend and would make every retry look like news. */
 var WATCHED_FIELDS = ['Name', 'Email', 'Phone', 'Wedding Date', 'Venue',
-  'Budget', 'Message', 'Role', 'Couple'];
+  'Budget', 'Message', 'Role', 'Couple', 'Estimate'];
 
 /* Sheet cells come back as strings OR as Date objects depending on how the
    column was formatted, and 'Wedding Date' is the one that flips. Comparing a
@@ -382,7 +398,14 @@ function notifyLeadUpdated_(p, changes, coupleState) {
     'What changed:'
   ];
   changes.forEach(function (c) {
-    lines.push('  ' + c.field + ': ' + (c.from || '(empty)') + '  ->  ' + (c.to || '(empty)'));
+    var from = c.from || '(empty)', to = c.to || '(empty)';
+    // Message and Estimate can both be several lines, and an inline arrow
+    // turns those into one unreadable run. Stack them instead.
+    if (from.indexOf('\n') !== -1 || to.indexOf('\n') !== -1) {
+      lines.push('  ' + c.field + ':', '    was:', indent_(indent_(from)), '    now:', indent_(indent_(to)));
+    } else {
+      lines.push('  ' + c.field + ': ' + from + '  ->  ' + to);
+    }
   });
   sendMail_('Lead updated after confirmation: ' + (p.name || 'unknown'), lines.join('\n'));
 }
@@ -417,7 +440,8 @@ function buildRowValues_(p, isPartial, submittedAt, updatedAt, leadId) {
     'Button': p.cta_button || '',
     'Lead ID': leadId || '',
     'Role': p.role || '',
-    'Couple': p.couple || ''
+    'Couple': p.couple || '',
+    'Estimate': p.estimate || ''
   };
 }
 
@@ -579,6 +603,16 @@ function spamReasons_(p) {
   }
   if (venue && /btc|bitcoin|crypto|withdraw/i.test(venue)) r.push('spam keywords in venue');
 
+  // The estimate recap is machine-written and never typed: the tool cannot
+  // emit a link, and its longest possible output (every row present, every
+  // extra ticked) is a few hundred characters. Anything else here is a bot
+  // that found the hidden input and filled it like every other field.
+  var estimate = String(p.estimate || '').trim();
+  if (estimate) {
+    if (estimate.length > 1200) r.push('estimate too long');
+    else if (/btc|bitcoin|crypto|withdraw|https?:|www\./i.test(estimate)) r.push('spam keywords in estimate');
+  }
+
   // Flood control. A real visit produces at most 2 posts (step-1 partial +
   // complete); even a redo is 4. The July bot ran at ~10/min.
   var floodKey = email || phone.replace(/\D/g, '');
@@ -676,7 +710,18 @@ function sendCompleteEmail_(p) {
   ]);
   // Only surfaced when a stale cached page still sent it.
   if (String(p.aesthetic || '').trim()) lines.push('Aesthetic: ' + p.aesthetic);
+  // The planning tool's recap, under its own heading and last: it is several
+  // lines, and it is the tool's arithmetic rather than anything they wrote,
+  // so it must never look like the continuation of their message.
+  var est = String(p.estimate || '').trim();
+  if (est) lines = lines.concat(['', 'From their estimate:', indent_(est)]);
   sendMail_(subject, lines.join('\n'));
+}
+
+/* Every line of a multi-line block, shifted, so it reads as one thing under
+   its heading instead of merging into the flat list above it. */
+function indent_(block) {
+  return String(block).split('\n').map(function (l) { return '  ' + l; }).join('\n');
 }
 
 /* One notification per completed lead. When we have their email we send THEM
@@ -745,6 +790,11 @@ function sendAutoReply_(p, isUpdate) {
   // Their free-text note gets its own block (it can be long / multi-line), so
   // it all lives in this one email and they never wonder if it went through.
   var note = String(p.message || '').trim();
+  // The planning tool's recap, kept apart from their note for the same reason
+  // the form does: one is what they wrote, the other is what the tool worked
+  // out. Reading it back is also a quiet accuracy check, since this is the
+  // last chance to catch a slider they left somewhere wrong.
+  var est = String(p.estimate || '').trim();
 
   var hi = first ? 'Hi ' + first + ',' : 'Hi,';
   var opener = isUpdate
@@ -760,6 +810,7 @@ function sendAutoReply_(p, isUpdate) {
     if (note) { t.push('  Your note: ' + note); }
     t.push('');
   }
+  if (est) { t.push('From your estimate:', indent_(est), ''); }
   t.push(
     'We will be in touch within 48 hours to let you know if your date is open and how we would approach your florals.', '',
     'In the meantime, you can text us anytime at 530-557-7689.', '',
@@ -779,11 +830,29 @@ function sendAutoReply_(p, isUpdate) {
 
   var detailsHtml = rows.length
     ? '<p style="margin:0 0 10px;font:11px Helvetica,Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:' + MUTE + ';">Here is what you sent us</p>' +
-      '<table role="presentation" cellpadding="0" cellspacing="0" style="margin:0 0 ' + (note ? '18px' : '24px') + ';">' + detailRows + '</table>'
+      '<table role="presentation" cellpadding="0" cellspacing="0" style="margin:0 0 ' + (note || est ? '18px' : '24px') + ';">' + detailRows + '</table>'
     : '';
   var noteHtml = note
     ? '<p style="margin:0 0 8px;font:11px Helvetica,Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:' + MUTE + ';">Your note</p>' +
-      '<p style="margin:0 0 24px;padding:12px 16px;background:' + CREAM + ';border-left:2px solid ' + GREEN + ';font:14px/1.6 Helvetica,Arial,sans-serif;color:' + INK + ';white-space:pre-wrap;">' + escHtml_(note) + '</p>'
+      '<p style="margin:0 0 ' + (est ? '18px' : '24px') + ';padding:12px 16px;background:' + CREAM + ';border-left:2px solid ' + GREEN + ';font:14px/1.6 Helvetica,Arial,sans-serif;color:' + INK + ';white-space:pre-wrap;">' + escHtml_(note) + '</p>'
+    : '';
+  // Same two-column shape as the details above, because it is the same kind of
+  // thing: answers read back. Each line arrives as "Label: value" from the
+  // tool; a line without a colon (someone reworded a label into one) still
+  // prints, spanning both columns, rather than being silently dropped.
+  var estHtml = est
+    ? '<p style="margin:0 0 10px;font:11px Helvetica,Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:' + MUTE + ';">From your estimate</p>' +
+      '<table role="presentation" cellpadding="0" cellspacing="0" style="margin:0 0 24px;">' +
+      est.split('\n').map(function (line) {
+        var i = line.indexOf(': ');
+        if (i === -1) {
+          return '<tr><td colspan="2" style="padding:3px 0;font:14px Helvetica,Arial,sans-serif;color:' + INK + ';">' + escHtml_(line) + '</td></tr>';
+        }
+        return '<tr>' +
+          '<td style="padding:3px 18px 3px 0;font:13px Helvetica,Arial,sans-serif;color:' + MUTE + ';white-space:nowrap;vertical-align:top;">' + escHtml_(line.slice(0, i)) + '</td>' +
+          '<td style="padding:3px 0;font:14px Helvetica,Arial,sans-serif;color:' + INK + ';">' + escHtml_(line.slice(i + 2)) + '</td>' +
+        '</tr>';
+      }).join('') + '</table>'
     : '';
 
   var html =
@@ -798,7 +867,7 @@ function sendAutoReply_(p, isUpdate) {
         '<tr><td style="padding:22px 40px 0;font:15px/1.65 Helvetica,Arial,sans-serif;color:' + INK + ';">' +
           '<p style="margin:0 0 16px;">' + escHtml_(hi) + '</p>' +
           '<p style="margin:0 0 22px;">' + escHtml_(opener) + '</p>' +
-          detailsHtml + noteHtml +
+          detailsHtml + noteHtml + estHtml +
           '<p style="margin:0 0 22px;">We will be in touch within 48 hours to let you know if your date is open and how we would approach your florals.</p>' +
           '<p style="margin:0 0 26px;">In the meantime, you can text us anytime at <strong style="color:' + GREEN + ';white-space:nowrap;">530-557-7689</strong>.</p>' +
           '<div style="border-top:1px solid ' + LINE + ';margin:0 0 20px;"></div>' +

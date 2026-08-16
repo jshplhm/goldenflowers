@@ -1,5 +1,12 @@
-<nav class="site-nav{% if page.hero_nav %} over-hero{% endif %}" id="site-nav">
-  <a class="brand" href="{{ site.baseurl }}/" aria-label="Golden Flowers">Golden Flowers</a>
+{%- comment -%} nav-home is what lets the phone CTA step aside over the home
+hero and stay put on every other hero page. {%- endcomment -%}
+<nav class="site-nav{% if page.hero_nav %} over-hero{% endif %}{% if page.url == '/' %} nav-home{% endif %}" id="site-nav">
+  {%- comment -%} Two spellings of the wordmark, swapped by CSS: phones need the
+  room for the "Check your date" pill (full name + pill + hamburger measures
+  399px, which overflows every iPhone narrower than 414). The link carries the
+  real name as its aria-label so the short form is never what gets announced,
+  whichever span is showing. {%- endcomment -%}
+  <a class="brand" href="{{ site.baseurl }}/" aria-label="Golden Flowers"><span class="brand-full">Golden Flowers</span><span class="brand-short">Golden</span></a>
   <div class="nav-r">
     <a href="{{ site.baseurl }}/portfolio"{% if page.url contains '/portfolio' %} class="active"{% endif %}>Portfolio</a>
     <a href="{{ site.baseurl }}/venues"{% if page.url contains '/venues' %} class="active"{% endif %}>Venues</a>

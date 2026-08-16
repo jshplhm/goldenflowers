@@ -33,7 +33,7 @@ redirect_from:
   - /the-vday-shop/p/hand-crafted-chocolates
 ---
 
-<!-- HERO (nine photos crossfading behind fixed copy — see HERO ROTATION in redesign.css) -->
+<!-- HERO (five photos crossfading behind fixed copy — see HERO ROTATION in redesign.css) -->
 {%- comment -%} data-boost MUST match the data-boost of the FIRST .bg image below.
 The rotator only sets this attribute once JS runs, so if it starts absent while
 the lead photo wants the boost, the left-hand scrim fades in after the photo has
@@ -62,27 +62,28 @@ the moment one pale photo wants it and another does not, the machinery is here.
     <img class="bg is-on" data-boost="1" style="object-position:37% 80%;transform-origin:47% 86%;" src="{{ site.baseurl }}/assets/images/home-hero-laux.jpg" alt="Golden hour in an Olympic Valley meadow: bride and groom in tall grass with the Sierra Nevada behind them, bride holding a green and lavender bouquet" fetchpriority="high">
   </picture>
 
-  {% comment %} Photos 2-9 wait in a <template>, and that is load-bearing rather
+  {% comment %} Photos 2-5 wait in a <template>, and that is load-bearing rather
   than tidiness. Every .bg sits inside the hero, which is in the viewport, so
-  loading="lazy" defers nothing: all nine would be fetched on arrival, competing
+  loading="lazy" defers nothing: all five would be fetched on arrival, competing
   with the LCP image for bandwidth. Template content is inert, so nothing is
   requested until the rotator moves a node into the page one step ahead of
   itself.
 
   They stay real <img> tags with a real src because _plugins/responsive_images.rb
   only rewrites src="..." -- parking the URL in data-src would silently cost these
-  eight photos their srcset and their WebP, which is a worse trade than loading
+  four photos their srcset and their WebP, which is a worse trade than loading
   them early. In production each one arrives wrapped in a <picture>, so the
-  rotator takes the <img> from inside whatever it pulls out. {% endcomment %}
+  rotator takes the <img> from inside whatever it pulls out.
+
+  ORDER AND CUT (owner, 2026-08-16, from hero-lab): nine photos down to five.
+  lynn-aaron-06, lynn-aaron-02, jenna-cal-07 and mikayla-jeff-04 are out. Each
+  crop/zoom pair below is the one tuned for that photograph, so it travels with
+  the photo if the order changes again. {% endcomment %}
   <template id="hero-rest">
-    <img class="bg" data-boost="1" style="object-position:55% 50%;transform-origin:55% 36%;" src="{{ site.baseurl }}/assets/images/portfolio/tori-tucker/tori-tucker-13.jpg" alt="Lake Tahoe beach ceremony: bride reading her vows to a groom in a pink suit between two coral and burgundy floral installations, guests seated on the sand">
-    <img class="bg" data-boost="1" style="object-position:45% 39%;transform-origin:46% 12%;" src="{{ site.baseurl }}/assets/images/portfolio/katie-james/katie-james-08.jpg" alt="Stone-walled ceremony room: a couple holding hands before their officiant under a towering arch of blush, peach and cream blooms framing a tall window">
-    <img class="bg" data-boost="1" style="object-position:50% 25%;transform-origin:50% 64%;" src="{{ site.baseurl }}/assets/images/portfolio/lynn-aaron/lynn-aaron-06.jpg" alt="Bride and seven attendants in burgundy and pink on a pier over Lake Tahoe, holding bouquets of white orchid, dahlia and trailing amaranthus">
     <img class="bg" data-boost="1" src="{{ site.baseurl }}/assets/images/portfolio/kelly-dylan/kelly-dylan-07.jpg" alt="Lake Tahoe beach wedding: bride with veil blowing in the wind, blue delphinium ceremony aisle at Kings Beach">
-    <img class="bg" data-boost="1" style="transform-origin:50% 30%;" src="{{ site.baseurl }}/assets/images/portfolio/lynn-aaron/lynn-aaron-02.jpg" alt="Wedding reception long table: guests seated along a run of tall green and pink centerpieces in a barn dining room">
-    <img class="bg" data-boost="1" style="object-position:87% 81%;transform-origin:89% 35%;" src="{{ site.baseurl }}/assets/images/portfolio/jenna-cal/jenna-cal-07.jpg" alt="Groom kissing a toddler on a downtown sidewalk while the bride laughs behind a cascading white orchid and dahlia bouquet">
     <img class="bg" data-boost="1" style="object-position:40% 41%;transform-origin:28% 44%;" src="{{ site.baseurl }}/assets/images/portfolio/lynn-aaron/lynn-aaron-19.jpg" alt="Snowy Sierra mountaintop wedding ceremony: couple kissing between two towering floral installations">
-    <img class="bg" data-boost="1" style="object-position:82% 17%;transform-origin:88% 1%;" src="{{ site.baseurl }}/assets/images/portfolio/mikayla-jeff/mikayla-jeff-04.jpg" alt="Three bridesmaids in lilac and plum standing in dappled forest light with green and lavender bouquets">
+    <img class="bg" data-boost="1" style="object-position:45% 39%;transform-origin:46% 12%;" src="{{ site.baseurl }}/assets/images/portfolio/katie-james/katie-james-08.jpg" alt="Stone-walled ceremony room: a couple holding hands before their officiant under a towering arch of blush, peach and cream blooms framing a tall window">
+    <img class="bg" data-boost="1" style="object-position:55% 50%;transform-origin:55% 36%;" src="{{ site.baseurl }}/assets/images/portfolio/tori-tucker/tori-tucker-13.jpg" alt="Lake Tahoe beach ceremony: bride reading her vows to a groom in a pink suit between two coral and burgundy floral installations, guests seated on the sand">
   </template>
 
   <div class="hero-boost" aria-hidden="true"></div>
@@ -96,18 +97,15 @@ the moment one pale photo wants it and another does not, the machinery is here.
   </div>
 
   {% comment %} One dot per photo, and the rotator counts THESE, not the images
-  in the DOM: photos 2-9 are still in the template when the page loads, so the
-  image count is not the slideshow length until the very end. {% endcomment %}
+  in the DOM: photos 2-5 are still in the template when the page loads, so the
+  image count is not the slideshow length until the very end. Cut a photo, cut
+  its dot, or the rotation runs on past the end of the slideshow. {% endcomment %}
   <div class="hero-dots">
     <button type="button" class="hd on" data-go="0" aria-label="Show photo 1"></button>
     <button type="button" class="hd" data-go="1" aria-label="Show photo 2"></button>
     <button type="button" class="hd" data-go="2" aria-label="Show photo 3"></button>
     <button type="button" class="hd" data-go="3" aria-label="Show photo 4"></button>
     <button type="button" class="hd" data-go="4" aria-label="Show photo 5"></button>
-    <button type="button" class="hd" data-go="5" aria-label="Show photo 6"></button>
-    <button type="button" class="hd" data-go="6" aria-label="Show photo 7"></button>
-    <button type="button" class="hd" data-go="7" aria-label="Show photo 8"></button>
-    <button type="button" class="hd" data-go="8" aria-label="Show photo 9"></button>
   </div>
 </header>
 

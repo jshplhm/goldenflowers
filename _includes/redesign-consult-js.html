@@ -33,8 +33,10 @@
     modal.classList.add('open');
     modal.setAttribute('aria-hidden','false');
     lockBody();
-    /* After any prefill (the estimator writes into #m-message on the click
-       that opens this), so the box is already the right height on arrival. */
+    /* After anything that runs on the opening click, so the box is already
+       the right height on arrival. (The estimator once prefilled #m-message
+       here; it now renders into its own read-only recap block instead, and
+       this stays for a reopen with their own half-written note in it.) */
     var f=modal.querySelector('form');
     if(f&&f._growMsg) f._growMsg();
     /* First VISIBLE control, not simply the first one in the markup. The close
@@ -311,8 +313,8 @@ function appendCommon_(params, form){
         r.addEventListener('change', syncRole);
       });
     }
-    /* The estimator prefills several lines here, and rows="3" clipped them.
-       Grow to fit on input and whenever the dialog opens. */
+    /* rows="3" clips a long note as they type it. Grow to fit on input and
+       whenever the dialog opens. */
     var msgEl=form.querySelector('#m-message');
     if(msgEl){
       var growMsg=function(){ if(msgEl.offsetParent===null) return; msgEl.style.height='auto'; msgEl.style.height=(msgEl.scrollHeight+2)+'px'; };

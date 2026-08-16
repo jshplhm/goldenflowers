@@ -315,6 +315,33 @@ copy:
   cta_button: Check your date
   cta_note: Availability first. It takes about a minute and costs nothing.
 
+  # THE HANDOFF. Tapping the button above opens the consultation form with a
+  # read-only recap of what was picked here, so nobody describes their wedding
+  # twice. These are LABELS only: every value beside them is generated from
+  # the answers, never typed. Reword freely, nothing here is parsed.
+  #
+  # It is deliberately NOT written in the couple's voice ("the range it gave
+  # me"): it is our tool's summary sitting inside our form, and the free-text
+  # box underneath is the only part they wrote.
+  handoff:
+    heading: From your estimate
+    # Why it cannot be typed in, said once, plainly. Editing the recap by hand
+    # would leave the range describing a wedding nobody picked, so the answers
+    # stay where the math is and the button below goes back to them. Nothing
+    # already filled in is lost: the form keeps it while the tool is open.
+    note: The range follows these answers. Anything else goes in the box below.
+    adjust: Adjust these answers
+    guests: Guests
+    party: Wedding party
+    party_none: None
+    personal: Family florals
+    ceremony: Ceremony
+    tables: Guest tables
+    reception: Reception installation
+    environmental: Other areas
+    range: Estimated range
+    under_min: Under the full-service minimum
+
   # Shown instead of a range when the scope lands under the minimum.
   under_min_label: Under our full-service minimum
   under_min_heading: What you have described sits below where we start.
