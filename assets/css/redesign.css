@@ -265,13 +265,17 @@ button.txt-link{background:none;border-top:0;border-left:0;border-right:0;cursor
   .hero-rot .bg{transition:none;animation:none!important;}
 }
 
-/* Indicator + pause. The pause is the WCAG 2.2.2 affordance for auto-advancing
-   motion, not decoration — don't drop it. */
+/* Indicator dots. There used to be a pause control here as the WCAG 2.2.2
+   affordance for auto-advancing motion; the owner removed it as clutter on
+   2026-08-16. What still stops the rotation is prefers-reduced-motion, which
+   holds photo 1 and never advances at all, plus a hidden tab. That is a
+   deliberate trade rather than an oversight: a visitor who has not set the OS
+   preference now has no way to stop the hero. To put it back, restore a button
+   with class .hd-pause in the .hero-dots row and its handler in
+   _layouts/redesign.html. */
 .hero-dots{position:absolute;z-index:4;right:clamp(20px,4vw,48px);bottom:clamp(48px,6.5vw,84px);display:flex;align-items:center;gap:10px;}
 .hero-dots .hd{width:8px;height:8px;padding:0;border-radius:50%;border:1px solid oklch(100% 0 0/.7);background:transparent;cursor:pointer;transition:background .3s;}
 .hero-dots .hd.on{background:oklch(100% 0 0);}
-.hero-dots .hd-pause{margin-left:6px;background:transparent;border:0;color:oklch(100% 0 0/.8);font-size:9px;letter-spacing:1px;line-height:1;cursor:pointer;}
-.hero-dots .hd-pause:hover{color:oklch(100% 0 0);}
 
 /* Small screens: the hero drops its "See our work" button and centres the dots.
    The button pointed at the portfolio while the visitor was already looking at
@@ -280,9 +284,7 @@ button.txt-link{background:none;border-top:0;border-left:0;border-right:0;cursor
    untouched -- this was never the booking button, and the header CTA is already
    behind the hamburger at this same width for the same reason (see .nav-r).
 
-   The pause is taken OUT of the flex flow rather than centred with the dots:
-   justify-content:center on the whole row would centre dots-plus-pause as one
-   group, which leaves the dots themselves sitting visibly left of true centre. */
+   Losing it is also what frees the row for the dots to centre. */
 @media(max-width:860px){
   .hero .hero-foot .btn{display:none;}
   /* Both offsets clear iOS Safari's bottom toolbar. .hero is height:100vh, and
@@ -294,8 +296,9 @@ button.txt-link{background:none;border-top:0;border-left:0;border-right:0;cursor
      hides and shows on scroll. env() adds the home-indicator inset when the
      site is opened standalone, where the toolbar is gone but the inset is not. */
   .hero-in{padding-bottom:clamp(84px,16vw,110px);}
+  /* Centring the row is now the whole job. It used to need the pause pulled out
+     of the flex flow first, or the dots sat left of centre to make room for it. */
   .hero-dots{left:0;right:0;bottom:calc(clamp(48px,8vw,64px) + env(safe-area-inset-bottom,0px));justify-content:center;}
-  .hero-dots .hd-pause{position:absolute;right:clamp(20px,4vw,48px);margin-left:0;}
 }
 
 /* ---------- SPLIT HERO (Our Story — deliberately not full-bleed) ---------- */

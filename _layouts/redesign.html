@@ -177,7 +177,6 @@
   var hero=document.getElementById('hero-rot'); if(!hero) return;
   var imgs=[].slice.call(hero.querySelectorAll('.bg'));
   var dots=[].slice.call(hero.querySelectorAll('.hero-dots .hd'));
-  var pauseBtn=hero.querySelector('.hd-pause');
   var pool=hero.querySelector('#hero-rest');
   var boostEl=hero.querySelector('.hero-boost');
   /* Count the DOTS, not the images. Photos 2-9 are parked in a <template> at
@@ -196,7 +195,7 @@
      short first flip was tried and cut: it announced that the hero moves, but
      it made the first photo the one nobody got to look at. */
   var HOLD=3200, FADE=500;
-  var i=0, timer=null, paused=false;
+  var i=0, timer=null;
   var still=window.matchMedia('(prefers-reduced-motion: reduce)');
 
   /* Pull photos out of the template as they are needed. Called one step ahead
@@ -247,7 +246,7 @@
   function start(first){
     clearInterval(timer);
     clearTimeout(timer);
-    if(paused || still.matches) return;
+    if(still.matches) return;
     if(first){
       var shown=0;
       try{ var fcp=performance.getEntriesByName('first-contentful-paint')[0];
@@ -262,12 +261,9 @@
   dots.forEach(function(d){
     d.addEventListener('click', function(){ show(parseInt(d.getAttribute('data-go'),10)); start(); });
   });
-  if(pauseBtn) pauseBtn.addEventListener('click', function(){
-    paused=!paused;
-    pauseBtn.innerHTML = paused ? '&#9654;' : '&#10073;&#10073;';
-    pauseBtn.setAttribute('aria-label', paused ? 'Play slideshow' : 'Pause slideshow');
-    start();
-  });
+  /* The visible pause control was removed at the owner's request. The rotation
+     still stops for two things: a hidden tab, below, and anyone whose system
+     asks for reduced motion, which holds photo 1 and never rotates at all. */
   document.addEventListener('visibilitychange', function(){
     if(document.hidden) clearInterval(timer); else start();
   });

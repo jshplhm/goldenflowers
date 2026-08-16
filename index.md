@@ -108,7 +108,6 @@ the moment one pale photo wants it and another does not, the machinery is here.
     <button type="button" class="hd" data-go="6" aria-label="Show photo 7"></button>
     <button type="button" class="hd" data-go="7" aria-label="Show photo 8"></button>
     <button type="button" class="hd" data-go="8" aria-label="Show photo 9"></button>
-    <button type="button" class="hd-pause" aria-label="Pause slideshow">&#10073;&#10073;</button>
   </div>
 </header>
 
