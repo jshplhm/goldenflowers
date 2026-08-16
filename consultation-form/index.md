@@ -100,21 +100,25 @@ sitemap: false
           <label class="not-couple"><input type="checkbox" data-not-couple> I'm filling this out for someone else</label>
           <div class="reach-reveal" data-couple-reveal>
             <div class="reach-inner">
-              <label for="role">Who's filling this out?</label>
-              <!-- Label and value differ on purpose. The Apps Script whitelists
+              <!-- Word-buttons, not a select: three options is under the count
+                   where a dropdown earns its collapse, and this is one tap
+                   instead of tap-scroll-tap on a phone. Radios, since exactly
+                   one can be true.
+
+                   LABEL AND VALUE DIFFER ON PURPOSE. The Apps Script whitelists
                    the exact submitted string, and editing this file deploys
-                   nothing, so changing the value here would start rejecting real
-                   leads until the script is redeployed. Reword the label freely;
-                   the value is the wire format. -->
-              <select id="role" name="role" disabled required>
-                <option value="" disabled selected>Choose one</option>
-                <option>The wedding planner</option>
-                <option>Family or a friend of the couple</option>
-                <option>Someone else</option>
-              </select>
+                   nothing, so a changed `value` is rejected as spam until the
+                   script is redeployed. Reword the visible text freely. -->
+              <fieldset class="reach-fieldset">
+                <legend>Who's filling this out?</legend>
+                <div class="reach-seg role-seg">
+                  <label><input type="radio" name="role" value="The wedding planner" disabled required>The wedding planner</label>
+                  <label><input type="radio" name="role" value="Family or a friend of the couple" disabled required>Family or a friend</label>
+                  <label><input type="radio" name="role" value="Someone else" disabled required>Someone else</label>
+                </div>
+              </fieldset>
               <label for="couple" class="stack-label">Couple's names <span class="opt">(optional)</span></label>
-              <!-- An example, not a second question: the label already asked one. -->
-              <input type="text" id="couple" name="couple" placeholder="Katie and Aaron" autocomplete="off" disabled>
+              <input type="text" id="couple" name="couple" placeholder="Who's getting married?" autocomplete="off" disabled>
             </div>
           </div>
         </div>

@@ -1029,7 +1029,11 @@ body.modal-open{overflow:hidden;}
 .reach-fieldset legend{display:block;font-size:.82rem;letter-spacing:.03em;color:var(--fg2);margin-bottom:8px;padding:0;}
 .reach-seg{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
 .reach-seg label{display:flex;align-items:center;justify-content:center;margin:0;font-size:1rem;letter-spacing:0;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:13px 16px;cursor:pointer;user-select:none;-webkit-user-select:none;transition:border-color .2s,background .2s,box-shadow .2s;}
-.reach-seg input[type="checkbox"]{position:absolute;opacity:0;width:1px;height:1px;padding:0;border:0;}
+.reach-seg input[type="checkbox"],.reach-seg input[type="radio"]{position:absolute;opacity:0;width:1px;height:1px;padding:0;border:0;}
+/* "Who's filling this out?" reuses these word-buttons as a radio group. One per
+   row rather than the contact chooser's pairs: these labels are sentences, not
+   single words, and they would wrap at two across on a phone. */
+.role-seg{grid-template-columns:1fr;}
 .reach-seg label:hover{border-color:oklch(60% .04 145);}
 /* Selected state twice over: the .sel class from JS, :has() for the no-JS
    page form. Separate rules on purpose — a browser without :has() must not

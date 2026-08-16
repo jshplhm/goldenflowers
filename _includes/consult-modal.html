@@ -49,21 +49,28 @@
           <label class="not-couple"><input type="checkbox" data-not-couple> I'm filling this out for someone else</label>
           <div class="reach-reveal" data-couple-reveal>
             <div class="reach-inner">
-              <label for="m-role">Who's filling this out?</label>
-              {%- comment -%} Label and value differ on purpose: the Apps Script
-              whitelists the exact submitted string, so reword labels freely but
-              never the values. {%- endcomment -%}
-              <select id="m-role" name="role" disabled required>
-                <option value="" disabled selected>Choose one</option>
-                <option>The wedding planner</option>
-                <option>Family or a friend of the couple</option>
-                <option>Someone else</option>
-              </select>
+              {%- comment -%} Word-buttons, not a select: three options is under
+              the count where a dropdown earns its collapse, and this is one tap
+              instead of tap-scroll-tap on a phone. Same control the contact
+              chooser below uses, so the step reads as one system (radios here,
+              since exactly one can be true).
+
+              LABEL AND VALUE DIFFER ON PURPOSE: the Apps Script whitelists the
+              exact submitted string, so reword the visible text freely, but a
+              changed `value` is rejected as spam until the script is redeployed.
+              "Someone else" stays: without an escape hatch a venue coordinator
+              or a photographer has to mis-pick, which is worse data than one
+              vague row. {%- endcomment -%}
+              <fieldset class="reach-fieldset">
+                <legend>Who's filling this out?</legend>
+                <div class="reach-seg role-seg">
+                  <label><input type="radio" name="role" value="The wedding planner" disabled required>The wedding planner</label>
+                  <label><input type="radio" name="role" value="Family or a friend of the couple" disabled required>Family or a friend</label>
+                  <label><input type="radio" name="role" value="Someone else" disabled required>Someone else</label>
+                </div>
+              </fieldset>
               <label for="m-couple" class="stack-label">Couple's names <span class="opt">(optional)</span></label>
-              {%- comment -%} An example, not a second question: the label above
-              already asked one, and a name pair shows the expected shape at a
-              glance. {%- endcomment -%}
-              <input type="text" id="m-couple" name="couple" placeholder="Katie and Aaron" autocomplete="off" disabled>
+              <input type="text" id="m-couple" name="couple" placeholder="Who's getting married?" autocomplete="off" disabled>
             </div>
           </div>
         </div>

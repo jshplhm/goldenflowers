@@ -272,11 +272,13 @@ function appendCommon_(params, form){
        optional couple's-names field. Same .open/.reach-reveal mechanics as the
        contact chooser. The input is disabled while hidden so a stale value can
        never ride along on a later submit. */
-    /* The SELECT, not the hidden default: both carry name="role", and binding
-       by name grabbed the hidden one first. Bound by tag+name rather than by
-       #m-role so the standalone /consultation-form page (a hand-maintained
-       copy of this form, with its own ids) gets the same behavior. */
-    var roleEl=form.querySelector('select[name="role"]');
+    /* The RADIOS, not the hidden default: all of them carry name="role", and
+       binding by name alone grabbed the hidden one first. Bound by type+name
+       rather than by id so the standalone /consultation-form page (a
+       hand-maintained copy of this form, with its own ids) behaves the same.
+       A hidden input never joins a radio group for validation, so `required`
+       on the radios still means "pick one" while the default rides along. */
+    var roleOpts=form.querySelectorAll('input[type="radio"][name="role"]');
     /* "I'm not one of the couple" gates BOTH the role select and the couple's
        names field. Exactly one `role` is ever submitted: the hidden default
        when unticked, the select when ticked, the other always disabled.
@@ -285,18 +287,29 @@ function appendCommon_(params, form){
     var coupleBlock=form.querySelector('[data-couple-reveal]');
     var notCouple=form.querySelector('[data-not-couple]');
     var roleDefault=form.querySelector('[data-role-default]');
-    if(coupleBlock&&notCouple&&roleEl&&roleDefault){
+    if(coupleBlock&&notCouple&&roleOpts.length&&roleDefault){
       var coupleInput=form.querySelector('[name="couple"]');
       var syncRole=function(){
         var show=notCouple.checked;
         coupleBlock.classList.toggle('open', show);
         roleDefault.disabled=show;
-        roleEl.disabled=!show;
-        if(coupleInput) coupleInput.disabled=!show;
-        if(!show){ roleEl.value=''; if(coupleInput) coupleInput.value=''; }
+        Array.prototype.forEach.call(roleOpts,function(r){
+          r.disabled=!show;
+          if(!show) r.checked=false;      /* never let a stale pick ride along */
+          var l=r.closest('label');
+          if(l) l.classList.toggle('sel', r.checked);  /* .sel doubles :has() */
+        });
+        if(coupleInput){
+          coupleInput.disabled=!show;
+          if(!show) coupleInput.value='';
+        }
       };
       syncRole();
       notCouple.addEventListener('change', syncRole);
+      /* Repaint the selected pill as they choose. */
+      Array.prototype.forEach.call(roleOpts,function(r){
+        r.addEventListener('change', syncRole);
+      });
     }
     /* The estimator prefills several lines here, and rows="3" clipped them.
        Grow to fit on input and whenever the dialog opens. */
