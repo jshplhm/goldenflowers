@@ -712,6 +712,13 @@ function sendAutoReply_(p, isUpdate) {
   if (venue) rows.push(['Venue', venue]);
   if (String(p.aesthetic || '').trim()) rows.push(['Style', String(p.aesthetic).trim()]);
   if (String(p.budget || '').trim()) rows.push(['Budget', String(p.budget).trim()]);
+  // A number here means they ticked Text as well as Email (the form only
+  // submits the phone when Text is chosen). Reading it back confirms we have
+  // it right, and it is the only place their number appears on the copy we
+  // are BCC'd: the internal alert with the Phone line only fires for leads
+  // that gave no email at all.
+  var phone = fmtPhone_(p.phone);
+  if (phone) rows.push(['Phone / text', phone]);
   // Their free-text note gets its own block (it can be long / multi-line), so
   // it all lives in this one email and they never wonder if it went through.
   var note = String(p.message || '').trim();
@@ -837,10 +844,13 @@ function fmtWhen_(v) {
   return String(v || '');
 }
 
-/** Both daily digests, run by the single time-driven trigger. */
+/** The daily digest, run by the single time-driven trigger.
+ *  Spam is NOT digested by design (2026-08-15): the bot volume made a daily
+ *  list of it pure noise. Everything caught is still written to the Spam tab
+ *  in full, so a false positive is recoverable by looking there. Do not
+ *  restore a spam email without asking. */
 function dailyDigests() {
   partialLeadsDigest_();
-  spamDigest_();
 }
 
 /** One email per day listing partials that landed since the last digest.
@@ -912,48 +922,6 @@ function partialLeadsDigest_() {
     parts.join('\n')
   );
   props.setProperty('partialDigestAt', String(newest));
-}
-
-/** One email per day IF anything new landed on the Spam tab since the last
- *  digest — so false positives actually get reviewed. */
-function spamDigest_() {
-  var ss = SpreadsheetApp.getActive();
-  var sheet = ss.getSheetByName(SPAM_SHEET);
-  if (!sheet || sheet.getLastRow() < 2) return;
-  var headerRow = ensureHeaders_(sheet);
-  var cols = colMap_(headerRow);
-  var values = sheet.getRange(2, 1, sheet.getLastRow() - 1, sheet.getLastColumn()).getValues();
-  var reasonCol = headerRow.indexOf('Reason'); // 0-based, -1 if absent
-
-  var props = PropertiesService.getScriptProperties();
-  var last = Number(props.getProperty('spamDigestAt') || 0);
-  var newest = last;
-  var fresh = [];
-
-  values.forEach(function (row) {
-    var submitted = row[cols['Submitted'] - 1];
-    if (!(submitted instanceof Date)) return;
-    if (submitted.getTime() > newest) newest = submitted.getTime();
-    if (submitted.getTime() <= last) return;
-    fresh.push(
-      '• ' + (row[cols['Name'] - 1] || '(no name)') + ' — ' + contactLine_(row, cols) + '\n' +
-      '  Wedding date: ' + (fmtWeddingDate_(row[cols['Wedding Date'] - 1]) || '(none)') +
-      '  ·  Caught: ' + fmtWhen_(submitted) +
-      (reasonCol > -1 ? '\n  Why: ' + (row[reasonCol] || '') : '')
-    );
-  });
-
-  if (!fresh.length) { props.setProperty('spamDigestAt', String(newest)); return; }
-
-  sendMail_(
-    fresh.length + ' new spam submission' + (fresh.length > 1 ? 's' : '') + ' — worth a quick look',
-    'These were caught by the spam rules since the last digest. Real couples\n' +
-    'are never deleted, so if one of these looks legitimate it just needs a\n' +
-    'reply — everything they typed is on the Spam tab.\n\n' +
-    fresh.join('\n') + '\n\n' +
-    'Spam tab: ' + ss.getUrl()
-  );
-  props.setProperty('spamDigestAt', String(newest));
 }
 
 /** Run once from the editor after deploying. Replaces the old 30-minute
