@@ -204,18 +204,28 @@ button.txt-link{background:none;border-top:0;border-left:0;border-right:0;cursor
    never got past ~1.047 before the photo was swapped out, and the movement
    read as weaker than the number suggested.
 
-   THROW is 1.06 over a 3700ms window, roughly two and a half times the movement
-   per second of the 1.05-over-7200ms this replaces. That is deliberate, not a
-   side effect of shortening the hold: the brief was that the hero read as
-   boring, and a shorter hold on its own makes the photo change more often
-   without making any one photo feel more alive.
+   THROW is 1.07 over a 3700ms window, about 2.7x the movement per second of the
+   1.05-over-7200ms this replaces. That is deliberate, not a side effect of
+   shortening the hold: the brief was that the hero read as boring, and a
+   shorter hold on its own makes the photo change more often without making any
+   one photo feel more alive.
+
+   Note the throw and the window move together or the push changes speed behind
+   your back. Holding 1.06 while the hold went 3000 -> 3200 made the zoom SLOWER
+   (0.0171 to 0.0162 of scale per second), which is the opposite of the intent.
+   Raising it to 1.07 puts the rate back at 0.0189/s.
+
+   Do not push this much past 1.07. The zoom also crops: at 1.07 the frame loses
+   3.5% off each edge by the end, and with a per-photo origin pinned near a
+   corner (mikayla-jeff sits at 88% 1%) a bigger scale drags the subject toward
+   that corner rather than simply enlarging it.
 
    The ORIGIN of the push is per-photo and lives inline in index.md, because a
    centred zoom drifts away from an off-centre subject. Do not add a
    transform-origin here; it would apply to whichever photo happened to be in
    that slot. */
 .hero-rot .bg.kb-run{animation:hero-kb 3700ms linear forwards;}
-@keyframes hero-kb{from{transform:scale(1)}to{transform:scale(1.06)}}
+@keyframes hero-kb{from{transform:scale(1)}to{transform:scale(1.07)}}
 
 /* Photo 3 is high-key (pale sky, cream suit, white dress) and the standard
    scrim leaves the headline thin on it, so deepen it while that photo is up.
