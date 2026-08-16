@@ -32,6 +32,11 @@
         and charge nobody the cost of saying so. Ticking the box reveals the
         role select and the optional couple's-names field together.
 
+        The label is phrased forwards ("for someone else") rather than as a
+        negation about the visitor: nearly everyone reading it IS the couple,
+        and they should be able to dismiss it without parsing a "not". It also
+        keeps bride/groom out of the first ten seconds of contact.
+
         The wire format did NOT change: unticked, the hidden input submits
         "One of the couple"; ticked, it is disabled and the select submits one
         of the other three. Every value is still in the ROLES whitelist in
@@ -41,7 +46,7 @@
         {%- endcomment -%}
         <div class="field-full">
           <input type="hidden" name="role" value="One of the couple" data-role-default>
-          <label class="not-couple"><input type="checkbox" data-not-couple> I'm not one of the couple</label>
+          <label class="not-couple"><input type="checkbox" data-not-couple> I'm filling this out for someone else</label>
           <div class="reach-reveal" data-couple-reveal>
             <div class="reach-inner">
               <label for="m-role">Who's filling this out?</label>
@@ -55,7 +60,10 @@
                 <option>Someone else</option>
               </select>
               <label for="m-couple" class="stack-label">Couple's names <span class="opt">(optional)</span></label>
-              <input type="text" id="m-couple" name="couple" placeholder="Who's getting married?" autocomplete="off" disabled>
+              {%- comment -%} An example, not a second question: the label above
+              already asked one, and a name pair shows the expected shape at a
+              glance. {%- endcomment -%}
+              <input type="text" id="m-couple" name="couple" placeholder="Katie and Aaron" autocomplete="off" disabled>
             </div>
           </div>
         </div>

@@ -272,7 +272,11 @@ function appendCommon_(params, form){
        optional couple's-names field. Same .open/.reach-reveal mechanics as the
        contact chooser. The input is disabled while hidden so a stale value can
        never ride along on a later submit. */
-    var roleEl=form.querySelector('#m-role');   /* the select, NOT the hidden default: both are name="role" */
+    /* The SELECT, not the hidden default: both carry name="role", and binding
+       by name grabbed the hidden one first. Bound by tag+name rather than by
+       #m-role so the standalone /consultation-form page (a hand-maintained
+       copy of this form, with its own ids) gets the same behavior. */
+    var roleEl=form.querySelector('select[name="role"]');
     /* "I'm not one of the couple" gates BOTH the role select and the couple's
        names field. Exactly one `role` is ever submitted: the hidden default
        when unticked, the select when ticked, the other always disabled.
@@ -282,7 +286,7 @@ function appendCommon_(params, form){
     var notCouple=form.querySelector('[data-not-couple]');
     var roleDefault=form.querySelector('[data-role-default]');
     if(coupleBlock&&notCouple&&roleEl&&roleDefault){
-      var coupleInput=form.querySelector('#m-couple');
+      var coupleInput=form.querySelector('[name="couple"]');
       var syncRole=function(){
         var show=notCouple.checked;
         coupleBlock.classList.toggle('open', show);

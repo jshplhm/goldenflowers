@@ -75,26 +75,46 @@ sitemap: false
           <input type="text" id="name" name="name" placeholder="Your name" autocomplete="name" required>
         </div>
         <!-- Who we're talking to changes how Brittany follows up, so it's a
-             closed set the server can whitelist, not free text. Anyone who
-             ISN'T the couple reveals an optional couple's-names field. -->
+             closed set the server can whitelist, not free text. Almost every
+             visitor IS the couple, so we assume that and charge nobody the
+             cost of saying so: ticking the box reveals the role select and the
+             optional couple's-names field together. Kept identical to the
+             lightbox in _includes/consult-modal.html — this page is a
+             hand-maintained copy of that form, not an include of it, and the
+             two silently drifting apart is how this block ended up a required
+             dropdown here long after the lightbox stopped being one.
+
+             Unticked, the hidden input submits "One of the couple"; ticked, JS
+             disables it and the select submits one of the other three. Every
+             value is in the ROLES whitelist in consultation-form-doPost.gs, so
+             no redeploy is needed.
+
+             Without JS (this page posts natively, unlike the lightbox) the
+             select stays disabled and the reveal stays shut, so the box does
+             nothing and role submits as "One of the couple". Deliberate: a
+             disabled required control is skipped by native validation, whereas
+             a visible-but-unfocusable required one blocks the submit entirely.
+             Recording an optional field's default beats refusing the lead. -->
         <div class="field-full">
-          <label for="role">Who's filling this out?</label>
-          <select id="role" name="role" required>
-            <option value="" disabled selected>Choose one</option>
-            <!-- Label and value differ on purpose. The Apps Script whitelists
-                 the exact submitted string, and editing this file deploys
-                 nothing, so changing the value here would start rejecting real
-                 leads until the script is redeployed. Reword the label freely;
-                 the value is the wire format. -->
-            <option value="One of the couple">The couple</option>
-            <option>The wedding planner</option>
-            <option>Family or a friend of the couple</option>
-            <option>Someone else</option>
-          </select>
+          <input type="hidden" name="role" value="One of the couple" data-role-default>
+          <label class="not-couple"><input type="checkbox" data-not-couple> I'm filling this out for someone else</label>
           <div class="reach-reveal" data-couple-reveal>
             <div class="reach-inner">
-              <label for="couple">Couple's names <span class="opt">(optional)</span></label>
-              <input type="text" id="couple" name="couple" placeholder="Who's getting married?" autocomplete="off">
+              <label for="role">Who's filling this out?</label>
+              <!-- Label and value differ on purpose. The Apps Script whitelists
+                   the exact submitted string, and editing this file deploys
+                   nothing, so changing the value here would start rejecting real
+                   leads until the script is redeployed. Reword the label freely;
+                   the value is the wire format. -->
+              <select id="role" name="role" disabled required>
+                <option value="" disabled selected>Choose one</option>
+                <option>The wedding planner</option>
+                <option>Family or a friend of the couple</option>
+                <option>Someone else</option>
+              </select>
+              <label for="couple" class="stack-label">Couple's names <span class="opt">(optional)</span></label>
+              <!-- An example, not a second question: the label already asked one. -->
+              <input type="text" id="couple" name="couple" placeholder="Katie and Aaron" autocomplete="off" disabled>
             </div>
           </div>
         </div>

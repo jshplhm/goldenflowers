@@ -1606,7 +1606,13 @@ body.nav-hidden .venue-breadcrumb{top:0;}
 /* Consult form: "I'm not one of the couple" checkbox, and a message box that
    grows to its content (the estimator prefills several lines; rows="3" clipped
    them). overflow-y:hidden stops a scrollbar flashing mid-resize. */
-.modal .not-couple{display:flex;align-items:center;gap:10px;font-size:.95rem;color:var(--fg2);cursor:pointer;padding:2px 0;}
-.modal .not-couple input{width:auto;margin:0;flex:none;accent-color:var(--accent);width:17px;height:17px;}
-.modal .stack-label{margin-top:14px;}
+/* "I'm filling this out for someone else" — the assumed-couple opt-out.
+   Both selectors on purpose: the lightbox and the standalone
+   /consultation-form page are separate copies of the same form, and a rule
+   that lands on only one of them is exactly how they drift. Each is a class
+   deeper than the generic `.modal label` / `.form-section input` rules it has
+   to beat, so the checkbox stays a checkbox and the label stays inline. */
+.modal .not-couple,.form-section .not-couple{display:flex;align-items:center;gap:10px;font-size:.95rem;color:var(--fg2);cursor:pointer;padding:2px 0;}
+.modal .not-couple input,.form-section .not-couple input{margin:0;flex:none;accent-color:var(--accent);width:17px;height:17px;padding:0;}
+.modal .stack-label,.form-section .stack-label{margin-top:14px;}
 .modal textarea#m-message{overflow-y:hidden;min-height:calc(3lh + 30px);}
