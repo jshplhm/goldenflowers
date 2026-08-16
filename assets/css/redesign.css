@@ -277,16 +277,21 @@ button.txt-link{background:none;border-top:0;border-left:0;border-right:0;cursor
 .hero-dots .hd{width:8px;height:8px;padding:0;border-radius:50%;border:1px solid oklch(100% 0 0/.7);background:transparent;cursor:pointer;transition:background .3s;}
 .hero-dots .hd.on{background:oklch(100% 0 0);}
 
-/* Small screens: the hero drops its "See our work" button and centres the dots.
-   The button pointed at the portfolio while the visitor was already looking at
-   the portfolio, and it crowded the bottom of the frame next to nine dots.
-   Losing it is also what frees the row for the dots to centre. Booking is
+/* Small screens: the HOME hero drops its "See our work" button and centres the
+   dots. The button pointed at the portfolio while the visitor was already
+   looking at the portfolio, and it crowded the bottom of the frame next to nine
+   dots. Losing it is also what frees the row for the dots to centre. Booking is
    untouched -- this was never the booking button, and the header CTA is already
    behind the hamburger at this same width for the same reason (see .nav-r).
 
-   Losing it is also what frees the row for the dots to centre. */
+   SCOPED TO .hero-rot ON PURPOSE (2026-08-16). This was `.hero .hero-foot .btn`,
+   which is every hero on the site, so it also swallowed "Jump to pricing" in the
+   /weddings hero. Neither reason above applies there: that button is the reason
+   most people open the page, it points DOWN the page rather than at the page
+   they are on, and .hero-land has no dots to crowd. Any new hero button is
+   visible on mobile by default now; hide it here only with a reason of its own. */
 @media(max-width:860px){
-  .hero .hero-foot .btn{display:none;}
+  .hero-rot .hero-foot .btn{display:none;}
   /* Both offsets clear iOS Safari's bottom toolbar. .hero is height:100vh, and
      on iOS 100vh is the viewport with the chrome HIDDEN, so the last ~60pt of
      the hero lives behind the toolbar and anything anchored near the bottom
