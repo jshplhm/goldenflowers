@@ -315,8 +315,8 @@ copy:
   under_min_body: Our full-service minimum is $7,500, and what you have
     described comes in under it. That is not a judgment about your wedding. It
     means the way we work, with a full team on site from load-in through
-    breakdown, is more than the scope you have in mind needs. Here is who we
-    would point you to instead.
+    breakdown, is more than the scope you have in mind needs. If the plan is
+    still taking shape, or you think we have read it wrong, tell us anyway.
   under_min_cta: Ask us anyway
 
   # The referral path. When `enabled: true` the under-minimum panel offers
@@ -326,7 +326,7 @@ copy:
   # NAME AND URL ARE PLACEHOLDERS. Do not ship a referral to a studio that has
   # not agreed to receive one.
   under_min_referral:
-    enabled: true
+    enabled: false
     label: Somewhere better suited
     name: "[Partner studio name]"
     url: ""
