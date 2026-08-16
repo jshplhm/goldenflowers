@@ -301,6 +301,16 @@ copy:
 
   result_label: Your planning range
   result_caption_prefix: Based on
+
+  # Before anyone has touched a control, the panel is showing OUR example
+  # wedding, not theirs, so it must not be labeled "your planning range."
+  # These take over on load and after "Start over"; `result_label` and
+  # `result_caption_prefix` above take over on the first input.
+  start_label: An example, to start
+  start_caption_prefix: A wedding of
+  # Deliberately not "change anything below": the inputs are below the panel on
+  # a phone and beside it on a desktop.
+  start_caption_suffix: Change anything and the number becomes yours.
   allocation_label: Where it goes
   cta_button: Check your date
   cta_note: Availability first. It takes about a minute and costs nothing.

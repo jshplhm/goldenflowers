@@ -162,7 +162,11 @@
 .es-stick-l span{display:block;font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--mute);font-weight:500;}
 .es-stick-l b{display:block;font-family:var(--d);font-weight:500;font-size:1.12rem;letter-spacing:-.015em;line-height:1.15;margin-top:2px;font-variant-numeric:tabular-nums;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .es-stick .es-cta{width:auto;margin:0;flex:none;padding:14px 20px;font-size:.8rem;}
-@media(max-width:1020px){ .es-stick{display:flex;} .es-page{padding-bottom:72px;} }
+.es-mark-top{height:0;}
+/* No page-level padding reserved for the bar: it now only rides the input
+   column, and hides again before the result panel, so it never overlaps the
+   end of the component. */
+@media(max-width:1020px){ .es-stick{display:flex;} }
 
 @media(prefers-reduced-motion:reduce){
   .es-seg,.es-opt,.es-chip,.es-chip .es-plus,.es-opt .es-mark,.es-opt .es-mark::after,.es-stick{transition:none;}
@@ -188,6 +192,12 @@
 
   <!-- ============ INPUTS ============ -->
   <form class="es-inputs" id="es-form" novalidate>
+
+    {%- comment -%} Zero-height marker for the mobile sticky bar. An
+    IntersectionObserver on the tool itself cannot tell "not yet scrolled to"
+    from "scrolled past"; watching a flat line and reading its
+    boundingClientRect can. {%- endcomment -%}
+    <div class="es-mark-top" id="es-top" aria-hidden="true"></div>
 
     <section class="es-blk">
       <div class="es-blk-h">{% assign B = E.blocks[0] %}<span class="es-ico">{% include icon.html name=B.icon %}</span><h2>{{ B.title }}</h2></div>
@@ -378,7 +388,7 @@
     <span id="es-stick-label">{{ C.result_label }}</span>
     <b id="es-stick-fig"></b>
   </div>
-  <button type="button" class="es-cta" data-consult-open>{{ C.cta_button }} &rarr;</button>
+  <button type="button" class="es-cta" id="es-stick-cta" data-consult-open>{{ C.cta_button }} &rarr;</button>
 </div>
 
 <section class="es-notes">
@@ -525,8 +535,13 @@
   /* "10 to 13" when the seating range gives two answers, "10" when it does not. */
   function tableCount(r){ return r.tLow === r.tHigh ? String(r.tLow) : r.tLow + '\u2013' + r.tHigh; }
 
-  var stick, panelSeen = false, pastTop = false, isUnder = false;
-  function toggle(){ if(stick) stick.classList.toggle('on', pastTop && !panelSeen && !isUnder); }
+  /* The bar rides the input column and nothing else: it appears when the top
+     of the form goes off the top of the screen, and hides again the moment the
+     result panel arrives, which is where the same range and the same button
+     already live. `touched` also decides whether the range may be called
+     theirs; on load it is our example. */
+  var stick, panelDone = false, inTool = false, touched = false;
+  function toggle(){ if(stick) stick.classList.toggle('on', inTool && !panelDone); }
 
   var last = null;
   function render(){
@@ -551,29 +566,39 @@
       var low = Math.max(r.low, S.minimum), clamped = r.low < S.minimum;
       $('es-low').textContent  = money(low);
       $('es-high').textContent = money(r.high);
-      $('es-caption').textContent = CFG.copy.result_caption_prefix + ' ' + r.guests +
-        ' guests, ' + tableCount(r) + ' guest ' + (r.tHigh === 1 ? 'table' : 'tables') +
-        ', and everything you have selected.';
+      var seats = r.guests + ' guests and ' + tableCount(r) + ' guest ' +
+        (r.tHigh === 1 ? 'table' : 'tables');
+      $('es-range-label').textContent = touched ? CFG.copy.result_label : CFG.copy.start_label;
+      $('es-caption').textContent = touched
+        ? CFG.copy.result_caption_prefix + ' ' + seats + ', and everything you have selected.'
+        : CFG.copy.start_caption_prefix + ' ' + seats + '. ' + CFG.copy.start_caption_suffix;
       /* Says out loud why the rows below can add up to less than the figure
          above them, which is what clamping to the floor does. */
       $('es-floornote').hidden = !clamped;
       if(clamped) $('es-floornote').textContent = 'What you have selected prices out just under our ' +
         money(S.minimum) + ' full-service minimum, so the range starts there.';
-      $('es-stick-label').textContent = CFG.copy.result_label;
+      $('es-stick-label').textContent = touched ? CFG.copy.result_label : CFG.copy.start_label;
       $('es-stick-fig').textContent = money(low) + ' to ' + money(r.high);
     } else {
       $('es-stick-label').textContent = CFG.copy.under_min_label;
       $('es-stick-fig').textContent = 'Below ' + money(S.minimum);
     }
+    /* Under the minimum the bar stays put and changes what it says. Vanishing
+       mid-drag reads as a broken page, and the button still has somewhere
+       honest to go. */
+    $('es-stick-cta').innerHTML = under ? CFG.copy.under_min_cta : CFG.copy.cta_button + ' &rarr;';
     /* Under the minimum, the referral becomes the whole panel body and the
        main CTA steps aside. Without a referral configured it falls back to
        "Ask us anyway" on the primary button, which is the convert-up posture. */
     var ref = $('es-ref'), ask = $('es-ask');
     if(ref){ ref.hidden = !under; ask.hidden = !under; }
-    $('es-cta').hidden = under;
+    /* Only the referral may take the primary button away. With the referral
+       off, hiding it too left the under-minimum panel with no button at all:
+       a dead end at the exact moment we want to hear from someone whose plan
+       is still taking shape. */
+    $('es-cta').hidden = under && !!ref;
     $('es-cta-note').hidden = under;
-    if(!under) $('es-cta').innerHTML = CFG.copy.cta_button + ' &rarr;';
-    isUnder = under;
+    $('es-cta').innerHTML = under ? CFG.copy.under_min_cta : CFG.copy.cta_button + ' &rarr;';
     toggle();
 
     /* allocation */
@@ -590,11 +615,13 @@
     }).join('');
   }
 
-  form.addEventListener('input', render);
-  form.addEventListener('change', render);
+  function onEdit(){ touched = true; render(); }
+  form.addEventListener('input', onEdit);
+  form.addEventListener('change', onEdit);
 
   $('es-reset').addEventListener('click', function(){
     form.reset();
+    touched = false;
     render();
     form.scrollIntoView({ behavior:'smooth', block:'start' });
   });
@@ -663,21 +690,46 @@
     b.addEventListener('click', handoff);
   });
 
-  /* --- mobile sticky bar: show it once the inputs are in play, hide it
-     while the full result panel is on screen so nothing is doubled.
+  /* --- mobile sticky bar --------------------------------------------------
+     It exists for the stretch where the range is changing and the panel that
+     shows it is off screen: while you are working the inputs. So it is on
+     between the top of the form and the top of the result panel, and nowhere
+     else.
 
-     The bar appears once the top of the TOOL has scrolled away. It used to
-     watch .es-head, the standalone page's own heading, which does not exist
-     when the component is embedded on Process & Pricing: querySelector
-     returned null, observe() threw, and everything after it in this IIFE --
-     including the first render() -- never ran, so the panel sat blank until
-     you touched a control. Anchor on an element the component itself owns,
-     and guard anyway. */
+     Both bounds need a DIRECTION, which `isIntersecting` alone does not give
+     you: an element off the bottom of the screen and one off the top both
+     report false. Watching .es-wrap that way had the bar exactly inverted,
+     riding the hero on load (the tool was below the fold, so "not visible"
+     read as "scrolled past") and then hiding as soon as you reached the
+     inputs. Reading boundingClientRect.top on the crossing tells the two
+     apart. Watch a zero-height marker, not the block itself, so the answer
+     does not depend on how tall the block is.
+
+     (History: this once watched .es-head, the standalone page's own heading,
+     which does not exist when the component is embedded on Process & Pricing.
+     querySelector returned null, observe() threw, and everything after it in
+     this IIFE -- including the first render() -- never ran, so the panel sat
+     blank until you touched a control. Anchor on elements the component owns,
+     and guard anyway.) */
   stick = $('es-stick');
-  var panel = $('es-panel'), tool = document.querySelector('.es-wrap');
-  if('IntersectionObserver' in window && panel && tool){
-    new IntersectionObserver(function(e){ panelSeen = e[0].isIntersecting; toggle(); }, { threshold:0.25 }).observe(panel);
-    new IntersectionObserver(function(e){ pastTop = !e[0].isIntersecting; toggle(); }, { threshold:0 }).observe(tool);
+  var panel = $('es-panel'), topMark = $('es-top');
+  if('IntersectionObserver' in window && panel && topMark){
+    /* Past the top of the form, and not back above it. */
+    new IntersectionObserver(function(e){
+      var en = e[0];
+      inTool = !en.isIntersecting && en.boundingClientRect.top < 0;
+      toggle();
+    }, { threshold:0 }).observe(topMark);
+    /* Arrived at the panel, or already scrolled by it. Threshold stays at 0
+       and the handoff point comes from rootMargin instead: the panel is
+       taller than a phone screen, so a ratio threshold could never be met.
+       Latching on "scrolled by" keeps the bar from flashing back for the
+       honesty notes underneath. */
+    new IntersectionObserver(function(e){
+      var en = e[0];
+      panelDone = en.isIntersecting || en.boundingClientRect.top < 0;
+      toggle();
+    }, { threshold:0, rootMargin:'0px 0px -25% 0px' }).observe(panel);
   }
 
   render();
