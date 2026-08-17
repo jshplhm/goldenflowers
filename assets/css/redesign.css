@@ -638,9 +638,20 @@ button.txt-link{background:none;border-top:0;border-left:0;border-right:0;cursor
 .wd-mosaic .mo-6{grid-column:span 6;}
 .wd-mosaic .mo-3{grid-column:span 3;}
 .wd-mosaic .mo-2{grid-column:span 2;}
-.wd-mosaic .mo-6 img{aspect-ratio:16/9;}
-.wd-mosaic .mo-3 img{aspect-ratio:4/5;}
-.wd-mosaic .mo-2 img{aspect-ratio:3/4;}
+/* Scoped to the multi-column layout on purpose. These fixed ratios are what
+   makes the desktop grid line up; the phone column wants each photo's own
+   ratio instead. Cancelling them inside the phone rule with
+   "aspect-ratio:auto" is what we used to do, and it silently discarded the
+   width/height attributes the browser derives its placeholder box from: an
+   author "auto" beats the UA's img[width][height] rule, so every unloaded
+   photo measured 0px tall, the whole gallery collapsed into the first
+   viewport, and loading="lazy" deferred nothing. Keeping them out of the
+   phone cascade entirely lets the attribute ratio do its job. */
+@media(min-width:601px){
+  .wd-mosaic .mo-6 img{aspect-ratio:16/9;}
+  .wd-mosaic .mo-3 img{aspect-ratio:4/5;}
+  .wd-mosaic .mo-2 img{aspect-ratio:3/4;}
+}
 @media(max-width:600px){
   /* One photo per row. Pairing them two-up kept the page short but you got
      through a whole wedding in a few flicks, and every tile was cropped to a
@@ -649,7 +660,9 @@ button.txt-link{background:none;border-top:0;border-left:0;border-right:0;cursor
      looked at. The .mo-fin orphan rule below is moot in a single column. */
   .wd-mosaic{grid-template-columns:1fr;gap:12px;}
   .wd-mosaic .mo-6,.wd-mosaic .mo-3,.wd-mosaic .mo-2,.wd-mosaic .mo-fin{grid-column:1 / -1;}
-  .wd-mosaic .mo img{aspect-ratio:auto;height:auto;}
+  /* No aspect-ratio here: the img keeps the ratio implied by its width/height
+     attributes, which reserves the right space before the photo arrives. */
+  .wd-mosaic .mo img{height:auto;}
 }
 
 /* Lightbox — click / arrow / swipe through a wedding's photos */

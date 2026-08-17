@@ -84,7 +84,7 @@
   {%- endcomment -%}
   {%- unless include.nohero -%}
   <a class="wd-hero-link wd-lb" href="{{ site.baseurl }}{{ prefix }}{{ include.hero }}" aria-label="View {{ include.name }} photo 1 full screen">
-    <img src="{{ site.baseurl }}{{ prefix }}{{ include.hero }}" alt="{{ include.name }} wedding flowers by Golden Flowers" loading="eager" class="wd-hero-img" sizes="(min-width:1232px) 1164px, 100vw">
+    <img src="{{ site.baseurl }}{{ prefix }}{{ include.hero }}" alt="{{ include.name }} wedding flowers by Golden Flowers" loading="eager" fetchpriority="high" class="wd-hero-img" sizes="(max-width:1231px) 100vw, 1080px">
   </a>
   {%- endunless -%}
   <div class="wd-mosaic">
@@ -94,12 +94,22 @@
     {%- assign sp = spanArr[j] -%}
     {%- assign fin = false -%}
     {%- if f.name == lastName and lastWide == 1 -%}{%- assign fin = true -%}{%- endif -%}
+    {%- comment -%}
+      These must describe what the tile ACTUALLY renders, measured, or the
+      browser picks the wrong rung. The "50vw" that used to be here was left
+      over from the two-up phone layout; redesign.css:644 has gone one-per-row
+      at <=600px since, so a tile is ~90vw and every gallery photo was being
+      served at 0.70 of the pixels it was displayed at. Measured widths:
+        <=600px   all tiles 87-90vw
+        601-1231  mo-2 29vw, mo-3 44vw, mo-6 90vw
+        >=1232    container caps at 1200, so tiles are fixed px
+    {%- endcomment -%}
     {%- if sp == '6' or fin -%}
-      {%- assign szs = '(min-width:1232px) 1164px, 100vw' -%}
+      {%- assign szs = '(max-width:1231px) 90vw, 1080px' -%}
     {%- elsif sp == '3' -%}
-      {%- assign szs = '(max-width:600px) 50vw, (min-width:1232px) 574px, 48vw' -%}
+      {%- assign szs = '(max-width:600px) 90vw, (max-width:1231px) 44vw, 530px' -%}
     {%- else -%}
-      {%- assign szs = '(max-width:600px) 50vw, (min-width:1232px) 378px, 31vw' -%}
+      {%- assign szs = '(max-width:600px) 90vw, (max-width:1231px) 29vw, 348px' -%}
     {%- endif -%}
     <a class="mo mo-{{ sp }}{% if fin %} mo-fin{% endif %} wd-lb" href="{{ site.baseurl }}{{ f.path }}" aria-label="View {{ include.name }} photo full screen">
       <img src="{{ site.baseurl }}{{ f.path }}" alt="{{ include.name }} wedding florals by Golden Flowers" loading="lazy" sizes="{{ szs }}">

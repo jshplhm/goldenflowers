@@ -33,7 +33,13 @@ MANIFEST="$CACHE/manifest.txt"
 # 720 exists because a 390px phone at 2x needs ~562px: without it the browser
 # skipped 480w and pulled the 960w file for every photo on /portfolio, which
 # made the page HEAVIER on a phone (3.98 MB) than on a desktop (2.91 MB).
-WIDTHS="480 720 960 1440"
+# 1200 exists because a phone at 3x needs ~1030-1290 device px for a
+# full-width photo (360-430 CSS px), which fell in the 960->1440 gap: the
+# browser had to jump to 1440 or the source file. 1920/2560 are for the
+# full-bleed 100vw heroes on large high-DPI displays; they are no-ops for
+# today's ~1333px sources (shrink-only rule) and cost nothing until a
+# wedding is republished from its master at a higher resolution.
+WIDTHS="480 720 960 1200 1440 1920 2560"
 
 publish() {
   mkdir -p "$OUT"
@@ -103,7 +109,10 @@ while IFS= read -r -d '' f; do
   wwant=""
   if [ "$webp_ok" = 1 ]; then
     wwant="$want"
-    [ "$sw" != 999999 ] && wwant="$wwant $sw"
+    # "|| true": when the width IS unreadable this test fails, and a bare
+    # failing `a && b` is the statement's exit status -- under `set -e` that
+    # would abort the whole run on one unreadable photo.
+    { [ "$sw" != 999999 ] && wwant="$wwant $sw"; } || true
   fi
 
   # Skip by CONTENT hash, not mtime: CI checkouts stamp every source file

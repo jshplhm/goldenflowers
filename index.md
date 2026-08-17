@@ -157,7 +157,17 @@ the moment one pale photo wants it and another does not, the machinery is here.
   that no longer exists is skipped rather than rendering a broken tile, which
   means a stale manifest can never break the build. {%- endcomment -%}
   {%- assign slotClass = "feature,portrait,wide" | split: "," -%}
-  {%- assign slotSizes = "58vw,38vw,100vw" | split: "," -%}
+  {%- comment -%} Split on ";" NOT "," -- a sizes value contains commas of its
+    own, and splitting on those silently shreds the list into fragments.
+    Measured rendered widths (redesign.css:1442 sends .feature/.portrait full
+    width at <=860px, and .wide is span-12 at every width; the 1500px content
+    cap fixes all three above 1600px):
+      <=860px   feature/portrait 90vw
+      >860px    feature 60vw, portrait 29vw
+      wide      90vw everywhere below the cap
+    The old "58vw,38vw,100vw" had no phone value at all, so a full-width tile
+    on a phone asked for 38vw and got a 480w file for a ~1030px slot. {%- endcomment -%}
+  {%- assign slotSizes = "(max-width:860px) 90vw, (min-width:1600px) 899px, 60vw;(max-width:860px) 90vw, (min-width:1600px) 441px, 29vw;(min-width:1600px) 1356px, 90vw" | split: ";" -%}
   <div class="grid" data-ed-homework>
     {%- assign slot = 0 -%}
     {%- for hw in site.data.home_work -%}
