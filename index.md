@@ -174,7 +174,7 @@ the moment one pale photo wants it and another does not, the machinery is here.
     {%- assign m = site.data.portfolio_meta | where: "slug", hw.slug | first -%}
     {%- if m and slot < 3 -%}
     {%- assign base = '/assets/images/portfolio/' | append: hw.slug | append: '/' | append: hw.slug | append: '-' -%}
-    <a class="tile {{ slotClass[slot] }}" href="{{ site.baseurl }}/portfolio/{{ hw.slug }}"><img src="{{ site.baseurl }}{{ base }}{{ hw.photo }}.jpg" sizes="{{ slotSizes[slot] }}" alt="{{ m.name }} wedding flowers at {{ m.venue }}, {{ m.place }}" style="object-position:{{ hw.focus | default: 'center center' }};"><span class="cap"><b>{{ m.name }}</b><span>{{ m.venue }}</span></span></a>
+    <a class="tile {{ slotClass[slot] }}" href="{{ site.baseurl }}/portfolio/{{ hw.slug }}"><img src="{{ site.baseurl }}{{ base }}{{ hw.photo }}.jpg" sizes="{{ slotSizes[slot] }}" loading="lazy" alt="{{ m.name }} wedding flowers at {{ m.venue }}, {{ m.place }}" style="object-position:{{ hw.focus | default: 'center center' }};"><span class="cap"><b>{{ m.name }}</b><span>{{ m.venue }}</span></span></a>
     {%- assign slot = slot | plus: 1 -%}
     {%- endif -%}
     {%- endfor -%}
