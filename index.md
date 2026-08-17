@@ -218,7 +218,13 @@ get a hairline. {%- endcomment -%}
 
 <!-- IMMERSIVE -->
 <section class="immersive">
-  <img class="bg" src="{{ site.baseurl }}/assets/images/portfolio/lynn-aaron/lynn-aaron-23.jpg" alt="Long reception table at Palisades High Camp under string lights, set with garden roses, olive foliage and green velvet napkins">
+  {%- comment -%} lazy: this sits several screens down, but without the
+  attribute it was requested in the same burst as the hero, and on a phone
+  connection a 143 KB full-bleed photo taking bandwidth from the LCP image is
+  the whole ballgame. The section is height:78vh/min-height:520px with the
+  image absolutely positioned, so deferring it cannot shift any layout.
+  {%- endcomment -%}
+  <img class="bg" loading="lazy" src="{{ site.baseurl }}/assets/images/portfolio/lynn-aaron/lynn-aaron-23.jpg" alt="Long reception table at Palisades High Camp under string lights, set with garden roses, olive foliage and green velvet napkins">
   <div class="il">
     <span class="lab"><span data-ed="home:immersive.label">{{ site.data.home.immersive.label }}</span></span>
     <p class="disp"><span data-ed="home:immersive.heading">{{ site.data.home.immersive.heading }}</span></p>
