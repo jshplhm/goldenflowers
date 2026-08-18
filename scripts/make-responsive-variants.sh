@@ -91,7 +91,13 @@ count=0; skipped=0; substituted=0; webpcount=0; webpdropped=0
 
 while IFS= read -r -d '' f; do
   rel=${f#"$SRC"/}
-  case "$rel" in rsp/*) continue ;; esac
+  # wedding_photos/ is the gitignored full-resolution masters. CI never sees
+  # them (they are not in the checkout) but a local run does, and they are
+  # both the biggest files here and the slowest to resize: 226 originals at
+  # 4-8K against 222 photos the site actually serves, so more than half the
+  # work went to files that can never be published. Skipping them is what
+  # makes the local verify loop in CLAUDE.md usable.
+  case "$rel" in rsp/*|wedding_photos/*) continue ;; esac
   stem=${rel%.*}
 
   sw=$(srcwidth "$f")

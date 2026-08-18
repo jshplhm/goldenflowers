@@ -933,15 +933,19 @@ async function commitFiles(files, message, attempt = 0) {
  * no stated reason, which put a heavier file on the page than the same photo
  * added to a gallery.
  *
- * Quality 0.72, not the 0.82 this shipped with. Visitors are almost always
- * served a CI-built variant rather than this file, and measured over eight real
- * camera originals the delivered 720w image is identical either way (RMS 3.09
- * vs 3.27 out of 255, against the untouched original). Even the worst case,
- * where no variant is wide enough and this file is served as-is, moves 3.69 to
- * 4.21 -- inside JPEG noise, and indistinguishable at 1:1. The upload itself
- * gets 23% smaller, which is what keeps a new wedding from landing in a public
- * repo at 10 MB the way mikayla-jeff did. */
-async function processImage(file, maxEdge = 2000, quality = 0.72) {
+ * Back to 2400 / 0.82. The 0.72 that was here rested on visitors being served
+ * a small CI-built variant rather than this file, which was true only because
+ * the gallery's sizes= attribute still described the old two-up phone layout
+ * and understated every tile by ~1.8x. With sizes corrected, a phone asks for
+ * ~1030 device px and gets a near-source file, so this upload IS what people
+ * look at and its quality is the site's ceiling, not a detail.
+ *
+ * 2400 on the long edge matches what the three weddings with surviving masters
+ * were republished at, so a photo added through here is no longer visibly
+ * softer than the ones beside it. A 2400/0.82 upload lands around 0.7-1.3 MB,
+ * nowhere near the 10 MB full-resolution q94 files that made mikayla-jeff a
+ * problem, which is the case the old note was really guarding against. */
+async function processImage(file, maxEdge = 2400, quality = 0.82) {
   let bmp;
   try {
     bmp = await createImageBitmap(file, { imageOrientation: "from-image" });
