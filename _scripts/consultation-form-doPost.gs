@@ -11,6 +11,15 @@
  *   - DEPLOY THIS BEFORE the site change ships. An older deployment does not
  *     reject the new param (nothing unknown is ever a spam reason), it simply
  *     ignores it, so every estimate would land nowhere until this is pasted.
+ *   - The alert for a text-only lead (no email address, so no confirmation
+ *     went to them) is now the same branded card the couple gets, opening
+ *     with the number to text and a one-tap draft. It was the odd
+ *     plain-text message out, and looking different was itself the
+ *     confusion: nothing on it said why, or that the first reply was ours
+ *     to make.
+ *   - Both emails are now built from one set of helpers (emailShell_,
+ *     emailRows_, emailNote_, emailEstimate_) so they cannot drift apart
+ *     again.
  *
  * What changed from v3.3 (v3.4):
  *   - A resubmitted lead that carries NEW details now emails us the diff
@@ -318,8 +327,13 @@ function sheet_(ss, name) {
   return ss.getSheetByName(name) || ss.insertSheet(name);
 }
 
-function sendMail_(subject, body) {
-  GmailApp.sendEmail(NOTIFY_EMAIL, subject, body, { bcc: BCC_EMAIL });
+/* Every internal notification. html is optional: the digests are plain lists
+   and stay plain, the new-lead alert carries the branded card and keeps body
+   as its text/plain part. */
+function sendMail_(subject, body, html) {
+  var opts = { bcc: BCC_EMAIL };
+  if (html) opts.htmlBody = html;
+  GmailApp.sendEmail(NOTIFY_EMAIL, subject, body, opts);
 }
 
 function statusLabel_(p, isPartial) {
@@ -690,19 +704,143 @@ function sourceLabel_(p) {
   return host ? ('Referral: ' + host) : 'Unknown';
 }
 
+/* ---------------------------------------------------------------------------
+   Shared email furniture.
+
+   Both notifications are the same object seen from two sides: the couple's
+   confirmation and, when they left no email, our own alert. They read back
+   the same answers, so they are built from the same pieces. Brittany noticed
+   the text-only alert "looked different" long before anyone thought to ask
+   why, which is the whole argument for keeping one set of parts.
+
+   Brand palette as hex (the site's oklch values do not render in email).
+--------------------------------------------------------------------------- */
+var EM_GREEN = '#2e4034', EM_INK = '#20281f', EM_CREAM = '#f3efe6',
+    EM_PAPER = '#fdfbf7', EM_LINE = '#d9d2c4', EM_MUTE = '#6f6e62';
+
+/* Small uppercase heading that names the block under it. */
+function emailEyebrow_(label) {
+  return '<p style="margin:0 0 10px;font:11px Helvetica,Arial,sans-serif;' +
+    'letter-spacing:.14em;text-transform:uppercase;color:' + EM_MUTE + ';">' +
+    escHtml_(label) + '</p>';
+}
+
+/* Two-column label/value table: the shape every block of read-back answers
+   takes, so the details, the estimate and the alert all line up. */
+function emailRows_(rows, gap) {
+  if (!rows.length) return '';
+  return '<table role="presentation" cellpadding="0" cellspacing="0" style="margin:0 0 ' + gap + ';">' +
+    rows.map(function (r) {
+      return '<tr>' +
+        '<td style="padding:3px 18px 3px 0;font:13px Helvetica,Arial,sans-serif;color:' + EM_MUTE + ';white-space:nowrap;vertical-align:top;">' + escHtml_(r[0]) + '</td>' +
+        '<td style="padding:3px 0;font:14px Helvetica,Arial,sans-serif;color:' + EM_INK + ';">' + escHtml_(r[1]) + '</td>' +
+      '</tr>';
+    }).join('') + '</table>';
+}
+
+/* Free text, set apart so a long or multi-line note stays readable and never
+   merges into the answers above it. */
+function emailNote_(label, text, gap) {
+  if (!String(text || '').trim()) return '';
+  return emailEyebrow_(label) +
+    '<p style="margin:0 0 ' + gap + ';padding:12px 16px;background:' + EM_CREAM + ';border-left:2px solid ' + EM_GREEN + ';font:14px/1.6 Helvetica,Arial,sans-serif;color:' + EM_INK + ';white-space:pre-wrap;">' +
+    escHtml_(String(text).trim()) + '</p>';
+}
+
+/* The planning tool's recap. It arrives as "Label: value" lines; a line
+   without a colon (someone reworded a label into one) still prints, spanning
+   both columns, rather than being silently dropped. */
+function emailEstimate_(est, label, gap) {
+  var s = String(est || '').trim();
+  if (!s) return '';
+  return emailEyebrow_(label) +
+    '<table role="presentation" cellpadding="0" cellspacing="0" style="margin:0 0 ' + gap + ';">' +
+    s.split('\n').map(function (line) {
+      var i = line.indexOf(': ');
+      if (i === -1) {
+        return '<tr><td colspan="2" style="padding:3px 0;font:14px Helvetica,Arial,sans-serif;color:' + EM_INK + ';">' + escHtml_(line) + '</td></tr>';
+      }
+      return '<tr>' +
+        '<td style="padding:3px 18px 3px 0;font:13px Helvetica,Arial,sans-serif;color:' + EM_MUTE + ';white-space:nowrap;vertical-align:top;">' + escHtml_(line.slice(0, i)) + '</td>' +
+        '<td style="padding:3px 0;font:14px Helvetica,Arial,sans-serif;color:' + EM_INK + ';">' + escHtml_(line.slice(i + 2)) + '</td>' +
+      '</tr>';
+    }).join('') + '</table>';
+}
+
+/* The card every notification arrives in: cream page, paper card, wordmark.
+   footerHtml is the block below the rule (the couple gets a signature, we get
+   a one-line provenance note); pass '' for none. */
+function emailShell_(bodyHtml, footerHtml) {
+  var bodyPad = footerHtml ? '22px 40px 0' : '22px 40px 32px';
+  return '' +
+  '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:' + EM_CREAM + ';margin:0;padding:28px 12px;">' +
+    '<tr><td align="center">' +
+      '<table role="presentation" width="520" cellpadding="0" cellspacing="0" style="max-width:520px;width:100%;background:' + EM_PAPER + ';border:1px solid ' + EM_LINE + ';border-radius:4px;">' +
+        '<tr><td style="padding:36px 40px 0;text-align:center;">' +
+          '<div style="font:400 30px Georgia,\'Times New Roman\',serif;letter-spacing:.02em;color:' + EM_GREEN + ';">Golden&nbsp;Flowers</div>' +
+          '<div style="font:11px Helvetica,Arial,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:' + EM_MUTE + ';margin-top:9px;">Lake&nbsp;Tahoe Wedding Florist</div>' +
+          '<div style="border-top:1px solid ' + EM_LINE + ';margin:24px 0 0;"></div>' +
+        '</td></tr>' +
+        '<tr><td style="padding:' + bodyPad + ';font:15px/1.65 Helvetica,Arial,sans-serif;color:' + EM_INK + ';">' +
+          bodyHtml +
+        '</td></tr>' +
+        (footerHtml
+          ? '<tr><td style="padding:0 40px 36px;font:14px/1.6 Helvetica,Arial,sans-serif;color:' + EM_INK + ';">' + footerHtml + '</td></tr>'
+          : '') +
+      '</table>' +
+    '</td></tr>' +
+  '</table>';
+}
+
+/* A tap-to-text link, with the first line of the reply already drafted so
+   answering is one tap and an edit. Gmail strips unfamiliar URL schemes on
+   some clients, which is why the number is always printed as text beside the
+   button: phone clients auto-link a bare number anyway. */
+function smsHref_(phone, body) {
+  var d = String(phone || '').replace(/\D/g, '');
+  if (d.length === 10) d = '1' + d;
+  if (d.length !== 11) return '';
+  return 'sms:+' + d + (body ? '?&body=' + encodeURIComponent(body) : '');
+}
+
+/* Our alert for a lead that gave no email address.
+ *
+ * Same card as the couple's confirmation on purpose. This is the one lead
+ * where nothing was sent to them, so it is also the one lead that needs an
+ * instruction at the top rather than a receipt: text them, here is the
+ * number, here is the draft. Everything below the banner is the same set of
+ * answers the confirmation reads back, in the third person.
+ *
+ * Deliberately no Source / Opened-from lines: Brittany forwards these emails
+ * to couples, and lead-gen internals shouldn't travel with them. Arrival
+ * source still lands in the sheet's Source column.
+ */
 function sendCompleteEmail_(p) {
-  var subject = 'New consult request: ' + (p.name || 'Unknown') + '  ·  ' + (p.date || 'no date');
-  // Deliberately no Source / Opened-from lines: Brittany forwards these
-  // emails to couples, and lead-gen internals shouldn't travel with them.
-  // Arrival source still lands in the sheet's Source column.
-  var lines = ['Name: ' + (p.name || '')];
+  var name = String(p.name || '').trim();
+  var first = name.split(/\s+/)[0] || '';
+  var phone = fmtPhone_(p.phone);
+  var email = String(p.email || '').trim();
+  var dateLong = fmtDateLong_(p.date);
+
+  var subject = phone
+    ? 'Text back: ' + (name || 'new consult request') + (dateLong ? '  ·  ' + dateLong : '')
+    : 'New consult request: ' + (name || 'Unknown') + '  ·  ' + (p.date || 'no date');
+
+  /* ---- plain-text part (kept in step with the HTML; no em dashes) ---- */
+  var lines = [];
+  if (phone) {
+    lines.push('TEXT THEM: ' + phone,
+      'They gave no email address, so no confirmation went out. This is the only reply they get.',
+      '');
+  }
+  lines.push('Name: ' + (name || ''));
   // Who we're talking to leads, because it changes the whole reply.
   if (String(p.role || '').trim()) lines.push('They are: ' + p.role);
   if (String(p.couple || '').trim()) lines.push('Couple: ' + p.couple);
   if (String(p.contact_method || '').trim()) lines.push('Reach them by: ' + p.contact_method);
   lines = lines.concat([
-    'Email: ' + (p.email || '(not given)'),
-    'Phone: ' + (fmtPhone_(p.phone) || '(not given)'),
+    'Email: ' + (email || '(not given)'),
+    'Phone: ' + (phone || '(not given)'),
     'Wedding date: ' + (p.date || ''),
     'Venue: ' + (venueValue_(p) || '(not given)'),
     'Budget: ' + (p.budget || ''),
@@ -715,7 +853,64 @@ function sendCompleteEmail_(p) {
   // so it must never look like the continuation of their message.
   var est = String(p.estimate || '').trim();
   if (est) lines = lines.concat(['', 'From their estimate:', indent_(est)]);
-  sendMail_(subject, lines.join('\n'));
+  var textBody = lines.join('\n');
+
+  /* ---- the banner: what to do, before anything to read ---- */
+  var draft = first
+    ? 'Hi ' + first + ', this is Brittany with Golden Flowers. Thank you for reaching out about your wedding.'
+    : '';
+  var href = smsHref_(p.phone, draft);
+  var banner;
+  if (phone) {
+    banner =
+      '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:0 0 24px;background:' + EM_GREEN + ';border-radius:3px;">' +
+        '<tr><td style="padding:18px 22px;text-align:center;">' +
+          '<div style="font:11px Helvetica,Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#b9c9bb;">No email address · text them back</div>' +
+          '<div style="font:26px Helvetica,Arial,sans-serif;color:#ffffff;margin:10px 0 2px;white-space:nowrap;">' + escHtml_(phone) + '</div>' +
+          (href
+            ? '<div style="margin:14px 0 0;"><a href="' + escHtml_(href) + '" style="display:inline-block;padding:9px 20px;background:' + EM_CREAM + ';color:' + EM_GREEN + ';border-radius:2px;font:13px Helvetica,Arial,sans-serif;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;">Open a text to them</a></div>'
+            : '') +
+        '</td></tr>' +
+      '</table>' +
+      '<p style="margin:0 0 22px;">They asked us to reach them by text, so nothing has been sent to them yet. This message is the only one that went anywhere, and it came to us.</p>';
+  } else if (email) {
+    // Not reachable through notifyComplete_, which only calls this with no
+    // email. Kept honest for the safety-net call inside sendAutoReply_.
+    banner = emailEyebrow_('New consult request') +
+      '<p style="margin:0 0 22px;">The confirmation to <strong>' + escHtml_(email) + '</strong> did not go out, so they are waiting on a first reply from us.</p>';
+  } else {
+    banner = emailEyebrow_('New consult request') +
+      '<p style="margin:0 0 22px;">No email address and no phone number came through with this one. The full row is on the leads tab.</p>';
+  }
+
+  /* ---- the answers, third person ---- */
+  var rows = [];
+  if (name) rows.push(['Their name', name]);
+  var role = String(p.role || '').trim();
+  if (role && role !== ROLE_DEFAULT) {
+    var couple = String(p.couple || '').trim();
+    if (couple) rows.push(['Getting married', couple]);
+    rows.push(['They are', role]);
+  }
+  if (email) rows.push(['Email', email]);
+  // Skipped when the banner above already said it: for a lead with a phone and
+  // no email, "Reach them by: Text" is the same sentence twice.
+  if (!phone && String(p.contact_method || '').trim()) rows.push(['Reach them by', String(p.contact_method).trim()]);
+  if (dateLong) rows.push(['Wedding date', dateLong]);
+  var venue = venueValue_(p);
+  if (venue) rows.push(['Venue', venue]);
+  if (String(p.aesthetic || '').trim()) rows.push(['Style', String(p.aesthetic).trim()]);
+  if (String(p.budget || '').trim()) rows.push(['Budget', String(p.budget).trim()]);
+
+  var note = String(p.message || '').trim();
+  var body = banner +
+    (rows.length ? emailEyebrow_('What they sent us') + emailRows_(rows, note || est ? '18px' : '24px') : '') +
+    emailNote_('Their note', note, est ? '18px' : '24px') +
+    emailEstimate_(est, 'From their estimate', '24px') +
+    '<div style="border-top:1px solid ' + EM_LINE + ';margin:0 0 16px;"></div>' +
+    '<p style="margin:0;font:12px Helvetica,Arial,sans-serif;color:' + EM_MUTE + ';">Sent by the consultation form on goldenflorals.com. The full row is on the leads tab.</p>';
+
+  sendMail_(subject, textBody, emailShell_(body, ''));
 }
 
 /* Every line of a multi-line block, shifted, so it reads as one thing under
@@ -817,74 +1012,25 @@ function sendAutoReply_(p, isUpdate) {
     'Warmly,', 'Brittany', 'Golden Flowers', 'Lake Tahoe wedding florist', 'goldenflorals.com');
   var textBody = t.join('\n');
 
-  // Brand palette as hex (the site's oklch values do not render in email).
-  var GREEN = '#2e4034', INK = '#20281f', CREAM = '#f3efe6',
-      PAPER = '#fdfbf7', LINE = '#d9d2c4', MUTE = '#6f6e62';
+  var body =
+    '<p style="margin:0 0 16px;">' + escHtml_(hi) + '</p>' +
+    '<p style="margin:0 0 22px;">' + escHtml_(opener) + '</p>' +
+    (rows.length ? emailEyebrow_('Here is what you sent us') + emailRows_(rows, note || est ? '18px' : '24px') : '') +
+    emailNote_('Your note', note, est ? '18px' : '24px') +
+    emailEstimate_(est, 'From your estimate', '24px') +
+    '<p style="margin:0 0 22px;">We will be in touch within 48 hours to let you know if your date is open and how we would approach your florals.</p>' +
+    '<p style="margin:0 0 26px;">In the meantime, you can text us anytime at <strong style="color:' + EM_GREEN + ';white-space:nowrap;">530-557-7689</strong>.</p>' +
+    '<div style="border-top:1px solid ' + EM_LINE + ';margin:0 0 20px;"></div>';
 
-  var detailRows = rows.map(function (r) {
-    return '<tr>' +
-      '<td style="padding:3px 18px 3px 0;font:13px Helvetica,Arial,sans-serif;color:' + MUTE + ';white-space:nowrap;vertical-align:top;">' + escHtml_(r[0]) + '</td>' +
-      '<td style="padding:3px 0;font:14px Helvetica,Arial,sans-serif;color:' + INK + ';">' + escHtml_(r[1]) + '</td>' +
-    '</tr>';
-  }).join('');
-
-  var detailsHtml = rows.length
-    ? '<p style="margin:0 0 10px;font:11px Helvetica,Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:' + MUTE + ';">Here is what you sent us</p>' +
-      '<table role="presentation" cellpadding="0" cellspacing="0" style="margin:0 0 ' + (note || est ? '18px' : '24px') + ';">' + detailRows + '</table>'
-    : '';
-  var noteHtml = note
-    ? '<p style="margin:0 0 8px;font:11px Helvetica,Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:' + MUTE + ';">Your note</p>' +
-      '<p style="margin:0 0 ' + (est ? '18px' : '24px') + ';padding:12px 16px;background:' + CREAM + ';border-left:2px solid ' + GREEN + ';font:14px/1.6 Helvetica,Arial,sans-serif;color:' + INK + ';white-space:pre-wrap;">' + escHtml_(note) + '</p>'
-    : '';
-  // Same two-column shape as the details above, because it is the same kind of
-  // thing: answers read back. Each line arrives as "Label: value" from the
-  // tool; a line without a colon (someone reworded a label into one) still
-  // prints, spanning both columns, rather than being silently dropped.
-  var estHtml = est
-    ? '<p style="margin:0 0 10px;font:11px Helvetica,Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:' + MUTE + ';">From your estimate</p>' +
-      '<table role="presentation" cellpadding="0" cellspacing="0" style="margin:0 0 24px;">' +
-      est.split('\n').map(function (line) {
-        var i = line.indexOf(': ');
-        if (i === -1) {
-          return '<tr><td colspan="2" style="padding:3px 0;font:14px Helvetica,Arial,sans-serif;color:' + INK + ';">' + escHtml_(line) + '</td></tr>';
-        }
-        return '<tr>' +
-          '<td style="padding:3px 18px 3px 0;font:13px Helvetica,Arial,sans-serif;color:' + MUTE + ';white-space:nowrap;vertical-align:top;">' + escHtml_(line.slice(0, i)) + '</td>' +
-          '<td style="padding:3px 0;font:14px Helvetica,Arial,sans-serif;color:' + INK + ';">' + escHtml_(line.slice(i + 2)) + '</td>' +
-        '</tr>';
-      }).join('') + '</table>'
-    : '';
-
-  var html =
-  '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:' + CREAM + ';margin:0;padding:28px 12px;">' +
-    '<tr><td align="center">' +
-      '<table role="presentation" width="520" cellpadding="0" cellspacing="0" style="max-width:520px;width:100%;background:' + PAPER + ';border:1px solid ' + LINE + ';border-radius:4px;">' +
-        '<tr><td style="padding:36px 40px 0;text-align:center;">' +
-          '<div style="font:400 30px Georgia,\'Times New Roman\',serif;letter-spacing:.02em;color:' + GREEN + ';">Golden&nbsp;Flowers</div>' +
-          '<div style="font:11px Helvetica,Arial,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:' + MUTE + ';margin-top:9px;">Lake&nbsp;Tahoe Wedding Florist</div>' +
-          '<div style="border-top:1px solid ' + LINE + ';margin:24px 0 0;"></div>' +
-        '</td></tr>' +
-        '<tr><td style="padding:22px 40px 0;font:15px/1.65 Helvetica,Arial,sans-serif;color:' + INK + ';">' +
-          '<p style="margin:0 0 16px;">' + escHtml_(hi) + '</p>' +
-          '<p style="margin:0 0 22px;">' + escHtml_(opener) + '</p>' +
-          detailsHtml + noteHtml + estHtml +
-          '<p style="margin:0 0 22px;">We will be in touch within 48 hours to let you know if your date is open and how we would approach your florals.</p>' +
-          '<p style="margin:0 0 26px;">In the meantime, you can text us anytime at <strong style="color:' + GREEN + ';white-space:nowrap;">530-557-7689</strong>.</p>' +
-          '<div style="border-top:1px solid ' + LINE + ';margin:0 0 20px;"></div>' +
-        '</td></tr>' +
-        '<tr><td style="padding:0 40px 36px;font:14px/1.6 Helvetica,Arial,sans-serif;color:' + INK + ';">' +
-          'Warmly,<br>' +
-          '<strong>Brittany</strong><br>' +
-          '<span style="color:' + GREEN + ';">Golden Flowers</span><br>' +
-          '<span style="color:' + MUTE + ';">Lake Tahoe wedding florist</span><br>' +
-          '<a href="https://goldenflorals.com" style="color:' + GREEN + ';text-decoration:none;">goldenflorals.com</a>' +
-        '</td></tr>' +
-      '</table>' +
-    '</td></tr>' +
-  '</table>';
+  var footer =
+    'Warmly,<br>' +
+    '<strong>Brittany</strong><br>' +
+    '<span style="color:' + EM_GREEN + ';">Golden Flowers</span><br>' +
+    '<span style="color:' + EM_MUTE + ';">Lake Tahoe wedding florist</span><br>' +
+    '<a href="https://goldenflorals.com" style="color:' + EM_GREEN + ';text-decoration:none;">goldenflorals.com</a>';
 
   GmailApp.sendEmail(email, subject, textBody, {
-    htmlBody: html,
+    htmlBody: emailShell_(body, footer),
     name: 'Golden Flowers',
     replyTo: NOTIFY_EMAIL,
     bcc: NOTIFY_EMAIL + ',' + BCC_EMAIL
