@@ -13,10 +13,11 @@
  *     ignores it, so every estimate would land nowhere until this is pasted.
  *   - The alert for a text-only lead (no email address, so no confirmation
  *     went to them) is now the same branded card the couple gets, opening
- *     with the number to text and a one-tap draft. It was the odd
- *     plain-text message out, and looking different was itself the
- *     confusion: nothing on it said why, or that the first reply was ours
- *     to make.
+ *     with the number to text. It was the odd plain-text message out, and
+ *     looking different was itself the confusion: nothing on it said why,
+ *     or that the first reply was ours to make. The number is plain text,
+ *     not a button: Gmail strips sms: hrefs, so a button there can only
+ *     ever look clickable.
  *   - Both emails are now built from one set of helpers (emailShell_,
  *     emailRows_, emailNote_, emailEstimate_) so they cannot drift apart
  *     again.
@@ -792,17 +793,6 @@ function emailShell_(bodyHtml, footerHtml) {
   '</table>';
 }
 
-/* A tap-to-text link, with the first line of the reply already drafted so
-   answering is one tap and an edit. Gmail strips unfamiliar URL schemes on
-   some clients, which is why the number is always printed as text beside the
-   button: phone clients auto-link a bare number anyway. */
-function smsHref_(phone, body) {
-  var d = String(phone || '').replace(/\D/g, '');
-  if (d.length === 10) d = '1' + d;
-  if (d.length !== 11) return '';
-  return 'sms:+' + d + (body ? '?&body=' + encodeURIComponent(body) : '');
-}
-
 /* Our alert for a lead that gave no email address.
  *
  * Same card as the couple's confirmation on purpose. This is the one lead
@@ -817,7 +807,6 @@ function smsHref_(phone, body) {
  */
 function sendCompleteEmail_(p) {
   var name = String(p.name || '').trim();
-  var first = name.split(/\s+/)[0] || '';
   var phone = fmtPhone_(p.phone);
   var email = String(p.email || '').trim();
   var dateLong = fmtDateLong_(p.date);
@@ -856,20 +845,18 @@ function sendCompleteEmail_(p) {
   var textBody = lines.join('\n');
 
   /* ---- the banner: what to do, before anything to read ---- */
-  var draft = first
-    ? 'Hi ' + first + ', this is Brittany with Golden Flowers. Thank you for reaching out about your wedding.'
-    : '';
-  var href = smsHref_(p.phone, draft);
   var banner;
   if (phone) {
+    // The number and nothing else. A tap-to-text button cannot work here:
+    // Gmail keeps only http, https, mailto and ftp hrefs, so an sms: link
+    // arrives styled and dead (2026-08-20). What matters is that the number
+    // is easy to take: it is plain selectable text, which the Gmail app on a
+    // phone also auto-links, so a long press offers Copy.
     banner =
       '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:0 0 24px;background:' + EM_GREEN + ';border-radius:3px;">' +
-        '<tr><td style="padding:18px 22px;text-align:center;">' +
+        '<tr><td style="padding:20px 22px;text-align:center;">' +
           '<div style="font:11px Helvetica,Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#b9c9bb;">No email address · text them back</div>' +
-          '<div style="font:26px Helvetica,Arial,sans-serif;color:#ffffff;margin:10px 0 2px;white-space:nowrap;">' + escHtml_(phone) + '</div>' +
-          (href
-            ? '<div style="margin:14px 0 0;"><a href="' + escHtml_(href) + '" style="display:inline-block;padding:9px 20px;background:' + EM_CREAM + ';color:' + EM_GREEN + ';border-radius:2px;font:13px Helvetica,Arial,sans-serif;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;">Open a text to them</a></div>'
-            : '') +
+          '<div style="font:28px Helvetica,Arial,sans-serif;color:#ffffff;margin:10px 0 0;white-space:nowrap;">' + escHtml_(phone) + '</div>' +
         '</td></tr>' +
       '</table>' +
       '<p style="margin:0 0 22px;">They asked us to reach them by text, so nothing has been sent to them yet. This message is the only one that went anywhere, and it came to us.</p>';
