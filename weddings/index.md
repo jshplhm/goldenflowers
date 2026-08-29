@@ -39,13 +39,16 @@ redirect_from:
 ---
 
 <!-- ===================================================================
-     PROCESS & PRICING. The estimator (_includes/estimator.html) replaced
-     the published price ladder on 2026-08-15. See the header of
-     _data/weddings.yml for what came out and where it went, and the
-     header of _data/estimator.yml before touching any dollar figure.
+     PROCESS & PRICING.
 
-     Order: hero -> process -> estimator -> honesty notes (inside the
-     include) -> reviews (hidden) -> FAQ -> closing CTA.
+     2026-08-28: the estimator moved off this page to /pricing-tool
+     (noindex, unlinked, no CTA) and the published three-figure ladder
+     came back in its place. Every figure and every photo lives in
+     _data/weddings.yml `pricing`; read that block's header before
+     touching a number or a photo pairing.
+
+     Order: hero -> process -> the ladder -> reviews (hidden) -> FAQ
+     -> closing CTA.
      =================================================================== -->
 
 <!-- HERO -->
@@ -58,7 +61,7 @@ redirect_from:
       <p class="hero-sub"><span data-ed="weddings:hero.subheading">{{ site.data.weddings.hero.subheading }}</span></p>
       {%- comment -%} Deliberately NOT "Check your date": the nav carries that
       on every screen, so the hero can serve the reason someone opened this
-      page. It jumps to the estimator. {%- endcomment -%}
+      page. It jumps to the price ladder. {%- endcomment -%}
       <a class="btn" href="#pricing"><span data-ed="weddings:hero.button_primary">{{ site.data.weddings.hero.button_primary }}</span> <span>&darr;</span></a>
     </div>
   </div>
@@ -93,15 +96,45 @@ redirect_from:
   </div>
 </section>
 
-<!-- INVESTMENT: the estimator IS the pricing section -->
-<div class="est-section">
-  <div class="est-section-head" id="pricing">
-    <span class="lab"><span data-ed="weddings:estimator_intro.label">{{ site.data.weddings.estimator_intro.label }}</span></span>
-    <h2><span data-ed="weddings:estimator_intro.heading">{{ site.data.weddings.estimator_intro.heading }}</span></h2>
-    <p><span data-ed="weddings:estimator_intro.body">{{ site.data.weddings.estimator_intro.body }}</span></p>
+<!-- INVESTMENT -->
+{%- comment -%} One figure and one label per tier. No cards: a card implies a
+package, and we are deliberately not saying what each figure buys.
+
+#pricing sits on the SECTION, not the heading, because the section carries its
+own padding. See the .pricing-dark rule in redesign.css. {%- endcomment -%}
+<section class="pricing-dark" id="pricing">
+  <div class="pricing">
+    <span class="lab"><span data-ed="weddings:pricing.label">{{ site.data.weddings.pricing.label }}</span></span>
+    <h2 class="h-lg"><span data-ed="weddings:pricing.heading">{{ site.data.weddings.pricing.heading }}</span></h2>
+    <p class="price-basis"><span data-ed="weddings:pricing.note">{{ site.data.weddings.pricing.note }}</span></p>
+    <dl class="price-scale">
+      {%- for tier in site.data.weddings.pricing.tiers %}
+      <div class="price-row{% if tier.lead %} is-lead{% endif %}">
+        {%- if tier.photo %}
+        {%- comment -%} `photo:` is a wedding gallery path (kelly-dylan/kelly-dylan-07.jpg),
+        or a full site-root path when /edit swapped in an upload. The
+        data-ed-photo attribute is what makes the photo clickable in /edit:
+        it names the data file and the key, because the path is not written
+        in this page's source for the editor to find. {%- endcomment -%}
+        {%- assign tier_src = tier.photo | prepend: "/assets/images/portfolio/" -%}
+        {%- assign tier_lead = tier.photo | slice: 0, 1 -%}
+        {%- if tier_lead == "/" %}{% assign tier_src = tier.photo %}{% endif -%}
+        <img class="price-shot" src="{{ site.baseurl }}{{ tier_src }}" alt="{{ tier.alt }}" loading="lazy" width="800" height="1000" sizes="(max-width:900px) 90vw, 30vw" data-ed-photo="weddings:pricing.tiers.{{ forloop.index0 }}.photo">
+        {%- endif %}
+        {%- if tier.badge %}<span class="price-badge"><span data-ed="weddings:pricing.tiers.{{ forloop.index0 }}.badge">{{ tier.badge }}</span></span>{% endif %}
+        <dd><span data-ed="weddings:pricing.tiers.{{ forloop.index0 }}.amount">{{ tier.amount }}</span></dd>
+        <dt><span data-ed="weddings:pricing.tiers.{{ forloop.index0 }}.label">{{ tier.label }}</span></dt>
+        {%- comment -%} The a la carte offer, deliberately a line inside the
+        first tier rather than a column of its own. Blank it in the CMS to
+        withdraw the offer; the paragraph disappears on its own. {%- endcomment -%}
+        {%- if tier.entry_note and tier.entry_note != "" %}
+        <p class="price-entry"><span data-ed="weddings:pricing.tiers.{{ forloop.index0 }}.entry_note">{{ tier.entry_note }}</span></p>
+        {%- endif %}
+      </div>
+      {%- endfor %}
+    </dl>
   </div>
-  {% include estimator.html %}
-</div>
+</section>
 
 {%- comment -%} REVIEWS: hidden by `testimonials.show: false` in
 _data/weddings.yml, not deleted. The 13 quotes still live in

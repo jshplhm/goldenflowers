@@ -231,14 +231,26 @@ content:
               - {name: when, label: "Timing label", type: string}
               - {name: title, label: "Title", type: string}
               - {name: body, label: "Text", type: text}
-      - name: estimator_intro
-        label: "Section: investment (heading above the estimator)"
+      - name: pricing
+        label: "Section: investment (the three prices)"
         type: object
-        description: "The estimator's own numbers and wording live under 'Estimator prices'."
+        description: "The price ladder on the dark band. To change a PHOTO, open /edit, go to the Process & Pricing page and click the photo you want to swap: photos are not editable here."
         fields:
           - {name: label, label: "Small label", type: string}
           - {name: heading, label: "Heading", type: string}
-          - {name: body, label: "Text", type: text}
+          - {name: note, label: "Line under the heading", type: text}
+          - name: tiers
+            label: "The three prices"
+            type: object
+            list: true
+            description: "Three rows, cheapest first. Tick 'Where most weddings land' on exactly ONE row, and give that same row a badge: it is the highlighted middle of the scale, and ticking two defeats the point. Every figure is typed exactly as it should read, dollar sign and all."
+            fields:
+              - {name: amount, label: "Amount", type: string}
+              - {name: label, label: "What it covers", type: string}
+              - {name: badge, label: "Badge on the photo", type: string, description: "Short, two or three words. Leave empty on the rows that are not the highlighted one."}
+              - {name: lead, label: "Where most weddings land", type: boolean, description: "The highlighted row. Exactly one."}
+              - {name: entry_note, label: "Smaller-scope line", type: text, description: "The a la carte offer, shown as a quieter line inside this row only. Empty it to withdraw the offer and the line disappears on its own."}
+              - {name: alt, label: "Photo description", type: text, description: "Read aloud to anyone using a screen reader, and shown if the photo fails to load. Describe what is in the picture."}
       - name: testimonials
         label: "Section: reviews"
         type: object
@@ -647,7 +659,7 @@ content:
 
 
   # ═══════════════════════════════════════════════════════════════════
-  #  PRICING ENGINE (mockup: /estimate)
+  #  PRICING ENGINE (the internal tool at /pricing-tool)
   #  The numbers behind the floral planning estimator. Nothing here is
   #  shown to a visitor as a unit price; the tool only ever renders
   #  whole-category ranges and shares.
@@ -663,7 +675,7 @@ content:
     path: _data/estimator.yml
     format: yaml
     icon: calculator
-    description: "Every number behind the estimator at /estimate. Low and high are dollars; always keep low at or below high. Prices here are never shown as unit prices."
+    description: "Every number behind the internal pricing tool at /pricing-tool. Low and high are dollars; always keep low at or below high. Prices here are never shown as unit prices."
     fields:
       - name: settings
         label: How the math works

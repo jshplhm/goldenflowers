@@ -1,5 +1,17 @@
 /**
- * Golden Flowers consultation form — hardened intake, v3.5 (August 2026).
+ * Golden Flowers consultation form — hardened intake, v3.6 (August 2026).
+ *
+ * What changed from v3.5 (v3.6):
+ *   - BUDGETS realigned to the price ladder that came back to /weddings on
+ *     2026-08-28: 5,000-8,000 (a la carte), 8,000-12,000 (full service starts
+ *     at 8,000), 12,000-20,000 (typical), 20,000+.
+ *   - PASTE AND REDEPLOY THIS BEFORE THE SITE CHANGE SHIPS. Two of those
+ *     strings are new, and an unrecognised budget is a spam reason here, so
+ *     until this is live every lead from the new form is filed as spam. The
+ *     reverse order is safe: this deployment still accepts every retired
+ *     bracket, so a visitor holding a cached page is never rejected.
+ *   - $5,000-$8,000 came back off the retired list. It is a real bracket
+ *     again, because the ladder publishes an a la carte figure again.
  *
  * What changed from v3.4 (v3.5):
  *   - New `estimate` param and Estimate column (auto-appended on first use):
@@ -159,18 +171,24 @@ var ROLES = [
 // hidden input's value in _includes/consult-modal.html.
 var ROLE_DEFAULT = ROLES[0];
 
-// Brackets were realigned to the published ladder on /weddings (full service
-// begins at $7,500). The OLD four are still accepted on purpose: a visitor with
-// the previous page cached will post an old string, and rejecting a real lead as
-// spam is far worse than accepting a retired label. Delete the four marked
-// RETIRED once the sheet has stopped seeing them (a season is plenty).
+// The live brackets are the boundaries of the published ladder on /weddings:
+// $5,000 a la carte, $8,000 full service, $12,000-$20,000 typical, $20,000 up.
+// Change them there and here in the same breath, and deploy this first.
+//
+// Every retired string is still accepted on purpose: a visitor with an older
+// page cached will post one, and rejecting a real lead as spam is far worse
+// than accepting a stale label. Drop a retired line once the sheet has stopped
+// seeing it (a season is plenty). Note $5,000-$8,000 is off that list again:
+// it is a live bracket for the second time.
 var BUDGETS = [
-  "$7,500–$12,000",
+  "$5,000–$8,000",
+  "$8,000–$12,000",
   "$12,000–$20,000",
-  "$20,000–$30,000",
-  "$30,000+",
+  "$20,000+",
   "Not sure yet",
-  "$5,000–$8,000",    // RETIRED
+  "$7,500–$12,000",   // RETIRED 2026-08-28
+  "$20,000–$30,000",  // RETIRED 2026-08-28
+  "$30,000+",         // RETIRED 2026-08-28
   "$8,000–$15,000",   // RETIRED
   "$15,000–$25,000",  // RETIRED
   "$25,000+"          // RETIRED

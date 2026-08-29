@@ -1,7 +1,8 @@
 {%- comment -%} =====================================================================
-  ESTIMATOR COMPONENT. Used by /estimate (standalone) and /process-v5 (inline
-  on Process & Pricing). Every price comes from _data/estimator.yml; nothing
-  numeric is hardcoded here.
+  ESTIMATOR COMPONENT. Used by /pricing-tool, the internal quoting tool, which
+  is the only published page that includes it (the untracked /process-v5 mockup
+  also does). Every price comes from _data/estimator.yml; nothing numeric is
+  hardcoded here.
 
   The host page supplies its own heading above this include. Everything below
   is the tool itself, the honesty notes, and the engine.
@@ -11,13 +12,37 @@
   your date", the result is never gated behind an email, and the estimate
   hands its own answers to the consult modal instead of making anyone start
   over.
+
+  TWO PARAMETERS, both used by /pricing-tool and by nothing else.
+
+  cta="off" strips every call to action: the two "Check your date" buttons,
+  the referral's "Ask us anyway", the note under the button and the whole
+  mobile sticky bar. There is nobody on the internal tool to convert.
+
+  start="blank" removes every `default` selection from the radios, chips and
+  checkboxes, and holds the panel on an empty state until the first input.
+  On the public page a preselected example is right: a slider has no honest
+  empty state and a blank panel looks broken. On a screenshare it is the
+  opposite. Opening the tool in front of a couple and having it already say
+  "$15,000 to $22,000" puts a number in the room that nobody asked for, and
+  every later number is then read against it. The sliders still hold a
+  position, because a slider must, but no figure is shown until Brittany has
+  actually answered something.
+
+  The strings "off" and "blank" rather than booleans are deliberate: Liquid's
+  `default` filter treats false and nil alike, so a `cta=false` parameter is a
+  quiet trap for the next person.
   ===================================================================== {%- endcomment -%}
 {% assign E = site.data.estimator %}
 {% assign C = E.copy %}
+{%- assign es_cta = true -%}
+{%- if include.cta == "off" -%}{%- assign es_cta = false -%}{%- endif -%}
+{%- assign es_pre = true -%}
+{%- if include.start == "blank" -%}{%- assign es_pre = false -%}{%- endif -%}
 
 <style>
 /* ==========================================================================
-   MOCKUP-ONLY STYLES for /estimate. Scoped .es-*; nothing here touches a live
+   COMPONENT STYLES. Scoped .es-*; nothing here touches a live
    page. Tokens only, plus one green ramp for the allocation bar (all forest
    hue 145-150, no warm accent anywhere).
    ========================================================================== */
@@ -35,7 +60,10 @@
    across 1170px is unreadable as a control: the label and its value end up a
    foot apart and the thumb travels further than the eye tracks. */
 .es-page{--es-max:1240px;}
-.es-head{max-width:var(--es-max);margin:0 auto;padding:clamp(30px,5vw,54px) var(--pad) 0;}
+/* The nav is position:fixed and this page has no hero for it to sit over, so
+   the heading has to clear it itself or the eyebrow renders underneath it.
+   Same pattern as .venue-breadcrumb's margin-top. */
+.es-head{max-width:var(--es-max);margin:0 auto;padding:calc(var(--nav-h) + clamp(30px,5vw,54px)) var(--pad) 0;}
 .es-head h1{font-family:var(--d);font-weight:430;font-optical-sizing:auto;font-size:clamp(2.3rem,5vw,3.9rem);letter-spacing:-.025em;line-height:1.02;margin:16px 0 0;max-width:16ch;}
 .es-lede{color:var(--fg2);font-size:1.06rem;line-height:1.65;max-width:52ch;margin-top:20px;}
 .es-disc{display:inline-flex;align-items:flex-start;gap:9px;margin-top:22px;padding:10px 16px 10px 13px;border:1px solid var(--line);border-radius:100px;font-size:.86rem;color:var(--mute);max-width:56ch;line-height:1.45;}
@@ -139,7 +167,13 @@
 .es-panel[data-under="1"] .es-panel-top{background:var(--forest);}
 .es-panel[data-under="1"] .es-alloc-h,
 .es-panel[data-under="1"] .es-bar,
-.es-panel[data-under="1"] .es-legend{display:none;}
+.es-panel[data-under="1"] .es-legend,
+.es-panel[data-blank="1"] .es-alloc-h,
+.es-panel[data-blank="1"] .es-bar,
+.es-panel[data-blank="1"] .es-legend{display:none;}
+/* The blank state (start="blank", before the first answer) keeps the panel's
+   shape but shows no arithmetic: no figure, no allocation bar, no legend. */
+.es-panel[data-blank="1"] .es-panel-top{background:var(--forest);}
 .es-panel[data-under="1"] .es-cta{margin-top:0;}
 
 /* The referral path. When it is on, the way OUT is the primary action in the
@@ -224,7 +258,7 @@
         <div class="es-opts">
           {%- for o in E.personal.party.options %}
           <label class="es-opt">
-            <input type="radio" name="es-party" value="{{ o.key }}"{% if o.default %} checked{% endif %}>
+            <input type="radio" name="es-party" value="{{ o.key }}"{% if es_pre and o.default %} checked{% endif %}>
             <span class="es-mark" aria-hidden="true"></span>
             <b>{{ o.label }}</b>
             {%- if o.note != "" %}<i>{{ o.note }}</i>{% endif %}
@@ -236,13 +270,13 @@
       <div class="es-fld">
         <div class="es-opts es-opts--2">
           <label class="es-opt es-opt--chk">
-            <input type="checkbox" name="es-extra" value="family"{% if E.personal.family.default %} checked{% endif %}>
+            <input type="checkbox" name="es-extra" value="family"{% if es_pre and E.personal.family.default %} checked{% endif %}>
             <span class="es-mark" aria-hidden="true"></span>
             <b>{{ E.personal.family.label }}</b>
             <i>{{ E.personal.family.note }}</i>
           </label>
           <label class="es-opt es-opt--chk">
-            <input type="checkbox" name="es-extra" value="flower_kids"{% if E.personal.flower_kids.default %} checked{% endif %}>
+            <input type="checkbox" name="es-extra" value="flower_kids"{% if es_pre and E.personal.flower_kids.default %} checked{% endif %}>
             <span class="es-mark" aria-hidden="true"></span>
             <b>{{ E.personal.flower_kids.label }}</b>
             <i>{{ E.personal.flower_kids.note }}</i>
@@ -260,7 +294,7 @@
         <div class="es-opts">
           {%- for o in E.ceremony.focal.options %}
           <label class="es-opt">
-            <input type="radio" name="es-focal" value="{{ o.key }}"{% if o.default %} checked{% endif %}>
+            <input type="radio" name="es-focal" value="{{ o.key }}"{% if es_pre and o.default %} checked{% endif %}>
             <span class="es-mark" aria-hidden="true"></span>
             <b>{{ o.label }}</b>
             {%- if o.note != "" %}<i>{{ o.note }}</i>{% endif %}
@@ -274,7 +308,7 @@
         <div class="es-opts">
           {%- for o in E.ceremony.ground.options %}
           <label class="es-opt">
-            <input type="radio" name="es-ground" value="{{ o.key }}"{% if o.default %} checked{% endif %}>
+            <input type="radio" name="es-ground" value="{{ o.key }}"{% if es_pre and o.default %} checked{% endif %}>
             <span class="es-mark" aria-hidden="true"></span>
             <b>{{ o.label }}</b>
             {%- if o.note != "" %}<i>{{ o.note }}</i>{% endif %}
@@ -296,7 +330,7 @@
         <div class="es-opts">
           {%- for o in E.reception.style.options %}
           <label class="es-opt">
-            <input type="radio" name="es-tables" value="{{ o.key }}"{% if o.default %} checked{% endif %}>
+            <input type="radio" name="es-tables" value="{{ o.key }}"{% if es_pre and o.default %} checked{% endif %}>
             <span class="es-mark" aria-hidden="true"></span>
             <b>{{ o.label }}</b>
             {%- if o.note != "" %}<i>{{ o.note }}</i>{% endif %}
@@ -311,7 +345,7 @@
         <div class="es-opts">
           {%- for o in E.reception.installation.options %}
           <label class="es-opt">
-            <input type="radio" name="es-recinstall" value="{{ o.key }}"{% if o.default %} checked{% endif %}>
+            <input type="radio" name="es-recinstall" value="{{ o.key }}"{% if es_pre and o.default %} checked{% endif %}>
             <span class="es-mark" aria-hidden="true"></span>
             <b>{{ o.label }}</b>
             {%- if o.note != "" %}<i>{{ o.note }}</i>{% endif %}
@@ -323,7 +357,7 @@
       <div class="es-fld">
         <div class="es-opts">
           <label class="es-opt es-opt--chk">
-            <input type="checkbox" name="es-extra" value="head_table"{% if E.reception.head_table.default %} checked{% endif %}>
+            <input type="checkbox" name="es-extra" value="head_table"{% if es_pre and E.reception.head_table.default %} checked{% endif %}>
             <span class="es-mark" aria-hidden="true"></span>
             <b>{{ E.reception.head_table.label }}</b>
             <i>{{ E.reception.head_table.note }}</i>
@@ -338,7 +372,7 @@
       <div class="es-chips">
         {%- for o in E.environmental.options %}
         <label class="es-chip">
-          <input type="checkbox" name="es-env" value="{{ o.key }}"{% if o.default %} checked{% endif %}>
+          <input type="checkbox" name="es-env" value="{{ o.key }}"{% if es_pre and o.default %} checked{% endif %}>
           <span class="es-plus" aria-hidden="true"></span>{{ o.label }}
         </label>
         {%- endfor %}
@@ -348,9 +382,12 @@
   </form>
 
   <!-- ============ RESULT ============ -->
-  <aside class="es-panel" id="es-panel" data-under="0" aria-live="polite">
+  {%- comment -%} The blank state is set in the MARKUP as well as in render(),
+  so the panel never paints a figure for a frame before the script hides it.
+  {%- endcomment -%}
+  <aside class="es-panel" id="es-panel" data-under="0" data-blank="{% if es_pre %}0{% else %}1{% endif %}" aria-live="polite">
     <div class="es-panel-top">
-      <div id="es-range-view">
+      <div id="es-range-view"{% unless es_pre %} hidden{% endunless %}>
         <span class="lab" id="es-range-label">{{ C.result_label }}</span>
         <p class="es-figure"><span id="es-low"></span><span class="es-to">to</span><span id="es-high"></span></p>
         <p class="es-caption" id="es-caption"></p>
@@ -361,6 +398,20 @@
         <h3>{{ C.under_min_heading }}</h3>
         <p>{{ C.under_min_body }}</p>
       </div>
+      {%- comment -%} The empty state, and the reason start="blank" exists at
+      all. Deliberately NOT in _data/estimator.yml with the rest of the copy:
+      this renders on the internal tool only, nobody outside the studio reads
+      it, and putting it in the CMS would add three fields Brittany has to
+      scroll past to reach the numbers she actually edits. {%- endcomment -%}
+      {%- unless es_pre %}
+      <div class="es-under" id="es-blank-view">
+        <span class="lab" id="es-blank-label">Nothing answered yet</span>
+        <h3>Start on the left.</h3>
+        <p>The range appears once every question has an answer, and updates
+        with every change after that. Nothing is preselected, so this is not
+        an estimate of anything until you make it one.</p>
+      </div>
+      {%- endunless %}
     </div>
     <div class="es-panel-body">
       {%- comment -%} No "updates as you change your answers" note here: it
@@ -379,10 +430,12 @@
         <p>{{ R.note }}</p>
         {%- if R.url != "" %}<a class="es-ref-go" href="{{ R.url }}" rel="noopener">Visit their site <span>&rarr;</span></a>{% endif %}
       </div>
-      <button type="button" class="es-ask" id="es-ask" data-consult-open hidden>{{ R.ask_anyway }}</button>
+      {%- if es_cta %}<button type="button" class="es-ask" id="es-ask" data-consult-open hidden>{{ R.ask_anyway }}</button>{% endif %}
       {%- endif %}
+      {%- if es_cta %}
       <button type="button" class="es-cta" id="es-cta" data-consult-open>{{ C.cta_button }} &rarr;</button>
       <p class="es-cta-note" id="es-cta-note">{{ C.cta_note }}</p>
+      {%- endif %}
       <button type="button" class="es-reset" id="es-reset">Start over</button>
     </div>
   </aside>
@@ -390,7 +443,12 @@
 </div>
 </div>
 
-<!-- mobile sticky: the range follows you down the page, and so does the CTA -->
+{%- comment -%} mobile sticky: the range follows you down the page, and so does
+the CTA. The whole bar goes with cta="off" rather than just its button: with
+nothing to press it is a strip of duplicated figure covering the controls on a
+phone, and the observers behind it (see the sticky-bar block in the script) are
+solving a conversion problem that mode does not have. {%- endcomment -%}
+{%- if es_cta %}
 <div class="es-stick" id="es-stick">
   <div class="es-stick-l">
     <span id="es-stick-label">{{ C.result_label }}</span>
@@ -398,6 +456,7 @@
   </div>
   <button type="button" class="es-cta" id="es-stick-cta" data-consult-open>{{ C.cta_button }} &rarr;</button>
 </div>
+{%- endif %}
 
 <section class="es-notes">
   <div class="es-notes-in">
@@ -549,6 +608,28 @@
      result panel arrives, which is where the same range and the same button
      already live. `touched` also decides whether the range may be called
      theirs; on load it is our example. */
+  /* cta="off" (see the header of this file) removes both CTAs, the referral's
+     "Ask us anyway" and the whole sticky bar from the markup. Everything that
+     writes to them is guarded on this rather than on each id, so the reason is
+     stated once and a missing node stays an error rather than a shrug. */
+  var CTA = {{ es_cta }};
+  /* start="blank": hold the panel empty until the first answer. PRE is what
+     the markup did, BLANK is what render() has to keep doing. */
+  var PRE = {{ es_pre }};
+  /* Which radio groups have an answer. Read off the DOM rather than a hardcoded
+     list, so a question added to _data/estimator.yml counts automatically. */
+  var GROUPS = (function(){
+    var seen = {}, out = [];
+    Array.prototype.forEach.call(form.querySelectorAll('input[type="radio"]'), function(el){
+      if(!seen[el.name]){ seen[el.name] = 1; out.push(el.name); }
+    });
+    return out;
+  })();
+  function answeredCount(){
+    var n = 0;
+    GROUPS.forEach(function(name){ if(form.querySelector('input[name="' + name + '"]:checked')) n++; });
+    return n;
+  }
   var stick, panelDone = false, inTool = false, touched = false;
   function toggle(){ if(stick) stick.classList.toggle('on', inTool && !panelDone); }
 
@@ -563,10 +644,34 @@
     $('es-guests-out').innerHTML = r.guests + (atMax ? '+' : '') + ' <span>' + (atMax ? gs.max_suffix : gs.suffix) + '</span>';
     $('es-tables-out').innerHTML = tableCount(r) + ' <span>tables</span>';
 
-    var under = r.high < S.minimum;
+    /* Blank outranks both other states, and it waits for a COMPLETE scope, not
+       merely a first touch. Half-answered, the arithmetic is real but it is the
+       price of a wedding nobody is having: one ceremony pick and nothing else
+       prices under the minimum, so the panel would announce "this sits below
+       where we start" while Brittany is still typing the wedding in. On a
+       screenshare that lands as a verdict on the couple. It stays blank until
+       there is something honest to say. */
+    var missing = !PRE && answeredCount() < GROUPS.length;
+    var blank = missing;
+    var under = !blank && r.high < S.minimum;
     $('es-panel').setAttribute('data-under', under ? '1' : '0');
-    $('es-range-view').hidden = under;
+    $('es-panel').setAttribute('data-blank', blank ? '1' : '0');
+    $('es-range-view').hidden = under || blank;
     $('es-under-view').hidden = !under;
+    if(!PRE) $('es-blank-view').hidden = !blank;
+
+    if(blank){
+      var done = answeredCount();
+      $('es-blank-label').textContent = done
+        ? done + ' of ' + GROUPS.length + ' questions answered'
+        : 'Nothing answered yet';
+      if(CTA){
+        $('es-stick-label').textContent = 'Nothing answered yet';
+        $('es-stick-fig').textContent = '';
+      }
+      toggle();
+      return;
+    }
 
     if(!under){
       /* a scope that straddles the floor still starts at the floor */
@@ -584,28 +689,33 @@
       $('es-floornote').hidden = !clamped;
       if(clamped) $('es-floornote').textContent = 'What you have selected prices out just under our ' +
         money(S.minimum) + ' full-service minimum, so the range starts there.';
-      $('es-stick-label').textContent = touched ? CFG.copy.result_label : CFG.copy.start_label;
-      $('es-stick-fig').textContent = money(low) + ' to ' + money(r.high);
-    } else {
+      if(CTA){
+        $('es-stick-label').textContent = touched ? CFG.copy.result_label : CFG.copy.start_label;
+        $('es-stick-fig').textContent = money(low) + ' to ' + money(r.high);
+      }
+    } else if(CTA){
       $('es-stick-label').textContent = CFG.copy.under_min_label;
       $('es-stick-fig').textContent = 'Below ' + money(S.minimum);
     }
-    /* Under the minimum the bar stays put and changes what it says. Vanishing
-       mid-drag reads as a broken page, and the button still has somewhere
-       honest to go. */
-    $('es-stick-cta').innerHTML = under ? CFG.copy.under_min_cta : CFG.copy.cta_button + ' &rarr;';
-    /* Under the minimum, the referral becomes the whole panel body and the
-       main CTA steps aside. Without a referral configured it falls back to
-       "Ask us anyway" on the primary button, which is the convert-up posture. */
+    if(CTA){
+      /* Under the minimum the bar stays put and changes what it says. Vanishing
+         mid-drag reads as a broken page, and the button still has somewhere
+         honest to go. */
+      $('es-stick-cta').innerHTML = under ? CFG.copy.under_min_cta : CFG.copy.cta_button + ' &rarr;';
+      /* Only the referral may take the primary button away. With the referral
+         off, hiding it too left the under-minimum panel with no button at all:
+         a dead end at the exact moment we want to hear from someone whose plan
+         is still taking shape. */
+      $('es-cta').hidden = under && !!$('es-ref');
+      $('es-cta-note').hidden = under;
+      $('es-cta').innerHTML = under ? CFG.copy.under_min_cta : CFG.copy.cta_button + ' &rarr;';
+    }
+    /* Under the minimum the referral becomes the whole panel body. It is NOT
+       guarded on CTA: it is the substantive answer to a scope we cannot take,
+       not a call to action, and it stays useful on the internal tool. Only its
+       "Ask us anyway" button leaves with the CTAs. */
     var ref = $('es-ref'), ask = $('es-ask');
-    if(ref){ ref.hidden = !under; ask.hidden = !under; }
-    /* Only the referral may take the primary button away. With the referral
-       off, hiding it too left the under-minimum panel with no button at all:
-       a dead end at the exact moment we want to hear from someone whose plan
-       is still taking shape. */
-    $('es-cta').hidden = under && !!ref;
-    $('es-cta-note').hidden = under;
-    $('es-cta').innerHTML = under ? CFG.copy.under_min_cta : CFG.copy.cta_button + ' &rarr;';
+    if(ref){ ref.hidden = !under; if(ask) ask.hidden = !under; }
     toggle();
 
     /* allocation */

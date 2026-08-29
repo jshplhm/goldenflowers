@@ -881,9 +881,29 @@ body.lb-open{overflow:hidden;}
 .price-row dt{color:oklch(85% .02 130);font-size:.94rem;line-height:1.45;}
 .pricing-dark .price-row dd{color:var(--paper);}
 .pricing-dark .price-basis{color:oklch(82% .02 130);}
+
+/* THE LEAD TIER (`lead: true` in weddings.yml pricing).
+   The badge is ABSOLUTELY POSITIONED on the photo, not stacked above the
+   figure, so it costs the row no height: in flow it pushed the middle amount
+   down and the three figures stopped sharing a baseline, which is the one
+   thing this block exists to let you do. For the same reason the highlight
+   is never a larger number (see the note above .price-row dd) — it is the
+   badge, a brighter label, and a hairline ring on the photo. */
+.price-row{position:relative;}
+.price-badge{position:absolute;top:14px;left:14px;z-index:1;background:var(--accent-soft);color:var(--forest-deep);font-size:.68rem;letter-spacing:.13em;text-transform:uppercase;font-weight:500;padding:7px 12px;border-radius:100px;}
+.price-row.is-lead .price-shot{outline:1px solid var(--accent-soft);outline-offset:5px;}
+.price-row.is-lead dt{color:var(--paper);}
+
+/* The a la carte line inside the first tier. Quieter than the tier's own
+   label on purpose: it is a second, smaller offer, not a second product. */
+.price-entry{margin-top:14px;padding-top:14px;border-top:1px solid oklch(100% 0 0/.16);color:oklch(78% .02 130);font-size:.86rem;line-height:1.55;}
+
 @media(max-width:900px){
   .price-scale{grid-template-columns:1fr;gap:clamp(30px,6vw,44px);}
   .price-shot{aspect-ratio:16/10;}
+  /* outline-offset:5px on a full-bleed-width photo clips against the column
+     padding on a phone, so the lead ring tucks in. */
+  .price-row.is-lead .price-shot{outline-offset:3px;}
 }
 
 /* ---------- CALLOUT (how we work) ----------
@@ -1679,20 +1699,6 @@ body.nav-hidden .venue-breadcrumb{top:0;}
 .proc-icon{display:flex;justify-content:center;}
 .proc-icon svg{width:clamp(26px,3vw,32px);height:clamp(26px,3vw,32px);stroke-width:1.5;}
 
-/* The estimator IS the pricing section, so it sits on the page's own surface
-   rather than in a well; boxing it would read as an aside.
-
-   The section break lives on the WRAPPER, not on the heading, because
-   #pricing is the heading and "Jump to pricing" scrolls to it. With the
-   padding on the heading itself you landed on ~230px of empty page: html's
-   scroll-padding-top clears the nav, and then the heading's own --sp-l
-   pushed the words that far down again. */
-.est-section{padding-top:var(--sp-l);}
-.est-section-head{max-width:var(--content-max);margin:0 auto;padding:0 var(--pad);}
-.est-section-head h2{font-family:var(--d);font-weight:430;font-optical-sizing:auto;font-size:clamp(2.1rem,5vw,3.6rem);letter-spacing:-.025em;line-height:1.02;margin-top:14px;}
-.est-section-head p{color:var(--fg2);font-size:1.04rem;line-height:1.7;margin-top:18px;max-width:56ch;}
-/* The include carries its own top padding, which would double under this. */
-.est-section .es-wrap{padding-top:clamp(26px,3.4vw,40px);}
 
 /* Consult form: "I'm not one of the couple" checkbox, and a message box that
    grows to its content (the estimator prefills several lines; rows="3" clipped

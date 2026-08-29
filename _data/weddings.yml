@@ -1,28 +1,27 @@
 # ===========================================================================
 # WEDDINGS  ->  /weddings  (Process & Pricing)
 #
-# 2026-08-15: the published price ladder was replaced by the floral estimator
-# (_data/estimator.yml + _includes/estimator.html).
+# 2026-08-28: the floral estimator was moved OFF this page. It now lives at
+# /pricing-tool, which is noindex + sitemap: false + unlinked, so it is
+# Brittany's quoting tool rather than the site's pricing answer. The published
+# three-figure ladder below took its place. See the `pricing:` block.
 #
-# WHAT CAME OUT, and where it went
-#   - `pricing.tiers`  the three figures and their photos. The estimator
-#     answers "what does it cost" now. The $7,500 minimum is still ENFORCED,
-#     inside the estimator, but is no longer PUBLISHED: it appears only to a
-#     visitor who has already described a wedding below it, so a planner
-#     pricing a $40k wedding never sees a floor.
-#   - `included`       the six "what's included" cards. The four things we
-#     MAKE became the icons heading the estimator's four input sections; the
-#     two things we DO were always process steps and live there now.
-#   - `assurance`      already unused before this change.
-#   Every one of them is recoverable from git history if wanted back.
+# 2026-08-15 (superseded): the ladder had been replaced BY the estimator.
+# What that change took out and where it went:
+#   - `included`   the six "what's included" cards. The four things we MAKE
+#     became the icons heading the estimator's four input sections; the two
+#     things we DO were always process steps and live there now. Still gone,
+#     deliberately: the ladder came back, the cards did not.
+#   - `assurance`  already unused before that change.
+#   Both are recoverable from git history (see edaedfc) if wanted back.
 #
-# Process steps now carry `icon:` instead of `number:`. Names come from
+# Process steps carry `icon:` instead of `number:`. Names come from
 # _includes/icon.html.
 # ===========================================================================
 
-# The hero no longer carries a price or a 'Check your date' button. The nav
-# carries the CTA on every screen; someone who opened Process & Pricing came
-# to understand the thing, and the button takes them straight to the money.
+# The hero carries no price and no second button. The nav carries "Check your
+# date" on every screen, so the hero's own button can serve the reason someone
+# opened this page: it jumps to the ladder.
 hero:
   label: Bold, Artful and sustainable floral design
   heading: Lake Tahoe Wedding Flowers
@@ -80,17 +79,56 @@ process:
       and at the end of the night our team comes back for the full breakdown: everything
       we brought is removed and the space is left clean.'
 
-# Heading above the estimator. The tool itself is configured in
-# _data/estimator.yml, which is where every dollar figure lives.
-estimator_intro:
+# THE PUBLISHED PRICE LADDER. Restored 2026-08-28 after the estimator was
+# moved off this page to the internal-only /pricing-tool.
+#
+# Three figures, one label each. No cards and no feature lists: a card implies
+# a package, and we are deliberately not saying what each figure buys.
+#
+# ONE published floor, and it is the full-service one. The $5,000 a la carte
+# number is deliberately a subordinate line INSIDE the first tier rather than
+# a tier of its own, because whichever figure gets a column of its own is read
+# as what we are. Delete `entry_note` to withdraw the a la carte offer without
+# touching the template.
+#
+# `lead: true` marks the tier most of our weddings land on. It is the visual
+# peak of the row and the only one carrying a badge; setting it on more than
+# one tier defeats the point.
+#
+# Claims here are about OUR book, never about the Lake Tahoe market: we have
+# no data on what other studios charge, and "most couples spend X" also
+# quietly grades the couple reading it.
+#
+# PHOTOS: attaching a photo to a figure implies that wedding cost roughly
+# that, so these three are Brittany's to confirm. She can swap any of them
+# from /edit (click the photo) or in Pages CMS. Paths are relative to
+# assets/images/portfolio/; an upload from /edit stores a full site-root path
+# instead and the template accepts both.
+pricing:
   label: Investment
   heading: What it costs.
-  # "nothing is emailed" was not true: if they go on to check their date, the
-  # estimate travels into the form's message. This version keeps the
-  # reassurance and stops promising something the page itself breaks.
-  body: Every wedding is quoted on its own, but the arithmetic is not a mystery.
-    Move the sliders and see a planning range and where the money goes. Nothing
-    here is saved, and nothing reaches us unless you decide to get in touch.
+  note: Every wedding is quoted on its own. What moves the number most is the
+    scale of the ceremony installation and how much of the room you want
+    designed, not the number of bouquets.
+  tiers:
+  - amount: $8,000
+    label: Our full-service minimum
+    entry_note: 'Smaller celebrations start at $5,000 a la carte: designer''s choice
+      in your palette, without installations.'
+    photo: camille-max/camille-max-17.jpg
+    alt: Couple on a Lake Tahoe beach beside tall purple and white ceremony florals
+  - amount: $12,000 to $20,000
+    label: A typical 100 guest wedding
+    badge: Where most land
+    lead: true
+    photo: katie-james/katie-james-04.jpg
+    alt: Long reception table at The Miner's Foundry running the length of the room,
+      set with candles and seasonal arrangements
+  - amount: $20,000+
+    label: Larger weddings and multiple installations
+    photo: lynn-aaron/lynn-aaron-27.jpg
+    alt: Suspended greenery installations hanging above the reception at Palisades
+      High Camp
 
 # Reviews are HIDDEN, not deleted. `show: false` stops the section rendering;
 # the 13 quotes stay in _data/testimonials.yml and still feed the Review and
