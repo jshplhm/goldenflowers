@@ -98,3 +98,13 @@
   lede: "A modern and unique wedding inspired by Dr. Seuss"
   palette: ""
   dots: []
+
+- slug: brooke-josh
+  name: Brooke and Josh
+  venue: The Chateau
+  place: Incline Village
+  band: [ "01", "01", "01" ]
+  strip: [ "01", "01" ]
+  lede: A classic, garden inspired wedding in whites, cremes and blush.
+  palette: ""
+  dots: []
