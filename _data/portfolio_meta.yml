@@ -108,3 +108,13 @@
   lede: A classic, garden inspired wedding in whites, cremes and blush.
   palette: "Heirloom garden inspired white, blush and cremes"
   dots: []
+
+- slug: jac-brandon
+  name: Jac and Brandon
+  venue: The National Exchange Hotel
+  place: Nevada City
+  band: [ "01", "01", "01" ]
+  strip: [ "01", "01" ]
+  lede: A romantic soft goth wedding
+  palette: ""
+  dots: []
