@@ -118,3 +118,13 @@
   lede: A romantic soft goth wedding
   palette: ""
   dots: []
+
+- slug: hannah-dillon
+  name: Hannah and Dillon
+  venue: Austin Ridge
+  place: Truckee
+  band: [ "01", "01", "01" ]
+  strip: [ "01", "01" ]
+  lede: A modern mountain soiree
+  palette: ""
+  dots: []
