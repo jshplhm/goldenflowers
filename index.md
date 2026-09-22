@@ -1,6 +1,5 @@
 ---
 layout: redesign
-hero_nav: true
 title: "Golden Flowers"
 seo_title: "Lake Tahoe & Sierra Nevada Wedding Florist | Golden Flowers"
 permalink: /
@@ -45,48 +44,30 @@ the boost layer is in effect a second permanent scrim. Left per-photo on purpose
 the moment one pale photo wants it and another does not, the machinery is here.
 {%- endcomment -%}
 <header class="hero hero-rot" id="hero-rot" data-boost="1">
-  {% comment %} Crop (object-position) and zoom origin (transform-origin) are set
-  INLINE per photo, tuned against the real hero in hero-lab. They belong to the
-  photograph, not to the slot, so reordering the slideshow has to carry them
-  along; a rule in redesign.css keyed to position would silently re-crop the
-  wrong image. Inline also outranks the stylesheet, so do not add per-photo
-  object-position back to redesign.css expecting it to win.
 
-  Art-directed: a landscape photo in a portrait viewport crops the SIDES and keeps
-  the full height, so on a phone half the frame would be blown-out sky.
-  object-position cannot fix that, so phones get a crop cut from the original.
-  The leading photo is the LCP image, so it is eager + fetchpriority high and the
-  phone crop is preloaded by the same media query. {% endcomment %}
-  <picture>
-    <source media="(max-width:700px)" srcset="{{ site.baseurl }}/assets/images/home-hero-laux-portrait.jpg">
-    <img class="bg is-on" data-boost="1" style="object-position:37% 80%;transform-origin:47% 86%;" src="{{ site.baseurl }}/assets/images/home-hero-laux.jpg" alt="Golden hour in an Olympic Valley meadow: bride and groom in tall grass with the Sierra Nevada behind them, bride holding a green and lavender bouquet" fetchpriority="high">
-  </picture>
+  {%- comment -%}
+    THE COPY SITS BESIDE THE PHOTOGRAPH, NOT ON IT (Josh, 2026-09-22, off the
+    /hero-kb mockup, variant A). The slideshow underneath is unchanged: same
+    five photos in the same order, same per-photo crops and zoom origins, same
+    template parking for photos 2-5, same rotator, same timings. Only the
+    layout around it moved.
 
-  {% comment %} Photos 2-5 wait in a <template>, and that is load-bearing rather
-  than tidiness. Every .bg sits inside the hero, which is in the viewport, so
-  loading="lazy" defers nothing: all five would be fetched on arrival, competing
-  with the LCP image for bandwidth. Template content is inert, so nothing is
-  requested until the rotator moves a node into the page one step ahead of
-  itself.
+    WHAT THAT DELETED RATHER THAN RESTYLED: the ::after scrim and the
+    .hero-boost layer both existed to darken a photograph enough for white type
+    to sit on it legibly. With the type on paper beside it neither has a job.
+    The photographs are shown as photographs now rather than as backgrounds, at
+    full brightness, and no longer cropped to whatever a 100vh box leaves.
 
-  They stay real <img> tags with a real src because _plugins/responsive_images.rb
-  only rewrites src="..." -- parking the URL in data-src would silently cost these
-  four photos their srcset and their WebP, which is a worse trade than loading
-  them early. In production each one arrives wrapped in a <picture>, so the
-  rotator takes the <img> from inside whatever it pulls out.
+    #hero-rot IS the grid, so every element the rotator looks up (.bg,
+    .hero-dots .hd, #hero-rest, .hero-boost) is still a descendant of it and is
+    still found. One line of the rotator changed: the insert was
+    hero.insertBefore(node, boostEl), and boostEl is a grandchild now, so it is
+    boostEl.parentNode.insertBefore. See _layouts/redesign.html.
 
-  ORDER AND CUT (owner, 2026-08-16, from hero-lab): nine photos down to five.
-  lynn-aaron-06, lynn-aaron-02, jenna-cal-07 and mikayla-jeff-04 are out. Each
-  crop/zoom pair below is the one tuned for that photograph, so it travels with
-  the photo if the order changes again. {% endcomment %}
-  <template id="hero-rest">
-    <img class="bg" data-boost="1" src="{{ site.baseurl }}/assets/images/portfolio/kelly-dylan/kelly-dylan-07.jpg" alt="Lake Tahoe beach wedding: bride with veil blowing in the wind, blue delphinium ceremony aisle at Kings Beach">
-    <img class="bg" data-boost="1" style="object-position:40% 41%;transform-origin:28% 44%;" src="{{ site.baseurl }}/assets/images/portfolio/lynn-aaron/lynn-aaron-19.jpg" alt="Snowy Sierra mountaintop wedding ceremony: couple kissing between two towering floral installations">
-    <img class="bg" data-boost="1" style="object-position:45% 39%;transform-origin:46% 12%;" src="{{ site.baseurl }}/assets/images/portfolio/katie-james/katie-james-08.jpg" alt="Stone-walled ceremony room: a couple holding hands before their officiant under a towering arch of blush, peach and cream blooms framing a tall window">
-    <img class="bg" data-boost="1" style="object-position:55% 50%;transform-origin:55% 36%;" src="{{ site.baseurl }}/assets/images/portfolio/tori-tucker/tori-tucker-13.jpg" alt="Lake Tahoe beach ceremony: bride reading her vows to a groom in a pink suit between two coral and burgundy floral installations, guests seated on the sand">
-  </template>
+    .hero-boost stays in the markup, hidden by CSS, because the rotator still
+    mirrors each photo's data-boost flag and expects to find the element.
+  {%- endcomment -%}
 
-  <div class="hero-boost" aria-hidden="true"></div>
   <div class="hero-in">
     {% if site.data.home.hero.eyebrow and site.data.home.hero.eyebrow != "" %}<p class="ey lab"><span data-ed="home:hero.eyebrow">{{ site.data.home.hero.eyebrow }}</span></p>{% endif %}
     <h1 class="disp">{% include em.html t=site.data.home.hero.heading k="home:hero.heading" %}</h1>
@@ -96,16 +77,63 @@ the moment one pale photo wants it and another does not, the machinery is here.
     </div>
   </div>
 
-  {% comment %} One dot per photo, and the rotator counts THESE, not the images
-  in the DOM: photos 2-5 are still in the template when the page loads, so the
-  image count is not the slideshow length until the very end. Cut a photo, cut
-  its dot, or the rotation runs on past the end of the slideshow. {% endcomment %}
-  <div class="hero-dots">
-    <button type="button" class="hd on" data-go="0" aria-label="Show photo 1"></button>
-    <button type="button" class="hd" data-go="1" aria-label="Show photo 2"></button>
-    <button type="button" class="hd" data-go="2" aria-label="Show photo 3"></button>
-    <button type="button" class="hd" data-go="3" aria-label="Show photo 4"></button>
-    <button type="button" class="hd" data-go="4" aria-label="Show photo 5"></button>
+  <div class="hs-right">
+    <div class="hs-stage">
+    {% comment %} Crop (object-position) and zoom origin (transform-origin) are set
+    INLINE per photo, tuned against the real hero in hero-lab. They belong to the
+    photograph, not to the slot, so reordering the slideshow has to carry them
+    along; a rule in redesign.css keyed to position would silently re-crop the
+    wrong image. Inline also outranks the stylesheet, so do not add per-photo
+    object-position back to redesign.css expecting it to win.
+
+    Art-directed: a landscape photo in a portrait viewport crops the SIDES and keeps
+    the full height, so on a phone half the frame would be blown-out sky.
+    object-position cannot fix that, so phones get a crop cut from the original.
+    The leading photo is the LCP image, so it is eager + fetchpriority high and the
+    phone crop is preloaded by the same media query. {% endcomment %}
+    <picture>
+      <source media="(max-width:700px)" srcset="{{ site.baseurl }}/assets/images/home-hero-laux-portrait.jpg">
+      <img class="bg is-on" data-boost="1" style="object-position:37% 80%;transform-origin:47% 86%;" src="{{ site.baseurl }}/assets/images/home-hero-laux.jpg" alt="Golden hour in an Olympic Valley meadow: bride and groom in tall grass with the Sierra Nevada behind them, bride holding a green and lavender bouquet" fetchpriority="high">
+    </picture>
+
+    {% comment %} Photos 2-5 wait in a <template>, and that is load-bearing rather
+    than tidiness. Every .bg sits inside the hero, which is in the viewport, so
+    loading="lazy" defers nothing: all five would be fetched on arrival, competing
+    with the LCP image for bandwidth. Template content is inert, so nothing is
+    requested until the rotator moves a node into the page one step ahead of
+    itself.
+
+    They stay real <img> tags with a real src because _plugins/responsive_images.rb
+    only rewrites src="..." -- parking the URL in data-src would silently cost these
+    four photos their srcset and their WebP, which is a worse trade than loading
+    them early. In production each one arrives wrapped in a <picture>, so the
+    rotator takes the <img> from inside whatever it pulls out.
+
+    ORDER AND CUT (owner, 2026-08-16, from hero-lab): nine photos down to five.
+    lynn-aaron-06, lynn-aaron-02, jenna-cal-07 and mikayla-jeff-04 are out. Each
+    crop/zoom pair below is the one tuned for that photograph, so it travels with
+    the photo if the order changes again. {% endcomment %}
+    <template id="hero-rest">
+      <img class="bg" data-boost="1" src="{{ site.baseurl }}/assets/images/portfolio/kelly-dylan/kelly-dylan-07.jpg" alt="Lake Tahoe beach wedding: bride with veil blowing in the wind, blue delphinium ceremony aisle at Kings Beach">
+      <img class="bg" data-boost="1" style="object-position:40% 41%;transform-origin:28% 44%;" src="{{ site.baseurl }}/assets/images/portfolio/lynn-aaron/lynn-aaron-19.jpg" alt="Snowy Sierra mountaintop wedding ceremony: couple kissing between two towering floral installations">
+      <img class="bg" data-boost="1" style="object-position:45% 39%;transform-origin:46% 12%;" src="{{ site.baseurl }}/assets/images/portfolio/katie-james/katie-james-08.jpg" alt="Stone-walled ceremony room: a couple holding hands before their officiant under a towering arch of blush, peach and cream blooms framing a tall window">
+      <img class="bg" data-boost="1" style="object-position:55% 50%;transform-origin:55% 36%;" src="{{ site.baseurl }}/assets/images/portfolio/tori-tucker/tori-tucker-13.jpg" alt="Lake Tahoe beach ceremony: bride reading her vows to a groom in a pink suit between two coral and burgundy floral installations, guests seated on the sand">
+    </template>
+
+    <div class="hero-boost" aria-hidden="true"></div>
+    </div>
+
+    {% comment %} One dot per photo, and the rotator counts THESE, not the images
+    in the DOM: photos 2-5 are still in the template when the page loads, so the
+    image count is not the slideshow length until the very end. Cut a photo, cut
+    its dot, or the rotation runs on past the end of the slideshow. {% endcomment %}
+    <div class="hero-dots">
+      <button type="button" class="hd on" data-go="0" aria-label="Show photo 1"></button>
+      <button type="button" class="hd" data-go="1" aria-label="Show photo 2"></button>
+      <button type="button" class="hd" data-go="2" aria-label="Show photo 3"></button>
+      <button type="button" class="hd" data-go="3" aria-label="Show photo 4"></button>
+      <button type="button" class="hd" data-go="4" aria-label="Show photo 5"></button>
+    </div>
   </div>
 </header>
 

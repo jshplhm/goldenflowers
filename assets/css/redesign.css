@@ -1,14 +1,22 @@
 /* Self-hosted web fonts (was fonts.googleapis.com). Faithful 1:1 of the
    Google css2 latin+latin-ext subsets; weights preserved so 430 snaps to 500
    exactly as before. font-display:swap. See assets/fonts/. */
-@font-face{font-family:'Cormorant Garamond';font-style:normal;font-weight:400;font-display:swap;src:url(/assets/fonts/cormorant-garamond-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;}
-@font-face{font-family:'Cormorant Garamond';font-style:normal;font-weight:400;font-display:swap;src:url(/assets/fonts/cormorant-garamond-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
-@font-face{font-family:'Cormorant Garamond';font-style:normal;font-weight:500;font-display:swap;src:url(/assets/fonts/cormorant-garamond-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;}
-@font-face{font-family:'Cormorant Garamond';font-style:normal;font-weight:500;font-display:swap;src:url(/assets/fonts/cormorant-garamond-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
-@font-face{font-family:'Cormorant Garamond';font-style:normal;font-weight:600;font-display:swap;src:url(/assets/fonts/cormorant-garamond-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;}
-@font-face{font-family:'Cormorant Garamond';font-style:normal;font-weight:600;font-display:swap;src:url(/assets/fonts/cormorant-garamond-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
-@font-face{font-family:'Cormorant Garamond';font-style:normal;font-weight:700;font-display:swap;src:url(/assets/fonts/cormorant-garamond-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;}
-@font-face{font-family:'Cormorant Garamond';font-style:normal;font-weight:700;font-display:swap;src:url(/assets/fonts/cormorant-garamond-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
+/* Castoro replaced Cormorant Garamond as the display face on 2026-09-22.
+   size-adjust:88% is what makes the swap a drop-in: at the same font-size
+   Castoro's capitals stand 12% taller than Cormorant's (cap height .701
+   against .625, measured from the font files), and every display size in
+   this sheet was tuned for Cormorant. 88% puts the capitals back where
+   those sizes expect them; the lowercase stays about 9% fuller, which is
+   the change we wanted, and is why some headings rewrap.
+   ONE WEIGHT, 400. The sheet asks for 430 in 34 display rules, which
+   resolves to 400 with no synthetic bold (synthesis starts at 600).
+   Castoro also ships a real italic; Cormorant's italic file was never in
+   assets/fonts, so every *asterisk* italic on this site has been a
+   browser-synthesised oblique until now. */
+@font-face{font-family:'Castoro';font-style:normal;font-weight:400;font-display:swap;size-adjust:88%;src:url(/assets/fonts/castoro-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;}
+@font-face{font-family:'Castoro';font-style:normal;font-weight:400;font-display:swap;size-adjust:88%;src:url(/assets/fonts/castoro-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
+@font-face{font-family:'Castoro';font-style:italic;font-weight:400;font-display:swap;size-adjust:88%;src:url(/assets/fonts/castoro-italic-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;}
+@font-face{font-family:'Castoro';font-style:italic;font-weight:400;font-display:swap;size-adjust:88%;src:url(/assets/fonts/castoro-italic-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
 @font-face{font-family:'DM Sans';font-style:normal;font-weight:400;font-display:swap;src:url(/assets/fonts/dm-sans-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;}
 @font-face{font-family:'DM Sans';font-style:normal;font-weight:400;font-display:swap;src:url(/assets/fonts/dm-sans-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
 @font-face{font-family:'DM Sans';font-style:normal;font-weight:500;font-display:swap;src:url(/assets/fonts/dm-sans-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;}
@@ -43,7 +51,7 @@
   --accent:oklch(38% .105 150);
   --accent-soft:oklch(89% .022 92);
   --line:oklch(80% .015 120 / .65);
-  --d:'Cormorant Garamond',Georgia,serif;  /* display — swap here to change face */
+  --d:'Castoro',Georgia,'Times New Roman',serif;  /* display — swap here to change face */
   --b:'DM Sans',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;
   --pad:clamp(24px,5vw,72px);
   /* Vertical rhythm. Was nine unrelated values across the sheet (64/80/90/100/
@@ -186,6 +194,78 @@ button.txt-link{background:none;border-top:0;border-left:0;border-right:0;cursor
 .hero-btns{display:flex;gap:14px;flex-wrap:wrap;align-items:center;}
 .side-label{position:absolute;right:calc(var(--pad) - 6px);top:50%;transform:rotate(90deg);transform-origin:right center;z-index:3;font-size:.72rem;letter-spacing:.3em;text-transform:uppercase;opacity:.8;}
 
+/* ==========================================================================
+   HOME HERO: COPY BESIDE THE PHOTOGRAPH (Josh, 2026-09-22)
+   --------------------------------------------------------------------------
+   Everything here is scoped to .hero-rot, which is the home page and nothing
+   else. .hero is shared with /weddings (.hero-land), the interior heroes
+   (.hero-sm, .hero--interior) and Our Story's split hero; an unscoped override
+   would take all of them with it. The stylesheet already had that lesson
+   written down further down this file, where `.hero .hero-foot .btn` once
+   swallowed the "Jump to pricing" button.
+
+   The photograph used to be a 100vh background with white type over it and a
+   two-layer scrim to keep the type legible. It is now a contained 4/5 plate in
+   its own column. The scrim and the boost layer go with the overlap: they
+   existed only to darken a picture for type that is no longer on it.
+   ========================================================================== */
+.hero.hero-rot{
+  height:auto;min-height:0;overflow:visible;color:var(--ink);
+  max-width:var(--content-max);margin:0 auto;
+  padding:calc(var(--nav-h) + clamp(30px,4vw,64px)) var(--pad) clamp(40px,5vw,70px);
+  display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+  gap:clamp(32px,4.5vw,72px);align-items:center;}
+
+/* Both scrims off. Not restyled, off: with nothing over the photograph there
+   is nothing to protect, and either one now just dims the work. */
+.hero-rot::after{display:none;}
+.hero-rot .hero-boost{display:none;}
+
+/* .hero-in carried the absolute-ish full-width positioning of the overlay.
+   As a grid child it needs none of it, and the shared rules for .ey,
+   .hero-foot and .hero-sub inside it still apply. */
+.hero-rot .hero-in{max-width:none;margin:0;padding:0;}
+.hero-rot .ey{color:var(--mute);opacity:1;}
+.hero-rot .hero-sub{color:var(--fg2);opacity:1;max-width:38ch;}
+
+/* The headline is in a half-width column now, so it cannot run at the
+   full-bleed size. 5rem, not the 5.6 it had and not the 4.6 this started at:
+   "Lake Tahoe Wedding Florist" is a SHORT headline that sets two lines, and
+   4.6 left the column visibly half empty beside a tall photograph. 5rem is the
+   largest that still keeps "Wedding Florist" on one line inside a 615px column
+   at 1440. If the headline copy ever gets longer, this comes back down. */
+.hero-rot h1{color:var(--ink);font-size:clamp(2.4rem,5vw,5rem);line-height:1.02;}
+
+/* The glass button was white-on-photo. On paper it is invisible, so the home
+   hero takes the site's ordinary accent button. Scoped, so the glass style
+   stays for every hero that still has type on a picture. */
+.hero-rot .btn{background:var(--accent);color:var(--paper);border:1px solid var(--accent);
+  -webkit-backdrop-filter:none;backdrop-filter:none;}
+.hero-rot .btn:hover{background:var(--ink);border-color:var(--ink);color:var(--paper);
+  transform:translateY(-2px);filter:none;}
+
+/* The stage: what the photographs are absolutely positioned inside now that
+   the hero itself is a grid. `.hero .bg` already says position:absolute;inset:0,
+   and it still resolves against this because this is the nearest positioned
+   ancestor. 4/5 matches the mockup Josh picked. */
+/* Square, not the mockup's 4/5. The mockup's left column held a three-line
+   headline plus a subhead; live's holds a two-line headline, a subhead and a
+   button, which is shorter, and 4/5 put a 769px picture beside ~360px of copy.
+   A 1/1 plate is the same width and 154px shorter, which is most of the gap. */
+.hero-rot .hs-stage{position:relative;overflow:hidden;aspect-ratio:1/1;background:var(--bg2);}
+.hero-rot .hs-right{display:block;}
+
+@media(max-width:860px){
+  /* One column, words then picture, per the standing rule that a photograph
+     gets a phone row to itself. */
+  .hero.hero-rot{grid-template-columns:1fr;align-items:start;gap:26px;
+    padding-top:calc(var(--nav-h) + 30px);}
+  .hero-rot h1{font-size:clamp(2.2rem,8.4vw,3.2rem);}
+  /* Portrait again on a phone: the <picture> element serves a crop cut
+     portrait at <=700px, and squaring it would throw away the art direction. */
+  .hero-rot .hs-stage{aspect-ratio:4/5;}
+}
+
 /* ---------- HERO ROTATION (home only) ----------
    Five photos crossfade behind FIXED copy. The headline, subhead and CTA never
    move: this is ambient texture, not a carousel of competing messages, which is
@@ -277,6 +357,20 @@ button.txt-link{background:none;border-top:0;border-left:0;border-right:0;cursor
 .hero-dots .hd{width:8px;height:8px;padding:0;border-radius:50%;border:1px solid oklch(100% 0 0/.7);background:transparent;cursor:pointer;transition:background .3s;}
 .hero-dots .hd.on{background:oklch(100% 0 0);}
 
+/* HOME ONLY: centred under the photograph, in the flow, on paper (2026-09-22).
+   In the bottom-right corner of a picture they read as a control that got left
+   behind; centred under it they read as belonging to it. White-on-photo dots
+   are invisible on cream, so they become ink. The tap target is 44px tall with
+   a 7px dot drawn inside it, which the 8px white dots never were. */
+.hero-rot .hero-dots{position:static;display:flex;justify-content:center;gap:14px;margin-top:18px;}
+.hero-rot .hero-dots .hd{width:26px;height:44px;border:0;border-radius:0;background:none;
+  display:grid;place-items:center;}
+.hero-rot .hero-dots .hd::after{content:"";width:7px;height:7px;border-radius:50%;
+  background:var(--ink);opacity:.22;transition:opacity .25s,transform .25s;}
+.hero-rot .hero-dots .hd.on{background:none;}
+.hero-rot .hero-dots .hd.on::after{opacity:1;transform:scale(1.25);}
+.hero-rot .hero-dots .hd:hover::after{opacity:.55;}
+
 /* Small screens: the HOME hero drops its "See our work" button and centres the
    dots. The button pointed at the portfolio while the visitor was already
    looking at the portfolio, and it crowded the bottom of the frame next to nine
@@ -300,10 +394,10 @@ button.txt-link{background:none;border-top:0;border-left:0;border-right:0;cursor
      changes hero height on every page and makes the box resize as the toolbar
      hides and shows on scroll. env() adds the home-indicator inset when the
      site is opened standalone, where the toolbar is gone but the inset is not. */
-  .hero-in{padding-bottom:clamp(84px,16vw,110px);}
+  .hero:not(.hero-rot) .hero-in{padding-bottom:clamp(84px,16vw,110px);}
   /* Centring the row is now the whole job. It used to need the pause pulled out
      of the flex flow first, or the dots sat left of centre to make room for it. */
-  .hero-dots{left:0;right:0;bottom:calc(clamp(48px,8vw,64px) + env(safe-area-inset-bottom,0px));justify-content:center;}
+  .hero:not(.hero-rot) .hero-dots{left:0;right:0;bottom:calc(clamp(48px,8vw,64px) + env(safe-area-inset-bottom,0px));justify-content:center;}
 }
 
 /* ---------- SPLIT HERO (Our Story — deliberately not full-bleed) ---------- */
