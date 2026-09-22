@@ -1,6 +1,5 @@
 ---
 layout: redesign
-hero_nav: true
 title: "Blog"
 seo_title: "Lake Tahoe Wedding Flower Journal | Golden Flowers"
 permalink: /blog
@@ -12,13 +11,24 @@ redirect_from:
 ---
 
 <!-- HERO -->
-<header class="hero hero-sm">
-  <img class="bg" src="{{ site.baseurl }}/assets/images/portfolio/kelly-dylan/kelly-dylan-05.jpg" alt="Seasonal California-grown wedding florals by Golden Flowers" style="object-position:center 45%;">
+<header class="hero hero-beside hero-sm">
+  {%- comment -%}
+    COPY BESIDE THE PHOTOGRAPH, not over it (Josh, 2026-09-22), the same
+    treatment the home hero took earlier the same day. .hero-beside carries
+    the whole layout; hero-sm only sets the height the grid no longer uses,
+    and is left on so nothing else keyed to it changes.
+  {%- endcomment -%}
   <div class="hero-in">
     <p class="ey lab"><span data-ed="blog_page:hero.label">{{ site.data.blog_page.hero.label }}</span></p>
     <h1 class="disp">{% include em.html t=site.data.blog_page.hero.heading k="blog_page:hero.heading" %}</h1>
     <div class="hero-foot">
       <p class="hero-sub"><span data-ed="blog_page:hero.subheading">{{ site.data.blog_page.hero.subheading }}</span></p>
+    </div>
+  </div>
+
+  <div class="hs-right">
+    <div class="hs-stage">
+      <img class="bg" src="{{ site.baseurl }}/assets/images/portfolio/kelly-dylan/kelly-dylan-05.jpg" alt="Seasonal California-grown wedding florals by Golden Flowers" style="object-position:center 45%;">
     </div>
   </div>
 </header>

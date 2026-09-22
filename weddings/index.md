@@ -1,6 +1,5 @@
 ---
 layout: redesign
-hero_nav: true
 title: "Weddings"
 seo_title: "Lake Tahoe Wedding Flowers & Pricing | Golden Flowers"
 permalink: /weddings
@@ -52,8 +51,13 @@ redirect_from:
      =================================================================== -->
 
 <!-- HERO -->
-<header class="hero hero-land">
-  <img class="bg" src="{{ site.baseurl }}/assets/images/portfolio/kelly-dylan/kelly-dylan-13.jpg" alt="Bride holding a lush garden-rose and ranunculus bouquet at a Lake Tahoe beach wedding by Golden Flowers" style="object-position:center 55%;">
+<header class="hero hero-beside hero-land">
+  {%- comment -%}
+    COPY BESIDE THE PHOTOGRAPH, not over it (Josh, 2026-09-22), the same
+    treatment the home hero took earlier the same day. .hero-beside carries
+    the whole layout; hero-land only sets the height the grid no longer uses,
+    and is left on so nothing else keyed to it changes.
+  {%- endcomment -%}
   <div class="hero-in">
     <p class="ey lab"><span data-ed="weddings:hero.label">{{ site.data.weddings.hero.label }}</span></p>
     <h1 class="disp">{% include em.html t=site.data.weddings.hero.heading k="weddings:hero.heading" %}</h1>
@@ -63,6 +67,12 @@ redirect_from:
       on every screen, so the hero can serve the reason someone opened this
       page. It jumps to the price ladder. {%- endcomment -%}
       <a class="btn" href="#pricing"><span data-ed="weddings:hero.button_primary">{{ site.data.weddings.hero.button_primary }}</span> <span>&darr;</span></a>
+    </div>
+  </div>
+
+  <div class="hs-right">
+    <div class="hs-stage">
+      <img class="bg" src="{{ site.baseurl }}/assets/images/portfolio/kelly-dylan/kelly-dylan-13.jpg" alt="Bride holding a lush garden-rose and ranunculus bouquet at a Lake Tahoe beach wedding by Golden Flowers" style="object-position:center 55%;">
     </div>
   </div>
 </header>

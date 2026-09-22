@@ -43,7 +43,7 @@ Every photo currently carries data-boost="1", so the attribute never changes and
 the boost layer is in effect a second permanent scrim. Left per-photo on purpose:
 the moment one pale photo wants it and another does not, the machinery is here.
 {%- endcomment -%}
-<header class="hero hero-rot" id="hero-rot" data-boost="1">
+<header class="hero hero-beside hero-rot" id="hero-rot" data-boost="1">
 
   {%- comment -%}
     THE COPY SITS BESIDE THE PHOTOGRAPH, NOT ON IT (Josh, 2026-09-22, off the

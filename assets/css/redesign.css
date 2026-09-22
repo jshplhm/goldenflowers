@@ -194,78 +194,6 @@ button.txt-link{background:none;border-top:0;border-left:0;border-right:0;cursor
 .hero-btns{display:flex;gap:14px;flex-wrap:wrap;align-items:center;}
 .side-label{position:absolute;right:calc(var(--pad) - 6px);top:50%;transform:rotate(90deg);transform-origin:right center;z-index:3;font-size:.72rem;letter-spacing:.3em;text-transform:uppercase;opacity:.8;}
 
-/* ==========================================================================
-   HOME HERO: COPY BESIDE THE PHOTOGRAPH (Josh, 2026-09-22)
-   --------------------------------------------------------------------------
-   Everything here is scoped to .hero-rot, which is the home page and nothing
-   else. .hero is shared with /weddings (.hero-land), the interior heroes
-   (.hero-sm, .hero--interior) and Our Story's split hero; an unscoped override
-   would take all of them with it. The stylesheet already had that lesson
-   written down further down this file, where `.hero .hero-foot .btn` once
-   swallowed the "Jump to pricing" button.
-
-   The photograph used to be a 100vh background with white type over it and a
-   two-layer scrim to keep the type legible. It is now a contained 4/5 plate in
-   its own column. The scrim and the boost layer go with the overlap: they
-   existed only to darken a picture for type that is no longer on it.
-   ========================================================================== */
-.hero.hero-rot{
-  height:auto;min-height:0;overflow:visible;color:var(--ink);
-  max-width:var(--content-max);margin:0 auto;
-  padding:calc(var(--nav-h) + clamp(30px,4vw,64px)) var(--pad) clamp(40px,5vw,70px);
-  display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);
-  gap:clamp(32px,4.5vw,72px);align-items:center;}
-
-/* Both scrims off. Not restyled, off: with nothing over the photograph there
-   is nothing to protect, and either one now just dims the work. */
-.hero-rot::after{display:none;}
-.hero-rot .hero-boost{display:none;}
-
-/* .hero-in carried the absolute-ish full-width positioning of the overlay.
-   As a grid child it needs none of it, and the shared rules for .ey,
-   .hero-foot and .hero-sub inside it still apply. */
-.hero-rot .hero-in{max-width:none;margin:0;padding:0;}
-.hero-rot .ey{color:var(--mute);opacity:1;}
-.hero-rot .hero-sub{color:var(--fg2);opacity:1;max-width:38ch;}
-
-/* The headline is in a half-width column now, so it cannot run at the
-   full-bleed size. 5rem, not the 5.6 it had and not the 4.6 this started at:
-   "Lake Tahoe Wedding Florist" is a SHORT headline that sets two lines, and
-   4.6 left the column visibly half empty beside a tall photograph. 5rem is the
-   largest that still keeps "Wedding Florist" on one line inside a 615px column
-   at 1440. If the headline copy ever gets longer, this comes back down. */
-.hero-rot h1{color:var(--ink);font-size:clamp(2.4rem,5vw,5rem);line-height:1.02;}
-
-/* The glass button was white-on-photo. On paper it is invisible, so the home
-   hero takes the site's ordinary accent button. Scoped, so the glass style
-   stays for every hero that still has type on a picture. */
-.hero-rot .btn{background:var(--accent);color:var(--paper);border:1px solid var(--accent);
-  -webkit-backdrop-filter:none;backdrop-filter:none;}
-.hero-rot .btn:hover{background:var(--ink);border-color:var(--ink);color:var(--paper);
-  transform:translateY(-2px);filter:none;}
-
-/* The stage: what the photographs are absolutely positioned inside now that
-   the hero itself is a grid. `.hero .bg` already says position:absolute;inset:0,
-   and it still resolves against this because this is the nearest positioned
-   ancestor. 4/5 matches the mockup Josh picked. */
-/* Square, not the mockup's 4/5. The mockup's left column held a three-line
-   headline plus a subhead; live's holds a two-line headline, a subhead and a
-   button, which is shorter, and 4/5 put a 769px picture beside ~360px of copy.
-   A 1/1 plate is the same width and 154px shorter, which is most of the gap. */
-.hero-rot .hs-stage{position:relative;overflow:hidden;aspect-ratio:1/1;background:var(--bg2);}
-.hero-rot .hs-right{display:block;}
-
-@media(max-width:860px){
-  /* One column, words then picture, per the standing rule that a photograph
-     gets a phone row to itself. */
-  .hero.hero-rot{grid-template-columns:1fr;align-items:start;gap:26px;
-    padding-top:calc(var(--nav-h) + 30px);}
-  .hero-rot h1{font-size:clamp(2.2rem,8.4vw,3.2rem);}
-  /* Portrait again on a phone: the <picture> element serves a crop cut
-     portrait at <=700px, and squaring it would throw away the art direction. */
-  .hero-rot .hs-stage{aspect-ratio:4/5;}
-}
-
 /* ---------- HERO ROTATION (home only) ----------
    Five photos crossfade behind FIXED copy. The headline, subhead and CTA never
    move: this is ambient texture, not a carousel of competing messages, which is
@@ -386,6 +314,12 @@ button.txt-link{background:none;border-top:0;border-left:0;border-right:0;cursor
    visible on mobile by default now; hide it here only with a reason of its own. */
 @media(max-width:860px){
   .hero-rot .hero-foot .btn{display:none;}
+  /* The two rules below are :not(.hero-beside), not :not(.hero-rot). Both exist
+     to lift copy clear of iOS Safari's bottom toolbar when the copy is sitting
+     ON the photograph. A .hero-beside hero has its copy on paper above the
+     picture, so the padding is just a 94px hole between the words and the
+     photo, which is exactly what it was on /sustainability at 520px before
+     this was rescoped. (2026-09-22) */
   /* Both offsets clear iOS Safari's bottom toolbar. .hero is height:100vh, and
      on iOS 100vh is the viewport with the chrome HIDDEN, so the last ~60pt of
      the hero lives behind the toolbar and anything anchored near the bottom
@@ -394,10 +328,10 @@ button.txt-link{background:none;border-top:0;border-left:0;border-right:0;cursor
      changes hero height on every page and makes the box resize as the toolbar
      hides and shows on scroll. env() adds the home-indicator inset when the
      site is opened standalone, where the toolbar is gone but the inset is not. */
-  .hero:not(.hero-rot) .hero-in{padding-bottom:clamp(84px,16vw,110px);}
+  .hero:not(.hero-beside) .hero-in{padding-bottom:clamp(84px,16vw,110px);}
   /* Centring the row is now the whole job. It used to need the pause pulled out
      of the flex flow first, or the dots sat left of centre to make room for it. */
-  .hero:not(.hero-rot) .hero-dots{left:0;right:0;bottom:calc(clamp(48px,8vw,64px) + env(safe-area-inset-bottom,0px));justify-content:center;}
+  .hero:not(.hero-beside) .hero-dots{left:0;right:0;bottom:calc(clamp(48px,8vw,64px) + env(safe-area-inset-bottom,0px));justify-content:center;}
 }
 
 /* ---------- SPLIT HERO (Our Story — deliberately not full-bleed) ---------- */
@@ -679,6 +613,81 @@ button.txt-link{background:none;border-top:0;border-left:0;border-right:0;cursor
 /* Landing hero: taller than interior for cold ad traffic (headline + CTA above the
    fold on mobile), and keeps the default left+bottom scrim for text legibility. */
 .hero.hero-land{height:80vh;min-height:600px;}
+
+/* NOTE ON ORDER: this block MUST stay below .hero.hero-sm and .hero.hero-land
+   above. All three are (0,2,0), so the cascade is decided by position, and
+   with the block higher up those two clamped a .hero-beside hero to 64vh/80vh
+   while its own grid content was taller. On /sustainability that overflowed
+   the photograph into the section underneath. Caught by screenshot, not by
+   reading the sheet. Do not move this block up. */
+/* ==========================================================================
+   HERO: COPY BESIDE THE PHOTOGRAPH  (.hero-beside)
+   --------------------------------------------------------------------------
+   Home took this treatment first (2026-09-22); /weddings, /sustainability and
+   /blog followed the same day, so the layout lives here once instead of three
+   times. Anything below that is specific to the home page's SLIDESHOW is under
+   .hero-rot in the next block, not here.
+
+   .hero-beside is added ALONGSIDE .hero-sm / .hero-land / .hero-rot rather
+   than replacing them. Those classes still set heights this grid ignores, and
+   leaving them on means nothing else keyed to them has to be chased down.
+
+   NEVER write these as bare `.hero` rules. .hero is shared with the interior
+   heroes and Our Story's split hero, and this sheet already has the scar:
+   `.hero .hero-foot .btn` once swallowed "Jump to pricing" on /weddings.
+
+   The photograph used to be a full-height background with white type over it
+   and a scrim to keep the type legible. It is a contained plate in its own
+   column now, so the scrim goes with the overlap: it existed only to darken a
+   picture for type that is no longer on it.
+   ========================================================================== */
+.hero.hero-beside{
+  height:auto;min-height:0;overflow:visible;color:var(--ink);
+  max-width:var(--content-max);margin:0 auto;
+  padding:calc(var(--nav-h) + clamp(30px,4vw,64px)) var(--pad) clamp(40px,5vw,70px);
+  display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+  gap:clamp(32px,4.5vw,72px);align-items:center;}
+
+/* Scrim off. Not restyled, off. */
+.hero-beside::after{display:none;}
+
+/* .hero-in carried the full-width positioning of the overlay. As a grid child
+   it needs none of it, and the shared rules for .ey, .hero-foot and .hero-sub
+   inside it still apply. */
+.hero-beside .hero-in{max-width:none;margin:0;padding:0;}
+.hero-beside .ey{color:var(--mute);opacity:1;}
+.hero-beside .hero-sub{color:var(--fg2);opacity:1;max-width:38ch;}
+.hero-beside h1{color:var(--ink);font-size:clamp(2.4rem,5vw,5rem);line-height:1.02;}
+
+/* The glass button was white-on-photo. On paper it is invisible, so a hero
+   beside its picture takes the site's ordinary accent button. Scoped, so the
+   glass style stays wherever type is still on a picture. */
+.hero-beside .btn{background:var(--accent);color:var(--paper);border:1px solid var(--accent);
+  -webkit-backdrop-filter:none;backdrop-filter:none;}
+.hero-beside .btn:hover{background:var(--ink);border-color:var(--ink);color:var(--paper);
+  transform:translateY(-2px);filter:none;}
+
+/* The plate. `.hero .bg` already says position:absolute;inset:0, and it still
+   resolves against this because this is the nearest positioned ancestor. */
+.hero-beside .hs-stage{position:relative;overflow:hidden;aspect-ratio:1/1;background:var(--bg2);}
+.hero-beside .hs-right{display:block;}
+
+@media(max-width:860px){
+  /* One column, words then picture: a photograph gets a phone row to itself. */
+  .hero.hero-beside{grid-template-columns:1fr;align-items:start;gap:26px;
+    padding-top:calc(var(--nav-h) + 30px);}
+  .hero-beside h1{font-size:clamp(2.2rem,8.4vw,3.2rem);}
+  /* Portrait on a phone. The home <picture> serves a crop cut portrait at
+     <=700px, and squaring it would throw the art direction away. */
+  .hero-beside .hs-stage{aspect-ratio:4/5;}
+}
+
+/* HOME ONLY, because only the home hero has a slideshow behind it: the boost
+   layer was the second scrim, and it has nothing left to protect either. The
+   element stays in the markup because the rotator mirrors each photo's
+   data-boost flag and expects to find it. */
+.hero-rot .hero-boost{display:none;}
+
 
 /* ---------- PORTFOLIO ---------- */
 .pf-note{text-align:center;color:var(--mute);font-size:.92rem;padding:26px var(--pad) 0;}
