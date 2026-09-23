@@ -192,6 +192,25 @@ the moment one pale photo wants it and another does not, the machinery is here.
     <figure class="pb-pic"><img src="{{ site.baseurl }}/assets/images/portfolio/tori-tucker/tori-tucker-13.jpg" loading="lazy" alt="Lake Tahoe beach ceremony: a bride reading her vows between two coral and burgundy installations"></figure>
   </div>
 </section>
+<!-- A last run of photographs before the ask (Josh, 2026-09-23). The scroll
+     above here is pale all the way down: a meadow, the lake, a beach. These
+     five go the other way, into the dark and saturated work, so the page has
+     a tonal arc instead of one key held for its whole length. Four weddings,
+     and the pairs follow the same 2:3 / 4:5 rule as every other row. -->
+<section class="pband">
+  <div class="pb-row pb-row--full">
+    <figure class="pb-pic"><img src="{{ site.baseurl }}/assets/images/portfolio/lynn-aaron/lynn-aaron-02.jpg" loading="lazy" alt="Guests seated along a long banquet table run with greenery and candles, caught mid-dinner"></figure>
+  </div>
+  <div class="pb-row">
+    <figure class="pb-pic"><img src="{{ site.baseurl }}/assets/images/portfolio/jac-brandon/jac-brandon-07.jpg" loading="lazy" alt="A couple in black, the bride holding a bouquet of crimson and oxblood roses against dark foliage"></figure>
+    <figure class="pb-pic"><img src="{{ site.baseurl }}/assets/images/portfolio/lynn-aaron/lynn-aaron-28.jpg" loading="lazy" alt="A lounge vignette: a low white vessel of burgundy and blush blooms on marble, candles beside it"></figure>
+  </div>
+  <div class="pb-row">
+    <figure class="pb-pic"><img src="{{ site.baseurl }}/assets/images/portfolio/kelly-dylan/kelly-dylan-25.jpg" loading="lazy" alt="A navy tablescape with taper candles, blue glass and delphinium above the place setting"></figure>
+    <figure class="pb-pic"><img src="{{ site.baseurl }}/assets/images/portfolio/tori-tucker/tori-tucker-18.jpg" loading="lazy" alt="A bouquet of pink garden roses and trailing greenery held against an ivory gown"></figure>
+  </div>
+</section>
+
 <section class="credo closing">
   <p class="intro-close">{% include em.html t=site.data.home.cta.heading k="home:cta.heading" %}</p>
   <p class="intro-more"><a href="{{ site.baseurl }}/consultation-form" class="txt-link"><span data-ed="home:cta.button">{{ site.data.home.cta.button }}</span> &rarr;</a></p>
