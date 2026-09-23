@@ -196,10 +196,12 @@
     if(!row||!strip) return;
     var cards=row.querySelectorAll('.pfx-ph'), n=cards.length;
     if(n<2) return;
+    var num=bd.querySelector('.pfx-num b');
     for(var k=0;k<n;k++) strip.appendChild(document.createElement('i'));
     var dots=strip.children, cur=-1, ticking=false;
     function paint(i){
       if(i===cur) return; cur=i;
+      if(num) num.textContent=i+1;
       var start = n<=WIN ? 0 : Math.min(Math.max(i-2,0), n-WIN);
       strip.style.transform='translateX(' + (-start*STEP) + 'px)';
       for(var k=0;k<n;k++){

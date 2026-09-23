@@ -49,9 +49,16 @@
   {%- endif -%}
   {%- assign shown = "" | split: "" -%}
   {%- for p in m.band -%}{%- assign shown = shown | push: slug | append: '-' | append: p | append: '.jpg' -%}{%- endfor -%}
+  {%- comment -%} The stage exists so the counter can be positioned against
+  the strip without living inside it: anything absolutely positioned inside a
+  scroller scrolls with the content. On desktop it is a pass-through — .pfx-row
+  declares its own twelve-column grid, so nothing about the three-up row
+  changes. {%- endcomment -%}
+  <div class="pfx-stage">
+  <span class="pfx-num" aria-hidden="true"><b>1</b>/{{ allf.size }}</span>
   <div class="pfx-row">
     {%- for p in m.band -%}
-    <a class="pfx-ph" href="{{ href }}"><img src="{{ site.baseurl }}{{ base }}{{ p }}.jpg" alt="{{ name }} wedding flowers at {{ m.venue }}, {{ m.place }}" loading="{% if include.n == '01' and forloop.first %}eager{% else %}lazy{% endif %}"{% if include.n == '01' and forloop.first %} fetchpriority="high"{% endif %} sizes="(max-width:900px) 92vw, 40vw"><span class="pfx-num" aria-hidden="true">{{ forloop.index }}/{{ allf.size }}</span></a>
+    <a class="pfx-ph" href="{{ href }}"><img src="{{ site.baseurl }}{{ base }}{{ p }}.jpg" alt="{{ name }} wedding flowers at {{ m.venue }}, {{ m.place }}" loading="{% if include.n == '01' and forloop.first %}eager{% else %}lazy{% endif %}"{% if include.n == '01' and forloop.first %} fetchpriority="high"{% endif %} sizes="(max-width:900px) 92vw, 40vw"></a>
     {%- endfor -%}
     {%- comment -%} Everything else in the folder, in order, minus the three
     already shown above. {%- endcomment -%}
@@ -64,9 +71,10 @@
         {%- if bandname == want -%}{%- assign isband = true -%}{%- endif -%}
       {%- endfor -%}
       {%- unless isband -%}{%- assign extra_i = extra_i | plus: 1 -%}
-    <a class="pfx-ph pfx-extra" href="{{ href }}"><img src="{{ site.baseurl }}{{ prefix }}{{ f.name }}" alt="{{ name }} wedding florals by Golden Flowers at {{ m.venue }}" loading="lazy" sizes="92vw"><span class="pfx-num" aria-hidden="true">{{ extra_i }}/{{ allf.size }}</span></a>
+    <a class="pfx-ph pfx-extra" href="{{ href }}"><img src="{{ site.baseurl }}{{ prefix }}{{ f.name }}" alt="{{ name }} wedding florals by Golden Flowers at {{ m.venue }}" loading="lazy" sizes="92vw"></a>
       {%- endunless -%}
     {%- endfor -%}
+  </div>
   </div>
   {%- comment -%} Phone only (CSS hides it above 900px). A dot per frame is
   unusable at fourteen to thirty-four photographs, so the position indicator
