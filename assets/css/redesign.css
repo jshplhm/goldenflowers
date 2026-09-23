@@ -425,6 +425,11 @@ button.txt-link{background:none;border-top:0;border-left:0;border-right:0;cursor
 .credo h2{font-family:var(--d);font-weight:430;font-optical-sizing:auto;font-size:var(--t-d2);line-height:1.1;letter-spacing:-.02em;text-wrap:pretty;margin-top:26px;}
 .credo h2 em{color:var(--forest);}
 .facts{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(28px,4vw,60px);margin-top:clamp(56px,7vw,90px);border-top:1px solid var(--line);padding-top:46px;}
+/* The three claims stand on their own now: no eyebrow, no headline. The rule
+   and the top margin existed to separate them from the headline above, so with
+   nothing above them they were holding the section open at the top for no
+   reason. The section's own leading gap is what marks it. */
+.credo-facts .facts{margin-top:0;border-top:0;padding-top:0;}
 /* Everything below is scoped to .facts on purpose. `.fact` on its own also
    matches .facts-strip .fact on the venue layout, which is a different
    component (label + .fact-body, 4-up); an unscoped rule here silently
@@ -669,9 +674,10 @@ button.txt-link{background:none;border-top:0;border-left:0;border-right:0;cursor
 /* Middots as separators, drawn by CSS so the markup stays a plain list of links
    and the first one never gets a leading dot. */
 .foot-bottom > * + *::before,.foot-legal a + a::before{content:"·";margin:0 9px;color:oklch(55% .02 145/.55);}
-/* The Studio column ends in address lines, which are not links and shouldn't
-   sit tight against the ones above them. */
-.foot-cols p:first-of-type{margin-top:18px;}
+/* The address lines used to carry an 18px lead-in, which knocked them half a
+   row out of step with the two columns beside them: "Incline Village, NV" sat
+   between Venues and Process & Pricing rather than level with Venues. They are
+   the same kind of line at the same size, so they sit on the same rows. */
 /* The quietest links in the footer, because legal is not navigation. A standing
    rule under them made them the loudest thing in the bottom bar and louder than
    the nav columns above, which is backwards, and no other footer link carries
@@ -1943,3 +1949,53 @@ body.nav-hidden .venue-breadcrumb{top:0;}
 /* A quiet text link, not a second button competing with "Check my date". */
 .est-recap-adjust{flex:none;background:none;border:0;padding:0;font-family:var(--b);font-size:.8rem;color:var(--forest);border-bottom:1px solid var(--accent);cursor:pointer;line-height:1.3;}
 .est-recap-adjust:hover{color:var(--accent);}
+
+
+/* ---------- PHOTO BANDS ----------
+   Placeholder slots while the photographs are chosen by hand. One 12-column
+   grid with a fixed row height: spans 5/4/3 give a wide, a near-square and an
+   upright frame in every row, and because the row height is fixed the tops and
+   bottoms line up however the widths vary. Six-slot bands mirror the spans on
+   the second row (5-4-3 then 3-5-4) so the band does not read as two identical
+   rows stacked. See _includes/photo-band.html for how to fill one. */
+.pband{max-width:var(--content-max);margin:0 auto;
+  padding:var(--sp-m) var(--pad) var(--sp-s);
+  display:grid;grid-template-columns:repeat(12,1fr);gap:clamp(10px,1.1vw,18px);
+  grid-auto-rows:clamp(240px,26vw,420px);}
+.pslot{margin:0;position:relative;display:grid;place-items:center;
+  border:1px dashed var(--line);border-radius:var(--r-img);background:var(--bg2);}
+.p5{grid-column:span 5;}
+.p4{grid-column:span 4;}
+.p3{grid-column:span 3;}
+.pslot-n{font-family:var(--d);font-size:var(--t-d2);line-height:1;color:var(--mute);opacity:.45;}
+.pslot-s{position:absolute;left:0;right:0;bottom:14px;text-align:center;
+  font-size:var(--t-tag);letter-spacing:.13em;text-transform:uppercase;
+  color:var(--mute);opacity:.55;}
+@media(max-width:860px){
+  .pband{grid-template-columns:repeat(6,1fr);grid-auto-rows:clamp(200px,42vw,330px);}
+  .p5,.p4,.p3{grid-column:span 3;}
+}
+@media(max-width:560px){
+  .pband{grid-auto-rows:clamp(240px,70vw,380px);}
+  .p5,.p4,.p3{grid-column:span 6;}
+}
+
+/* ---------- VENUES, HOME ----------
+   The lake on the left, one line and a link on the right. Deliberately inert:
+   no hover, no tooltip, no labels. It is a picture of where the work happens,
+   and /venues is where you go to actually use a map. */
+.vmini{max-width:var(--content-max);margin:0 auto;
+  padding:var(--sp-l) var(--pad) var(--sp-s);
+  display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);
+  gap:clamp(32px,6vw,96px);align-items:center;}
+.vmini-map{display:flex;justify-content:center;}
+.vm-svg{width:100%;height:auto;display:block;max-width:clamp(260px,32vw,420px);}
+.vm-lake{fill:oklch(73% .045 236);stroke:none;}
+.vm-dot{fill:var(--accent);stroke:var(--paper);stroke-width:2.5;}
+.vmini-txt .disp{font-family:var(--d);font-weight:430;font-optical-sizing:auto;
+  font-size:var(--t-d2);line-height:1.06;letter-spacing:-.02em;max-width:18ch;}
+.vmini-more{margin-top:clamp(20px,2.4vw,30px);}
+@media(max-width:860px){
+  .vmini{grid-template-columns:1fr;gap:32px;justify-items:start;}
+  .vm-svg{max-width:240px;}
+}

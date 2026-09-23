@@ -137,56 +137,12 @@ the moment one pale photo wants it and another does not, the machinery is here.
   </div>
 </header>
 
-<!-- WORK. Directly after the hero as of 2026-09-22: the two prose blocks
-     below used to sit here, which put 222 words and 1,412px of unbroken text
-     between the hero and the first photograph of a wedding -- 1.6 screens of
-     reading before any work on a site people buy with their eyes. The words
-     answer a question better once they have seen something. -->
-<div class="band-paper">
-<section class="work">
-  {%- comment -%} One way out of this section, not two. The link lives below the
-  photos rather than in the header: a reader decides they want more AFTER looking,
-  not before. {%- endcomment -%}
-  <div class="work-head">
-    <h2 class="disp"><span data-ed="home:work.heading">{{ site.data.home.work.heading }}</span></h2>
-  </div>
-  {%- comment -%} Driven by _data/home_work.yml so /edit can choose which three
-  weddings appear and in what order. Names and venues come from portfolio_meta,
-  never from here, so a rename on /portfolio can never leave home stale. A slug
-  that no longer exists is skipped rather than rendering a broken tile, which
-  means a stale manifest can never break the build. {%- endcomment -%}
-  {%- assign slotClass = "feature,portrait,wide" | split: "," -%}
-  {%- comment -%} Split on ";" NOT "," -- a sizes value contains commas of its
-    own, and splitting on those silently shreds the list into fragments.
-    Measured rendered widths (redesign.css:1442 sends .feature/.portrait full
-    width at <=860px, and .wide is span-12 at every width; the 1500px content
-    cap fixes all three above 1600px):
-      <=860px   feature/portrait 90vw
-      >860px    feature 60vw, portrait 29vw
-      wide      90vw everywhere below the cap
-    The old "58vw,38vw,100vw" had no phone value at all, so a full-width tile
-    on a phone asked for 38vw and got a 480w file for a ~1030px slot. {%- endcomment -%}
-  {%- assign slotSizes = "(max-width:860px) 90vw, (min-width:1600px) 899px, 60vw;(max-width:860px) 90vw, (min-width:1600px) 441px, 29vw;(min-width:1600px) 1356px, 90vw" | split: ";" -%}
-  <div class="grid" data-ed-homework>
-    {%- assign slot = 0 -%}
-    {%- for hw in site.data.home_work -%}
-    {%- assign m = site.data.portfolio_meta | where: "slug", hw.slug | first -%}
-    {%- if m and slot < 3 -%}
-    {%- assign base = '/assets/images/portfolio/' | append: hw.slug | append: '/' | append: hw.slug | append: '-' -%}
-    <a class="tile {{ slotClass[slot] }}" href="{{ site.baseurl }}/portfolio/{{ hw.slug }}"><img src="{{ site.baseurl }}{{ base }}{{ hw.photo }}.jpg" sizes="{{ slotSizes[slot] }}" loading="lazy" alt="{{ m.name }} wedding flowers at {{ m.venue }}, {{ m.place }}" style="object-position:{{ hw.focus | default: 'center center' }};"><span class="cap"><b>{{ m.name }}</b><span>{{ m.venue }}</span></span></a>
-    {%- assign slot = slot | plus: 1 -%}
-    {%- endif -%}
-    {%- endfor -%}
-  </div>
-  {%- comment -%} The grid is a preview, not the archive. Three weddings show the
-  range (historic indoor, mountain, lakeside); the rest live on /portfolio. This
-  closing link is the point of the section, so it gets its own line rather than
-  only sitting in the header. {%- endcomment -%}
-  <p class="work-more"><a href="{{ site.baseurl }}/portfolio" class="txt-link"><span data-ed="home:work.more">{{ site.data.home.work.more }}</span> &rarr;</a></p>
-</section>
-</div>
+<!-- PHOTOGRAPHS 01-06. Selected weddings used to sit here. It was three tiles
+     driven by _data/home_work.yml; the photographs are being chosen by hand now,
+     so these are numbered placeholders until they are picked. -->
+{% include photo-band.html n=6 from=1 %}
 
-<!-- INTRO. After the work, not before it. -->
+<!-- INTRO. After photographs, not before them. -->
 <div class="band-paper">
 <section class="credo intro">
   <div class="intro-band">
@@ -204,20 +160,8 @@ the moment one pale photo wants it and another does not, the machinery is here.
 </section>
 </div>
 
-<!-- CREDO (cream) -->
-<section class="credo">
-  <span class="lab"><span data-ed="home:why.label">{{ site.data.home.why.label }}</span></span>
-  <h2 class="disp">{% include em.html t=site.data.home.why.heading k="home:why.heading" %}</h2>
-  <div class="facts">
-    {%- for fact in site.data.home.why.facts %}
-    <div class="fact"><div class="fact-head"><h3><span data-ed="home:why.facts.{{ forloop.index0 }}.title">{{ fact.title }}</span></h3></div><p><span data-ed="home:why.facts.{{ forloop.index0 }}.body">{{ fact.body }}</span></p>
-    {%- comment -%} A fact links onward only when the YAML gives it both a label
-    and a URL, so the link travels with its own card if the facts are reordered. {%- endcomment -%}
-    {%- if fact.link and fact.link != "" and fact.link_url and fact.link_url != "" %}<p class="fact-more"><a href="{{ site.baseurl }}{{ fact.link_url }}" class="txt-link"><span data-ed="home:why.facts.{{ forloop.index0 }}.link">{{ fact.link }}</span> &rarr;</a></p>{% endif -%}
-    </div>
-    {%- endfor %}
-  </div>
-</section>
+<!-- PHOTOGRAPHS 07-12 -->
+{% include photo-band.html n=6 from=7 %}
 
 <!-- PROCESS & PRICING -->
 {%- comment -%} Straight after the wedding previews, because "what does this
@@ -238,30 +182,40 @@ the bands are built on (see about/index.md), sections that share a background
 get a hairline. {%- endcomment -%}
 <hr class="hr-line">
 
-<!-- VENUE MARQUEE -->
-<section class="marq">
-  <span class="lab"><span data-ed="home:marquee.label">{{ site.data.home.marquee.label }}</span></span>
-  <div class="marq-track" aria-hidden="true">
-    <span>Edgewood Tahoe</span><span>The Ritz-Carlton</span><span>Thunderbird Lodge</span><span>Palisades High Camp</span><span>Martis Camp</span><span>Schaffer's Camp</span><span>The Miner's Foundry</span><span>National Exchange</span>
-    <span>Edgewood Tahoe</span><span>The Ritz-Carlton</span><span>Thunderbird Lodge</span><span>Palisades High Camp</span><span>Martis Camp</span><span>Schaffer's Camp</span><span>The Miner's Foundry</span><span>National Exchange</span>
+<!-- PHOTOGRAPHS 13-15 -->
+{% include photo-band.html n=3 from=13 %}
+
+<!-- FACTS. The eyebrow and the "We grow our own flowers..." headline are gone
+     (Josh, 2026-09-22): the three claims say it themselves and the headline made
+     a farming claim the studio does not make. -->
+<section class="credo credo-facts">
+  <div class="facts">
+    {%- for fact in site.data.home.why.facts %}
+    <div class="fact"><div class="fact-head"><h3><span data-ed="home:why.facts.{{ forloop.index0 }}.title">{{ fact.title }}</span></h3></div><p><span data-ed="home:why.facts.{{ forloop.index0 }}.body">{{ fact.body }}</span></p>
+    {%- comment -%} A fact links onward only when the YAML gives it both a label
+    and a URL, so the link travels with its own card if the facts are reordered. {%- endcomment -%}
+    {%- if fact.link and fact.link != "" and fact.link_url and fact.link_url != "" %}<p class="fact-more"><a href="{{ site.baseurl }}{{ fact.link_url }}" class="txt-link"><span data-ed="home:why.facts.{{ forloop.index0 }}.link">{{ fact.link }}</span> &rarr;</a></p>{% endif -%}
+    </div>
+    {%- endfor %}
   </div>
-  <p class="marq-foot"><a href="{{ site.baseurl }}/venues" class="txt-link"><span data-ed="home:marquee.link">{{ site.data.home.marquee.link }}</span> &rarr;</a></p>
 </section>
 
-<!-- IMMERSIVE -->
-<section class="immersive">
-  {%- comment -%} lazy: this sits several screens down, but without the
-  attribute it was requested in the same burst as the hero, and on a phone
-  connection a 143 KB full-bleed photo taking bandwidth from the LCP image is
-  the whole ballgame. The section is height:78vh/min-height:520px with the
-  image absolutely positioned, so deferring it cannot shift any layout.
-  {%- endcomment -%}
-  <img class="bg" loading="lazy" src="{{ site.baseurl }}/assets/images/portfolio/lynn-aaron/lynn-aaron-23.jpg" alt="Long reception table at Palisades High Camp under string lights, set with garden roses, olive foliage and green velvet napkins">
-  <div class="il">
-    <span class="lab"><span data-ed="home:immersive.label">{{ site.data.home.immersive.label }}</span></span>
-    <p class="disp"><span data-ed="home:immersive.heading">{{ site.data.home.immersive.heading }}</span></p>
+<!-- VENUES. Was a scrolling ticker of venue names. A ticker is motion that
+     says nothing you could not read standing still, and the names meant little
+     to anyone who did not already know them. The lake says the same thing in one
+     look: this is where we work, and there are a lot of them. Copy still comes
+     from home.marquee.* so /edit keeps working. -->
+<section class="vmini">
+  <div class="vmini-map">{% include lake-mini.html %}</div>
+  <div class="vmini-txt">
+    <p class="disp"><span data-ed="home:marquee.label">{{ site.data.home.marquee.label }}</span></p>
+    <p class="vmini-more"><a href="{{ site.baseurl }}/venues" class="txt-link"><span data-ed="home:marquee.link">{{ site.data.home.marquee.link }}</span> &rarr;</a></p>
   </div>
 </section>
+
+<!-- PHOTOGRAPHS 16-18. The "From our farm" full-bleed band used to sit around
+     here. It was removed with the farming claim it carried. -->
+{% include photo-band.html n=3 from=16 %}
 
 <!-- TESTIMONIAL -->
 <section class="testi">

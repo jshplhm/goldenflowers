@@ -1,0 +1,31 @@
+{%- comment -%}
+  A band of PLACEHOLDER photo slots. Outlined boxes only, no images: the
+  photographs are being chosen by hand (Josh, 2026-09-22).
+
+  Each slot is numbered so a photograph can be named by its number, and carries
+  the shape its span produces at the fixed row height, so the choice can be made
+  against the frame the photo has to fill.
+
+  To fill one: replace the two spans inside the <figure> with an <img>, keep the
+  p5/p4/p3 class. The row height does the cropping, so object-position is the
+  only per-photo tuning that should ever be needed.
+
+  Params:  n     number of slots (3 or 6)
+           from  the number of the first slot in this band
+{%- endcomment -%}
+{%- assign spans = "5,4,3,3,5,4" | split: "," -%}
+{%- if include.n == 3 -%}{%- assign spans = "5,4,3" | split: "," -%}{%- endif -%}
+<section class="pband">
+  {%- for s in spans -%}
+  {%- assign num = include.from | plus: forloop.index0 -%}
+  {%- case s -%}
+    {%- when "5" -%}{%- assign shape = "wide" -%}
+    {%- when "4" -%}{%- assign shape = "square" -%}
+    {%- else -%}{%- assign shape = "upright" -%}
+  {%- endcase -%}
+  <figure class="pslot p{{ s }}" aria-hidden="true">
+    <span class="pslot-n">{{ num | prepend: '0' | slice: -2, 2 }}</span>
+    <span class="pslot-s">{{ shape }}</span>
+  </figure>
+  {%- endfor -%}
+</section>
