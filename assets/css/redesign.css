@@ -125,6 +125,11 @@
   /* Inline padding that aligns to the text edge of a centered --content-max
      container that itself carries var(--pad) inner padding. */
   --pad-col:calc(max(0px,(100% - var(--content-max))/2) + var(--pad));
+  /* --pad-col aligns a full-bleed band's contents to the 1500 FRAME (the nav,
+     the footer, a hero overlay). --pad-body does the same against the 1340
+     reading column, which is what every band you actually read should use.
+     Josh, 2026-09-23. */
+  --pad-body:calc(max(0px,(100% - var(--body-max))/2) + var(--pad));
   /* Margin rail for the eyebrow label on desktop prose blocks (.intro-band,
      .mini). The label sits out in the margin and the prose keeps its reading
      measure, so the block spans the rail without the line length growing.
@@ -434,7 +439,7 @@ button.txt-link{background:none;border-top:0;border-left:0;border-right:0;cursor
    hairline between them sits centred. At the old 24-44px the portrait sat almost
    on the rule, and at --sp-s the rule was still 64px below the hero against
    112px above the next section. */
-.studio-hero{display:grid;grid-template-columns:1.25fr 1fr;gap:clamp(32px,5vw,72px);align-items:center;max-width:1400px;margin:0 auto;padding:clamp(112px,14vw,170px) var(--pad) var(--sp-m);}
+.studio-hero{display:grid;grid-template-columns:1.25fr 1fr;gap:clamp(32px,5vw,72px);align-items:center;max-width:var(--content-max);margin:0 auto;padding:clamp(112px,14vw,170px) var(--pad) var(--sp-m);}
 .studio-hero h1{font-family:var(--d);font-weight:430;font-optical-sizing:auto;font-size:var(--t-d1);line-height:1.02;letter-spacing:-.02em;margin:18px 0 22px;}
 .studio-hero h1 em{color:var(--forest);}
 .studio-hero .sh-sub{font-size:var(--t-lede);color:var(--fg2);line-height:1.62;max-width:46ch;}
@@ -558,7 +563,7 @@ nav.site-nav .pill{white-space:nowrap;}
    "See more weddings" and the colour transition. On ad-hoc 50/40 that gap was
    40px against 136px under the intro band above it, and the transition read as
    crowding the link. Matches the intro band exactly now. */
-.work{padding:var(--sp-l) var(--pad) var(--sp-s);max-width:var(--content-max);margin:0 auto;}
+.work{padding:var(--sp-l) var(--pad) var(--sp-s);max-width:var(--body-max);margin:0 auto;}
 .work-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:46px;}
 .work-head h2{font-family:var(--d);font-weight:430;font-optical-sizing:auto;font-size:var(--t-d2);letter-spacing:-.02em;line-height:1;}
 .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px;}
@@ -592,8 +597,8 @@ nav.site-nav .pill{white-space:nowrap;}
 .immersive .lab{color:var(--accent-soft);}
 
 /* ---------- AESTHETICS (dark) ---------- */
-.aes{background:var(--forest-deep);color:var(--paper);padding:var(--sp-l) var(--pad-col) var(--sp-s);}
-.aes-wrap{max-width:var(--content-max);margin:0 auto;}
+.aes{background:var(--forest-deep);color:var(--paper);padding:var(--sp-l) var(--pad-body) var(--sp-s);}
+.aes-wrap{max-width:var(--body-max);margin:0 auto;}
 .aes-head{max-width:44ch;margin-bottom:clamp(48px,6vw,70px);}
 .aes-head .lab{color:var(--accent-soft);}
 .aes-head h2{font-family:var(--d);font-weight:430;font-optical-sizing:auto;font-size:var(--t-d2);letter-spacing:-.02em;line-height:1.04;margin-top:20px;}
@@ -661,7 +666,7 @@ nav.site-nav .pill{white-space:nowrap;}
    per section stacked into one long stripe down the page and read as a template.
    --bg2 survives for wells and inset panels (the hero plate, .pricing-box,
    .est-recap), where it is a surface under something rather than a section. */
-.cta{background:var(--bg);padding:var(--sp-l) var(--pad-col) var(--sp-m);text-align:center;}
+.cta{background:var(--bg);padding:var(--sp-l) var(--pad-body) var(--sp-m);text-align:center;}
 /* Where a tint band butts straight into the CTA (sustainability: .pledge is the
    previous sibling) the two would read as one slab, so carry the break on a
    hairline instead of a tone change. */
@@ -857,7 +862,7 @@ nav.site-nav .pill{white-space:nowrap;}
 /* ---------- PORTFOLIO ---------- */
 .pf-note{text-align:center;color:var(--mute);font-size:var(--t-sm);padding:26px var(--pad) 0;}
 .pf-note a{color:var(--forest);border-bottom:1px solid var(--accent);padding-bottom:2px;}
-.pf-wrap{max-width:var(--content-max);margin:0 auto;padding:var(--sp-s) var(--pad) var(--sp-m);}
+.pf-wrap{max-width:var(--body-max);margin:0 auto;padding:var(--sp-s) var(--pad) var(--sp-m);}
 .pf-grid{column-count:3;column-gap:16px;}
 .pf-card{break-inside:avoid;margin-bottom:16px;position:relative;border-radius:var(--r-img);overflow:hidden;display:block;}
 .pf-card img{width:100%;transition:transform 1s cubic-bezier(.2,.7,.2,1);}
@@ -870,7 +875,7 @@ nav.site-nav .pill{white-space:nowrap;}
 @media(max-width:1024px){.pf-grid{column-count:2;}}
 @media(max-width:600px){.pf-grid{column-count:1;}}
 /* Portfolio grouped-by-aesthetic with a feature layout (1 big + 2 small) */
-.pf-group{max-width:var(--content-max);margin:0 auto;padding:clamp(40px,5vw,72px) var(--pad) 0;}
+.pf-group{max-width:var(--body-max);margin:0 auto;padding:clamp(40px,5vw,72px) var(--pad) 0;}
 .pf-group:last-of-type{padding-bottom:clamp(64px,8vw,110px);}
 .pf-group-head{max-width:62ch;margin-bottom:clamp(20px,2.5vw,34px);}
 .pf-group-head h2{font-family:var(--d);font-weight:430;font-optical-sizing:auto;font-size:var(--t-d3);letter-spacing:-.02em;line-height:1.04;margin:12px 0 10px;}
@@ -891,7 +896,7 @@ nav.site-nav .pill{white-space:nowrap;}
    ruled section boundary, and at 18-38px the rule sat almost against the final
    photo while the heading below it had 52-92px of air. Bottom now matches what
    .wp-credits uses above its own border, so the rule sits in a balanced gap. */
-.wd-gallery{max-width:1200px;margin:0 auto;padding:clamp(18px,3vw,38px) var(--pad) clamp(60px,7vw,104px);}
+.wd-gallery{max-width:var(--body-max);margin:0 auto;padding:clamp(18px,3vw,38px) var(--pad) clamp(60px,7vw,104px);}
 .wd-hero-img{width:100%;height:clamp(360px,52vw,640px);object-fit:cover;border-radius:var(--r-img);}
 .wd-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px;}
 .wd-grid img{width:100%;height:clamp(220px,28vw,360px);object-fit:cover;border-radius:var(--r-img);}
@@ -1051,7 +1056,7 @@ body.lb-open{overflow:hidden;}
 .pledge-closing p{font-family:var(--d);font-style:normal;font-size:var(--t-d3);line-height:1.3;color:var(--forest);max-width:30ch;}
 
 /* ---------- PROCESS ---------- */
-.proc{background:var(--bg);color:var(--ink);padding:var(--sp-l) var(--pad-col) var(--sp-s);}
+.proc{background:var(--bg);color:var(--ink);padding:var(--sp-l) var(--pad-body) var(--sp-s);}
 /* Left on the rail, not centered. .proc is already padded with --pad-col, so a
    centered 1100px wrapper inside it started the timeline at 410px while the
    blocks above and below start at 282px. The step rows are structure and span;
@@ -1106,7 +1111,7 @@ body.lb-open{overflow:hidden;}
    painted a 1500px dark rectangle floating in the page instead of a band, and
    its contents sat at 580px on an axis of their own. Background + --pad-col on
    the section is the pattern the bands are built on. */
-.pricing-dark{background:var(--forest-deep);color:var(--paper);padding:var(--sp-l) var(--pad-col);}
+.pricing-dark{background:var(--forest-deep);color:var(--paper);padding:var(--sp-l) var(--pad-body);}
 .pricing-dark .lab{color:var(--accent-soft);}
 .pricing-dark .price-num{color:var(--paper);}
 .pricing-dark .price-sub{color:oklch(82% .02 130);}
@@ -1177,7 +1182,7 @@ body.lb-open{overflow:hidden;}
 /* ---------- CALLOUT (how we work) ----------
    The section wrapper carries no padding of its own: the card's own padding is
    the section's breathing room, so the two don't stack into a moat. */
-.callout-sec{max-width:var(--content-max);margin:0 auto;padding:var(--sp-m) var(--pad) var(--sp-s);}
+.callout-sec{max-width:var(--body-max);margin:0 auto;padding:var(--sp-m) var(--pad) var(--sp-s);}
 /* No card. The bordered box was the only one of its kind left on the page once
    the included grid lost its card borders, so it read as a stray device rather
    than a section. A hairline above it already separates it from the reviews. */
@@ -1448,7 +1453,7 @@ body.modal-open{overflow:hidden;}
 
 /* ---------- VENUE SUBPAGES (legacy markup → redesign look) ---------- */
 /* Venue breadcrumb — the way back to the map (sits below the solid nav) */
-.venue-breadcrumb{position:sticky;top:var(--nav-h);z-index:40;background:var(--bg);border-bottom:1px solid var(--line);padding:0 var(--pad-col);margin-top:var(--nav-h);transition:top .4s ease;}
+.venue-breadcrumb{position:sticky;top:var(--nav-h);z-index:40;background:var(--bg);border-bottom:1px solid var(--line);padding:0 var(--pad-body);margin-top:var(--nav-h);transition:top .4s ease;}
 /* When the nav hides on scroll-down, the breadcrumb sits flush at the very top;
    when the nav reveals on scroll-up, it docks just beneath it. */
 body.nav-hidden .venue-breadcrumb{top:0;}
@@ -1474,7 +1479,7 @@ body.nav-hidden .venue-breadcrumb{top:0;}
 .hero--interior .hero-sub{font-size:var(--t-lede);opacity:.95;margin-top:18px;max-width:40ch;}
 
 .section{padding:clamp(60px,8vw,100px) 0;}
-.section .container,.container{max-width:var(--content-max);margin:0 auto;padding:0 var(--pad);}
+.section .container,.container{max-width:var(--body-max);margin:0 auto;padding:0 var(--pad);}
 .section-div{border:none;border-top:1px solid var(--line);max-width:var(--body-max);margin:0 auto;}
 .section .label,.container .label{font-size:var(--t-tag);letter-spacing:.13em;text-transform:uppercase;color:var(--accent);font-weight:500;display:inline-block;margin-bottom:14px;}
 .section h2,.container h2{font-family:var(--d);font-weight:430;font-optical-sizing:auto;font-size:var(--t-d2);letter-spacing:-.02em;line-height:1.06;margin-bottom:14px;}
@@ -1497,7 +1502,7 @@ body.nav-hidden .venue-breadcrumb{top:0;}
 .price-note{font-size:var(--t-tag);letter-spacing:.12em;text-transform:uppercase;color:var(--mute);margin-top:10px;}
 .price-details p{margin-bottom:14px;}
 
-.cta-section{background:var(--bg);padding:var(--sp-l) var(--pad-col) var(--sp-m);text-align:center;}
+.cta-section{background:var(--bg);padding:var(--sp-l) var(--pad-body) var(--sp-m);text-align:center;}
 .cta-section .label{display:block;}
 .cta-section h2{font-family:var(--d);font-weight:430;font-optical-sizing:auto;font-size:var(--t-d2);letter-spacing:-.02em;line-height:1.05;margin:12px 0;}
 .cta-section p{max-width:46ch;margin:0 auto 28px;color:var(--fg2);}
@@ -1852,7 +1857,7 @@ body.nav-hidden .venue-breadcrumb{top:0;}
   box-shadow:inset 0 0 0 1px oklch(20% .02 150 / .12);}
 
 /* ---- credits ---- */
-.wp-credits{padding:clamp(60px,7vw,104px) var(--pad-col);border-top:1px solid var(--line);}
+.wp-credits{padding:clamp(60px,7vw,104px) var(--pad-body);border-top:1px solid var(--line);}
 /* The note reads as a subtitle to "The team", so it sits under the heading
    rather than opposite it. Pushed to the far right it was a separate object
    the eye had to travel to, and it landed level with the heading's baseline as
@@ -1905,8 +1910,8 @@ body.nav-hidden .venue-breadcrumb{top:0;}
    screen instead of stopping at the column. */
 .wp-og{--per:3.4;--rail-gap:clamp(10px,1.1vw,18px);
   display:flex;gap:var(--rail-gap);overflow-x:auto;overscroll-behavior-x:contain;
-  scroll-snap-type:x mandatory;scroll-padding-inline:var(--pad-col);
-  margin-inline:calc(var(--pad-col) * -1);padding-inline:var(--pad-col);
+  scroll-snap-type:x mandatory;scroll-padding-inline:var(--pad-body);
+  margin-inline:calc(var(--pad-body) * -1);padding-inline:var(--pad-body);
   scrollbar-width:none;-webkit-overflow-scrolling:touch;}
 .wp-og::-webkit-scrollbar{display:none;}
 .wp-ocard{flex:0 0 calc((100% - (var(--per) - 1) * var(--rail-gap)) / var(--per));
@@ -2166,7 +2171,10 @@ body.nav-hidden .venue-breadcrumb{top:0;}
    in the margin, prose indented past it) was the only indented thing on the
    page, and between it, the centred bands and the left-aligned photo rows the
    scroll read as three different alignments. One left edge for everything. */
-.credo.intro{max-width:var(--content-max);margin:0 auto;}
+/* No max-width here: it used to restate --content-max and, once .credo moved
+   to the body column, this was the one rule pinning the philosophy block back
+   out to 1500 while everything around it sat at 1340. Josh, 2026-09-23. */
+.credo.intro{margin:0 auto;}
 .credo.intro .lab{display:block;margin-bottom:clamp(18px,2vw,28px);}
 
 
