@@ -13,6 +13,10 @@ bundle exec jekyll serve --port 4004 --no-watch   # local preview
 JEKYLL_ENV=production bundle exec jekyll build    # adds srcset markup (see Images)
 ```
 
+- The preview server runs `--no-watch` on purpose (see the stray-watcher note
+  below), so **every edit needs `bundle exec jekyll build` before you reload
+  or screenshot** — and the build empties `_site`, so any scratch harness file
+  you dropped in there goes with it.
 - **Before trusting any local `_site` diff: `ps aux | grep jekyll` and kill
   strays.** A forgotten `jekyll serve` watcher silently rebuilds `_site` with
   `0.0.0.0:<port>` URLs and a stale config. This has burned us twice.
@@ -108,6 +112,22 @@ JEKYLL_ENV=production bundle exec jekyll build    # adds srcset markup (see Imag
   tint bands used to. The footer is paper too: green is an accent, not a
   ground, and the scroll should end on the studio's name rather than on a
   colour change.
+- **Type never sits on a photograph (2026-09-23).** The wedding pages were
+  the last place it did. Every opening on the site is now the same shape: a
+  contained photograph with `--r-img`, then the name under it at reading
+  distance, then the facts.
+- **A landscape never sits beside a block of words (2026-09-23).** A 3:2 in
+  half a row is a strip next to a strip. Split rows carry a portrait (4:5);
+  landscapes get the hero or a full-width row.
+- **The footer is grounded by the name, not by a colour (2026-09-23).** Josh:
+  the paper footer "doesn't ground the page". The 09-22 rule stands — green is
+  an accent, not a ground — so the floor is `.foot-mark`, the wordmark at the
+  width of the page, sized in `cqw` off the footer's own content box.
+- **No breadcrumbs on venue or wedding pages (2026-09-23).** Back and the menu
+  both do that job and the H1 says where you are. `.venue-breadcrumb` survives
+  for blog posts only.
+- **The lake is a tint with a hairline, never blue (2026-09-23).** `--lake` /
+  `--lake-edge`, shared by /venues and the home mini map.
 - **One radius language, as of 2026-09-22.** `--r-img: 10px` for every
   photograph (it was 0/3/4/6px in four places) and for buttons, which were
   fully round pills — a control and the picture beside it now agree.
