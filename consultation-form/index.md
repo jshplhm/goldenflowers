@@ -48,7 +48,7 @@ sitemap: false
       <p><a href="mailto:brittany@goldenflorals.com">brittany@goldenflorals.com</a></p>
       <p><a href="https://www.instagram.com/goldenflowersfloraldesign/" target="_blank" rel="noopener">@goldenflowersfloraldesign</a></p>
       <p style="color:var(--ink);margin-top:22px;"><span data-ed="consultation:reach.location">{{ site.data.consultation.reach.location }}</span></p>
-      <p style="font-size:.85rem;color:var(--mute);margin-top:5px;line-height:1.5;"><span data-ed="consultation:reach.note">{{ site.data.consultation.reach.note }}</span></p>
+      <p style="font-size:var(--t-ui);color:var(--mute);margin-top:5px;line-height:1.5;"><span data-ed="consultation:reach.note">{{ site.data.consultation.reach.note }}</span></p>
     </div>
   </div>
 </section>
