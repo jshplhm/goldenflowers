@@ -119,10 +119,11 @@ JEKYLL_ENV=production bundle exec jekyll build    # adds srcset markup (see Imag
 - **A landscape never sits beside a block of words (2026-09-23).** A 3:2 in
   half a row is a strip next to a strip. Split rows carry a portrait (4:5);
   landscapes get the hero or a full-width row.
-- **The footer is grounded by the name, not by a colour (2026-09-23).** Josh:
-  the paper footer "doesn't ground the page". The 09-22 rule stands — green is
-  an accent, not a ground — so the floor is `.foot-mark`, the wordmark at the
-  width of the page, sized in `cqw` off the footer's own content box.
+- **The footer is a known open problem (2026-09-23).** Josh: the paper footer
+  "doesn't ground the page". A page-width wordmark as the floor was tried and
+  rejected the same day ("not in love with it"), and reverted; he wants it
+  mocked up properly rather than patched. The 09-22 rule still binds whatever
+  replaces it: green is an accent, not a ground.
 - **No breadcrumbs on venue or wedding pages (2026-09-23).** Back and the menu
   both do that job and the H1 says where you are. `.venue-breadcrumb` survives
   for blog posts only.

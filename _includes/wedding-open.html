@@ -13,12 +13,12 @@
   in the page source and the generic swap flow can't find anything to rewrite.
 {%- endcomment -%}
 {%- comment -%}
-  Art direction for the opening photo. This band is 100vw by
-  clamp(520px,82vh,880px), so on a desktop it is a wide strip and object-fit:
+  Art direction for the opening photo. The frame is 16:9 up to --content-max
+  (4:5 below 820px), so on a desktop it is a wide strip and object-fit:
   cover throws away most of a portrait photo's height: at 1440x900 the box is
   1440x738 while the file is 1440x2172, so roughly two thirds of the bytes are
-  cropped off screen. A PHONE, though, is the opposite -- the box is about
-  0.55 wide-to-tall, so it uses the photo's full height and crops the sides.
+  cropped off screen. A PHONE, though, is the opposite -- the box is 4:5, so
+  it uses much more of the photo's height and crops the sides.
   One cropped file cannot serve both, which is why this is a media query and
   not a smaller source photo.
 
@@ -54,10 +54,10 @@
     {%- if wideFile -%}
     <picture>
       <source media="(min-width:1024px)" srcset="{{ site.baseurl }}{{ widePath }}">
-      <img src="{{ site.baseurl }}{{ heroPath }}" alt="{{ m.name }} wedding flowers at {{ m.venue }}{% if m.place != '' %}, {{ m.place }}{% endif %}" loading="eager" fetchpriority="high" sizes="100vw">
+      <img src="{{ site.baseurl }}{{ heroPath }}" alt="{{ m.name }} wedding flowers at {{ m.venue }}{% if m.place != '' %}, {{ m.place }}{% endif %}" loading="eager" fetchpriority="high" sizes="(min-width:1500px) 1500px, 100vw">
     </picture>
     {%- else -%}
-    <img src="{{ site.baseurl }}{{ heroPath }}" alt="{{ m.name }} wedding flowers at {{ m.venue }}{% if m.place != '' %}, {{ m.place }}{% endif %}" loading="eager" fetchpriority="high" sizes="100vw">
+    <img src="{{ site.baseurl }}{{ heroPath }}" alt="{{ m.name }} wedding flowers at {{ m.venue }}{% if m.place != '' %}, {{ m.place }}{% endif %}" loading="eager" fetchpriority="high" sizes="(min-width:1500px) 1500px, 100vw">
     {%- endif -%}
   </figure>
   <div class="wp-words">
