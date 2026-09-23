@@ -137,40 +137,11 @@ the moment one pale photo wants it and another does not, the machinery is here.
   </div>
 </header>
 
-<!-- INTRO (paper band) -->
-<div class="band-paper">
-<section class="credo intro">
-  <div class="intro-band">
-    <div class="intro-side">
-      {%- if site.data.home.intro.label and site.data.home.intro.label != "" %}<span class="lab"><span data-ed="home:intro.label">{{ site.data.home.intro.label }}</span></span>{% endif -%}
-    </div>
-    <div class="intro-body">
-      <p><span data-ed="home:intro.paragraph1">{{ site.data.home.intro.paragraph1 }}</span></p>
-      <p><span data-ed="home:intro.paragraph2">{{ site.data.home.intro.paragraph2 }}</span></p>
-      {%- if site.data.home.intro.link and site.data.home.intro.link != "" %}
-      <p class="intro-more"><a href="{{ site.baseurl }}/about" class="txt-link"><span data-ed="home:intro.link">{{ site.data.home.intro.link }}</span> &rarr;</a></p>
-      {%- endif %}
-    </div>
-  </div>
-</section>
-</div>
-
-<!-- CREDO (cream) -->
-<section class="credo">
-  <span class="lab"><span data-ed="home:why.label">{{ site.data.home.why.label }}</span></span>
-  <h2 class="disp">{% include em.html t=site.data.home.why.heading k="home:why.heading" %}</h2>
-  <div class="facts">
-    {%- for fact in site.data.home.why.facts %}
-    <div class="fact"><div class="fact-head"><h3><span data-ed="home:why.facts.{{ forloop.index0 }}.title">{{ fact.title }}</span></h3></div><p><span data-ed="home:why.facts.{{ forloop.index0 }}.body">{{ fact.body }}</span></p>
-    {%- comment -%} A fact links onward only when the YAML gives it both a label
-    and a URL, so the link travels with its own card if the facts are reordered. {%- endcomment -%}
-    {%- if fact.link and fact.link != "" and fact.link_url and fact.link_url != "" %}<p class="fact-more"><a href="{{ site.baseurl }}{{ fact.link_url }}" class="txt-link"><span data-ed="home:why.facts.{{ forloop.index0 }}.link">{{ fact.link }}</span> &rarr;</a></p>{% endif -%}
-    </div>
-    {%- endfor %}
-  </div>
-</section>
-
-<!-- WORK (paper band) -->
+<!-- WORK. Directly after the hero as of 2026-09-22: the two prose blocks
+     below used to sit here, which put 222 words and 1,412px of unbroken text
+     between the hero and the first photograph of a wedding -- 1.6 screens of
+     reading before any work on a site people buy with their eyes. The words
+     answer a question better once they have seen something. -->
 <div class="band-paper">
 <section class="work">
   {%- comment -%} One way out of this section, not two. The link lives below the
@@ -214,6 +185,39 @@ the moment one pale photo wants it and another does not, the machinery is here.
   <p class="work-more"><a href="{{ site.baseurl }}/portfolio" class="txt-link"><span data-ed="home:work.more">{{ site.data.home.work.more }}</span> &rarr;</a></p>
 </section>
 </div>
+
+<!-- INTRO. After the work, not before it. -->
+<div class="band-paper">
+<section class="credo intro">
+  <div class="intro-band">
+    <div class="intro-side">
+      {%- if site.data.home.intro.label and site.data.home.intro.label != "" %}<span class="lab"><span data-ed="home:intro.label">{{ site.data.home.intro.label }}</span></span>{% endif -%}
+    </div>
+    <div class="intro-body">
+      <p><span data-ed="home:intro.paragraph1">{{ site.data.home.intro.paragraph1 }}</span></p>
+      <p><span data-ed="home:intro.paragraph2">{{ site.data.home.intro.paragraph2 }}</span></p>
+      {%- if site.data.home.intro.link and site.data.home.intro.link != "" %}
+      <p class="intro-more"><a href="{{ site.baseurl }}/about" class="txt-link"><span data-ed="home:intro.link">{{ site.data.home.intro.link }}</span> &rarr;</a></p>
+      {%- endif %}
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- CREDO (cream) -->
+<section class="credo">
+  <span class="lab"><span data-ed="home:why.label">{{ site.data.home.why.label }}</span></span>
+  <h2 class="disp">{% include em.html t=site.data.home.why.heading k="home:why.heading" %}</h2>
+  <div class="facts">
+    {%- for fact in site.data.home.why.facts %}
+    <div class="fact"><div class="fact-head"><h3><span data-ed="home:why.facts.{{ forloop.index0 }}.title">{{ fact.title }}</span></h3></div><p><span data-ed="home:why.facts.{{ forloop.index0 }}.body">{{ fact.body }}</span></p>
+    {%- comment -%} A fact links onward only when the YAML gives it both a label
+    and a URL, so the link travels with its own card if the facts are reordered. {%- endcomment -%}
+    {%- if fact.link and fact.link != "" and fact.link_url and fact.link_url != "" %}<p class="fact-more"><a href="{{ site.baseurl }}{{ fact.link_url }}" class="txt-link"><span data-ed="home:why.facts.{{ forloop.index0 }}.link">{{ fact.link }}</span> &rarr;</a></p>{% endif -%}
+    </div>
+    {%- endfor %}
+  </div>
+</section>
 
 <!-- PROCESS & PRICING -->
 {%- comment -%} Straight after the wedding previews, because "what does this
