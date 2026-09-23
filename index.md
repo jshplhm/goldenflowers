@@ -43,7 +43,7 @@ Every photo currently carries data-boost="1", so the attribute never changes and
 the boost layer is in effect a second permanent scrim. Left per-photo on purpose:
 the moment one pale photo wants it and another does not, the machinery is here.
 {%- endcomment -%}
-<header class="hero hero-beside hero-rot" id="hero-rot" data-boost="1">
+<header class="hero hero-beside hero-home">
 
   {%- comment -%}
     THE COPY SITS BESIDE THE PHOTOGRAPH, NOT ON IT (Josh, 2026-09-22, off the
@@ -79,68 +79,39 @@ the moment one pale photo wants it and another does not, the machinery is here.
 
   <div class="hs-right">
     <div class="hs-stage">
-    {% comment %} Crop (object-position) and zoom origin (transform-origin) are set
-    INLINE per photo, tuned against the real hero in hero-lab. They belong to the
-    photograph, not to the slot, so reordering the slideshow has to carry them
-    along; a rule in redesign.css keyed to position would silently re-crop the
-    wrong image. Inline also outranks the stylesheet, so do not add per-photo
-    object-position back to redesign.css expecting it to win.
+    {% comment %} ONE STILL PHOTOGRAPH, not a slideshow (Josh, 2026-09-22).
+    There used to be five photos crossfading here on a timer, with a Ken Burns
+    push, four of them parked in a <template> so they did not compete with the
+    LCP image. All of it is gone. The argument against it: the page now opens
+    into a run of photographs a screen below, so the hero was no longer the only
+    place work appeared, it was the worst one, because the visitor could not
+    choose what they saw. It also auto-advanced with no pause control (that was
+    removed as clutter in August), and it spent bandwidth on the one image that
+    decides LCP.
 
-    Art-directed: a landscape photo in a portrait viewport crops the SIDES and keeps
-    the full height, so on a phone half the frame would be blown-out sky.
-    object-position cannot fix that, so phones get a crop cut from the original.
-    The leading photo is the LCP image, so it is eager + fetchpriority high and the
-    phone crop is preloaded by the same media query. {% endcomment %}
-    <picture>
-      <source media="(max-width:700px)" srcset="{{ site.baseurl }}/assets/images/home-hero-laux-portrait.jpg">
-      <img class="bg is-on" data-boost="1" style="object-position:37% 80%;transform-origin:47% 86%;" src="{{ site.baseurl }}/assets/images/home-hero-laux.jpg" alt="Golden hour in an Olympic Valley meadow: bride and groom in tall grass with the Sierra Nevada behind them, bride holding a green and lavender bouquet" fetchpriority="high">
-    </picture>
-
-    {% comment %} Photos 2-5 wait in a <template>, and that is load-bearing rather
-    than tidiness. Every .bg sits inside the hero, which is in the viewport, so
-    loading="lazy" defers nothing: all five would be fetched on arrival, competing
-    with the LCP image for bandwidth. Template content is inert, so nothing is
-    requested until the rotator moves a node into the page one step ahead of
-    itself.
-
-    They stay real <img> tags with a real src because _plugins/responsive_images.rb
-    only rewrites src="..." -- parking the URL in data-src would silently cost these
-    four photos their srcset and their WebP, which is a worse trade than loading
-    them early. In production each one arrives wrapped in a <picture>, so the
-    rotator takes the <img> from inside whatever it pulls out.
-
-    ORDER AND CUT (owner, 2026-08-16, from hero-lab): nine photos down to five.
-    lynn-aaron-06, lynn-aaron-02, jenna-cal-07 and mikayla-jeff-04 are out. Each
-    crop/zoom pair below is the one tuned for that photograph, so it travels with
-    the photo if the order changes again. {% endcomment %}
-    <template id="hero-rest">
-      <img class="bg" data-boost="1" src="{{ site.baseurl }}/assets/images/portfolio/kelly-dylan/kelly-dylan-07.jpg" alt="Lake Tahoe beach wedding: bride with veil blowing in the wind, blue delphinium ceremony aisle at Kings Beach">
-      <img class="bg" data-boost="1" style="object-position:40% 41%;transform-origin:28% 44%;" src="{{ site.baseurl }}/assets/images/portfolio/lynn-aaron/lynn-aaron-19.jpg" alt="Snowy Sierra mountaintop wedding ceremony: couple kissing between two towering floral installations">
-      <img class="bg" data-boost="1" style="object-position:45% 39%;transform-origin:46% 12%;" src="{{ site.baseurl }}/assets/images/portfolio/katie-james/katie-james-08.jpg" alt="Stone-walled ceremony room: a couple holding hands before their officiant under a towering arch of blush, peach and cream blooms framing a tall window">
-      <img class="bg" data-boost="1" style="object-position:55% 50%;transform-origin:55% 36%;" src="{{ site.baseurl }}/assets/images/portfolio/tori-tucker/tori-tucker-13.jpg" alt="Lake Tahoe beach ceremony: bride reading her vows to a groom in a pink suit between two coral and burgundy floral installations, guests seated on the sand">
-    </template>
-
-    <div class="hero-boost" aria-hidden="true"></div>
-    </div>
-
-    {% comment %} One dot per photo, and the rotator counts THESE, not the images
-    in the DOM: photos 2-5 are still in the template when the page loads, so the
-    image count is not the slideshow length until the very end. Cut a photo, cut
-    its dot, or the rotation runs on past the end of the slideshow. {% endcomment %}
-    <div class="hero-dots">
-      <button type="button" class="hd on" data-go="0" aria-label="Show photo 1"></button>
-      <button type="button" class="hd" data-go="1" aria-label="Show photo 2"></button>
-      <button type="button" class="hd" data-go="2" aria-label="Show photo 3"></button>
-      <button type="button" class="hd" data-go="3" aria-label="Show photo 4"></button>
-      <button type="button" class="hd" data-go="4" aria-label="Show photo 5"></button>
+    Art direction still applies: a portrait crop is cut for phones, because
+    object-position cannot fix a landscape frame in a portrait viewport. This
+    photograph is 2:3 and the plate is 5:6, so the crop is slight.
+    {% endcomment %}
+      <img class="bg" style="object-position:50% 38%;" fetchpriority="high"
+           src="{{ site.baseurl }}/assets/images/portfolio/mikayla-jeff/mikayla-jeff-05.jpg"
+           alt="Olympic Valley ceremony: a couple kissing between two tall asymmetric installations of lilac and white against the pines">
     </div>
   </div>
 </header>
 
-<!-- PHOTOGRAPHS 01-05. Selected weddings used to sit here. It was three tiles
-     driven by _data/home_work.yml; the photographs are being chosen by hand now,
-     so these are numbered placeholders until they are picked. -->
-{% include photo-band.html rows="pair,solo-r,pair" from=1 %}
+<!-- PHOTOGRAPHS. The four photographs that used to rotate through the hero are
+     placed down the page now, plus placeholders for the rest. -->
+<section class="pband">
+  <div class="pb-row pb-row--land">
+    <figure class="pb-pic"><img src="{{ site.baseurl }}/assets/images/home-hero-laux.jpg" loading="lazy" alt="Golden hour in an Olympic Valley meadow: a couple in tall grass with the Sierra Nevada behind them"></figure>
+    <figure class="pb-pic"><img src="{{ site.baseurl }}/assets/images/portfolio/kelly-dylan/kelly-dylan-07.jpg" loading="lazy" alt="Lake Tahoe beach wedding: a couple on the sand between borders of blue delphinium"></figure>
+  </div>
+  <div class="pb-row">
+    {% include photo-slot.html n=1 s="tall" %}
+    {% include photo-slot.html n=2 s="wide" %}
+  </div>
+</section>
 
 <!-- INTRO. After photographs, not before them. -->
 <div class="band-paper">
@@ -160,30 +131,24 @@ the moment one pale photo wants it and another does not, the machinery is here.
 </section>
 </div>
 
-<!-- PHOTOGRAPHS 06-10 -->
-{% include photo-band.html rows="pair,pair,solo-l" from=6 %}
-
-<!-- PROCESS & PRICING -->
-{%- comment -%} Straight after the wedding previews, because "what does this
-cost?" is the question looking at the work produces. It is a signpost, not a
-price list: no figures live here, so /weddings stays the single place a number
-can be wrong. {%- endcomment -%}
-<section class="proc-signpost">
+<!-- PHOTOGRAPHS, and Process & Pricing beside one of them. The signpost used to
+     be its own full-width centred band; in a column next to a picture the page
+     stops starting and stopping. -->
+<section class="pband">
+  <div class="pb-row">
+    {% include photo-slot.html n=3 s="tall" %}
+    {% include photo-slot.html n=4 s="wide" %}
+  </div>
+  <div class="pb-row pb-row--split">
+    <div class="pb-txt">
   <span class="lab"><span data-ed="home:process.label">{{ site.data.home.process.label }}</span></span>
   <h2 class="disp"><span data-ed="home:process.heading">{{ site.data.home.process.heading }}</span></h2>
   <p><span data-ed="home:process.body">{{ site.data.home.process.body }}</span></p>
   <p class="marq-foot"><a href="{{ site.baseurl }}/weddings" class="txt-link"><span data-ed="home:process.link">{{ site.data.home.process.link }}</span> &rarr;</a></p>
+    </div>
+    <figure class="pb-pic"><img src="{{ site.baseurl }}/assets/images/portfolio/katie-james/katie-james-08.jpg" loading="lazy" alt="Stone-walled ceremony room: a couple before their officiant under a towering arch of blush, peach and cream blooms"></figure>
+  </div>
 </section>
-
-{%- comment -%} The one adjacency on this page that a background change does not
-already carry: .work above closes a tint band, and .immersive below opens on a
-photo, but the signpost and the marquee share the default surface. Per the rule
-the bands are built on (see about/index.md), sections that share a background
-get a hairline. {%- endcomment -%}
-<hr class="hr-line">
-
-<!-- PHOTOGRAPHS 11-13 -->
-{% include photo-band.html rows="pair,solo-r" from=11 %}
 
 <!-- FACTS. The eyebrow and the "We grow our own flowers..." headline are gone
      (Josh, 2026-09-22): the three claims say it themselves and the headline made
@@ -200,22 +165,27 @@ get a hairline. {%- endcomment -%}
   </div>
 </section>
 
-<!-- VENUES. Was a scrolling ticker of venue names. A ticker is motion that
-     says nothing you could not read standing still, and the names meant little
-     to anyone who did not already know them. The lake says the same thing in one
-     look: this is where we work, and there are a lot of them. Copy still comes
-     from home.marquee.* so /edit keeps working. -->
-<section class="vmini">
-  <div class="vmini-map">{% include lake-mini.html %}</div>
-  <div class="vmini-txt">
+<!-- VENUES beside a photograph, then more photographs. Was a scrolling ticker of
+     venue names: motion that said nothing you could not read standing still, and
+     names that meant little to anyone who did not already know them. The lake
+     says it in one look. Same geometry and the same twelve featured coordinates
+     as the map on /venues so the two agree, but outline only: no roads, no town
+     names, no labels, no hover. It links to the map you can actually use, and
+     the copy still reads from home.marquee.* so /edit keeps working. -->
+<section class="pband">
+  <div class="pb-row pb-row--split rev">
+    <div class="pb-txt vmini-txt">
+      <div class="vmini-map">{% include lake-mini.html %}</div>
     <p class="disp"><span data-ed="home:marquee.label">{{ site.data.home.marquee.label }}</span></p>
     <p class="vmini-more"><a href="{{ site.baseurl }}/venues" class="txt-link"><span data-ed="home:marquee.link">{{ site.data.home.marquee.link }}</span> &rarr;</a></p>
+    </div>
+    <figure class="pb-pic"><img src="{{ site.baseurl }}/assets/images/portfolio/lynn-aaron/lynn-aaron-19.jpg" loading="lazy" alt="Snowy Sierra mountaintop ceremony: a couple kissing between two towering floral installations"></figure>
+  </div>
+  <div class="pb-row pb-row--land">
+    <figure class="pb-pic"><img src="{{ site.baseurl }}/assets/images/portfolio/tori-tucker/tori-tucker-13.jpg" loading="lazy" alt="Lake Tahoe beach ceremony: a bride reading her vows between two coral and burgundy floral installations"></figure>
+    {% include photo-slot.html n=5 s="wide" %}
   </div>
 </section>
-
-<!-- PHOTOGRAPHS 14-16. The "From our farm" full-bleed band used to sit around
-     here. It was removed with the farming claim it carried. -->
-{% include photo-band.html rows="pair,solo-l" from=14 %}
 
 <!-- TESTIMONIAL -->
 <section class="testi">

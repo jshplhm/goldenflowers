@@ -174,14 +174,16 @@ nav.site-nav.up{top:calc(-1 * var(--nav-h));}
    has nothing to divide. Declared after .scrolled so they win regardless of
    scroll position. */
 nav.site-nav.over-hero,body.menu-open nav.site-nav{border-bottom-color:transparent;}
-/* The wordmark. Castoro ships ONE weight, 400, and there is no bold anywhere
-   to load: the family is Regular and Italic, full stop. Asking for 700 gets a
-   browser-synthesised bold, which thickens the hairlines as much as the stems
-   and flattens exactly the contrast that makes the face worth using.
-   A hairline stroke adds the weight optically instead, on the real outlines.
-   .4px is the most it takes before the counters start to close up at 23px. */
-.brand{font-family:var(--d);font-size:1.45rem;letter-spacing:-.01em;
-  -webkit-text-stroke:.4px currentColor;}
+/* The wordmark. Set in caps, because Castoro ships ONE weight and no bold
+   anywhere to load (the family is Regular and Italic, full stop) -- so weight
+   is not available and presence has to come from somewhere else. Caps at .26em
+   is where it comes from: capitals carry more ink per letter than lowercase,
+   and the tracking turns the name into a mark rather than a word you read.
+   A hairline stroke does the rest. Synthesised bold was tried and rejected: it
+   thickens hairlines and stems alike and flattens the contrast that is the
+   whole reason for using a serif here. */
+.brand{font-family:var(--d);font-size:1.06rem;letter-spacing:.26em;
+  text-transform:uppercase;-webkit-text-stroke:.25px currentColor;}
 .brand-short{display:none;}
 .nav-r{display:flex;gap:36px;align-items:center;}
 .nav-r a:not(.pill){font-size:var(--t-ui);letter-spacing:.02em;opacity:.92;position:relative;padding-bottom:3px;}
@@ -264,8 +266,6 @@ button.txt-link{background:none;border-top:0;border-left:0;border-right:0;cursor
    Five photos crossfade behind FIXED copy. The headline, subhead and CTA never
    move: this is ambient texture, not a carousel of competing messages, which is
    what the research against hero carousels is actually about. */
-.hero-rot .bg{opacity:0;transition:opacity 500ms cubic-bezier(.4,0,.2,1);}
-.hero-rot .bg.is-on{opacity:1;}
 
 /* The slow push is bound to .kb-run rather than .is-on. Bound to .is-on, the
    outgoing photo loses the animation the instant it stops being active and
@@ -298,7 +298,6 @@ button.txt-link{background:none;border-top:0;border-left:0;border-right:0;cursor
    centred zoom drifts away from an off-centre subject. Do not add a
    transform-origin here; it would apply to whichever photo happened to be in
    that slot. */
-.hero-rot .bg.kb-run{animation:hero-kb 3700ms linear forwards;}
 @keyframes hero-kb{from{transform:scale(1)}to{transform:scale(1.07)}}
 
 /* Photo 3 is high-key (pale sky, cream suit, white dress) and the standard
@@ -315,14 +314,6 @@ button.txt-link{background:none;border-top:0;border-left:0;border-right:0;cursor
    the photo has to be darkened, and a column darkened the sky and the ridgeline
    for nothing. Lighter overall than the column version it replaces, which read
    heavy once a boosted photo led the rotation and both layers stacked. */
-.hero-rot::after{background:
-  linear-gradient(90deg,oklch(14% .03 150/.30) 0%,oklch(14% .03 150/.09) 38%,transparent 62%),
-  linear-gradient(180deg,oklch(16% .03 150/.20) 0%,transparent 30%,transparent 58%,oklch(12% .03 150/.42) 100%);}
-.hero-rot .hero-boost{position:absolute;inset:0;z-index:2;opacity:0;pointer-events:none;transition:opacity 500ms cubic-bezier(.4,0,.2,1);background:
-  radial-gradient(130% 95% at 0% 100%,oklch(13% .03 150/.38) 0%,oklch(13% .03 150/.15) 48%,transparent 74%),
-  linear-gradient(180deg,transparent 60%,oklch(12% .03 150/.12) 100%);}
-.hero-rot[data-boost="1"] .hero-boost{opacity:1;}
-@media(prefers-reduced-motion:reduce){ .hero-rot .hero-boost{transition:none;} }
 
 /* Per-photo crops used to live here, keyed to .hero-1/.hero-2/.hero-3. They are
    inline in index.md now, one pair of values per photograph, so that reordering
@@ -335,9 +326,6 @@ button.txt-link{background:none;border-top:0;border-left:0;border-right:0;cursor
    lead photo already has one. */
 
 /* Anyone who asked for less motion gets photo 1, held still. */
-@media(prefers-reduced-motion:reduce){
-  .hero-rot .bg{transition:none;animation:none!important;}
-}
 
 /* Indicator dots. There used to be a pause control here as the WCAG 2.2.2
    affordance for auto-advancing motion; the owner removed it as clutter on
@@ -356,14 +344,6 @@ button.txt-link{background:none;border-top:0;border-left:0;border-right:0;cursor
    behind; centred under it they read as belonging to it. White-on-photo dots
    are invisible on cream, so they become ink. The tap target is 44px tall with
    a 7px dot drawn inside it, which the 8px white dots never were. */
-.hero-rot .hero-dots{position:static;display:flex;justify-content:center;gap:14px;margin-top:18px;}
-.hero-rot .hero-dots .hd{width:26px;height:44px;border:0;border-radius:0;background:none;
-  display:grid;place-items:center;}
-.hero-rot .hero-dots .hd::after{content:"";width:7px;height:7px;border-radius:50%;
-  background:var(--ink);opacity:.22;transition:opacity .25s,transform .25s;}
-.hero-rot .hero-dots .hd.on{background:none;}
-.hero-rot .hero-dots .hd.on::after{opacity:1;transform:scale(1.25);}
-.hero-rot .hero-dots .hd:hover::after{opacity:.55;}
 
 /* Small screens: the HOME hero drops its "See our work" button and centres the
    dots. The button pointed at the portfolio while the visitor was already
@@ -372,14 +352,14 @@ button.txt-link{background:none;border-top:0;border-left:0;border-right:0;cursor
    untouched -- this was never the booking button, and the header CTA is already
    behind the hamburger at this same width for the same reason (see .nav-r).
 
-   SCOPED TO .hero-rot ON PURPOSE (2026-08-16). This was `.hero .hero-foot .btn`,
+   SCOPED TO THE HOME HERO ON PURPOSE (2026-08-16; hook renamed 2026-09-22). This was `.hero .hero-foot .btn`,
    which is every hero on the site, so it also swallowed "Jump to pricing" in the
    /weddings hero. Neither reason above applies there: that button is the reason
    most people open the page, it points DOWN the page rather than at the page
    they are on, and .hero-land has no dots to crowd. Any new hero button is
    visible on mobile by default now; hide it here only with a reason of its own. */
 @media(max-width:860px){
-  .hero-rot .hero-foot .btn{display:none;}
+  .hero-home .hero-foot .btn{display:none;}
   /* The two rules below are :not(.hero-beside), not :not(.hero-rot). Both exist
      to lift copy clear of iOS Safari's bottom toolbar when the copy is sitting
      ON the photograph. A .hero-beside hero has its copy on paper above the
@@ -666,13 +646,25 @@ button.txt-link{background:none;border-top:0;border-left:0;border-right:0;cursor
    to --t-d3 -- the ask is the thing to act on, the wordmark is a signature,
    and it was the wrong way round. The markup is untouched, so every page keeps
    its own closing words. */
-:is(.cta,.cta-section){padding-bottom:clamp(40px,5vw,72px);}
+/* Left, not centred. A centred ask sitting on top of a left-aligned footer
+   grid reads as two different systems bolted together, which is most of what
+   made the combination look unresolved. On the same left edge as the wordmark
+   and the nav columns it becomes the footer's first row. */
+:is(.cta,.cta-section){padding-bottom:clamp(40px,5vw,72px);text-align:left;}
+:is(.cta,.cta-section) p,:is(.cta,.cta-section) h2,
+:is(.cta,.cta-section) > *{margin-left:0;margin-right:0;}
+:is(.cta,.cta-section) h2{max-width:16ch;}
+:is(.cta,.cta-section) p{max-width:44ch;}
 :is(.cta,.cta-section) + .site-footer{padding-top:0;border-top:0;}
 :is(.cta,.cta-section) + .site-footer .foot-in{
   border-top:1px solid var(--line);padding-top:clamp(44px,5vw,76px);}
 .foot-in{display:grid;grid-template-columns:.85fr 1.6fr;gap:clamp(40px,6vw,80px);align-items:start;border-bottom:1px solid var(--line);padding-bottom:clamp(40px,5vw,60px);}
 .foot-lead{max-width:34ch;}
-.foot-brand{font-family:var(--d);font-size:var(--t-d3);color:var(--ink);letter-spacing:-.01em;line-height:1;}
+/* Same mark as the nav, so it is set the same way: caps, tracked, one step
+   larger because it has room here. */
+.foot-brand{font-family:var(--d);font-size:1.5rem;color:var(--ink);
+  letter-spacing:.24em;text-transform:uppercase;line-height:1.2;
+  -webkit-text-stroke:.25px currentColor;}
 .foot-tag{font-size:1rem;line-height:1.6;color:var(--fg2);margin:20px 0 26px;}
 .foot-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(24px,3vw,48px);}
 .foot-cols h4{font-size:var(--t-tag);letter-spacing:.11em;text-transform:uppercase;color:var(--accent);margin-bottom:16px;}
@@ -785,10 +777,9 @@ button.txt-link{background:none;border-top:0;border-left:0;border-right:0;cursor
 /* HOME ONLY: 5/6, not 1/1. A square is the flattest crop there is, and the home
    plate is the one that has to carry the page. 4/5 (the site's portrait standard
    everywhere else) overruns the copy beside it; 5/6 is the nearest step that
-   keeps the row balanced and still reads as a deliberate portrait. All five
-   slides were checked at this ratio -- it reveals MORE of each photograph than
-   the square did, so every inline per-photo crop in index.md still holds. */
-.hero-rot.hero-beside .hs-stage{aspect-ratio:5/6;}
+   keeps the row balanced and still reads as a deliberate portrait.
+   Hook is .hero-home now that the slideshow is gone; it used to be .hero-rot. */
+.hero-home .hs-stage{aspect-ratio:5/6;}
 .hero-beside .hs-right{display:block;}
 
 @media(max-width:860px){
@@ -799,16 +790,15 @@ button.txt-link{background:none;border-top:0;border-left:0;border-right:0;cursor
   /* Portrait on a phone. The home <picture> serves a crop cut portrait at
      <=700px, and squaring it would throw the art direction away.
      The home rule is repeated at this specificity on purpose: the desktop
-     `.hero-rot.hero-beside .hs-stage` 5/6 rule is (0,3,0) and would otherwise
+     `.hero-home .hs-stage` 5/6 rule is more specific and would otherwise
      beat a (0,2,0) selector here even inside the media query. */
-  .hero-beside .hs-stage,.hero-rot.hero-beside .hs-stage{aspect-ratio:4/5;}
+  .hero-beside .hs-stage,.hero-home .hs-stage{aspect-ratio:4/5;}
 }
 
 /* HOME ONLY, because only the home hero has a slideshow behind it: the boost
    layer was the second scrim, and it has nothing left to protect either. The
    element stays in the markup because the rotator mirrors each photo's
    data-boost flag and expects to find it. */
-.hero-rot .hero-boost{display:none;}
 
 
 /* ---------- PORTFOLIO ---------- */
@@ -1994,9 +1984,42 @@ body.nav-hidden .venue-breadcrumb{top:0;}
 .pb-row.flip{grid-template-columns:2.4fr 2fr;}
 .pb-row.flip > :nth-child(1){aspect-ratio:4/5;}
 .pb-row.flip > :nth-child(2){aspect-ratio:2/3;}
-/* The odd one out. In column 2 it is the wide tile, so it takes 4/5. */
-.pb-row.solo-r > :first-child{grid-column:2;aspect-ratio:4/5;}
-.pb-row.solo-l > :first-child{grid-column:1;aspect-ratio:2/3;}
+/* No lone photographs in a two-column row. A single tile with an empty column
+   beside it reads as a picture that has not loaded yet, which is the opposite
+   of what a gallery wants. Every row is full: two photographs, or a photograph
+   and the block of content that belongs next to it.
+
+   LANDSCAPES get their own row. A 3:2 photograph forced into the 2:3 tall slot
+   loses more than half its width, so it pairs with another landscape at equal
+   widths, where equal ratios give equal heights for free. */
+.pb-row--land{grid-template-columns:1fr 1fr;}
+.pb-row--land > *{aspect-ratio:3/2 !important;}
+
+/* CONTENT BESIDE A PHOTOGRAPH. The venues block, the process signpost: things
+   that used to be their own full-width centred band with nothing either side
+   of them. In a column next to a picture the page stops starting and stopping
+   and just keeps going, which is the point. `.rev` puts the picture first.
+   Below 820px the row stacks and the block gets its own width back. */
+.pb-row--split{grid-template-columns:1fr 1.15fr;align-items:center;
+  gap:clamp(28px,4vw,64px);}
+.pb-row--split > .pslot,.pb-row--split > .pb-pic{aspect-ratio:3/2 !important;}
+.pb-row--split > .pb-txt{aspect-ratio:auto !important;}
+.pb-row--split.rev{grid-template-columns:1.15fr 1fr;}
+.pb-txt{text-align:left;}
+.pb-txt .lab{display:block;margin-bottom:14px;}
+.pb-txt .disp{font-family:var(--d);font-weight:430;font-optical-sizing:auto;
+  font-size:var(--t-d2);line-height:1.06;letter-spacing:-.02em;max-width:17ch;}
+.pb-txt > p{color:var(--fg2);font-size:var(--t-lede);line-height:1.55;
+  max-width:40ch;margin-top:clamp(16px,2vw,24px);}
+.pb-txt .marq-foot,.pb-txt .vmini-more{margin-top:clamp(22px,2.6vw,32px);}
+.pb-pic{margin:0;overflow:hidden;border-radius:var(--r-img);}
+.pb-pic img{width:100%;height:100%;object-fit:cover;display:block;}
+@media(max-width:820px){
+  .pb-row--split,.pb-row--split.rev,.pb-row--land{grid-template-columns:1fr;}
+  .pb-row--split.rev > .pb-txt{order:2;}
+  .pb-row--split > .pslot,.pb-row--split > .pb-pic,
+  .pb-row--land > *{aspect-ratio:3/2 !important;}
+}
 
 .pslot{margin:0;position:relative;display:grid;place-items:center;
   border:1px dashed var(--line);border-radius:var(--r-img);background:var(--bg2);}
@@ -2019,18 +2042,14 @@ body.nav-hidden .venue-breadcrumb{top:0;}
    The lake on the left, one line and a link on the right. Deliberately inert:
    no hover, no tooltip, no labels. It is a picture of where the work happens,
    and /venues is where you go to actually use a map. */
-.vmini{max-width:var(--content-max);margin:0 auto;
-  padding:var(--sp-l) var(--pad) var(--sp-s);
-  display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);
-  gap:clamp(32px,6vw,96px);align-items:center;}
-.vmini-map{display:flex;justify-content:center;}
-.vm-svg{width:100%;height:auto;display:block;max-width:clamp(260px,32vw,420px);}
+/* The venues block now lives inside a split row, so it no longer lays itself
+   out: it is one column of a photo row. The lake sits above the line rather
+   than beside it, which is what a column wants. */
+.vmini-map{display:block;margin-bottom:clamp(20px,2.4vw,32px);}
+.vm-svg{width:100%;height:auto;display:block;max-width:clamp(150px,15vw,210px);}
 .vm-lake{fill:oklch(73% .045 236);stroke:none;}
 .vm-dot{fill:var(--accent);stroke:var(--paper);stroke-width:2.5;}
 .vmini-txt .disp{font-family:var(--d);font-weight:430;font-optical-sizing:auto;
   font-size:var(--t-d2);line-height:1.06;letter-spacing:-.02em;max-width:18ch;}
 .vmini-more{margin-top:clamp(20px,2.4vw,30px);}
-@media(max-width:860px){
-  .vmini{grid-template-columns:1fr;gap:32px;justify-items:start;}
-  .vm-svg{max-width:240px;}
-}
+@media(max-width:860px){ .vm-svg{max-width:180px;} }

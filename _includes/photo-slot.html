@@ -1,0 +1,2 @@
+{%- comment -%} One placeholder slot. n = its number, s = the shape word shown in it. {%- endcomment -%}
+<figure class="pslot" aria-hidden="true"><span class="pslot-n">{{ include.n | prepend: '0' | slice: -2, 2 }}</span><span class="pslot-s">{{ include.s }}</span></figure>
