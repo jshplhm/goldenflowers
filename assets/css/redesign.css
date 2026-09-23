@@ -682,11 +682,31 @@ nav.site-nav .pill{white-space:nowrap;}
    grid reads as two different systems bolted together, which is most of what
    made the combination look unresolved. On the same left edge as the wordmark
    and the nav columns it becomes the footer's first row. */
-:is(.cta,.cta-section){padding-bottom:clamp(40px,5vw,72px);text-align:left;}
-:is(.cta,.cta-section) p,:is(.cta,.cta-section) h2,
+/* TWO COLUMNS, NOT A LEFT-HAND STACK (Josh, 2026-09-23). Left-aligning the
+   ask turned it into a heading, a paragraph and a button piled up in the left
+   third of the screen with two thirds of the page empty beside them. The words
+   and the ask belong on the same line of sight: the heading takes the left
+   column, the sentence and the button take the right. Same amount of type,
+   the whole width used. `:has()` decides whether an eyebrow is in the block,
+   so the two shapes this section comes in both land correctly, and the whole
+   thing collapses to one column below 820px. */
+:is(.cta,.cta-section){padding-bottom:clamp(40px,5vw,72px);text-align:left;
+  display:grid;grid-template-columns:1.05fr 1fr;
+  column-gap:clamp(36px,6vw,110px);row-gap:clamp(18px,2.2vw,28px);
+  align-items:start;}
 :is(.cta,.cta-section) > *{margin-left:0;margin-right:0;}
-:is(.cta,.cta-section) h2{max-width:16ch;}
-:is(.cta,.cta-section) p{max-width:44ch;}
+:is(.cta,.cta-section) .label{grid-column:1;grid-row:1;}
+:is(.cta,.cta-section) h2{grid-column:1;grid-row:1;max-width:15ch;}
+:is(.cta,.cta-section):has(.label) h2{grid-row:2;}
+:is(.cta,.cta-section) p{grid-column:2;grid-row:1;max-width:46ch;margin:0;}
+:is(.cta,.cta-section):has(.label) p{grid-row:1 / span 2;align-self:end;}
+:is(.cta,.cta-section) .btn{grid-column:2;grid-row:2;justify-self:start;align-self:start;}
+:is(.cta,.cta-section):has(.label) .btn{grid-row:3;}
+@media(max-width:820px){
+  :is(.cta,.cta-section){grid-template-columns:1fr;row-gap:clamp(14px,2vw,20px);}
+  :is(.cta,.cta-section) > *{grid-column:1 !important;grid-row:auto !important;}
+  :is(.cta,.cta-section) h2{max-width:none;}
+}
 :is(.cta,.cta-section) + .site-footer{padding-top:0;border-top:0;}
 :is(.cta,.cta-section) + .site-footer .foot-in{
   border-top:1px solid var(--line);padding-top:clamp(44px,5vw,76px);}
@@ -1683,7 +1703,11 @@ body.nav-hidden .venue-breadcrumb{top:0;}
   .nav-r{gap:0;}
   .nav-r a:not(.pill){display:none;}
   body.menu-open .nav-r{display:none;}
-  .nav-toggle{display:flex;margin-left:-9px;}
+  /* Burger first in the row, pill hard right (Josh, 2026-09-23). The button
+     comes after the links in the markup, so order does it rather than a
+     markup change that would move it in the tab order too. */
+  .nav-toggle{display:flex;order:-1;margin-left:-9px;}
+  .nav-r{margin-left:auto;}
   /* Home only, and only while the nav is actually over the hero: the hero is
      one composed message and the pill was competing with it. `over-hero` is
      dropped by the header script past 40px of scroll, so the CTA arrives as
@@ -1738,8 +1762,11 @@ body.nav-hidden .venue-breadcrumb{top:0;}
   padding:0 var(--pad) clamp(40px,5vw,80px);}
 .pfx-bd{display:grid;grid-template-columns:repeat(12,1fr);gap:clamp(10px,1.1vw,18px);}
 
+/* No rule under the name (Josh, 2026-09-23): the photographs begin right
+   below it and their top edge is already the line. Two lines 16px apart was
+   one more than the eye needs. */
 .pfx-h{grid-column:1 / -1;display:grid;grid-template-columns:1fr auto;gap:24px;
-  align-items:baseline;padding-bottom:16px;border-bottom:1px solid var(--line);}
+  align-items:baseline;padding-bottom:16px;}
 .pfx-h h2{font-family:var(--d);font-weight:430;letter-spacing:-.015em;line-height:1;
   font-size:var(--t-d2);}
 .pfx-h .pfx-v{font-size:var(--t-tag);letter-spacing:.16em;text-transform:uppercase;
@@ -1772,31 +1799,34 @@ body.nav-hidden .venue-breadcrumb{top:0;}
 .pfx-more span{transition:transform .3s ease;display:inline-block;}
 .pfx-more:hover span{transform:translateX(5px);}
 
-/* ---- phones: the band becomes a swipe strip ----------------------------
-   Three frames is a thin showing on a phone and stacking six makes the page
-   enormous, so the row turns into a snapping strip carrying six in the height
-   of one. Slides are 72vw so the next is always visibly cut off: that overhang
-   is the only affordance a touch surface gets. The last card is the way into
-   the wedding, so swiping always ends somewhere useful. */
+/* ---- phones: the band IS the wedding ----------------------------------
+   An Instagram post, not a teaser (Josh, 2026-09-23). Every photograph in the
+   wedding's folder is in this strip, swipeable in place, so nobody has to open
+   the wedding page to see the work — that link is there for people who want
+   the big version, not as a toll gate. Twenty to thirty-four frames per
+   wedding rather than five.
+
+   Full-bleed: negative margins pull the strip out to the screen edges and the
+   padding is paid back inside, so a card can sit half under the edge. That
+   overhang is the only affordance a touch surface gets, and with a real photo
+   dump behind it the gesture is worth making. 86vw, so the next frame is
+   always visibly cut off.
+
+   The green end card is gone with the toll gate. Desktop is untouched: nothing
+   in here applies above 900px, and .pfx-extra stays display:none up there, so
+   the extra markup costs no requests. */
 @media(max-width:900px){
   .pfx-h{grid-template-columns:1fr;}
   .pfx-h .pfx-v{text-align:left;}
-  .pfx-row{height:auto;display:flex;gap:10px;overflow-x:auto;
+  .pfx-row{height:auto;display:flex;gap:8px;overflow-x:auto;
     scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;
-    margin:0 calc(-1 * var(--pad));padding:0 var(--pad);scroll-padding-left:var(--pad);}
+    margin:0 calc(-1 * var(--pad));padding:0 var(--pad);scroll-padding-left:var(--pad);
+    overscroll-behavior-x:contain;}
   .pfx-row::-webkit-scrollbar{display:none;}
-  .pfx-row .pfx-ph{flex:0 0 72vw;aspect-ratio:4/5;height:auto;scroll-snap-align:start;
+  .pfx-row .pfx-ph{flex:0 0 86vw;aspect-ratio:4/5;height:auto;scroll-snap-align:start;
     grid-column:auto !important;}
   .pfx-row .pfx-extra{display:block;}
-  .pfx-end{flex:0 0 56vw;scroll-snap-align:start;background:var(--forest-deep);
-    color:var(--accent-soft);display:flex;flex-direction:column;justify-content:flex-end;
-    padding:22px;aspect-ratio:4/5;}
-  .pfx-end .pfx-en{font-size:var(--t-tag);letter-spacing:.2em;text-transform:uppercase;opacity:.6;}
-  .pfx-end h3{font-family:var(--d);font-weight:430;font-size:var(--t-d4);line-height:1.05;margin-top:8px;}
-  .pfx-end .pfx-eg{margin-top:14px;font-size:var(--t-ui);letter-spacing:.12em;
-    text-transform:uppercase;display:inline-flex;gap:8px;align-items:center;}
-  .pfx-hint{grid-column:1 / -1;font-size:var(--t-tag);letter-spacing:.16em;text-transform:uppercase;
-    color:var(--mute);margin-top:8px;text-align:right;}
+  .pfx-end,.pfx-hint{display:none;}
   .pfx-f{gap:16px;}
   .pfx-f p{max-width:none;}
   .pfx-more{margin-left:0;}
@@ -2059,8 +2089,13 @@ body.nav-hidden .venue-breadcrumb{top:0;}
 @media(max-width:820px){
   .pb-row--split,.pb-row--split.rev,.pb-row--land{grid-template-columns:1fr;}
   .pb-row--split.rev > .pb-txt{order:2;}
+  /* NO LANDSCAPE ON A PHONE (Josh, 2026-09-23). A 3:2 frame on a 390px screen
+     is a 160px-tall letterbox: the subject is too small to read and the row
+     reads as a gap between the real photographs. Everything crops to the 4:5
+     the hero already uses at this width, so the whole scroll is one shape. */
   .pb-row--split > .pslot,.pb-row--split > .pb-pic,
-  .pb-row--land > *{aspect-ratio:3/2 !important;}
+  .pb-row--land > *{aspect-ratio:4/5 !important;}
+  .pb-row--full > *{aspect-ratio:4/5 !important;}
 }
 
 .pslot{margin:0;position:relative;display:grid;place-items:center;
@@ -2175,5 +2210,17 @@ body.nav-hidden .venue-breadcrumb{top:0;}
    than reading: the hero's wordmark block (.ht-words) and the closing line
    (.credo.closing), plus the .cta / .cta-section closing asks on other pages,
    which have been centred since long before this branch. */
-.testi blockquote{max-width:30ch;}
+/* The quote gets the width; the stars and the name become a left rail. Set
+   flush left in one column it was a narrow ribbon of display type hugging the
+   left edge with the rest of the row empty. Josh, 2026-09-23. */
+.testi{display:grid;grid-template-columns:.62fr 1.7fr;
+  column-gap:clamp(36px,6vw,110px);align-items:start;}
+.testi .stars{grid-column:1;grid-row:1;}
+.testi blockquote{grid-column:2;grid-row:1 / span 3;max-width:34ch;}
+.testi .by{grid-column:1;grid-row:2;margin-top:14px;}
+.testi .marq-foot{grid-column:1;grid-row:3;}
+@media(max-width:820px){
+  .testi{grid-template-columns:1fr;row-gap:16px;}
+  .testi > *{grid-column:1 !important;grid-row:auto !important;}
+}
 @media(min-width:1025px){.facts .fact p{max-width:34ch;}}

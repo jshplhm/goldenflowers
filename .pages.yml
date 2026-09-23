@@ -39,7 +39,7 @@ content:
           - {name: lead, label: "Opening line (large)", type: text}
           - {name: body, label: "Paragraph (smaller)", type: text}
           - {name: close, label: "Closing line (large)", type: text}
-          - {name: link, label: "Link to Our Story", type: string, description: "Text of the link under the paragraphs. Leave empty to hide it."}
+          - {name: link, label: "Link to Studio", type: string, description: "Text of the link under the paragraphs. Leave empty to hide it."}
       - name: why
         label: Why Golden Flowers
         type: object
@@ -67,7 +67,7 @@ content:
         fields:
           - {name: label, label: "Small label", type: string}
           - {name: heading, label: "Heading", type: string}
-          - {name: body, label: "Text", type: text, description: "Keep prices off this page: the numbers live on Process & Pricing only."}
+          - {name: body, label: "Text", type: text, description: "Keep prices off this page: the numbers live on Pricing only."}
           - {name: link, label: "Link text", type: string}
       - name: marquee
         label: Scrolling venue strip
@@ -88,7 +88,7 @@ content:
           - {name: quote, label: "Quote", type: text, description: "*asterisks* = italics"}
           - {name: name, label: "Name", type: string}
           - {name: context, label: "Context (e.g. Lake Tahoe Wedding)", type: string}
-          - {name: link, label: "Link text", type: string, description: "Goes to the reviews on Process & Pricing."}
+          - {name: link, label: "Link text", type: string, description: "Goes to the reviews on Pricing."}
       - name: cta
         label: Closing call to action
         type: object
@@ -236,7 +236,7 @@ content:
       - name: pricing
         label: "Section: investment (the three prices)"
         type: object
-        description: "The price ladder on the dark band. To change a PHOTO, open /edit, go to the Process & Pricing page and click the photo you want to swap: photos are not editable here."
+        description: "The price ladder on the dark band. To change a PHOTO, open /edit, go to the Pricing page and click the photo you want to swap: photos are not editable here."
         fields:
           - {name: label, label: "Small label", type: string}
           - {name: heading, label: "Heading", type: string}

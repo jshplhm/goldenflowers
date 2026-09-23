@@ -18,18 +18,54 @@
     <h2>{{ name }}</h2>
     <span class="pfx-v">{{ m.venue }}</span>
   </div>
+  {%- comment -%}
+    THE PHONE STRIP IS THE WHOLE WEDDING (Josh, 2026-09-23). It used to carry
+    five hand-picked frames and then a card asking you to go somewhere else.
+    On a phone this section is now the Instagram post it was always imitating:
+    every photograph in the wedding's folder, swipeable in place, so nobody has
+    to click through to see the work. Desktop is untouched — everything past
+    the first three is .pfx-extra, which is display:none above 900px, and a
+    lazy image inside a display:none element is never fetched, so the desktop
+    page carries the markup and none of the weight.
+
+    Order follows _data/gallery_order.yml when /edit has set one, exactly as
+    the wedding page's own gallery does, so a drag-to-reorder there is
+    reflected here too.
+  {%- endcomment -%}
+  {%- assign prefix = '/assets/images/portfolio/' | append: slug | append: '/' -%}
+  {%- assign allf = site.static_files | where_exp: "f", "f.path contains prefix" | sort: "path" -%}
+  {%- assign manifest = site.data.gallery_order[slug] -%}
+  {%- if manifest -%}
+    {%- assign ordered = "" | split: "" -%}
+    {%- for nm in manifest -%}
+      {%- for f in allf -%}
+        {%- if f.name == nm -%}{%- assign ordered = ordered | push: f -%}{%- break -%}{%- endif -%}
+      {%- endfor -%}
+    {%- endfor -%}
+    {%- for f in allf -%}
+      {%- unless manifest contains f.name -%}{%- assign ordered = ordered | push: f -%}{%- endunless -%}
+    {%- endfor -%}
+    {%- assign allf = ordered -%}
+  {%- endif -%}
+  {%- assign shown = "" | split: "" -%}
+  {%- for p in m.band -%}{%- assign shown = shown | push: slug | append: '-' | append: p | append: '.jpg' -%}{%- endfor -%}
   <div class="pfx-row">
     {%- for p in m.band -%}
     <a class="pfx-ph" href="{{ href }}"><img src="{{ site.baseurl }}{{ base }}{{ p }}.jpg" alt="{{ name }} wedding flowers at {{ m.venue }}, {{ m.place }}" loading="{% if include.n == '01' and forloop.first %}eager{% else %}lazy{% endif %}"{% if include.n == '01' and forloop.first %} fetchpriority="high"{% endif %} sizes="(max-width:900px) 72vw, 40vw"></a>
     {%- endfor -%}
-    {%- for p in m.strip -%}
-    <a class="pfx-ph pfx-extra" href="{{ href }}"><img src="{{ site.baseurl }}{{ base }}{{ p }}.jpg" alt="{{ name }} wedding florals by Golden Flowers" loading="lazy" sizes="72vw"></a>
+    {%- comment -%} Everything else in the folder, in order, minus the three
+    already shown above. {%- endcomment -%}
+    {%- for f in allf -%}
+      {%- assign bandname = f.name | split: '.' | first -%}
+      {%- assign isband = false -%}
+      {%- for p in m.band -%}
+        {%- assign want = slug | append: '-' | append: p -%}
+        {%- if bandname == want -%}{%- assign isband = true -%}{%- endif -%}
+      {%- endfor -%}
+      {%- unless isband -%}
+    <a class="pfx-ph pfx-extra" href="{{ href }}"><img src="{{ site.baseurl }}{{ prefix }}{{ f.name }}" alt="{{ name }} wedding florals by Golden Flowers at {{ m.venue }}" loading="lazy" sizes="86vw"></a>
+      {%- endunless -%}
     {%- endfor -%}
-    <a class="pfx-end" href="{{ href }}">
-      <span class="pfx-en">{{ wp.strip_label }}</span>
-      <h3>{{ name }}</h3>
-      <span class="pfx-eg">{{ wp.strip_cta }} <span aria-hidden="true">&rarr;</span></span>
-    </a>
   </div>
   <div class="pfx-f">
     <p><span data-ed="portfolio_meta:{{ slug }}.lede">{{ m.lede }}</span></p>
