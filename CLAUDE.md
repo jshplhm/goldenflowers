@@ -97,7 +97,26 @@ JEKYLL_ENV=production bundle exec jekyll build    # adds srcset markup (see Imag
 - **No em dashes in prose, ever**; no AI-pattern phrasing. Exception: the
   form's aesthetic option labels ("Lush & Romantic — rich…") are approved.
 - **No terracotta / warm accent colors anywhere** — monochrome forest-green
-  + cream only.
+  + cream only. The 2026-09-22 blush ground is not an exception to this: it
+  is a *surface* (`--bg` / `--bg2`), and no element takes the colour. Josh
+  picked the gentle stop of a three-stop ramp; the accent stays forest.
+- **Surfaces, as of 2026-09-22 (Josh).** One ground down the whole page.
+  Sections break on space and a hairline, never on a change of colour —
+  `.cta`, `.cta-section`, `.pledge`, `.proc` and `.band-paper` are all `--bg`
+  now, and `--bg2` survives only for wells and inset panels sitting *under*
+  something. `--sp-*` and `--pad` were raised to carry the break that the
+  tint bands used to. The footer is paper too: green is an accent, not a
+  ground, and the scroll should end on the studio's name rather than on a
+  colour change.
+- **One radius language, as of 2026-09-22.** `--r-img: 10px` for every
+  photograph (it was 0/3/4/6px in four places) and for buttons, which were
+  fully round pills — a control and the picture beside it now agree.
+  `--r-card: 14px` for cards and inset panels. Circles (indicator dots, icon
+  buttons, the success check) stay `50%` and are not part of this.
+- **The header carries no hairline at rest.** It earns one past 40px of
+  scroll, via the `scrolled` class toggled in `_layouts/redesign.html`; the
+  frosted `backdrop-filter` is what separates it before that. `over-hero`
+  and `menu-open` suppress the line at any scroll position.
 - Consult-form copy was chosen word-by-word by the owner: don't reword.
 - Never claim "one wedding per date" explicitly; honesty guardrails apply
   to scarcity/urgency copy.

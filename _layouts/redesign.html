@@ -150,6 +150,10 @@
   function update(){
     var y=window.pageYOffset;
     if(isHeroPage) nav.classList.toggle('over-hero', y<=40);
+    /* The header carries no hairline at rest; it earns one once there is
+       content running underneath it to be separated from. 40px matches the
+       over-hero threshold so both edges flip in the same style pass. */
+    nav.classList.toggle('scrolled', y>40);
     var hide = (y>last && y>500);
     nav.classList.toggle('up', hide);
     /* Mirror nav visibility so the sticky breadcrumb can dock under the nav
