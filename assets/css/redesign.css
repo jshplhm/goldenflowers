@@ -174,7 +174,14 @@ nav.site-nav.up{top:calc(-1 * var(--nav-h));}
    has nothing to divide. Declared after .scrolled so they win regardless of
    scroll position. */
 nav.site-nav.over-hero,body.menu-open nav.site-nav{border-bottom-color:transparent;}
-.brand{font-family:var(--d);font-size:1.45rem;letter-spacing:-.01em;}
+/* The wordmark. Castoro ships ONE weight, 400, and there is no bold anywhere
+   to load: the family is Regular and Italic, full stop. Asking for 700 gets a
+   browser-synthesised bold, which thickens the hairlines as much as the stems
+   and flattens exactly the contrast that makes the face worth using.
+   A hairline stroke adds the weight optically instead, on the real outlines.
+   .4px is the most it takes before the counters start to close up at 23px. */
+.brand{font-family:var(--d);font-size:1.45rem;letter-spacing:-.01em;
+  -webkit-text-stroke:.4px currentColor;}
 .brand-short{display:none;}
 .nav-r{display:flex;gap:36px;align-items:center;}
 .nav-r a:not(.pill){font-size:var(--t-ui);letter-spacing:.02em;opacity:.92;position:relative;padding-bottom:3px;}
@@ -628,7 +635,7 @@ button.txt-link{background:none;border-top:0;border-left:0;border-right:0;cursor
 .pledge + .cta,.proc + .cta,.cta-section + .cta,.band-paper + .cta{border-top:1px solid var(--line);}
 .cta--tall{min-height:0;padding-top:var(--sp-m);padding-bottom:var(--sp-m);display:flex;flex-direction:column;align-items:center;justify-content:center;}
 .cta--tall p{max-width:56ch;}
-.cta h2{font-family:var(--d);font-weight:430;font-optical-sizing:auto;font-size:var(--t-d3);letter-spacing:-.025em;line-height:1;}
+.cta h2{font-family:var(--d);font-weight:430;font-optical-sizing:auto;font-size:var(--t-d2);letter-spacing:-.025em;line-height:1.02;}
 .cta h2 em{color:var(--accent);}
 /* Display headings never leave one word alone on the last line.
    "Let's bring your vision *to life.*" broke as "…your vision to / life." on a
@@ -639,7 +646,7 @@ button.txt-link{background:none;border-top:0;border-left:0;border-right:0;cursor
    written yet. Balance only ever moves a break earlier, so it cannot push a
    heading wider than its box. */
 .cta h2,.cta-section h2,.disp,.hero h1{text-wrap:balance;}
-.cta p{color:var(--mute);margin:24px auto 38px;max-width:42ch;font-size:var(--t-lede);}
+.cta p{color:var(--mute);margin:20px auto 34px;max-width:42ch;font-size:var(--t-lede);}
 
 /* ---------- FOOTER ---------- */
 /* Paper, not pine. Green is an accent here, not a ground: a dark slab at the
@@ -647,16 +654,25 @@ button.txt-link{background:none;border-top:0;border-left:0;border-right:0;cursor
    name, and it was the last full-bleed band left once the tint sections went.
    A hairline gives the footer its edge; the type does the rest. */
 .site-footer{background:var(--bg);color:var(--fg2);border-top:1px solid var(--line);padding:var(--sp-m) var(--pad-col) 34px;}
-/* The closing ask and the footer are ONE ending, not two. They used to be two
-   full section gaps apart (168px + 168px = 336px between the button and the
-   wordmark), which was fine while the footer was a dark slab announcing itself
-   as a different thing. On the same paper, separated only by a hairline, that
-   gap made the page look like it finished twice. Halved at the junction; the
-   ask keeps its own large gap ABOVE it, which is what marks it as a section. */
-:is(.cta,.cta-section) + .site-footer{padding-top:var(--sp-s);}
+/* The closing ask IS the top of the footer. Halving the gap between them was
+   not enough: the ask still sat in its own box with a rule under it, so it read
+   as something floating above the footer rather than as its opening line.
+
+   So the rule moves. The ask and the footer columns sit inside one
+   uninterrupted block with a single hairline BETWEEN them, which connects the
+   two rather than divides them: ask, rule, columns, rule, small print. The ask
+   keeps its large gap above, because that is what marks it as a section at
+   all, and its heading steps up to --t-d2 while the wordmark below steps down
+   to --t-d3 -- the ask is the thing to act on, the wordmark is a signature,
+   and it was the wrong way round. The markup is untouched, so every page keeps
+   its own closing words. */
+:is(.cta,.cta-section){padding-bottom:clamp(40px,5vw,72px);}
+:is(.cta,.cta-section) + .site-footer{padding-top:0;border-top:0;}
+:is(.cta,.cta-section) + .site-footer .foot-in{
+  border-top:1px solid var(--line);padding-top:clamp(44px,5vw,76px);}
 .foot-in{display:grid;grid-template-columns:.85fr 1.6fr;gap:clamp(40px,6vw,80px);align-items:start;border-bottom:1px solid var(--line);padding-bottom:clamp(40px,5vw,60px);}
 .foot-lead{max-width:34ch;}
-.foot-brand{font-family:var(--d);font-size:var(--t-d2);color:var(--ink);letter-spacing:-.01em;line-height:1;}
+.foot-brand{font-family:var(--d);font-size:var(--t-d3);color:var(--ink);letter-spacing:-.01em;line-height:1;}
 .foot-tag{font-size:1rem;line-height:1.6;color:var(--fg2);margin:20px 0 26px;}
 .foot-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(24px,3vw,48px);}
 .foot-cols h4{font-size:var(--t-tag);letter-spacing:.11em;text-transform:uppercase;color:var(--accent);margin-bottom:16px;}
@@ -1440,7 +1456,7 @@ body.nav-hidden .venue-breadcrumb{top:0;}
 
 .cta-section{background:var(--bg);padding:var(--sp-l) var(--pad-col) var(--sp-m);text-align:center;}
 .cta-section .label{display:block;}
-.cta-section h2{font-family:var(--d);font-weight:430;font-optical-sizing:auto;font-size:var(--t-d3);letter-spacing:-.02em;line-height:1.05;margin:12px 0;}
+.cta-section h2{font-family:var(--d);font-weight:430;font-optical-sizing:auto;font-size:var(--t-d2);letter-spacing:-.02em;line-height:1.05;margin:12px 0;}
 .cta-section p{max-width:46ch;margin:0 auto 28px;color:var(--fg2);}
 .btn-primary{display:inline-flex;align-items:center;gap:9px;background:var(--accent);color:var(--paper);padding:16px 30px;border-radius:var(--r-img);font-size:var(--t-ui);letter-spacing:.03em;font-weight:500;transition:.25s;border:0;cursor:pointer;font-family:var(--b);}
 .btn-primary:hover{transform:translateY(-2px);filter:brightness(1.07);}
