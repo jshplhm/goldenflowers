@@ -1,31 +1,43 @@
 {%- comment -%}
-  A band of PLACEHOLDER photo slots. Outlined boxes only, no images: the
-  photographs are being chosen by hand (Josh, 2026-09-22).
+  A run of PLACEHOLDER photo slots. Outlined boxes, no images: the photographs
+  are being chosen by hand (Josh, 2026-09-22).
 
-  Each slot is numbered so a photograph can be named by its number, and carries
-  the shape its span produces at the fixed row height, so the choice can be made
-  against the frame the photo has to fill.
+  Two across, never more, with the occasional single. The two are NOT equal
+  width: the pair is 2fr / 2.4fr and the tiles carry 2/3 and 4/5, which resolve
+  to the same height because (2/3)/(4/5) is exactly 2/2.4. So the tops line up
+  and the bottoms line up while the widths vary, and the run never reads as a
+  column of identical slots. Alternate pairs flip which side is the wide one.
 
-  To fill one: replace the two spans inside the <figure> with an <img>, keep the
-  p5/p4/p3 class. The row height does the cropping, so object-position is the
-  only per-photo tuning that should ever be needed.
+  A single is the same grid with one tile in it, so it takes a pair column's
+  width and its phone behaviour without either being restated. Only the side
+  needs saying.
 
-  Params:  n     number of slots (3 or 6)
-           from  the number of the first slot in this band
+  To fill a slot: replace the two spans inside the <figure> with an <img> and
+  keep the row and tile classes. The aspect ratio does the cropping, so
+  object-position is the only per-photo tuning that should ever be needed.
+
+  Params:  rows  comma list of pair | solo-l | solo-r
+           from  the number of the first slot in this run
 {%- endcomment -%}
-{%- assign spans = "5,4,3,3,5,4" | split: "," -%}
-{%- if include.n == 3 -%}{%- assign spans = "5,4,3" | split: "," -%}{%- endif -%}
+{%- assign rowlist = include.rows | split: "," -%}
+{%- assign n = include.from -%}
+{%- assign pairs = 0 -%}
 <section class="pband">
-  {%- for s in spans -%}
-  {%- assign num = include.from | plus: forloop.index0 -%}
-  {%- case s -%}
-    {%- when "5" -%}{%- assign shape = "wide" -%}
-    {%- when "4" -%}{%- assign shape = "square" -%}
-    {%- else -%}{%- assign shape = "upright" -%}
-  {%- endcase -%}
-  <figure class="pslot p{{ s }}" aria-hidden="true">
-    <span class="pslot-n">{{ num | prepend: '0' | slice: -2, 2 }}</span>
-    <span class="pslot-s">{{ shape }}</span>
-  </figure>
+  {%- for r in rowlist -%}
+    {%- if r == "pair" -%}
+      {%- assign flip = pairs | modulo: 2 -%}
+      {%- assign pairs = pairs | plus: 1 -%}
+      <div class="pb-row{% if flip == 1 %} flip{% endif %}">
+        <figure class="pslot" aria-hidden="true"><span class="pslot-n">{{ n | prepend: '0' | slice: -2, 2 }}</span><span class="pslot-s">{% if flip == 1 %}wide{% else %}tall{% endif %}</span></figure>
+        {%- assign n = n | plus: 1 -%}
+        <figure class="pslot" aria-hidden="true"><span class="pslot-n">{{ n | prepend: '0' | slice: -2, 2 }}</span><span class="pslot-s">{% if flip == 1 %}tall{% else %}wide{% endif %}</span></figure>
+        {%- assign n = n | plus: 1 -%}
+      </div>
+    {%- else -%}
+      <div class="pb-row {{ r }}">
+        <figure class="pslot" aria-hidden="true"><span class="pslot-n">{{ n | prepend: '0' | slice: -2, 2 }}</span><span class="pslot-s">{% if r == "solo-r" %}wide{% else %}tall{% endif %}</span></figure>
+        {%- assign n = n | plus: 1 -%}
+      </div>
+    {%- endif -%}
   {%- endfor -%}
 </section>

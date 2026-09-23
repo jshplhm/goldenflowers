@@ -137,10 +137,10 @@ the moment one pale photo wants it and another does not, the machinery is here.
   </div>
 </header>
 
-<!-- PHOTOGRAPHS 01-06. Selected weddings used to sit here. It was three tiles
+<!-- PHOTOGRAPHS 01-05. Selected weddings used to sit here. It was three tiles
      driven by _data/home_work.yml; the photographs are being chosen by hand now,
      so these are numbered placeholders until they are picked. -->
-{% include photo-band.html n=6 from=1 %}
+{% include photo-band.html rows="pair,solo-r,pair" from=1 %}
 
 <!-- INTRO. After photographs, not before them. -->
 <div class="band-paper">
@@ -160,8 +160,8 @@ the moment one pale photo wants it and another does not, the machinery is here.
 </section>
 </div>
 
-<!-- PHOTOGRAPHS 07-12 -->
-{% include photo-band.html n=6 from=7 %}
+<!-- PHOTOGRAPHS 06-10 -->
+{% include photo-band.html rows="pair,pair,solo-l" from=6 %}
 
 <!-- PROCESS & PRICING -->
 {%- comment -%} Straight after the wedding previews, because "what does this
@@ -182,8 +182,8 @@ the bands are built on (see about/index.md), sections that share a background
 get a hairline. {%- endcomment -%}
 <hr class="hr-line">
 
-<!-- PHOTOGRAPHS 13-15 -->
-{% include photo-band.html n=3 from=13 %}
+<!-- PHOTOGRAPHS 11-13 -->
+{% include photo-band.html rows="pair,solo-r" from=11 %}
 
 <!-- FACTS. The eyebrow and the "We grow our own flowers..." headline are gone
      (Josh, 2026-09-22): the three claims say it themselves and the headline made
@@ -213,9 +213,9 @@ get a hairline. {%- endcomment -%}
   </div>
 </section>
 
-<!-- PHOTOGRAPHS 16-18. The "From our farm" full-bleed band used to sit around
+<!-- PHOTOGRAPHS 14-16. The "From our farm" full-bleed band used to sit around
      here. It was removed with the farming claim it carried. -->
-{% include photo-band.html n=3 from=16 %}
+{% include photo-band.html rows="pair,solo-l" from=14 %}
 
 <!-- TESTIMONIAL -->
 <section class="testi">
