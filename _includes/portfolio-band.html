@@ -51,10 +51,11 @@
   {%- for p in m.band -%}{%- assign shown = shown | push: slug | append: '-' | append: p | append: '.jpg' -%}{%- endfor -%}
   <div class="pfx-row">
     {%- for p in m.band -%}
-    <a class="pfx-ph" href="{{ href }}"><img src="{{ site.baseurl }}{{ base }}{{ p }}.jpg" alt="{{ name }} wedding flowers at {{ m.venue }}, {{ m.place }}" loading="{% if include.n == '01' and forloop.first %}eager{% else %}lazy{% endif %}"{% if include.n == '01' and forloop.first %} fetchpriority="high"{% endif %} sizes="(max-width:900px) 72vw, 40vw"></a>
+    <a class="pfx-ph" href="{{ href }}"><img src="{{ site.baseurl }}{{ base }}{{ p }}.jpg" alt="{{ name }} wedding flowers at {{ m.venue }}, {{ m.place }}" loading="{% if include.n == '01' and forloop.first %}eager{% else %}lazy{% endif %}"{% if include.n == '01' and forloop.first %} fetchpriority="high"{% endif %} sizes="(max-width:900px) 92vw, 40vw"><span class="pfx-num" aria-hidden="true">{{ forloop.index }}/{{ allf.size }}</span></a>
     {%- endfor -%}
     {%- comment -%} Everything else in the folder, in order, minus the three
     already shown above. {%- endcomment -%}
+    {%- assign extra_i = m.band.size -%}
     {%- for f in allf -%}
       {%- assign bandname = f.name | split: '.' | first -%}
       {%- assign isband = false -%}
@@ -62,11 +63,15 @@
         {%- assign want = slug | append: '-' | append: p -%}
         {%- if bandname == want -%}{%- assign isband = true -%}{%- endif -%}
       {%- endfor -%}
-      {%- unless isband -%}
-    <a class="pfx-ph pfx-extra" href="{{ href }}"><img src="{{ site.baseurl }}{{ prefix }}{{ f.name }}" alt="{{ name }} wedding florals by Golden Flowers at {{ m.venue }}" loading="lazy" sizes="86vw"></a>
+      {%- unless isband -%}{%- assign extra_i = extra_i | plus: 1 -%}
+    <a class="pfx-ph pfx-extra" href="{{ href }}"><img src="{{ site.baseurl }}{{ prefix }}{{ f.name }}" alt="{{ name }} wedding florals by Golden Flowers at {{ m.venue }}" loading="lazy" sizes="92vw"><span class="pfx-num" aria-hidden="true">{{ extra_i }}/{{ allf.size }}</span></a>
       {%- endunless -%}
     {%- endfor -%}
   </div>
+  {%- comment -%} Phone only (CSS hides it above 900px). A dot per frame is
+  unusable at fourteen to thirty-four photographs, so the position indicator
+  is a count. Filled in by the scroll handler in the layout. {%- endcomment -%}
+  <div class="pfx-count" aria-hidden="true"><div class="pfx-dots"><div class="pfx-dots-in"></div></div></div>
   <div class="pfx-f">
     <p><span data-ed="portfolio_meta:{{ slug }}.lede">{{ m.lede }}</span></p>
     <a class="pfx-more" href="{{ href }}">{{ wp.strip_cta }} <span aria-hidden="true">&rarr;</span></a>
