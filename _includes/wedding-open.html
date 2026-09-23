@@ -34,37 +34,73 @@
 {%- endcomment -%}
 {%- assign widePath = '/assets/images/hero-wide/' | append: include.slug | append: '/' | append: hero -%}
 {%- assign wideFile = site.static_files | where_exp: "f", "f.path == widePath" | first -%}
-<header class="wp-open" data-ed-hero="{{ include.slug }}">
-  {%- if wideFile -%}
-  <picture>
-    <source media="(min-width:1024px)" srcset="{{ site.baseurl }}{{ widePath }}">
-    <img src="{{ site.baseurl }}{{ heroPath }}" alt="{{ m.name }} wedding flowers at {{ m.venue }}{% if m.place != '' %}, {{ m.place }}{% endif %}" loading="eager" fetchpriority="high" sizes="100vw">
-  </picture>
-  {%- else -%}
-  <img src="{{ site.baseurl }}{{ heroPath }}" alt="{{ m.name }} wedding flowers at {{ m.venue }}{% if m.place != '' %}, {{ m.place }}{% endif %}" loading="eager" fetchpriority="high" sizes="100vw">
-  {%- endif -%}
-  <div class="wp-tt">
-    <div>
-      {%- comment -%}
-        The couple's name renders from portfolio_meta rather than the include
-        param so there is one field behind every place it appears. Editing it
-        here also rewrites the page's own title/seo_title (syncWeddingName in
-        editor.js) — those drive the browser tab and the Google result, and a
-        rename that only reached the visible heading left the two disagreeing.
-      {%- endcomment -%}
-      <h1><span data-ed="portfolio_meta:{{ include.slug }}.name">{{ m.name }}</span></h1>
-    </div>
-    {%- comment -%}
-      Venue and town are two fields shown as one line, so they get one span
-      each with the comma as plain text between them, rather than one span over
-      the whole line that would have to be split apart again on save. The
-      editor updates every node sharing a key, so editing either here also
-      updates its copy in the fact panel below, and vice versa.
+<header class="wp-open">
+  {%- comment -%}
+    THE PHOTOGRAPH FIRST, THE NAME UNDER IT (Josh, 2026-09-23). This was a
+    full-bleed plate with the couple's name reversed out over the bottom of the
+    picture and the venue in the opposite corner. That is the look the redesign
+    is leaving behind, and it is the one place left on the site where type sat
+    on a photograph. It now opens the way the home page opens: a contained
+    photograph with a radius, then the name at reading distance underneath, and
+    the facts about the wedding in a row beneath that.
 
-      With no town yet there is no comma and nothing to click for it here; the
-      hidden Town slot in the panel is where that gets started.
+    data-ed-hero sends an editor click on the opening photo to the Photos
+    manager, the same place a gallery photo click goes. It moves with the
+    figure. This image's path is built from the page's hero_photo front matter,
+    so it never appears literally in the page source and the generic swap flow
+    can't find anything to rewrite.
+  {%- endcomment -%}
+  <figure class="wp-pic" data-ed-hero="{{ include.slug }}">
+    {%- if wideFile -%}
+    <picture>
+      <source media="(min-width:1024px)" srcset="{{ site.baseurl }}{{ widePath }}">
+      <img src="{{ site.baseurl }}{{ heroPath }}" alt="{{ m.name }} wedding flowers at {{ m.venue }}{% if m.place != '' %}, {{ m.place }}{% endif %}" loading="eager" fetchpriority="high" sizes="100vw">
+    </picture>
+    {%- else -%}
+    <img src="{{ site.baseurl }}{{ heroPath }}" alt="{{ m.name }} wedding flowers at {{ m.venue }}{% if m.place != '' %}, {{ m.place }}{% endif %}" loading="eager" fetchpriority="high" sizes="100vw">
+    {%- endif -%}
+  </figure>
+  <div class="wp-words">
+    {%- comment -%}
+      The couple's name renders from portfolio_meta rather than the include
+      param so there is one field behind every place it appears. Editing it
+      here also rewrites the page's own title/seo_title (syncWeddingName in
+      editor.js) — those drive the browser tab and the Google result, and a
+      rename that only reached the visible heading left the two disagreeing.
     {%- endcomment -%}
-    <span class="wp-where"><span data-ed="portfolio_meta:{{ include.slug }}.venue">{{ m.venue }}</span>{% if m.place != "" %}, <span data-ed="portfolio_meta:{{ include.slug }}.place">{{ m.place }}</span>{% endif %}</span>
+    <h1 class="wp-name"><span data-ed="portfolio_meta:{{ include.slug }}.name">{{ m.name }}</span></h1>
+    {%- comment -%}
+      The facts that used to sit in a panel beside the story, moved up to where
+      a reader asks for them: immediately under the name, before the prose.
+      The panel is gone from .wp-story rather than duplicated here.
+
+      Every row keeps its editable span. An empty one is .ed-empty — hidden
+      from visitors, revealed in /edit with its hint — so a fact that has never
+      been filled in is still reachable from the editor instead of needing a
+      commit. Liquid counts "" as truthy, so these are compared rather than
+      tested with a plain `if`.
+
+      Photography is NOT a new field. It reads credits.yml, where the
+      photographer has always been stored and where the credits block at the
+      bottom of the page also reads it: two fields for one fact would have
+      started disagreeing the first time either was edited. data-ed addresses
+      it by file and dot path like any other, so the editor needed no change.
+    {%- endcomment -%}
+    {%- assign pal = m.palette | strip -%}
+    {%- assign ndots = m.dots | size -%}
+    {%- assign town = m.place | strip -%}
+    {%- assign palempty = false -%}
+    {%- if pal == "" and ndots == 0 -%}{%- assign palempty = true -%}{%- endif -%}
+    {%- assign shooter = site.data.credits[include.slug].photography -%}
+    {%- assign shotempty = true -%}
+    {%- if shooter.name and shooter.name != "" -%}{%- assign shotempty = false -%}{%- endif -%}
+    <dl class="wp-facts">
+      <div><dt>Venue</dt><dd><span data-ed="portfolio_meta:{{ include.slug }}.venue">{{ m.venue }}</span></dd></div>
+      <div{% if town == "" %} class="ed-empty"{% endif %}><dt>Town</dt><dd><span data-ed="portfolio_meta:{{ include.slug }}.place" data-ed-hint="Add the town">{{ m.place }}</span></dd></div>
+      <div{% if palempty %} class="ed-empty"{% endif %}><dt>Palette</dt><dd><span data-ed="portfolio_meta:{{ include.slug }}.palette" data-ed-hint="Add the palette">{{ m.palette }}</span>
+        {%- if ndots > 0 -%}<span class="wp-dots" aria-hidden="true">{% for d in m.dots %}<i style="background:{{ d }}"></i>{% endfor %}</span>{%- endif -%}</dd></div>
+      <div{% if shotempty %} class="ed-empty"{% endif %}><dt>Photography</dt><dd><span data-ed="credits:{{ include.slug }}.photography.name" data-ed-hint="Add the photographer">{{ shooter.name }}</span></dd></div>
+    </dl>
   </div>
 </header>
 
@@ -126,35 +162,5 @@
       <p class="wp-lede">{% include em.html t=opener %}.</p>
       <p>{% include em.html t=rest %}</p>
     {%- endif -%}
-  </div>
-  <div class="wp-panel">
-    <dl>
-      <dt>Venue</dt><dd><span data-ed="portfolio_meta:{{ include.slug }}.venue">{{ m.venue }}</span></dd>
-      {%- comment -%}
-        A wedding with no palette or town yet hides the row rather than printing
-        a bare label with nothing beside it, the same way a blank vendor
-        disappears from the credits block: half-filled should look deliberate,
-        not broken.
-
-        `.ed-empty` HIDES rather than skips. Rendering nothing meant there was
-        no span for the inline editor to click, so an empty palette could never
-        be filled in from /edit and could never stop being empty: the only way
-        out was Pages CMS or a commit. editor.js reveals .ed-empty inside its
-        iframe with a "click to add" placeholder, so the row is invisible to
-        visitors and reachable to Brittany.
-
-        Liquid counts "" as truthy, so these have to be compared rather than
-        tested with a plain `if`; the `size` filter is what makes a missing
-        `dots` count as 0 instead of erroring.
-      {%- endcomment -%}
-      {%- assign pal = m.palette | strip -%}
-      {%- assign ndots = m.dots | size -%}
-      {%- assign town = m.place | strip -%}
-      <dt{% if town == "" %} class="ed-empty"{% endif %}>Town</dt><dd{% if town == "" %} class="ed-empty"{% endif %}><span data-ed="portfolio_meta:{{ include.slug }}.place" data-ed-hint="Add the town">{{ m.place }}</span></dd>
-      {%- assign palempty = false -%}
-      {%- if pal == "" and ndots == 0 -%}{%- assign palempty = true -%}{%- endif %}
-      <dt{% if palempty %} class="ed-empty"{% endif %}>Palette</dt><dd{% if palempty %} class="ed-empty"{% endif %}><span data-ed="portfolio_meta:{{ include.slug }}.palette" data-ed-hint="Add the palette">{{ m.palette }}</span>
-        {%- if ndots > 0 -%}<span class="wp-dots" aria-hidden="true">{% for d in m.dots %}<i style="background:{{ d }}"></i>{% endfor %}</span>{%- endif -%}</dd>
-    </dl>
   </div>
 </section>

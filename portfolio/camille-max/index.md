@@ -10,8 +10,6 @@ description: "Camille & Max at the North Star House in Grass Valley: an autumn w
 hero_photo: camille-max-16.jpg
 ---
 
-{% include portfolio-subnav.html name="Camille & Max" %}
-
 {% include wedding-open.html slug="camille-max" name="Camille &amp; Max" %}
 
 {% include portfolio-gallery.html slug="camille-max" hero="camille-max-16.jpg" name="Camille & Max" nohero=true %}

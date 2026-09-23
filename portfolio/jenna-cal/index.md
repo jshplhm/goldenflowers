@@ -10,8 +10,6 @@ description: "Jenna & Cal at the National Exchange Hotel in Nevada City: white-a
 hero_photo: jenna-cal-15.jpg
 ---
 
-{% include portfolio-subnav.html name="Jenna & Cal" %}
-
 {% include wedding-open.html slug="jenna-cal" name="Jenna &amp; Cal" %}
 
 {% include portfolio-gallery.html slug="jenna-cal" hero="jenna-cal-15.jpg" name="Jenna & Cal" nohero=true %}

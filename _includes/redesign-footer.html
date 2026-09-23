@@ -1,7 +1,14 @@
 <footer class="site-footer">
   <div class="foot-in">
     <div class="foot-lead">
-      <div class="foot-brand">Golden Flowers</div>
+      {%- comment -%}
+        The name is no longer up here at 1.5rem. It is the last line of the
+        page instead (.foot-mark below), at display size, because the footer
+        had no weight at all: paper on paper, four columns of small grey type,
+        and the scroll just stopped. The 2026-09-22 rule stands — green is an
+        accent, not a ground, and the page ends on the studio's name — so the
+        floor is made of the name itself rather than of a colour.
+      {%- endcomment -%}
       <p class="foot-tag"><span data-ed="footer:tagline">{{ site.data.footer.tagline }}</span></p>
       {%- comment -%}
         No CTA button here. Every page but the consultation form itself ends in
@@ -71,6 +78,10 @@
       </div>
     </nav>
   </div>
+  <!-- The floor. Set to the width of the page so the scroll ends on something
+       with mass, and matched to the .ht-mark at the top of the home page: the
+       site opens on the name and closes on it. -->
+  <div class="foot-mark" aria-hidden="true">Golden Flowers</div>
   <div class="foot-bottom">
     {%- comment -%}
       No locality on the copyright line. Incline Village now sits in the Contact

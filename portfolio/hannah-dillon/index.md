@@ -8,8 +8,6 @@ description: "A modern mountain soiree"
 hero_photo: hannah-dillon-01.jpg
 ---
 
-{% include portfolio-subnav.html name="Hannah and Dillon" %}
-
 {% include wedding-open.html slug="hannah-dillon" name="Hannah and Dillon" %}
 
 {% include portfolio-gallery.html slug="hannah-dillon" hero="hannah-dillon-01.jpg" name="Hannah and Dillon" nohero=true %}

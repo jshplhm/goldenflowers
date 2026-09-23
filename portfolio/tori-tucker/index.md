@@ -10,8 +10,6 @@ description: "Tori & Tucker at the North Tahoe Event Center: pink and green lake
 hero_photo: tori-tucker-12.jpg
 ---
 
-{% include portfolio-subnav.html name="Tori & Tucker" %}
-
 {% include wedding-open.html slug="tori-tucker" name="Tori &amp; Tucker" %}
 
 {% include portfolio-gallery.html slug="tori-tucker" hero="tori-tucker-12.jpg" name="Tori & Tucker" nohero=true %}

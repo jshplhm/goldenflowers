@@ -9,6 +9,14 @@ canonical_url: https://goldenflorals.com/venues
 
 <!-- VENUES: words + linked list (left) · map (right) -->
 <header class="map-hero">
+  <!-- The whole reading column is one rail (Josh, 2026-09-23): heading, the
+       featured names, and the two index lists. It is a rail so that the map
+       beside it has something tall to stick to — on desktop the map holds
+       still while every venue name on the page scrolls past it, which is what
+       a map on a venues page is for. Below 861px the rail's children go back
+       to being ordinary stacked sections and the map sits between the words
+       and the lists. -->
+  <div class="mh-rail">
   <div class="mh-head">
     <span class="lab"><span data-ed="venues_page:hero.label">{{ site.data.venues_page.hero.label }}</span></span>
     <h1><span data-ed="venues_page:hero.heading">{{ site.data.venues_page.hero.heading }}</span></h1>
@@ -33,6 +41,51 @@ canonical_url: https://goldenflorals.com/venues
       <li><a data-venue="valhalla-tahoe" href="{{ site.baseurl }}/venues/valhalla-tahoe"><span class="vf-name">Valhalla</span><span class="vf-type">Historic estate</span></a></li>
     </ul>
   </div>
+  <!-- MORE VENUES: aligned columns under the map hero (lake list left, foothills right on desktop) -->
+  <section class="venues-more">
+    <div class="vm-group">
+      <span class="lab vlist-lab"><span class="vlist-dot vlist-dot--minor"></span>More around the lake</span>
+      <!-- Alphabetical (ignoring "The") in a row grid so lines stay level across columns -->
+      <ul class="vfl-grid">
+        <li><span data-venue="camp-richardson">Camp Richardson</span></li>
+        <li><span data-venue="chateau">The Chateau</span></li>
+        <li><span data-venue="everline">Everline</span></li>
+        <li><span data-venue="granlibakken">Granlibakken</span></li>
+        <li><span data-venue="hideout">The Hideout</span></li>
+        <li><span data-venue="kirkwood">Kirkwood</span></li>
+        <li><span data-venue="lahontan">Lahontan</span></li>
+        <li><span data-venue="landing">The Landing</span></li>
+        <li><span data-venue="ov-stables">Olympic Valley Stables</span></li>
+        <li><span data-venue="ovec">OVEC</span></li>
+        <li><span data-venue="plumpjack">PlumpJack</span></li>
+        <li><span data-venue="ridge-tahoe">The Ridge Tahoe</span></li>
+        <li><span data-venue="round-hill">Round Hill Pines</span></li>
+        <li><span data-venue="schaffers">Schaffer's Camp</span></li>
+        <li><span data-venue="sugar-bowl">Sugar Bowl</span></li>
+        <li><span data-venue="sunnyside">Sunnyside</span></li>
+        <li><span data-venue="tahoe-blue">Tahoe Blue Estate</span></li>
+        <li><span data-venue="west-shore">West Shore Cafe</span></li>
+        <li><span data-venue="zephyr-cove">Zephyr Cove Resort</span></li>
+        <li><span data-venue="zephyr">Zephyr Lodge</span></li>
+      </ul>
+    </div>
+    <div class="vm-group">
+      <span class="lab vlist-lab">In the foothills</span>
+      <ul class="vfl-grid vfl-static">
+        <li><span>Empire Mine</span></li>
+        <li><span>Harmony Ridge Lodge</span></li>
+        <li><span>Holbrooke Hotel</span></li>
+        <li><span>Miners Foundry</span></li>
+        <li><span>Naggiar Vineyards</span></li>
+        <li><span>The National Exchange</span></li>
+        <li><span>The North Star House</span></li>
+        <li><span>The Parsonage</span></li>
+        <li><span>The Roth Estate</span></li>
+        <li><span>The Stone House</span></li>
+      </ul>
+    </div>
+  </section>
+  </div><!-- /.mh-rail -->
   <div class="mh-map">
     <svg class="tahoe" viewBox="-12 -66 605 892" xmlns="http://www.w3.org/2000/svg" role="group" aria-label="Map of Lake Tahoe wedding venues">
       <defs>
@@ -122,50 +175,6 @@ canonical_url: https://goldenflorals.com/venues
   </div>
 </header>
 
-<!-- MORE VENUES: aligned columns under the map hero (lake list left, foothills right on desktop) -->
-<section class="venues-more">
-  <div class="vm-group">
-    <span class="lab vlist-lab"><span class="vlist-dot vlist-dot--minor"></span>More around the lake</span>
-    <!-- Alphabetical (ignoring "The") in a row grid so lines stay level across columns -->
-    <ul class="vfl-grid">
-      <li><span data-venue="camp-richardson">Camp Richardson</span></li>
-      <li><span data-venue="chateau">The Chateau</span></li>
-      <li><span data-venue="everline">Everline</span></li>
-      <li><span data-venue="granlibakken">Granlibakken</span></li>
-      <li><span data-venue="hideout">The Hideout</span></li>
-      <li><span data-venue="kirkwood">Kirkwood</span></li>
-      <li><span data-venue="lahontan">Lahontan</span></li>
-      <li><span data-venue="landing">The Landing</span></li>
-      <li><span data-venue="ov-stables">Olympic Valley Stables</span></li>
-      <li><span data-venue="ovec">OVEC</span></li>
-      <li><span data-venue="plumpjack">PlumpJack</span></li>
-      <li><span data-venue="ridge-tahoe">The Ridge Tahoe</span></li>
-      <li><span data-venue="round-hill">Round Hill Pines</span></li>
-      <li><span data-venue="schaffers">Schaffer's Camp</span></li>
-      <li><span data-venue="sugar-bowl">Sugar Bowl</span></li>
-      <li><span data-venue="sunnyside">Sunnyside</span></li>
-      <li><span data-venue="tahoe-blue">Tahoe Blue Estate</span></li>
-      <li><span data-venue="west-shore">West Shore Cafe</span></li>
-      <li><span data-venue="zephyr-cove">Zephyr Cove Resort</span></li>
-      <li><span data-venue="zephyr">Zephyr Lodge</span></li>
-    </ul>
-  </div>
-  <div class="vm-group">
-    <span class="lab vlist-lab">In the foothills</span>
-    <ul class="vfl-grid vfl-static">
-      <li><span>Empire Mine</span></li>
-      <li><span>Harmony Ridge Lodge</span></li>
-      <li><span>Holbrooke Hotel</span></li>
-      <li><span>Miners Foundry</span></li>
-      <li><span>Naggiar Vineyards</span></li>
-      <li><span>The National Exchange</span></li>
-      <li><span>The North Star House</span></li>
-      <li><span>The Parsonage</span></li>
-      <li><span>The Roth Estate</span></li>
-      <li><span>The Stone House</span></li>
-    </ul>
-  </div>
-</section>
 
 <!-- DON'T SEE YOUR VENUE -->
 <section class="mini">

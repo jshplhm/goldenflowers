@@ -8,8 +8,6 @@ description: "A modern and unique wedding inspired by Dr. Seuss"
 hero_photo: mikayla-jeff-11.jpg
 ---
 
-{% include portfolio-subnav.html name="Mikayla & Jeff" %}
-
 {% include wedding-open.html slug="mikayla-jeff" name="Mikayla & Jeff" %}
 
 {% include portfolio-gallery.html slug="mikayla-jeff" hero="mikayla-jeff-11.jpg" name="Mikayla & Jeff" nohero=true %}

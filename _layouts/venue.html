@@ -3,7 +3,6 @@ layout: redesign
 ---
 {%- assign v = site.data.venues[page.venue_key] -%}
 {%- assign vk = page.venue_key | prepend: "venues/" -%}
-{% include venue-subnav.html name=v.venue_name %}
 
 <header class="text-hero venue-hero">
   <span class="lab"><span data-ed="{{ vk }}:hero.eyebrow">{{ v.hero.eyebrow }}</span></span>

@@ -8,8 +8,6 @@ description: "Kelly & Dylan at the North Tahoe Event Center: a blue-and-citrus L
 hero_photo: kelly-dylan-07.jpg
 ---
 
-{% include portfolio-subnav.html name="Kelly & Dylan" %}
-
 {% include wedding-open.html slug="kelly-dylan" name="Kelly &amp; Dylan" %}
 
 {% include portfolio-gallery.html slug="kelly-dylan" hero="kelly-dylan-07.jpg" name="Kelly & Dylan" nohero=true %}

@@ -154,7 +154,7 @@ the moment one pale photo wants it and another does not, the machinery is here.
      page had been careful about everywhere else. -->
 <section class="pband">
   <div class="pb-row pb-row--full">
-    <figure class="pb-pic"><img src="{{ site.baseurl }}/assets/images/portfolio/tori-tucker/tori-tucker-05.jpg" loading="lazy" alt="A beach ceremony set on the shore of Lake Tahoe, an arch and chairs waiting under a grey sky"></figure>
+    <figure class="pb-pic"><img src="{{ site.baseurl }}/assets/images/portfolio/brooke-josh/brooke-josh-09.jpg" loading="lazy" alt="A ceremony lawn at The Chateau with the chairs set in rows, pines and a blossoming tree behind"></figure>
   </div>
 </section>
 
@@ -172,7 +172,7 @@ the moment one pale photo wants it and another does not, the machinery is here.
     <p class="disp"><span data-ed="home:marquee.label">{{ site.data.home.marquee.label }}</span></p>
     <p class="vmini-more"><a href="{{ site.baseurl }}/venues" class="txt-link"><span data-ed="home:marquee.link">{{ site.data.home.marquee.link }}</span> &rarr;</a></p>
     </div>
-    <figure class="pb-pic"><img src="{{ site.baseurl }}/assets/images/portfolio/brooke-josh/brooke-josh-09.jpg" loading="lazy" alt="A ceremony lawn at The Chateau with the chairs set in rows, pines and a blossoming tree behind"></figure>
+    <figure class="pb-pic"><img src="{{ site.baseurl }}/assets/images/portfolio/tori-tucker/tori-tucker-05.jpg" loading="lazy" alt="A beach ceremony set on the shore of Lake Tahoe, an arch and chairs waiting under a grey sky"></figure>
   </div>
 </section>
 

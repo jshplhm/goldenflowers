@@ -8,8 +8,6 @@ description: "A classic, garden inspired wedding in whites, cremes and blush."
 hero_photo: brooke-josh-01.jpg
 ---
 
-{% include portfolio-subnav.html name="Brooke and Josh" %}
-
 {% include wedding-open.html slug="brooke-josh" name="Brooke and Josh" %}
 
 {% include portfolio-gallery.html slug="brooke-josh" hero="brooke-josh-01.jpg" name="Brooke and Josh" nohero=true %}

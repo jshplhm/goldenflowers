@@ -1852,8 +1852,6 @@ description: ${q(desc)}
 hero_photo: ${heroName}
 ---
 
-{% include portfolio-subnav.html name=${q(names)} %}
-
 {% include wedding-open.html slug="${slug}" name=${q(names)} %}
 
 {% include portfolio-gallery.html slug="${slug}" hero="${heroName}" name=${q(names)} nohero=true %}

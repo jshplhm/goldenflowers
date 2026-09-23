@@ -10,8 +10,6 @@ description: "Lynn & Aaron at Palisades High Camp: jewel-toned wedding flowers w
 hero_photo: lynn-aaron-16.jpg
 ---
 
-{% include portfolio-subnav.html name="Lynn & Aaron" %}
-
 {% include wedding-open.html slug="lynn-aaron" name="Lynn &amp; Aaron" %}
 
 {% include portfolio-gallery.html slug="lynn-aaron" hero="lynn-aaron-16.jpg" name="Lynn & Aaron" nohero=true %}

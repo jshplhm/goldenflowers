@@ -10,8 +10,6 @@ description: "Katie & James at The Miner's Foundry in Nevada City: blush and but
 hero_photo: katie-james-07.jpg
 ---
 
-{% include portfolio-subnav.html name="Katie & James" %}
-
 {% include wedding-open.html slug="katie-james" name="Katie &amp; James" %}
 
 {% include portfolio-gallery.html slug="katie-james" hero="katie-james-07.jpg" name="Katie & James" nohero=true %}
