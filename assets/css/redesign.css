@@ -1831,8 +1831,21 @@ body.nav-hidden .venue-breadcrumb{top:0;}
    in here applies above 900px, and .pfx-extra stays display:none up there, so
    the extra markup costs no requests. */
 @media(max-width:900px){
-  .pfx-h{grid-template-columns:1fr;}
-  .pfx-h .pfx-v{text-align:left;}
+  /* The post header: name, the venue as its location line underneath, and the
+     action in the corner — the shape of the thing this is borrowing from, and
+     the reason the venue stays. It is what couples search by, and dropping it
+     would have moved further from the reference rather than closer. The link
+     under the description goes instead: two ways into the same wedding, one
+     screen apart, was the redundancy. Josh, 2026-09-23. */
+  .pfx-h{grid-template-columns:1fr auto;align-items:center;row-gap:2px;
+    column-gap:16px;padding-bottom:12px;}
+  .pfx-h h2{grid-column:1;grid-row:1;font-size:var(--t-d3);}
+  .pfx-h .pfx-v{grid-column:1;grid-row:2;text-align:left;}
+  .pfx-hview{grid-column:2;grid-row:1 / span 2;align-self:center;
+    font-family:var(--b);font-size:var(--t-ui);font-weight:500;color:var(--accent);
+    border:1px solid var(--line);border-radius:var(--r-img);padding:8px 18px;
+    white-space:nowrap;}
+  .pfx-more{display:none;}
   /* ONE PHOTOGRAPH AT A TIME, IN THE COLUMN (Josh, 2026-09-23). What was worth
      taking from Instagram is the cleanliness — one frame filling the view,
      nothing peeking at the edge, and an indicator underneath — not the
@@ -1877,7 +1890,7 @@ body.nav-hidden .venue-breadcrumb{top:0;}
   .pfx-f p{max-width:none;}
   .pfx-more{margin-left:0;}
 }
-@media(min-width:901px){.pfx-end,.pfx-hint,.pfx-count,.pfx-num{display:none;}}
+@media(min-width:901px){.pfx-end,.pfx-hint,.pfx-count,.pfx-num,.pfx-hview{display:none;}}
 
 /* ============================================================================
    WEDDING PAGE v2 — opening plate, fact panel, credits, more weddings

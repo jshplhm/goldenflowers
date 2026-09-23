@@ -17,6 +17,10 @@
   <div class="pfx-h">
     <h2>{{ name }}</h2>
     <span class="pfx-v">{{ m.venue }}</span>
+    {%- comment -%} Phone only (display:none above 900px, where the link under
+    the description does this job). The post header's action, in the corner
+    where the carousel this borrows from puts Follow. {%- endcomment -%}
+    <a class="pfx-hview" href="{{ href }}">View</a>
   </div>
   {%- comment -%}
     THE PHONE STRIP IS THE WHOLE WEDDING (Josh, 2026-09-23). It used to carry
