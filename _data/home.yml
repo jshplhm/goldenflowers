@@ -10,7 +10,11 @@ hero:
     Sierra Nevada.
   button: See our work
 intro:
-  label: Who we are
+  # Label intentionally blank (Josh, 2026-09-23): the eyebrow came off the
+  # facts section on 09-22 and this was the last one left, which made it the
+  # only signpost on a page that had stopped using them. Type a label back in
+  # here (CMS or /edit) and it returns.
+  label: ""
   # Three parts on purpose: a large opening line, a smaller paragraph under it,
   # and a large closing line. Same sentences as the two paragraphs this replaced,
   # regrouped so the block has a shape instead of being a wall.
@@ -27,13 +31,17 @@ intro:
   link: Read our story
 why:
   label: Why Golden Flowers
-  heading: We grow our own flowers on California soil, an hour from where you'll
-    *say I do.*
+  heading: We grow flowers ourselves on California soil, and source the rest close
+    to where you'll *say I do.*
   facts:
+    # We farm, but we do not own a farm: the plot is ours, the land is a shared
+    # organic community farm. Say "our plot", never "our farm" or "our fields".
+    # Josh, 2026-09-23.
     - title: Locally grown
-      body: Field-grown on our own Nevada County organic and regenerative farm, where
-        Brittany's expertise in agronomy and soil science shapes every planting,
-        and sourced from local growers we trust.
+      body: We grow on our own plot at an organic community farm in Nevada County,
+        worked with regenerative practices, where Brittany's expertise in agronomy
+        and soil science shapes every planting. What we don't grow ourselves comes
+        from California growers we trust.
     - title: Sustainable, always
       body: Seasonal sourcing, foam-free, reusable mechanics, and growing practices
         that give back to the soil. Our full pledge is written down, in public.
@@ -66,8 +74,8 @@ marquee:
   label: We design at 30+ venues across the Sierra
   link: See all venues
 immersive:
-  label: From our farm
-  heading: Every stem grown and gathered for a single day in the mountains.
+  label: From the field
+  heading: Grown and gathered for a single day in the mountains.
 testimonial:
   quote: '"Brittany and her team are the utmost in artistry, professionalism, and
     support. The presentation at the wedding was *through-the-roof beautiful.*"'
@@ -75,6 +83,7 @@ testimonial:
   context: Tahoe lakeside estate
   link: ""
 cta:
+  # The page ends on one line and a link (see index.md). The body paragraph that
+  # used to sit between them is gone: the question already says it.
   heading: Is your date *still open?*
-  body: Tell us your date and venue, and we'll let you know, usually within 48 hours.
   button: Check your date

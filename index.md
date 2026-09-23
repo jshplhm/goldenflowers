@@ -70,11 +70,14 @@ the moment one pale photo wants it and another does not, the machinery is here.
   </div>
 </header>
 
-<!-- Portrait pair. -->
+<!-- Full width, side to side: a landscape gets the whole column or nothing. -->
 <section class="pband">
+  <div class="pb-row pb-row--full">
+    <figure class="pb-pic"><img src="{{ site.baseurl }}/assets/images/blog/palisades-tahoe-wedding-high-camp/palisades-tahoe-wedding-high-camp-01.jpg" loading="lazy" alt="A couple on the pier at the water's edge, the snow-covered Sierra across the lake behind them"></figure>
+  </div>
   <div class="pb-row">
-    <figure class="pb-pic"><img src="{{ site.baseurl }}/assets/images/portfolio/mikayla-jeff/mikayla-jeff-03.jpg" loading="lazy" alt="Tall whimsical ceremony installation of thistle, lilac and trailing green against Olympic Valley pines"></figure>
-    <figure class="pb-pic"><img src="{{ site.baseurl }}/assets/images/portfolio/katie-james/katie-james-05.jpg" loading="lazy" alt="Blush and butter-cream roses massed on a stone wall at The Miner&#39;s Foundry"></figure>
+    <figure class="pb-pic"><img src="{{ site.baseurl }}/assets/images/portfolio/kelly-dylan/kelly-dylan-09.jpg" loading="lazy" alt="Bridal bouquet of blue delphinium, anemone and orange ranunculus on the shore of Lake Tahoe"></figure>
+    <figure class="pb-pic"><img src="{{ site.baseurl }}/assets/images/portfolio/hannah-dillon/hannah-dillon-24.jpg" loading="lazy" alt="Magenta and coral blooms on the corten steel arch at Austin Ridge"></figure>
   </div>
 </section>
 
@@ -94,14 +97,11 @@ the moment one pale photo wants it and another does not, the machinery is here.
   {%- endif %}
 </section>
 
-<!-- Full width, side to side: a landscape gets the whole column or nothing. -->
+<!-- Portrait pair. -->
 <section class="pband">
-  <div class="pb-row pb-row--full">
-    <figure class="pb-pic"><img src="{{ site.baseurl }}/assets/images/blog/palisades-tahoe-wedding-high-camp/palisades-tahoe-wedding-high-camp-01.jpg" loading="lazy" alt="Mountaintop ceremony at Palisades High Camp, the Sierra crest behind the aisle"></figure>
-  </div>
   <div class="pb-row">
-    <figure class="pb-pic"><img src="{{ site.baseurl }}/assets/images/portfolio/kelly-dylan/kelly-dylan-09.jpg" loading="lazy" alt="Bridal bouquet of blue delphinium, anemone and orange ranunculus on the shore of Lake Tahoe"></figure>
-    <figure class="pb-pic"><img src="{{ site.baseurl }}/assets/images/portfolio/hannah-dillon/hannah-dillon-24.jpg" loading="lazy" alt="Magenta and coral blooms on the corten steel arch at Austin Ridge"></figure>
+    <figure class="pb-pic"><img src="{{ site.baseurl }}/assets/images/portfolio/mikayla-jeff/mikayla-jeff-03.jpg" loading="lazy" alt="Tall whimsical ceremony installation of thistle, lilac and trailing green against Olympic Valley pines"></figure>
+    <figure class="pb-pic"><img src="{{ site.baseurl }}/assets/images/portfolio/katie-james/katie-james-05.jpg" loading="lazy" alt="Blush and butter-cream roses massed on a stone wall at The Miner&#39;s Foundry"></figure>
   </div>
 </section>
 
@@ -121,13 +121,19 @@ the moment one pale photo wants it and another does not, the machinery is here.
 
 <section class="pband">
   <div class="pb-row pb-row--full">
-    <figure class="pb-pic"><img src="{{ site.baseurl }}/assets/images/blog/palisades-tahoe-wedding-high-camp/palisades-tahoe-wedding-high-camp-06.jpg" loading="lazy" alt="Long reception table at Palisades High Camp under string lights, run with garden roses and olive foliage"></figure>
+    <figure class="pb-pic"><img src="{{ site.baseurl }}/assets/images/blog/palisades-tahoe-wedding-high-camp/palisades-tahoe-wedding-high-camp-06.jpg" loading="lazy" alt="The wedding party on the pier in blush and burgundy, bouquets in hand, Lake Tahoe behind them"></figure>
   </div>
 </section>
 
-<!-- FACTS. The eyebrow and the "We grow our own flowers..." headline are gone
-     (Josh, 2026-09-22): the three claims say it themselves and the headline made
-     a farming claim the studio does not make. -->
+{% comment %}
+     FACTS. The eyebrow and the old "We grow our own flowers..." headline are
+     gone (Josh, 2026-09-22): the three claims say it themselves and the headline
+     made a farming claim the studio does not make. The rule the copy now follows
+     (2026-09-23): we farm, but we do not own a farm. The plot is ours, the land
+     is a shared organic community farm worked with regenerative practices, and
+     it grows annual cut flowers, perennials and food side by side. Say "our
+     plot"; never "our farm", "our fields", or "field-grown".
+{% endcomment %}
 <section class="credo credo-facts">
   <div class="facts">
     {%- for fact in site.data.home.why.facts %}
@@ -158,11 +164,6 @@ the moment one pale photo wants it and another does not, the machinery is here.
   </div>
 </section>
 
-<section class="pband">
-  <div class="pb-row pb-row--full">
-    <figure class="pb-pic"><img src="{{ site.baseurl }}/assets/images/portfolio/tori-tucker/tori-tucker-13.jpg" loading="lazy" alt="Lake Tahoe beach ceremony: a bride reading her vows between two coral and burgundy installations"></figure>
-  </div>
-</section>
 
 <!-- TESTIMONIAL -->
 <section class="testi">
@@ -178,9 +179,20 @@ the moment one pale photo wants it and another does not, the machinery is here.
   {%- endif %}
 </section>
 
-<!-- CLOSING -->
-<section class="cta">
-  <h2 class="disp">{% include em.html t=site.data.home.cta.heading k="home:cta.heading" %}</h2>
-  <p><span data-ed="home:cta.body">{{ site.data.home.cta.body }}</span></p>
-  <a class="btn btn-ink" href="{{ site.baseurl }}/consultation-form"><span data-ed="home:cta.button">{{ site.data.home.cta.button }}</span> <span>&rarr;</span></a>
+<!-- CLOSING (Josh, 2026-09-23). Was a centred slab: heading, a line of body
+     copy, a filled dark button, on its own band above the footer. It was the
+     only place on the page built out of a vocabulary the page does not use
+     anywhere else, which is why it read as imported from another design. The
+     ending is now the page's own grammar run one last time: the last
+     photograph full width, then one line under it and a hairline link, at the
+     size the philosophy block uses rather than the hero's. The body copy is
+     gone; the question already says it. -->
+<section class="pband">
+  <div class="pb-row pb-row--full">
+    <figure class="pb-pic"><img src="{{ site.baseurl }}/assets/images/portfolio/tori-tucker/tori-tucker-13.jpg" loading="lazy" alt="Lake Tahoe beach ceremony: a bride reading her vows between two coral and burgundy installations"></figure>
+  </div>
+</section>
+<section class="credo closing">
+  <p class="intro-close">{% include em.html t=site.data.home.cta.heading k="home:cta.heading" %}</p>
+  <p class="intro-more"><a href="{{ site.baseurl }}/consultation-form" class="txt-link"><span data-ed="home:cta.button">{{ site.data.home.cta.button }}</span> &rarr;</a></p>
 </section>
