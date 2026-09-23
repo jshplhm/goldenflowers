@@ -198,6 +198,20 @@ nav.site-nav.over-hero,body.menu-open nav.site-nav{border-bottom-color:transpare
    entirely, because the name, the burger and the pill together came to within
    a few pixels of the width of a 390px screen. "Home" stays first in the
    drawer, since on a phone there is no wordmark to tap. */
+/* HOME ONLY, AT REST: the header wordmark steps aside (Josh, 2026-09-23).
+   The hero sets GOLDEN FLOWERS at 104px directly under the photograph and the
+   header was saying it again, smaller, 200px above it — the name twice in one
+   screen. `scrolled` already flips past 40px, so the header mark arrives the
+   moment the hero stops owning the view and the page has something else at
+   the top. Every other page keeps it at all times: on a venue or a blog post
+   it is the only mark and the only one-tap way home.
+
+   Not a flower mark instead. The site has exactly one brand voice — Castoro
+   in tracked caps — and a pictorial mark in the header would introduce a
+   second one at the single element that appears on every page. The name is
+   short enough to set, and setting it is the identity. */
+nav.site-nav.nav-home:not(.scrolled) .brand{opacity:0;pointer-events:none;}
+nav.site-nav .brand{transition:opacity .3s ease;}
 .brand{font-family:var(--d);font-size:1.06rem;letter-spacing:.26em;white-space:nowrap;
   text-transform:uppercase;-webkit-text-stroke:.25px currentColor;}
 .brand-short{display:none;}
@@ -2073,10 +2087,19 @@ body.nav-hidden .venue-breadcrumb{top:0;}
    actually read sits on --body-max in between. Before this, home ran a 1340
    column and every other page ran 1500, which is two grids pretending to be
    one site. */
-:root{ --body-max:1340px; --pb-max:var(--body-max); }
+:root{ --body-max:1340px; --pb-max:var(--body-max);
+  /* One number for the space between photographs. It is the row gap INSIDE a
+     .pband and, below, the gap BETWEEN two of them, because a reader cannot
+     see where our section boundaries are and should not be able to feel them
+     either: the run of photographs down the home page reads as one continuous
+     thing or it reads as five unrelated blocks. Josh, 2026-09-23. */
+  --photo-gap:clamp(34px,5vw,72px); }
 .pband{max-width:var(--pb-max);margin:0 auto;
   padding:var(--sp-m) var(--pad) var(--sp-s);
-  display:flex;flex-direction:column;gap:clamp(34px,5vw,72px);}
+  display:flex;flex-direction:column;gap:var(--photo-gap);}
+/* Two photo bands in a row are one band as far as the eye is concerned. */
+.pband + .pband{padding-top:0;}
+.pband:has(+ .pband){padding-bottom:var(--photo-gap);}
 .pb-row{display:grid;grid-template-columns:2fr 2.4fr;gap:clamp(20px,2.4vw,34px);align-items:start;}
 .pb-row > :nth-child(1){aspect-ratio:2/3;}
 .pb-row > :nth-child(2){aspect-ratio:4/5;}
@@ -2154,7 +2177,11 @@ body.nav-hidden .venue-breadcrumb{top:0;}
    out: it is one column of a photo row. The lake sits above the line rather
    than beside it, which is what a column wants. */
 .vmini-map{display:block;margin-bottom:clamp(20px,2.4vw,32px);}
-.vm-svg{width:100%;height:auto;display:block;max-width:clamp(200px,20vw,290px);}
+/* The map fills the column it is in. At clamp(200px,20vw,290px) it was a
+   small shape floating in the top-left of a 900px frame with the heading
+   stranded below it and dead space to its right, next to a square photograph
+   twice its size. Josh, 2026-09-23. */
+.vm-svg{width:100%;height:auto;display:block;max-width:min(100%,520px);}
 .vm-lake{fill:oklch(73% .045 236);stroke:none;}
 /* Quieter than the roads on /venues, which are already quiet: this map is
    decoration at a fifth of the size and the roads only have to suggest that
@@ -2164,7 +2191,13 @@ body.nav-hidden .venue-breadcrumb{top:0;}
 .vmini-txt .disp{font-family:var(--d);font-weight:430;font-optical-sizing:auto;
   font-size:var(--t-d2);line-height:1.06;letter-spacing:-.02em;max-width:18ch;}
 .vmini-more{margin-top:clamp(20px,2.4vw,30px);}
-@media(max-width:860px){ .vm-svg{max-width:220px;} }
+/* Centred on a phone: stacked above the words in a single column, a 260px
+   map hard against the left edge reads as a stray graphic rather than the
+   subject of the section. */
+@media(max-width:860px){
+  .vm-svg{max-width:260px;margin-inline:auto;}
+  .vmini-map{display:flex;justify-content:center;}
+}
 
 
 /* ---------- HERO: photograph first, name under it ----------
@@ -2250,6 +2283,9 @@ body.nav-hidden .venue-breadcrumb{top:0;}
   .credo.intro{grid-template-columns:1fr;}
   .credo.intro > *{grid-column:1 !important;grid-row:auto !important;}
   .credo.intro .intro-lead{max-width:none;}
+  /* Stacked, the statement and the argument sat flush against each other:
+     margin:0 is right for the two-column layout and wrong for one column. */
+  .credo.intro .intro-body{margin-top:clamp(18px,4vw,26px);}
 }
 .credo.intro .lab{display:block;margin-bottom:clamp(18px,2vw,28px);}
 
