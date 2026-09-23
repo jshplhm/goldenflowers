@@ -12,7 +12,7 @@ Philosophy/value statement section: eyebrow + large display headline + 3-column 
     <div class="fact">
       <span class="n">01</span>
       <h3 class="disp">Farm-direct</h3>
-      <p>Grown on our Nevada City property or sourced within 60 miles.</p>
+      <p>Grown on our plot near Nevada City, or sourced within 60 miles.</p>
     </div>
     <div class="fact">
       <span class="n">02</span>
