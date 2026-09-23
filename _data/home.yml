@@ -1,6 +1,11 @@
 hero:
   eyebrow: ""
-  heading: Lake Tahoe Wedding Florist
+  # The h1 reads on from the wordmark above it: "Golden Flowers / a luxury Lake
+  # Tahoe wedding florist creating...". A plain definition of the business in a
+  # real sentence, with the search phrase inside it rather than standing alone
+  # as a four-word label. The title tag still carries the short phrase.
+  heading: a luxury Lake Tahoe wedding florist creating bold, artful and sustainable
+    floral design for couples getting married across the Sierra Nevada
   subheading: Bold, artful and sustainable wedding flowers for Lake Tahoe and the
     Sierra Nevada.
   button: See our work
@@ -9,14 +14,14 @@ intro:
   # Three parts on purpose: a large opening line, a smaller paragraph under it,
   # and a large closing line. Same sentences as the two paragraphs this replaced,
   # regrouped so the block has a shape instead of being a wall.
-  lead: Golden Flowers is a luxury Lake Tahoe wedding florist creating bold, artful
-    and sustainable floral design for couples getting married across the Sierra
-    Nevada.
-  body: 'Our philosophy is simple: we design around what California grows best at
-    the moment you get married. By sourcing wedding flowers seasonally and locally,
-    we ensure your flowers belong to the landscape where you say I do. To us, each
-    wedding is a piece of art with its own unique vision. Our designs are refined
-    and grounded in texture and movement, curated around your venue and your season.'
+  # The opening sentence moved to the hero, where it is the h1. Nothing is lost:
+  # what was the second sentence leads here now.
+  lead: 'Our philosophy is simple: we design around what California grows best at
+    the moment you get married.'
+  body: By sourcing wedding flowers seasonally and locally, we ensure your flowers
+    belong to the landscape where you say I do. To us, each wedding is a piece of
+    art with its own unique vision. Our designs are refined and grounded in texture
+    and movement, curated around your venue and your season.
   close: The flowers we use to create are grown as close to the Sierra Nevada as the
     season allows.
   link: Read our story

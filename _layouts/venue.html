@@ -83,7 +83,6 @@ layout: redesign
 
 <div class="cta-section">
   <div style="max-width:640px;margin:0 auto;">
-    <span class="label" style="display:block;text-align:center"><span data-ed="{{ vk }}:cta.label">{{ v.cta.label }}</span></span>
     <h2><span data-ed="{{ vk }}:cta.heading">{{ v.cta.heading }}</span></h2>
     {%- assign k_cb = vk | append: ":cta.body" %}
     <p>{% include em.html t=v.cta.body k=k_cb %}</p>

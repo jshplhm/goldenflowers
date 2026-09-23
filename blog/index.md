@@ -54,7 +54,6 @@ redirect_from:
 </section>
 
 <section class="cta">
-  <span class="lab"><span data-ed="blog_page:cta.label">{{ site.data.blog_page.cta.label }}</span></span>
   <h2 class="disp">{% include em.html t=site.data.blog_page.cta.heading k="blog_page:cta.heading" %}</h2>
   <p><span data-ed="blog_page:cta.body">{{ site.data.blog_page.cta.body }}</span></p>
   <a class="btn btn-ink" href="{{ site.baseurl }}/consultation-form"><span data-ed="blog_page:cta.button">{{ site.data.blog_page.cta.button }}</span> <span>&rarr;</span></a>

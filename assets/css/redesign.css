@@ -608,7 +608,7 @@ nav.site-nav .pill{white-space:nowrap;}
    rows was one of the three alignments that made the scroll feel unsettled. */
 .testi{padding:var(--sp-l) var(--pad) var(--sp-s);max-width:var(--content-max);margin:0 auto;text-align:left;}
 .stars{color:var(--accent);letter-spacing:.3em;font-size:var(--t-sm);margin-bottom:28px;}
-.testi blockquote{font-family:var(--d);font-weight:430;font-optical-sizing:auto;font-size:var(--t-d2);line-height:1.12;letter-spacing:-.018em;max-width:24ch;}
+.testi blockquote{font-family:var(--d);font-weight:430;font-optical-sizing:auto;font-size:var(--t-d2);line-height:1.12;letter-spacing:-.018em;max-width:30ch;}
 .testi blockquote em{color:var(--forest);}
 .testi .by{margin-top:34px;font-size:var(--t-tag);letter-spacing:.11em;text-transform:uppercase;color:var(--mute);}
 .testi .by b{color:var(--ink);font-weight:500;}
@@ -1546,7 +1546,12 @@ body.nav-hidden .venue-breadcrumb{top:0;}
 .map-legend .lg-dot.sm{width:9px;height:9px;background:oklch(38% .105 150/.6);}
 /* SVG map elements */
 .t-lake{fill:oklch(73% .045 236);stroke:none;}
-.t-hwy{fill:none;stroke:oklch(56% .018 250);stroke-width:1;stroke-linecap:round;stroke-linejoin:round;opacity:.5;}
+/* The roads are there so the lake sits in a place rather than floating, and
+   that is all they are for. At .5 opacity on a mid-tone stroke they were
+   reading as content and competing with the venue dots, which ARE the content.
+   Lighter stroke, thinner, and half the opacity: present if you look for them,
+   invisible if you are looking at the dots. */
+.t-hwy{fill:none;stroke:oklch(72% .012 250);stroke-width:.8;stroke-linecap:round;stroke-linejoin:round;opacity:.26;}
 .t-hexit{font-family:var(--b);font-size:13px;fill:var(--mute);letter-spacing:.04em;}
 .t-lab{font-family:var(--b);font-size:8.5px;fill:var(--mute);letter-spacing:.08em;text-transform:uppercase;}
 .t-city circle{fill:var(--mute);}
@@ -1567,7 +1572,7 @@ body.nav-hidden .venue-breadcrumb{top:0;}
 .t-pin.t-minor:hover .t-dot.sm{r:7;}
 .t-town-dot{r:2.6;fill:oklch(45% .01 150);stroke:var(--paper);stroke-width:1.2;cursor:pointer;display:none;}
 /* City labels: always on, muted, for geographic orientation (venue names stay hover-only) */
-.t-clabel{font-family:var(--b);font-size:11px;fill:var(--mute);letter-spacing:.02em;opacity:.85;transition:opacity .15s;paint-order:stroke;stroke:var(--paper);stroke-width:3;stroke-linejoin:round;pointer-events:none;}
+.t-clabel{font-family:var(--b);font-size:10.5px;fill:var(--mute);letter-spacing:.02em;opacity:.45;transition:opacity .15s;paint-order:stroke;stroke:var(--paper);stroke-width:3;stroke-linejoin:round;pointer-events:none;}
 .t-town:hover .t-clabel,.t-town:focus .t-clabel{opacity:1;}
 .t-town{outline:none;cursor:pointer;}
 .t-pin:hover .t-dot{r:10.5;fill:var(--ink);stroke-width:3;}
@@ -2016,6 +2021,11 @@ body.nav-hidden .venue-breadcrumb{top:0;}
 .pb-row--split > .pslot,.pb-row--split > .pb-pic{aspect-ratio:3/2 !important;}
 .pb-row--split > .pb-txt{aspect-ratio:auto !important;}
 .pb-row--split.rev{grid-template-columns:1.15fr 1fr;}
+/* A square beside the venues block instead of a landscape. The landscape reads
+   right next to "What it costs" because that block is wide and low; the venues
+   block is a tall map over two short lines, and a landscape beside it left the
+   row lopsided. */
+.pb-row--split.pb-sq > .pb-pic,.pb-row--split.pb-sq > .pslot{aspect-ratio:1/1 !important;}
 .pb-txt{text-align:left;}
 .pb-txt .lab{display:block;margin-bottom:14px;}
 .pb-txt .disp{font-family:var(--d);font-weight:430;font-optical-sizing:auto;
@@ -2057,13 +2067,17 @@ body.nav-hidden .venue-breadcrumb{top:0;}
    out: it is one column of a photo row. The lake sits above the line rather
    than beside it, which is what a column wants. */
 .vmini-map{display:block;margin-bottom:clamp(20px,2.4vw,32px);}
-.vm-svg{width:100%;height:auto;display:block;max-width:clamp(150px,15vw,210px);}
+.vm-svg{width:100%;height:auto;display:block;max-width:clamp(200px,20vw,290px);}
 .vm-lake{fill:oklch(73% .045 236);stroke:none;}
+/* Quieter than the roads on /venues, which are already quiet: this map is
+   decoration at a fifth of the size and the roads only have to suggest that
+   the lake sits somewhere. */
+.vm-hwy{fill:none;stroke:oklch(74% .012 250);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;opacity:.3;}
 .vm-dot{fill:var(--accent);stroke:var(--paper);stroke-width:2.5;}
 .vmini-txt .disp{font-family:var(--d);font-weight:430;font-optical-sizing:auto;
   font-size:var(--t-d2);line-height:1.06;letter-spacing:-.02em;max-width:18ch;}
 .vmini-more{margin-top:clamp(20px,2.4vw,30px);}
-@media(max-width:860px){ .vm-svg{max-width:180px;} }
+@media(max-width:860px){ .vm-svg{max-width:220px;} }
 
 
 /* ---------- HERO: photograph first, name under it ----------
@@ -2073,11 +2087,15 @@ body.nav-hidden .venue-breadcrumb{top:0;}
   padding:calc(var(--nav-h) + clamp(24px,3vw,52px)) var(--pad) 0;}
 .ht-pic{margin:0;overflow:hidden;border-radius:var(--r-img);aspect-ratio:16/9;}
 .ht-pic img{width:100%;height:100%;object-fit:cover;display:block;}
-.ht-words{padding-top:clamp(28px,3.4vw,52px);}
-.hero-top h1{font-family:var(--d);font-weight:430;font-optical-sizing:auto;
-  font-size:var(--t-d1);line-height:1;letter-spacing:-.025em;max-width:16ch;}
-.ht-sub{margin-top:clamp(16px,1.8vw,24px);color:var(--fg2);
-  font-size:var(--t-lede);line-height:1.5;max-width:44ch;}
+.ht-words{padding-top:clamp(28px,3.4vw,52px);text-align:center;}
+/* The name carries the display size; the sentence under it sits at reading
+   size. Put the sentence at display size and a 21-word h1 becomes a wall. */
+.ht-mark{font-family:var(--d);font-weight:430;font-optical-sizing:auto;
+  font-size:clamp(26px,7.1vw,104px);line-height:1;letter-spacing:.055em;
+  text-transform:uppercase;white-space:nowrap;-webkit-text-stroke:.3px currentColor;}
+.ht-line{font-family:var(--d);font-weight:430;font-optical-sizing:auto;
+  font-size:var(--t-lede);line-height:1.45;letter-spacing:0;color:var(--fg2);
+  max-width:56ch;margin:clamp(20px,2.4vw,32px) auto 0;}
 @media(max-width:820px){ .ht-pic{aspect-ratio:4/5;} }
 
 /* ---------- A LANDSCAPE GETS THE WHOLE COLUMN OR NOTHING ----------
@@ -2105,3 +2123,37 @@ body.nav-hidden .venue-breadcrumb{top:0;}
    scroll read as three different alignments. One left edge for everything. */
 .credo.intro{max-width:var(--content-max);margin:0 auto;}
 .credo.intro .lab{display:block;margin-bottom:clamp(18px,2vw,28px);}
+
+
+/* ---------- CENTRED (Josh, 2026-09-23) ----------
+   The page was left-aligned on one edge. Centred is the other consistent
+   answer and it is the one chosen: the photographs are symmetrical objects in
+   a symmetrical column, so type that hangs off a left edge was the only thing
+   on the page with a side. Everything down the home page now shares the centre
+   line, including the blocks that sit beside a photograph.
+
+   The one thing NOT centred is a list of links (the footer columns): a column
+   of ragged-both-sides links has no edge to scan down, which costs more than
+   the consistency is worth. */
+.credo.intro,.credo-facts,.testi{text-align:center;}
+.credo.intro .lab{text-align:center;}
+.intro-lead,.intro-close,.intro-body{margin-left:auto;margin-right:auto;}
+.facts .fact p{margin-left:auto;margin-right:auto;}
+@media(min-width:1025px){.facts .fact p{max-width:34ch;}}
+.testi blockquote{max-width:30ch;margin-left:auto;margin-right:auto;}
+
+/* The blocks that sit beside a photograph centre too, so a split row does not
+   reintroduce the left edge the rest of the page just gave up. */
+.pb-txt{text-align:center;}
+.pb-txt .disp,.pb-txt > p{margin-left:auto;margin-right:auto;}
+.vmini-map{display:flex;justify-content:center;}
+.vm-svg{margin-inline:auto;}
+
+/* The closing ask goes back to centre with everything else. It was left-aligned
+   to match a left-aligned footer; the page is centred now, so it matches by
+   being centred instead. */
+:is(.cta,.cta-section){text-align:center;}
+:is(.cta,.cta-section) h2,:is(.cta,.cta-section) p{margin-left:auto;margin-right:auto;}
+/* The footer's own lead follows the ask above it. */
+.site-footer .foot-lead{text-align:center;}
+.foot-lead .foot-tag{margin-left:auto;margin-right:auto;}

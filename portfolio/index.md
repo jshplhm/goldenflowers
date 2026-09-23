@@ -48,7 +48,6 @@ redirect_from:
 </div>
 
 <section class="cta">
-  <span class="lab"><span data-ed="portfolio_page:cta.label">{{ site.data.portfolio_page.cta.label }}</span></span>
   <h2 class="disp">{% include em.html t=site.data.portfolio_page.cta.heading k="portfolio_page:cta.heading" %}</h2>
   <p><span data-ed="portfolio_page:cta.body">{{ site.data.portfolio_page.cta.body }}</span></p>
   <a class="btn btn-ink" href="{{ site.baseurl }}/consultation-form"><span data-ed="portfolio_page:cta.button">{{ site.data.portfolio_page.cta.button }}</span> <span>&rarr;</span></a>

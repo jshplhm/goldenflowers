@@ -59,8 +59,14 @@ the moment one pale photo wants it and another does not, the machinery is here.
     </picture>
   </figure>
   <div class="ht-words">
-    <h1 class="disp">{% include em.html t=site.data.home.hero.heading k="home:hero.heading" %}</h1>
-    <p class="ht-sub"><span data-ed="home:hero.subheading">{{ site.data.home.hero.subheading }}</span></p>
+    {%- comment -%} The name, then one sentence, and the sentence IS the h1. It
+    reads on from the wordmark: "Golden Flowers / a luxury Lake Tahoe wedding
+    florist creating...". The search phrase sits inside a real sentence instead
+    of standing alone as a four-word label, and the title tag still carries the
+    short phrase on its own. The old hero sub-heading is gone: it said the same
+    thing in fewer words directly underneath. {%- endcomment -%}
+    <div class="ht-mark">Golden Flowers</div>
+    <h1 class="ht-line">{% include em.html t=site.data.home.hero.heading k="home:hero.heading" %}</h1>
   </div>
 </header>
 
@@ -105,7 +111,6 @@ the moment one pale photo wants it and another does not, the machinery is here.
 <section class="pband">
   <div class="pb-row pb-row--split">
     <div class="pb-txt">
-  <span class="lab"><span data-ed="home:process.label">{{ site.data.home.process.label }}</span></span>
   <h2 class="disp"><span data-ed="home:process.heading">{{ site.data.home.process.heading }}</span></h2>
   <p><span data-ed="home:process.body">{{ site.data.home.process.body }}</span></p>
   <p class="marq-foot"><a href="{{ site.baseurl }}/weddings" class="txt-link"><span data-ed="home:process.link">{{ site.data.home.process.link }}</span> &rarr;</a></p>
@@ -143,7 +148,7 @@ the moment one pale photo wants it and another does not, the machinery is here.
      names, no labels, no hover. It links to the map you can actually use, and
      the copy still reads from home.marquee.* so /edit keeps working. -->
 <section class="pband">
-  <div class="pb-row pb-row--split rev">
+  <div class="pb-row pb-row--split rev pb-sq">
     <div class="pb-txt vmini-txt">
       <div class="vmini-map">{% include lake-mini.html %}</div>
     <p class="disp"><span data-ed="home:marquee.label">{{ site.data.home.marquee.label }}</span></p>
