@@ -198,20 +198,10 @@ nav.site-nav.over-hero,body.menu-open nav.site-nav{border-bottom-color:transpare
    entirely, because the name, the burger and the pill together came to within
    a few pixels of the width of a 390px screen. "Home" stays first in the
    drawer, since on a phone there is no wordmark to tap. */
-/* HOME ONLY, AT REST: the header wordmark steps aside (Josh, 2026-09-23).
-   The hero sets GOLDEN FLOWERS at 104px directly under the photograph and the
-   header was saying it again, smaller, 200px above it — the name twice in one
-   screen. `scrolled` already flips past 40px, so the header mark arrives the
-   moment the hero stops owning the view and the page has something else at
-   the top. Every other page keeps it at all times: on a venue or a blog post
-   it is the only mark and the only one-tap way home.
-
-   Not a flower mark instead. The site has exactly one brand voice — Castoro
-   in tracked caps — and a pictorial mark in the header would introduce a
-   second one at the single element that appears on every page. The name is
-   short enough to set, and setting it is the identity. */
-nav.site-nav.nav-home:not(.scrolled) .brand{opacity:0;pointer-events:none;}
-nav.site-nav .brand{transition:opacity .3s ease;}
+/* The wordmark is always there. It was hidden on the home page until you
+   scrolled past 40px, to stop the name appearing twice in one screen; the
+   swap on the way back up was worse than the repetition it fixed. Reverted
+   2026-09-23. The redundancy is real but this was not the answer to it. */
 .brand{font-family:var(--d);font-size:1.06rem;letter-spacing:.26em;white-space:nowrap;
   text-transform:uppercase;-webkit-text-stroke:.25px currentColor;}
 .brand-short{display:none;}
@@ -459,7 +449,13 @@ button.txt-link{background:none;border-top:0;border-left:0;border-right:0;cursor
    matches .facts-strip .fact on the venue layout, which is a different
    component (label + .fact-body, 4-up); an unscoped rule here silently
    restyles venue pages. */
-.facts .fact h3{font-family:var(--d);font-size:var(--t-d4);margin-bottom:10px;letter-spacing:-.01em;}
+/* The three claims are set like "What it costs, and how it works" (Josh,
+   2026-09-23): same --t-d2, same line-height, same tracking. They were a
+   step and a half smaller at --t-d4, which made them read as captions over
+   their paragraphs rather than as statements the equal of the other headings
+   on the page. Home only — .facts appears nowhere else. */
+.facts .fact h3{font-family:var(--d);font-weight:430;font-optical-sizing:auto;
+  font-size:var(--t-d2);line-height:1.06;letter-spacing:-.02em;margin-bottom:14px;}
 /* The 34ch cap is right inside a narrow column and wrong inside a wide one, so
    it only applies where the 3-up grid actually holds. Below that the tablet
    row-list and the phone stack both want the paragraph to fill its cell. */
@@ -2155,7 +2151,8 @@ body.nav-hidden .venue-breadcrumb{top:0;}
 .pb-pic{margin:0;overflow:hidden;border-radius:var(--r-img);}
 .pb-pic img{width:100%;height:100%;object-fit:cover;display:block;}
 @media(max-width:820px){
-  .pb-row--split,.pb-row--split.rev,.pb-row--land{grid-template-columns:1fr;}
+  .pb-row--split,.pb-row--split.rev,.pb-row--land{grid-template-columns:1fr;
+    gap:var(--photo-gap);}
   .pb-row--split.rev > .pb-txt{order:2;}
   /* NO LANDSCAPE ON A PHONE (Josh, 2026-09-23). A 3:2 frame on a 390px screen
      is a 160px-tall letterbox: the subject is too small to read and the row
@@ -2176,7 +2173,12 @@ body.nav-hidden .venue-breadcrumb{top:0;}
    single to sit on. The taller 2/3 everywhere reads better in a single column
    than a 4/5 that keeps changing shape as you scroll. */
 @media(max-width:820px){
-  .pb-row,.pb-row.flip{grid-template-columns:1fr;}
+  /* A pair stacked on a phone is two photographs one above the other, which
+     is the same thing as two rows or two bands one above the other. It was
+     using .pb-row's own gap — 20px against the 34px everything else in the
+     run used — so every pair read as a tighter cluster inside the scroll.
+     One number down the whole page. Josh, 2026-09-23. */
+  .pb-row,.pb-row.flip{grid-template-columns:1fr;gap:var(--photo-gap);}
   .pb-row > :nth-child(1),.pb-row > :nth-child(2),
   .pb-row.flip > :nth-child(1),.pb-row.flip > :nth-child(2),
   .pb-row.solo-r > :first-child,.pb-row.solo-l > :first-child{aspect-ratio:2/3;grid-column:auto;}
@@ -2189,12 +2191,13 @@ body.nav-hidden .venue-breadcrumb{top:0;}
 /* The venues block now lives inside a split row, so it no longer lays itself
    out: it is one column of a photo row. The lake sits above the line rather
    than beside it, which is what a column wants. */
-.vmini-map{display:block;margin-bottom:clamp(20px,2.4vw,32px);}
-/* The map fills the column it is in. At clamp(200px,20vw,290px) it was a
-   small shape floating in the top-left of a 900px frame with the heading
-   stranded below it and dead space to its right, next to a square photograph
-   twice its size. Josh, 2026-09-23. */
-.vm-svg{width:100%;height:auto;display:block;max-width:min(100%,520px);}
+.vmini-map{display:block;margin-bottom:clamp(30px,4vw,56px);}
+/* Between the two wrong answers. At clamp(200px,20vw,290px) it was a small
+   shape floating in the corner of a 900px frame; at min(100%,520px) it filled
+   the column and crowded everything around it. This sits in the middle and
+   the space below it grew, so it reads as a drawing with room around it
+   rather than a diagram jammed against its caption. Josh, 2026-09-23. */
+.vm-svg{width:100%;height:auto;display:block;max-width:clamp(230px,23vw,340px);}
 .vm-lake{fill:oklch(73% .045 236);stroke:none;}
 /* Quieter than the roads on /venues, which are already quiet: this map is
    decoration at a fifth of the size and the roads only have to suggest that
@@ -2208,8 +2211,8 @@ body.nav-hidden .venue-breadcrumb{top:0;}
    map hard against the left edge reads as a stray graphic rather than the
    subject of the section. */
 @media(max-width:860px){
-  .vm-svg{max-width:260px;margin-inline:auto;}
-  .vmini-map{display:flex;justify-content:center;}
+  .vm-svg{max-width:240px;margin-inline:auto;}
+  .vmini-map{display:flex;justify-content:center;margin-bottom:clamp(26px,7vw,40px);}
 }
 
 
