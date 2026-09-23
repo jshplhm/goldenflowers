@@ -20,9 +20,11 @@
         the three pages that were making Explore top-heavy.
 
         Where we are and when we're open are contact details, not a page
-        category, so they sit under Contact with the phone and email. "By
-        appointment only" also does more work directly beneath a phone number,
-        where it reads as how to reach us rather than as a stray fact.
+        category, so they sit under Contact with the phone and email. "Open by
+        appointment" also does more work directly beneath a phone number, where
+        it reads as how to reach us rather than as a stray fact. Instagram is
+        the opposite case and sits in Studio: it is more of the work, not a way
+        to get in touch.
       {%- endcomment -%}
       <div>
         <h4>Explore</h4>
@@ -36,6 +38,7 @@
         <a href="{{ site.baseurl }}/about">Our Story</a>
         <a href="{{ site.baseurl }}/sustainability">Sustainability</a>
         <a href="{{ site.baseurl }}/blog">Blog</a>
+        <a href="https://www.instagram.com/goldenflowersfloraldesign/" target="_blank" rel="noopener">Instagram</a>
       </div>
       <div>
         <h4>Contact</h4>
@@ -48,7 +51,17 @@
         {%- endcomment -%}
         <a href="tel:5305577689">(530) 557-7689</a>
         <a href="mailto:brittany@goldenflorals.com">brittany@goldenflorals.com</a>
-        <a href="https://www.instagram.com/goldenflowersfloraldesign/" target="_blank" rel="noopener">@goldenflowersfloraldesign</a>
+        {%- comment -%}
+          Instagram moved to the Studio column as "Instagram" on 2026-09-22. As
+          a raw handle among a phone number and an email it read as a third way
+          to contact us, which it isn't; it is somewhere else to see the work,
+          which is what the Studio column is for.
+
+          Order here is how someone actually reads a contact block: how to reach
+          us first, then where we are and when. The street address is gone from
+          visible text entirely (it lives in the JSON-LD and on the Google
+          Business Profile) because there are no walk-ins.
+        {%- endcomment -%}
         {%- for line in site.data.footer.studio %}
         <p><span data-ed="footer:studio.{{ forloop.index0 }}">{{ line }}</span></p>
         {%- endfor %}

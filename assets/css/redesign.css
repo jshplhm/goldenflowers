@@ -642,6 +642,13 @@ button.txt-link{background:none;border-top:0;border-left:0;border-right:0;cursor
    name, and it was the last full-bleed band left once the tint sections went.
    A hairline gives the footer its edge; the type does the rest. */
 .site-footer{background:var(--bg);color:var(--fg2);border-top:1px solid var(--line);padding:var(--sp-m) var(--pad-col) 34px;}
+/* The closing ask and the footer are ONE ending, not two. They used to be two
+   full section gaps apart (168px + 168px = 336px between the button and the
+   wordmark), which was fine while the footer was a dark slab announcing itself
+   as a different thing. On the same paper, separated only by a hairline, that
+   gap made the page look like it finished twice. Halved at the junction; the
+   ask keeps its own large gap ABOVE it, which is what marks it as a section. */
+:is(.cta,.cta-section) + .site-footer{padding-top:var(--sp-s);}
 .foot-in{display:grid;grid-template-columns:.85fr 1.6fr;gap:clamp(40px,6vw,80px);align-items:start;border-bottom:1px solid var(--line);padding-bottom:clamp(40px,5vw,60px);}
 .foot-lead{max-width:34ch;}
 .foot-brand{font-family:var(--d);font-size:var(--t-d2);color:var(--ink);letter-spacing:-.01em;line-height:1;}

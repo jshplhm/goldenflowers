@@ -95,36 +95,44 @@
   place: "Olympic Valley"
   band: [ "11", "05", "07" ]
   strip: [ "04", "02" ]
-  lede: "A modern and unique wedding inspired by Dr. Seuss"
-  palette: ""
-  dots: []
+  lede: "A modern wedding in an Olympic Valley meadow, built on the whimsy of
+    Dr. Seuss. Lilac and white against trailing green, in installations that
+    lean and arch rather than stand still."
+  palette: "Lilac scabiosa, thistle, trailing green amaranthus"
+  dots: [ "#c3a3cf", "#f2ecea", "#9db85e", "#5b2a4a", "#d8c7dd" ]
 
 - slug: brooke-josh
-  name: Brooke and Josh
-  venue: The Chateau
-  place: Incline Village
+  name: "Brooke & Josh"
+  venue: "The Chateau"
+  place: "Incline Village"
   band: [ "24", "03", "01" ]
-  strip: [ "01", "01" ]
-  lede: A classic, garden inspired wedding in whites, cremes and blush.
-  palette: "Heirloom garden inspired white, blush and cremes"
-  dots: []
+  strip: [ "06", "08" ]
+  lede: "A classic garden wedding on the lawn at The Chateau, in white, cream
+    and blush. Garden roses and hydrangea kept full and soft, with greenery
+    doing the shaping."
+  palette: "White garden rose, hydrangea, blush"
+  dots: [ "#f6f1e8", "#ecd4cb", "#e0cfae", "#8a9b6e", "#cbb89a" ]
 
 - slug: jac-brandon
-  name: Jac and Brandon
-  venue: The National Exchange Hotel
-  place: Nevada City
+  name: "Jac & Brandon"
+  venue: "National Exchange Hotel"
+  place: "Nevada City"
   band: [ "01", "16", "06" ]
-  strip: [ "01", "01" ]
-  lede: A romantic soft goth wedding
-  palette: ""
-  dots: []
+  strip: [ "08", "02" ]
+  lede: "A romantic soft goth wedding at the National Exchange Hotel. Crimson
+    and oxblood against black velvet, red petals down the aisle, and
+    candlelight on every table."
+  palette: "Crimson garden rose, oxblood, black velvet"
+  dots: [ "#a8131c", "#5b0d12", "#1b1715", "#b08d3f", "#3a3326" ]
 
 - slug: hannah-dillon
-  name: Hannah and Dillon
-  venue: Austin Ridge
-  place: Truckee
+  name: "Hannah & Dillon"
+  venue: "Austin Ridge"
+  place: "Truckee"
   band: [ "01", "25", "07" ]
-  strip: [ "01", "01" ]
-  lede: A modern mountain soiree
-  palette: ""
-  dots: []
+  strip: [ "21", "02" ]
+  lede: "A modern mountain soiree above Truckee, with the Sierra behind every
+    frame. A corten steel circle carrying an asymmetric sweep of magenta,
+    raspberry and coral."
+  palette: "Magenta garden rose, raspberry, coral, corten steel"
+  dots: [ "#c02a63", "#7d1735", "#e8765e", "#9a5a2c", "#6f8a4e" ]
