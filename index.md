@@ -43,102 +43,66 @@ Every photo currently carries data-boost="1", so the attribute never changes and
 the boost layer is in effect a second permanent scrim. Left per-photo on purpose:
 the moment one pale photo wants it and another does not, the machinery is here.
 {%- endcomment -%}
-<header class="hero hero-beside hero-home">
-
-  {%- comment -%}
-    THE COPY SITS BESIDE THE PHOTOGRAPH, NOT ON IT (Josh, 2026-09-22, off the
-    /hero-kb mockup, variant A). The slideshow underneath is unchanged: same
-    five photos in the same order, same per-photo crops and zoom origins, same
-    template parking for photos 2-5, same rotator, same timings. Only the
-    layout around it moved.
-
-    WHAT THAT DELETED RATHER THAN RESTYLED: the ::after scrim and the
-    .hero-boost layer both existed to darken a photograph enough for white type
-    to sit on it legibly. With the type on paper beside it neither has a job.
-    The photographs are shown as photographs now rather than as backgrounds, at
-    full brightness, and no longer cropped to whatever a 100vh box leaves.
-
-    #hero-rot IS the grid, so every element the rotator looks up (.bg,
-    .hero-dots .hd, #hero-rest, .hero-boost) is still a descendant of it and is
-    still found. One line of the rotator changed: the insert was
-    hero.insertBefore(node, boostEl), and boostEl is a grandchild now, so it is
-    boostEl.parentNode.insertBefore. See _layouts/redesign.html.
-
-    .hero-boost stays in the markup, hidden by CSS, because the rotator still
-    mirrors each photo's data-boost flag and expects to find the element.
-  {%- endcomment -%}
-
-  <div class="hero-in">
-    {% if site.data.home.hero.eyebrow and site.data.home.hero.eyebrow != "" %}<p class="ey lab"><span data-ed="home:hero.eyebrow">{{ site.data.home.hero.eyebrow }}</span></p>{% endif %}
+<!-- HERO. The photograph first, the name under it. Type is never on the picture:
+     it sits below at reading size, which is also where the h1 can carry the
+     search phrase without fighting the image. One still photograph, no
+     slideshow (see the commit that removed it). A landscape only ever appears
+     here or full width or beside a block of words, never squeezed into a
+     portrait slot. -->
+<header class="hero-top">
+  <figure class="ht-pic">
+    <picture>
+      <source media="(max-width:700px)" srcset="{{ site.baseurl }}/assets/images/home-hero-laux-portrait.jpg">
+      <img src="{{ site.baseurl }}/assets/images/home-hero-laux.jpg" fetchpriority="high"
+           style="object-position:37% 72%;"
+           alt="Golden hour in an Olympic Valley meadow: a couple in tall grass with the Sierra Nevada behind them, the bride holding a green and lavender bouquet">
+    </picture>
+  </figure>
+  <div class="ht-words">
     <h1 class="disp">{% include em.html t=site.data.home.hero.heading k="home:hero.heading" %}</h1>
-    <div class="hero-foot">
-      <p class="hero-sub"><span data-ed="home:hero.subheading">{{ site.data.home.hero.subheading }}</span></p>
-      <a class="btn" href="{{ site.baseurl }}/portfolio"><span data-ed="home:hero.button">{{ site.data.home.hero.button }}</span> <span>&rarr;</span></a>
-    </div>
-  </div>
-
-  <div class="hs-right">
-    <div class="hs-stage">
-    {% comment %} ONE STILL PHOTOGRAPH, not a slideshow (Josh, 2026-09-22).
-    There used to be five photos crossfading here on a timer, with a Ken Burns
-    push, four of them parked in a <template> so they did not compete with the
-    LCP image. All of it is gone. The argument against it: the page now opens
-    into a run of photographs a screen below, so the hero was no longer the only
-    place work appeared, it was the worst one, because the visitor could not
-    choose what they saw. It also auto-advanced with no pause control (that was
-    removed as clutter in August), and it spent bandwidth on the one image that
-    decides LCP.
-
-    Art direction still applies: a portrait crop is cut for phones, because
-    object-position cannot fix a landscape frame in a portrait viewport. This
-    photograph is 2:3 and the plate is 5:6, so the crop is slight.
-    {% endcomment %}
-      <img class="bg" style="object-position:50% 38%;" fetchpriority="high"
-           src="{{ site.baseurl }}/assets/images/portfolio/mikayla-jeff/mikayla-jeff-05.jpg"
-           alt="Olympic Valley ceremony: a couple kissing between two tall asymmetric installations of lilac and white against the pines">
-    </div>
+    <p class="ht-sub"><span data-ed="home:hero.subheading">{{ site.data.home.hero.subheading }}</span></p>
   </div>
 </header>
 
-<!-- PHOTOGRAPHS. The four photographs that used to rotate through the hero are
-     placed down the page now, plus placeholders for the rest. -->
+<!-- Portrait pair. -->
 <section class="pband">
-  <div class="pb-row pb-row--land">
-    <figure class="pb-pic"><img src="{{ site.baseurl }}/assets/images/home-hero-laux.jpg" loading="lazy" alt="Golden hour in an Olympic Valley meadow: a couple in tall grass with the Sierra Nevada behind them"></figure>
-    <figure class="pb-pic"><img src="{{ site.baseurl }}/assets/images/portfolio/kelly-dylan/kelly-dylan-07.jpg" loading="lazy" alt="Lake Tahoe beach wedding: a couple on the sand between borders of blue delphinium"></figure>
-  </div>
   <div class="pb-row">
-    {% include photo-slot.html n=1 s="tall" %}
-    {% include photo-slot.html n=2 s="wide" %}
+    <figure class="pb-pic"><img src="{{ site.baseurl }}/assets/images/portfolio/mikayla-jeff/mikayla-jeff-03.jpg" loading="lazy" alt="Tall whimsical ceremony installation of thistle, lilac and trailing green against Olympic Valley pines"></figure>
+    <figure class="pb-pic"><img src="{{ site.baseurl }}/assets/images/portfolio/katie-james/katie-james-05.jpg" loading="lazy" alt="Blush and butter-cream roses massed on a stone wall at The Miner&#39;s Foundry"></figure>
   </div>
 </section>
 
-<!-- INTRO. After photographs, not before them. -->
-<div class="band-paper">
+<!-- WHO WE ARE. Large opening line, the argument under it at reading size, a
+     closing line back up at display size. The label sits ABOVE the words rather
+     than out in a margin rail: the rail was the only indented thing on the page
+     and it was what made the scroll read as three different alignments. -->
 <section class="credo intro">
-  <div class="intro-band">
-    <div class="intro-side">
-      {%- if site.data.home.intro.label and site.data.home.intro.label != "" %}<span class="lab"><span data-ed="home:intro.label">{{ site.data.home.intro.label }}</span></span>{% endif -%}
-    </div>
-    <div class="intro-body">
-      <p><span data-ed="home:intro.paragraph1">{{ site.data.home.intro.paragraph1 }}</span></p>
-      <p><span data-ed="home:intro.paragraph2">{{ site.data.home.intro.paragraph2 }}</span></p>
-      {%- if site.data.home.intro.link and site.data.home.intro.link != "" %}
-      <p class="intro-more"><a href="{{ site.baseurl }}/about" class="txt-link"><span data-ed="home:intro.link">{{ site.data.home.intro.link }}</span> &rarr;</a></p>
-      {%- endif %}
-    </div>
+  {%- if site.data.home.intro.label and site.data.home.intro.label != "" %}
+  <span class="lab"><span data-ed="home:intro.label">{{ site.data.home.intro.label }}</span></span>
+  {% endif -%}
+  <p class="intro-lead"><span data-ed="home:intro.lead">{{ site.data.home.intro.lead }}</span></p>
+  <p class="intro-body"><span data-ed="home:intro.body">{{ site.data.home.intro.body }}</span></p>
+  <p class="intro-close"><span data-ed="home:intro.close">{{ site.data.home.intro.close }}</span></p>
+  {%- if site.data.home.intro.link and site.data.home.intro.link != "" %}
+  <p class="intro-more"><a href="{{ site.baseurl }}/about" class="txt-link"><span data-ed="home:intro.link">{{ site.data.home.intro.link }}</span> &rarr;</a></p>
+  {%- endif %}
+</section>
+
+<!-- Full width, side to side: a landscape gets the whole column or nothing. -->
+<section class="pband">
+  <div class="pb-row pb-row--full">
+    <figure class="pb-pic"><img src="{{ site.baseurl }}/assets/images/blog/palisades-tahoe-wedding-high-camp/palisades-tahoe-wedding-high-camp-01.jpg" loading="lazy" alt="Mountaintop ceremony at Palisades High Camp, the Sierra crest behind the aisle"></figure>
+  </div>
+  <div class="pb-row">
+    <figure class="pb-pic"><img src="{{ site.baseurl }}/assets/images/portfolio/kelly-dylan/kelly-dylan-09.jpg" loading="lazy" alt="Bridal bouquet of blue delphinium, anemone and orange ranunculus on the shore of Lake Tahoe"></figure>
+    <figure class="pb-pic"><img src="{{ site.baseurl }}/assets/images/portfolio/hannah-dillon/hannah-dillon-24.jpg" loading="lazy" alt="Magenta and coral blooms on the corten steel arch at Austin Ridge"></figure>
   </div>
 </section>
-</div>
 
 <!-- PHOTOGRAPHS, and Process & Pricing beside one of them. The signpost used to
      be its own full-width centred band; in a column next to a picture the page
      stops starting and stopping. -->
 <section class="pband">
-  <div class="pb-row">
-    {% include photo-slot.html n=3 s="tall" %}
-    {% include photo-slot.html n=4 s="wide" %}
-  </div>
   <div class="pb-row pb-row--split">
     <div class="pb-txt">
   <span class="lab"><span data-ed="home:process.label">{{ site.data.home.process.label }}</span></span>
@@ -147,6 +111,12 @@ the moment one pale photo wants it and another does not, the machinery is here.
   <p class="marq-foot"><a href="{{ site.baseurl }}/weddings" class="txt-link"><span data-ed="home:process.link">{{ site.data.home.process.link }}</span> &rarr;</a></p>
     </div>
     <figure class="pb-pic"><img src="{{ site.baseurl }}/assets/images/portfolio/katie-james/katie-james-08.jpg" loading="lazy" alt="Stone-walled ceremony room: a couple before their officiant under a towering arch of blush, peach and cream blooms"></figure>
+  </div>
+</section>
+
+<section class="pband">
+  <div class="pb-row pb-row--full">
+    <figure class="pb-pic"><img src="{{ site.baseurl }}/assets/images/blog/palisades-tahoe-wedding-high-camp/palisades-tahoe-wedding-high-camp-06.jpg" loading="lazy" alt="Long reception table at Palisades High Camp under string lights, run with garden roses and olive foliage"></figure>
   </div>
 </section>
 
@@ -181,9 +151,11 @@ the moment one pale photo wants it and another does not, the machinery is here.
     </div>
     <figure class="pb-pic"><img src="{{ site.baseurl }}/assets/images/portfolio/lynn-aaron/lynn-aaron-19.jpg" loading="lazy" alt="Snowy Sierra mountaintop ceremony: a couple kissing between two towering floral installations"></figure>
   </div>
-  <div class="pb-row pb-row--land">
-    <figure class="pb-pic"><img src="{{ site.baseurl }}/assets/images/portfolio/tori-tucker/tori-tucker-13.jpg" loading="lazy" alt="Lake Tahoe beach ceremony: a bride reading her vows between two coral and burgundy floral installations"></figure>
-    {% include photo-slot.html n=5 s="wide" %}
+</section>
+
+<section class="pband">
+  <div class="pb-row pb-row--full">
+    <figure class="pb-pic"><img src="{{ site.baseurl }}/assets/images/portfolio/tori-tucker/tori-tucker-13.jpg" loading="lazy" alt="Lake Tahoe beach ceremony: a bride reading her vows between two coral and burgundy installations"></figure>
   </div>
 </section>
 

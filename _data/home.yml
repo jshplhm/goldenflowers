@@ -6,19 +6,19 @@ hero:
   button: See our work
 intro:
   label: Who we are
-  paragraph1: "Golden Flowers is a luxury Lake Tahoe wedding florist creating
-    bold, artful and sustainable floral design for couples getting married
-    across the Sierra Nevada. Our philosophy is simple: we design around what
-    California grows best at the moment you get married. By sourcing wedding
-    flowers seasonally and locally, we ensure your flowers belong to the
-    landscape where you say I do."
-  paragraph2: To us, each wedding is a piece of art with its own unique vision.
-    Our designs are refined and grounded in texture and movement, curated around
-    your venue and your season. The flowers we use to create are grown as close
-    to the Sierra Nevada as the season allows.
-  # Exit to /about. The section is titled "Who we are" and used to be the one
-  # place on the page that raised the question without answering it. Blank hides
-  # the link.
+  # Three parts on purpose: a large opening line, a smaller paragraph under it,
+  # and a large closing line. Same sentences as the two paragraphs this replaced,
+  # regrouped so the block has a shape instead of being a wall.
+  lead: Golden Flowers is a luxury Lake Tahoe wedding florist creating bold, artful
+    and sustainable floral design for couples getting married across the Sierra
+    Nevada.
+  body: 'Our philosophy is simple: we design around what California grows best at
+    the moment you get married. By sourcing wedding flowers seasonally and locally,
+    we ensure your flowers belong to the landscape where you say I do. To us, each
+    wedding is a piece of art with its own unique vision. Our designs are refined
+    and grounded in texture and movement, curated around your venue and your season.'
+  close: The flowers we use to create are grown as close to the Sierra Nevada as the
+    season allows.
   link: Read our story
 why:
   label: Why Golden Flowers

@@ -36,8 +36,9 @@ content:
         type: object
         fields:
           - {name: label, label: "Small label", type: string, description: "Left column. Leave empty to hide it."}
-          - {name: paragraph1, label: "First paragraph", type: text}
-          - {name: paragraph2, label: "Second paragraph", type: text}
+          - {name: lead, label: "Opening line (large)", type: text}
+          - {name: body, label: "Paragraph (smaller)", type: text}
+          - {name: close, label: "Closing line (large)", type: text}
           - {name: link, label: "Link to Our Story", type: string, description: "Text of the link under the paragraphs. Leave empty to hide it."}
       - name: why
         label: Why Golden Flowers

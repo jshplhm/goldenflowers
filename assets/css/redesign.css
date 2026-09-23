@@ -53,7 +53,10 @@
   --line:oklch(87% .012 60 / .7);
   --d:'Castoro',Georgia,'Times New Roman',serif;  /* display — swap here to change face */
   --b:'DM Sans',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;
-  --pad:clamp(24px,5vw,88px);
+  /* Side margin as a share of the width, so it breathes at every size instead
+     of hitting a ceiling and leaving a wide screen looking cramped.
+     400px -> 26px, 1024 -> 66, 1440 -> 94, 1920 -> 125, 2560 -> 166. */
+  --pad:clamp(22px,6.5vw,168px);
   /* Vertical rhythm. Was nine unrelated values across the sheet (64/80/90/100/
      110/150/160/200 plus an asymmetric .credo) which read as drift rather than
      hierarchy. Three steps, ~1.3x apart, and every section picks one:
@@ -182,7 +185,7 @@ nav.site-nav.over-hero,body.menu-open nav.site-nav{border-bottom-color:transpare
    A hairline stroke does the rest. Synthesised bold was tried and rejected: it
    thickens hairlines and stems alike and flattens the contrast that is the
    whole reason for using a serif here. */
-.brand{font-family:var(--d);font-size:1.06rem;letter-spacing:.26em;
+.brand{font-family:var(--d);font-size:1.06rem;letter-spacing:.26em;white-space:nowrap;
   text-transform:uppercase;-webkit-text-stroke:.25px currentColor;}
 .brand-short{display:none;}
 .nav-r{display:flex;gap:36px;align-items:center;}
@@ -450,11 +453,17 @@ button.txt-link{background:none;border-top:0;border-left:0;border-right:0;cursor
    Unconditional, including the home hero where the pill is hidden: the pill
    comes back the moment you scroll, and a wordmark that changes its spelling
    mid-scroll is a worse trade than a short one that holds still. */
-@media(max-width:429px){
+/* The threshold moved from 429px to 620px on 2026-09-22, when the wordmark went
+   to tracked caps: "GOLDEN FLOWERS" at .26em is far wider than "Golden Flowers"
+   was, so the old measurement no longer held and the name wrapped onto two
+   lines on a 460px phone. Both the name and the pill are nowrap now, so a
+   wrap can never be how we find out the breakpoint is wrong again. */
+@media(max-width:620px){
   .brand-full{display:none;}
   .brand-short{display:inline;}
-  nav.site-nav .pill{padding:9px 17px;font-size:var(--t-ui);}
+  nav.site-nav .pill{padding:9px 15px;font-size:var(--t-ui);white-space:nowrap;}
 }
+nav.site-nav .pill{white-space:nowrap;}
 /* Optional per-fact link (see index.md). Only one card carries one today, so it
    is spaced to read as part of that card rather than as a row of buttons. */
 .facts .fact-more{margin-top:14px;}
@@ -595,9 +604,11 @@ button.txt-link{background:none;border-top:0;border-left:0;border-right:0;cursor
 .marq-foot{margin-top:36px;}
 
 /* ---------- TESTIMONIAL ---------- */
-.testi{padding:var(--sp-l) var(--pad) var(--sp-s);max-width:1100px;margin:0 auto;text-align:center;}
+/* Left, like everything else. A centred pull quote between left-aligned photo
+   rows was one of the three alignments that made the scroll feel unsettled. */
+.testi{padding:var(--sp-l) var(--pad) var(--sp-s);max-width:var(--content-max);margin:0 auto;text-align:left;}
 .stars{color:var(--accent);letter-spacing:.3em;font-size:var(--t-sm);margin-bottom:28px;}
-.testi blockquote{font-family:var(--d);font-weight:430;font-optical-sizing:auto;font-size:var(--t-d3);line-height:1.22;letter-spacing:-.01em;}
+.testi blockquote{font-family:var(--d);font-weight:430;font-optical-sizing:auto;font-size:var(--t-d2);line-height:1.12;letter-spacing:-.018em;max-width:24ch;}
 .testi blockquote em{color:var(--forest);}
 .testi .by{margin-top:34px;font-size:var(--t-tag);letter-spacing:.11em;text-transform:uppercase;color:var(--mute);}
 .testi .by b{color:var(--ink);font-weight:500;}
@@ -2053,3 +2064,44 @@ body.nav-hidden .venue-breadcrumb{top:0;}
   font-size:var(--t-d2);line-height:1.06;letter-spacing:-.02em;max-width:18ch;}
 .vmini-more{margin-top:clamp(20px,2.4vw,30px);}
 @media(max-width:860px){ .vm-svg{max-width:180px;} }
+
+
+/* ---------- HERO: photograph first, name under it ----------
+   Type never sits on the picture. The h1 goes below at reading size, which is
+   also where it can carry the search phrase without fighting the image. */
+.hero-top{max-width:var(--content-max);margin:0 auto;
+  padding:calc(var(--nav-h) + clamp(24px,3vw,52px)) var(--pad) 0;}
+.ht-pic{margin:0;overflow:hidden;border-radius:var(--r-img);aspect-ratio:16/9;}
+.ht-pic img{width:100%;height:100%;object-fit:cover;display:block;}
+.ht-words{padding-top:clamp(28px,3.4vw,52px);}
+.hero-top h1{font-family:var(--d);font-weight:430;font-optical-sizing:auto;
+  font-size:var(--t-d1);line-height:1;letter-spacing:-.025em;max-width:16ch;}
+.ht-sub{margin-top:clamp(16px,1.8vw,24px);color:var(--fg2);
+  font-size:var(--t-lede);line-height:1.5;max-width:44ch;}
+@media(max-width:820px){ .ht-pic{aspect-ratio:4/5;} }
+
+/* ---------- A LANDSCAPE GETS THE WHOLE COLUMN OR NOTHING ----------
+   Squeezed into the 2:3 portrait slot a 3:2 photograph loses more than half its
+   width. So a landscape appears in exactly three places: the hero, a row of its
+   own that runs the full column, or beside a block of words in a split row. */
+.pb-row--full{grid-template-columns:1fr;}
+.pb-row--full > *{aspect-ratio:16/9 !important;}
+
+/* ---------- WHO WE ARE: large, small, large ----------
+   One opening line at display size, the argument under it at reading size, and
+   a closing line back up at display size. The block has a shape now instead of
+   being two equal paragraphs of the same grey. */
+.intro-lead,.intro-close{font-family:var(--d);font-weight:430;
+  font-optical-sizing:auto;font-size:var(--t-d2);line-height:1.1;
+  letter-spacing:-.02em;color:var(--ink);max-width:26ch;text-wrap:pretty;}
+.intro-close{max-width:24ch;}
+.intro-body{font-family:var(--b);font-size:var(--t-lede);line-height:1.6;
+  color:var(--fg2);max-width:46ch;margin:clamp(24px,3vw,40px) 0;}
+.intro-more{margin-top:clamp(26px,3vw,42px);}
+
+/* The intro is a plain left-aligned block now: the .intro-band rail (label out
+   in the margin, prose indented past it) was the only indented thing on the
+   page, and between it, the centred bands and the left-aligned photo rows the
+   scroll read as three different alignments. One left edge for everything. */
+.credo.intro{max-width:var(--content-max);margin:0 auto;}
+.credo.intro .lab{display:block;margin-bottom:clamp(18px,2vw,28px);}
