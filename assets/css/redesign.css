@@ -2191,7 +2191,30 @@ body.nav-hidden .venue-breadcrumb{top:0;}
 /* No max-width here: it used to restate --content-max and, once .credo moved
    to the body column, this was the one rule pinning the philosophy block back
    out to 1500 while everything around it sat at 1340. Josh, 2026-09-23. */
-.credo.intro{margin:0 auto;}
+/* TWO COLUMNS (Josh, 2026-09-23). The statement takes the left column at
+   display size and the argument sits beside it at reading size with the link
+   under it, instead of three stacked blocks in the left half of the screen.
+   Same move as the closing ask and the testimonial: on a wide screen, put the
+   big line and the small type on one line of sight. */
+.credo.intro{margin:0 auto;display:grid;grid-template-columns:1.05fr 1fr;
+  column-gap:clamp(36px,6vw,110px);align-items:start;}
+/* Scoped to .credo.intro on purpose: the page's closing line reuses
+   .intro-close and .intro-more, and unscoped these would have shrunk the last
+   words on the page to body size and dropped them into a grid column that
+   does not exist there. */
+.credo.intro .lab{grid-column:1;grid-row:1;}
+.credo.intro .intro-lead{grid-column:1;grid-row:1 / span 3;max-width:18ch;}
+.credo.intro:has(.lab) .intro-lead{grid-row:2 / span 3;}
+.credo.intro .intro-body{grid-column:2;grid-row:1;margin:0;max-width:48ch;}
+.credo.intro .intro-close{grid-column:2;grid-row:2;font-family:var(--b);
+  font-size:var(--t-ui);line-height:1.62;color:var(--fg2);max-width:48ch;
+  margin:20px 0 0;}
+.credo.intro .intro-more{grid-column:2;grid-row:3;margin-top:clamp(22px,2.6vw,32px);}
+@media(max-width:820px){
+  .credo.intro{grid-template-columns:1fr;}
+  .credo.intro > *{grid-column:1 !important;grid-row:auto !important;}
+  .credo.intro .intro-lead{max-width:none;}
+}
 .credo.intro .lab{display:block;margin-bottom:clamp(18px,2vw,28px);}
 
 

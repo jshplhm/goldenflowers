@@ -91,7 +91,9 @@ the moment one pale photo wants it and another does not, the machinery is here.
   {% endif -%}
   <p class="intro-lead"><span data-ed="home:intro.lead">{{ site.data.home.intro.lead }}</span></p>
   <p class="intro-body"><span data-ed="home:intro.body">{{ site.data.home.intro.body }}</span></p>
+  {%- if site.data.home.intro.close and site.data.home.intro.close != "" %}
   <p class="intro-close"><span data-ed="home:intro.close">{{ site.data.home.intro.close }}</span></p>
+  {%- endif %}
   {%- if site.data.home.intro.link and site.data.home.intro.link != "" %}
   <p class="intro-more"><a href="{{ site.baseurl }}/about" class="txt-link"><span data-ed="home:intro.link">{{ site.data.home.intro.link }}</span> &rarr;</a></p>
   {%- endif %}
@@ -146,6 +148,16 @@ the moment one pale photo wants it and another does not, the machinery is here.
   </div>
 </section>
 
+<!-- Between the three text blocks (Josh, 2026-09-23). Facts, then the venues
+     map, then the review used to run straight into each other: three sections
+     of words with no photograph to separate them, which is the one thing this
+     page had been careful about everywhere else. -->
+<section class="pband">
+  <div class="pb-row pb-row--full">
+    <figure class="pb-pic"><img src="{{ site.baseurl }}/assets/images/portfolio/tori-tucker/tori-tucker-05.jpg" loading="lazy" alt="A beach ceremony set on the shore of Lake Tahoe, an arch and chairs waiting under a grey sky"></figure>
+  </div>
+</section>
+
 <!-- VENUES beside a photograph, then more photographs. Was a scrolling ticker of
      venue names: motion that said nothing you could not read standing still, and
      names that meant little to anyone who did not already know them. The lake
@@ -160,10 +172,17 @@ the moment one pale photo wants it and another does not, the machinery is here.
     <p class="disp"><span data-ed="home:marquee.label">{{ site.data.home.marquee.label }}</span></p>
     <p class="vmini-more"><a href="{{ site.baseurl }}/venues" class="txt-link"><span data-ed="home:marquee.link">{{ site.data.home.marquee.link }}</span> &rarr;</a></p>
     </div>
-    <figure class="pb-pic"><img src="{{ site.baseurl }}/assets/images/portfolio/lynn-aaron/lynn-aaron-19.jpg" loading="lazy" alt="Snowy Sierra mountaintop ceremony: a couple kissing between two towering floral installations"></figure>
+    <figure class="pb-pic"><img src="{{ site.baseurl }}/assets/images/portfolio/brooke-josh/brooke-josh-09.jpg" loading="lazy" alt="A ceremony lawn at The Chateau with the chairs set in rows, pines and a blossoming tree behind"></figure>
   </div>
 </section>
 
+
+<!-- Between the venues block and the review. -->
+<section class="pband">
+  <div class="pb-row pb-row--full">
+    <figure class="pb-pic"><img src="{{ site.baseurl }}/assets/images/portfolio/lynn-aaron/lynn-aaron-19.jpg" loading="lazy" alt="Snowy Sierra mountaintop ceremony: a couple kissing between two towering floral installations"></figure>
+  </div>
+</section>
 
 <!-- TESTIMONIAL -->
 <section class="testi">
@@ -202,7 +221,7 @@ the moment one pale photo wants it and another does not, the machinery is here.
     <figure class="pb-pic"><img src="{{ site.baseurl }}/assets/images/portfolio/lynn-aaron/lynn-aaron-02.jpg" loading="lazy" alt="Guests seated along a long banquet table run with greenery and candles, caught mid-dinner"></figure>
   </div>
   <div class="pb-row flip">
-    <figure class="pb-pic"><img src="{{ site.baseurl }}/assets/images/portfolio/jac-brandon/jac-brandon-02.jpg" loading="lazy" alt="Red petals scattered down an aisle between dark chairs, an oxblood ceremony backdrop at the far end"></figure>
+    <figure class="pb-pic"><img src="{{ site.baseurl }}/assets/images/portfolio/lynn-aaron/lynn-aaron-29.jpg" loading="lazy" alt="A dark installation of burgundy ranunculus and trailing amaranthus over a black-draped table"></figure>
     <figure class="pb-pic"><img src="{{ site.baseurl }}/assets/images/portfolio/tori-tucker/tori-tucker-18.jpg" loading="lazy" alt="A bouquet of pink garden roses and trailing greenery held against an ivory gown"></figure>
   </div>
 </section>

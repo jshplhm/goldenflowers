@@ -26,8 +26,12 @@ intro:
     belong to the landscape where you say I do. To us, each wedding is a piece of
     art with its own unique vision. Our designs are refined and grounded in texture
     and movement, curated around your venue and your season.
-  close: The flowers we use to create are grown as close to the Sierra Nevada as the
-    season allows.
+  # Blank (Josh, 2026-09-23). It was the third sentence in a row saying the
+  # same thing: the lead says we design around what California grows, the body
+  # says we source seasonally and locally, and this said it once more with the
+  # softest hedge of the three. Type a line back in here and it renders again,
+  # at body size rather than display size.
+  close: ""
   link: Read our story
 why:
   label: Why Golden Flowers
