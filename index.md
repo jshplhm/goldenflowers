@@ -73,7 +73,7 @@ the moment one pale photo wants it and another does not, the machinery is here.
 <!-- Full width, side to side: a landscape gets the whole column or nothing. -->
 <section class="pband">
   <div class="pb-row pb-row--full">
-    <figure class="pb-pic"><img src="{{ site.baseurl }}/assets/images/blog/palisades-tahoe-wedding-high-camp/palisades-tahoe-wedding-high-camp-01.jpg" loading="lazy" alt="A couple on the pier at the water's edge, the snow-covered Sierra across the lake behind them"></figure>
+    <figure class="pb-pic"><img src="{{ site.baseurl }}/assets/images/portfolio/kelly-dylan/kelly-dylan-07.jpg" loading="lazy" alt="A couple on the shore between two installations of blue delphinium and anemone, Lake Tahoe and the Sierra behind them"></figure>
   </div>
   <div class="pb-row">
     <figure class="pb-pic"><img src="{{ site.baseurl }}/assets/images/portfolio/kelly-dylan/kelly-dylan-09.jpg" loading="lazy" alt="Bridal bouquet of blue delphinium, anemone and orange ranunculus on the shore of Lake Tahoe"></figure>
@@ -121,7 +121,7 @@ the moment one pale photo wants it and another does not, the machinery is here.
 
 <section class="pband">
   <div class="pb-row pb-row--full">
-    <figure class="pb-pic"><img src="{{ site.baseurl }}/assets/images/blog/palisades-tahoe-wedding-high-camp/palisades-tahoe-wedding-high-camp-06.jpg" loading="lazy" alt="The wedding party on the pier in blush and burgundy, bouquets in hand, Lake Tahoe behind them"></figure>
+    <figure class="pb-pic"><img src="{{ site.baseurl }}/assets/images/blog/palisades-tahoe-wedding-high-camp/palisades-tahoe-wedding-high-camp-01.jpg" loading="lazy" alt="A couple on the pier at the water's edge, the snow-covered Sierra across the lake behind them"></figure>
   </div>
 </section>
 
@@ -179,34 +179,30 @@ the moment one pale photo wants it and another does not, the machinery is here.
   {%- endif %}
 </section>
 
-<!-- CLOSING (Josh, 2026-09-23). Was a centred slab: heading, a line of body
-     copy, a filled dark button, on its own band above the footer. It was the
-     only place on the page built out of a vocabulary the page does not use
-     anywhere else, which is why it read as imported from another design. The
-     ending is now the page's own grammar run one last time: the last
-     photograph full width, then one line under it and a hairline link, at the
-     size the philosophy block uses rather than the hero's. The body copy is
-     gone; the question already says it. -->
+<!-- THE LAST RUN OF PHOTOGRAPHS (Josh, 2026-09-23). One section, not two, so
+     every gap in here is the .pband row gap rather than two sections' padding
+     butting together, which made the first break twice the size of the rest.
+
+     The scroll above is pale the whole way down: a meadow at golden hour, the
+     lake, a beach. This run goes the other way, into the dark and saturated
+     work, so the page has a tonal arc instead of one note held for its whole
+     length. Landscapes and pairs alternate, because two full-width landscapes
+     stacked read as one long photograph with a seam in it. The second pair is
+     flipped so the wide tile is on the left: every pair on the page had the
+     wide one on the right, which turned a rhythm into a template. -->
 <section class="pband">
   <div class="pb-row pb-row--full">
     <figure class="pb-pic"><img src="{{ site.baseurl }}/assets/images/portfolio/tori-tucker/tori-tucker-13.jpg" loading="lazy" alt="Lake Tahoe beach ceremony: a bride reading her vows between two coral and burgundy installations"></figure>
-  </div>
-</section>
-<!-- A last run of photographs before the ask (Josh, 2026-09-23). The scroll
-     above here is pale all the way down: a meadow, the lake, a beach. These
-     five go the other way, into the dark and saturated work, so the page has
-     a tonal arc instead of one key held for its whole length. Four weddings,
-     and the pairs follow the same 2:3 / 4:5 rule as every other row. -->
-<section class="pband">
-  <div class="pb-row pb-row--full">
-    <figure class="pb-pic"><img src="{{ site.baseurl }}/assets/images/portfolio/lynn-aaron/lynn-aaron-02.jpg" loading="lazy" alt="Guests seated along a long banquet table run with greenery and candles, caught mid-dinner"></figure>
   </div>
   <div class="pb-row">
     <figure class="pb-pic"><img src="{{ site.baseurl }}/assets/images/portfolio/jac-brandon/jac-brandon-07.jpg" loading="lazy" alt="A couple in black, the bride holding a bouquet of crimson and oxblood roses against dark foliage"></figure>
     <figure class="pb-pic"><img src="{{ site.baseurl }}/assets/images/portfolio/lynn-aaron/lynn-aaron-28.jpg" loading="lazy" alt="A lounge vignette: a low white vessel of burgundy and blush blooms on marble, candles beside it"></figure>
   </div>
-  <div class="pb-row">
-    <figure class="pb-pic"><img src="{{ site.baseurl }}/assets/images/portfolio/kelly-dylan/kelly-dylan-25.jpg" loading="lazy" alt="A navy tablescape with taper candles, blue glass and delphinium above the place setting"></figure>
+  <div class="pb-row pb-row--full">
+    <figure class="pb-pic"><img src="{{ site.baseurl }}/assets/images/portfolio/lynn-aaron/lynn-aaron-02.jpg" loading="lazy" alt="Guests seated along a long banquet table run with greenery and candles, caught mid-dinner"></figure>
+  </div>
+  <div class="pb-row flip">
+    <figure class="pb-pic"><img src="{{ site.baseurl }}/assets/images/portfolio/jac-brandon/jac-brandon-02.jpg" loading="lazy" alt="Red petals scattered down an aisle between dark chairs, an oxblood ceremony backdrop at the far end"></figure>
     <figure class="pb-pic"><img src="{{ site.baseurl }}/assets/images/portfolio/tori-tucker/tori-tucker-18.jpg" loading="lazy" alt="A bouquet of pink garden roses and trailing greenery held against an ivory gown"></figure>
   </div>
 </section>
