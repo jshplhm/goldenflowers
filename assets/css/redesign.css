@@ -1635,7 +1635,8 @@ body.nav-hidden .venue-breadcrumb{top:0;}
 /* PORTFOLIO INDEX: TWO UP (2026-09-24). Was one full-width band per wedding,
    which put ten weddings on a page where no two are ever on screen at once.
    Two columns means you compare, which is what an index is for. */
-.pf-grid{max-width:var(--content-max);margin:0 auto;padding:0 var(--pad);
+.pf-grid{max-width:var(--content-max);margin:0 auto;
+  padding:0 var(--pad) clamp(72px,9vw,124px);
   display:grid;grid-template-columns:repeat(2,1fr);
   gap:clamp(44px,5vw,78px) clamp(24px,3vw,44px);}
 /* The card's link wraps block children (the figure, the name, the venue), so
