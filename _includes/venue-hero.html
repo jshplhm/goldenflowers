@@ -37,7 +37,7 @@
     {%- assign src = '/assets/images/portfolio/' | append: hp.wedding | append: '/' | append: hp.photo -%}
     {%- unless credit and credit != "" -%}
       {%- assign shooter = site.data.credits[hp.wedding].photography -%}
-      {%- if shooter.name and shooter.name != "" and shooter.name != "Photographer TBC" -%}
+      {%- if shooter.name and shooter.name != "" and shooter.name != "TBC" -%}
         {%- assign credit = shooter.name -%}
       {%- endif -%}
     {%- endunless -%}
@@ -45,12 +45,12 @@
     {%- assign src = hp.src -%}
   {%- endif -%}
   {%- if src != "" -%}
-<figure class="venue-pic">
+<figure class="page-pic">
   <img src="{{ site.baseurl }}{{ src }}" alt="{{ hp.alt | default: include.v.venue_name }}"
        width="1500" height="844" loading="eager" fetchpriority="high"
        sizes="(min-width:1500px) 1500px, 100vw">
   {%- if credit and credit != "" %}
-  <figcaption class="venue-pic-credit">{{ credit }}</figcaption>
+  <figcaption class="page-pic-credit">{{ credit }}</figcaption>
   {%- endif %}
 </figure>
   {%- endif -%}

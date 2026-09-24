@@ -51,100 +51,111 @@ redirect_from:
      =================================================================== -->
 
 <!-- HERO -->
-<header class="hero hero-beside hero-land">
-  {%- comment -%}
-    COPY BESIDE THE PHOTOGRAPH, not over it (Josh, 2026-09-22), the same
-    treatment the home hero took earlier the same day. .hero-beside carries
-    the whole layout; hero-land only sets the height the grid no longer uses,
-    and is left on so nothing else keyed to it changes.
-  {%- endcomment -%}
-  <div class="hero-in">
-    <p class="ey lab"><span data-ed="weddings:hero.label">{{ site.data.weddings.hero.label }}</span></p>
-    <h1 class="disp">{% include em.html t=site.data.weddings.hero.heading k="weddings:hero.heading" %}</h1>
-    <div class="hero-foot">
-      <p class="hero-sub"><span data-ed="weddings:hero.subheading">{{ site.data.weddings.hero.subheading }}</span></p>
-      {%- comment -%} Deliberately NOT "Check your date": the nav carries that
-      on every screen, so the hero can serve the reason someone opened this
-      page. It jumps to the price ladder. {%- endcomment -%}
-      <a class="btn" href="#pricing"><span data-ed="weddings:hero.button_primary">{{ site.data.weddings.hero.button_primary }}</span> <span>&darr;</span></a>
-    </div>
-  </div>
-
-  <div class="hs-right">
-    <div class="hs-stage">
-      <img class="bg" src="{{ site.baseurl }}/assets/images/portfolio/kelly-dylan/kelly-dylan-13.jpg" alt="Bride holding a lush garden-rose and ranunculus bouquet at a Lake Tahoe beach wedding by Golden Flowers" style="object-position:center 55%;">
-    </div>
-  </div>
+{%- comment -%}
+  Words, then the photograph (2026-09-24), the treatment /sustainability took
+  the same day. Copy beside the picture put a headline and a photograph at the
+  same height competing for the same attention and left the column under the
+  headline empty.
+{%- endcomment -%}
+<header class="text-hero">
+  <span class="lab"><span data-ed="weddings:hero.label">{{ site.data.weddings.hero.label }}</span></span>
+  <h1>{% include em.html t=site.data.weddings.hero.heading k="weddings:hero.heading" %}</h1>
+  <p class="th-sub"><span data-ed="weddings:hero.subheading">{{ site.data.weddings.hero.subheading }}</span></p>
+  {%- comment -%} Deliberately NOT "Check your date": the nav carries that on
+  every screen, so the hero can serve the reason someone opened this page. It
+  jumps to the investment block. {%- endcomment -%}
+  <a class="btn btn-ink" href="#pricing"><span data-ed="weddings:hero.button_primary">{{ site.data.weddings.hero.button_primary }}</span> <span>&darr;</span></a>
 </header>
 
+<figure class="page-pic">
+  <img src="{{ site.baseurl }}/assets/images/portfolio/kelly-dylan/kelly-dylan-13.jpg"
+       alt="Bride holding a lush garden-rose and ranunculus bouquet at a Lake Tahoe beach wedding by Golden Flowers"
+       width="1500" height="844" loading="eager" fetchpriority="high"
+       style="object-position:center 55%;" sizes="(min-width:1500px) 1500px, 100vw">
+</figure>
+
 <!-- PROCESS -->
-<section class="proc">
-  <div class="proc-wrap">
-    <div class="proc-head">
-      <span class="lab"><span data-ed="weddings:process.label">{{ site.data.weddings.process.label }}</span></span>
-      <h2><span data-ed="weddings:process.heading">{{ site.data.weddings.process.heading }}</span></h2>
-      <p><span data-ed="weddings:process.intro">{{ site.data.weddings.process.intro }}</span></p>
-    </div>
-    {%- comment -%} Steps carry an optional `phase`; a heading is emitted wherever
-    it changes, which breaks the timeline into "before you book" and "once you're
-    booked". Leave every phase blank and it renders as one continuous run.
-    {%- endcomment -%}
-    {%- assign seen_phase = "" %}
-    {%- for step in site.data.weddings.process.steps %}
-    {%- if step.phase and step.phase != seen_phase %}
-    <p class="proc-phase"><span data-ed="weddings:process.steps.{{ forloop.index0 }}.phase">{{ step.phase }}</span></p>
-    {%- assign seen_phase = step.phase %}
-    {%- endif %}
-    <div class="proc-step">
-      {%- comment -%} The icon replaced the numeral, and inherits .proc-num
-      wholesale: that rule's background is what punches a hole in the timeline
-      rail behind it. Without it the rail draws through the icon. {%- endcomment -%}
-      <div class="proc-num proc-icon">{% include icon.html name=step.icon %}</div>
-      <div><span class="proc-when"><span data-ed="weddings:process.steps.{{ forloop.index0 }}.when">{{ step.when }}</span></span><h3><span data-ed="weddings:process.steps.{{ forloop.index0 }}.title">{{ step.title }}</span></h3><p><span data-ed="weddings:process.steps.{{ forloop.index0 }}.body">{{ step.body }}</span></p></div>
+{%- comment -%}
+  NUMBERED ROWS ACROSS THE PAGE (2026-09-24). This was a timeline down a
+  narrow left column with an icon per step, which spent an icon on each row,
+  wrapped every line early, and left more than half the width empty. Each step
+  is now a row: number and timing on the left, the step and what happens on
+  the right, hairline between. Seven steps read as seven steps.
+
+  `icon:` in _data/weddings.yml is no longer rendered. It is left in the data
+  rather than stripped out, so restoring the old treatment is a markup change
+  and not a data re-entry job.
+{%- endcomment -%}
+<section class="block proc-rows">
+  <div class="proc-head">
+    <span class="lab"><span data-ed="weddings:process.label">{{ site.data.weddings.process.label }}</span></span>
+    <h2 class="h-lg"><span data-ed="weddings:process.heading">{{ site.data.weddings.process.heading }}</span></h2>
+    <p class="proc-intro"><span data-ed="weddings:process.intro">{{ site.data.weddings.process.intro }}</span></p>
+  </div>
+  {%- comment -%} Steps carry an optional `phase`; a heading is emitted wherever
+  it changes, which breaks the run into "before you book" and "once you're
+  booked". Leave every phase blank and it renders as one continuous list.
+  {%- endcomment -%}
+  {%- assign seen_phase = "" %}
+  <ol class="proc-list">
+  {%- for step in site.data.weddings.process.steps %}
+  {%- if step.phase and step.phase != seen_phase %}
+    <li class="proc-phase"><span data-ed="weddings:process.steps.{{ forloop.index0 }}.phase">{{ step.phase }}</span></li>
+  {%- assign seen_phase = step.phase %}
+  {%- endif %}
+    <li class="proc-row">
+      <span class="proc-n" aria-hidden="true">{{ forloop.index | prepend: "0" | slice: -2, 2 }}</span>
+      <span class="proc-when"><span data-ed="weddings:process.steps.{{ forloop.index0 }}.when">{{ step.when }}</span></span>
+      <div class="proc-body">
+        <h3><span data-ed="weddings:process.steps.{{ forloop.index0 }}.title">{{ step.title }}</span></h3>
+        <p><span data-ed="weddings:process.steps.{{ forloop.index0 }}.body">{{ step.body }}</span></p>
+      </div>
+    </li>
+  {%- endfor %}
+  </ol>
+</section>
+
+<!-- WHAT'S INCLUDED -->
+<section class="block incl">
+  <span class="lab"><span data-ed="weddings:included.label">{{ site.data.weddings.included.label }}</span></span>
+  <h2 class="h-lg"><span data-ed="weddings:included.heading">{{ site.data.weddings.included.heading }}</span></h2>
+  <div class="incl-grid">
+    {%- for item in site.data.weddings.included.items %}
+    <div class="incl-item">
+      <h3><span data-ed="weddings:included.items.{{ forloop.index0 }}.title">{{ item.title }}</span></h3>
+      {%- assign b = item.body | strip %}
+      <p{% if b == "" %} class="ed-empty"{% endif %}><span data-ed="weddings:included.items.{{ forloop.index0 }}.body" data-ed-hint="Describe what this covers">{{ item.body }}</span></p>
     </div>
     {%- endfor %}
   </div>
 </section>
 
 <!-- INVESTMENT -->
-{%- comment -%} One figure and one label per tier. No cards: a card implies a
-package, and we are deliberately not saying what each figure buys.
+{%- comment -%}
+  One figure, on the page's own ground (2026-09-24). This was a dark forest
+  band carrying a three-tier ladder with a photograph per tier. The band is
+  gone because the page reads as one surface now, and the ladder is gone
+  because a minimum and an entry price are the two things the no-price call
+  ruled out. See the header on `pricing:` in _data/weddings.yml.
 
-#pricing sits on the SECTION, not the heading, because the section carries its
-own padding. See the .pricing-dark rule in redesign.css. {%- endcomment -%}
-<section class="pricing-dark" id="pricing">
-  <div class="pricing">
-    <span class="lab"><span data-ed="weddings:pricing.label">{{ site.data.weddings.pricing.label }}</span></span>
-    <h2 class="h-lg"><span data-ed="weddings:pricing.heading">{{ site.data.weddings.pricing.heading }}</span></h2>
-    <p class="price-basis"><span data-ed="weddings:pricing.note">{{ site.data.weddings.pricing.note }}</span></p>
-    <dl class="price-scale">
-      {%- for tier in site.data.weddings.pricing.tiers %}
-      <div class="price-row{% if tier.lead %} is-lead{% endif %}">
-        {%- if tier.photo %}
-        {%- comment -%} `photo:` is a wedding gallery path (kelly-dylan/kelly-dylan-07.jpg),
-        or a full site-root path when /edit swapped in an upload. The
-        data-ed-photo attribute is what makes the photo clickable in /edit:
-        it names the data file and the key, because the path is not written
-        in this page's source for the editor to find. {%- endcomment -%}
-        {%- assign tier_src = tier.photo | prepend: "/assets/images/portfolio/" -%}
-        {%- assign tier_lead = tier.photo | slice: 0, 1 -%}
-        {%- if tier_lead == "/" %}{% assign tier_src = tier.photo %}{% endif -%}
-        <img class="price-shot" src="{{ site.baseurl }}{{ tier_src }}" alt="{{ tier.alt }}" loading="lazy" width="800" height="1000" sizes="(max-width:900px) 90vw, 30vw" data-ed-photo="weddings:pricing.tiers.{{ forloop.index0 }}.photo">
-        {%- endif %}
-        {%- if tier.badge %}<span class="price-badge"><span data-ed="weddings:pricing.tiers.{{ forloop.index0 }}.badge">{{ tier.badge }}</span></span>{% endif %}
-        <dd><span data-ed="weddings:pricing.tiers.{{ forloop.index0 }}.amount">{{ tier.amount }}</span></dd>
-        <dt><span data-ed="weddings:pricing.tiers.{{ forloop.index0 }}.label">{{ tier.label }}</span></dt>
-        {%- comment -%} The a la carte offer, deliberately a line inside the
-        first tier rather than a column of its own. Blank it in the CMS to
-        withdraw the offer; the paragraph disappears on its own. {%- endcomment -%}
-        {%- if tier.entry_note and tier.entry_note != "" %}
-        <p class="price-entry"><span data-ed="weddings:pricing.tiers.{{ forloop.index0 }}.entry_note">{{ tier.entry_note }}</span></p>
-        {%- endif %}
-      </div>
-      {%- endfor %}
-    </dl>
+  #pricing sits on the SECTION, which carries the padding the anchor needs.
+{%- endcomment -%}
+{%- assign fig = site.data.weddings.pricing.figure | strip -%}
+{%- if fig != "" %}
+<section class="block invest" id="pricing">
+  <span class="lab"><span data-ed="weddings:pricing.label">{{ site.data.weddings.pricing.label }}</span></span>
+  <div class="invest-row">
+    <div class="invest-fig">
+      <p class="invest-amount"><span data-ed="weddings:pricing.figure">{{ site.data.weddings.pricing.figure }}</span></p>
+      <p class="invest-label"><span data-ed="weddings:pricing.figure_label">{{ site.data.weddings.pricing.figure_label }}</span></p>
+    </div>
+    <div class="invest-note">
+      <h2><span data-ed="weddings:pricing.heading">{{ site.data.weddings.pricing.heading }}</span></h2>
+      <p><span data-ed="weddings:pricing.note">{{ site.data.weddings.pricing.note }}</span></p>
+    </div>
   </div>
 </section>
+{%- endif %}
 
 {%- comment -%} REVIEWS: hidden by `testimonials.show: false` in
 _data/weddings.yml, not deleted. The 13 quotes still live in

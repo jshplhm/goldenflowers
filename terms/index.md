@@ -21,7 +21,9 @@ canonical_url: https://goldenflorals.com/terms
 </header>
 
 <section class="block tight">
-  <div class="prose legal">
+  <div class="legal-wrap">
+    {% include legal-toc.html %}
+    <div class="prose legal">
     <p class="meta">Last updated August 11, 2026</p>
 
     <p>These terms cover your use of goldenflorals.com. They are not your floral contract. If you book us, the signed proposal covers the work, and where that proposal and this page disagree, the proposal governs.</p>
@@ -53,5 +55,6 @@ canonical_url: https://goldenflorals.com/terms
     <p>Golden Flowers, Incline Village, Nevada<br>
     <a href="mailto:brittany@goldenflorals.com">brittany@goldenflorals.com</a><br>
     <a href="tel:5305577689">(530) 557-7689</a></p>
+    </div>
   </div>
 </section>

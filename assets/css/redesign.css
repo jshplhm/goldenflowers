@@ -259,7 +259,7 @@ body.menu-open .nav-toggle span:nth-child(3){transform:translateY(-6.5px) rotate
 .mobile-menu{position:fixed;inset:0;z-index:45;background:var(--bg);color:var(--ink);transform:translateX(100%);visibility:hidden;transition:transform .45s cubic-bezier(.6,0,.2,1),visibility 0s linear .45s;display:flex;flex-direction:column;justify-content:center;padding:clamp(28px,8vw,64px);overflow-y:auto;}
 .mm-links{display:flex;flex-direction:column;}
 .mm-links a{font-family:var(--d);font-size:clamp(1.9rem,9vw,2.6rem);letter-spacing:-.01em;padding:7px 0;}
-.mobile-menu .m-cta{margin-top:26px;font-family:var(--b);font-size:var(--t-tag);letter-spacing:.06em;text-transform:uppercase;background:var(--accent);color:var(--paper);border-radius:var(--r-img);padding:16px 28px;align-self:flex-start;}
+.mobile-menu .m-cta{margin-top:26px;font-family:var(--b);font-size:var(--t-tag);letter-spacing:.06em;text-transform:uppercase;background:var(--ink);color:var(--paper);border-radius:var(--r-img);padding:16px 28px;align-self:flex-start;}
 .mm-secondary{display:flex;gap:22px;margin-top:30px;flex-wrap:wrap;}
 .mm-secondary a{font-family:var(--b);font-size:var(--t-sm);color:var(--fg2);border-bottom:1px solid var(--line);padding-bottom:2px;}
 .mm-secondary a:hover{color:var(--ink);}
@@ -269,7 +269,11 @@ body.menu-open{overflow:hidden;}
 body.menu-open .mobile-menu{transform:none;visibility:visible;transition:transform .45s cubic-bezier(.6,0,.2,1);}
 
 /* ---------- BUTTONS ---------- */
-.btn{display:inline-flex;align-items:center;gap:9px;background:var(--accent);color:var(--paper);padding:17px 30px;border-radius:var(--r-img);font-size:var(--t-ui);letter-spacing:.03em;font-weight:500;transition:.25s;}
+/* Filled buttons are ink, not the accent green (Josh, 2026-09-24). Only two
+   places on the site were still green -- this and .btn-primary in the form --
+   so the green read as an inconsistency rather than as an accent. The accent
+   keeps every other job it had: rules, eyebrows, link hovers, the FAQ marker. */
+.btn{display:inline-flex;align-items:center;gap:9px;background:var(--ink);color:var(--paper);padding:17px 30px;border-radius:var(--r-img);font-size:var(--t-ui);letter-spacing:.03em;font-weight:500;transition:.25s;}
 .btn:hover{transform:translateY(-2px);filter:brightness(1.07);}
 .btn-ink{background:var(--ink);color:var(--paper);}
 .btn.ghost{background:transparent;border:1px solid oklch(100% 0 0/.55);color:var(--paper);}
@@ -852,7 +856,7 @@ nav.site-nav .pill{white-space:nowrap;}
 /* The glass button was white-on-photo. On paper it is invisible, so a hero
    beside its picture takes the site's ordinary accent button. Scoped, so the
    glass style stays wherever type is still on a picture. */
-.hero-beside .btn{background:var(--accent);color:var(--paper);border:1px solid var(--accent);
+.hero-beside .btn{background:var(--ink);color:var(--paper);border:1px solid var(--ink);
   -webkit-backdrop-filter:none;backdrop-filter:none;}
 .hero-beside .btn:hover{background:var(--ink);border-color:var(--ink);color:var(--paper);
   transform:translateY(-2px);filter:none;}
@@ -1018,7 +1022,38 @@ body.lb-open{overflow:hidden;}
 .prose p.lead{font-family:var(--d);font-size:var(--t-d4);color:var(--ink);line-height:1.42;letter-spacing:-.005em;}
 /* Legal pages: long prose nobody reads for pleasure, so the job is scanning.
    Headings sit close to what they introduce and far from what came before. */
-.legal h2{font-family:var(--d);font-weight:430;font-size:var(--t-d4);
+/* LEGAL PAGES: AN INDEX BESIDE THE TEXT (2026-09-24). The policy ran the
+   full measure as one undifferentiated column of small headings, so finding
+   "how long do you keep it" meant reading for it. Index on the left, text in
+   a reading column on the right, and the headings set at section size so the
+   page has a structure you can see as well as one you can jump to. */
+/* One column until the index actually exists. The nav ships hidden and is
+   revealed once it has been built, so without JS there is no empty 230px rail
+   for the text to sit beside. */
+.legal-wrap{display:grid;grid-template-columns:minmax(0,1fr);
+  gap:clamp(30px,5vw,80px);align-items:start;}
+.legal-wrap:has(.legal-toc:not([hidden])){
+  grid-template-columns:minmax(0,230px) minmax(0,1fr);}
+.legal-toc{position:sticky;top:calc(var(--nav-h) + 26px);}
+.legal-toc .lab{margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--line);}
+.legal-toc ol{list-style:none;margin:0;padding:0;}
+.legal-toc li + li{margin-top:9px;}
+.legal-toc a{font-size:var(--t-sm);color:var(--fg2);line-height:1.4;display:block;
+  border:0;transition:color .15s;}
+.legal-toc a:hover{color:var(--ink);}
+.legal-wrap .prose.legal{max-width:68ch;}
+/* The Contact line ends "... · brittany@goldenflorals.com · (530) 557-7689",
+   and an email address has nowhere to break. At 480px it pushed the document
+   8px wider than the viewport, which the full-width nav then inherited. */
+.prose.legal{overflow-wrap:break-word;}
+.prose.legal a{overflow-wrap:anywhere;}
+.legal-wrap .prose.legal h2{scroll-margin-top:calc(var(--nav-h) + 24px);}
+@media(max-width:860px){
+  .legal-wrap{grid-template-columns:1fr;gap:clamp(22px,4vw,32px);}
+  .legal-toc{position:static;}
+  .legal-toc ol{columns:2;column-gap:28px;}
+}
+.legal h2{font-family:var(--d);font-weight:430;font-size:var(--t-d3);
   letter-spacing:-.01em;color:var(--ink);margin:38px 0 12px;}
 .legal ul{margin:0 0 16px;padding-left:1.1em;max-width:66ch;}
 .legal li{font-size:1rem;line-height:1.72;color:var(--fg2);margin-bottom:9px;}
@@ -1086,7 +1121,14 @@ body.lb-open{overflow:hidden;}
 .pledge-head{max-width:640px;margin-bottom:clamp(44px,6vw,70px);}
 .pledge-intro{color:var(--fg2);font-size:var(--t-lede);line-height:1.65;margin-top:16px;}
 .pledge-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(22px,3vw,40px) clamp(40px,6vw,90px);}
-.pledge-item{border-top:1px solid var(--line);padding-top:18px;}
+/* Numbered 01..NN (2026-09-24). Ten unnumbered hairline blocks read as an
+   unordered pile; numbering says this is a list somebody committed to and
+   counted. The number is decorative -- the heading is still the item -- so it
+   is aria-hidden and sits in its own column. */
+.pledge-item{border-top:1px solid var(--line);padding-top:18px;
+  display:grid;grid-template-columns:auto 1fr;column-gap:clamp(14px,1.6vw,22px);}
+.pledge-n{grid-row:1 / span 2;font-family:var(--d);font-size:var(--t-d4);
+  line-height:1.2;color:var(--mute);font-variant-numeric:tabular-nums;}
 .pledge-item h4{font-family:var(--d);font-size:var(--t-d4);letter-spacing:-.01em;margin-bottom:8px;}
 .pledge-item p{font-size:var(--t-sm);color:var(--mute);line-height:1.6;}
 .pledge-closing{border:none;margin-top:clamp(44px,6vw,70px);}
@@ -1243,7 +1285,7 @@ body.lb-open{overflow:hidden;}
 .testi-carousel{margin-top:clamp(22px,3vw,36px);}
 .testi-controls{display:flex;justify-content:flex-end;gap:10px;margin-bottom:16px;}
 .testi-nav{width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:var(--bg);color:var(--ink);font-size:1rem;cursor:pointer;transition:border-color .2s,background .2s,color .2s;}
-.testi-nav:hover{border-color:var(--ink);background:var(--accent);color:var(--paper);}
+.testi-nav:hover{border-color:var(--ink);background:var(--ink);color:var(--paper);}
 .testi-row{display:flex;gap:24px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;padding:4px 2px 18px;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
 .testi-row::-webkit-scrollbar{display:none;}
 .testi-row .quote-card{flex:0 0 clamp(270px,30%,380px);scroll-snap-align:start;display:flex;flex-direction:column;}
@@ -1485,19 +1527,32 @@ body.modal-open{overflow:hidden;}
 .blog-empty{text-align:center;color:var(--mute);padding:40px 0;}
 
 /* ---------- BLOG POST ARTICLE ---------- */
-.blog-header{max-width:840px;margin:0 auto;padding:clamp(130px,16vw,190px) var(--pad) clamp(26px,3vw,38px);text-align:center;}
+/* POST HEADER, LEFT (2026-09-24). Centred under a breadcrumb that is flush
+   left, the title floated with no edge in common with anything above or below
+   it, and a six-word title set centred at display size became a diamond. It
+   now opens the way every other interior page opens. */
+.blog-header{max-width:var(--content-max);margin:0 auto;
+  padding:clamp(34px,4vw,54px) var(--pad) clamp(22px,2.6vw,32px);text-align:left;}
 .blog-category{font-size:var(--t-tag);letter-spacing:.13em;text-transform:uppercase;color:var(--accent);font-weight:500;}
 .blog-title{font-family:var(--d);font-weight:430;font-optical-sizing:auto;font-size:var(--t-d1);letter-spacing:-.02em;line-height:1.06;margin:18px 0 20px;}
 .blog-meta{font-size:var(--t-ui);letter-spacing:.04em;color:var(--mute);}
-.blog-hero-img{max-width:1100px;width:calc(100% - 2 * var(--pad));margin:0 auto clamp(40px,5vw,64px);border-radius:var(--r-img);}
-.blog-body{max-width:720px;margin:0 auto;padding:0 var(--pad) clamp(60px,8vw,100px);}
+.blog-hero-img{display:block;max-width:var(--content-max);width:calc(100% - 2 * var(--pad));
+  aspect-ratio:3/2;object-fit:cover;margin:0 auto clamp(40px,5vw,64px);
+  border-radius:var(--r-img);background:var(--bg2);}
+.blog-body{max-width:680px;margin:0 auto;padding:0 var(--pad) clamp(60px,8vw,100px);}
 .blog-body p{font-size:var(--t-lede);line-height:1.8;color:var(--fg2);margin-bottom:22px;}
 .blog-body h2{font-family:var(--d);font-weight:430;font-optical-sizing:auto;font-size:var(--t-d3);letter-spacing:-.01em;line-height:1.16;margin:44px 0 16px;}
 .blog-body h3{font-family:var(--d);font-weight:430;font-size:var(--t-d4);margin:32px 0 12px;}
 .blog-body ul,.blog-body ol{margin:0 0 22px 22px;color:var(--fg2);line-height:1.8;}
 .blog-body li{margin-bottom:8px;}
 .blog-body a{color:var(--forest);border-bottom:1px solid var(--accent);}
-.blog-body img{border-radius:var(--r-img);margin:32px 0;}
+/* A photograph in the body breaks the measure on purpose: at 680px the
+   pictures were postcards in a column of text. They run wider than the prose,
+   centred on it, which is what gives a long post its rhythm. */
+.blog-body img{display:block;border-radius:var(--r-img);
+  margin:clamp(34px,4vw,52px) auto;width:min(100vw - 2 * var(--pad), 880px);
+  max-width:none;margin-left:50%;transform:translateX(-50%);
+  aspect-ratio:3/2;object-fit:cover;background:var(--bg2);}
 .blog-body blockquote{border-left:2px solid var(--accent);padding-left:24px;margin:32px 0;font-family:var(--d);font-style:normal;font-size:var(--t-d4);color:var(--forest);line-height:1.4;}
 .blog-body strong{color:var(--ink);font-weight:500;}
 
@@ -1512,6 +1567,72 @@ body.nav-hidden .venue-breadcrumb{top:0;}
 .venue-breadcrumb a:hover{color:var(--ink);border-bottom-color:var(--accent);}
 .venue-breadcrumb .sep{color:var(--line);}
 .venue-breadcrumb .current{color:var(--ink);}
+
+/* PRICING: PROCESS AS ROWS (2026-09-24). Number and timing on the left, the
+   step on the right, hairline between. The timeline it replaces ran down a
+   narrow column and left more than half the page empty. */
+.proc-head{max-width:46ch;margin-bottom:clamp(34px,4vw,54px);}
+.proc-intro{color:var(--fg2);font-size:var(--t-lede);line-height:1.6;margin-top:14px;}
+.proc-list{list-style:none;margin:0;padding:0;}
+.proc-row{display:grid;grid-template-columns:auto minmax(0,190px) minmax(0,1fr);
+  gap:clamp(16px,2.4vw,40px);align-items:start;
+  padding:clamp(20px,2.4vw,30px) 0;border-top:1px solid var(--line);}
+.proc-list > .proc-row:last-child{border-bottom:1px solid var(--line);}
+.proc-n{font-family:var(--d);font-size:var(--t-d4);line-height:1.25;color:var(--mute);
+  font-variant-numeric:tabular-nums;}
+.proc-row .proc-when{font-size:var(--t-tag);letter-spacing:.12em;text-transform:uppercase;
+  color:var(--mute);line-height:1.5;padding-top:.35em;}
+.proc-body h3{font-family:var(--d);font-weight:430;font-optical-sizing:auto;
+  font-size:var(--t-d4);letter-spacing:-.01em;line-height:1.2;}
+.proc-body p{margin-top:8px;font-size:var(--t-sm);color:var(--fg2);line-height:1.65;max-width:56ch;}
+.proc-phase{list-style:none;margin:clamp(34px,4vw,52px) 0 2px;
+  font-size:var(--t-tag);letter-spacing:.14em;text-transform:uppercase;color:var(--accent);}
+.proc-list > .proc-phase:first-child{margin-top:0;}
+@media(max-width:760px){
+  .proc-row{grid-template-columns:auto minmax(0,1fr);row-gap:6px;}
+  .proc-row .proc-when{grid-column:2;padding-top:0;}
+  .proc-body{grid-column:1 / -1;}
+}
+
+/* What full-service covers. Titles carry it; a body is optional. */
+.incl-grid{display:grid;grid-template-columns:repeat(3,1fr);
+  gap:clamp(20px,2.6vw,34px) clamp(28px,3.4vw,56px);margin-top:clamp(30px,3.6vw,46px);}
+.incl-item{border-top:1px solid var(--line);padding-top:clamp(14px,1.6vw,20px);}
+.incl-item h3{font-family:var(--d);font-weight:430;font-optical-sizing:auto;
+  font-size:var(--t-d4);letter-spacing:-.01em;line-height:1.2;}
+.incl-item p{margin-top:8px;font-size:var(--t-sm);color:var(--fg2);line-height:1.6;}
+@media(max-width:860px){.incl-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:560px){.incl-grid{grid-template-columns:1fr;}}
+
+/* Investment: the figure is the headline. */
+.invest-row{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);
+  gap:clamp(26px,4vw,72px);align-items:start;margin-top:clamp(22px,2.6vw,34px);
+  padding-top:clamp(24px,3vw,38px);border-top:1px solid var(--line);}
+.invest-amount{font-family:var(--d);font-weight:430;font-optical-sizing:auto;
+  font-size:clamp(38px,6.2vw,86px);line-height:1;letter-spacing:-.03em;color:var(--ink);}
+.invest-label{margin-top:12px;font-size:var(--t-sm);color:var(--mute);}
+.invest-note h2{font-family:var(--d);font-weight:430;font-optical-sizing:auto;
+  font-size:var(--t-d3);letter-spacing:-.015em;line-height:1.12;}
+.invest-note p{margin-top:14px;font-size:var(--t-sm);color:var(--fg2);line-height:1.7;max-width:52ch;}
+@media(max-width:780px){.invest-row{grid-template-columns:1fr;gap:clamp(20px,4vw,28px);}}
+
+/* PORTFOLIO INDEX: TWO UP (2026-09-24). Was one full-width band per wedding,
+   which put ten weddings on a page where no two are ever on screen at once.
+   Two columns means you compare, which is what an index is for. */
+.pf-grid{max-width:var(--content-max);margin:0 auto;padding:0 var(--pad);
+  display:grid;grid-template-columns:repeat(2,1fr);
+  gap:clamp(44px,5vw,78px) clamp(24px,3vw,44px);}
+.pf-card-pic{margin:0 0 clamp(14px,1.6vw,20px);overflow:hidden;
+  border-radius:var(--r-img);aspect-ratio:4/5;background:var(--bg2);}
+.pf-card-pic img{width:100%;height:100%;object-fit:cover;display:block;
+  transition:transform .6s cubic-bezier(.2,.7,.3,1);}
+.pf-card:hover .pf-card-pic img{transform:scale(1.025);}
+.pf-card-name{font-family:var(--d);font-weight:430;font-optical-sizing:auto;
+  font-size:var(--t-d4);line-height:1.15;letter-spacing:-.01em;color:var(--ink);}
+.pf-card-venue{margin-top:5px;font-size:var(--t-sm);color:var(--mute);}
+@media(max-width:620px){
+  .pf-grid{grid-template-columns:1fr;gap:clamp(34px,7vw,48px);}
+}
 
 /* FAQ: heading rail left, accordion right (2026-09-23). Across the full
    measure the questions were short lines on very long rules, and the heading
@@ -1547,12 +1668,12 @@ body.nav-hidden .venue-breadcrumb{top:0;}
    The credit sits under the picture, quiet: most of what lands here will be
    the venue's own photography used with permission, and the promise on
    /terms is that every photograph on the site is credited. */
-.venue-pic{max-width:var(--content-max);margin:clamp(28px,4vw,48px) auto 0;padding:0 var(--pad);}
-.venue-pic img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block;
+.page-pic{max-width:var(--content-max);margin:clamp(28px,4vw,48px) auto 0;padding:0 var(--pad);}
+.page-pic img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block;
   border-radius:var(--r-img);background:var(--bg2);}
-.venue-pic-credit{margin-top:10px;font-size:var(--t-tag);letter-spacing:.09em;
+.page-pic-credit{margin-top:10px;font-size:var(--t-tag);letter-spacing:.09em;
   text-transform:uppercase;color:var(--mute);}
-@media(max-width:760px){.venue-pic img{aspect-ratio:3/2;}}
+@media(max-width:760px){.page-pic img{aspect-ratio:3/2;}}
 .venue-intro{display:grid;grid-template-columns:.82fr 1.18fr;gap:clamp(28px,5vw,64px);align-items:start;}
 .venue-intro .vi-head h2{font-family:var(--d);font-weight:430;font-optical-sizing:auto;font-size:var(--t-d3);letter-spacing:-.02em;line-height:1.08;margin-top:12px;color:var(--ink);}
 .venue-intro .vi-body p{font-size:1rem;line-height:1.72;color:var(--fg2);margin-bottom:16px;}
@@ -1594,7 +1715,7 @@ body.nav-hidden .venue-breadcrumb{top:0;}
 .cta-section .label{display:block;}
 .cta-section h2{font-family:var(--d);font-weight:430;font-optical-sizing:auto;font-size:var(--t-d2);letter-spacing:-.02em;line-height:1.05;margin:12px 0;}
 .cta-section p{max-width:46ch;margin:0 auto 28px;color:var(--fg2);}
-.btn-primary{display:inline-flex;align-items:center;gap:9px;background:var(--accent);color:var(--paper);padding:16px 30px;border-radius:var(--r-img);font-size:var(--t-ui);letter-spacing:.03em;font-weight:500;transition:.25s;border:0;cursor:pointer;font-family:var(--b);}
+.btn-primary{display:inline-flex;align-items:center;gap:9px;background:var(--ink);color:var(--paper);padding:16px 30px;border-radius:var(--r-img);font-size:var(--t-ui);letter-spacing:.03em;font-weight:500;transition:.25s;border:0;cursor:pointer;font-family:var(--b);}
 .btn-primary:hover{transform:translateY(-2px);filter:brightness(1.07);}
 
 /* ---------- VENUES — words + linked list (left) · Tahoe map (right) ---------- */
@@ -2046,27 +2167,38 @@ body.nav-hidden .venue-breadcrumb{top:0;}
   padding:calc(var(--nav-h) + clamp(24px,3vw,52px)) var(--pad) 0;}
 .wp-pic{margin:0;overflow:hidden;border-radius:var(--r-img);aspect-ratio:16/9;background:var(--bg2);}
 .wp-pic img{width:100%;height:100%;object-fit:cover;display:block;}
-.wp-words{padding-top:var(--sp-m);text-align:center;}
+/* NAME ABOVE THE PHOTOGRAPH (2026-09-24), set flush left with the venue and
+   town on one quiet line under it. Centred, the name floated over a picture
+   it had no edge in common with. */
+.wp-words{padding:0 0 clamp(22px,2.6vw,36px);text-align:left;}
 .wp-name{font-family:var(--d);font-weight:430;font-optical-sizing:auto;
   font-size:var(--t-d1);line-height:1.02;letter-spacing:-.022em;}
-/* THE FACTS ARE A BAR, NOT A CLUSTER (Josh, 2026-09-23). Centred, four facts
-   of four different lengths made four ragged blocks with no edge in common,
-   and the palette — always the longest — dragged the row off balance. Four
-   columns under a rule share one left edge and one baseline, the way the
-   credits block further down the page already reads. The name above stays
-   centred: it is the title, and it is what the home page does.
+.wp-where{margin-top:clamp(10px,1.2vw,16px);font-size:var(--t-lede);color:var(--fg2);}
+
+/* THE STORY AND THE FACTS SHARE A ROW (2026-09-24). The facts were a
+   four-column bar under the name; as a stacked list beside the prose each one
+   is a label and a value on one line, which is how you read a spec, and the
+   prose keeps a real measure instead of running the full width.
 
    A dl is allowed to group each pair in a div, which is what lets an unfilled
    fact hide and unhide as one thing. */
-.wp-facts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));
-  gap:clamp(20px,2.4vw,32px) clamp(20px,2.6vw,44px);text-align:left;
-  margin-top:clamp(26px,3.2vw,44px);padding-top:clamp(20px,2.4vw,30px);
-  border-top:1px solid var(--line);}
-.wp-facts dt{font-size:var(--t-tag);letter-spacing:.17em;text-transform:uppercase;
-  color:var(--mute);margin-bottom:8px;}
-.wp-facts dd{color:var(--ink);font-size:var(--t-sm);line-height:1.5;}
-@media(max-width:820px){ .wp-facts{grid-template-columns:repeat(2,minmax(0,1fr));} }
-@media(max-width:460px){ .wp-facts{grid-template-columns:1fr;} }
+.wp-story-grid{display:grid;grid-template-columns:1.35fr .95fr;
+  gap:clamp(32px,5vw,90px);align-items:start;}
+.wp-prose{min-width:0;}
+.wp-facts{display:block;margin:0;}
+/* The label column fits the longest label, PHOTOGRAPHY, which at tag size
+   with .14em of tracking measures ~104px. Below that it ran under its own
+   value. It wraps rather than overflowing if a longer one ever lands. */
+.wp-facts > div{display:grid;grid-template-columns:minmax(104px,auto) 1fr;
+  gap:clamp(14px,1.8vw,26px);align-items:baseline;
+  padding:clamp(13px,1.5vw,17px) 0;border-top:1px solid var(--line);}
+.wp-facts > div:last-child{border-bottom:1px solid var(--line);}
+.wp-facts dt{font-size:var(--t-tag);letter-spacing:.14em;text-transform:uppercase;
+  color:var(--mute);margin:0;line-height:1.45;}
+.wp-facts dd{margin:0;color:var(--ink);font-size:var(--t-sm);line-height:1.5;}
+@media(max-width:900px){
+  .wp-story-grid{grid-template-columns:1fr;gap:clamp(30px,5vw,44px);}
+}
 @media(max-width:820px){ .wp-pic{aspect-ratio:4/5;} }
 
 /* The story used to be the left column of a two-column row, with the fact
@@ -2074,7 +2206,7 @@ body.nav-hidden .venue-breadcrumb{top:0;}
    row gone the prose would have run the full 1500px measure. It gets a
    reading width of its own instead, centred under a centred opening. */
 .wp-story{padding:clamp(56px,7vw,110px) var(--pad-col) clamp(50px,6vw,86px);}
-.wp-story > div{max-width:72ch;margin-inline:auto;}
+.wp-story .wp-prose{max-width:62ch;}
 .wp-story .wp-lede{font-family:var(--d);font-size:var(--t-d3);line-height:1.28;
   letter-spacing:-.01em;color:var(--ink);}
 .wp-story p + p{margin-top:18px;color:var(--fg2);font-size:1rem;line-height:1.7;}

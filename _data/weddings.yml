@@ -106,36 +106,58 @@ process:
 # instead and the template accepts both.
 pricing:
   label: Investment
+  # ONE FIGURE, NOT A LADDER (2026-09-24).
+  #
+  # The standing call from 2026-09-21 is no price and no minimum anywhere on
+  # the site except a venue's typical 100-guest range. This page was still
+  # publishing a three-tier ladder: an $8,000 full-service minimum, a $5,000
+  # a la carte line, and a $20,000+ top tier. A minimum and an entry price are
+  # precisely the two things that call excluded, so they are gone and the one
+  # figure it does allow is what remains.
+  #
+  # Retired here, kept so the history is not lost:
+  #   "$8,000"    Our full-service minimum
+  #     entry_note: Smaller celebrations start at $5,000 a la carte:
+  #                 designer's choice in your palette, without installations.
+  #   "$20,000+"  Larger weddings and multiple installations
+  #   The three tier photographs went with them.
+  #
+  # Josh is doing a pricing pass. Replace `figure` and `figure_label` and the
+  # section follows; blank `figure` and the block stops rendering entirely,
+  # which is the no-number state if that is where the pass lands.
   heading: What it costs.
+  figure: "$12,000 to $20,000"
+  figure_label: A typical 100 guest wedding
   note: Every wedding is quoted on its own. What moves the number most is the
     scale of the ceremony installation and how much of the room you want
     designed, not the number of bouquets.
-  tiers:
-  - amount: $8,000
-    label: Our full-service minimum
-    entry_note: 'Smaller celebrations start at $5,000 a la carte: designer''s choice
-      in your palette, without installations.'
-    photo: camille-max/camille-max-17.jpg
-    alt: Couple on a Lake Tahoe beach beside tall purple and white ceremony florals
-  - amount: $12,000 to $20,000
-    label: A typical 100 guest wedding
-    badge: Where most land
-    lead: true
-    photo: katie-james/katie-james-04.jpg
-    alt: Long reception table at The Miner's Foundry running the length of the room,
-      set with candles and seasonal arrangements
-  - amount: $20,000+
-    label: Larger weddings and multiple installations
-    photo: lynn-aaron/lynn-aaron-27.jpg
-    alt: Suspended greenery installations hanging above the reception at Palisades
-      High Camp
 
-# Reviews are HIDDEN, not deleted. `show: false` stops the section rendering;
-# the 13 quotes stay in _data/testimonials.yml and still feed the Review and
-# aggregateRating JSON-LD in _layouts/redesign.html. Set show: true to bring
-# the section back. NOTE: the home page's "Read more reviews" link points at
-# /weddings#reviews and is hidden in step with this, so if you turn reviews
-# back on, restore home.yml `testimonial.link` too.
+# What full-service covers. The six titles are what the /weddings FAQ already
+# lists in one sentence ("consultation, design proposal and mood board,
+# ceremony installation, bridal and party florals, reception centerpieces,
+# environmental florals, and full day-of setup and breakdown"), broken out so
+# they can be read rather than parsed.
+#
+# `body` is optional and blank on purpose: these titles are self-explanatory,
+# and writing a paragraph for each would have put words in Brittany's mouth.
+# Type one in (CMS or /edit) and it renders under its title.
+included:
+  label: What's included
+  heading: Full-service means all of it.
+  items:
+    - title: Bridal & party florals
+      body: ""
+    - title: Ceremony installation
+      body: ""
+    - title: Reception centerpieces
+      body: ""
+    - title: Environmental florals
+      body: ""
+    - title: Setup & breakdown
+      body: ""
+    - title: Mood board & proposal
+      body: ""
+
 testimonials:
   show: false
   label: What couples say

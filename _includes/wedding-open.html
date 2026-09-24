@@ -48,21 +48,22 @@ the index it belongs to. {%- endcomment -%}
 
 <header class="wp-open">
   {%- comment -%}
-    THE PHOTOGRAPH FIRST, THE NAME UNDER IT (Josh, 2026-09-23). This was a
-    full-bleed plate with the couple's name reversed out over the bottom of the
-    picture and the venue in the opposite corner. That is the look the redesign
-    is leaving behind, and it is the one place left on the site where type sat
-    on a photograph. It now opens the way the home page opens: a contained
-    photograph with a radius, then the name at reading distance underneath, and
-    the facts about the wedding in a row beneath that.
+    THE NAME ABOVE THE PHOTOGRAPH (Josh, 2026-09-24). This ran photo-then-name
+    for a day. Name first reads better here because the breadcrumb and the
+    couple's name orient you before the picture rather than after it, and the
+    venue line under the name answers "where is this" while you are looking at
+    the place rather than three screens later.
 
-    data-ed-hero sends an editor click on the opening photo to the Photos
-    manager, the same place a gallery photo click goes. It moves with the
-    figure. This image's path is built from the page's hero_photo front matter,
-    so it never appears literally in the page source and the generic swap flow
-    can't find anything to rewrite.
+    The venue and town are NOT editable here. They render from the same
+    portfolio_meta fields as the fact rows below, and two edit targets for one
+    value is how two fields start disagreeing. Edit them in the facts.
   {%- endcomment -%}
-  <figure class="wp-pic" data-ed-hero="{{ include.slug }}">
+  <div class="wp-words">
+    <h1 class="wp-name"><span data-ed="portfolio_meta:{{ include.slug }}.name">{{ m.name }}</span></h1>
+    {%- assign town_ = m.place | strip -%}
+    <p class="wp-where">{{ m.venue }}{% if town_ != "" %}, {{ m.place }}{% endif %}</p>
+  </div>
+<figure class="wp-pic" data-ed-hero="{{ include.slug }}">
     {%- if wideFile -%}
     <picture>
       <source media="(min-width:1024px)" srcset="{{ site.baseurl }}{{ widePath }}">
@@ -72,51 +73,10 @@ the index it belongs to. {%- endcomment -%}
     <img src="{{ site.baseurl }}{{ heroPath }}" alt="{{ m.name }} wedding flowers at {{ m.venue }}{% if m.place != '' %}, {{ m.place }}{% endif %}" loading="eager" fetchpriority="high" sizes="(min-width:1500px) 1500px, 100vw">
     {%- endif -%}
   </figure>
-  <div class="wp-words">
-    {%- comment -%}
-      The couple's name renders from portfolio_meta rather than the include
-      param so there is one field behind every place it appears. Editing it
-      here also rewrites the page's own title/seo_title (syncWeddingName in
-      editor.js) — those drive the browser tab and the Google result, and a
-      rename that only reached the visible heading left the two disagreeing.
-    {%- endcomment -%}
-    <h1 class="wp-name"><span data-ed="portfolio_meta:{{ include.slug }}.name">{{ m.name }}</span></h1>
-    {%- comment -%}
-      The facts that used to sit in a panel beside the story, moved up to where
-      a reader asks for them: immediately under the name, before the prose.
-      The panel is gone from .wp-story rather than duplicated here.
-
-      Every row keeps its editable span. An empty one is .ed-empty — hidden
-      from visitors, revealed in /edit with its hint — so a fact that has never
-      been filled in is still reachable from the editor instead of needing a
-      commit. Liquid counts "" as truthy, so these are compared rather than
-      tested with a plain `if`.
-
-      Photography is NOT a new field. It reads credits.yml, where the
-      photographer has always been stored and where the credits block at the
-      bottom of the page also reads it: two fields for one fact would have
-      started disagreeing the first time either was edited. data-ed addresses
-      it by file and dot path like any other, so the editor needed no change.
-    {%- endcomment -%}
-    {%- assign pal = m.palette | strip -%}
-    {%- assign ndots = m.dots | size -%}
-    {%- assign town = m.place | strip -%}
-    {%- assign palempty = false -%}
-    {%- if pal == "" and ndots == 0 -%}{%- assign palempty = true -%}{%- endif -%}
-    {%- assign shooter = site.data.credits[include.slug].photography -%}
-    {%- assign shotempty = true -%}
-    {%- if shooter.name and shooter.name != "" -%}{%- assign shotempty = false -%}{%- endif -%}
-    <dl class="wp-facts">
-      <div><dt>Venue</dt><dd><span data-ed="portfolio_meta:{{ include.slug }}.venue">{{ m.venue }}</span></dd></div>
-      <div{% if town == "" %} class="ed-empty"{% endif %}><dt>Town</dt><dd><span data-ed="portfolio_meta:{{ include.slug }}.place" data-ed-hint="Add the town">{{ m.place }}</span></dd></div>
-      <div{% if palempty %} class="ed-empty"{% endif %}><dt>Palette</dt><dd><span data-ed="portfolio_meta:{{ include.slug }}.palette" data-ed-hint="Add the palette">{{ m.palette }}</span>
-        {%- if ndots > 0 -%}<span class="wp-dots" aria-hidden="true">{% for d in m.dots %}<i style="background:{{ d }}"></i>{% endfor %}</span>{%- endif -%}</dd></div>
-      <div{% if shotempty %} class="ed-empty"{% endif %}><dt>Photography</dt><dd><span data-ed="credits:{{ include.slug }}.photography.name" data-ed-hint="Add the photographer">{{ shooter.name }}</span></dd></div>
-    </dl>
-  </div>
 </header>
 
 <section class="wp-story">
+  <div class="wp-story-grid">
   {%- comment -%}
     The display line is the story's own first sentence, split out rather than
     stored twice: a separate `opener` field drifted out of sync with
@@ -131,7 +91,7 @@ the index it belongs to. {%- endcomment -%}
     re-splits on the way back in (renderStory), so what it paints matches this.
   {%- endcomment -%}
   {%- assign story = site.data.portfolio[include.slug] | strip -%}
-  <div data-ed-story data-ed="portfolio:{{ include.slug }}">
+    <div class="wp-prose" data-ed-story data-ed="portfolio:{{ include.slug }}">
     {%- comment -%}
       Sentence one, found by splitting on ". " — except that "Dr. Seuss" is not
       two sentences. A chunk only closes the opener if it doesn't end in a known
@@ -174,5 +134,21 @@ the index it belongs to. {%- endcomment -%}
       <p class="wp-lede">{% include em.html t=opener %}.</p>
       <p>{% include em.html t=rest %}</p>
     {%- endif -%}
+  </div>
+    {%- assign pal = m.palette | strip -%}
+    {%- assign ndots = m.dots | size -%}
+    {%- assign town = m.place | strip -%}
+    {%- assign palempty = false -%}
+    {%- if pal == "" and ndots == 0 -%}{%- assign palempty = true -%}{%- endif -%}
+    {%- assign shooter = site.data.credits[include.slug].photography -%}
+    {%- assign shotempty = true -%}
+    {%- if shooter.name and shooter.name != "" -%}{%- assign shotempty = false -%}{%- endif -%}
+    <dl class="wp-facts">
+      <div><dt>Venue</dt><dd><span data-ed="portfolio_meta:{{ include.slug }}.venue">{{ m.venue }}</span></dd></div>
+      <div{% if town == "" %} class="ed-empty"{% endif %}><dt>Town</dt><dd><span data-ed="portfolio_meta:{{ include.slug }}.place" data-ed-hint="Add the town">{{ m.place }}</span></dd></div>
+      <div{% if palempty %} class="ed-empty"{% endif %}><dt>Palette</dt><dd><span data-ed="portfolio_meta:{{ include.slug }}.palette" data-ed-hint="Add the palette">{{ m.palette }}</span>
+        {%- if ndots > 0 -%}<span class="wp-dots" aria-hidden="true">{% for d in m.dots %}<i style="background:{{ d }}"></i>{% endfor %}</span>{%- endif -%}</dd></div>
+      <div{% if shotempty %} class="ed-empty"{% endif %}><dt>Photography</dt><dd><span data-ed="credits:{{ include.slug }}.photography.name" data-ed-hint="Add the photographer">{{ shooter.name }}</span></dd></div>
+    </dl>
   </div>
 </section>

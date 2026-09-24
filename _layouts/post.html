@@ -22,12 +22,8 @@ layout: redesign
 
 <!-- Featured Image (if present) -->
 {% if page.featured_image %}
-<img
-  class="blog-hero-img"
-  src="{{ page.featured_image }}"
-  alt="{{ page.title }}"
-  loading="eager"
->
+<img class="blog-hero-img" src="{{ page.featured_image }}" alt="{{ page.title }}"
+     width="1100" height="733" loading="eager" fetchpriority="high">
 {% endif %}
 
 <!-- Blog Body -->

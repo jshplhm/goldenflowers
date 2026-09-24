@@ -12,7 +12,7 @@ featured_image: /assets/images/blog/emma-and-ross-lake-tahoe-wedding-flowers/emm
 <div class="image-gallery-wrapper">
 
   
-   <img src="/assets/images/blog/emma-and-ross-lake-tahoe-wedding-flowers/emma-and-ross-lake-tahoe-wedding-flowers-01.jpg" alt="Emma and Ross wedding flowers by Golden Flowers at River Highlands Ranch, Sierra Nevada" />
+   
   
 
   

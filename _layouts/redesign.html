@@ -181,51 +181,6 @@
    the slideshow itself (see the comment in index.md for why). Nothing else on
    the site used it: every other page has always had a single .hero image. */
 
-/* Portfolio phone strip: the carousel indicator.
-   Copied from the one everybody already knows: five dot positions in a fixed
-   window, the strip sliding underneath so the active dot walks to the middle
-   and stays there, and a dot on a window edge with more beyond it shrunk to
-   say there is more that way. The per-frame count is rendered into each slide
-   at build time, so nothing here has to position it.
-   Index comes from scrollLeft rather than an observer, so a fling lands on
-   the right dot. Inert above 900px, where the indicator is display:none. */
-(function(){
-  var WIN = 5, STEP = 12; /* 6px dot + 6px gap */
-  document.querySelectorAll('.pfx-bd').forEach(function(bd){
-    var row=bd.querySelector('.pfx-row'), strip=bd.querySelector('.pfx-dots-in');
-    if(!row||!strip) return;
-    var cards=row.querySelectorAll('.pfx-ph'), n=cards.length;
-    if(n<2) return;
-    var num=bd.querySelector('.pfx-num b');
-    for(var k=0;k<n;k++) strip.appendChild(document.createElement('i'));
-    var dots=strip.children, cur=-1, ticking=false;
-    function paint(i){
-      if(i===cur) return; cur=i;
-      if(num) num.textContent=i+1;
-      var start = n<=WIN ? 0 : Math.min(Math.max(i-2,0), n-WIN);
-      strip.style.transform='translateX(' + (-start*STEP) + 'px)';
-      for(var k=0;k<n;k++){
-        var pos=k-start, cls=(k===i?'on':'');
-        if(n>WIN){
-          if(pos===0 && start>0) cls+=' edge';
-          else if(pos===WIN-1 && start+WIN<n) cls+=' edge';
-          else if(pos<0 || pos>WIN-1) cls+=' far';
-        }
-        dots[k].className=cls.trim();
-      }
-    }
-    function update(){
-      var w=cards[0].getBoundingClientRect().width||1;
-      paint(Math.min(Math.max(Math.round(row.scrollLeft/w),0), n-1));
-      ticking=false;
-    }
-    row.addEventListener('scroll',function(){
-      if(!ticking){ requestAnimationFrame(update); ticking=true; }
-    },{passive:true});
-    paint(0);
-  });
-})();
-
 /* Mobile menu: any [data-menu-toggle] toggles; links + Esc close. */
 (function(){
   var toggles=document.querySelectorAll('[data-menu-toggle]'); if(!toggles.length) return;

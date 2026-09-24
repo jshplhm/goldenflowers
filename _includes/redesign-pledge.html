@@ -9,7 +9,7 @@
 
   <div class="pledge-grid">
     {%- for item in site.data.pledge.items %}
-    <div class="pledge-item"><h4><span data-ed="pledge:items.{{ forloop.index0 }}.title">{{ item.title }}</span></h4><p>{% include em.html t=item.body k="pledge:items" i=forloop.index0 f="body" %}</p></div>
+    <div class="pledge-item"><span class="pledge-n" aria-hidden="true">{{ forloop.index | prepend: "0" | slice: -2, 2 }}</span><h4><span data-ed="pledge:items.{{ forloop.index0 }}.title">{{ item.title }}</span></h4><p>{% include em.html t=item.body k="pledge:items" i=forloop.index0 f="body" %}</p></div>
     {%- endfor %}
   </div>
 

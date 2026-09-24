@@ -24,7 +24,9 @@ canonical_url: https://goldenflorals.com/privacy
 </header>
 
 <section class="block tight">
-  <div class="prose legal">
+  <div class="legal-wrap">
+    {% include legal-toc.html %}
+    <div class="prose legal">
     <p class="meta">Last updated August 11, 2026</p>
 
     <p>Golden Flowers is a floral design studio based in Incline Village, Nevada. This policy covers goldenflorals.com and the inquiries we receive through it. Questions about anything here can go to <a href="mailto:brittany@goldenflorals.com">brittany@goldenflorals.com</a> or (530) 557-7689.</p>
@@ -77,5 +79,6 @@ canonical_url: https://goldenflorals.com/privacy
     <a href="mailto:brittany@goldenflorals.com">brittany@goldenflorals.com</a><br>
     <a href="tel:5305577689">(530) 557-7689</a></p>
     <p class="meta">Our studio is by appointment only and is not open to walk-in visitors.</p>
+    </div>
   </div>
 </section>

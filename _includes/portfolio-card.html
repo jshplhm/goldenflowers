@@ -1,0 +1,28 @@
+{%- comment -%}
+  One wedding on the portfolio index, as a card. Params: w (a record from
+  _data/portfolio_meta.yml).
+
+  The index used to be one full-width band per wedding, three photos each.
+  Ten weddings that way is a very long page on which no two weddings are ever
+  on screen together, which is the one thing a portfolio index is for.
+
+  The cover is band[0], the wedding's first photo, and it keeps the .pfx-ph
+  frame wrapper so /edit's photo swap still works: the editor finds the
+  closest [data-ed-band], takes the frame's index and writes it back to
+  portfolio_meta[slug].band[index]. Cover and swap therefore address the same
+  slot. Swapping in a portrait improves the crop, since the card is 4:5.
+{%- endcomment -%}
+{%- assign m = include.w -%}
+{%- assign slug = m.slug -%}
+{%- assign n = m.band[0] | default: '01' -%}
+{%- assign src = '/assets/images/portfolio/' | append: slug | append: '/' | append: slug | append: '-' | append: n | append: '.jpg' -%}
+<article class="pf-card" data-ed-band="{{ slug }}">
+  <a href="{{ site.baseurl }}/portfolio/{{ slug }}">
+    <figure class="pfx-ph pf-card-pic">
+      <img src="{{ site.baseurl }}{{ src }}" alt="{{ m.name }} wedding flowers at {{ m.venue }}{% if m.place and m.place != '' %}, {{ m.place }}{% endif %}"
+           width="900" height="1125" loading="lazy" sizes="(max-width:760px) 100vw, 48vw">
+    </figure>
+    <h2 class="pf-card-name">{{ m.name }}</h2>
+    <p class="pf-card-venue">{{ m.venue }}{% if m.place and m.place != "" %}, {{ m.place }}{% endif %}</p>
+  </a>
+</article>

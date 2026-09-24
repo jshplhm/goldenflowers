@@ -37,13 +37,12 @@ redirect_from:
 </header>
 
 {%- comment -%}
-  One band per wedding, ordered by _data/portfolio_meta.yml. Adding or retiring
-  a wedding is a data edit: the numbering, the width rotation and the phone
-  swipe strip all follow from the list.
+  Two up, in the order of _data/portfolio_meta.yml. Ten weddings makes a 2x5
+  grid: adding or retiring one is still a data edit, and the grid reflows.
 {%- endcomment -%}
-<div class="pfx-bands">
+<div class="pf-grid">
 {%- for w in site.data.portfolio_meta -%}
-{% include portfolio-band.html w=w %}
+{% include portfolio-card.html w=w %}
 {%- endfor -%}
 </div>
 
