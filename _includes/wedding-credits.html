@@ -41,8 +41,11 @@ appear empty and can never be kept away by a credit it does not print.
 {%- if realCount > 0 -%}
 <section class="wp-credits">
   <div class="wp-ch">
-    <h2>{{ wp.credits_heading }}</h2>
-    <p>{{ wp.credits_note }}</p>
+    {%- comment -%} Editable in /edit as well as in Pages CMS (2026-09-24). It
+    was CMS-only, so the one line on this page that can go stale as the credits
+    fill in was the one line you could not fix from the page it is on. {%- endcomment -%}
+    <h2><span data-ed="portfolio_page:wedding.credits_heading">{{ wp.credits_heading }}</span></h2>
+    <p><span data-ed="portfolio_page:wedding.credits_note">{{ wp.credits_note }}</span></p>
   </div>
   {%- if leadCount > 0 -%}
   <dl class="wp-lead">
