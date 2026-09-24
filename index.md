@@ -221,7 +221,7 @@ the moment one pale photo wants it and another does not, the machinery is here.
     <figure class="pb-pic"><img src="{{ site.baseurl }}/assets/images/portfolio/lynn-aaron/lynn-aaron-02.jpg"{% include img-dims.html path="/assets/images/portfolio/lynn-aaron/lynn-aaron-02.jpg" %} loading="lazy" alt="Guests seated along a long banquet table run with greenery and candles, caught mid-dinner"></figure>
   </div>
   <div class="pb-row flip">
-    <figure class="pb-pic"><img src="{{ site.baseurl }}/assets/images/portfolio/jenna-cal/jenna-cal-09.jpg"{% include img-dims.html path="/assets/images/portfolio/jenna-cal/jenna-cal-09.jpg" %} loading="lazy" alt="A dark installation of burgundy ranunculus and trailing amaranthus over a black-draped table"></figure>
+    <figure class="pb-pic"><img src="{{ site.baseurl }}/assets/images/portfolio/camille-max/camille-max-30.jpg"{% include img-dims.html path="/assets/images/portfolio/camille-max/camille-max-30.jpg" %} loading="lazy" alt="A dark installation of burgundy ranunculus and trailing amaranthus over a black-draped table"></figure>
     <figure class="pb-pic"><img src="{{ site.baseurl }}/assets/images/portfolio/tori-tucker/tori-tucker-18.jpg"{% include img-dims.html path="/assets/images/portfolio/tori-tucker/tori-tucker-18.jpg" %} loading="lazy" alt="A bouquet of pink garden roses and trailing greenery held against an ivory gown"></figure>
   </div>
 </section>
