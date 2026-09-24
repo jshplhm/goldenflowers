@@ -35,7 +35,7 @@
   name: "Tori & Tucker"
   venue: "North Tahoe Event Center"
   place: "Kings Beach"
-  band: [ "08", "18", "06" ]
+  band: [ "31", "18", "06" ]
   strip: [ "05", "20" ]
   lede: "Pink, green and a little bit whimsical, on the shore of the lake. Garden
     roses and sweet peas against sage linen, styled with an editorial eye."
@@ -95,9 +95,9 @@
   place: "Olympic Valley"
   band: [ "11", "05", "07" ]
   strip: [ "04", "02" ]
-  lede: "A modern wedding in an Olympic Valley meadow, built on the whimsy of
-    Dr. Seuss. Lilac and white against trailing green, in installations that
-    lean and arch rather than stand still."
+  lede: "A modern wedding in an Olympic Valley meadow, built on the whimsy of Dr.
+    Seuss. Lilac and white against trailing green, in installations that lean
+    and arch rather than stand still."
   palette: "Lilac scabiosa, thistle, trailing green amaranthus"
   dots: [ "#c3a3cf", "#f2ecea", "#9db85e", "#5b2a4a", "#d8c7dd" ]
 
@@ -107,9 +107,9 @@
   place: "Incline Village"
   band: [ "24", "03", "01" ]
   strip: [ "06", "08" ]
-  lede: "A classic garden wedding on the lawn at The Chateau, in white, cream
-    and blush. Garden roses and hydrangea kept full and soft, with greenery
-    doing the shaping."
+  lede: "A classic garden wedding on the lawn at The Chateau, in white, cream and
+    blush. Garden roses and hydrangea kept full and soft, with greenery doing
+    the shaping."
   palette: "White garden rose, hydrangea, blush"
   dots: [ "#f6f1e8", "#ecd4cb", "#e0cfae", "#8a9b6e", "#cbb89a" ]
 
@@ -119,9 +119,9 @@
   place: "Nevada City"
   band: [ "01", "16", "06" ]
   strip: [ "08", "02" ]
-  lede: "A romantic soft goth wedding at the National Exchange Hotel. Crimson
-    and oxblood against black velvet, red petals down the aisle, and
-    candlelight on every table."
+  lede: "A romantic soft goth wedding at the National Exchange Hotel. Crimson and
+    oxblood against black velvet, red petals down the aisle, and candlelight on
+    every table."
   palette: "Crimson garden rose, oxblood, black velvet"
   dots: [ "#a8131c", "#5b0d12", "#1b1715", "#b08d3f", "#3a3326" ]
 
