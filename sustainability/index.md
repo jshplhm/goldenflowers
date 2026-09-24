@@ -28,7 +28,7 @@ redirect_from:
 
   <div class="hs-right">
     <div class="hs-stage">
-      <img class="bg" src="{{ site.baseurl }}/assets/images/portfolio/camille-max/camille-max-28.jpg" alt="Couple walking a tree-lined lane, flowers grown on California land by Golden Flowers" style="object-position:center 45%;">
+      <img class="bg" src="{{ site.baseurl }}/assets/images/portfolio/camille-max/camille-max-28.jpg"{% include img-dims.html path="/assets/images/portfolio/camille-max/camille-max-28.jpg" %} alt="Couple walking a tree-lined lane, flowers grown on California land by Golden Flowers" style="object-position:center 45%;">
     </div>
   </div>
 </header>
