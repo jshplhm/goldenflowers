@@ -17,7 +17,11 @@
 {%- assign wp = site.data.portfolio_page.wedding -%}
 {%- comment -%} Find where this wedding sits, then walk forward from it and
 wrap, so the rail begins somewhere different on every page. {%- endcomment -%}
-{%- assign all = site.data.portfolio_meta -%}
+{%- comment -%} Hidden weddings are off this rail as well as off /portfolio: a
+rail that leads to a wedding the portfolio will not show is a route back into
+work we took down. The rotation runs over the visible list, so hiding one does
+not leave a gap in anybody's five. {%- endcomment -%}
+{%- assign all = site.data.portfolio_meta | where_exp: "w", "w.hidden != true" -%}
 {%- assign n = all.size -%}
 {%- assign here = 0 -%}
 {%- for w in all -%}{%- if w.slug == include.slug -%}{%- assign here = forloop.index0 -%}{%- endif -%}{%- endfor -%}

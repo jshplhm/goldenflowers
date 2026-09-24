@@ -449,6 +449,9 @@ function hookFrame() {
   /* The home preview grid marks itself, so the button only exists on the one
    * page it can act on. */
   homeWorkBtn.hidden = !doc.querySelector("[data-ed-homework]");
+  /* Portfolio order is offered in the two places you would reach for it: the
+   * grid it reorders, and a wedding page you have just decided to take down. */
+  pfOrderBtn.hidden = !(doc.querySelector("[data-ed-pforder]") || curGallery);
   lastRange = null;
   doc.addEventListener("selectionchange", () => {
     const sel = doc.getSelection();
@@ -2413,6 +2416,202 @@ venForm.addEventListener("submit", async (e) => {
   } catch (err) {
     venErr.textContent = err.message;
     venErr.style.display = "block";
+  } finally {
+    btn.disabled = false;
+  }
+});
+
+/* ============================================================================
+   PORTFOLIO ORDER — the running order of the weddings on /portfolio, and which
+   of them are shown at all (_data/portfolio_meta.yml).
+
+   ONE FILE, ONE SOURCE. The order IS the order of that YAML sequence, which is
+   already what the portfolio grid loops over, and hiding is a `hidden: true`
+   on the entry. Nothing is duplicated into a second manifest, so these two
+   controls cannot disagree with the page.
+
+   Reordering moves the YAML NODES, not a parsed copy: comments, quoting and
+   flow style ride along with the entry they belong to, so a file that is also
+   hand-edited and CMS-edited survives a drag.
+
+   HIDE IS NOT DELETE. Hiding takes a wedding off the portfolio grid and the
+   "more weddings" rail and noindexes its page; the page stays online so old
+   links still land. Deleting is "Remove wedding" on the wedding's own page,
+   which takes the photographs with it and 301s the address.
+   ========================================================================= */
+
+const pfOrderBtn = document.getElementById("ed-pforder");
+const pfModal = document.getElementById("ed-pf-modal");
+const pfForm = document.getElementById("ed-pf-form");
+const pfList = document.getElementById("ed-pf-list");
+const pfCount = document.getElementById("ed-pf-count");
+const pfErr = document.getElementById("ed-pf-err");
+const pfCancel = document.getElementById("ed-pf-cancel");
+
+let pfRows = [];      /* [{slug, name, venue, num, hidden}] in pending order */
+let pfBefore = "";    /* a signature of the saved state, to detect no-op saves */
+
+function pfSig(rows) {
+  return rows.map((r) => `${r.slug}:${r.hidden ? 1 : 0}`).join("|");
+}
+
+function pfShownCount() {
+  return pfRows.filter((r) => !r.hidden).length;
+}
+
+function renderPfList() {
+  /* The number badge counts VISIBLE positions, because that is what the
+   * portfolio page shows. A hidden wedding gets a dash rather than a number it
+   * does not occupy. */
+  let shown = 0;
+  pfList.innerHTML = pfRows.map((r, i) => {
+    const pos = r.hidden ? "—" : String(++shown);
+    return `<div class="ed-pf-row${r.hidden ? " off" : ""}" draggable="true" data-slug="${escapeHtml(r.slug)}">
+      <span class="ed-pf-n">${pos}</span>
+      <img src="/assets/images/portfolio/${escapeHtml(r.slug)}/${escapeHtml(r.slug)}-${escapeHtml(r.num)}.jpg" alt="" loading="lazy">
+      <span class="ed-pf-txt"><b>${escapeHtml(r.name || r.slug)}</b><span>${escapeHtml(r.venue || "")}</span></span>
+      <span class="ed-pf-acts">
+        <button type="button" data-act="up" title="Move up"${i === 0 ? " disabled" : ""}>&#9650;</button>
+        <button type="button" data-act="down" title="Move down"${i === pfRows.length - 1 ? " disabled" : ""}>&#9660;</button>
+        <button type="button" class="ed-pf-eye${r.hidden ? " off" : ""}" data-act="eye">${r.hidden ? "Hidden" : "Shown"}</button>
+      </span>
+    </div>`;
+  }).join("");
+  const n = pfShownCount();
+  pfCount.textContent = `${n} of ${pfRows.length} shown on the portfolio page.`;
+}
+
+pfList.addEventListener("click", (e) => {
+  const b = e.target.closest("button[data-act]");
+  if (!b) return;
+  const slug = b.closest(".ed-pf-row").getAttribute("data-slug");
+  const from = pfRows.findIndex((r) => r.slug === slug);
+  if (from < 0) return;
+  const act = b.getAttribute("data-act");
+  if (act === "eye") {
+    /* The portfolio page cannot be empty. Nothing else in the editor can empty
+     * it either: "Remove wedding" refuses the last one too. */
+    if (!pfRows[from].hidden && pfShownCount() <= 1) {
+      pfErr.textContent = "That's the last wedding still showing — the portfolio page would be empty.";
+      pfErr.style.display = "block";
+      return;
+    }
+    pfRows[from].hidden = !pfRows[from].hidden;
+  } else {
+    const to = act === "up" ? from - 1 : from + 1;
+    if (to < 0 || to >= pfRows.length) return;
+    pfRows.splice(to, 0, pfRows.splice(from, 1)[0]);
+  }
+  pfErr.style.display = "none";
+  renderPfList();
+});
+
+pfList.addEventListener("dragstart", (e) => {
+  const row = e.target.closest(".ed-pf-row");
+  if (!row) return;
+  e.dataTransfer.effectAllowed = "move";
+  row.classList.add("dragging");
+});
+pfList.addEventListener("dragover", (e) => {
+  e.preventDefault();
+  const dragging = pfList.querySelector(".dragging");
+  const target = e.target.closest(".ed-pf-row");
+  if (!dragging || !target || target === dragging) return;
+  const r = target.getBoundingClientRect();
+  pfList.insertBefore(dragging, e.clientY < r.top + r.height / 2 ? target : target.nextSibling);
+});
+pfList.addEventListener("drop", (e) => e.preventDefault());
+pfList.addEventListener("dragend", () => {
+  const row = pfList.querySelector(".dragging");
+  if (row) row.classList.remove("dragging");
+  const domOrder = [...pfList.querySelectorAll(".ed-pf-row")].map((n) => n.getAttribute("data-slug"));
+  if (domOrder.join() === pfRows.map((r) => r.slug).join()) return;
+  pfRows = domOrder.map((s) => pfRows.find((r) => r.slug === s));
+  renderPfList();
+});
+
+pfOrderBtn.addEventListener("click", async () => {
+  if (!DRYRUN && !token()) { await ensureAuth(); if (!token()) return; }
+  pfErr.style.display = "none";
+  pfModal.hidden = false;
+  pfList.innerHTML = "<p>Loading…</p>";
+  pfCount.textContent = "";
+  try {
+    const { doc } = await readMetaDoc();
+    const all = doc.toJS() || [];
+    pfRows = all.map((w) => ({
+      slug: w.slug,
+      name: w.name,
+      venue: w.venue,
+      num: (w.band && w.band[0]) || "01",
+      hidden: w.hidden === true,
+    }));
+    pfBefore = pfSig(pfRows);
+    renderPfList();
+  } catch (err) {
+    pfErr.textContent = err.message;
+    pfErr.style.display = "block";
+  }
+});
+
+pfCancel.addEventListener("click", () => { pfModal.hidden = true; });
+
+pfForm.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  pfErr.style.display = "none";
+  if (pfShownCount() < 1) {
+    pfErr.textContent = "At least one wedding has to stay shown.";
+    pfErr.style.display = "block";
+    return;
+  }
+  const btn = pfForm.querySelector("button[type=submit]");
+  btn.disabled = true;
+  try {
+    /* Re-read rather than trusting what the modal loaded: the file may have
+     * moved under us (Pages CMS, a second tab, a New wedding in between), and
+     * writing a stale sequence would silently drop whatever arrived. */
+    const { doc } = await readMetaDoc();
+    const seq = doc.contents;
+    if (!seq || !seq.items) throw new Error("portfolio_meta.yml is not a list any more — stopping rather than rewriting it.");
+
+    const bySlug = new Map();
+    seq.items.forEach((node) => {
+      const slug = node.get ? node.get("slug") : null;
+      if (slug) bySlug.set(String(slug), node);
+    });
+    const known = new Set(pfRows.map((r) => r.slug));
+    if (bySlug.size !== known.size || [...known].some((s) => !bySlug.has(s))) {
+      throw new Error("The portfolio changed while this was open. Close and reopen Portfolio order, then try again.");
+    }
+
+    pfRows.forEach((r) => {
+      const node = bySlug.get(r.slug);
+      /* `hidden` is written only when true. An entry that is shown carries no
+       * flag at all, which keeps the file readable and means the default state
+       * is the absence of anything rather than a line saying false. */
+      if (r.hidden) node.set("hidden", true);
+      else if (node.has && node.has("hidden")) node.delete("hidden");
+    });
+    /* Move the nodes themselves so each entry's comments and flow style follow
+     * it. `spaceBefore` is re-applied because it is what puts the blank line
+     * between weddings, and the first entry must not carry one. */
+    seq.items = pfRows.map((r) => bySlug.get(r.slug));
+    seq.items.forEach((node, i) => { node.spaceBefore = i > 0; });
+
+    const hid = pfRows.filter((r) => r.hidden).map((r) => r.name || r.slug);
+    const msg = hid.length
+      ? `Set the portfolio order via inline editor (hidden: ${hid.join(", ")})`
+      : "Set the portfolio order via inline editor";
+    await commitFiles([{ path: META_PATH, text: doc.toString() }], msg);
+
+    pfModal.hidden = true;
+    statusEl.className = "ed-status ok";
+    statusEl.textContent = DRYRUN
+      ? "Dry run done — nothing committed"
+      : "✓ Portfolio order saved — the site updates in about two minutes.";
+  } catch (err) {
+    pfErr.textContent = err.message;
+    pfErr.style.display = "block";
   } finally {
     btn.disabled = false;
   }

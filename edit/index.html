@@ -146,6 +146,29 @@ sitemap: false
     .ed-hw-slot .ed-hw-cap{font-size:.76rem;color:var(--ed-mute);margin-top:5px;line-height:1.35;}
     .ed-hw-slot .ed-hw-cap b{display:block;color:#222;font-size:.82rem;}
     @media(max-width:560px){.ed-hw-slots{grid-template-columns:1fr;}}
+    /* portfolio order: drag to reorder, and a show/hide switch per wedding */
+    .ed-pf-list{display:flex;flex-direction:column;gap:8px;margin:14px 0 6px;overflow-y:auto;max-height:min(56vh,460px);}
+    .ed-pf-row{display:flex;align-items:center;gap:12px;padding:8px 10px;border:1px solid var(--ed-line);
+      border-radius:8px;background:#fff;cursor:grab;}
+    .ed-pf-row.dragging{opacity:.4;}
+    .ed-pf-row.off{background:#fafafa;}
+    /* Dimmed, not struck through or greyed to illegibility: a hidden wedding is
+       still one you have to be able to read in order to find it again. */
+    .ed-pf-row.off img,.ed-pf-row.off .ed-pf-txt{opacity:.45;}
+    .ed-pf-n{width:24px;text-align:right;color:var(--ed-mute);font-size:.78rem;flex:none;
+      font-variant-numeric:tabular-nums;}
+    .ed-pf-row img{width:64px;height:48px;object-fit:cover;border-radius:4px;flex:none;}
+    .ed-pf-txt{flex:1 1 auto;min-width:0;line-height:1.3;}
+    .ed-pf-txt b{display:block;}
+    .ed-pf-txt span{color:var(--ed-mute);font-size:.82rem;}
+    .ed-pf-acts{display:flex;align-items:center;gap:4px;flex:none;}
+    .ed-pf-acts button{border:1px solid var(--ed-line);background:#fff;border-radius:6px;cursor:pointer;
+      font:inherit;font-size:.78rem;padding:5px 8px;line-height:1;}
+    .ed-pf-acts button:hover:not(:disabled){border-color:#8a8a8a;}
+    .ed-pf-acts button:disabled{opacity:.3;cursor:default;}
+    .ed-pf-acts .ed-pf-eye{min-width:62px;}
+    .ed-pf-acts .ed-pf-eye.off{border-color:#9a6a1a;color:#8a5c14;background:#fdf6e9;}
+    @media(max-width:560px){.ed-pf-row img{width:48px;height:36px;}.ed-pf-txt span{display:none;}}
     /* vendors */
     .ed-ven-rows{display:flex;flex-direction:column;gap:10px;margin:14px 0 18px;}
     .ed-ven-row{display:grid;grid-template-columns:150px 1fr 1fr;gap:10px;align-items:center;}
@@ -163,6 +186,7 @@ sitemap: false
     <button class="ed-btn" id="ed-covers" hidden>Cover photos</button>
     <button class="ed-btn" id="ed-vendors" hidden>Vendors</button>
     <button class="ed-btn" id="ed-homework" hidden>Home weddings</button>
+    <button class="ed-btn" id="ed-pforder" hidden>Portfolio order</button>
     <button class="ed-btn" id="ed-wedrm" hidden>Remove wedding</button>
     <button class="ed-btn" id="ed-imgins" hidden>Insert photo</button>
     <button class="ed-btn" id="ed-new">New post</button>
@@ -171,7 +195,7 @@ sitemap: false
     <button class="ed-btn" id="ed-discard" disabled>Discard</button>
     <button class="ed-btn primary" id="ed-save" disabled>Save</button>
   </div>
-  <div class="ed-hint">Click any text to edit it, then press <b>Save</b>. Click any photo to swap it. On a wedding page, <b>Photos</b> manages the gallery, <b>Cover photos</b> picks what shows on the portfolio page, and <b>Vendors</b> credits everyone else who worked on it. On the home page, <b>Home weddings</b> chooses which three weddings it previews and in what order. Changes go live in about two minutes.</div>
+  <div class="ed-hint">Click any text to edit it, then press <b>Save</b>. Click any photo to swap it. On a wedding page, <b>Photos</b> manages the gallery, <b>Cover photos</b> picks what shows on the portfolio page, and <b>Vendors</b> credits everyone else who worked on it. On the portfolio page, <b>Portfolio order</b> sets the running order and hides a wedding without deleting it. On the home page, <b>Home weddings</b> chooses which three weddings it previews and in what order. Changes go live in about two minutes.</div>
   <!-- Home weddings: which three weddings the home page previews, in order -->
   <div class="ed-login" id="ed-hw-modal" hidden>
     <form class="ed-card" id="ed-hw-form" style="max-width:720px;">
@@ -195,6 +219,20 @@ sitemap: false
       <div class="ed-err" id="ed-hw-err"></div>
     </form>
   </div>
+  <!-- Portfolio order: the running order of the weddings, and which are shown -->
+  <div class="ed-login" id="ed-pf-modal" hidden>
+    <form class="ed-card" id="ed-pf-form" style="max-width:720px;">
+      <h2>Portfolio order</h2>
+      <p>Drag a wedding to move it, or use the arrows. The order here is the order on the portfolio page, top left first.</p>
+      <p class="ed-hw-sub"><b>Hide</b> takes a wedding off the portfolio page and off the &ldquo;more weddings&rdquo; rail, and asks Google not to list it. Its own page stays online, so an old link still works. To delete a wedding for good, open its page and use <b>Remove wedding</b> instead.</p>
+      <div id="ed-pf-list" class="ed-pf-list"></div>
+      <p class="ed-hw-sub" id="ed-pf-count"></p>
+      <button class="ed-btn primary" type="submit">Save portfolio order</button>
+      <button class="ed-btn" type="button" id="ed-pf-cancel">Cancel</button>
+      <div class="ed-err" id="ed-pf-err"></div>
+    </form>
+  </div>
+
   <!-- Cover photos: which frames represent this wedding on /portfolio -->
   <div class="ed-login" id="ed-cov-modal" hidden>
     <form class="ed-card" id="ed-cov-form" style="max-width:900px;">

@@ -38,12 +38,23 @@ redirect_from:
 </header>
 
 {%- comment -%}
-  Two up, in the order of _data/portfolio_meta.yml. Ten weddings makes a 2x5
-  grid: adding or retiring one is still a data edit, and the grid reflows.
+  Two up, in the order of _data/portfolio_meta.yml. Adding, retiring or
+  reordering one is a data edit and the grid reflows.
+
+  HIDDEN WEDDINGS (2026-09-24). An entry carrying `hidden: true` comes off this
+  grid, off the "more weddings" rail, and asks search engines not to list its
+  page. The page itself stays live, so an old link, a bookmark or a card in
+  someone's inbox still lands somewhere real. Hiding is therefore NOT the same
+  as /edit's "Remove wedding", which deletes the page and the photographs and
+  301s the address; hiding is reversible from the same screen that did it.
+
+  Both the order and the flag are set in /edit under "Portfolio order".
 {%- endcomment -%}
-<div class="pf-grid">
+<div class="pf-grid" data-ed-pforder>
 {%- for w in site.data.portfolio_meta -%}
+{%- unless w.hidden -%}
 {% include portfolio-card.html w=w %}
+{%- endunless -%}
 {%- endfor -%}
 </div>
 

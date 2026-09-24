@@ -26,7 +26,24 @@
     in the same front matter, or Search Console reports a page that is both
     submitted for indexing and refusing it.
   {%- endcomment -%}
-  {% if page.noindex %}<meta name="robots" content="noindex,follow">{% endif %}
+  {%- comment -%}
+    A wedding hidden in /edit ("Portfolio order") noindexes the same way. The
+    flag lives in _data/portfolio_meta.yml and nowhere else, so hiding is ONE
+    edit rather than a data flag plus a front-matter flag that can disagree.
+
+    Known limit: jekyll-sitemap reads `sitemap:` out of front matter only and
+    cannot see a data file, so a hidden wedding stays in sitemap.xml carrying
+    noindex. Search engines honour the page's own directive over the sitemap,
+    so this costs a "submitted and marked noindex" line in Search Console and
+    nothing else. Say `sitemap: false` in the page's front matter to silence
+    that too, for a wedding meant to stay hidden for good.
+  {%- endcomment -%}
+  {%- assign pf_hidden = false -%}
+  {%- if page.portfolio_key -%}
+    {%- assign pf_m = site.data.portfolio_meta | where: "slug", page.portfolio_key | first -%}
+    {%- if pf_m.hidden -%}{%- assign pf_hidden = true -%}{%- endif -%}
+  {%- endif -%}
+  {% if page.noindex or pf_hidden %}<meta name="robots" content="noindex,follow">{% endif %}
 
   {% seo title=false %}
 
