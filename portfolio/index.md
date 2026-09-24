@@ -18,15 +18,16 @@ redirect_from:
   # The pages are gone; these keep every inbound link and indexed URL alive.
   - /portfolio/jacqueline-brandon
   - /portfolio/hannah-chance
-  - /portfolio/emma-ross
   - /portfolio/niamh-nick
-  - /portfolio/sarah-brian
   - /portfolio/catherine-joaquin
+  # /portfolio/emma-ross and /portfolio/sarah-brian came OFF this list on
+  # 2026-09-24: both weddings are published again, so those URLs are real pages
+  # and a redirect here would shadow them.
   # Squarespace URLs those retired pages used to absorb. Without these three the
   # old links 404 instead of merely redirecting somewhere less specific.
+  # The Squarespace aliases for emma-ross and sarah-brian moved onto those two
+  # pages with them; only jacqueline-brandon's still belongs here.
   - /portfolio-1/jacquelineandbrandon
-  - /portfolio-1/emma-and-ross
-  - /portfolio-1/sarahandbrian
 ---
 
 <!-- TEXT HEADER (no full hero: on Portfolio, the work is the hero) -->

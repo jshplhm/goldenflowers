@@ -240,3 +240,29 @@ hannah-dillon:
   officiant:
     name: ""
     url: ""
+
+sarah-brian:
+  photography: { name: "TBC", url: "" }
+  planning: { name: "", url: "" }
+  venue: { name: "The Miner's Foundry", url: "" }
+  catering: { name: "", url: "" }
+  cake: { name: "", url: "" }
+  rentals: { name: "", url: "" }
+  beauty: { name: "", url: "" }
+  gown: { name: "", url: "" }
+  stationery: { name: "", url: "" }
+  music: { name: "", url: "" }
+  officiant: { name: "", url: "" }
+
+emma-ross:
+  photography: { name: "TBC", url: "" }
+  planning: { name: "", url: "" }
+  venue: { name: "River Highlands Ranch", url: "" }
+  catering: { name: "", url: "" }
+  cake: { name: "", url: "" }
+  rentals: { name: "", url: "" }
+  beauty: { name: "", url: "" }
+  gown: { name: "", url: "" }
+  stationery: { name: "", url: "" }
+  music: { name: "", url: "" }
+  officiant: { name: "", url: "" }

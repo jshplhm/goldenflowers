@@ -136,3 +136,27 @@
     raspberry and coral."
   palette: "Magenta garden rose, raspberry, coral, corten steel"
   dots: [ "#c02a63", "#7d1735", "#e8765e", "#9a5a2c", "#6f8a4e" ]
+
+- slug: sarah-brian
+  name: "Sarah & Brian"
+  venue: "The Miner's Foundry"
+  place: "Nevada City"
+  band: [ "01", "03", "08" ]
+  strip: [ "07", "02" ]
+  lede: "All white against old stone. Roses, ranunculus and clouds of baby's
+    breath, with greenery hung above the ceremony so the room's own walls stayed
+    the backdrop."
+  palette: "White rose, ranunculus, baby's breath"
+  dots: [ "#f6f4ef", "#eae7dc", "#9aa87f", "#5e6b4c", "#8e857a" ]
+
+- slug: emma-ross
+  name: "Emma & Ross"
+  venue: "River Highlands Ranch"
+  place: "Smartsville"
+  band: [ "06", "11", "03" ]
+  strip: [ "18", "05" ]
+  lede: "Ivory and green, and almost nothing else. Rolling foothills and low
+    golden light did most of the work, so the flowers stayed quiet and
+    architectural."
+  palette: "White garden rose, calla lily, trailing amaranthus"
+  dots: [ "#f2efe6", "#e8e4d6", "#8d9450", "#5d6b3a", "#c9b98a" ]
