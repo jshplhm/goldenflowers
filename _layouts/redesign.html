@@ -193,5 +193,17 @@
   document.addEventListener('keydown', function(e){ if(e.key==='Escape') set(false); });
 })();
 </script>
+{%- comment -%}
+  PREVIEW ONLY. Set by _config.preview.yml, absent from every real build, so
+  this never ships. It stamps the page with the moment it was generated:
+  without it, "the change isn't showing" and "you are looking at an older
+  build" are indistinguishable from either side of the conversation.
+{%- endcomment -%}
+{%- if site.preview_build %}
+<div style="position:fixed;left:8px;bottom:8px;z-index:99999;background:#101911;color:#fff;
+  font:600 10px/1 ui-monospace,SFMono-Regular,monospace;letter-spacing:.06em;
+  padding:6px 8px;border-radius:4px;opacity:.72;pointer-events:none">
+  BUILD {{ site.time | date: "%H:%M:%S" }}</div>
+{%- endif %}
 </body>
 </html>

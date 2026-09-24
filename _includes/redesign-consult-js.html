@@ -679,3 +679,68 @@ function appendCommon_(params, form){
   }).observe(success,{attributes:true,attributeFilter:['hidden']});
 })();
 </script>
+
+<script>
+/* BUDGET AS CHIPS (2026-09-24).
+ *
+ * A five-option dropdown on a phone is a system picker over the top of a
+ * lightbox; as chips every bracket is visible and one tap away. Both forms
+ * (the modal and the standalone page) opt in with data-chips.
+ *
+ * The <select> stays the control. It is still what submits, still `required`,
+ * still the thing the estimator writes into (bracketFor() in estimator.html
+ * reads .options and sets .value), and the chips are built FROM its options,
+ * so the bracket strings live in exactly one place and cannot drift from the
+ * BUDGETS whitelist in the Apps Script.
+ *
+ * It is hidden visually but NOT with display:none: a display:none required
+ * field makes the browser refuse to submit with "not focusable", and it would
+ * take keyboard users' control away. It stays focusable and operable; the
+ * chips are aria-hidden decoration that mirror it.
+ *
+ * No JS, no chips: the native select is right there, already working.
+ */
+(function(){
+  function build(sel){
+    if(sel.dataset.chipped) return;
+    sel.dataset.chipped = '1';
+    var row = document.createElement('div');
+    row.className = 'chip-row';
+    row.setAttribute('aria-hidden','true');
+    var chips = [];
+    Array.prototype.forEach.call(sel.options, function(opt){
+      if(opt.disabled || opt.value === '') return;   /* the placeholder */
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'chip';
+      b.textContent = opt.textContent;
+      b.tabIndex = -1;
+      b.addEventListener('click', function(){
+        sel.value = opt.value || opt.textContent;
+        /* bubbles, so the estimator's document-level listener still marks
+           this as the couple's own answer and stops overwriting it. */
+        sel.dispatchEvent(new Event('change', {bubbles:true}));
+        paint();
+      });
+      chips.push({el:b, opt:opt});
+      row.appendChild(b);
+    });
+    if(!chips.length) return;
+    function paint(){
+      chips.forEach(function(c){
+        var on = sel.value === (c.opt.value || c.opt.textContent);
+        c.el.classList.toggle('is-on', on);
+      });
+    }
+    /* Repaint when anything else sets the value: the estimator's handoff, a
+       reset, or the keyboard user driving the select itself. */
+    sel.addEventListener('change', paint);
+    sel.parentNode.insertBefore(row, sel.nextSibling);
+    sel.classList.add('sr-field');
+    paint();
+  }
+  function init(){ document.querySelectorAll('select[data-chips]').forEach(build); }
+  if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
+})();
+</script>

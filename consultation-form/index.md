@@ -163,7 +163,7 @@ sitemap: false
              stale cached pages are accepted, not flagged as spam. -->
         <div class="field-full">
           <label for="budget">Approximate budget</label>
-          <select id="budget" name="budget" required>
+          <select id="budget" name="budget" required data-chips>
             <option value="" disabled selected>Estimated florals budget</option>
             {%- comment -%} These must match the modal in _includes/consult-modal.html
             EXACTLY, en dashes included, and both must match the BUDGETS whitelist in

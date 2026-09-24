@@ -1585,6 +1585,20 @@ body.nav-hidden .venue-breadcrumb{top:0;}
 .venue-breadcrumb .sep{color:var(--line);}
 .venue-breadcrumb .current{color:var(--ink);}
 
+/* Budget chips. The <select> they are built from stays in the DOM, hidden
+   visually but focusable and submittable: display:none on a required field
+   makes the browser refuse to submit with "not focusable", and it would take
+   the control away from keyboard users. */
+.sr-field{position:absolute;width:1px;height:1px;margin:-1px;padding:0;
+  overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap;border:0;}
+.chip-row{display:flex;flex-wrap:wrap;gap:9px;margin-top:9px;}
+.chip{font-family:var(--b);font-size:var(--t-sm);line-height:1;color:var(--ink);
+  background:var(--paper);border:1px solid oklch(20% .02 150/.25);border-radius:999px;
+  padding:13px 17px;cursor:pointer;transition:background .15s,border-color .15s,color .15s;}
+.chip:hover{border-color:var(--ink);}
+.chip.is-on{background:var(--ink);border-color:var(--ink);color:var(--paper);}
+.sr-field:focus-visible + .chip-row{outline:2px solid var(--accent);outline-offset:4px;border-radius:6px;}
+
 /* PRICING: PROCESS AS ROWS (2026-09-24). Number and timing on the left, the
    step on the right, hairline between. The timeline it replaces ran down a
    narrow column and left more than half the page empty. */
