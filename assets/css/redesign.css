@@ -1475,6 +1475,11 @@ body.nav-hidden .venue-breadcrumb{top:0;}
 .venue-breadcrumb a:hover{color:var(--ink);border-bottom-color:var(--accent);}
 .venue-breadcrumb .sep{color:var(--line);}
 .venue-breadcrumb .current{color:var(--ink);}
+/* A page that carries the breadcrumb does not also reserve the nav height in
+   its own hero: the breadcrumb's margin-top already does it, and both together
+   pushed the h1 roughly a nav further down than on a page without one. */
+.venue-breadcrumb + .text-hero{padding-top:clamp(36px,5vw,56px);}
+.venue-breadcrumb + .wp-open{padding-top:clamp(24px,3vw,52px);}
 /* The venue hero pays for its own clearance under the fixed header again. It
    was trimmed to 18-30px because the breadcrumb bar above it carried the
    nav-height margin; with the bar gone (Josh, 2026-09-23) it is back to the

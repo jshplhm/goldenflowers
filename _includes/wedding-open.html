@@ -34,6 +34,18 @@
 {%- endcomment -%}
 {%- assign widePath = '/assets/images/hero-wide/' | append: include.slug | append: '/' | append: hero -%}
 {%- assign wideFile = site.static_files | where_exp: "f", "f.path == widePath" | first -%}
+{%- comment -%} Breadcrumb (2026-09-23), same component the blog and venue
+pages use. A wedding page is reachable from the portfolio index, a "more
+weddings" card, a venue page and search, so it needed a visible way back to
+the index it belongs to. {%- endcomment -%}
+<nav class="venue-breadcrumb" aria-label="Breadcrumb">
+  <ol class="venue-breadcrumb-inner">
+    <li><a href="{{ site.baseurl }}/portfolio">Portfolio</a></li>
+    <li class="sep" aria-hidden="true">/</li>
+    <li class="current">{{ m.name }}</li>
+  </ol>
+</nav>
+
 <header class="wp-open">
   {%- comment -%}
     THE PHOTOGRAPH FIRST, THE NAME UNDER IT (Josh, 2026-09-23). This was a
