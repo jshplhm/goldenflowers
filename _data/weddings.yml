@@ -126,7 +126,7 @@ pricing:
   # section follows; blank `figure` and the block stops rendering entirely,
   # which is the no-number state if that is where the pass lands.
   heading: What it costs.
-  figure: "$12,000 to $20,000"
+  figure: "$12,000 to $18,000"
   figure_label: A typical 100 guest wedding
   note: Every wedding is quoted on its own. What moves the number most is the
     scale of the ceremony installation and how much of the room you want

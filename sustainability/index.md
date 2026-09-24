@@ -11,27 +11,27 @@ redirect_from:
 
 <!-- HERO -->
 {%- comment -%}
-  WORDS, THEN THE PHOTOGRAPH (Josh, 2026-09-24). This was copy beside the
-  picture, which put a headline and a photograph at the same height competing
-  for the same attention, and left the column under the headline empty. The
-  subject here is a place, and a place wants width: the headline owns the top,
-  then the photograph runs the full measure underneath at full strength.
-
-  Studio deliberately does NOT do this. Its photograph is of a person, and a
-  full-width landscape crop of a person loses the face.
+  Copy beside the photograph (Josh, 2026-09-22, kept 2026-09-24). This was
+  briefly words-then-a-full-width-landscape to match the design review; Josh
+  preferred it the way it was, and the rest of that pass (numbered pledges)
+  stayed. .hero-beside carries the whole layout; hero-sm only sets the height
+  the grid no longer uses, and is left on so nothing else keyed to it changes.
 {%- endcomment -%}
-<header class="text-hero">
-  <span class="lab"><span data-ed="sustainability:hero.eyebrow">{{ site.data.sustainability.hero.eyebrow }}</span></span>
-  <h1>{% include em.html t=site.data.sustainability.hero.heading k="sustainability:hero.heading" %}</h1>
-  <p class="th-sub"><span data-ed="sustainability:hero.subheading">{{ site.data.sustainability.hero.subheading }}</span></p>
-</header>
+<header class="hero hero-beside hero-sm">
+  <div class="hero-in">
+    <p class="ey lab"><span data-ed="sustainability:hero.eyebrow">{{ site.data.sustainability.hero.eyebrow }}</span></p>
+    <h1 class="disp">{% include em.html t=site.data.sustainability.hero.heading k="sustainability:hero.heading" %}</h1>
+    <div class="hero-foot">
+      <p class="hero-sub"><span data-ed="sustainability:hero.subheading">{{ site.data.sustainability.hero.subheading }}</span></p>
+    </div>
+  </div>
 
-<figure class="page-pic">
-  <img src="{{ site.baseurl }}/assets/images/portfolio/camille-max/camille-max-28.jpg"
-       alt="Couple walking a tree-lined lane, flowers grown on California land by Golden Flowers"
-       width="1500" height="844" loading="eager" fetchpriority="high"
-       style="object-position:center 45%;" sizes="(min-width:1500px) 1500px, 100vw">
-</figure>
+  <div class="hs-right">
+    <div class="hs-stage">
+      <img class="bg" src="{{ site.baseurl }}/assets/images/portfolio/camille-max/camille-max-28.jpg" alt="Couple walking a tree-lined lane, flowers grown on California land by Golden Flowers" style="object-position:center 45%;">
+    </div>
+  </div>
+</header>
 
 {% include redesign-pledge.html hide_head=true %}
 
