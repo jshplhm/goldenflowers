@@ -53,7 +53,7 @@ redirect_from:
     <p class="sh-sub"><span data-ed="about:hero.subheading">{{ site.data.about.hero.subheading }}</span></p>
   </div>
   <div class="sh-img">
-    <img src="{{ site.baseurl }}/assets/images/our-story.jpg" alt="Brittany of Golden Flowers arranging a floral installation at an outdoor wedding" loading="eager">
+    <img src="{{ site.baseurl }}/assets/images/our-story.jpg" alt="Brittany of Golden Flowers arranging a floral installation at an outdoor wedding" loading="eager"{% include img-dims.html path="/assets/images/our-story.jpg" %}>
   </div>
 </section>
 
@@ -79,7 +79,7 @@ redirect_from:
 <section class="band band-dark">
   <div class="band-in story-split rev">
     <div class="ss-img">
-      <img src="{{ site.baseurl }}/assets/images/studio-hero.jpg" alt="Brittany of Golden Flowers with a large floral installation" loading="lazy">
+      <img src="{{ site.baseurl }}/assets/images/studio-hero.jpg" alt="Brittany of Golden Flowers with a large floral installation" loading="lazy"{% include img-dims.html path="/assets/images/studio-hero.jpg" %}>
     </div>
     <div class="ss-text">
       <span class="lab"><span data-ed="about:one_rule.label">{{ site.data.about.one_rule.label }}</span></span>

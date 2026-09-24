@@ -28,7 +28,7 @@ redirect_from:
 
   <div class="hs-right">
     <div class="hs-stage">
-      <img class="bg" src="{{ site.baseurl }}/assets/images/portfolio/kelly-dylan/kelly-dylan-05.jpg" alt="Seasonal California-grown wedding florals by Golden Flowers" style="object-position:center 45%;">
+      <img class="bg" src="{{ site.baseurl }}/assets/images/portfolio/kelly-dylan/kelly-dylan-05.jpg" alt="Seasonal California-grown wedding florals by Golden Flowers" style="object-position:center 45%;"{% include img-dims.html path="/assets/images/portfolio/kelly-dylan/kelly-dylan-05.jpg" %}>
     </div>
   </div>
 </header>
@@ -51,7 +51,7 @@ redirect_from:
     <article class="blog-card{% if post.featured_image and post.featured_image != "" %} blog-card--cover{% endif %}" data-text="{{ post.title | append: ' ' | append: post.description | append: ' ' | append: post.content | strip_html | escape | downcase }}">
       <a href="{{ site.baseurl }}{{ post.url }}" class="blog-card-link">
         {%- if post.featured_image and post.featured_image != "" %}
-        <figure class="blog-card-cover"><img src="{{ site.baseurl }}{{ post.featured_image }}" alt="" loading="lazy" width="800" height="533"></figure>
+        <figure class="blog-card-cover"><img src="{{ site.baseurl }}{{ post.featured_image }}"{% include img-dims.html path=post.featured_image %} alt="" loading="lazy"></figure>
         {%- endif %}
         <h2 class="blog-card-title">{{ post.title }}</h2>
         <p class="blog-card-excerpt">{{ post.description | strip_html | truncatewords: 24 }}</p>

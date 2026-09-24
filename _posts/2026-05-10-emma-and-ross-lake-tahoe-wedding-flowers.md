@@ -16,51 +16,51 @@ featured_image: /assets/images/blog/emma-and-ross-lake-tahoe-wedding-flowers/emm
   
 
   
-   <img src="/assets/images/blog/emma-and-ross-lake-tahoe-wedding-flowers/emma-and-ross-lake-tahoe-wedding-flowers-02.jpg" alt="Emma and Ross wedding flowers by Golden Flowers at River Highlands Ranch, Sierra Nevada" />
+   <img src="/assets/images/blog/emma-and-ross-lake-tahoe-wedding-flowers/emma-and-ross-lake-tahoe-wedding-flowers-02.jpg" alt="Emma and Ross wedding flowers by Golden Flowers at River Highlands Ranch, Sierra Nevada" / width="1349" height="1800">
   
 
   
-   <img src="/assets/images/blog/emma-and-ross-lake-tahoe-wedding-flowers/emma-and-ross-lake-tahoe-wedding-flowers-03.jpg" alt="Emma and Ross wedding flowers by Golden Flowers at River Highlands Ranch, Sierra Nevada" />
+   <img src="/assets/images/blog/emma-and-ross-lake-tahoe-wedding-flowers/emma-and-ross-lake-tahoe-wedding-flowers-03.jpg" alt="Emma and Ross wedding flowers by Golden Flowers at River Highlands Ranch, Sierra Nevada" / width="1200" height="1800">
   
 
   
-   <img src="/assets/images/blog/emma-and-ross-lake-tahoe-wedding-flowers/emma-and-ross-lake-tahoe-wedding-flowers-04.jpg" alt="Emma and Ross wedding flowers by Golden Flowers at River Highlands Ranch, Sierra Nevada" />
+   <img src="/assets/images/blog/emma-and-ross-lake-tahoe-wedding-flowers/emma-and-ross-lake-tahoe-wedding-flowers-04.jpg" alt="Emma and Ross wedding flowers by Golden Flowers at River Highlands Ranch, Sierra Nevada" / width="1350" height="1800">
   
 
   
-   <img src="/assets/images/blog/emma-and-ross-lake-tahoe-wedding-flowers/emma-and-ross-lake-tahoe-wedding-flowers-05.jpg" alt="Emma and Ross wedding flowers by Golden Flowers at River Highlands Ranch, Sierra Nevada" />
+   <img src="/assets/images/blog/emma-and-ross-lake-tahoe-wedding-flowers/emma-and-ross-lake-tahoe-wedding-flowers-05.jpg" alt="Emma and Ross wedding flowers by Golden Flowers at River Highlands Ranch, Sierra Nevada" / width="1188" height="1800">
   
 
   
-   <img src="/assets/images/blog/emma-and-ross-lake-tahoe-wedding-flowers/emma-and-ross-lake-tahoe-wedding-flowers-06.jpg" alt="Emma and Ross wedding flowers by Golden Flowers at River Highlands Ranch, Sierra Nevada" />
+   <img src="/assets/images/blog/emma-and-ross-lake-tahoe-wedding-flowers/emma-and-ross-lake-tahoe-wedding-flowers-06.jpg" alt="Emma and Ross wedding flowers by Golden Flowers at River Highlands Ranch, Sierra Nevada" / width="1193" height="1800">
   
 
   
-   <img src="/assets/images/blog/emma-and-ross-lake-tahoe-wedding-flowers/emma-and-ross-lake-tahoe-wedding-flowers-07.jpg" alt="Emma and Ross wedding flowers by Golden Flowers at River Highlands Ranch, Sierra Nevada" />
+   <img src="/assets/images/blog/emma-and-ross-lake-tahoe-wedding-flowers/emma-and-ross-lake-tahoe-wedding-flowers-07.jpg" alt="Emma and Ross wedding flowers by Golden Flowers at River Highlands Ranch, Sierra Nevada" / width="1200" height="1800">
   
 
   
-   <img src="/assets/images/blog/emma-and-ross-lake-tahoe-wedding-flowers/emma-and-ross-lake-tahoe-wedding-flowers-08.jpg" alt="Emma and Ross wedding flowers by Golden Flowers at River Highlands Ranch, Sierra Nevada" />
+   <img src="/assets/images/blog/emma-and-ross-lake-tahoe-wedding-flowers/emma-and-ross-lake-tahoe-wedding-flowers-08.jpg" alt="Emma and Ross wedding flowers by Golden Flowers at River Highlands Ranch, Sierra Nevada" / width="1350" height="1800">
   
 
   
-   <img src="/assets/images/blog/emma-and-ross-lake-tahoe-wedding-flowers/emma-and-ross-lake-tahoe-wedding-flowers-09.jpg" alt="Emma and Ross wedding flowers by Golden Flowers at River Highlands Ranch, Sierra Nevada" />
+   <img src="/assets/images/blog/emma-and-ross-lake-tahoe-wedding-flowers/emma-and-ross-lake-tahoe-wedding-flowers-09.jpg" alt="Emma and Ross wedding flowers by Golden Flowers at River Highlands Ranch, Sierra Nevada" / width="1349" height="1800">
   
 
   
-   <img src="/assets/images/blog/emma-and-ross-lake-tahoe-wedding-flowers/emma-and-ross-lake-tahoe-wedding-flowers-10.jpg" alt="Emma and Ross wedding flowers by Golden Flowers at River Highlands Ranch, Sierra Nevada" />
+   <img src="/assets/images/blog/emma-and-ross-lake-tahoe-wedding-flowers/emma-and-ross-lake-tahoe-wedding-flowers-10.jpg" alt="Emma and Ross wedding flowers by Golden Flowers at River Highlands Ranch, Sierra Nevada" / width="1200" height="1800">
   
 
   
-   <img src="/assets/images/blog/emma-and-ross-lake-tahoe-wedding-flowers/emma-and-ross-lake-tahoe-wedding-flowers-11.jpg" alt="Emma and Ross wedding flowers by Golden Flowers at River Highlands Ranch, Sierra Nevada" />
+   <img src="/assets/images/blog/emma-and-ross-lake-tahoe-wedding-flowers/emma-and-ross-lake-tahoe-wedding-flowers-11.jpg" alt="Emma and Ross wedding flowers by Golden Flowers at River Highlands Ranch, Sierra Nevada" / width="1349" height="1800">
   
 
   
-   <img src="/assets/images/blog/emma-and-ross-lake-tahoe-wedding-flowers/emma-and-ross-lake-tahoe-wedding-flowers-12.jpg" alt="Emma and Ross wedding flowers by Golden Flowers at River Highlands Ranch, Sierra Nevada" />
+   <img src="/assets/images/blog/emma-and-ross-lake-tahoe-wedding-flowers/emma-and-ross-lake-tahoe-wedding-flowers-12.jpg" alt="Emma and Ross wedding flowers by Golden Flowers at River Highlands Ranch, Sierra Nevada" / width="1200" height="1800">
   
 
   
-   <img src="/assets/images/blog/emma-and-ross-lake-tahoe-wedding-flowers/emma-and-ross-lake-tahoe-wedding-flowers-13.jpg" alt="Emma and Ross wedding flowers by Golden Flowers at River Highlands Ranch, Sierra Nevada" />
+   <img src="/assets/images/blog/emma-and-ross-lake-tahoe-wedding-flowers/emma-and-ross-lake-tahoe-wedding-flowers-13.jpg" alt="Emma and Ross wedding flowers by Golden Flowers at River Highlands Ranch, Sierra Nevada" / width="1200" height="1800">
   
 
 </div>

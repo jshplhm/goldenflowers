@@ -84,7 +84,8 @@
   {%- endcomment -%}
   {%- unless include.nohero -%}
   <a class="wd-hero-link wd-lb" href="{{ site.baseurl }}{{ prefix }}{{ include.hero }}" aria-label="View {{ include.name }} photo 1 full screen">
-    <img src="{{ site.baseurl }}{{ prefix }}{{ include.hero }}" alt="{{ include.name }} wedding flowers by Golden Flowers" loading="eager" fetchpriority="high" class="wd-hero-img" sizes="(max-width:1231px) 100vw, 1080px">
+    {%- assign hero_path = prefix | append: include.hero -%}
+    <img src="{{ site.baseurl }}{{ hero_path }}"{% include img-dims.html path=hero_path %} alt="{{ include.name }} wedding flowers by Golden Flowers" loading="eager" fetchpriority="high" class="wd-hero-img" sizes="(max-width:1231px) 100vw, 1080px">
   </a>
   {%- endunless -%}
   <div class="wd-mosaic">
@@ -112,7 +113,7 @@
       {%- assign szs = '(max-width:600px) 90vw, (max-width:1231px) 29vw, 348px' -%}
     {%- endif -%}
     <a class="mo mo-{{ sp }}{% if fin %} mo-fin{% endif %} wd-lb" href="{{ site.baseurl }}{{ f.path }}" aria-label="View {{ include.name }} photo full screen">
-      <img src="{{ site.baseurl }}{{ f.path }}" alt="{{ include.name }} wedding florals by Golden Flowers" loading="lazy" sizes="{{ szs }}">
+      <img src="{{ site.baseurl }}{{ f.path }}"{% include img-dims.html path=f.path %} alt="{{ include.name }} wedding florals by Golden Flowers" loading="lazy" sizes="{{ szs }}">
     </a>
     {%- assign j = j | plus: 1 -%}
   {%- endfor -%}

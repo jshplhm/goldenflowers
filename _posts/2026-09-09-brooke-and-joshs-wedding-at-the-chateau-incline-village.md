@@ -27,6 +27,6 @@ description: Inside Brooke and Josh's wedding at The Chateau at Incline Village,
 
 <p></p>
 
-<p><img src="/assets/images/blog/brooke-and-joshs-wedding-at-the-chateau-incline-village-mtugm2je.jpg" alt="Lake Tahoe wedding flowers" loading="lazy"></p>
+<p><img src="/assets/images/blog/brooke-and-joshs-wedding-at-the-chateau-incline-village-mtugm2je.jpg" alt="Lake Tahoe wedding flowers" loading="lazy" width="1067" height="1600"></p>
 
-<p><img src="/assets/images/blog/brooke-and-joshs-wedding-at-the-chateau-incline-village-mtugms0d.jpg" alt="Lake Tahoe wedding flowers" loading="lazy"></p>
+<p><img src="/assets/images/blog/brooke-and-joshs-wedding-at-the-chateau-incline-village-mtugms0d.jpg" alt="Lake Tahoe wedding flowers" loading="lazy" width="1067" height="1600"></p>

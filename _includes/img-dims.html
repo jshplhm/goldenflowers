@@ -1,0 +1,13 @@
+{%- comment -%}
+  Emits ` width="W" height="H"` for a site-root image path, or nothing when
+  the file is not in _data/img_dims.yml (an upload added since the last run of
+  _scripts/gen-img-dims.py, say). Params: path.
+
+  An img with no intrinsic size reserves no space, so the page reflows as each
+  photograph arrives; on a 30-photo gallery that is the whole page moving
+  under the reader. The real pixel size is what matters, not the displayed
+  size: the browser uses the ratio to hold the box, and CSS still decides how
+  big it draws.
+{%- endcomment -%}
+{%- assign d = site.data.img_dims[include.path] -%}
+{%- if d %} width="{{ d[0] }}" height="{{ d[1] }}"{% endif -%}

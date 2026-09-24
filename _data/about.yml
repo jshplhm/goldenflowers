@@ -1,5 +1,8 @@
 hero:
-  eyebrow: Our Story
+  # "Studio", matching the nav label for this page. It read "Our Story" while
+  # the nav said Studio, so the page you arrived on announced itself by a
+  # different name than the link you clicked.
+  eyebrow: Studio
   heading: The team you want when it *has to be right.*
   subheading: Golden Flowers is a professional floral studio led by Brittany, an
     artist and an agronomist, and built around a team of the region's most

@@ -51,7 +51,8 @@ wrap, so the rail begins somewhere different on every page. {%- endcomment -%}
     {%- for m in others -%}
       {%- assign s = m.slug -%}
     <a class="wp-ocard" href="{{ site.baseurl }}/portfolio/{{ s }}">
-      <img src="{{ site.baseurl }}/assets/images/portfolio/{{ s }}/{{ s }}-{{ m.band[1] }}.jpg" alt="{{ m.name }} wedding flowers at {{ m.venue }}{% if m.place != '' %}, {{ m.place }}{% endif %}" loading="lazy" sizes="(max-width:900px) 76vw, 28vw">
+      {%- assign rail_path = "/assets/images/portfolio/" | append: s | append: "/" | append: s | append: "-" | append: m.band[1] | append: ".jpg" -%}
+      <img src="{{ site.baseurl }}{{ rail_path }}"{% include img-dims.html path=rail_path %} alt="{{ m.name }} wedding flowers at {{ m.venue }}{% if m.place != '' %}, {{ m.place }}{% endif %}" loading="lazy" sizes="(max-width:900px) 76vw, 28vw">
       <span class="wp-oc"><span class="wp-on">{{ m.venue }}</span><h3>{{ m.name }}</h3></span></a>
     {%- endfor -%}
     {%- comment -%}

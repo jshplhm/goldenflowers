@@ -165,10 +165,16 @@ sitemap: false
           <label for="budget">Approximate budget</label>
           <select id="budget" name="budget" required>
             <option value="" disabled selected>Estimated florals budget</option>
-            <option>$5,000–$8,000</option>
-            <option>$8,000–$15,000</option>
-            <option>$15,000–$25,000</option>
-            <option>$25,000+</option>
+            {%- comment -%} These must match the modal in _includes/consult-modal.html
+            EXACTLY, en dashes included, and both must match the BUDGETS whitelist in
+            _scripts/consultation-form-doPost.gs. This page had drifted: it was still
+            offering $8,000-$15,000 / $15,000-$25,000 / $25,000+, brackets the modal
+            retired on 2026-08-28, so the same form collected two different scales
+            depending on whether a visitor had JS. {%- endcomment -%}
+            <option>$5,000&ndash;$8,000</option>
+            <option>$8,000&ndash;$12,000</option>
+            <option>$12,000&ndash;$20,000</option>
+            <option>$20,000+</option>
             <option>Not sure yet</option>
           </select>
         </div>
