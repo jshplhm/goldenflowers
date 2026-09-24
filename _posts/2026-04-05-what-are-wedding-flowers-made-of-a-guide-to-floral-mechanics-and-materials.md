@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "What Are Wedding Flowers Made Of? A Guide to Floral Mechanics and Materials"
+featured_image: "/assets/images/portfolio/jac-brandon/jac-brandon-11.jpg"
 date: 2026-04-05
 permalink: /natures-canvas-lake-tahoe-wedding-flowers/what-are-wedding-flowers-made-of-a-guide-to-floral-mechanics-and-materials/
 description: "Ever wondered what holds a bridal bouquet together or keeps a ceremony arch upright? A florist's guide to the mechanics behind wedding flowers."

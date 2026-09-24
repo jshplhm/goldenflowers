@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "How Many Flowers Do You Need for a Wedding? A Florist's Honest Guide"
+featured_image: "/assets/images/portfolio/kelly-dylan/kelly-dylan-19.jpg"
 date: 2026-04-02
 permalink: /natures-canvas-lake-tahoe-wedding-flowers/how-many-flowers-do-you-need-for-a-wedding/
 description: "From bouquets to ceremony arches to reception centerpieces, a Lake Tahoe wedding florist breaks down how many flowers a wedding really needs."

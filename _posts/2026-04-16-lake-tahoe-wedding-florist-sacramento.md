@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Planning a Lake Tahoe Wedding from Sacramento: Finding Your Wedding Florist"
+featured_image: "/assets/images/portfolio/kelly-dylan/kelly-dylan-07.jpg"
 date: 2026-04-16
 permalink: /natures-canvas-lake-tahoe-wedding-flowers/lake-tahoe-wedding-florist-sacramento/
 description: "Sacramento couples have an advantage when planning a Lake Tahoe wedding: you're two hours away. How to find the right florist and plan your visits."

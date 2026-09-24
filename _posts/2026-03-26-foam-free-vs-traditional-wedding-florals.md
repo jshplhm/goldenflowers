@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Foam-Free vs. Traditional Wedding Florals, What's the Difference (And Why It Matters for Your Tahoe Wedding)?"
+featured_image: "/assets/images/portfolio/lynn-aaron/lynn-aaron-21.jpg"
 date: 2026-03-26
 permalink: /natures-canvas-lake-tahoe-wedding-flowers/foam-free-vs-traditional-wedding-florals/
 redirect_from:

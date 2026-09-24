@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Growing Dahlias for Weddings: Behind the Scenes at Our Farm"
+featured_image: "/assets/images/portfolio/camille-max/camille-max-27.jpg"
 date: 2026-03-29
 permalink: /natures-canvas-lake-tahoe-wedding-flowers/growing-dahlias-for-weddings-our-farm/
 description: "From tuber to bouquet: how we grow dahlias on our own farm and bring them fresh to Lake Tahoe weddings at the peak of their season."

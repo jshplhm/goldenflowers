@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Lake Tahoe Wedding Bouquets: A Florist's Guide"
+featured_image: "/assets/images/portfolio/brooke-josh/brooke-josh-06.jpg"
 date: 2026-03-12
 permalink: /natures-canvas-lake-tahoe-wedding-flowers/lake-tahoe-wedding-bouquets/
 description: "Your bouquet travels with you all day through wind, altitude, and Sierra Nevada light. A Lake Tahoe wedding florist's guide to bouquets that last."

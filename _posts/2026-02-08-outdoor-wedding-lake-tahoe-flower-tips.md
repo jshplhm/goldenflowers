@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Outdoor Wedding Florals in Tahoe: What Works And What Wilts"
+featured_image: "/assets/images/portfolio/tori-tucker/tori-tucker-09.jpg"
 date: 2026-02-08
 permalink: /natures-canvas-lake-tahoe-wedding-flowers/outdoor-wedding-lake-tahoe-flower-tips/
 description: "A Lake Tahoe wedding florist breaks down which flowers hold up outdoors in altitude, sun, and wind, and which ones need extra care to look their best."

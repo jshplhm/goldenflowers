@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Lake Tahoe wedding florist: What to expect when you work with golden flowers"
+featured_image: "/assets/images/portfolio/brooke-josh/brooke-josh-14.jpg"
 date: 2026-02-15
 permalink: /natures-canvas-lake-tahoe-wedding-flowers/lake-tahoe-wedding-florist/
 description: "What it's actually like to work with a Lake Tahoe wedding florist, from first inquiry to wedding day, told step by step by Golden Flowers."

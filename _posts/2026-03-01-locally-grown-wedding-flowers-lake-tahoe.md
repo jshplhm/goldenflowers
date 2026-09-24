@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Why We Source Locally Grown Wedding Flowers And Why It Matters for Your Lake Tahoe Wedding flowers"
+featured_image: "/assets/images/portfolio/hannah-dillon/hannah-dillon-07.jpg"
 date: 2026-03-01
 permalink: /natures-canvas-lake-tahoe-wedding-flowers/locally-grown-wedding-flowers-lake-tahoe/
 description: "Locally grown wedding flowers are the foundation of everything we design. Why California-grown stems look better and last longer at Lake Tahoe weddings."

@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Sustainable Lake Tahoe Wedding Flowers: Why Foam-Free Design Matters for Your Sierra Celebration"
+featured_image: "/assets/images/portfolio/hannah-dillon/hannah-dillon-18.jpg"
 date: 2026-04-30
 permalink: /natures-canvas-lake-tahoe-wedding-flowers/lake-tahoe-sustainable-wedding-flowers/
 description: "Traditional wedding floristry holds a dirty secret: microplastics and massive carbon footprints."

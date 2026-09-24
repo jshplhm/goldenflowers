@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Planning a Lake Tahoe Wedding from the San Francisco Bay Area: How to Find the Right Florist"
+featured_image: "/assets/images/portfolio/tori-tucker/tori-tucker-22.jpg"
 date: 2026-04-09
 permalink: /natures-canvas-lake-tahoe-wedding-flowers/lake-tahoe-wedding-florist-san-francisco-bay-area/
 description: "Bay Area couples choose Lake Tahoe for a reason. What to know about finding and booking a wedding florist from a distance, and how we make it easy."

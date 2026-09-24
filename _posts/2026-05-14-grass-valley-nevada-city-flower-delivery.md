@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "We Now Deliver Flowers Throughout Grass Valley &amp; Nevada City"
+featured_image: "/assets/images/portfolio/jenna-cal/jenna-cal-07.jpg"
 date: 2026-05-14
 permalink: /natures-canvas-lake-tahoe-wedding-flowers/grass-valley-nevada-city-flower-delivery/
 description: "Golden Flowers now delivers hand-designed, seasonally grown arrangements throughout Grass Valley and Nevada City. Here's how ordering local works."

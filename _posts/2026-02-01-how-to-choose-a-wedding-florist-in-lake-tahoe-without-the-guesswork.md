@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "How to Choose a Wedding Florist in Lake Tahoe (Without the Guesswork)"
+featured_image: "/assets/images/portfolio/katie-james/katie-james-11.jpg"
 date: 2026-02-01
 permalink: /natures-canvas-lake-tahoe-wedding-flowers/how-to-choose-a-wedding-florist-in-lake-tahoe-without-the-guesswork/
 description: "Choosing a wedding florist in Lake Tahoe takes more than a pretty portfolio. Six questions that reveal whether a florist can deliver on your day."

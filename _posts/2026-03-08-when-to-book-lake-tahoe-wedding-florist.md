@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "When to Book Your Lake Tahoe Wedding Florist And What Happens If You Wait"
+featured_image: "/assets/images/portfolio/jenna-cal/jenna-cal-08.jpg"
 date: 2026-03-08
 permalink: /natures-canvas-lake-tahoe-wedding-flowers/when-to-book-lake-tahoe-wedding-florist/
 description: "Peak season at Lake Tahoe books 12 to 18 months out, and florists fill just as fast as venues. When to reach out and what happens if you wait."

@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Fall Wedding Flowers in Lake Tahoe: The Most Underrated Season for lake tahoe wedding Flowers"
+featured_image: "/assets/images/portfolio/katie-james/katie-james-13.jpg"
 date: 2026-02-26
 permalink: /natures-canvas-lake-tahoe-wedding-flowers/fall-wedding-flowers-lake-tahoe/
 description: "A Lake Tahoe wedding florist's case for fall: dahlia season, golden light, and Sierra autumn color make it the most underrated time to marry here."

@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "The Science of Sierra Florals. Why an Agronomist Designs the Best Lake Tahoe Wedding Flowers"
+featured_image: "/assets/images/portfolio/camille-max/camille-max-03.jpg"
 date: 2026-05-07
 permalink: /natures-canvas-lake-tahoe-wedding-flowers/the-science-of-sierra-florals-why-an-agronomist-designs-the-best-lake-tahoe-wedding-flowers/
 description: "Most florists treat flowers like boxed inventory shipped from across the globe. Why an agronomist's eye produces better Lake Tahoe wedding flowers."

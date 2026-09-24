@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Spring Wedding Flowers in Lake Tahoe: What's Grown Here, What's in Season, and Why It Matters"
+featured_image: "/assets/images/portfolio/camille-max/camille-max-16.jpg"
 date: 2026-03-15
 permalink: /natures-canvas-lake-tahoe-wedding-flowers/spring-wedding-flowers-lake-tahoe/
 description: "Spring comes late to the Sierra Nevada, and it's worth the wait. What's grown here, what's in season, and how we design around a mountain spring."

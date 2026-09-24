@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "How to DIY Your Wedding Flowers: The Ultimate Step-by-Step Guide for Creative Couples"
+featured_image: "/assets/images/portfolio/jenna-cal/jenna-cal-14.jpg"
 date: 2026-04-26
 permalink: /natures-canvas-lake-tahoe-wedding-flowers/how-to-diy-wedding-flowers-guide/
 description: "Designing your own wedding flowers can be deeply rewarding, but it takes strategy. A step-by-step guide to sourcing, mechanics, and timing."

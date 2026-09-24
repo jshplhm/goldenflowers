@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Soft Goth Wedding Florals at The National Exchange Hotel, Dark, Editorial &amp; Wildly Beautiful"
+featured_image: "/assets/images/portfolio/jac-brandon/jac-brandon-04.jpg"
 date: 2026-01-22
 permalink: /natures-canvas-lake-tahoe-wedding-flowers/soft-goth-wedding-florals-sierra-nevada/
 redirect_from:

@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "From Lakeside to Mountain Peaks. Designing Resilient, Elevated Lake Tahoe Wedding Flowers"
+featured_image: "/assets/images/portfolio/mikayla-jeff/mikayla-jeff-11.jpg"
 date: 2026-05-03
 permalink: /natures-canvas-lake-tahoe-wedding-flowers/lake-tahoe-wedding-flowers-guide/
 description: "Planning a Sierra Nevada celebration? How an expert Lake Tahoe wedding florist designs resilient, elevated flowers from lakeside to mountain peaks."

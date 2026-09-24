@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Getting Married at The Ritz-Carlton Lake Tahoe? Here's What Your Flowers Should Look Like"
+featured_image: "/assets/images/portfolio/mikayla-jeff/mikayla-jeff-05.jpg"
 date: 2026-01-25
 permalink: /natures-canvas-lake-tahoe-wedding-flowers/wedding-florist-ritz-carlton-lake-tahoe-truckee/
 description: "If you're getting married at The Ritz-Carlton Lake Tahoe, the venue already does the heavy lifting. Here's how we design flowers to match its scale and polish."

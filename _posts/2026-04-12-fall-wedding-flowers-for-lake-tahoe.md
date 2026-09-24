@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Fall Wedding Flowers at Lake Tahoe. What's in Season and Why It's the Best Time of Year"
+featured_image: "/assets/images/portfolio/lynn-aaron/lynn-aaron-12.jpg"
 date: 2026-04-12
 permalink: /natures-canvas-lake-tahoe-wedding-flowers/fall-wedding-flowers-for-lake-tahoe/
 description: "Fall at Lake Tahoe is criminally underrated for weddings. What's actually in season, what the light does in October, and why we love designing it."

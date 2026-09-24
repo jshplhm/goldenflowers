@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Spring Has Arrived in the Sierras, and the Flowers Know It"
+featured_image: "/assets/images/portfolio/hannah-dillon/hannah-dillon-12.jpg"
 date: 2026-01-29
 permalink: /natures-canvas-lake-tahoe-wedding-flowers/lake-tahoe-wedding-florist-spring-behind-the-stems/
 description: "Lake Tahoe wedding flowers wake up in spring: ranunculus, clematis, and local peonies. What we're growing and designing as the Sierra thaws."

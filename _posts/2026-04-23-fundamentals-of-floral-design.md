@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Principles of High-End, Organic Floral Design. The Art of Effortless Beauty."
+featured_image: "/assets/images/portfolio/katie-james/katie-james-05.jpg"
 date: 2026-04-23
 permalink: /natures-canvas-lake-tahoe-wedding-flowers/fundamentals-of-floral-design/
 description: "Truly elevated floral design is an art form with real principles behind it. A look at how high-end, organic arrangements actually come together."

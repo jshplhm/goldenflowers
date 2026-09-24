@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Lake Tahoe Wedding Arch Flowers: How to Design a Ceremony Backdrop That Belongs in the Mountains"
+featured_image: "/assets/images/portfolio/hannah-dillon/hannah-dillon-24.jpg"
 date: 2026-03-05
 permalink: /natures-canvas-lake-tahoe-wedding-flowers/lake-tahoe-wedding-arch-flowers/
 description: "Your wedding arch is in every ceremony photo, so it should belong in the mountains. A Lake Tahoe wedding florist's guide to ceremony backdrops."

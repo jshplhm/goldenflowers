@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Wedding Flowers at Edgewood Tahoe, What Couples Need to Know"
+featured_image: "/assets/images/portfolio/kelly-dylan/kelly-dylan-24.jpg"
 date: 2026-04-19
 permalink: /natures-canvas-lake-tahoe-wedding-flowers/wedding-flowers-edgewood-lake-tahoe/
 description: "Edgewood Tahoe is one of the most stunning wedding venues in the Sierra Nevada. What couples need to know about flowers, timing, and budget there."

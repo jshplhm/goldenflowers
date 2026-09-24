@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "The Real Cost of Wedding Flowers in Lake Tahoe (And What Affects Your Budget)"
+featured_image: "/assets/images/portfolio/lynn-aaron/lynn-aaron-27.jpg"
 date: 2026-02-05
 permalink: /natures-canvas-lake-tahoe-wedding-flowers/wedding-flower-cost-lake-tahoe/
 description: "Wedding flowers in Lake Tahoe typically range from $3,000 to $15,000. An honest breakdown of what drives the price and where your budget goes."

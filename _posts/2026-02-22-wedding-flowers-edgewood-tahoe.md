@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Wedding Flowers at Edgewood Tahoe: A Florist's Guide to the Most Iconic Venue on the Lake"
+featured_image: "/assets/images/blog/lake-tahoe-venues-ideal-floral-pairings/lake-tahoe-venues-ideal-floral-pairings-01.jpg"
 date: 2026-02-22
 permalink: /natures-canvas-lake-tahoe-wedding-flowers/wedding-flowers-edgewood-tahoe/
 description: "A Lake Tahoe wedding florist's guide to designing flowers that do justice to Edgewood's iconic lakefront ceremony sites and Pavilion receptions."

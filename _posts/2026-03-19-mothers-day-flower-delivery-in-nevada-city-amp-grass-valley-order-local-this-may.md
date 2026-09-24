@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Mother's Day Flower Delivery in Nevada City &amp; Grass Valley: Order Local This May"
+featured_image: "/assets/images/portfolio/camille-max/camille-max-21.jpg"
 date: 2026-03-19
 permalink: /natures-canvas-lake-tahoe-wedding-flowers/mothers-day-flower-delivery-in-nevada-city-amp-grass-valley-order-local-this-may/
 description: "Mother's Day is one of the most meaningful days of the year to send flowers. We deliver hand-designed arrangements in Nevada City and Grass Valley."
