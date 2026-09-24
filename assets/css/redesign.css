@@ -1120,13 +1120,18 @@ body.lb-open{overflow:hidden;}
 .pledge{background:var(--bg);}
 .pledge-head{max-width:640px;margin-bottom:clamp(44px,6vw,70px);}
 .pledge-intro{color:var(--fg2);font-size:var(--t-lede);line-height:1.65;margin-top:16px;}
-.pledge-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(22px,3vw,40px) clamp(40px,6vw,90px);}
+/* Items hang from their own hairline rather than being centred in a row
+   sized by the tallest of the pair: 03 is twice the length of 04, and
+   centred, 04 floated halfway down an empty box beside it. */
+.pledge-grid{display:grid;grid-template-columns:repeat(2,1fr);align-items:start;
+  gap:clamp(22px,3vw,40px) clamp(40px,6vw,90px);}
 /* Numbered 01..NN (2026-09-24). Ten unnumbered hairline blocks read as an
    unordered pile; numbering says this is a list somebody committed to and
    counted. The number is decorative -- the heading is still the item -- so it
    is aria-hidden and sits in its own column. */
 .pledge-item{border-top:1px solid var(--line);padding-top:18px;
-  display:grid;grid-template-columns:auto 1fr;column-gap:clamp(14px,1.6vw,22px);}
+  display:grid;grid-template-columns:auto 1fr;align-content:start;align-items:start;
+  column-gap:clamp(14px,1.6vw,22px);}
 .pledge-n{grid-row:1 / span 2;font-family:var(--d);font-size:var(--t-d4);
   line-height:1.2;color:var(--mute);font-variant-numeric:tabular-nums;}
 .pledge-item h4{font-family:var(--d);font-size:var(--t-d4);letter-spacing:-.01em;margin-bottom:8px;}

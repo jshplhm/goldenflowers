@@ -1,21 +1,31 @@
 {%- comment -%}
-  Every other wedding, in portfolio order, on a rail you swipe.
+  The next few weddings, on a rail you swipe.
 
-  This used to pick three by stepping through the list, which meant the page
-  quietly decided which weddings you were allowed to see next and hid the third
-  card on phones anyway. With a list this short there is no reason to choose:
-  show them all and let the reader keep going.
+  ROTATED AND CAPPED (Josh, 2026-09-24). It used to show all nine others in
+  portfolio order, so every wedding page opened on very nearly the same rail
+  in the same sequence: browse two weddings and the portfolio starts to feel
+  smaller than it is. The list now STARTS at the wedding after this one and
+  wraps, and stops at MAX, so no two pages open the same way.
 
-  Cover photo = band[1], the middle of the three photos on the /portfolio band,
-  which portfolio_meta.yml reserves for the hero shot (the other two slots are
-  the landscape-tolerant one and the detail). Change the cover by reordering
-  that wedding's `band` list, or in /edit under Cover photos.
+  Cover photo = band[1], the middle of the three photos portfolio_meta.yml
+  reserves for the hero shot. Change the cover by reordering that wedding's
+  `band` list, or in /edit under Cover photos.
 
   Params: slug.
 {%- endcomment -%}
+{%- assign MAX = 5 -%}
 {%- assign wp = site.data.portfolio_page.wedding -%}
+{%- comment -%} Find where this wedding sits, then walk forward from it and
+wrap, so the rail begins somewhere different on every page. {%- endcomment -%}
+{%- assign all = site.data.portfolio_meta -%}
+{%- assign n = all.size -%}
+{%- assign here = 0 -%}
+{%- for w in all -%}{%- if w.slug == include.slug -%}{%- assign here = forloop.index0 -%}{%- endif -%}{%- endfor -%}
 {%- assign others = "" | split: "" -%}
-{%- for w in site.data.portfolio_meta -%}
+{%- for step in (1..n) -%}
+  {%- if others.size >= MAX -%}{%- break -%}{%- endif -%}
+  {%- assign idx = here | plus: step | modulo: n -%}
+  {%- assign w = all[idx] -%}
   {%- unless w.slug == include.slug -%}{%- assign others = others | push: w -%}{%- endunless -%}
 {%- endfor -%}
 {%- if others.size > 0 -%}
