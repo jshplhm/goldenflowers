@@ -1,0 +1,57 @@
+{%- comment -%}
+  Venue hero photograph. Params: v (the venue's data file).
+
+  Live venue pages have no photography at all: thirteen pages of pure text
+  about places whose whole appeal is how they look. This is the slot for it.
+
+  A venue fills `hero_photo` one of two ways.
+
+    hero_photo:
+      wedding: lynn-aaron          # a wedding in _data/portfolio_meta.yml
+      photo:   lynn-aaron-19.jpg   # a file in that wedding's folder
+      alt:     "..."
+
+  reuses a photograph we already own and already credit, and takes the
+  photographer from credits.yml so the credit can never drift from the one on
+  the wedding page. Or:
+
+    hero_photo:
+      src:    "/assets/images/venues/edgewood-tahoe.jpg"
+      alt:    "..."
+      credit: "Courtesy of Edgewood Tahoe"
+
+  for anything else. `credit` is REQUIRED on this second form and the photo is
+  dropped without it: eleven of these venues have no Golden Flowers photograph,
+  so most of what lands here will be someone else's work used with permission,
+  and an uncredited one is the failure mode to design against. /terms promises
+  every photograph on the site is credited and used with permission.
+
+  No hero_photo and the page renders exactly as it did before. That is the
+  common case today, so it has to look deliberate rather than broken.
+{%- endcomment -%}
+{%- assign hp = include.v.hero_photo -%}
+{%- if hp -%}
+  {%- assign src = "" -%}
+  {%- assign credit = hp.credit -%}
+  {%- if hp.wedding and hp.wedding != "" and hp.photo and hp.photo != "" -%}
+    {%- assign src = '/assets/images/portfolio/' | append: hp.wedding | append: '/' | append: hp.photo -%}
+    {%- unless credit and credit != "" -%}
+      {%- assign shooter = site.data.credits[hp.wedding].photography -%}
+      {%- if shooter.name and shooter.name != "" and shooter.name != "Photographer TBC" -%}
+        {%- assign credit = shooter.name -%}
+      {%- endif -%}
+    {%- endunless -%}
+  {%- elsif hp.src and hp.src != "" and credit and credit != "" -%}
+    {%- assign src = hp.src -%}
+  {%- endif -%}
+  {%- if src != "" -%}
+<figure class="venue-pic">
+  <img src="{{ site.baseurl }}{{ src }}" alt="{{ hp.alt | default: include.v.venue_name }}"
+       width="1500" height="844" loading="eager" fetchpriority="high"
+       sizes="(min-width:1500px) 1500px, 100vw">
+  {%- if credit and credit != "" %}
+  <figcaption class="venue-pic-credit">{{ credit }}</figcaption>
+  {%- endif %}
+</figure>
+  {%- endif -%}
+{%- endif -%}

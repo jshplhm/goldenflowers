@@ -1,6 +1,10 @@
 # north-tahoe-event-center venue page copy. Edit the wording here; SEO settings live in the page file.
 # Tip: wrap words in *asterisks* to make them italic.
 venue_name: "North Tahoe Event Center"
+hero_photo:
+  wedding: tori-tucker
+  photo: tori-tucker-05.jpg
+  alt: "A beach ceremony on the shore of Lake Tahoe at Kings Beach, an arch and chairs set and waiting"
 hero:
   eyebrow: "Kings Beach · North Shore"
   heading: "North Tahoe Event Center."

@@ -1,6 +1,10 @@
 # palisades-tahoe venue page copy (file keeps its old venue_key name). Edit the wording here; SEO settings live in the page file.
 # Tip: wrap words in *asterisks* to make them italic.
 venue_name: "Palisades Tahoe"
+hero_photo:
+  wedding: lynn-aaron
+  photo: lynn-aaron-19.jpg
+  alt: "A couple on the High Camp deck at Palisades Tahoe, snow still on the Sierra behind them, between two towering floral installations"
 hero:
   eyebrow: "Olympic Valley · Alpine"
   heading: "High Camp at Palisades Tahoe."

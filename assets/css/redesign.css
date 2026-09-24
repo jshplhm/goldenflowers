@@ -1536,6 +1536,23 @@ body.nav-hidden .venue-breadcrumb{top:0;}
    .text-hero padding every other text hero on the site uses. */
 .two-col--solo{grid-template-columns:1fr;max-width:760px;}
 /* Venue intro (no photo): statement heading left, prose right — fills the width */
+/* Venue hero photograph (2026-09-23). Contained to the same measure as the
+   page's text rather than full bleed: these are establishing shots of a
+   place, and a full-bleed band would give them more weight than the wedding
+   work further down, which is the work that sells.
+
+   16:9 on a desktop, 3:2 on a phone. A 16:9 strip on a 390px screen is 219px
+   tall, which is a letterbox rather than a photograph.
+
+   The credit sits under the picture, quiet: most of what lands here will be
+   the venue's own photography used with permission, and the promise on
+   /terms is that every photograph on the site is credited. */
+.venue-pic{max-width:var(--content-max);margin:clamp(28px,4vw,48px) auto 0;padding:0 var(--pad);}
+.venue-pic img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block;
+  border-radius:var(--r-img);background:var(--bg2);}
+.venue-pic-credit{margin-top:10px;font-size:var(--t-tag);letter-spacing:.09em;
+  text-transform:uppercase;color:var(--mute);}
+@media(max-width:760px){.venue-pic img{aspect-ratio:3/2;}}
 .venue-intro{display:grid;grid-template-columns:.82fr 1.18fr;gap:clamp(28px,5vw,64px);align-items:start;}
 .venue-intro .vi-head h2{font-family:var(--d);font-weight:430;font-optical-sizing:auto;font-size:var(--t-d3);letter-spacing:-.02em;line-height:1.08;margin-top:12px;color:var(--ink);}
 .venue-intro .vi-body p{font-size:1rem;line-height:1.72;color:var(--fg2);margin-bottom:16px;}
