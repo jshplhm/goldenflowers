@@ -103,7 +103,7 @@ the moment one pale photo wants it and another does not, the machinery is here.
 <section class="pband">
   <div class="pb-row">
     <figure class="pb-pic"><img src="{{ site.baseurl }}/assets/images/portfolio/mikayla-jeff/mikayla-jeff-03.jpg"{% include img-dims.html path="/assets/images/portfolio/mikayla-jeff/mikayla-jeff-03.jpg" %} loading="lazy" alt="Tall whimsical ceremony installation of thistle, lilac and trailing green against Olympic Valley pines"></figure>
-    <figure class="pb-pic"><img src="{{ site.baseurl }}/assets/images/portfolio/katie-james/katie-james-05.jpg"{% include img-dims.html path="/assets/images/portfolio/katie-james/katie-james-05.jpg" %} loading="lazy" alt="Blush and butter-cream roses massed on a stone wall at The Miner&#39;s Foundry"></figure>
+    <figure class="pb-pic"><img src="{{ site.baseurl }}/assets/images/portfolio/brooke-josh/brooke-josh-06.jpg"{% include img-dims.html path="/assets/images/portfolio/brooke-josh/brooke-josh-06.jpg" %} loading="lazy" alt="Blush and butter-cream roses massed on a stone wall at The Miner&#39;s Foundry"></figure>
   </div>
 </section>
 
