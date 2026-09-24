@@ -902,35 +902,20 @@ nav.site-nav .pill{white-space:nowrap;}
 
 /* ---------- PORTFOLIO ---------- */
 .pf-note{text-align:center;color:var(--mute);font-size:var(--t-sm);padding:26px var(--pad) 0;}
-.pf-note a{color:var(--forest);border-bottom:1px solid var(--accent);padding-bottom:2px;}
-.pf-wrap{max-width:var(--body-max);margin:0 auto;padding:var(--sp-s) var(--pad) var(--sp-m);}
-.pf-grid{column-count:3;column-gap:16px;}
-.pf-card{break-inside:avoid;margin-bottom:16px;position:relative;border-radius:var(--r-img);overflow:hidden;display:block;}
-.pf-card img{width:100%;transition:transform 1s cubic-bezier(.2,.7,.2,1);}
-.pf-card:hover img{transform:scale(1.04);}
-.pf-card::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,oklch(13% .03 150/.72));pointer-events:none;}
-.pf-cap{position:absolute;left:20px;right:20px;bottom:18px;z-index:2;color:var(--paper);}
-.pf-cap b{font-family:var(--d);font-size:var(--t-d4);display:block;font-weight:430;letter-spacing:-.01em;}
-.pf-cap .v{font-size:var(--t-tag);letter-spacing:.11em;text-transform:uppercase;opacity:.92;display:block;margin-top:3px;}
-.pf-cap .tag{display:inline-block;margin-top:10px;font-size:var(--t-tag);letter-spacing:.11em;text-transform:uppercase;border:1px solid oklch(100% 0 0/.5);border-radius:6px;padding:4px 11px;}
-@media(max-width:1024px){.pf-grid{column-count:2;}}
-@media(max-width:600px){.pf-grid{column-count:1;}}
-/* Portfolio grouped-by-aesthetic with a feature layout (1 big + 2 small) */
-.pf-group{max-width:var(--body-max);margin:0 auto;padding:clamp(40px,5vw,72px) var(--pad) 0;}
-.pf-group:last-of-type{padding-bottom:clamp(64px,8vw,110px);}
-.pf-group-head{max-width:62ch;margin-bottom:clamp(20px,2.5vw,34px);}
-.pf-group-head h2{font-family:var(--d);font-weight:430;font-optical-sizing:auto;font-size:var(--t-d3);letter-spacing:-.02em;line-height:1.04;margin:12px 0 10px;}
-.pf-group-head p{color:var(--fg2);font-size:var(--t-lede);line-height:1.6;max-width:52ch;}
-.pf-feature{display:grid;grid-template-columns:1.62fr 1fr;grid-template-rows:1fr 1fr;gap:16px;height:clamp(440px,48vw,648px);}
-.pf-feature .pf-card{height:100%;min-height:0;margin:0;border-radius:var(--r-img);}
-.pf-feature .pf-card.big{grid-row:1 / span 2;}
-.pf-feature .pf-card img{height:100%;width:100%;object-fit:cover;}
-@media(max-width:760px){
-  .pf-feature{grid-template-columns:1fr;grid-template-rows:none;height:auto;}
-  .pf-feature .pf-card.big{grid-row:auto;}
-  .pf-feature .pf-card{height:64vw;}
-  .pf-feature .pf-card.big{height:78vw;}
-}
+/* The portfolio's previous CSS lived here: a masonry .pf-grid (column-count),
+   .pf-card with a dark gradient ::after and a .pf-cap caption reversed out
+   over the photograph, plus the .pf-feature 1-big-2-small layout for the
+   grouped-by-aesthetic index. All of it went when the index became a plain
+   2x5 grid of cards on 2026-09-24, and none of the classes appear in any
+   markup any more.
+
+   It mattered that it went. The new cards reuse the name .pf-card, so every
+   one of them was still inheriting position:relative, overflow:hidden and
+   that full-bleed gradient: the couple's name and venue were being painted
+   ink-on-near-black at the bottom of each card and read as missing, and the
+   card measured taller than its square photograph because the gradient made
+   the caption area look like part of the picture. */
+
 /* Wedding (portfolio detail) page gallery */
 /* Asymmetric on purpose. The top is tight because the story above it already
    ends on its own generous padding, but the bottom is the last thing before a
@@ -1653,6 +1638,13 @@ body.nav-hidden .venue-breadcrumb{top:0;}
 .pf-grid{max-width:var(--content-max);margin:0 auto;padding:0 var(--pad);
   display:grid;grid-template-columns:repeat(2,1fr);
   gap:clamp(44px,5vw,78px) clamp(24px,3vw,44px);}
+/* The card's link wraps block children (the figure, the name, the venue), so
+   it has to be a block itself. Left inline, the browser splits it around them
+   and the caption escapes the card's box: the row below it was laid out as if
+   each card were only as tall as its photograph, and the next row's picture
+   was drawn over the venue line. The deleted .pf-card{overflow:hidden} had
+   been hiding that. */
+.pf-card > a{display:block;color:inherit;text-decoration:none;}
 .pf-card-pic{margin:0 0 clamp(14px,1.6vw,20px);overflow:hidden;
   border-radius:var(--r-img);aspect-ratio:1/1;background:var(--bg2);}
 .pf-card-pic img{width:100%;height:100%;object-fit:cover;display:block;
