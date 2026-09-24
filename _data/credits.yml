@@ -11,6 +11,12 @@
 #   kelly-dylan  -> Emma Wynn Paul Photography, planning by Honeysuckle Traditions
 #   camille-max  -> Mountain Time Photo
 # Everything else is waiting on Brittany.
+#
+# "Photographer TBC" (Josh, 2026-09-23) is a deliberate placeholder, not data.
+# An empty name hides the Photography row from visitors and surfaces a hint
+# only inside /edit, so the gap was invisible unless you went looking for it.
+# This makes the row render on the page so it asks to be filled in.
+# IT IS VISIBLE TO VISITORS. Replace all eight before this ships.
 
 defaults:
   # No master switch any more. Each wedding page shows "The team" as soon as it
@@ -22,7 +28,7 @@ defaults:
     url: "/"
 
 lynn-aaron:
-  photography: { name: "", url: "" }
+  photography: { name: "Photographer TBC", url: "" }
   planning: { name: "", url: "" }
   venue: { name: "Palisades High Camp", url: "/venues/palisades-high-camp" }
   catering: { name: "", url: "" }
@@ -35,7 +41,7 @@ lynn-aaron:
   officiant: { name: "", url: "" }
 
 katie-james:
-  photography: { name: "", url: "" }
+  photography: { name: "Photographer TBC", url: "" }
   planning: { name: "", url: "" }
   venue: { name: "The Miner's Foundry", url: "" }
   catering: { name: "", url: "" }
@@ -48,7 +54,7 @@ katie-james:
   officiant: { name: "", url: "" }
 
 tori-tucker:
-  photography: { name: "", url: "" }
+  photography: { name: "Photographer TBC", url: "" }
   planning: { name: "", url: "" }
   venue: { name: "North Tahoe Event Center", url: "/venues/north-tahoe-event-center" }
   catering: { name: "", url: "" }
@@ -87,7 +93,7 @@ kelly-dylan:
   officiant: { name: "", url: "" }
 
 jenna-cal:
-  photography: { name: "", url: "" }
+  photography: { name: "Photographer TBC", url: "" }
   planning: { name: "", url: "" }
   venue: { name: "National Exchange Hotel", url: "" }
   catering: { name: "", url: "" }
@@ -100,7 +106,7 @@ jenna-cal:
   officiant: { name: "", url: "" }
 mikayla-jeff:
   photography:
-    name: ""
+    name: "Photographer TBC"
     url: ""
   planning:
     name: ""
@@ -134,7 +140,7 @@ mikayla-jeff:
     url: ""
 brooke-josh:
   photography:
-    name: ""
+    name: "Photographer TBC"
     url: ""
   planning:
     name: ""
@@ -168,7 +174,7 @@ brooke-josh:
     url: ""
 jac-brandon:
   photography:
-    name: ""
+    name: "Photographer TBC"
     url: ""
   planning:
     name: ""
@@ -202,7 +208,7 @@ jac-brandon:
     url: ""
 hannah-dillon:
   photography:
-    name: ""
+    name: "Photographer TBC"
     url: ""
   planning:
     name: ""

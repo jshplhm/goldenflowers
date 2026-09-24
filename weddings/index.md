@@ -163,9 +163,15 @@ change, because it points at the #reviews anchor below. {%- endcomment -%}
 {%- endif %}
 
 <!-- FAQ -->
-<section class="block">
-  <span class="lab"><span data-ed="weddings:faq.label">{{ site.data.weddings.faq.label }}</span></span>
-  <h2 class="h-lg"><span data-ed="weddings:faq.heading">{{ site.data.weddings.faq.heading }}</span></h2>
+{%- comment -%} Heading in a left rail, questions in the right column
+(2026-09-23). Full width, the accordion was a stack of hairlines running the
+whole measure with the heading stranded above it and half the row empty after
+each question. {%- endcomment -%}
+<section class="block faq-split">
+  <div class="faq-head">
+    <span class="lab"><span data-ed="weddings:faq.label">{{ site.data.weddings.faq.label }}</span></span>
+    <h2 class="h-lg"><span data-ed="weddings:faq.heading">{{ site.data.weddings.faq.heading }}</span></h2>
+  </div>
   {% include redesign-faq.html %}
 </section>
 

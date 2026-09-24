@@ -66,9 +66,13 @@ migration, so this is the same component, not a new one. {%- endcomment -%}
 
 <section class="section">
   <div class="container">
-    <span class="label"><span data-ed="{{ vk }}:faq.label">{{ v.faq.label }}</span></span>
-    <h2><span data-ed="{{ vk }}:faq.heading">{{ v.faq.heading }}</span></h2>
-    {% include redesign-faq.html %}
+    <div class="faq-split">
+      <div class="faq-head">
+        <span class="label"><span data-ed="{{ vk }}:faq.label">{{ v.faq.label }}</span></span>
+        <h2><span data-ed="{{ vk }}:faq.heading">{{ v.faq.heading }}</span></h2>
+      </div>
+      {% include redesign-faq.html %}
+    </div>
   </div>
 </section>
 

@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Lake Tahoe venues &amp; their ideal floral pairings"
+featured_image: "/assets/images/blog/lake-tahoe-venues-ideal-floral-pairings/lake-tahoe-venues-ideal-floral-pairings-01.jpg"
 date: 2026-01-18
 permalink: /natures-canvas-lake-tahoe-wedding-flowers/lake-tahoe-venues-ideal-floral-pairings/
 description: "A florist's guide to pairing flowers with Lake Tahoe's top wedding venues, from lakefront lawns to mountain lodges, with palettes suited to each."

@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Dark Romance at The National Exchange Hotel"
+featured_image: "/assets/images/blog/dark-romance-national-exchange-hotel-nevada-city/dark-romance-national-exchange-hotel-nevada-city-01.jpg"
 date: 2026-02-12
 permalink: /natures-canvas-lake-tahoe-wedding-flowers/dark-romance-national-exchange-hotel-nevada-city/
 description: "A soft goth love story at Nevada City's most historic hotel: deep red blooms, candlelight, and black velvet at the National Exchange."

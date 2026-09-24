@@ -35,7 +35,13 @@
      is what made the fixed-color header look grey on some pages and white on
      others depending on which surface happened to sit under it. */
   --bg:oklch(98.8% .005 40);    /* page + header + sticky breadcrumb */
-  --bg2:oklch(96.8% .010 40);   /* image wells and inset panels only -- NOT a section ground */
+  /* --bg2 is image wells, inset panels, and ONE section ground: the closing
+     block (the page's closing ask plus the footer, which read as a single
+     slab). That was the exception the "not a section ground" rule was
+     guarding against, but the bug it guarded against cannot happen here --
+     the header is fixed-colour and sits over the TOP of a page, and the
+     closing block is the bottom. Nothing else may take it as a ground. */
+  --bg2:oklch(96.8% .010 40);
   --paper:oklch(100% 0 0);      /* cards/fields floating on --bg; also the on-dark text color */
   --ink:oklch(20% .02 150);
   --forest:oklch(27% .05 150);
@@ -659,14 +665,22 @@ nav.site-nav .pill{white-space:nowrap;}
    per section stacked into one long stripe down the page and read as a template.
    --bg2 survives for wells and inset panels (the hero plate, .pricing-box,
    .est-recap), where it is a surface under something rather than a section. */
-.cta{background:var(--bg);padding:var(--sp-l) var(--pad-body) var(--sp-m);text-align:center;}
+/* THE CLOSING BLOCK (2026-09-23). The closing ask and the footer are one
+   slab on the warm tint, rather than two near-white bands separated by a
+   hairline. The ask stops reading as the last section of the page and starts
+   reading as the top of the footer, which is what it is. */
+.cta{background:var(--bg2);padding:var(--sp-l) var(--pad-body) var(--sp-m);text-align:center;}
 /* Where a tint band butts straight into the CTA (sustainability: .pledge is the
    previous sibling) the two would read as one slab, so carry the break on a
    hairline instead of a tone change. */
 .pledge + .cta,.proc + .cta,.cta-section + .cta,.band-paper + .cta{border-top:1px solid var(--line);}
 .cta--tall{min-height:0;padding-top:var(--sp-m);padding-bottom:var(--sp-m);display:flex;flex-direction:column;align-items:center;justify-content:center;}
 .cta--tall p{max-width:56ch;}
-.cta h2{font-family:var(--d);font-weight:430;font-optical-sizing:auto;font-size:var(--t-d2);letter-spacing:-.025em;line-height:1.02;}
+/* One step up from --t-d2. This is the last thing the page says and it was
+   set at the same size as any other section heading. */
+.cta h2,.cta-section h2{font-family:var(--d);font-weight:430;font-optical-sizing:auto;
+  font-size:clamp(34px,18px + 2.6vw,56px);letter-spacing:-.025em;line-height:1.02;}
+.credo.closing .intro-close{font-size:clamp(34px,18px + 2.6vw,56px);line-height:1.04;max-width:20ch;}
 .cta h2 em{color:var(--accent);}
 /* Display headings never leave one word alone on the last line.
    "Let's bring your vision *to life.*" broke as "…your vision to / life." on a
@@ -684,7 +698,7 @@ nav.site-nav .pill{white-space:nowrap;}
    foot made the scroll end on a change of colour rather than on the studio's
    name, and it was the last full-bleed band left once the tint sections went.
    A hairline gives the footer its edge; the type does the rest. */
-.site-footer{background:var(--bg);color:var(--fg2);border-top:1px solid var(--line);padding:var(--sp-m) var(--pad-col) 34px;}
+.site-footer{background:var(--bg2);color:var(--fg2);border-top:1px solid var(--line);padding:var(--sp-m) var(--pad-col) 34px;}
 /* The closing ask IS the top of the footer. Halving the gap between them was
    not enough: the ask still sat in its own box with a rule under it, so it read
    as something floating above the footer rather than as its opening line.
@@ -726,15 +740,19 @@ nav.site-nav .pill{white-space:nowrap;}
   :is(.cta,.cta-section) > *{grid-column:1 !important;grid-row:auto !important;}
   :is(.cta,.cta-section) h2{max-width:none;}
 }
-:is(.cta,.cta-section) + .site-footer{padding-top:0;border-top:0;}
-:is(.cta,.cta-section) + .site-footer .foot-in{
+:is(.cta,.cta-section,.credo.closing) + .site-footer{padding-top:0;border-top:0;}
+:is(.cta,.cta-section,.credo.closing) + .site-footer .foot-in{
   border-top:1px solid var(--line);padding-top:clamp(44px,5vw,76px);}
 .foot-in{display:grid;grid-template-columns:.85fr 1.6fr;gap:clamp(40px,6vw,80px);align-items:start;border-bottom:1px solid var(--line);padding-bottom:clamp(40px,5vw,60px);}
 .foot-lead{max-width:34ch;}
 /* Same mark as the nav, so it is set the same way: caps, tracked, one step
    larger because it has room here. */
-.foot-brand{font-family:var(--d);font-size:1.5rem;color:var(--ink);
-  letter-spacing:.24em;text-transform:uppercase;line-height:1.2;
+/* Fluid, and it does not break. At 1.5rem with .24em of tracking the mark
+   needs ~330px and the brand column is .85fr of the footer grid, so between
+   roughly 900 and 1100px it wrapped to two lines and stopped reading as a
+   wordmark. It scales with the column instead. */
+.foot-brand{font-family:var(--d);font-size:clamp(1.15rem,1.6vw,1.5rem);color:var(--ink);
+  letter-spacing:.24em;text-transform:uppercase;line-height:1.2;white-space:nowrap;
   -webkit-text-stroke:.25px currentColor;}
 .foot-tag{font-size:1rem;line-height:1.6;color:var(--fg2);margin:20px 0 26px;}
 .foot-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(24px,3vw,48px);}
@@ -749,10 +767,16 @@ nav.site-nav .pill{white-space:nowrap;}
 .foot-cols a:hover,.foot-legal a:hover{color:var(--ink);text-decoration:underline;text-underline-offset:3px;}
 /* The copyright and the legal links are one run of small print, so they sit
    together on the left rather than being flung to opposite ends of the bar. */
-.foot-bottom{display:flex;justify-content:flex-start;align-items:baseline;gap:0;flex-wrap:wrap;margin-top:26px;font-size:var(--t-ui);color:var(--mute);letter-spacing:.02em;}
+/* Copyright at one end, the legal links at the other (Josh, 2026-09-23).
+   They were one middot-separated group because held apart across a 1300px bar
+   the two halves read as unrelated -- but that was when this row sat on the
+   same near-white as the page. On the tint, under a full four-column block,
+   the row has a shape of its own and the split reads as a footer rule rather
+   than as two stray fragments. */
+.foot-bottom{display:flex;justify-content:space-between;align-items:baseline;gap:16px 24px;flex-wrap:wrap;margin-top:26px;font-size:var(--t-ui);color:var(--mute);letter-spacing:.02em;}
 /* Middots as separators, drawn by CSS so the markup stays a plain list of links
    and the first one never gets a leading dot. */
-.foot-bottom > * + *::before,.foot-legal a + a::before{content:"·";margin:0 9px;color:oklch(55% .02 145/.55);}
+.foot-legal a + a::before{content:"·";margin:0 9px;color:oklch(55% .02 145/.55);}
 /* The address lines used to carry an 18px lead-in, which knocked them half a
    row out of step with the two columns beside them: "Incline Village, NV" sat
    between Venues and Process & Pricing rather than level with Venues. They are
@@ -1436,9 +1460,22 @@ body.modal-open{overflow:hidden;}
 .blog-search{font-family:var(--b);font-size:var(--t-sm);padding:13px 20px;border:1px solid var(--line);border-radius:var(--r-img);background:var(--paper);min-width:280px;color:var(--ink);}
 .blog-search:focus{outline:none;border-color:var(--accent);}
 .blog-count{font-size:var(--t-tag);letter-spacing:.1em;text-transform:uppercase;color:var(--mute);}
-.blog-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:0 clamp(40px,5vw,80px);}
+/* Covers where we have them (2026-09-23). Two columns, not the three the
+   review drew: three only works when every card carries a picture, and 5 of
+   34 posts do. At three up the titles also run six lines in a 300px column.
+
+   align-items:start so each card is its own height. Stretched to the row, a
+   short card grew a tall empty tail and the grid read as broken rather than
+   as varied. Cards with and without a cover therefore sit in the same
+   typographic frame, and a cover is an addition to a card rather than the
+   thing the card is built around. Move to three up once most posts have one. */
+.blog-grid{display:grid;grid-template-columns:repeat(2,1fr);align-items:start;
+  gap:clamp(34px,4vw,52px) clamp(40px,5vw,80px);}
 .blog-card{border-top:1px solid var(--line);}
-.blog-card-link{display:block;padding:30px 0;}
+.blog-card-link{display:block;padding:26px 0 30px;}
+.blog-card-cover{margin:0 0 20px;overflow:hidden;border-radius:var(--r-img);aspect-ratio:3/2;background:var(--bg2);}
+.blog-card-cover img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s ease;}
+.blog-card:hover .blog-card-cover img{transform:scale(1.03);}
 .blog-card-title{font-family:var(--d);font-weight:430;font-size:var(--t-d3);letter-spacing:-.01em;line-height:1.14;margin-bottom:12px;transition:color .2s;}
 .blog-card:hover .blog-card-title{color:var(--forest);}
 .blog-card-excerpt{color:var(--fg2);line-height:1.6;margin-bottom:16px;}
@@ -1475,6 +1512,19 @@ body.nav-hidden .venue-breadcrumb{top:0;}
 .venue-breadcrumb a:hover{color:var(--ink);border-bottom-color:var(--accent);}
 .venue-breadcrumb .sep{color:var(--line);}
 .venue-breadcrumb .current{color:var(--ink);}
+
+/* FAQ: heading rail left, accordion right (2026-09-23). Across the full
+   measure the questions were short lines on very long rules, and the heading
+   sat above the lot with nothing beside it. The rail is sticky so the section
+   still says what it is once you are six answers down. */
+.faq-split{display:grid;grid-template-columns:.8fr 1.5fr;gap:clamp(32px,5vw,90px);align-items:start;}
+.faq-split .faq-head{position:sticky;top:calc(var(--nav-h) + 28px);}
+.faq-split .faq-head h2{margin-top:14px;}
+.faq-split .faq-list{min-width:0;}
+@media(max-width:900px){
+  .faq-split{grid-template-columns:1fr;gap:clamp(20px,4vw,32px);}
+  .faq-split .faq-head{position:static;}
+}
 /* A page that carries the breadcrumb does not also reserve the nav height in
    its own hero: the breadcrumb's margin-top already does it, and both together
    pushed the h1 roughly a nav further down than on a page without one. */
@@ -1523,7 +1573,7 @@ body.nav-hidden .venue-breadcrumb{top:0;}
 .price-note{font-size:var(--t-tag);letter-spacing:.12em;text-transform:uppercase;color:var(--mute);margin-top:10px;}
 .price-details p{margin-bottom:14px;}
 
-.cta-section{background:var(--bg);padding:var(--sp-l) var(--pad-body) var(--sp-m);text-align:center;}
+.cta-section{background:var(--bg2);padding:var(--sp-l) var(--pad-body) var(--sp-m);text-align:center;}
 .cta-section .label{display:block;}
 .cta-section h2{font-family:var(--d);font-weight:430;font-optical-sizing:auto;font-size:var(--t-d2);letter-spacing:-.02em;line-height:1.05;margin:12px 0;}
 .cta-section p{max-width:46ch;margin:0 auto 28px;color:var(--fg2);}
@@ -2394,7 +2444,7 @@ body.nav-hidden .venue-breadcrumb{top:0;}
    block's closing line rather than the old .cta slab, so the last thing on the
    page is set the same way as the first block of words on it. Centred, one
    step of space above it, and the link below at body size. */
-.credo.closing{padding-top:var(--sp-m);text-align:center;}
+.credo.closing{padding-top:var(--sp-m);padding-bottom:var(--sp-m);background:var(--bg2);text-align:center;}
 .credo.closing .intro-close{margin:0 auto;}
 .credo.closing .intro-more{margin-top:clamp(22px,2.6vw,32px);}
 .intro-body{font-family:var(--b);font-size:var(--t-lede);line-height:1.6;

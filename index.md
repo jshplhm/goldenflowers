@@ -228,5 +228,8 @@ the moment one pale photo wants it and another does not, the machinery is here.
 
 <section class="credo closing">
   <p class="intro-close">{% include em.html t=site.data.home.cta.heading k="home:cta.heading" %}</p>
-  <p class="intro-more"><a href="{{ site.baseurl }}/consultation-form" class="txt-link"><span data-ed="home:cta.button">{{ site.data.home.cta.button }}</span> &rarr;</a></p>
+  {%- comment -%} A button, not a text link (Josh, 2026-09-23). Every other
+  page ends its closing ask with one; home ended on an underlined phrase, so
+  the single loudest moment to act was the quietest control on the site. {%- endcomment -%}
+  <p class="intro-more"><a href="{{ site.baseurl }}/consultation-form" class="btn btn-ink"><span data-ed="home:cta.button">{{ site.data.home.cta.button }}</span> <span>&rarr;</span></a></p>
 </section>

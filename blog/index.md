@@ -39,9 +39,20 @@ redirect_from:
     <span class="blog-count" id="blog-count"></span>
   </div>
   <div class="blog-grid" id="blog-grid">
+    {%- comment -%}
+      COVERS (2026-09-23). A card shows a cover when the post declares a
+      featured_image, and is a typographic card when it doesn't. It is NOT
+      guessed from the first <img> in the body: only 6 of 36 posts contain an
+      image at all, and on one of those the first one is a screenshot of a
+      stem-count table, which is not a cover. Declaring it per post keeps that
+      an editorial choice.
+    {%- endcomment -%}
     {% for post in site.posts %}
-    <article class="blog-card" data-text="{{ post.title | append: ' ' | append: post.description | append: ' ' | append: post.content | strip_html | escape | downcase }}">
+    <article class="blog-card{% if post.featured_image and post.featured_image != "" %} blog-card--cover{% endif %}" data-text="{{ post.title | append: ' ' | append: post.description | append: ' ' | append: post.content | strip_html | escape | downcase }}">
       <a href="{{ site.baseurl }}{{ post.url }}" class="blog-card-link">
+        {%- if post.featured_image and post.featured_image != "" %}
+        <figure class="blog-card-cover"><img src="{{ site.baseurl }}{{ post.featured_image }}" alt="" loading="lazy" width="800" height="533"></figure>
+        {%- endif %}
         <h2 class="blog-card-title">{{ post.title }}</h2>
         <p class="blog-card-excerpt">{{ post.description | strip_html | truncatewords: 24 }}</p>
         <span class="blog-card-more">Read more &rarr;</span>
