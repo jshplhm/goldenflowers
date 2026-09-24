@@ -2073,6 +2073,12 @@ body.nav-hidden .venue-breadcrumb{top:0;}
      which crops the closing tile to a letterbox slot. */
   .wide{height:auto;aspect-ratio:3/2;}
 }
+/* One column on a phone. The rule above takes .facts-strip to two columns and
+   two held all the way down to 320px: at 375 that is a 150px column carrying
+   three sentences, wrapping every two or three words. Placed AFTER that block
+   on purpose, same specificity, so source order decides. */
+@media(max-width:520px){.facts-strip{grid-template-columns:1fr;gap:26px;}}
+
 
 /* Phones get the cred cards one-up, not 2x2: at half a phone's width the
    display headings ("Calm under pressure") wrap to two lines. Placed after the
