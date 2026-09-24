@@ -106,31 +106,75 @@ process:
 # instead and the template accepts both.
 pricing:
   label: Investment
-  # ONE FIGURE, NOT A LADDER (2026-09-24).
+  # A SECTION, NOT A STRIP (2026-09-24, Josh).
   #
-  # The standing call from 2026-09-21 is no price and no minimum anywhere on
-  # the site except a venue's typical 100-guest range. This page was still
-  # publishing a three-tier ladder: an $8,000 full-service minimum, a $5,000
-  # a la carte line, and a $20,000+ top tier. A minimum and an entry price are
-  # precisely the two things that call excluded, so they are gone and the one
-  # figure it does allow is what remains.
+  # What this replaces: one figure, one caption and one paragraph, sitting on
+  # the page's own ground between "what's included" and the FAQ. The nav calls
+  # this page Pricing and that was the whole of the pricing on it.
+  #
+  # THE POSITION, in Josh's words: we are not stating a minimum budget in order
+  # to work with someone. What we are saying is that the number varies with the
+  # venue, the scope and the design, and that from the weddings we have done
+  # around the lake we can tell a couple where a typical one lands. That is a
+  # RANGE OBSERVED, not a floor charged, and the difference is the whole point:
+  # a minimum is a door you can be under, a range is a place to stand.
   #
   # Retired here, kept so the history is not lost:
-  #   "$8,000"    Our full-service minimum
-  #     entry_note: Smaller celebrations start at $5,000 a la carte:
-  #                 designer's choice in your palette, without installations.
-  #   "$20,000+"  Larger weddings and multiple installations
-  #   The three tier photographs went with them.
+  #   2026-09-24  "$12,000 to $18,000" / "A typical 100 guest wedding", one note
+  #   2026-09-21  no figure at all
+  #   2026-08-28  the three-tier ladder, $8,000 floor / $12-20k / $20,000+
+  #   2026-09-15  one price, "$5,000 full service"
   #
-  # Josh is doing a pricing pass. Replace `figure` and `figure_label` and the
-  # section follows; blank `figure` and the block stops rendering entirely,
-  # which is the no-number state if that is where the pass lands.
+  # `figures` is a list and the template follows it: two reads as the range and
+  # the ceiling, one reads as the answer, three starts to read as a ladder
+  # again, which is the shape we keep coming back off. Keep it at two.
+  #
+  # The FAQ "What does a full-service wedding florals investment typically look
+  # like?" in _data/faqs.yml carries these same numbers. THEY HAVE TO AGREE.
+  # They did not between 2026-09-21 and today: the FAQ was still saying
+  # $10,000-$30,000+ and $12,000-$20,000 under a block saying $12,000-$18,000.
   heading: What it costs.
-  figure: "$12,000 to $18,000"
-  figure_label: A typical 100 guest wedding
-  note: Every wedding is quoted on its own. What moves the number most is the
-    scale of the ceremony installation and how much of the room you want
-    designed, not the number of bouquets.
+  intro: There is no minimum to work with us. What a wedding costs moves with
+    the venue, how much of the room you want designed, the season and your
+    guest count, so every wedding is quoted on its own. What we can tell you
+    is where the weddings we have done around the lake tend to land.
+  figures:
+  - amount: "$12,000 to $18,000"
+    caption: Where a typical 100 guest full service wedding lands.
+  - amount: Above $25,000
+    caption: Larger guest counts, multiple installations, a room designed end
+      to end.
+  # Four things, because four is what a couple can hold. Each one is a lever
+  # they actually control, so the list doubles as the agenda for the
+  # consultation.
+  drivers_label: What moves the number
+  drivers:
+  - title: The venue
+    body: A room you dress from bare walls and a lakeside lawn that needs one
+      strong moment are different jobs, and they take different days to install.
+  - title: Scope and design
+    body: The ceremony on its own, or the ceremony and every table, bar and
+      doorway on the way to it.
+  - title: Guest count
+    body: Tables set the floor of any reception number, so going from 80 guests
+      to 160 is felt here more than anywhere else.
+  - title: The season
+    body: What is at peak the week you marry is both the best value and the
+      best looking. A flower flown in out of season costs more and travels
+      worse.
+  # The a la carte offer. It is written as an invitation to say a number, not
+  # as a tier: naming a second figure here would put back the floor the rest of
+  # the section just took out. Empty `smaller.body` and the whole panel stops
+  # rendering, which is how the offer is withdrawn without touching markup.
+  smaller:
+    heading: If your budget is smaller
+    body: We do our best to work with what a couple has. If full service is
+      more than you want to spend, tell us the number you had in mind and we
+      will put together an a la carte selection instead, a shorter list
+      designed in your palette with the scope agreed up front. It is limited
+      on purpose. We would rather do a few things properly than spread a
+      budget thin across a whole room.
+    button: Tell us your budget
 
 # What full-service covers. The six titles are what the /weddings FAQ already
 # lists in one sentence ("consultation, design proposal and mood board,

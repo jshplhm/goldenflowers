@@ -132,27 +132,80 @@ redirect_from:
 
 <!-- INVESTMENT -->
 {%- comment -%}
-  One figure, on the page's own ground (2026-09-24). This was a dark forest
-  band carrying a three-tier ladder with a photograph per tier. The band is
-  gone because the page reads as one surface now, and the ladder is gone
-  because a minimum and an entry price are the two things the no-price call
-  ruled out. See the header on `pricing:` in _data/weddings.yml.
+  THE PAGE IS CALLED PRICING, SO PRICING GETS A SECTION (2026-09-24, Josh).
+
+  This was one figure, one caption and one paragraph on the page's own ground,
+  sitting between "what's included" and the FAQ with nothing to mark it. A
+  reader who came here from a nav link reading "Pricing" scrolled past seven
+  process steps and six inclusions to reach four lines.
+
+  It is now a band: the position (no minimum, quoted individually), two
+  figures, the four things that move the number, and the a la carte answer for
+  a smaller budget.
+
+  THE TINT. --bg2 as a SECTION GROUND is reserved, by a rule written into the
+  token itself, for the closing block alone. The rule exists because the header
+  is a fixed colour sitting over the top of a page, so a second ground there
+  made it read grey on one page and white on another. This section is in the
+  middle of a page and the header never touches it, so the bug the rule guards
+  against cannot happen here. It is one band on one page, not the per-section
+  banding that was reversed on 2026-09-16 for making the page shout. Josh asked
+  for the tint so pricing reads as its own place. See --bg2 in redesign.css.
 
   #pricing sits on the SECTION, which carries the padding the anchor needs.
 {%- endcomment -%}
-{%- assign fig = site.data.weddings.pricing.figure | strip -%}
-{%- if fig != "" %}
-<section class="block invest" id="pricing">
-  <span class="lab"><span data-ed="weddings:pricing.label">{{ site.data.weddings.pricing.label }}</span></span>
-  <div class="invest-row">
-    <div class="invest-fig">
-      <p class="invest-amount"><span data-ed="weddings:pricing.figure">{{ site.data.weddings.pricing.figure }}</span></p>
-      <p class="invest-label"><span data-ed="weddings:pricing.figure_label">{{ site.data.weddings.pricing.figure_label }}</span></p>
+{%- assign pr = site.data.weddings.pricing -%}
+{%- assign nfig = pr.figures | size -%}
+{%- if nfig > 0 %}
+<section class="invest-band" id="pricing">
+  <div class="invest-wrap">
+    <div class="invest-head">
+      <span class="lab"><span data-ed="weddings:pricing.label">{{ pr.label }}</span></span>
+      <h2><span data-ed="weddings:pricing.heading">{{ pr.heading }}</span></h2>
+      <p class="invest-intro"><span data-ed="weddings:pricing.intro">{{ pr.intro }}</span></p>
     </div>
-    <div class="invest-note">
-      <h2><span data-ed="weddings:pricing.heading">{{ site.data.weddings.pricing.heading }}</span></h2>
-      <p><span data-ed="weddings:pricing.note">{{ site.data.weddings.pricing.note }}</span></p>
+
+    {%- comment -%} Two figures read as a range and a ceiling. The grid is set
+    from the count so a single figure still fills the row rather than sitting in
+    a half-empty one. {%- endcomment -%}
+    <div class="invest-figs" data-n="{{ nfig }}">
+      {%- for f in pr.figures %}
+      <div class="invest-fig">
+        <p class="invest-amount"><span data-ed="weddings:pricing.figures.{{ forloop.index0 }}.amount">{{ f.amount }}</span></p>
+        <p class="invest-cap"><span data-ed="weddings:pricing.figures.{{ forloop.index0 }}.caption">{{ f.caption }}</span></p>
+      </div>
+      {%- endfor %}
     </div>
+
+    {%- assign ndrv = pr.drivers | size -%}
+    {%- if ndrv > 0 %}
+    <div class="invest-drivers">
+      <h3 class="invest-dh"><span data-ed="weddings:pricing.drivers_label">{{ pr.drivers_label }}</span></h3>
+      <dl class="invest-dl">
+        {%- for d in pr.drivers %}
+        <div>
+          <dt><span data-ed="weddings:pricing.drivers.{{ forloop.index0 }}.title">{{ d.title }}</span></dt>
+          <dd><span data-ed="weddings:pricing.drivers.{{ forloop.index0 }}.body">{{ d.body }}</span></dd>
+        </div>
+        {%- endfor %}
+      </dl>
+    </div>
+    {%- endif %}
+
+    {%- comment -%} Gated on the body, not the heading: emptying the body is how
+    the a la carte offer is withdrawn, and a heading left standing over nothing
+    is what gating on the heading would leave behind. {%- endcomment -%}
+    {%- assign sm = pr.smaller.body | strip -%}
+    {%- if sm != "" %}
+    <div class="invest-small">
+      <h3><span data-ed="weddings:pricing.smaller.heading">{{ pr.smaller.heading }}</span></h3>
+      <p><span data-ed="weddings:pricing.smaller.body">{{ pr.smaller.body }}</span></p>
+      {%- assign smb = pr.smaller.button | strip -%}
+      {%- if smb != "" %}
+      <a class="btn btn-ink" href="{{ site.baseurl }}/consultation-form"><span data-ed="weddings:pricing.smaller.button">{{ pr.smaller.button }}</span> <span>&rarr;</span></a>
+      {%- endif %}
+    </div>
+    {%- endif %}
   </div>
 </section>
 {%- endif %}

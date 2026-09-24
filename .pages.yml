@@ -234,25 +234,38 @@ content:
               - {name: title, label: "Title", type: string}
               - {name: body, label: "Text", type: text}
       - name: pricing
-        label: "Section: investment (the three prices)"
+        label: "Section: investment (the price band)"
         type: object
-        description: "The price ladder on the dark band. To change a PHOTO, open /edit, go to the Pricing page and click the photo you want to swap: photos are not editable here."
+        description: "The tinted pricing band. There is no minimum on this site: these figures describe where our weddings land, they are not a floor. If you change one, change the matching FAQ answer too (FAQs > Weddings > 'What does a full-service wedding florals investment typically look like?') or the page contradicts itself."
         fields:
           - {name: label, label: "Small label", type: string}
           - {name: heading, label: "Heading", type: string}
-          - {name: note, label: "Line under the heading", type: text}
-          - name: tiers
-            label: "The three prices"
+          - {name: intro, label: "Opening paragraph", type: text, description: "The position: no minimum, every wedding quoted on its own, and what we can say from the weddings we have done."}
+          - name: figures
+            label: "The figures"
             type: object
             list: true
-            description: "Three rows, cheapest first. Tick 'Where most weddings land' on exactly ONE row, and give that same row a badge: it is the highlighted middle of the scale, and ticking two defeats the point. Every figure is typed exactly as it should read, dollar sign and all."
+            description: "Keep this at TWO. Two reads as a typical range and a ceiling; three starts to read as a price ladder, which is the shape this page keeps coming back off. Type each figure exactly as it should read, dollar sign and all."
             fields:
-              - {name: amount, label: "Amount", type: string}
-              - {name: label, label: "What it covers", type: string}
-              - {name: badge, label: "Badge on the photo", type: string, description: "Short, two or three words. Leave empty on the rows that are not the highlighted one."}
-              - {name: lead, label: "Where most weddings land", type: boolean, description: "The highlighted row. Exactly one."}
-              - {name: entry_note, label: "Smaller-scope line", type: text, description: "The a la carte offer, shown as a quieter line inside this row only. Empty it to withdraw the offer and the line disappears on its own."}
-              - {name: alt, label: "Photo description", type: text, description: "Read aloud to anyone using a screen reader, and shown if the photo fails to load. Describe what is in the picture."}
+              - {name: amount, label: "Figure", type: string}
+              - {name: caption, label: "What it describes", type: text}
+          - {name: drivers_label, label: "Label above the list", type: string}
+          - name: drivers
+            label: "What moves the number"
+            type: object
+            list: true
+            description: "Four is the right number: it is what a couple can hold, and it doubles as the agenda for the consultation."
+            fields:
+              - {name: title, label: "Title", type: string}
+              - {name: body, label: "Text", type: text}
+          - name: smaller
+            label: "Smaller budgets (a la carte)"
+            type: object
+            description: "Empty the text and this whole panel disappears, which is how the a la carte offer is withdrawn. Deliberately names no second figure: a number here would put back the minimum the rest of the section just removed."
+            fields:
+              - {name: heading, label: "Heading", type: string}
+              - {name: body, label: "Text", type: text}
+              - {name: button, label: "Button text", type: string, description: "Goes to the consultation form. Empty it to drop the button."}
       - name: testimonials
         label: "Section: reviews"
         type: object

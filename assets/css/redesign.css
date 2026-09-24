@@ -35,12 +35,17 @@
      is what made the fixed-color header look grey on some pages and white on
      others depending on which surface happened to sit under it. */
   --bg:oklch(98.8% .005 40);    /* page + header + sticky breadcrumb */
-  /* --bg2 is image wells, inset panels, and ONE section ground: the closing
-     block (the page's closing ask plus the footer, which read as a single
-     slab). That was the exception the "not a section ground" rule was
-     guarding against, but the bug it guarded against cannot happen here --
-     the header is fixed-colour and sits over the TOP of a page, and the
-     closing block is the bottom. Nothing else may take it as a ground. */
+  /* --bg2 is image wells, inset panels, and TWO section grounds:
+       1. the closing block (the page's closing ask plus the footer, which
+          read as a single slab)
+       2. the investment band on /weddings (added 2026-09-24, Josh: the nav
+          calls that page Pricing and pricing had no ground of its own)
+     The "not a section ground" rule is about the TOP of a page: the header is
+     a fixed colour, so a second ground up there made it read grey on some
+     pages and white on others. Both exceptions are mid-page or lower, where
+     the header never touches them. Nothing at the top of a page may take it
+     as a ground, and no page may take it for more than one section: this is a
+     way to mark THE section that matters, and two marked sections mark none. */
   --bg2:oklch(96.8% .010 40);
   --paper:oklch(100% 0 0);      /* cards/fields floating on --bg; also the on-dark text color */
   --ink:oklch(20% .02 150);
@@ -1620,17 +1625,73 @@ body.nav-hidden .venue-breadcrumb{top:0;}
 @media(max-width:860px){.incl-grid{grid-template-columns:repeat(2,1fr);}}
 @media(max-width:560px){.incl-grid{grid-template-columns:1fr;}}
 
-/* Investment: the figure is the headline. */
-.invest-row{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);
-  gap:clamp(26px,4vw,72px);align-items:start;margin-top:clamp(22px,2.6vw,34px);
-  padding-top:clamp(24px,3vw,38px);border-top:1px solid var(--line);}
+/* INVESTMENT: A BAND, NOT A STRIP (2026-09-24, Josh).
+   The nav calls this page Pricing, and pricing was four lines on the page's
+   own ground between two larger sections. It is now the one place on the page
+   that changes colour, which is the whole job of the tint: you can find it by
+   scrolling past it.
+
+   --bg2 AS A SECTION GROUND. The token's own comment reserves this for the
+   closing block, because a second ground made the fixed-colour header read
+   grey on some pages and white on others. That is a TOP-OF-PAGE bug and this
+   band is in the middle of one, so it cannot happen here. One band on one
+   page is also not the per-section banding reversed on 2026-09-16, which
+   failed because every section had one and they butted into a single slab. */
+.invest-band{background:var(--bg2);padding:var(--sp-l) var(--pad-body) var(--sp-m);}
+.invest-wrap{max-width:var(--body-max);margin:0 auto;}
+.invest-head h2{font-family:var(--d);font-weight:430;font-optical-sizing:auto;
+  font-size:var(--t-d2);letter-spacing:-.02em;line-height:1.06;margin-top:18px;}
+.invest-intro{margin-top:clamp(16px,1.8vw,22px);max-width:62ch;
+  font-size:var(--t-lede);color:var(--fg2);line-height:1.6;}
+
+/* The figures. Two columns on a desktop, and the hairline between them is
+   what stops them reading as a ladder with a cheap end and an expensive end:
+   they are two observations, not two rungs. */
+.invest-figs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:clamp(24px,3vw,56px);margin-top:clamp(34px,4.4vw,64px);}
+.invest-figs[data-n="1"]{grid-template-columns:minmax(0,1fr);}
+.invest-fig{border-top:1px solid var(--line);padding-top:clamp(18px,2.2vw,28px);}
 .invest-amount{font-family:var(--d);font-weight:430;font-optical-sizing:auto;
-  font-size:clamp(38px,6.2vw,86px);line-height:1;letter-spacing:-.03em;color:var(--ink);}
-.invest-label{margin-top:12px;font-size:var(--t-sm);color:var(--mute);}
-.invest-note h2{font-family:var(--d);font-weight:430;font-optical-sizing:auto;
+  font-size:clamp(34px,4.6vw,66px);line-height:1;letter-spacing:-.03em;color:var(--ink);}
+.invest-cap{margin-top:14px;font-size:var(--t-sm);color:var(--mute);
+  line-height:1.55;max-width:34ch;}
+
+/* What moves the number. Same row grammar as "what's included" above it:
+   label left, sentence right, hairline between. */
+.invest-drivers{margin-top:clamp(44px,5.4vw,82px);}
+.invest-dh{font-size:var(--t-tag);letter-spacing:.13em;text-transform:uppercase;
+  color:var(--accent);font-weight:500;font-family:var(--b);}
+.invest-dl{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
+  column-gap:clamp(30px,4vw,80px);margin-top:clamp(18px,2.2vw,28px);
+  border-top:1px solid var(--line);}
+/* A fixed title column, not minmax(...,auto): auto resolves per row, so
+   "Scope and design" pushed its own sentence 22px right of the three others
+   and the four bodies did not line up. */
+.invest-dl > div{display:grid;grid-template-columns:clamp(150px,12vw,176px) 1fr;
+  gap:6px clamp(16px,2vw,30px);align-items:baseline;
+  padding:clamp(16px,1.8vw,22px) 0;border-bottom:1px solid var(--line);}
+.invest-dl dt{font-family:var(--d);font-size:var(--t-d4);letter-spacing:-.01em;
+  line-height:1.2;color:var(--ink);}
+.invest-dl dd{margin:0;font-size:var(--t-sm);color:var(--fg2);line-height:1.6;}
+
+/* The a la carte answer. An inset panel on the tint, so it reads as an aside
+   inside the pricing conversation rather than a fifth section. */
+.invest-small{margin-top:clamp(40px,5vw,72px);background:var(--bg);
+  border:1px solid var(--line);border-radius:var(--r-card);
+  padding:clamp(26px,3.4vw,48px);max-width:72ch;}
+.invest-small h3{font-family:var(--d);font-weight:430;font-optical-sizing:auto;
   font-size:var(--t-d3);letter-spacing:-.015em;line-height:1.12;}
-.invest-note p{margin-top:14px;font-size:var(--t-sm);color:var(--fg2);line-height:1.7;max-width:52ch;}
-@media(max-width:780px){.invest-row{grid-template-columns:1fr;gap:clamp(20px,4vw,28px);}}
+.invest-small p{margin-top:14px;font-size:var(--t-sm);color:var(--fg2);line-height:1.7;}
+.invest-small .btn{margin-top:clamp(20px,2.4vw,28px);}
+@media(max-width:860px){
+  .invest-dl{grid-template-columns:1fr;}
+}
+@media(max-width:640px){
+  /* Figures stack. Side by side at 400px each amount wraps mid-figure, which
+     is the one thing a price must never do. */
+  .invest-figs{grid-template-columns:minmax(0,1fr);gap:clamp(22px,5vw,30px);}
+  .invest-dl > div{grid-template-columns:1fr;gap:6px;}
+}
 
 /* PORTFOLIO INDEX: TWO UP (2026-09-24). Was one full-width band per wedding,
    which put ten weddings on a page where no two are ever on screen at once.
@@ -2198,6 +2259,11 @@ body.nav-hidden .venue-breadcrumb{top:0;}
 .wp-name{font-family:var(--d);font-weight:430;font-optical-sizing:auto;
   font-size:var(--t-d1);line-height:1.02;letter-spacing:-.022em;}
 .wp-where{margin-top:clamp(10px,1.2vw,16px);font-size:var(--t-lede);color:var(--fg2);}
+/* The venue links to its own page. Same quiet underline the credits block used
+   when this link lived down there, so it is findable without shouting. */
+.wp-where a{color:inherit;border-bottom:1px solid var(--line);padding-bottom:2px;
+  transition:border-color .2s ease;}
+.wp-where a:hover{border-color:var(--accent);}
 
 /* THE STORY AND THE FACTS SHARE A ROW (2026-09-24). The facts were a
    four-column bar under the name; as a stacked list beside the prose each one

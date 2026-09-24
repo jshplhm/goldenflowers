@@ -54,14 +54,21 @@ the index it belongs to. {%- endcomment -%}
     venue line under the name answers "where is this" while you are looking at
     the place rather than three screens later.
 
-    The venue and town are NOT editable here. They render from the same
-    portfolio_meta fields as the fact rows below, and two edit targets for one
-    value is how two fields start disagreeing. Edit them in the facts.
+    THE VENUE AND TOWN ARE EDITABLE HERE NOW (2026-09-24). They used to be
+    read-only, because the fact panel below printed the same two values and two
+    edit targets for one value is how two fields start disagreeing. The fact
+    panel no longer prints them, so this line is the only place they appear and
+    the drift it was guarding against cannot happen.
+
+    The venue name links to its own page when credits.yml gives it a /venues/
+    url. That link used to live in the credits block at the foot of the page;
+    it moved up here with the venue itself.
   {%- endcomment -%}
   <div class="wp-words">
     <h1 class="wp-name"><span data-ed="portfolio_meta:{{ include.slug }}.name">{{ m.name }}</span></h1>
     {%- assign town_ = m.place | strip -%}
-    <p class="wp-where">{{ m.venue }}{% if town_ != "" %}, {{ m.place }}{% endif %}</p>
+    {%- assign vurl = site.data.credits[include.slug].venue.url | default: "" -%}
+    <p class="wp-where">{% if vurl contains '/venues/' %}<a href="{{ site.baseurl }}{{ vurl }}"><span data-ed="portfolio_meta:{{ include.slug }}.venue">{{ m.venue }}</span></a>{% else %}<span data-ed="portfolio_meta:{{ include.slug }}.venue">{{ m.venue }}</span>{% endif %}{% if town_ != "" %}, <span data-ed="portfolio_meta:{{ include.slug }}.place">{{ m.place }}</span>{% else %}<span class="ed-empty">, <span data-ed="portfolio_meta:{{ include.slug }}.place" data-ed-hint="Add the town"></span></span>{% endif %}</p>
   </div>
 <figure class="wp-pic" data-ed-hero="{{ include.slug }}">
     {%- if wideFile -%}
@@ -137,15 +144,22 @@ the index it belongs to. {%- endcomment -%}
   </div>
     {%- assign pal = m.palette | strip -%}
     {%- assign ndots = m.dots | size -%}
-    {%- assign town = m.place | strip -%}
     {%- assign palempty = false -%}
     {%- if pal == "" and ndots == 0 -%}{%- assign palempty = true -%}{%- endif -%}
     {%- assign shooter = site.data.credits[include.slug].photography -%}
     {%- assign shotempty = true -%}
     {%- if shooter.name and shooter.name != "" -%}{%- assign shotempty = false -%}{%- endif -%}
+    {%- comment -%}
+      TWO ROWS, NOT FOUR (2026-09-24). Venue and Town came out. The line under
+      the couple's name already says "<venue>, <town>" two screens up, and the
+      credits block at the foot of the page said the venue a third time. A
+      value that appears three times on one page is not emphasis, it is a page
+      that has not decided where the value lives. It lives under the name.
+
+      What is left is the pair a reader cannot get anywhere else on the page:
+      the palette, and who shot it.
+    {%- endcomment -%}
     <dl class="wp-facts">
-      <div><dt>Venue</dt><dd><span data-ed="portfolio_meta:{{ include.slug }}.venue">{{ m.venue }}</span></dd></div>
-      <div{% if town == "" %} class="ed-empty"{% endif %}><dt>Town</dt><dd><span data-ed="portfolio_meta:{{ include.slug }}.place" data-ed-hint="Add the town">{{ m.place }}</span></dd></div>
       <div{% if palempty %} class="ed-empty"{% endif %}><dt>Palette</dt><dd><span data-ed="portfolio_meta:{{ include.slug }}.palette" data-ed-hint="Add the palette">{{ m.palette }}</span>
         {%- if ndots > 0 -%}<span class="wp-dots" aria-hidden="true">{% for d in m.dots %}<i style="background:{{ d }}"></i>{% endfor %}</span>{%- endif -%}</dd></div>
       <div{% if shotempty %} class="ed-empty"{% endif %}><dt>Photography</dt><dd><span data-ed="credits:{{ include.slug }}.photography.name" data-ed-hint="Add the photographer">{{ shooter.name }}</span></dd></div>
