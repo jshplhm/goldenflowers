@@ -226,10 +226,31 @@ the moment one pale photo wants it and another does not, the machinery is here.
   </div>
 </section>
 
-<section class="credo closing">
-  <p class="intro-close">{% include em.html t=site.data.home.cta.heading k="home:cta.heading" %}</p>
-  {%- comment -%} A button, not a text link (Josh, 2026-09-23). Every other
-  page ends its closing ask with one; home ended on an underlined phrase, so
-  the single loudest moment to act was the quietest control on the site. {%- endcomment -%}
-  <p class="intro-more"><a href="{{ site.baseurl }}/consultation-form" class="btn btn-ink"><span data-ed="home:cta.button">{{ site.data.home.cta.button }}</span> <span>&rarr;</span></a></p>
+{%- comment -%}
+  THE SHARED CLOSING ASK (Josh, 2026-09-25). Home used .credo.closing: one
+  centred line and a button, deliberately simpler than the ask on every other
+  page. Three things decided it against keeping that:
+
+  It was not actually bigger. .credo.closing capped its line at 56px and
+  .cta h2 lands within a pixel or two of that at desktop width, so the
+  simplicity bought no scale. It only gave up the sentence.
+
+  Its heading never went green. Every other closing ask sets the second half
+  of the line in accent ("still OPEN?", "one of THESE?"), and .intro-close is
+  an element no such rule touches, so home's read solid black. Same words as
+  Pricing with the emphasis switched off, which is most of what made it look
+  flat.
+
+  And since the 09-23 pass took the site flush left, home's was the last
+  centred block at the foot of any page.
+
+  This reverses the 09-23 decision to drop the body paragraph ("the question
+  already says it"). Reversed knowingly: home is where most people arrive
+  cold, so it is the one ending that has to answer "and then what happens",
+  which the bare question does not.
+{%- endcomment -%}
+<section class="cta">
+  <h2 class="disp">{% include em.html t=site.data.home.cta.heading k="home:cta.heading" %}</h2>
+  <p><span data-ed="home:cta.body">{{ site.data.home.cta.body }}</span></p>
+  <a class="btn btn-ink" href="{{ site.baseurl }}/consultation-form"><span data-ed="home:cta.button">{{ site.data.home.cta.button }}</span> <span>&rarr;</span></a>
 </section>

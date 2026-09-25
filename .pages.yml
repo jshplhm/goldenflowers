@@ -93,9 +93,8 @@ content:
         label: Closing call to action
         type: object
         fields:
-          # No body field: the home page's ending is one line and a link, and a
-          # paragraph typed here would not appear anywhere. Josh, 2026-09-23.
           - {name: heading, label: "Heading", type: string, description: "*asterisks* = italics"}
+          - {name: body, label: "Text", type: text}
           - {name: button, label: "Link text", type: string}
 
   - name: about
