@@ -20,7 +20,10 @@ domain, so local builds and any preview host stay out of both properties.
 {%- if site.url contains "goldenflorals.com" -%}
 {%- assign tag_id = site.google_analytics | default: site.google_ads -%}
 {%- if tag_id and tag_id != "" -%}
-<script async src="https://www.googletagmanager.com/gtag/js?id={{ tag_id }}"></script>
+{%- comment -%} The library itself is NOT a <script async> tag any more: see
+gfLater() below. The dataLayer and gtag() stub are set up at once, so the
+config lines and any conversion event queue up and are sent the moment the
+library arrives. {%- endcomment -%}
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -31,6 +34,7 @@ domain, so local builds and any preview host stay out of both properties.
   {%- if site.google_analytics and site.google_analytics != "" %}
   gtag('config', '{{ site.google_analytics }}');
   {%- endif %}
+  gfLater('https://www.googletagmanager.com/gtag/js?id={{ tag_id }}');
 </script>
 {%- endif -%}
 {%- endif -%}

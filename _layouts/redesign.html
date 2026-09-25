@@ -141,6 +141,33 @@
   }
   </script>
 
+  {%- comment -%}
+    THIRD-PARTY SCRIPTS WAIT FOR THE PAGE (2026-09-25). gtag.js (~330 KB, two
+    copies' worth of routing for GA4 + Ads) and Clarity (~25 KB) used to load
+    as <script async> in the head, which on a phone meant they downloaded
+    ALONGSIDE the hero photograph and then ran ~360ms of main-thread work
+    while it was trying to paint. PageSpeed put the hero at 7.7s on Slow 4G.
+    Now each one is fetched once the page has finished loading, or at the
+    visitor's first scroll / tap / key if that comes sooner. Both keep a queue
+    stub, so nothing sent before the library arrives is lost.
+    Cost, knowingly taken: a visitor who leaves before the page finishes
+    loading, without touching it, is not counted.
+  {%- endcomment -%}
+  <script>
+  (function(){
+    var q=[], done=false, evs=['scroll','pointerdown','keydown','touchstart'];
+    function add(src){ var s=document.createElement('script'); s.async=true; s.src=src; document.head.appendChild(s); }
+    function go(){
+      if(done) return; done=true;
+      evs.forEach(function(e){ removeEventListener(e, go, true); });
+      q.forEach(add);
+    }
+    window.gfLater=function(src){ done ? add(src) : q.push(src); };
+    evs.forEach(function(e){ addEventListener(e, go, {capture:true, passive:true}); });
+    if(document.readyState==='complete') setTimeout(go, 0);
+    else addEventListener('load', function(){ setTimeout(go, 0); });
+  })();
+  </script>
   {% include analytics.html %}
   {% include clarity.html %}
 </head>

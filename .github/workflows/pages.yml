@@ -55,6 +55,9 @@ jobs:
         run: bundle exec jekyll build
         env:
           JEKYLL_ENV: production
+      # The stylesheet blocks first paint, and two thirds of it is comments.
+      - name: Strip comments from the stylesheet
+        run: ruby scripts/minify-css.rb _site/assets/css/redesign.css
       # jekyll build wipes _site, so the variants are copied in afterwards.
       - name: Publish responsive image variants
         run: bash scripts/make-responsive-variants.sh --publish-only
