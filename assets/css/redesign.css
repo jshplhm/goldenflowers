@@ -746,9 +746,23 @@ nav.site-nav .pill{white-space:nowrap;}
    for its own eyebrows and a closing block could grow one. */
 :is(.cta,.cta-section) :is(.lab,.label){grid-column:1;grid-row:1;}
 :is(.cta,.cta-section) h2{grid-column:1;grid-row:1;max-width:15ch;}
-:is(.cta,.cta-section):has(:is(.lab,.label)) h2{grid-row:2;}
+:is(.cta,.cta-section):has(:is(.lab,.label)) h2{grid-row:2 / span 2;}
 :is(.cta,.cta-section) p{grid-column:2;grid-row:1;max-width:46ch;margin:0;}
-:is(.cta,.cta-section):has(:is(.lab,.label)) p{grid-row:1 / span 2;align-self:end;}
+/* THE SENTENCE STARTS WHERE THE HEADING STARTS (Josh, 2026-09-25, comparing
+   all five). It used to be `1 / span 2` with align-self:end, so it hung from
+   the BOTTOM of the heading -- which means its top edge was wherever the
+   heading happened to stop wrapping. Two lines on Pricing put it beside the
+   second line; three on the blog post pushed it most of the way down the
+   block; the portfolio ask, the one with no eyebrow, top-aligned and was the
+   only one that looked deliberate. Five pages, five different heights for the
+   same sentence, and nothing to align it to.
+
+   It sits in the heading's own row now, top-aligned, which is exactly the
+   shape the no-eyebrow rule below already produced. The eyebrow stays on its
+   own row above, so the right column begins level with the first line of the
+   heading and not with the eyebrow -- the label is a tag on the section, not
+   part of the ask. */
+:is(.cta,.cta-section):has(:is(.lab,.label)) p{grid-row:2;align-self:start;}
 /* .btn-primary as well as .btn: the blog post's closing ask is the one that
    uses the other button class, so it was the one block whose button never
    matched this rule. It fell to auto-placement, which put it in column one
@@ -759,6 +773,7 @@ nav.site-nav .pill{white-space:nowrap;}
    at the top of the right column. Letting the heading span both rows makes row
    one the sentence's own height and row two take the slack, so the button sits
    under its sentence instead of opposite the foot of a three-line heading. */
+:is(.cta,.cta-section):has(:is(.lab,.label)){grid-template-rows:auto auto 1fr;}
 :is(.cta,.cta-section):not(:has(:is(.lab,.label))){grid-template-rows:auto 1fr;}
 :is(.cta,.cta-section):not(:has(:is(.lab,.label))) h2{grid-row:1 / span 2;}
 @media(max-width:820px){
@@ -1756,7 +1771,15 @@ body.nav-hidden .venue-breadcrumb{top:0;}
   border-radius:var(--r-img);aspect-ratio:1/1;background:var(--bg2);}
 .pf-card-pic img{width:100%;height:100%;object-fit:cover;display:block;
   transition:transform .6s cubic-bezier(.2,.7,.3,1);}
-.pf-card:hover .pf-card-pic img{transform:scale(1.025);}
+/* The hover lift MULTIPLIES the photograph's own zoom, it does not replace it
+   (2026-09-25). Written as a bare scale(1.025) this rule outranked
+   img[data-zoom]'s scale(var(--z)), so a card framed at 1.13 in /edit snapped
+   back to 1.025 -- out, not in -- the moment the pointer touched it, and back
+   to its framing on leave. Every other hover on the site was already written
+   as calc(var(--z,1) * k) for exactly this reason; this one card grid was
+   missed when framing shipped. An unframed card is --z:1 and behaves as
+   before. */
+.pf-card:hover .pf-card-pic img{transform:scale(calc(var(--z,1) * 1.025));}
 .pf-card-name{font-family:var(--d);font-weight:430;font-optical-sizing:auto;
   font-size:var(--t-d4);line-height:1.15;letter-spacing:-.01em;color:var(--ink);}
 .pf-card-venue{margin-top:5px;font-size:var(--t-sm);color:var(--mute);}

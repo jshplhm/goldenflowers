@@ -189,7 +189,7 @@ canonical_url: https://goldenflorals.com/venues
   <span class="lab"><span data-ed="venues_page:closing.label">{{ site.data.venues_page.closing.label }}</span></span>
   <h2 class="disp">{% include em.html t=site.data.venues_page.closing.heading k="venues_page:closing.heading" %}</h2>
   <p><span data-ed="venues_page:closing.body">{{ site.data.venues_page.closing.body }}</span></p>
-  <a class="btn btn-ink" href="{{ site.baseurl }}/consultation-form"><span data-ed="venues_page:closing.button">{{ site.data.venues_page.closing.button }}</span></a>
+  <a class="btn btn-ink" href="{{ site.baseurl }}/consultation-form"><span data-ed="venues_page:closing.button">{{ site.data.venues_page.closing.button }}</span> <span>&rarr;</span></a>
 </section>
 
 <script>
