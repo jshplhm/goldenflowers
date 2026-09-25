@@ -31,41 +31,6 @@
   palette: "Coral peony, oxblood dahlia, trailing amaranthus"
   dots: [ "#e8756a", "#5c1f2b", "#8fae5d", "#f0e3d2", "#b8365a" ]
 
-- slug: tori-tucker
-  name: "Tori & Tucker"
-  venue: "North Tahoe Event Center"
-  place: "Kings Beach"
-  band: [ "14", "18", "06" ]
-  strip: [ "05", "20" ]
-  lede: "Pink, green and a little bit whimsical, on the shore of the lake. Garden
-    roses and sweet peas against sage linen, styled with an editorial eye."
-  palette: "Garden rose, coral peony, sweet pea, hydrangea, sage"
-  dots: [ "#e8a3ae", "#f2c9b4", "#8f9b6f", "#f6efe4", "#c56a7a" ]
-
-- slug: katie-james
-  name: "Katie & James"
-  venue: "The Miner's Foundry"
-  place: "Nevada City"
-  band: [ "08", "02", "15" ]
-  strip: [ "14", "03" ]
-  lede: "A garden fairytale inside a stone hall. A lavish arch over the tall
-    arched windows, moss runners down the banquet tables, and candlelight
-    everywhere."
-  palette: "Blush garden rose, butter cream, moss"
-  dots: [ "#f2cfc6", "#f6e9cf", "#7d8f5c", "#e9d9b8", "#c98d84" ]
-
-- slug: camille-max
-  name: "Camille & Max"
-  venue: "North Star House"
-  place: "Grass Valley"
-  band: [ "23", "30", "01" ]
-  strip: [ "29", "26" ]
-  lede: "An autumn celebration where craftsman architecture and old oaks set the
-    tone. An arbor that reads as though it grew in place rather than being
-    installed."
-  palette: "Blush and burgundy rose, trailing amaranthus"
-  dots: [ "#e5b7a8", "#7a2338", "#9aa86e", "#f0e5d4", "#c4715f" ]
-
 - slug: kelly-dylan
   name: "Kelly & Dylan"
   venue: "North Tahoe Event Center"
@@ -77,29 +42,17 @@
   palette: "Delphinium, anemone, orange ranunculus"
   dots: [ "#3f5aa6", "#8fa8d8", "#e8842f", "#f4efe2", "#6b7f4a" ]
 
-- slug: jenna-cal
-  name: "Jenna & Cal"
-  venue: "National Exchange Hotel"
-  place: "Nevada City"
-  band: [ "09", "30", "02" ]
-  strip: [ "15", "12" ]
-  lede: "A white-and-green wedding with a thread of red running through it.
-    Phalaenopsis orchids and magnolia foliage, warmed by hanging red silk
-    lanterns."
-  palette: "Phalaenopsis orchid, magnolia foliage, red silk"
-  dots: [ "#f8f5ec", "#2f4a2c", "#c8202b", "#d8cdb4", "#8a9a6b" ]
-
-- slug: mikayla-jeff
-  name: "Mikayla & Jeff"
-  venue: "PlumpJack Inn"
-  place: "Olympic Valley"
-  band: [ "05", "05", "07" ]
-  strip: [ "04", "02" ]
-  lede: "A modern wedding in an Olympic Valley meadow, built on the whimsy of Dr.
-    Seuss. Lilac and white against trailing green, in installations that lean
-    and arch rather than stand still."
-  palette: "Lilac scabiosa, thistle, trailing green amaranthus"
-  dots: [ "#c3a3cf", "#f2ecea", "#9db85e", "#5b2a4a", "#d8c7dd" ]
+- slug: hannah-dillon
+  name: "Hannah & Dillon"
+  venue: "Austin Ridge"
+  place: "Truckee"
+  band: [ "25", "25", "07" ]
+  strip: [ "21", "02" ]
+  lede: "A modern mountain soiree above Truckee, with the Sierra behind every
+    frame. A corten steel circle carrying an asymmetric sweep of magenta,
+    raspberry and coral."
+  palette: "Magenta garden rose, raspberry, coral, corten steel"
+  dots: [ "#c02a63", "#7d1735", "#e8765e", "#9a5a2c", "#6f8a4e" ]
 
 - slug: brooke-josh
   name: "Brooke & Josh"
@@ -113,29 +66,52 @@
   palette: "White garden rose, hydrangea, blush"
   dots: [ "#f6f1e8", "#ecd4cb", "#e0cfae", "#8a9b6e", "#cbb89a" ]
 
-- slug: jac-brandon
-  name: "Jac & Brandon"
+- slug: tori-tucker
+  name: "Tori & Tucker"
+  venue: "North Tahoe Event Center"
+  place: "Kings Beach"
+  band: [ "14", "18", "06" ]
+  strip: [ "05", "20" ]
+  lede: "Pink, green and a little bit whimsical, on the shore of the lake. Garden
+    roses and sweet peas against sage linen, styled with an editorial eye."
+  palette: "Garden rose, coral peony, sweet pea, hydrangea, sage"
+  dots: [ "#e8a3ae", "#f2c9b4", "#8f9b6f", "#f6efe4", "#c56a7a" ]
+
+- slug: mikayla-jeff
+  name: "Mikayla & Jeff"
+  venue: "PlumpJack Inn"
+  place: "Olympic Valley"
+  band: [ "05", "05", "07" ]
+  strip: [ "04", "02" ]
+  lede: "A modern wedding in an Olympic Valley meadow, built on the whimsy of Dr.
+    Seuss. Lilac and white against trailing green, in installations that lean
+    and arch rather than stand still."
+  palette: "Lilac scabiosa, thistle, trailing green amaranthus"
+  dots: [ "#c3a3cf", "#f2ecea", "#9db85e", "#5b2a4a", "#d8c7dd" ]
+
+- slug: katie-james
+  name: "Katie & James"
+  venue: "The Miner's Foundry"
+  place: "Nevada City"
+  band: [ "08", "02", "15" ]
+  strip: [ "14", "03" ]
+  lede: "A garden fairytale inside a stone hall. A lavish arch over the tall
+    arched windows, moss runners down the banquet tables, and candlelight
+    everywhere."
+  palette: "Blush garden rose, butter cream, moss"
+  dots: [ "#f2cfc6", "#f6e9cf", "#7d8f5c", "#e9d9b8", "#c98d84" ]
+
+- slug: jenna-cal
+  name: "Jenna & Cal"
   venue: "National Exchange Hotel"
   place: "Nevada City"
-  band: [ "07", "16", "06" ]
-  strip: [ "08", "02" ]
-  lede: "A romantic soft goth wedding at the National Exchange Hotel. Crimson and
-    oxblood against black velvet, red petals down the aisle, and candlelight on
-    every table."
-  palette: "Crimson garden rose, oxblood, black velvet"
-  dots: [ "#a8131c", "#5b0d12", "#1b1715", "#b08d3f", "#3a3326" ]
-
-- slug: hannah-dillon
-  name: "Hannah & Dillon"
-  venue: "Austin Ridge"
-  place: "Truckee"
-  band: [ "25", "25", "07" ]
-  strip: [ "21", "02" ]
-  lede: "A modern mountain soiree above Truckee, with the Sierra behind every
-    frame. A corten steel circle carrying an asymmetric sweep of magenta,
-    raspberry and coral."
-  palette: "Magenta garden rose, raspberry, coral, corten steel"
-  dots: [ "#c02a63", "#7d1735", "#e8765e", "#9a5a2c", "#6f8a4e" ]
+  band: [ "09", "30", "02" ]
+  strip: [ "15", "12" ]
+  lede: "A white-and-green wedding with a thread of red running through it.
+    Phalaenopsis orchids and magnolia foliage, warmed by hanging red silk
+    lanterns."
+  palette: "Phalaenopsis orchid, magnolia foliage, red silk"
+  dots: [ "#f8f5ec", "#2f4a2c", "#c8202b", "#d8cdb4", "#8a9a6b" ]
 
 - slug: sarah-brian
   name: "Sarah & Brian"
@@ -160,3 +136,27 @@
     architectural."
   palette: "White garden rose, calla lily, trailing amaranthus"
   dots: [ "#f2efe6", "#e8e4d6", "#8d9450", "#5d6b3a", "#c9b98a" ]
+
+- slug: camille-max
+  name: "Camille & Max"
+  venue: "North Star House"
+  place: "Grass Valley"
+  band: [ "23", "30", "01" ]
+  strip: [ "29", "26" ]
+  lede: "An autumn celebration where craftsman architecture and old oaks set the
+    tone. An arbor that reads as though it grew in place rather than being
+    installed."
+  palette: "Blush and burgundy rose, trailing amaranthus"
+  dots: [ "#e5b7a8", "#7a2338", "#9aa86e", "#f0e5d4", "#c4715f" ]
+
+- slug: jac-brandon
+  name: "Jac & Brandon"
+  venue: "National Exchange Hotel"
+  place: "Nevada City"
+  band: [ "07", "16", "06" ]
+  strip: [ "08", "02" ]
+  lede: "A romantic soft goth wedding at the National Exchange Hotel. Crimson and
+    oxblood against black velvet, red petals down the aisle, and candlelight on
+    every table."
+  palette: "Crimson garden rose, oxblood, black velvet"
+  dots: [ "#a8131c", "#5b0d12", "#1b1715", "#b08d3f", "#3a3326" ]
