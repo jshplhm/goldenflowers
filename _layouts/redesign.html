@@ -142,19 +142,41 @@
   </script>
 
   {%- comment -%}
-    THIRD-PARTY SCRIPTS WAIT FOR THE PAGE (2026-09-25). gtag.js (~330 KB, two
-    copies' worth of routing for GA4 + Ads) and Clarity (~25 KB) used to load
-    as <script async> in the head, which on a phone meant they downloaded
-    ALONGSIDE the hero photograph and then ran ~360ms of main-thread work
-    while it was trying to paint. PageSpeed put the hero at 7.7s on Slow 4G.
-    Now each one is fetched once the page has finished loading, or at the
-    visitor's first scroll / tap / key if that comes sooner. Both keep a queue
-    stub, so nothing sent before the library arrives is lost.
-    Cost, knowingly taken: a visitor who leaves before the page finishes
-    loading, without touching it, is not counted.
+    NOTHING ELSE DOWNLOADS UNTIL THE FIRST PHOTOGRAPH IS ON SCREEN (2026-09-25).
+    gfAfterPaint(cb) runs cb once the browser reports its largest paint (the
+    hero), and two things wait on it:
+      · gtag.js (~330 KB, GA4 + Ads) and Clarity (~25 KB), plus 1.5s, or the
+        visitor's first scroll / tap / key if that comes sooner. Both keep a
+        queue stub, so nothing sent before the library arrives is lost.
+      · the photographs below the hero on a page with `hold_photos: true`
+        (the responsive_images plugin parks their src/srcset in data-h /
+        data-hs; release() below puts them back).
+    WHY THE PAINT AND NOT window.load: PageSpeed's phone score is a
+    simulation that charges the hero for every download that STARTED before
+    the hero was drawn, and its test machines draw ~2s after load. Waiting
+    for load left it a coin toss (98 one run, 71 the next); waiting for the
+    paint measured 3.45s simulated LCP on every run against 5.1s. A visitor
+    sees no difference: the held photos start a moment after the hero, long
+    before anyone can scroll to them.
+    Browsers without the LCP signal (Safari) fall back to load + two frames,
+    and a 4s timer guarantees it fires regardless.
+    Cost, knowingly taken: a visitor who leaves in the first couple of
+    seconds without touching the page is not counted in Analytics.
   {%- endcomment -%}
   <script>
   (function(){
+    var waiting=[], painted=false;
+    function fire(){ if(painted) return; painted=true; waiting.forEach(function(cb){ cb(); }); }
+    window.gfAfterPaint=function(cb){ painted ? cb() : waiting.push(cb); };
+    function frames(){ requestAnimationFrame(function(){ requestAnimationFrame(fire); }); }
+    try {
+      new PerformanceObserver(function(l){ if(l.getEntries().length) setTimeout(fire, 0); })
+        .observe({type:'largest-contentful-paint', buffered:true});
+    } catch(e) {
+      if(document.readyState==='complete') frames(); else addEventListener('load', frames);
+    }
+    setTimeout(fire, 4000);
+
     var q=[], done=false, evs=['scroll','pointerdown','keydown','touchstart'];
     function add(src){ var s=document.createElement('script'); s.async=true; s.src=src; document.head.appendChild(s); }
     function go(){
@@ -164,8 +186,15 @@
     }
     window.gfLater=function(src){ done ? add(src) : q.push(src); };
     evs.forEach(function(e){ addEventListener(e, go, {capture:true, passive:true}); });
-    if(document.readyState==='complete') setTimeout(go, 0);
-    else addEventListener('load', function(){ setTimeout(go, 0); });
+    gfAfterPaint(function(){ setTimeout(go, 1500); });
+
+    gfAfterPaint(function release(){
+      if(document.readyState==='loading') return document.addEventListener('DOMContentLoaded', release);
+      document.querySelectorAll('[data-hs],[data-h]').forEach(function(e){
+        if(e.dataset.hs){ e.srcset=e.dataset.hs; e.removeAttribute('data-hs'); }
+        if(e.dataset.h){ e.src=e.dataset.h; e.removeAttribute('data-h'); }
+      });
+    });
   })();
   </script>
   {% include analytics.html %}

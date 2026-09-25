@@ -5,6 +5,8 @@ seo_title: "Lake Tahoe & Sierra Nevada Wedding Florist | Golden Flowers"
 permalink: /
 description: "Golden Flowers is a luxury Lake Tahoe wedding florist creating elevated, sustainable floral design, grown and sourced close to home across the Sierra Nevada."
 canonical_url: https://goldenflorals.com/
+# Photos below the hero wait until it is drawn (see gfAfterPaint in redesign.html).
+hold_photos: true
 redirect_from:
   # Old Squarespace retail-shop URLs. Squarespace's own URL mappings sent these to
   # grassvalleyflowers.com (external); we keep them on-site at home instead.
