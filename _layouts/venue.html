@@ -100,11 +100,26 @@ migration, so this is the same component, not a new one. {%- endcomment -%}
   </div>
 </section>
 
+{%- comment -%}
+  THE SAME CLOSING ASK AS EVERY OTHER PAGE (2026-09-25). Two things had kept
+  all thirteen venue pages out of it:
+
+  The 640px CENTRED WRAPPER. Every rule that lays this section out addresses
+  the block's own children, so with a div in between it had exactly one child
+  and the two-column grid had nothing to place. Thirteen pages ended in a
+  narrow centred stack while the other seven ended in a heading beside its
+  sentence. The wrapper is gone and the children are the section's own.
+
+  The BUTTON was `.btn-primary` with no arrow, the same odd-one-out the blog
+  post's ask was until 2026-09-24. It is the shared button now.
+
+  `cta.label` came out of all thirteen venue files with it: nothing had ever
+  printed it here, and on 2026-09-25 the eyebrow came off every closing ask on
+  the site anyway.
+{%- endcomment -%}
 <div class="cta-section">
-  <div style="max-width:640px;margin:0 auto;">
-    <h2><span data-ed="{{ vk }}:cta.heading">{{ v.cta.heading }}</span></h2>
-    {%- assign k_cb = vk | append: ":cta.body" %}
-    <p>{% include em.html t=v.cta.body k=k_cb %}</p>
-    <a href="{{ site.baseurl }}/consultation-form" class="btn-primary" data-consult-open><span data-ed="{{ vk }}:cta.button">{{ v.cta.button }}</span></a>
-  </div>
+  <h2><span data-ed="{{ vk }}:cta.heading">{{ v.cta.heading }}</span></h2>
+  {%- assign k_cb = vk | append: ":cta.body" %}
+  <p>{% include em.html t=v.cta.body k=k_cb %}</p>
+  <a href="{{ site.baseurl }}/consultation-form" class="btn btn-ink" data-consult-open><span data-ed="{{ vk }}:cta.button">{{ v.cta.button }}</span> <span>&rarr;</span></a>
 </div>

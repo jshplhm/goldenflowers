@@ -1,5 +1,15 @@
 /**
- * Golden Flowers consultation form — hardened intake, v3.6 (August 2026).
+ * Golden Flowers consultation form — hardened intake, v3.7 (September 2026).
+ *
+ * What changed from v3.6 (v3.7):
+ *   - NO RESPONSE TIME IS PROMISED ANYWHERE. Both couple-facing emails said
+ *     "within 48 hours"; the site said it in six more places and no longer
+ *     says it at all (Josh, 2026-09-25). A clock on the page is a promise the
+ *     studio has to keep on its worst week, and nobody is counting the hours
+ *     until we put a number on them. The email now says "We will be in touch".
+ *   - PASTE AND REDEPLOY. Until this is live the confirmation email still
+ *     promises 48 hours while every page has stopped. Nothing breaks in the
+ *     meantime: this is wording only, no param, column or rule changed.
  *
  * What changed from v3.5 (v3.6):
  *   - BUDGETS realigned to the price ladder that came back to /weddings on
@@ -1012,7 +1022,7 @@ function sendAutoReply_(p, isUpdate) {
   }
   if (est) { t.push('From your estimate:', indent_(est), ''); }
   t.push(
-    'We will be in touch within 48 hours to let you know if your date is open and how we would approach your florals.', '',
+    'We will be in touch to let you know if your date is open and how we would approach your florals.', '',
     'In the meantime, you can text us anytime at 530-557-7689.', '',
     'Warmly,', 'Brittany', 'Golden Flowers', 'Lake Tahoe wedding florist', 'goldenflorals.com');
   var textBody = t.join('\n');
@@ -1023,7 +1033,7 @@ function sendAutoReply_(p, isUpdate) {
     (rows.length ? emailEyebrow_('Here is what you sent us') + emailRows_(rows, note || est ? '18px' : '24px') : '') +
     emailNote_('Your note', note, est ? '18px' : '24px') +
     emailEstimate_(est, 'From your estimate', '24px') +
-    '<p style="margin:0 0 22px;">We will be in touch within 48 hours to let you know if your date is open and how we would approach your florals.</p>' +
+    '<p style="margin:0 0 22px;">We will be in touch to let you know if your date is open and how we would approach your florals.</p>' +
     '<p style="margin:0 0 26px;">In the meantime, you can text us anytime at <strong style="color:' + EM_GREEN + ';white-space:nowrap;">530-557-7689</strong>.</p>' +
     '<div style="border-top:1px solid ' + EM_LINE + ';margin:0 0 20px;"></div>';
 

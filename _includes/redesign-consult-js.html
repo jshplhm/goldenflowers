@@ -512,9 +512,9 @@ function appendCommon_(params, form){
     var noteEl=success.querySelector('[data-success-note]');
     var methods=data.getAll?data.getAll('contact_method'):[];
     if(noteEl&&methods.length){
-      noteEl.textContent=(methods.length>1)?'Brittany messages within 48 hours.'
-        :(methods[0]==='Text'?'Brittany texts within 48 hours.'
-        :'Brittany emails within 48 hours.');
+      noteEl.textContent=(methods.length>1)?'Brittany replies by text or email.'
+        :(methods[0]==='Text'?'Brittany replies by text.'
+        :'Brittany replies by email.');
     }
     var closeBtn=wrap.querySelector('.modal-close');
     if(closeBtn) closeBtn.hidden=false; // X only appears once they're done

@@ -37,7 +37,6 @@ redirect_from:
 
 <!-- CLOSING -->
 <section class="cta">
-  <span class="lab"><span data-ed="sustainability:closing.label">{{ site.data.sustainability.closing.label }}</span></span>
   <h2 class="disp">{% include em.html t=site.data.sustainability.closing.heading k="sustainability:closing.heading" %}</h2>
   <p><span data-ed="sustainability:closing.body">{{ site.data.sustainability.closing.body }}</span></p>
   <a class="btn btn-ink" href="{{ site.baseurl }}/consultation-form"><span data-ed="sustainability:closing.button">{{ site.data.sustainability.closing.button }}</span> <span>&rarr;</span></a>

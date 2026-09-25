@@ -16,7 +16,7 @@ Centered closing CTA section. Background is `var(--bg2)`. Used at the bottom of 
 <!-- Tall variant (thank-you / confirmation pages) -->
 <section class="cta cta--tall">
   <p class="lab">What happens next</p>
-  <h2 class="disp">We'll be in touch <em>within 24 hours.</em></h2>
+  <h2 class="disp">We'll be in touch <em>soon.</em></h2>
   <p>In the meantime, explore our portfolio to see what's possible for your day.</p>
   <a class="btn" href="/portfolio">See our work</a>
 </section>

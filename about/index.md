@@ -201,7 +201,6 @@ redirect_from:
 
 <!-- CLOSING -->
 <section class="cta">
-  <span class="lab"><span data-ed="about:closing.label">{{ site.data.about.closing.label }}</span></span>
   <h2 class="disp">{% include em.html t=site.data.about.closing.heading k="about:closing.heading" %}</h2>
   <p><span data-ed="about:closing.body">{{ site.data.about.closing.body }}</span></p>
   <a class="btn btn-ink" href="{{ site.baseurl }}/consultation-form"><span data-ed="about:closing.button">{{ site.data.about.closing.button }}</span> <span>&rarr;</span></a>

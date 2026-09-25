@@ -1,15 +1,15 @@
 hero:
   label: Contact
   heading: Let's start the *conversation.*
-  subheading: Tell us your date, venue, and vision. We follow up within 48 hours
-    to confirm availability.
+  subheading: Tell us your date, venue, and vision, and we'll confirm
+    availability.
 next_steps:
   label: What happens next
   heading: Three steps, no pressure.
   steps:
     - title: You send the form.
       body: Your date, venue, and a little about your vision. About two minutes.
-    - title: We reply within 48 hours.
+    - title: We reply promptly.
       body: We confirm we're open on your date and share our first thoughts on your
         venue and season.
     - title: We talk it through.

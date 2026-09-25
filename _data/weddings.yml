@@ -119,6 +119,23 @@ pricing:
   # RANGE OBSERVED, not a floor charged, and the difference is the whole point:
   # a minimum is a door you can be under, a range is a place to stand.
   #
+  # 2026-09-25: "THERE IS NO MINIMUM TO WORK WITH US" CAME OUT OF THE INTRO.
+  # Not because the position changed, but because that sentence is a promise
+  # the studio cannot keep in a conversation. Brittany, on a call or over
+  # email, will tell a couple with a very small budget that it is not worth
+  # doing, and the page had already told them there was no such line. Saying
+  # nothing about minimums lets her have that conversation; saying "no
+  # minimum" makes her contradict the website.
+  #
+  # The truth it was standing in for now lives in `smaller` below, where it
+  # belongs: there is no rule that turns a wedding away, but design, sourcing,
+  # delivery, setup and breakdown cost the same on a small order as on a large
+  # one, so the smaller it gets the more of the money goes to that work
+  # instead of to flowers. That is a value argument, not a door, and it is
+  # what Brittany actually says. NO FIGURE IS NAMED for the same reason the
+  # minimum came out: a published floor is a door, and we have taken four runs
+  # at publishing one already (see the retired list above).
+  #
   # Retired here, kept so the history is not lost:
   #   2026-09-24  "$12,000 to $18,000" / "A typical 100 guest wedding", one note
   #   2026-09-21  no figure at all
@@ -134,10 +151,10 @@ pricing:
   # They did not between 2026-09-21 and today: the FAQ was still saying
   # $10,000-$30,000+ and $12,000-$20,000 under a block saying $12,000-$18,000.
   heading: What it costs.
-  intro: There is no minimum to work with us. What a wedding costs moves with
-    the venue, how much of the room you want designed, the season and your
-    guest count, so every wedding is quoted on its own. What we can tell you
-    is where the weddings we have done around the lake tend to land.
+  intro: What a wedding costs moves with the venue, how much of the room you
+    want designed, the season and your guest count, so every wedding is quoted
+    on its own. What we can tell you is where the weddings we have done around
+    the lake tend to land.
   figures:
   - amount: "$12,000 to $18,000"
     caption: Where a typical 100 guest full service wedding lands.
@@ -168,12 +185,16 @@ pricing:
   # rendering, which is how the offer is withdrawn without touching markup.
   smaller:
     heading: If your budget is smaller
-    body: We do our best to work with what a couple has. If full service is
-      more than you want to spend, tell us the number you had in mind and we
-      will put together an a la carte selection instead, a shorter list
-      designed in your palette with the scope agreed up front. It is limited
-      on purpose. We would rather do a few things properly than spread a
-      budget thin across a whole room.
+    body: We do our best to work with what a couple has, and we will be
+      straight with you about what the money buys. A wedding takes the same
+      design, sourcing, delivery, setup and breakdown whether the order is
+      large or small, and none of that shrinks with the order. On a small full
+      service wedding it ends up taking a bigger share than the flowers do,
+      which is a poor trade for you. So if full service is more than you want
+      to spend, tell us the number you had in mind and we will build an a la
+      carte selection instead, a shorter list designed in your palette with
+      the scope agreed up front. Fewer things, done properly, and more of your
+      money in the flowers themselves.
     button: Tell us your budget
 
 # What full-service covers. The six titles are what the /weddings FAQ already
@@ -212,7 +233,6 @@ faq:
   heading: Everything else you might be wondering.
 
 closing:
-  label: Begin here
   heading: Is your date *still open?*
   body: Tell us your date and venue, and we'll let you know if it's open.
   button: Check your date

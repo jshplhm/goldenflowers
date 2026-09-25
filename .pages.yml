@@ -196,7 +196,6 @@ content:
         label: Closing call to action
         type: object
         fields:
-          - {name: label, label: "Small label", type: string}
           - {name: heading, label: "Heading", type: string, description: "*asterisks* = italics"}
           - {name: body, label: "Text", type: text}
           - {name: button, label: "Button text", type: string}
@@ -283,7 +282,6 @@ content:
         label: Closing call to action
         type: object
         fields:
-          - {name: label, label: "Small label", type: string}
           - {name: heading, label: "Heading", type: string, description: "*asterisks* = italics"}
           - {name: body, label: "Text", type: text}
           - {name: button, label: "Button text", type: string}
@@ -314,7 +312,6 @@ content:
         label: Closing call to action
         type: object
         fields:
-          - {name: label, label: "Small label", type: string}
           - {name: heading, label: "Heading", type: string, description: "*asterisks* = italics"}
           - {name: body, label: "Text", type: text}
           - {name: button, label: "Button text", type: string}
@@ -383,7 +380,6 @@ content:
         label: Closing call to action
         type: object
         fields:
-          - {name: label, label: "Small label", type: string}
           - {name: heading, label: "Heading", type: string}
           - {name: body, label: "Text", type: text}
           - {name: button, label: "Button text", type: string}
@@ -420,7 +416,6 @@ content:
         label: Bottom call-to-action
         type: object
         fields:
-          - {name: label, label: "Small label", type: string}
           - {name: heading, label: "Heading", type: string, description: "*asterisks* = italics"}
           - {name: body, label: "Text", type: text}
           - {name: button, label: "Button text", type: string}
@@ -428,7 +423,6 @@ content:
         label: Call-to-action on each wedding page
         type: object
         fields:
-          - {name: label, label: "Small label", type: string}
           - {name: heading, label: "Heading", type: string, description: "*asterisks* = italics"}
           - {name: body, label: "Text", type: text}
           - {name: button, label: "Button text", type: string}
@@ -485,7 +479,6 @@ content:
         label: Closing call to action
         type: object
         fields:
-          - {name: label, label: "Small label", type: string}
           - {name: heading, label: "Heading", type: string, description: "*asterisks* = italics"}
           - {name: body, label: "Text", type: text}
           - {name: button, label: "Button text", type: string}
@@ -621,7 +614,6 @@ content:
         label: Bottom call-to-action
         type: object
         fields:
-          - {name: label, label: "Small label", type: string}
           - {name: heading, label: "Heading", type: string, description: "*asterisks* = italics"}
           - {name: body, label: "Text", type: text}
           - {name: button, label: "Button text", type: string}
@@ -629,7 +621,6 @@ content:
         label: Call-to-action at the bottom of every post
         type: object
         fields:
-          - {name: label, label: "Small label", type: string}
           - {name: heading, label: "Heading", type: string, description: "*asterisks* = italics"}
           - {name: body, label: "Text", type: text}
           - {name: button, label: "Button text", type: string}

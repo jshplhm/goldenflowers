@@ -241,7 +241,6 @@ each question. {%- endcomment -%}
 
 <!-- CLOSING -->
 <section class="cta">
-  <span class="lab"><span data-ed="weddings:closing.label">{{ site.data.weddings.closing.label }}</span></span>
   <h2 class="disp">{% include em.html t=site.data.weddings.closing.heading k="weddings:closing.heading" %}</h2>
   <p><span data-ed="weddings:closing.body">{{ site.data.weddings.closing.body }}</span></p>
   <a class="btn btn-ink" href="{{ site.baseurl }}/consultation-form"><span data-ed="weddings:closing.button">{{ site.data.weddings.closing.button }}</span> <span>&rarr;</span></a>

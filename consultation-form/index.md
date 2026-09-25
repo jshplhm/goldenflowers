@@ -3,7 +3,7 @@ layout: redesign
 title: "Schedule a Consultation"
 seo_title: "Schedule a Wedding Floral Consultation | Golden Flowers"
 permalink: /consultation-form
-description: "Check your date with Golden Flowers, a Lake Tahoe wedding florist. Tell us your date and venue and we'll reply, usually within 48 hours."
+description: "Check your date with Golden Flowers, a Lake Tahoe wedding florist. Tell us your date and venue and we'll be in touch."
 canonical_url: https://goldenflorals.com/consultation-form
 redirect_from:
   - /contact
@@ -196,7 +196,7 @@ sitemap: false
         <span class="form-head-label">What happens next</span>
         <ol class="success-steps">
           <li><span class="n">1</span><strong data-success-step-head>We check your date</strong><span class="success-step-body">Making sure<span data-success-step-date> your date is open</span>.</span></li>
-          <li><span class="n">2</span><strong>You hear from us</strong><span class="success-step-body" data-success-note>Brittany replies within 48 hours.</span></li>
+          <li><span class="n">2</span><strong>You hear from us</strong><span class="success-step-body" data-success-note>Brittany replies personally.</span></li>
           <li><span class="n">3</span><strong>We design together</strong><span class="success-step-body" data-success-step-plan>If your date&#39;s open, we&#39;ll book a call to plan your florals.</span></li>
         </ol>
       </div>
