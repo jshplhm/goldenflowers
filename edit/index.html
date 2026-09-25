@@ -146,6 +146,23 @@ sitemap: false
     .ed-hw-slot .ed-hw-cap{font-size:.76rem;color:var(--ed-mute);margin-top:5px;line-height:1.35;}
     .ed-hw-slot .ed-hw-cap b{display:block;color:#222;font-size:.82rem;}
     @media(max-width:560px){.ed-hw-slots{grid-template-columns:1fr;}}
+    /* ---- framing: the focal point and the zoom ----
+       The stage is the SLOT's aspect, not the photograph's, because the whole
+       question being answered here is what survives this particular crop. A
+       square preview would look right and lie. */
+    .fr-stage{position:relative;width:100%;max-width:440px;margin:0 auto 14px;overflow:hidden;
+      border-radius:8px;background:#eee;touch-action:none;cursor:crosshair;
+      user-select:none;-webkit-user-select:none;}
+    .fr-stage img{width:100%;height:100%;object-fit:cover;display:block;pointer-events:none;}
+    .fr-dot{position:absolute;width:26px;height:26px;margin:-13px 0 0 -13px;border-radius:50%;
+      border:2px solid #fff;box-shadow:0 0 0 1.5px rgba(0,0,0,.55),0 2px 8px rgba(0,0,0,.4);
+      background:rgba(255,255,255,.22);pointer-events:none;}
+    .fr-dot::after{content:'';position:absolute;inset:10px;border-radius:50%;background:#fff;}
+    .fr-lab{display:block;font-size:.82rem;color:var(--ed-mute);margin:10px 0 4px;}
+    .fr-lab b{color:#222;font-variant-numeric:tabular-nums;}
+    #ed-fr-zoom{width:100%;}
+    .fr-where{font-size:.8rem;color:var(--ed-mute);margin:0 0 12px;}
+    .fr-where b{color:#222;}
     /* portfolio order: drag to reorder, and a show/hide switch per wedding */
     .ed-pf-list{display:flex;flex-direction:column;gap:8px;margin:14px 0 6px;overflow-y:auto;max-height:min(56vh,460px);}
     .ed-pf-row{display:flex;align-items:center;gap:12px;padding:8px 10px;border:1px solid var(--ed-line);
@@ -195,7 +212,7 @@ sitemap: false
     <button class="ed-btn" id="ed-discard" disabled>Discard</button>
     <button class="ed-btn primary" id="ed-save" disabled>Save</button>
   </div>
-  <div class="ed-hint">Click any text to edit it, then press <b>Save</b>. Click any photo to swap it. On a wedding page, <b>Photos</b> manages the gallery, <b>Cover photos</b> picks what shows on the portfolio page, and <b>Vendors</b> credits everyone else who worked on it. On the portfolio page, <b>Portfolio order</b> sets the running order and hides a wedding without deleting it. On the home page, <b>Home weddings</b> chooses which three weddings it previews and in what order. Changes go live in about two minutes.</div>
+  <div class="ed-hint">Click any text to edit it, then press <b>Save</b>. Click any photo to swap it. On a wedding page, <b>Photos</b> manages the gallery, <b>Cover photos</b> picks what shows on the portfolio page, and <b>Vendors</b> credits everyone else who worked on it. On the portfolio page, <b>Portfolio order</b> sets the running order and hides a wedding without deleting it. Click a photo and choose <b>Adjust framing</b> to set what it zooms and centres on in that spot. On the home page, <b>Home weddings</b> chooses which three weddings it previews and in what order. Changes go live in about two minutes.</div>
   <!-- Home weddings: which three weddings the home page previews, in order -->
   <div class="ed-login" id="ed-hw-modal" hidden>
     <form class="ed-card" id="ed-hw-form" style="max-width:720px;">
@@ -219,6 +236,22 @@ sitemap: false
       <div class="ed-err" id="ed-hw-err"></div>
     </form>
   </div>
+  <!-- Framing: where a photograph is cropped in its slot, and how far in -->
+  <div class="ed-login" id="ed-fr-modal" hidden>
+    <form class="ed-card" id="ed-fr-form" style="max-width:560px;">
+      <h2>Framing</h2>
+      <p class="fr-where" id="ed-fr-where"></p>
+      <p>Click or drag on the picture to set what it centres on. The box below is the real shape this photo is cropped to on the page, so what you see here is what you get.</p>
+      <div class="fr-stage" id="ed-fr-stage"><img id="ed-fr-img" alt=""><span class="fr-dot" id="ed-fr-dot"></span></div>
+      <label class="fr-lab" for="ed-fr-zoom">Zoom <b id="ed-fr-zval">1.00&times;</b></label>
+      <input type="range" id="ed-fr-zoom" min="1" max="2.5" step="0.01" value="1">
+      <button class="ed-btn primary" type="submit">Save framing</button>
+      <button class="ed-btn" type="button" id="ed-fr-reset">Reset to default</button>
+      <button class="ed-btn" type="button" id="ed-fr-cancel">Cancel</button>
+      <div class="ed-err" id="ed-fr-err"></div>
+    </form>
+  </div>
+
   <!-- Portfolio order: the running order of the weddings, and which are shown -->
   <div class="ed-login" id="ed-pf-modal" hidden>
     <form class="ed-card" id="ed-pf-form" style="max-width:720px;">
@@ -291,6 +324,11 @@ sitemap: false
         <p class="ed-ph-note" style="margin:10px 0 0;">…or upload something new:</p>
       </div>
       <button class="ed-btn primary" type="submit">Upload a new photo…</button>
+      {%- comment -%} Swapping the photo and reframing the one already there are
+      the two things you can want when you click a picture, so the second is
+      offered where the first already is. Hidden for an image with no framing
+      slot wired up. {%- endcomment -%}
+      <button class="ed-btn" type="button" id="ed-rep-frame" hidden>Adjust framing (zoom &amp; focus)</button>
       <button class="ed-btn" type="button" id="ed-rep-cancel">Cancel</button>
       <div class="ed-err" id="ed-rep-err"></div>
     </form>

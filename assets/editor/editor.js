@@ -1074,6 +1074,7 @@ function renderPhotoGrid() {
       `<img src="${it.download_url}" loading="lazy" alt="">` +
       (isHero ? `<span class="ed-ph-badge">Opening photo</span>` : "") +
       `<div class="ed-ph-acts">` +
+      `<button type="button" data-act="frame">Framing</button>` +
       (isHero ? "" : `<button type="button" class="hero" data-act="hero">Make opening photo</button><button type="button" data-act="del">Delete</button>`) +
       `</div>` +
       `<div class="ed-ph-move">` +
@@ -1084,6 +1085,23 @@ function renderPhotoGrid() {
       b.addEventListener("click", () => {
         if (b.dataset.act === "del") return deletePhoto(it.name);
         if (b.dataset.act === "hero") return makeHero(it.name);
+        /* Frame the tile ON THE PAGE, not this thumbnail: the crop belongs to
+         * the slot, and the slot is the one in the mosaic behind the panel.
+         * The fallback is what reaches the OPENING photo, which is listed here
+         * but rendered outside the mosaic, so it carries a hero| key and not a
+         * tile| one. Matching on the path alone finds it either way. */
+        if (b.dataset.act === "frame") {
+          const src = `/assets/images/portfolio/${curGallery.slug}/${it.name}`;
+          const live = frameDoc().querySelector(`img[data-crop-key="tile|${CSS.escape(src)}"]`)
+            || [...frameDoc().querySelectorAll("img[data-crop-key]")]
+                 .find((n) => n.getAttribute("data-crop-key").endsWith("|" + src));
+          if (!live) {
+            phNote("That photo isn't on the page yet — save the new order first.", "warn");
+            return;
+          }
+          live.scrollIntoView({ block: "center" });
+          return openFraming(live);
+        }
         const from = phItems.findIndex((x) => x.name === it.name);
         const to = b.dataset.act === "left" ? from - 1 : from + 1;
         if (to < 0 || to >= phItems.length) return;
@@ -1483,6 +1501,10 @@ async function swapSourceTo(newSrcPath) {
 function openReplace(img) {
   if (!curPage) return;
   repTarget = { el: img, path: imgPath(img) };
+  /* Swapping the photo and reframing the one already there are the two things
+   * you can want when you click a picture. The button only appears where a
+   * framing slot is actually wired up. */
+  repFrame.hidden = !img.getAttribute("data-crop-key");
   repPreview.src = img.currentSrc || img.src;
   repErr.style.display = "none";
   repGalWrap.hidden = true;
@@ -2614,5 +2636,203 @@ pfForm.addEventListener("submit", async (e) => {
     pfErr.style.display = "block";
   } finally {
     btn.disabled = false;
+  }
+});
+
+/* ============================================================================
+   FRAMING — the focal point and the zoom for one photograph in one slot
+   (_data/photo_crop.yml, keyed "<slot>|<image path>").
+
+   The controls write CSS custom properties straight onto the live tile in the
+   preview behind the panel, so what is being judged is the real photograph in
+   the real slot at the real size. Only Save reaches disk; Cancel puts the tag
+   back exactly as it was found.
+
+   The stage is the SLOT's aspect ratio, measured off the tile on the page, not
+   the photograph's. The whole question here is what survives this particular
+   crop, and a square preview would look right and lie.
+
+   No orientation control and no video speed: this site has no reels, and the
+   shape of a slot is the layout's decision, not a per-photo one.
+   ========================================================================= */
+
+const CROP_PATH = "_data/photo_crop.yml";
+
+const frModal = document.getElementById("ed-fr-modal");
+const frForm = document.getElementById("ed-fr-form");
+const frStage = document.getElementById("ed-fr-stage");
+const frImg = document.getElementById("ed-fr-img");
+const frDot = document.getElementById("ed-fr-dot");
+const frZoom = document.getElementById("ed-fr-zoom");
+const frZval = document.getElementById("ed-fr-zval");
+const frWhere = document.getElementById("ed-fr-where");
+const frErr = document.getElementById("ed-fr-err");
+const frCancel = document.getElementById("ed-fr-cancel");
+const frReset = document.getElementById("ed-fr-reset");
+const repFrame = document.getElementById("ed-rep-frame");
+
+/* {el, key, x, y, z, wasStyle, wasOp, wasZoom} while the panel is open */
+let frState = null;
+
+const FR_SLOT = {
+  hero: "the big photo at the top of this wedding",
+  card: "this wedding's cover on the portfolio page",
+  tile: "this photo in the gallery",
+  rail: "this wedding's card on the “more weddings” row",
+  page: "this photo band",
+};
+
+function frRead(el) {
+  const n = (v, d) => { const f = parseFloat(v); return isNaN(f) ? d : f; };
+  return { x: n(el.style.getPropertyValue("--opx"), 50),
+           y: n(el.style.getPropertyValue("--op"), 50),
+           z: n(el.style.getPropertyValue("--z"), 1) };
+}
+
+/* Paint the pending values onto BOTH the stage and the real tile behind the
+ * panel. The stage mirrors object-position with a transform because it is a
+ * plain <img> in a box of the slot's ratio, which is the same arithmetic the
+ * stylesheet does for the tile. */
+function frPaint() {
+  if (!frState) return;
+  const { el, x, y, z } = frState;
+  frDot.style.left = x + "%";
+  frDot.style.top = y + "%";
+  frZval.textContent = z.toFixed(2) + "×";
+  frImg.style.objectPosition = `${x}% ${y}%`;
+  frImg.style.transform = `scale(${z})`;
+  frImg.style.transformOrigin = `${x}% ${y}%`;
+  el.style.setProperty("--opx", x + "%");
+  el.style.setProperty("--op", y + "%");
+  el.setAttribute("data-op", "");
+  if (z > 1) { el.style.setProperty("--z", z); el.setAttribute("data-zoom", ""); }
+  else { el.style.removeProperty("--z"); el.removeAttribute("data-zoom"); }
+}
+
+/* Put the tag back exactly as it was found. Removing an attribute the tag
+ * arrived with, or leaving one it did not, is how a cancel turns into an edit. */
+function frRevert() {
+  if (!frState) return;
+  const { el, wasStyle, wasOp, wasZoom } = frState;
+  if (wasStyle === null) el.removeAttribute("style"); else el.setAttribute("style", wasStyle);
+  if (wasOp === null) el.removeAttribute("data-op"); else el.setAttribute("data-op", wasOp);
+  if (wasZoom === null) el.removeAttribute("data-zoom"); else el.setAttribute("data-zoom", wasZoom);
+  frState = null;
+}
+
+function openFraming(el) {
+  const key = el.getAttribute("data-crop-key");
+  if (!key) return;
+  frErr.style.display = "none";
+  /* The stage takes the tile's rendered ratio, so a 16:9 hero is judged as a
+   * 16:9 hero. An image still loading has no box yet; its own ratio is a
+   * better guess than a square. */
+  const r = el.getBoundingClientRect();
+  const ratio = (r.width > 4 && r.height > 4)
+    ? r.width / r.height
+    : (el.naturalWidth && el.naturalHeight ? el.naturalWidth / el.naturalHeight : 1);
+  frStage.style.aspectRatio = String(ratio);
+  const slot = key.split("|")[0];
+  frWhere.innerHTML = `Framing <b>${escapeHtml(FR_SLOT[slot] || slot)}</b>. This is the only place it is cropped this way, so nothing else on the site moves.`;
+  frImg.src = el.currentSrc || el.src;
+  const c = frRead(el);
+  frState = { el, key, ...c,
+    wasStyle: el.getAttribute("style"),
+    wasOp: el.getAttribute("data-op"),
+    wasZoom: el.getAttribute("data-zoom") };
+  frZoom.value = c.z;
+  frPaint();
+  repModal.hidden = true;
+  phModal.hidden = true;
+  frModal.hidden = false;
+}
+
+function frFromEvent(ev) {
+  if (!frState) return;
+  const r = frStage.getBoundingClientRect();
+  frState.x = Math.round(Math.max(0, Math.min(100, (ev.clientX - r.left) / r.width * 100)));
+  frState.y = Math.round(Math.max(0, Math.min(100, (ev.clientY - r.top) / r.height * 100)));
+  frPaint();
+}
+let frDragging = false;
+frStage.addEventListener("pointerdown", (ev) => {
+  if (!frState) return;
+  frDragging = true;
+  frStage.setPointerCapture(ev.pointerId);
+  frFromEvent(ev);
+});
+frStage.addEventListener("pointermove", (ev) => { if (frDragging) frFromEvent(ev); });
+frStage.addEventListener("pointerup", () => { frDragging = false; });
+frStage.addEventListener("pointercancel", () => { frDragging = false; });
+frZoom.addEventListener("input", (e) => {
+  if (!frState) return;
+  frState.z = +e.target.value;
+  frPaint();
+});
+
+repFrame.addEventListener("click", () => { if (repTarget) openFraming(repTarget.el); });
+frCancel.addEventListener("click", () => { frRevert(); frModal.hidden = true; });
+
+/* Write one key, or delete it. The file is a flat map, so a save touches
+ * exactly the slot being edited and cannot disturb another one. */
+async function frCommit(spec) {
+  const key = frState.key;
+  const f = await getFile(CROP_PATH).catch((err) => {
+    /* A missing file is a legitimate starting state, not an error: saving
+     * creates it. Without this the first framing anyone sets would fail. */
+    if (/\(404\)/.test(err.message)) return null;
+    throw err;
+  });
+  /* An empty seed, not "{}": parseDocument("{}") gives a FLOW map, and every
+   * key written after it lands inline between braces on one line. The file is
+   * read by people. */
+  const doc = f ? parseDocument(b64decodeUtf8(f.content)) : parseDocument("");
+  if (spec === null) doc.delete(key); else doc.set(key, spec);
+  const label = key.split("|")[0];
+  await commitFiles([{ path: CROP_PATH, text: doc.toString() }],
+    spec === null ? `Reset the ${label} framing via inline editor`
+                  : `Set the ${label} framing to ${spec} via inline editor`);
+}
+
+frForm.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  if (!frState) return;
+  frErr.style.display = "none";
+  const btn = frForm.querySelector("button[type=submit]");
+  btn.disabled = true;
+  try {
+    const { x, y, z } = frState;
+    await frCommit(`${x} ${y} ${z.toFixed(2)}`);
+    frState = null;                 /* saved, so cancel must not revert it */
+    frModal.hidden = true;
+    statusEl.className = "ed-status ok";
+    statusEl.textContent = DRYRUN
+      ? "Dry run done — nothing committed"
+      : "✓ Framing saved — you can see it on the page behind this panel. It goes live in about two minutes.";
+  } catch (err) {
+    frErr.textContent = err.message;
+    frErr.style.display = "block";
+  } finally {
+    btn.disabled = false;
+  }
+});
+
+frReset.addEventListener("click", async () => {
+  if (!frState) return;
+  frErr.style.display = "none";
+  frReset.disabled = true;
+  try {
+    await frCommit(null);
+    frRevert();                     /* back to the layout's own crop on screen */
+    frModal.hidden = true;
+    statusEl.className = "ed-status ok";
+    statusEl.textContent = DRYRUN
+      ? "Dry run done — nothing committed"
+      : "✓ Framing reset to the layout default.";
+  } catch (err) {
+    frErr.textContent = err.message;
+    frErr.style.display = "block";
+  } finally {
+    frReset.disabled = false;
   }
 });
