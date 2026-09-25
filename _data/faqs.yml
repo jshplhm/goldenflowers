@@ -16,6 +16,7 @@ pages:
           that feel grounded, seasonal, and specific to the Sierra Nevada
           landscape where your wedding is happening.
       - q: What does a full-service wedding florals investment typically look like?
+        on_page: false
         a: "Every wedding is quoted on its own. What we can tell you is where ours land: a typical 100 guest
           Lake Tahoe wedding runs <strong>$12,000–$18,000</strong> for full
           service, and larger guest counts with multiple installations can go
@@ -29,6 +30,7 @@ pages:
           your consultation you'll receive an itemized quote so you know exactly
           what you're paying for."
       - q: What if our wedding is smaller in scope?
+        on_page: false
         a: Full service is what we do best, and it's how most of our weddings are
           booked. If yours is smaller in scope, tell us what you have in mind.
           We do take a la carte work, and we'd rather you ask than assume the
@@ -42,6 +44,7 @@ pages:
           available. We occasionally have openings for mid-week, off-season, or
           non-peak dates.
       - q: What if I'm not sure which aesthetic I want?
+        on_page: false
         a: "That's what the consultation is for. Bring whatever references you have:
           Pinterest boards, photos, a vibe description, an outfit. We're very
           good at translating what someone means from what they show us. We'll

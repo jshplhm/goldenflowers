@@ -213,7 +213,6 @@ content:
           - {name: label, label: "Small label", type: string}
           - {name: heading, label: "Headline", type: string, description: "*asterisks* = italics"}
           - {name: subheading, label: "Sub-headline", type: text}
-          - {name: button_primary, label: "Main button text", type: string, description: "Jumps down to the pricing estimator."}
       - name: process
         label: "Section: how it works"
         type: object
@@ -591,6 +590,11 @@ content:
               - name: a
                 label: Answer (basic HTML like <strong> and <br> is allowed)
                 type: text
+              - name: on_page
+                label: Show on the page
+                type: boolean
+                default: true
+                description: "Off hides it from visitors. AI crawlers still get it via llms.txt (Weddings questions only)."
 
   - name: blog_page
     label: Blog page

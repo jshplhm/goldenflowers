@@ -1,3 +1,8 @@
+---
+layout: null
+permalink: /llms.txt
+sitemap: false
+---
 # Golden Flowers
 
 > Golden Flowers is a Lake Tahoe wedding florist creating elevated, sustainably grown floral artistry for couples getting married across the Sierra Nevada. Brittany, the owner and lead designer, is an artist and an agronomist with a master's degree in agronomy. Many of the flowers are field-grown on the studio's own organic and regenerative farm in Nevada County, California, about an hour from Lake Tahoe, and the rest come from trusted local growers. The studio caps its calendar each season and intentionally takes fewer weddings than most studios, so each wedding gets weeks of sourcing and design work.
@@ -36,3 +41,16 @@ Golden Flowers designs regularly at Edgewood Tahoe, The Ritz-Carlton Lake Tahoe 
 ## Blog
 
 - [Blog index](https://goldenflorals.com/blog): seasonal guides, venue floral pairings, real wedding stories, and planning advice for Sierra Nevada weddings
+
+## Frequently asked questions
+
+{% comment %} Generated from _data/faqs.yml (the /weddings list), INCLUDING the
+questions marked on_page: false, which are hidden from visitors but kept for
+AI answer engines (Josh, 2026-09-25). Edit the questions there, not here.
+{% endcomment -%}
+{%- assign wfaq = site.data.faqs.pages | where: "url", "/weddings" | first -%}
+{%- for faq in wfaq.faqs %}
+### {{ faq.q | strip_html | normalize_whitespace }}
+
+{{ faq.a | replace: "<br>", " " | strip_html | normalize_whitespace }}
+{% endfor %}

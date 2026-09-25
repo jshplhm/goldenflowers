@@ -46,8 +46,11 @@ redirect_from:
      _data/weddings.yml `pricing`; read that block's header before
      touching a number or a photo pairing.
 
-     Order: hero -> process -> the ladder -> reviews (hidden) -> FAQ
-     -> closing CTA.
+     Order (2026-09-25, Josh): hero -> what it costs (what's included folded
+     in) -> process -> a photograph -> reviews (hidden) -> FAQ -> closing CTA.
+     The nav calls this page Pricing, so the price comes first; it used to
+     sit ~2,300px down behind seven process steps, with a "Jump to pricing"
+     button in the hero apologising for the order.
      =================================================================== -->
 
 <!-- HERO -->
@@ -57,14 +60,13 @@ redirect_from:
   same height competing for the same attention and left the column under the
   headline empty.
 {%- endcomment -%}
-<header class="text-hero">
+<header class="text-hero text-hero--pic">
   <span class="lab"><span data-ed="weddings:hero.label">{{ site.data.weddings.hero.label }}</span></span>
   <h1>{% include em.html t=site.data.weddings.hero.heading k="weddings:hero.heading" %}</h1>
   <p class="th-sub"><span data-ed="weddings:hero.subheading">{{ site.data.weddings.hero.subheading }}</span></p>
-  {%- comment -%} Deliberately NOT "Check your date": the nav carries that on
-  every screen, so the hero can serve the reason someone opened this page. It
-  jumps to the investment block. {%- endcomment -%}
-  <a class="btn btn-ink" href="#pricing"><span data-ed="weddings:hero.button_primary">{{ site.data.weddings.hero.button_primary }}</span> <span>&darr;</span></a>
+  {%- comment -%} No hero button (2026-09-25). It was "Jump to pricing",
+  there only because pricing sat below the process. Pricing is next now, and
+  the nav carries "Check your date" on every screen. {%- endcomment -%}
 </header>
 
 <figure class="page-pic">
@@ -73,62 +75,6 @@ redirect_from:
        width="1500" height="844" loading="eager" fetchpriority="high"
 {% include img-crop.html path="/assets/images/portfolio/kelly-dylan/kelly-dylan-13.jpg" ctx="page" %} sizes="(min-width:1500px) 1500px, 100vw">
 </figure>
-
-<!-- PROCESS -->
-{%- comment -%}
-  NUMBERED ROWS ACROSS THE PAGE (2026-09-24). This was a timeline down a
-  narrow left column with an icon per step, which spent an icon on each row,
-  wrapped every line early, and left more than half the width empty. Each step
-  is now a row: number and timing on the left, the step and what happens on
-  the right, hairline between. Seven steps read as seven steps.
-
-  `icon:` in _data/weddings.yml is no longer rendered. It is left in the data
-  rather than stripped out, so restoring the old treatment is a markup change
-  and not a data re-entry job.
-{%- endcomment -%}
-<section class="block proc-rows">
-  <div class="proc-head">
-    <span class="lab"><span data-ed="weddings:process.label">{{ site.data.weddings.process.label }}</span></span>
-    <h2 class="h-lg"><span data-ed="weddings:process.heading">{{ site.data.weddings.process.heading }}</span></h2>
-    <p class="proc-intro"><span data-ed="weddings:process.intro">{{ site.data.weddings.process.intro }}</span></p>
-  </div>
-  {%- comment -%} Steps carry an optional `phase`; a heading is emitted wherever
-  it changes, which breaks the run into "before you book" and "once you're
-  booked". Leave every phase blank and it renders as one continuous list.
-  {%- endcomment -%}
-  {%- assign seen_phase = "" %}
-  <ol class="proc-list">
-  {%- for step in site.data.weddings.process.steps %}
-  {%- if step.phase and step.phase != seen_phase %}
-    <li class="proc-phase"><span data-ed="weddings:process.steps.{{ forloop.index0 }}.phase">{{ step.phase }}</span></li>
-  {%- assign seen_phase = step.phase %}
-  {%- endif %}
-    <li class="proc-row">
-      <span class="proc-n" aria-hidden="true">{{ forloop.index | prepend: "0" | slice: -2, 2 }}</span>
-      <span class="proc-when"><span data-ed="weddings:process.steps.{{ forloop.index0 }}.when">{{ step.when }}</span></span>
-      <div class="proc-body">
-        <h3><span data-ed="weddings:process.steps.{{ forloop.index0 }}.title">{{ step.title }}</span></h3>
-        <p><span data-ed="weddings:process.steps.{{ forloop.index0 }}.body">{{ step.body }}</span></p>
-      </div>
-    </li>
-  {%- endfor %}
-  </ol>
-</section>
-
-<!-- WHAT'S INCLUDED -->
-<section class="block incl">
-  <span class="lab"><span data-ed="weddings:included.label">{{ site.data.weddings.included.label }}</span></span>
-  <h2 class="h-lg"><span data-ed="weddings:included.heading">{{ site.data.weddings.included.heading }}</span></h2>
-  <div class="incl-grid">
-    {%- for item in site.data.weddings.included.items %}
-    <div class="incl-item">
-      <h3><span data-ed="weddings:included.items.{{ forloop.index0 }}.title">{{ item.title }}</span></h3>
-      {%- assign b = item.body | strip %}
-      <p{% if b == "" %} class="ed-empty"{% endif %}><span data-ed="weddings:included.items.{{ forloop.index0 }}.body" data-ed-hint="Describe what this covers">{{ item.body }}</span></p>
-    </div>
-    {%- endfor %}
-  </div>
-</section>
 
 <!-- INVESTMENT -->
 {%- comment -%}
@@ -177,6 +123,22 @@ redirect_from:
       {%- endfor %}
     </div>
 
+
+    {%- comment -%} What's included, folded in (2026-09-25). It was its own
+    section of six bare names between the process and the price; what it
+    answers is "what does that figure buy", so it sits under the figures. {%- endcomment -%}
+    {%- assign inc = site.data.weddings.included -%}
+    <div class="invest-incl">
+      <h3 class="invest-dh"><span data-ed="weddings:included.label">{{ inc.label }}</span></h3>
+      <ul class="invest-incl-list">
+        {%- for item in inc.items %}
+        <li><span class="ii-t"><span data-ed="weddings:included.items.{{ forloop.index0 }}.title">{{ item.title }}</span></span>
+          {%- assign b = item.body | strip %}
+          <span class="ii-b{% if b == "" %} ed-empty{% endif %}"><span data-ed="weddings:included.items.{{ forloop.index0 }}.body" data-ed-hint="Describe what this covers">{{ item.body }}</span></span></li>
+        {%- endfor %}
+      </ul>
+    </div>
+
     {%- assign ndrv = pr.drivers | size -%}
     {%- if ndrv > 0 %}
     <div class="invest-drivers">
@@ -202,13 +164,65 @@ redirect_from:
       <p><span data-ed="weddings:pricing.smaller.body">{{ pr.smaller.body }}</span></p>
       {%- assign smb = pr.smaller.button | strip -%}
       {%- if smb != "" %}
-      <a class="btn btn-ink" href="{{ site.baseurl }}/consultation-form"><span data-ed="weddings:pricing.smaller.button">{{ pr.smaller.button }}</span> <span>&rarr;</span></a>
+      <a class="txt-link" href="{{ site.baseurl }}/consultation-form" data-consult-open><span data-ed="weddings:pricing.smaller.button">{{ pr.smaller.button }}</span> &rarr;</a>
       {%- endif %}
     </div>
     {%- endif %}
   </div>
 </section>
 {%- endif %}
+
+<!-- PROCESS -->
+{%- comment -%}
+  NUMBERED ROWS ACROSS THE PAGE (2026-09-24). This was a timeline down a
+  narrow left column with an icon per step, which spent an icon on each row,
+  wrapped every line early, and left more than half the width empty. Each step
+  is now a row: number and timing on the left, the step and what happens on
+  the right, hairline between. Seven steps read as seven steps.
+
+  `icon:` in _data/weddings.yml is no longer rendered. It is left in the data
+  rather than stripped out, so restoring the old treatment is a markup change
+  and not a data re-entry job.
+{%- endcomment -%}
+<section class="block proc-rows">
+  <div class="proc-head">
+    <span class="lab"><span data-ed="weddings:process.label">{{ site.data.weddings.process.label }}</span></span>
+    <h2 class="h-lg"><span data-ed="weddings:process.heading">{{ site.data.weddings.process.heading }}</span></h2>
+    <p class="proc-intro"><span data-ed="weddings:process.intro">{{ site.data.weddings.process.intro }}</span></p>
+  </div>
+  {%- comment -%} Steps carry an optional `phase`; a heading is emitted wherever
+  it changes, which breaks the run into "before you book" and "once you're
+  booked". Leave every phase blank and it renders as one continuous list.
+  {%- endcomment -%}
+  {%- assign seen_phase = "" %}
+  <ol class="proc-list">
+  {%- for step in site.data.weddings.process.steps %}
+  {%- if step.phase and step.phase != seen_phase %}
+    <li class="proc-phase"><span data-ed="weddings:process.steps.{{ forloop.index0 }}.phase">{{ step.phase }}</span></li>
+  {%- assign seen_phase = step.phase %}
+  {%- endif %}
+    <li class="proc-row">
+      {%- comment -%} No numerals (2026-09-25). The steps are an <ol>, so order is
+      in the markup, and the "when" column already reads as the sequence;
+      01-07 running across two phases made 05 look like it started a new list. {%- endcomment %}
+      <span class="proc-when"><span data-ed="weddings:process.steps.{{ forloop.index0 }}.when">{{ step.when }}</span></span>
+      <div class="proc-body">
+        <h3><span data-ed="weddings:process.steps.{{ forloop.index0 }}.title">{{ step.title }}</span></h3>
+        <p><span data-ed="weddings:process.steps.{{ forloop.index0 }}.body">{{ step.body }}</span></p>
+      </div>
+    </li>
+  {%- endfor %}
+  </ol>
+</section>
+
+<!-- A ROOM, DESIGNED. The page was ~7,300px of words under one photograph at
+     the top; this is what the upper figure buys, a room dressed end to end
+     (Palisades High Camp). Landscape, so it takes a full row. -->
+<figure class="page-pic page-pic--mid">
+  <img src="{{ site.baseurl }}/assets/images/portfolio/lynn-aaron/lynn-aaron-26.jpg"{% include img-dims.html path="/assets/images/portfolio/lynn-aaron/lynn-aaron-26.jpg" %}
+       alt="Reception room at Palisades High Camp dressed end to end: greenery climbing the timber posts, long tables in blush and olive, lounge seating and a tiered cake"
+       loading="lazy" sizes="(min-width:1500px) 1500px, 100vw">
+</figure>
 
 {%- comment -%} REVIEWS: hidden by `testimonials.show: false` in
 _data/weddings.yml, not deleted. The 13 quotes still live in

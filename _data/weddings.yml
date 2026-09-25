@@ -19,22 +19,22 @@
 # _includes/icon.html.
 # ===========================================================================
 
-# The hero carries no price and no second button. The nav carries "Check your
-# date" on every screen, so the hero's own button can serve the reason someone
-# opened this page: it jumps to the ladder.
+# No hero button since 2026-09-25: pricing is the next section now, so
+# "Jump to pricing" had nothing to jump over. The heading keeps "Lake Tahoe
+# wedding flowers" for search; the subheading previews the page in order
+# (price, what's included, the steps).
 hero:
   label: Pricing
-  heading: Lake Tahoe Wedding Flowers
-  subheading: We take on a limited number of weddings each season, so we can give
-    yours more.
-  button_primary: Jump to pricing
+  heading: Lake Tahoe wedding flowers, and what they cost.
+  subheading: Where our weddings tend to land, what full service covers, and how
+    it goes from your first message to the end of the night.
 
 # Step 02 no longer says 'by call or studio visit'. Step 07 no longer says
 # 'strike', which is event-industry jargon a couple will not know.
 process:
   label: How it works
-  heading: From first conversation to the end of the night.
-  intro: Every step, in order, so you know what happens and when.
+  heading: What happens, and when.
+  intro: Four steps before you book, and three once you have.
   steps:
     - icon: calendar
       phase: Before you book
@@ -184,15 +184,12 @@ pricing:
     # rendering, which is how the offer is withdrawn without touching markup.
   smaller:
     heading: If your budget is smaller
-    body: We do our best to work with what a couple has, and we will be straight
-      with you about what the money buys. A wedding takes a similar amount of
-      design, sourcing, delivery, setup and breakdown whether the order is large
-      or small. On a small full service wedding it ends up taking a bigger share
-      than the flowers do, which is a poor trade for you. So if full service is
-      more than you want to spend, tell us the number you had in mind and we
-      will build an a la carte selection instead, a shorter list designed in
-      your palette with the scope agreed up front. Fewer things, done properly,
-      and more of your money in the flowers themselves.
+    body: Full service takes the same design, sourcing, delivery, setup and
+      breakdown whether the order is large or small. On a small wedding that
+      work can cost more than the flowers themselves, which is a poor trade for
+      you. So tell us the number you have in mind and we'll suggest an a la
+      carte selection instead, with fewer pieces designed in your palette, the
+      scope agreed up front, and more of your money in the flowers.
     button: Tell us your budget
 
 # What full-service covers. The six titles are what the /weddings FAQ already

@@ -1,6 +1,12 @@
 {%- comment -%}
 Redesign FAQ: native <details> accordion (no JS) + identical FAQPage structured
 data, from _data/faqs.yml matched by page.url. Mirrors _includes/faq.html.
+
+`on_page: false` on a question keeps it off the page AND out of the FAQPage
+JSON-LD (Google requires FAQ markup to match visible content; FAQ rich results
+have been limited to government and health sites since 2023, so hidden
+questions there carry risk and no upside). It still reaches AI crawlers:
+llms.txt lists every /weddings question, hidden or not. Josh, 2026-09-25.
 {%- endcomment -%}
 {%- assign faq_entry = site.data.faqs.pages | where: "url", page.url | first -%}
 {%- assign faq_pi = -1 -%}
@@ -8,6 +14,7 @@ data, from _data/faqs.yml matched by page.url. Mirrors _includes/faq.html.
 {%- if faq_entry and faq_entry.faqs -%}
 <div class="faq-list">
   {%- for faq in faq_entry.faqs %}
+  {%- if faq.on_page == false %}{% continue %}{% endif %}
   {%- comment -%} The first answer starts open: a wall of closed rows asks the
   reader to guess which one is worth a click, and the first question is the one
   most of them have. {%- endcomment -%}
@@ -26,7 +33,8 @@ data, from _data/faqs.yml matched by page.url. Mirrors _includes/faq.html.
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
-    {%- for faq in faq_entry.faqs %}
+    {%- assign faq_shown = faq_entry.faqs | where_exp: "f", "f.on_page != false" -%}
+    {%- for faq in faq_shown %}
     {
       "@type": "Question",
       "name": {{ faq.q | strip_html | normalize_whitespace | jsonify }},
