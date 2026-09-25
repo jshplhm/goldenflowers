@@ -533,7 +533,6 @@ content:
         type: object
         fields:
           - {name: label, label: "Small label", type: string}
-          - {name: heading, label: "Heading", type: string}
           - name: steps
             label: The three steps
             type: object
@@ -546,7 +545,6 @@ content:
         type: object
         fields:
           - {name: label, label: "Small label", type: string}
-          - {name: heading, label: "Heading", type: string}
           - {name: location, label: "Location line", type: string}
           - {name: note, label: "Small print note", type: text}
 
@@ -557,7 +555,6 @@ content:
     format: yaml
     icon: panel-bottom
     fields:
-      - {name: tagline, label: "Tagline", type: text}
       - {name: cta, label: "Button text", type: string}
       - {name: studio, label: "Studio lines", type: string, list: true}
 

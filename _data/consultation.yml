@@ -1,11 +1,9 @@
 hero:
   label: Contact
   heading: Let's start the *conversation.*
-  subheading: Tell us your date, venue, and vision, and we'll confirm
-    availability.
+  subheading: Tell us your date and venue and we'll let you know if it's open.
 next_steps:
   label: What happens next
-  heading: Three steps, no pressure.
   steps:
     - title: You send the form.
       body: Your date, venue, and a little about your vision. About two minutes.
@@ -17,7 +15,6 @@ next_steps:
         venue.
 reach:
   label: Reach us directly
-  heading: Or just say hello.
   location: Incline Village, Lake Tahoe
   note: By appointment only. We don't host walk-ins. Serving Lake Tahoe, Truckee,
     Nevada City & beyond.

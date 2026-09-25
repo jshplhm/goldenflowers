@@ -2,7 +2,14 @@
   <div class="foot-in">
     <div class="foot-lead">
       <div class="foot-brand">Golden Flowers</div>
-      <p class="foot-tag"><span data-ed="footer:tagline">{{ site.data.footer.tagline }}</span></p>
+      {%- comment -%}
+        No tagline (Josh, 2026-09-25). "Artful and sustainable floral design
+        for weddings across Lake Tahoe & the Sierra Nevada" repeated on every
+        page, under a name that already says who this is, and it made the
+        phone footer the tallest thing after the page itself. It carried no
+        search weight: boilerplate repeated site-wide is discounted, and the
+        same words live in the meta description and the Florist JSON-LD.
+      {%- endcomment %}
       {%- comment -%}
         No CTA button here. Every page but the consultation form itself ends in
         a .cta / .cta-section immediately above this footer, so a second

@@ -7,56 +7,55 @@ description: "Check your date with Golden Flowers, a Lake Tahoe wedding florist.
 canonical_url: https://goldenflorals.com/consultation-form
 redirect_from:
   - /contact
-# This page is kept, not promoted. Nothing links to it any more (the footer's
-# "Contact us" is gone), but it stays alive because every .btn/.pill/.m-cta on
-# the site is a real link here that JS upgrades into the lightbox, and because
-# /contact still 301s in. So it is the fallback for anyone whose JS never ran,
-# and the landing spot for old links, bookmarks and ads.
+# This page is kept, not promoted. Nothing links to it (every .btn/.pill/.m-cta
+# is a real link here that JS upgrades into the lightbox), so it is the no-JS
+# fallback plus the landing spot for /contact, old bookmarks and ads. noindex +
+# sitemap:false keep it out of search without breaking any of that.
 #
-# auto_consult raises the lightbox for people who do arrive, so a stray link
-# gives them the same form every button gives. noindex + sitemap:false take it
-# out of search without breaking any of the above: noindex is not a block, so
-# the URL keeps resolving, ads keep landing, and the 301 keeps working.
-auto_consult: true
+# No auto_consult since 2026-09-25. The page used to raise the lightbox over
+# itself on arrival, because the page's own form sat under two columns of
+# prose. The form is now the first thing on the page, so the lightbox would
+# be the same form twice. Josh called the old page "trash".
 noindex: true
 sitemap: false
 ---
 
-<!-- TEXT HEADER (no hero image) -->
-<header class="text-hero" style="padding-bottom:32px">
+<style>
+/* ONE COLUMN (2026-09-25, after the gallery-mat mockup's contact page that
+   Josh liked). Heading, form, then the two things people also look for here,
+   all on one 560px rail so the page reads top to bottom as one object. The
+   form used to sit under two columns of prose and a hairline, ~1000px down. */
+.contact-rail{max-width:calc(560px + 2 * var(--pad));margin:0 auto;padding-left:var(--pad);padding-right:var(--pad);}
+.contact-hero{padding-top:var(--hero-top);}
+.contact-hero h1{font-family:var(--d);font-weight:430;font-optical-sizing:auto;font-size:var(--t-d2);line-height:1.04;letter-spacing:-.02em;margin:16px 0 14px;}
+.contact-hero h1 em{color:var(--forest);}
+.contact-hero .th-sub{font-size:var(--t-lede);color:var(--fg2);line-height:1.55;}
+.contact-rail.form-section{max-width:calc(560px + 2 * var(--pad));padding-top:clamp(36px,4vw,48px);padding-bottom:0;}
+/* The form's own heading says the step ("Is your date open?"); on this page
+   the h1 above already asks for the date, so the bar alone carries the step. */
+.contact-rail .form-heading{font-size:var(--t-d4);margin-top:22px;}
+.contact-after{display:grid;grid-template-columns:1fr 1fr;gap:32px 40px;margin-top:clamp(56px,6vw,80px);padding-top:clamp(32px,4vw,44px);padding-bottom:var(--sp-m);border-top:1px solid var(--line);}
+.contact-after .lab{display:block;margin-bottom:16px;}
+.contact-after .contact-links p{font-size:var(--t-sm);margin-bottom:8px;}
+.contact-after .contact-links .where{color:var(--fg2);margin-top:16px;}
+.contact-after .contact-links .note{font-size:var(--t-ui);color:var(--mute);line-height:1.5;}
+.contact-after .next-steps{margin:0;}
+.contact-after .next-steps li{padding-left:26px;margin-bottom:12px;font-size:var(--t-sm);}
+.contact-after .next-steps .n{font-family:var(--b);font-size:var(--t-ui);font-weight:500;top:1px;}
+.contact-after .next-steps strong{display:inline;margin:0;}
+@media(max-width:620px){.contact-after{grid-template-columns:1fr;}}
+/* Once sent, the thank-you carries its own "What happens next"; one is enough. */
+#consultation:has(#consultation-success:not([hidden])) + .contact-rail .contact-after > div:last-child{display:none;}
+</style>
+
+<header class="contact-rail contact-hero">
   <span class="lab"><span data-ed="consultation:hero.label">{{ site.data.consultation.hero.label }}</span></span>
   <h1>{% include em.html t=site.data.consultation.hero.heading k="consultation:hero.heading" %}</h1>
   <p class="th-sub"><span data-ed="consultation:hero.subheading">{{ site.data.consultation.hero.subheading }}</span></p>
 </header>
 
-<!-- INTRO -->
-<section class="block tight">
-  <div class="twoup">
-    <div>
-      <span class="lab"><span data-ed="consultation:next_steps.label">{{ site.data.consultation.next_steps.label }}</span></span>
-      <h2 class="h-lg" style="margin-bottom:26px;"><span data-ed="consultation:next_steps.heading">{{ site.data.consultation.next_steps.heading }}</span></h2>
-      <ol class="next-steps">
-        {%- for step in site.data.consultation.next_steps.steps %}
-        <li><span class="n">{{ forloop.index }}</span><strong><span data-ed="consultation:next_steps.steps.{{ forloop.index0 }}.title">{{ step.title }}</span></strong><span data-ed="consultation:next_steps.steps.{{ forloop.index0 }}.body">{{ step.body }}</span></li>
-        {%- endfor %}
-      </ol>
-    </div>
-    <div class="contact-links">
-      <span class="lab"><span data-ed="consultation:reach.label">{{ site.data.consultation.reach.label }}</span></span>
-      <h2 class="h-lg" style="margin-bottom:26px;"><span data-ed="consultation:reach.heading">{{ site.data.consultation.reach.heading }}</span></h2>
-      <p><a href="tel:5305577689">(530) 557-7689</a></p>
-      <p><a href="mailto:brittany@goldenflorals.com">brittany@goldenflorals.com</a></p>
-      <p><a href="https://www.instagram.com/goldenflowersfloraldesign/" target="_blank" rel="noopener">@goldenflowersfloraldesign</a></p>
-      <p style="color:var(--ink);margin-top:22px;"><span data-ed="consultation:reach.location">{{ site.data.consultation.reach.location }}</span></p>
-      <p style="font-size:var(--t-ui);color:var(--mute);margin-top:5px;line-height:1.5;"><span data-ed="consultation:reach.note">{{ site.data.consultation.reach.note }}</span></p>
-    </div>
-  </div>
-</section>
-
-<hr class="hr-line">
-
 <!-- FORM -->
-<section class="form-section" id="consultation">
+<section class="form-section contact-rail" id="consultation">
   <div data-form-wrap>
     <form action="{{ site.consult_endpoint }}" method="POST" id="consultation-form" data-multistep data-ajax>
       <div class="form-progress"><button type="button" class="form-back" data-form-back aria-label="Back" hidden>&larr;</button><span class="on"></span><span data-progress-step2></span></div>
@@ -200,6 +199,30 @@ sitemap: false
           <li><span class="n">3</span><strong>We design together</strong><span class="success-step-body" data-success-step-plan>If your date&#39;s open, we&#39;ll book a call to plan your florals.</span></li>
         </ol>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- UNDER THE FORM: the other ways in, and what happens after you send it.
+     Labels only, no headings: they are answers to side questions, not
+     sections competing with the form above them. -->
+<section class="contact-rail">
+  <div class="contact-after">
+    <div class="contact-links">
+      <span class="lab"><span data-ed="consultation:reach.label">{{ site.data.consultation.reach.label }}</span></span>
+      <p><a href="tel:5305577689">(530) 557-7689</a></p>
+      <p><a href="mailto:brittany@goldenflorals.com">brittany@goldenflorals.com</a></p>
+      <p><a href="https://www.instagram.com/goldenflowersfloraldesign/" target="_blank" rel="noopener">@goldenflowersfloraldesign</a></p>
+      <p class="where"><span data-ed="consultation:reach.location">{{ site.data.consultation.reach.location }}</span></p>
+      <p class="note"><span data-ed="consultation:reach.note">{{ site.data.consultation.reach.note }}</span></p>
+    </div>
+    <div>
+      <span class="lab"><span data-ed="consultation:next_steps.label">{{ site.data.consultation.next_steps.label }}</span></span>
+      <ol class="next-steps">
+        {%- for step in site.data.consultation.next_steps.steps %}
+        <li><span class="n">{{ forloop.index }}</span><strong><span data-ed="consultation:next_steps.steps.{{ forloop.index0 }}.title">{{ step.title }}</span></strong> <span data-ed="consultation:next_steps.steps.{{ forloop.index0 }}.body">{{ step.body }}</span></li>
+        {%- endfor %}
+      </ol>
     </div>
   </div>
 </section>

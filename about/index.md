@@ -14,7 +14,7 @@ redirect_from:
 .story-split{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,64px);align-items:stretch;}
 .story-split .ss-text{align-self:center;}
 .story-split .ss-text .prose{margin-top:16px;}
-.story-split .ss-img img{width:100%;height:100%;min-height:clamp(360px,40vw,540px);object-fit:cover;border-radius:4px;display:block;}
+.story-split .ss-img img{width:100%;height:100%;min-height:clamp(360px,40vw,540px);object-fit:cover;border-radius:var(--r-img);display:block;}
 .story-split.rev .ss-img{order:-1;}
 @media(max-width:760px){
   .story-split{grid-template-columns:1fr;gap:22px;}
@@ -23,26 +23,23 @@ redirect_from:
   .story-split .ss-img img{min-height:0;aspect-ratio:4/5;}
 }
 
-/* Tonal bands. The page was a single near-white surface end to end, with a 1px
-   hairline asked to carry every structural break across 7000px of scroll.
-   Two bands now do that work, which also gives the divider rule something to be
-   consistent about: a hairline only ever separates two sections that SHARE a
-   background. A change of background is its own divider.
-   Full-bleed pattern (background + padding on the section, measure on an inner
-   wrapper) rather than .block, so the bands still span the viewport past the
-   1500px content max. */
-/* Padded with --pad-col, not --pad. A centered `max-width:1500px` inner wrapper
-   has no inner padding of its own, so its text edge landed at 210px while every
-   .block on the site starts at 282px: the bands sat 72px (one --pad) left of the
-   site's text rail. --pad-col is exactly the offset that puts a full-bleed
-   section's content on that rail. */
-.band{padding:clamp(70px,9vw,120px) var(--pad-col);}
-.band > .band-in{max-width:none;margin:0;}
-.band-dark{background:var(--forest-deep);color:var(--paper);}
-.band-dark .lab{color:var(--accent-soft);}
-.band-dark h2{color:var(--paper);}
-.band-dark .prose p{color:oklch(85% .02 130);}
-.band-tint{background:var(--bg2);}
+/* No bands (2026-09-25). This page kept the old site's forest-green band and a
+   tint band after every other page moved to one ground in September: Josh
+   read them as "the older style of our site". Sections break on space and a
+   hairline here like everywhere else. */
+
+/* Seasons, unboxed: four white cards on a tint was a panel inside a panel.
+   A hairline over each season is what the rest of the page's grids use. */
+.season-grid{gap:0 clamp(32px,4vw,56px);}
+.season-card{border:0;border-top:1px solid var(--line);border-radius:0;background:none;overflow:visible;}
+.season-card summary{padding:22px 0 16px;}
+.season-body{padding:0 0 clamp(28px,3vw,40px);}
+/* The four certainty points were bold serif at 1.6 leading; every other
+   small serif heading on the site is regular weight at 1.2. */
+.cred-item h4{font-weight:430;line-height:1.2;}
+/* "Grown here, and grown responsibly." inherited 1.6 leading (80px) and fell
+   apart whenever it wrapped. Scoped here: /venues keeps its live spacing. */
+.mini h2{line-height:1.06;}
 </style>
 
 <!-- STUDIO HERO (split: deliberately not full-bleed) -->
@@ -74,12 +71,11 @@ redirect_from:
   </div>
 </section>
 
-<!-- ONE WEDDING A DAY: BY CHOICE (the page's one dark moment: this is the
-     central claim, and it has the strongest photo to carry it) -->
-<section class="band band-dark">
-  <div class="band-in story-split rev">
+<!-- FEWER WEDDINGS (was the page's one dark band; plain ground since 2026-09-25) -->
+<section class="block">
+  <div class="story-split rev">
     <div class="ss-img">
-      <img src="{{ site.baseurl }}/assets/images/studio-hero.jpg" alt="Brittany of Golden Flowers with a large floral installation" loading="lazy"{% include img-dims.html path="/assets/images/studio-hero.jpg" %}>
+      <img src="{{ site.baseurl }}/assets/images/studio-brittany.jpg" alt="Brittany of Golden Flowers with a large floral installation" loading="lazy"{% include img-dims.html path="/assets/images/studio-brittany.jpg" %}>
     </div>
     <div class="ss-text">
       <span class="lab"><span data-ed="about:one_rule.label">{{ site.data.about.one_rule.label }}</span></span>
@@ -130,7 +126,7 @@ redirect_from:
       {%- comment -%} The poster paints instantly; the video file itself (4MB —
       timelapses compress poorly) isn't fetched until the visitor scrolls near
       this section, so it never competes with the photos above it. {%- endcomment -%}
-      <video muted loop playsinline preload="none" poster="{{ site.baseurl }}/assets/videos/team-timelapse-poster.jpg" data-lazy-video style="width:100%;height:100%;min-height:clamp(360px,40vw,540px);object-fit:cover;border-radius:4px;display:block;">
+      <video muted loop playsinline preload="none" poster="{{ site.baseurl }}/assets/videos/team-timelapse-poster.jpg" data-lazy-video style="width:100%;height:100%;min-height:clamp(360px,40vw,540px);object-fit:cover;border-radius:var(--r-img);display:block;">
         <source data-src="{{ site.baseurl }}/assets/videos/team-timelapse.mp4" type="video/mp4">
       </video>
       <script>
@@ -155,10 +151,9 @@ redirect_from:
   </div>
 </section>
 
-<!-- SEASONAL AVAILABILITY (tint band: it's the reference section, and the tint
-     brackets it away from the two card grids either side of it) -->
-<section class="band band-tint" id="seasonal-availability">
-  <div class="band-in">
+<!-- SEASONAL AVAILABILITY -->
+<section class="block" id="seasonal-availability">
+  <div>
   <span class="lab"><span data-ed="about:seasonal.label">{{ site.data.about.seasonal.label }}</span></span>
   <h2 class="h-lg"><span data-ed="about:seasonal.heading">{{ site.data.about.seasonal.heading }}</span></h2>
   <p class="prose" style="max-width:560px;margin-top:14px;"><span style="color:var(--fg2);"><span data-ed="about:seasonal.intro">{{ site.data.about.seasonal.intro }}</span></span></p>

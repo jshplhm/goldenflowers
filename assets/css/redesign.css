@@ -843,7 +843,6 @@ nav.site-nav .pill{white-space:nowrap;}
 .foot-brand{font-family:var(--d);font-size:clamp(1.15rem,1.6vw,1.5rem);color:var(--ink);
   letter-spacing:.24em;text-transform:uppercase;line-height:1.2;white-space:nowrap;
   -webkit-text-stroke:.25px currentColor;}
-.foot-tag{font-size:1rem;line-height:1.6;color:var(--fg2);margin:20px 0 26px;}
 .foot-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(24px,3vw,48px);}
 .foot-cols h4{font-size:var(--t-tag);letter-spacing:.11em;text-transform:uppercase;color:var(--accent);margin-bottom:16px;}
 .foot-cols a,.foot-cols p{display:block;font-size:var(--t-sm);margin-bottom:10px;color:var(--fg2);line-height:1.4;}
@@ -877,7 +876,17 @@ nav.site-nav .pill{white-space:nowrap;}
 .foot-legal{display:inline;}
 .foot-legal a{transition:color .15s;}
 @media(max-width:860px){.foot-in{grid-template-columns:1fr;gap:40px;}.foot-cols{gap:28px 24px;}}
-@media(max-width:520px){.foot-cols{grid-template-columns:1fr 1fr;}}
+@media(max-width:520px){
+  .foot-in{gap:32px;}
+  .foot-cols{grid-template-columns:1fr 1fr;}
+  /* The phone footer was ~700px, most of it Contact stacked one fact per
+     line. Where and when share one line; phone and email keep their own,
+     so every line starts on the same left edge. (Two-up pairs floated at
+     different offsets, Josh; and the email is wider than a phone column.) */
+  .foot-cols > div:last-child{grid-column:1 / -1;display:flex;flex-wrap:wrap;}
+  .foot-cols > div:last-child > :is(h4,a){flex-basis:100%;}
+  .foot-cols > div:last-child > p + p::before{content:"·";margin:0 9px;color:var(--mute);}
+}
 
 /* ---------- INTERIOR HERO (shorter) ---------- */
 .hero.hero-sm{height:64vh;min-height:460px;}
@@ -1469,7 +1478,7 @@ label .opt{color:var(--mute);}
    headline at exactly the same distance. */
 .form-step-2{display:grid;grid-template-columns:1fr;gap:18px;}
 .form-section label,.modal label{display:block;font-size:var(--t-ui);letter-spacing:.03em;color:var(--fg2);margin-bottom:8px;}
-.form-section input,.form-section select,.form-section textarea,.modal input,.modal select,.modal textarea{width:100%;font-family:var(--b);font-size:1rem;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:14px 16px;transition:border-color .2s;}
+.form-section input,.form-section select,.form-section textarea,.modal input,.modal select,.modal textarea{width:100%;font-family:var(--b);font-size:1rem;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:var(--r-img);padding:14px 16px;transition:border-color .2s;}
 .form-section input:focus,.form-section select:focus,.form-section textarea:focus,.modal input:focus,.modal select:focus,.modal textarea:focus{outline:none;border-color:var(--accent);}
 /* One placeholder gray everywhere: browsers pick their own otherwise, which
    left name/email lighter than the date mask's ghost and the selects. */
@@ -1537,7 +1546,7 @@ label .opt{color:var(--mute);}
 /* ---------- CONSULT MODAL (Check-your-date lightbox) ---------- */
 .modal-overlay{position:fixed;inset:0;z-index:1000;background:oklch(20% .02 150/.55);display:flex;align-items:center;justify-content:center;padding:4vh 20px;overflow-y:auto;opacity:0;visibility:hidden;transition:opacity .25s ease,visibility .25s ease;}
 .modal-overlay.open{opacity:1;visibility:visible;}
-.modal{position:relative;background:var(--bg);border:1px solid var(--line);border-radius:14px;max-width:560px;width:100%;padding:44px 40px 40px;box-shadow:0 28px 80px oklch(20% .02 150/.32);transform:translateY(14px);transition:transform .25s ease;}
+.modal{position:relative;background:var(--bg);border:1px solid var(--line);border-radius:var(--r-card);max-width:560px;width:100%;padding:44px 40px 40px;box-shadow:0 28px 80px oklch(20% .02 150/.32);transform:translateY(14px);transition:transform .25s ease;}
 /* transform:none, not translateY(0): iOS Safari misdraws the text caret
    inside fixed overlays whose ancestors keep a live transform. */
 .modal-overlay.open .modal{transform:none;}
@@ -1582,7 +1591,7 @@ body.modal-open{overflow:hidden;}
 .reach-fieldset{border:0;margin:0;padding:0;min-width:0;}
 .reach-fieldset legend{display:block;font-size:var(--t-ui);letter-spacing:.03em;color:var(--fg2);margin-bottom:8px;padding:0;}
 .reach-seg{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
-.reach-seg label{display:flex;align-items:center;justify-content:center;margin:0;font-size:1rem;letter-spacing:0;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:13px 16px;cursor:pointer;user-select:none;-webkit-user-select:none;transition:border-color .2s,background .2s,box-shadow .2s;}
+.reach-seg label{display:flex;align-items:center;justify-content:center;margin:0;font-size:1rem;letter-spacing:0;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:var(--r-img);padding:13px 16px;cursor:pointer;user-select:none;-webkit-user-select:none;transition:border-color .2s,background .2s,box-shadow .2s;}
 .reach-seg input[type="checkbox"],.reach-seg input[type="radio"]{position:absolute;opacity:0;width:1px;height:1px;padding:0;border:0;}
 /* "Who's filling this out?" reuses these word-buttons as a radio group. One per
    row rather than the contact chooser's pairs: these labels are sentences, not
@@ -1691,10 +1700,14 @@ body.nav-hidden .venue-breadcrumb{top:0;}
   overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap;border:0;}
 .chip-row{display:flex;flex-wrap:wrap;gap:9px;margin-top:9px;}
 .chip{font-family:var(--b);font-size:var(--t-sm);line-height:1;color:var(--ink);
-  background:var(--paper);border:1px solid oklch(20% .02 150/.25);border-radius:999px;
-  padding:13px 17px;cursor:pointer;transition:background .15s,border-color .15s,color .15s;}
-.chip:hover{border-color:var(--ink);}
-.chip.is-on{background:var(--ink);border-color:var(--ink);color:var(--paper);}
+  background:var(--paper);border:1px solid var(--line);border-radius:var(--r-img);
+  padding:13px 17px;cursor:pointer;transition:background .15s,border-color .15s,box-shadow .15s;}
+/* Same controls as Email / Text two steps earlier (2026-09-25). These were
+   pills that filled black when chosen while Email / Text were squared and
+   took a green edge: one form, two ideas of "selected", and the only pills
+   left on the site after buttons went to --r-img on 09-22. */
+.chip:hover{border-color:oklch(60% .04 145);}
+.chip.is-on{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent);background:oklch(97% .012 145);font-weight:500;}
 .sr-field:focus-visible + .chip-row{outline:2px solid var(--accent);outline-offset:4px;border-radius:6px;}
 
 /* PRICING: PROCESS AS ROWS (2026-09-24). Number and timing on the left, the

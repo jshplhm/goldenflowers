@@ -86,6 +86,16 @@
       recordCtaClick(trigger);
       if(!modal) return;            // no modal on page (e.g. no-JS / missing include) -> let link navigate
       e.preventDefault();
+      /* On /consultation-form the form is already the page, so the header
+         button takes you to it rather than stacking the same form on top. */
+      var pageForm=document.getElementById('consultation-form');
+      if(pageForm && !modal.contains(pageForm)){
+        document.body.classList.remove('menu-open');
+        pageForm.scrollIntoView({behavior:'smooth',block:'center'});
+        var first=pageForm.querySelector('input[name="date"]');
+        if(first) first.focus({preventScroll:true});
+        return;
+      }
       document.body.classList.remove('menu-open');
       openModal();
       return;
@@ -114,8 +124,9 @@
     }
   });
 
-  /* Pages flagged data-consult-autoopen (currently only /consultation-form)
-     raise the lightbox on arrival.
+  /* Pages flagged data-consult-autoopen raise the lightbox on arrival. None
+     are, since 2026-09-25: /consultation-form was the only one, and its own
+     form now leads the page. Kept for a landing page that might want it.
 
      Every CTA on the site is a real link to that page which the handler above
      intercepts, so the page itself only ever loads for someone who got there
