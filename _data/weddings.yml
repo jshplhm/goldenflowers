@@ -23,7 +23,7 @@
 # date" on every screen, so the hero's own button can serve the reason someone
 # opened this page: it jumps to the ladder.
 hero:
-  label: Bold, Artful and sustainable floral design
+  label: Pricing
   heading: Lake Tahoe Wedding Flowers
   subheading: We take on a limited number of weddings each season, so we can give
     yours more.
@@ -36,48 +36,49 @@ process:
   heading: From first conversation to the end of the night.
   intro: Every step, in order, so you know what happens and when.
   steps:
-  - icon: calendar
-    phase: Before you book
-    when: Today · no commitment
-    title: Check your date
-    body: Tell us your date and venue and we'll confirm it's still open. Availability
-      is the first thing we check. It takes about a minute.
-  - icon: moodboard
-    when: Complimentary
-    title: The consultation
-    body: If your date is open, we sit down to learn your venue, vision, palette
-      and guest count. It's free and there's no obligation; we both want to know
-      it's the right fit.
-  - icon: lock
-    when: If we're a fit · held 7 days
-    title: Proposal & a held date
-    body: When it feels mutual, we build a custom proposal that includes a mood
-      board, itemized estimate, and seasonal sourcing plan. We hold your date for
-      7 days while you review, so you can decide without losing it.
-  - icon: contract
-    when: To lock it in
-    title: Signed and secured
-    body: A signed agreement and a non-refundable retainer, applied toward your
-      balance, secure your date in full. From here, the date is officially yours.
-  - icon: stem
-    phase: Once you're booked
-    when: 30–60 days out
-    title: Refinement
-    body: As your final count, layout, and timeline settle, we refine the design
-      and lock your stem list around what's at peak that week. Your remaining balance
-      is due 60 days before the wedding.
-  - icon: van
-    when: Wedding week & day
-    title: Delivery, setup & install
-    body: We source, gather, and design in the days before, then deliver, set, and
-      install on-site, coordinating with your venue and planner so the timeline
-      runs without you lifting a finger.
-  - icon: cycle
-    when: End of the night
-    title: Repurposing and cleanup
-    body: 'After the ceremony we can move pieces from the aisle to the reception,
-      and at the end of the night our team comes back for the full breakdown: everything
-      we brought is removed and the space is left clean.'
+    - icon: calendar
+      phase: Before you book
+      when: Today · no commitment
+      title: Check your date
+      body: Tell us your date and venue and we'll confirm it's still open.
+        Availability is the first thing we check. It takes about a minute.
+    - icon: moodboard
+      when: Complimentary
+      title: The consultation
+      body: If your date is open, we sit down to learn your venue, vision, palette and
+        guest count. It's free and there's no obligation; we both want to know
+        it's the right fit.
+    - icon: lock
+      when: If we're a fit · held 7 days
+      title: Proposal & a held date
+      body: When it feels mutual, we build a custom proposal that includes a mood
+        board, itemized estimate, and seasonal sourcing plan. We hold your date
+        for 7 days while you review, so you can decide without losing it.
+    - icon: contract
+      when: To lock it in
+      title: Signed and secured
+      body: A signed agreement and a non-refundable retainer, applied toward your
+        balance, secure your date in full. From here, the date is officially
+        yours.
+    - icon: stem
+      phase: Once you're booked
+      when: 30–60 days out
+      title: Refinement
+      body: As your final count, layout, and timeline settle, we refine the design and
+        lock your stem list around what's at peak that week. Your remaining
+        balance is due 60 days before the wedding.
+    - icon: van
+      when: Wedding week & day
+      title: Delivery, setup & install
+      body: We source, gather, and design in the days before, then deliver, set, and
+        install on-site, coordinating with your venue and planner so the
+        timeline runs without you lifting a finger.
+    - icon: cycle
+      when: End of the night
+      title: Repurposing and cleanup
+      body: 'After the ceremony we can move pieces from the aisle to the reception,
+        and at the end of the night our team comes back for the full breakdown:
+        everything we brought is removed and the space is left clean.'
 
 # THE PUBLISHED PRICE LADDER. Restored 2026-08-28 after the estimator was
 # moved off this page to the internal-only /pricing-tool.
@@ -151,50 +152,48 @@ pricing:
   # They did not between 2026-09-21 and today: the FAQ was still saying
   # $10,000-$30,000+ and $12,000-$20,000 under a block saying $12,000-$18,000.
   heading: What it costs.
-  intro: What a wedding costs moves with the venue, how much of the room you
-    want designed, the season and your guest count, so every wedding is quoted
-    on its own. What we can tell you is where the weddings we have done around
-    the lake tend to land.
+  intro: What a wedding costs moves with the venue, how much of the room you want
+    designed, the season and your guest count, so every wedding is quoted on its
+    own. What we can tell you is where the weddings we have done around the lake
+    tend to land.
   figures:
-  - amount: "$12,000 to $18,000"
-    caption: Where a typical 100 guest full service wedding lands.
-  - amount: Above $25,000
-    caption: Larger guest counts, multiple installations, a room designed end
-      to end.
-  # Four things, because four is what a couple can hold. Each one is a lever
-  # they actually control, so the list doubles as the agenda for the
-  # consultation.
+    - amount: "$12,000 to $18,000"
+      caption: Where a typical 100 guest full service wedding lands.
+    - amount: Above $25,000
+      caption: Larger guest counts, multiple installations, a room designed end to end.
+    # Four things, because four is what a couple can hold. Each one is a lever
+    # they actually control, so the list doubles as the agenda for the
+    # consultation.
   drivers_label: What moves the number
   drivers:
-  - title: The venue
-    body: A room you dress from bare walls and a lakeside lawn that needs one
-      strong moment are different jobs, and they take different days to install.
-  - title: Scope and design
-    body: The ceremony on its own, or the ceremony and every table, bar and
-      doorway on the way to it.
-  - title: Guest count
-    body: Tables set the floor of any reception number, so going from 80 guests
-      to 160 is felt here more than anywhere else.
-  - title: The season
-    body: What is at peak the week you marry is both the best value and the
-      best looking. A flower flown in out of season costs more and travels
-      worse.
-  # The a la carte offer. It is written as an invitation to say a number, not
-  # as a tier: naming a second figure here would put back the floor the rest of
-  # the section just took out. Empty `smaller.body` and the whole panel stops
-  # rendering, which is how the offer is withdrawn without touching markup.
+    - title: The venue
+      body: A room you dress from bare walls and a lakeside lawn that needs one strong
+        moment are different jobs, and they take different days to install.
+    - title: Scope and design
+      body: The ceremony on its own, or the ceremony and every table, bar and doorway
+        on the way to it.
+    - title: Guest count
+      body: Tables set the floor of any reception number, so going from 80 guests to
+        160 is felt here more than anywhere else.
+    - title: The season
+      body: What is at peak the week you marry is both the best value and the best
+        looking. A flower flown in out of season costs more and travels worse.
+    # The a la carte offer. It is written as an invitation to say a number, not
+    # as a tier: naming a second figure here would put back the floor the rest of
+    # the section just took out. Empty `smaller.body` and the whole panel stops
+    # rendering, which is how the offer is withdrawn without touching markup.
   smaller:
     heading: If your budget is smaller
-    body: We do our best to work with what a couple has, and we will be
-      straight with you about what the money buys. A wedding takes the same
-      design, sourcing, delivery, setup and breakdown whether the order is
-      large or small, and none of that shrinks with the order. On a small full
-      service wedding it ends up taking a bigger share than the flowers do,
-      which is a poor trade for you. So if full service is more than you want
-      to spend, tell us the number you had in mind and we will build an a la
-      carte selection instead, a shorter list designed in your palette with
-      the scope agreed up front. Fewer things, done properly, and more of your
-      money in the flowers themselves.
+    body: We do our best to work with what a couple has, and we will be straight
+      with you about what the money buys. A wedding takes the same design,
+      sourcing, delivery, setup and breakdown whether the order is large or
+      small, and none of that shrinks with the order. On a small full service
+      wedding it ends up taking a bigger share than the flowers do, which is a
+      poor trade for you. So if full service is more than you want to spend,
+      tell us the number you had in mind and we will build an a la carte
+      selection instead, a shorter list designed in your palette with the scope
+      agreed up front. Fewer things, done properly, and more of your money in
+      the flowers themselves.
     button: Tell us your budget
 
 # What full-service covers. The six titles are what the /weddings FAQ already
