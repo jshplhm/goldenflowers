@@ -32,8 +32,24 @@ layout: redesign
 </article>
 
 <!-- Post-specific CTA -->
+{%- comment -%}
+  THE SAME CLOSING ASK AS EVERY OTHER PAGE (2026-09-24, Josh, comparing three
+  of them side by side). Two things made this the odd one out:
+
+  The EYEBROW was never rendered. `post_cta.label` ("Get started") has been in
+  _data/blog_page.yml the whole time with nothing printing it, so a blog post
+  ended on a heading where the other four closing asks end on a label above a
+  heading. With it rendered the grid also bottom-aligns the sentence to the
+  heading, which is the shape the other four have.
+
+  The BUTTON was `.btn-primary` with no arrow, against `.btn btn-ink` with one
+  everywhere else: a different height, a different radius and a different
+  affordance for the identical action. It is the shared button now. There is
+  one closing ask on this site, not two.
+{%- endcomment -%}
 <div class="cta-section">
+  <span class="lab"><span data-ed="blog_page:post_cta.label">{{ site.data.blog_page.post_cta.label }}</span></span>
   <h2>{% include em.html t=site.data.blog_page.post_cta.heading k="blog_page:post_cta.heading" %}</h2>
   <p><span data-ed="blog_page:post_cta.body">{{ site.data.blog_page.post_cta.body }}</span></p>
-  <a href="{{ site.baseurl }}/consultation-form" class="btn-primary" data-consult-open><span data-ed="blog_page:post_cta.button">{{ site.data.blog_page.post_cta.button }}</span></a>
+  <a class="btn btn-ink" href="{{ site.baseurl }}/consultation-form" data-consult-open><span data-ed="blog_page:post_cta.button">{{ site.data.blog_page.post_cta.button }}</span> <span>&rarr;</span></a>
 </div>
