@@ -148,6 +148,7 @@
     installed."
   palette: "Blush and burgundy rose, trailing amaranthus"
   dots: [ "#e5b7a8", "#7a2338", "#9aa86e", "#f0e5d4", "#c4715f" ]
+  hidden: true
 
 - slug: jac-brandon
   name: "Jac & Brandon"
@@ -160,3 +161,4 @@
     every table."
   palette: "Crimson garden rose, oxblood, black velvet"
   dots: [ "#a8131c", "#5b0d12", "#1b1715", "#b08d3f", "#3a3326" ]
+  hidden: true
