@@ -19,7 +19,7 @@
 <article class="pf-card" data-ed-band="{{ slug }}">
   <a href="{{ site.baseurl }}/portfolio/{{ slug }}">
     <figure class="pfx-ph pf-card-pic">
-      <img src="{{ site.baseurl }}{{ src }}" alt="{{ m.name }} wedding flowers at {{ m.venue }}{% if m.place and m.place != '' %}, {{ m.place }}{% endif %}"
+      <img src="{{ site.baseurl }}{{ src }}"{% include img-crop.html path=src ctx="card" %} alt="{{ m.name }} wedding flowers at {{ m.venue }}{% if m.place and m.place != '' %}, {{ m.place }}{% endif %}"
            width="900" height="900" loading="lazy" sizes="(max-width:760px) 100vw, 48vw">
     </figure>
     <h2 class="pf-card-name">{{ m.name }}</h2>

@@ -21,4 +21,7 @@
 # Reset does. Nothing here can break a build: an unparseable value renders no
 # framing rather than a broken style attribute.
 
-# (empty: every photograph is using its layout default)
+# Seeded 2026-09-24 from the values these three tags used to hardcode inline.
+"page|/assets/images/portfolio/camille-max/camille-max-28.jpg": "50 45 1"
+"page|/assets/images/portfolio/kelly-dylan/kelly-dylan-05.jpg": "50 45 1"
+"page|/assets/images/portfolio/kelly-dylan/kelly-dylan-13.jpg": "50 55 1"

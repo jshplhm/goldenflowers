@@ -28,7 +28,7 @@ redirect_from:
 
   <div class="hs-right">
     <div class="hs-stage">
-      <img class="bg" src="{{ site.baseurl }}/assets/images/portfolio/kelly-dylan/kelly-dylan-05.jpg" alt="Seasonal California-grown wedding florals by Golden Flowers" style="object-position:center 45%;"{% include img-dims.html path="/assets/images/portfolio/kelly-dylan/kelly-dylan-05.jpg" %}>
+      <img class="bg" src="{{ site.baseurl }}/assets/images/portfolio/kelly-dylan/kelly-dylan-05.jpg" alt="Seasonal California-grown wedding florals by Golden Flowers"{% include img-dims.html path="/assets/images/portfolio/kelly-dylan/kelly-dylan-05.jpg" %}{% include img-crop.html path="/assets/images/portfolio/kelly-dylan/kelly-dylan-05.jpg" ctx="page" %}>
     </div>
   </div>
 </header>

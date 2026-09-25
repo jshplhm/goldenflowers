@@ -71,7 +71,7 @@ redirect_from:
   <img src="{{ site.baseurl }}/assets/images/portfolio/kelly-dylan/kelly-dylan-13.jpg"
        alt="Bride holding a lush garden-rose and ranunculus bouquet at a Lake Tahoe beach wedding by Golden Flowers"
        width="1500" height="844" loading="eager" fetchpriority="high"
-       style="object-position:center 55%;" sizes="(min-width:1500px) 1500px, 100vw">
+{% include img-crop.html path="/assets/images/portfolio/kelly-dylan/kelly-dylan-13.jpg" ctx="page" %} sizes="(min-width:1500px) 1500px, 100vw">
 </figure>
 
 <!-- PROCESS -->

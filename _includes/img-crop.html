@@ -12,18 +12,16 @@
   is written only for a real zoom, so a photograph at 1x keeps the
   transform-free path and never becomes its own compositing layer.
 
-  A value that does not parse to three numbers renders no framing at all rather
-  than a half-written style attribute.
+  A value that does not parse to at least two numbers renders no framing at all
+  rather than a half-written style attribute.
+
+  THE LEADING SPACE IS LOAD-BEARING, so the branches below close with `%}` and
+  not `-%}`. A right-trimming tag eats it, the attribute fuses onto the one
+  before it (`height="600"style="..."`), and kramdown then refuses the whole
+  tag and escapes it into visible text on every page written in markdown. The
+  HTML pages looked fine, which is how it would have shipped.
 {%- endcomment -%}
 {%- assign ck = include.ctx | append: "|" | append: include.path -%}
 {%- assign spec = site.data.photo_crop[ck] | default: "" | strip -%}
 {%- assign parts = spec | split: " " -%}
-{%- if parts.size >= 2 -%}
-  {%- assign cx = parts[0] | plus: 0 -%}
-  {%- assign cy = parts[1] | plus: 0 -%}
-  {%- assign cz = 1 -%}
-  {%- if parts.size >= 3 -%}{%- assign cz = parts[2] | plus: 0.0 -%}{%- endif -%}
- style="--opx:{{ cx }}%;--op:{{ cy }}%;{% if cz > 1 %}--z:{{ cz }};{% endif %}" data-op{% if cz > 1 %} data-zoom{% endif %} data-crop-key="{{ ck }}"
-{%- else -%}
- data-crop-key="{{ ck }}"
-{%- endif -%}
+{%- if parts.size >= 2 %} style="--opx:{{ parts[0] | plus: 0 }}%;--op:{{ parts[1] | plus: 0 }}%;{% if parts.size >= 3 %}{% assign cz = parts[2] | plus: 0.0 %}{% if cz > 1 %}--z:{{ cz }};{% endif %}{% endif %}" data-op{% if parts.size >= 3 %}{% assign cz2 = parts[2] | plus: 0.0 %}{% if cz2 > 1 %} data-zoom{% endif %}{% endif %} data-crop-key="{{ ck }}"{% else %} data-crop-key="{{ ck }}"{% endif -%}

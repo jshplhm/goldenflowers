@@ -113,7 +113,7 @@
       {%- assign szs = '(max-width:600px) 90vw, (max-width:1231px) 29vw, 348px' -%}
     {%- endif -%}
     <a class="mo mo-{{ sp }}{% if fin %} mo-fin{% endif %} wd-lb" href="{{ site.baseurl }}{{ f.path }}" aria-label="View {{ include.name }} photo full screen">
-      <img src="{{ site.baseurl }}{{ f.path }}"{% include img-dims.html path=f.path %} alt="{{ include.name }} wedding florals by Golden Flowers" loading="lazy" sizes="{{ szs }}">
+      <img src="{{ site.baseurl }}{{ f.path }}"{% include img-dims.html path=f.path %}{% include img-crop.html path=f.path ctx="tile" %} alt="{{ include.name }} wedding florals by Golden Flowers" loading="lazy" sizes="{{ szs }}">
     </a>
     {%- assign j = j | plus: 1 -%}
   {%- endfor -%}

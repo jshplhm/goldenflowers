@@ -74,10 +74,10 @@ the index it belongs to. {%- endcomment -%}
     {%- if wideFile -%}
     <picture>
       <source media="(min-width:1024px)" srcset="{{ site.baseurl }}{{ widePath }}">
-      <img src="{{ site.baseurl }}{{ heroPath }}"{% include img-dims.html path=heroPath %} alt="{{ m.name }} wedding flowers at {{ m.venue }}{% if m.place != '' %}, {{ m.place }}{% endif %}" loading="eager" fetchpriority="high" sizes="(min-width:1500px) 1500px, 100vw">
+      <img src="{{ site.baseurl }}{{ heroPath }}"{% include img-dims.html path=heroPath %}{% include img-crop.html path=heroPath ctx="hero" %} alt="{{ m.name }} wedding flowers at {{ m.venue }}{% if m.place != '' %}, {{ m.place }}{% endif %}" loading="eager" fetchpriority="high" sizes="(min-width:1500px) 1500px, 100vw">
     </picture>
     {%- else -%}
-    <img src="{{ site.baseurl }}{{ heroPath }}"{% include img-dims.html path=heroPath %} alt="{{ m.name }} wedding flowers at {{ m.venue }}{% if m.place != '' %}, {{ m.place }}{% endif %}" loading="eager" fetchpriority="high" sizes="(min-width:1500px) 1500px, 100vw">
+    <img src="{{ site.baseurl }}{{ heroPath }}"{% include img-dims.html path=heroPath %}{% include img-crop.html path=heroPath ctx="hero" %} alt="{{ m.name }} wedding flowers at {{ m.venue }}{% if m.place != '' %}, {{ m.place }}{% endif %}" loading="eager" fetchpriority="high" sizes="(min-width:1500px) 1500px, 100vw">
     {%- endif -%}
   </figure>
 </header>
