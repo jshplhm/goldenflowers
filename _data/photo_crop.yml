@@ -1,0 +1,24 @@
+# Per-photograph framing, written by /edit ("Framing" on a photo you click).
+#
+#   "<where>|<image path>": "<x%> <y%> <zoom>"
+#
+# `where` is the kind of slot the photograph is sitting in, not the page: the
+# same file can be a 16:9 hero and a 3:4 gallery tile on the same site, and a
+# focal point that saves the hero can behead the tile. One key per slot kind
+# means each crop is answered where it is actually asked.
+#
+#   hero   the big photograph at the top of a wedding page
+#   card   the square cover on /portfolio
+#   tile   a photograph in a wedding's gallery mosaic
+#   rail   a card on the "more weddings" rail
+#   page   a `figure.page-pic` band (Pricing, a venue, Sustainability, Studio)
+#
+# x and y are percentages, the same pair object-position takes: 0 0 is the top
+# left corner of the photograph, 50 50 the middle. Zoom is 1 to 3; 1 means no
+# zoom at all and writes no transform.
+#
+# Deleting a key restores the layout's own default crop, which is what /edit's
+# Reset does. Nothing here can break a build: an unparseable value renders no
+# framing rather than a broken style attribute.
+
+# (empty: every photograph is using its layout default)

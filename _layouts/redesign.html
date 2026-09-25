@@ -190,6 +190,29 @@
   window.addEventListener('scroll',function(){
     if(!ticking){ requestAnimationFrame(update); ticking=true; }
   },{passive:true});
+
+  /* IN-PAGE JUMPS: THE HEADER ALLOWANCE ONLY APPLIES WHEN THE HEADER IS THERE.
+     (Josh, 2026-09-24: "is that the intended spot or is it holding room for the
+     header that isn't visible?" It was the second one.)
+
+     html{scroll-padding-top} is a fixed 91px so an anchor never lands under the
+     fixed header. But this header HIDES on scroll-down past 500px, which is
+     every downward jump on the site, so "Jump to pricing" was landing 91px shy
+     of where it should with nothing occupying the gap. Scrolling UP reveals the
+     header again, so an upward jump does still need the allowance.
+
+     The browser reads scroll-padding at scroll time, so setting it here, in the
+     click, is enough: no preventDefault, no hand-rolled animation, and the
+     smooth scroll, the focus move and the history entry stay the browser's. */
+  document.addEventListener('click', function(e){
+    var a = e.target.closest && e.target.closest('a[href^="#"]');
+    if(!a || a.getAttribute('href') === '#') return;
+    var t;
+    try { t = document.querySelector(a.getAttribute('href')); } catch(_){ return; }
+    if(!t) return;
+    var goingDown = t.getBoundingClientRect().top > 0;
+    document.documentElement.style.scrollPaddingTop = goingDown ? '16px' : '';
+  }, true);
 })();
 
 /* The home hero rotator lived here: five photographs crossfading on a timer,

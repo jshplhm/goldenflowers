@@ -1,0 +1,29 @@
+{%- comment -%}
+  Emits the framing declarations for one photograph, to be dropped INSIDE an
+  <img> tag next to img-dims. Params: path (site-root image path), ctx (the
+  slot kind: hero / card / tile / rail / page).
+
+  Writes ` style="--opx:X%;--op:Y%;--z:Z" data-op data-zoom` and, always, a
+  data-crop-key that /edit reads to know which key it is editing. The key is
+  emitted even with no crop set, because an unframed photograph is exactly the
+  one you are most likely to want to frame.
+
+  data-op has to be PRESENT for the object-position rule to bite, and data-zoom
+  is written only for a real zoom, so a photograph at 1x keeps the
+  transform-free path and never becomes its own compositing layer.
+
+  A value that does not parse to three numbers renders no framing at all rather
+  than a half-written style attribute.
+{%- endcomment -%}
+{%- assign ck = include.ctx | append: "|" | append: include.path -%}
+{%- assign spec = site.data.photo_crop[ck] | default: "" | strip -%}
+{%- assign parts = spec | split: " " -%}
+{%- if parts.size >= 2 -%}
+  {%- assign cx = parts[0] | plus: 0 -%}
+  {%- assign cy = parts[1] | plus: 0 -%}
+  {%- assign cz = 1 -%}
+  {%- if parts.size >= 3 -%}{%- assign cz = parts[2] | plus: 0.0 -%}{%- endif -%}
+ style="--opx:{{ cx }}%;--op:{{ cy }}%;{% if cz > 1 %}--z:{{ cz }};{% endif %}" data-op{% if cz > 1 %} data-zoom{% endif %} data-crop-key="{{ ck }}"
+{%- else -%}
+ data-crop-key="{{ ck }}"
+{%- endif -%}

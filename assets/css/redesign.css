@@ -1637,7 +1637,20 @@ body.nav-hidden .venue-breadcrumb{top:0;}
    band is in the middle of one, so it cannot happen here. One band on one
    page is also not the per-section banding reversed on 2026-09-16, which
    failed because every section had one and they butted into a single slab. */
-.invest-band{background:var(--bg2);padding:var(--sp-l) var(--pad-body) var(--sp-m);}
+/* --sp-m ON THE LEADING EDGE, NOT --sp-l (2026-09-24, Josh: "is that the
+   intended spot or is it holding room for the header?"). Neither: it was this
+   band's own top padding.
+
+   The house rule puts the LARGEST step above a section opener, because on one
+   flat ground space is the only thing that can mark a boundary. This band has
+   a colour change doing that job, so the big step was the boundary being
+   announced twice, and the cost was paid on arrival: "Jump to pricing" landed
+   you on ~114px of empty tint with the heading below it.
+
+   html{scroll-padding-top} already holds the fixed header off the band's top
+   edge, so what is left above the tint on arrival is the header allowance
+   working, and what is left below it is now one ordinary step. */
+.invest-band{background:var(--bg2);padding:var(--sp-m) var(--pad-body) var(--sp-m);}
 .invest-wrap{max-width:var(--body-max);margin:0 auto;}
 .invest-head h2{font-family:var(--d);font-weight:430;font-optical-sizing:auto;
   font-size:var(--t-d2);letter-spacing:-.02em;line-height:1.06;margin-top:18px;}
