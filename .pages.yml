@@ -242,10 +242,11 @@ content:
             label: "The figures"
             type: object
             list: true
-            description: "Keep this at TWO. Two reads as a typical range and a ceiling; three starts to read as a price ladder, which is the shape this page keeps coming back off. Type each figure exactly as it should read, dollar sign and all."
+            description: "Three rows: where weddings start, a typical wedding, larger weddings. Type each figure exactly as it should read, dollar sign and all."
             fields:
+              - {name: label, label: "What the figure is (small caps, left)", type: string}
               - {name: amount, label: "Figure", type: string}
-              - {name: caption, label: "What it describes", type: text}
+              - {name: caption, label: "Optional second line under the label", type: text}
           - {name: drivers_label, label: "Label above the list", type: string}
           - name: drivers
             label: "What moves the number"

@@ -1786,21 +1786,30 @@ body.nav-hidden .venue-breadcrumb{top:0;}
 .invest-figs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
   gap:clamp(24px,3vw,56px);margin-top:clamp(34px,4.4vw,64px);}
 .invest-figs[data-n="1"]{grid-template-columns:minmax(0,1fr);}
-/* THREE FIGURES (2026-09-25 mockup): one row each, amount left at full size,
-   caption right. Three across wrapped "$10,000 to $16,000" onto two lines at
-   every width; rows give all three the same size and the same line, and read
-   like the drivers list under them. */
-.invest-figs[data-n="3"]{grid-template-columns:minmax(0,1fr);row-gap:0;}
-/* Centred, not baseline: at 66px the figure's baseline sits so low that
-   every caption hung under it, and the longest hung lowest. */
-.invest-figs[data-n="3"] .invest-fig{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);
-  column-gap:clamp(24px,4vw,64px);align-items:center;padding:clamp(18px,2.2vw,28px) 0;}
-.invest-figs[data-n="3"] .invest-fig:last-child{border-bottom:1px solid var(--line);}
-.invest-figs[data-n="3"] .invest-amount{white-space:nowrap;}
-.invest-figs[data-n="3"] .invest-cap{margin-top:0;max-width:none;text-wrap:balance;}
+/* THE FIGURES AS A TABLE (2026-09-25). Label left in small caps, figure
+   right in the serif a step under the section heading, so "What it costs."
+   stays on top and the three rows share one size, one weight and one left
+   edge for the numbers. Replaces three 66px rows that outranked the heading
+   and read as a menu of tiers. */
+.invest-figs.invest-figs--table{grid-template-columns:minmax(0,1fr);gap:0;}
+.invest-figs--table .invest-fig{display:grid;grid-template-columns:clamp(220px,26vw,380px) minmax(0,1fr);
+  column-gap:clamp(24px,4vw,64px);align-items:baseline;padding:clamp(20px,2.4vw,30px) 0;}
+.invest-figs--table .invest-fig:last-child{border-bottom:1px solid var(--line);}
+.invest-figs--table .invest-label{font-size:var(--t-tag);letter-spacing:.12em;text-transform:uppercase;
+  color:var(--fg2);font-weight:500;line-height:1.5;}
+.invest-figs--table .invest-cap{margin-top:6px;max-width:36ch;text-wrap:balance;}
+/* 90% of the section heading (--t-d2) at every width. A free clamp shrank
+   faster than the heading, so at ~954px the prices were 30px against 21px
+   list names below and stopped standing out. */
+.invest-figs--table .invest-amount{font-size:clamp(28px,15.7px + 2.04vw,45px);letter-spacing:-.02em;line-height:1.1;white-space:nowrap;}
 @media(max-width:640px){
-  .invest-figs[data-n="3"] .invest-fig{grid-template-columns:minmax(0,1fr);}
-  .invest-figs[data-n="3"] .invest-cap{margin-top:10px;}
+  /* Stacked: label, figure, then the optional line, so the price always sits
+     directly under what it is. */
+  .invest-figs--table .invest-fig{grid-template-columns:minmax(0,1fr);row-gap:6px;}
+  .invest-figs--table .invest-lab{display:contents;}
+  .invest-figs--table .invest-label{order:1;}
+  .invest-figs--table .invest-amount{order:2;}
+  .invest-figs--table .invest-cap{order:3;margin-top:2px;}
 }
 .invest-fig{border-top:1px solid var(--line);padding-top:clamp(18px,2.2vw,28px);}
 .invest-amount{font-family:var(--d);font-weight:430;font-optical-sizing:auto;

@@ -161,13 +161,18 @@ pricing:
     designed, the season and your guest count, so every wedding is quoted on its
     own. What we can tell you is where our weddings begin, and where the ones
     we've done around the lake tend to land.
+  # label = what the number is (left, small caps); amount = the figure;
+  # caption = optional second line under the label.
   figures:
-    - amount: Starting at $5,000
-      caption: Where every wedding we take on begins.
-    - amount: "$10,000 – $16,000"
-      caption: Where a typical 100 guest wedding lands.
-    - amount: Above $20,000
-      caption: Larger guest counts, multiple installations, a room designed end to end.
+    - label: Where weddings start
+      amount: "$5,000"
+      caption: ""
+    - label: A typical 100 guest wedding
+      amount: "$10,000 – $16,000"
+      caption: ""
+    - label: Larger weddings
+      amount: "$20,000+"
+      caption: More guests, multiple installations, a room designed end to end.
     # Four things, because four is what a couple can hold. Each one is a lever
     # they actually control, so the list doubles as the agenda for the
     # consultation.

@@ -114,11 +114,27 @@ redirect_from:
     {%- comment -%} Two figures read as a range and a ceiling. The grid is set
     from the count so a single figure still fills the row rather than sitting in
     a half-empty one. {%- endcomment -%}
-    <div class="invest-figs" data-n="{{ nfig }}">
+    {%- comment -%} With `label`s the figures render as a quiet table (2026-09-25):
+    what the number is on the left in small caps, the figure on the right, all
+    three the same size and a step under the section heading. An optional
+    caption sits under the label. Without labels, the older figure-over-caption
+    blocks. {%- endcomment -%}
+    {%- assign fig_table = pr.figures.first.label | strip -%}
+    <div class="invest-figs{% if fig_table != "" %} invest-figs--table{% endif %}" data-n="{{ nfig }}">
       {%- for f in pr.figures %}
+      {%- assign fi = forloop.index0 %}
       <div class="invest-fig">
-        <p class="invest-amount"><span data-ed="weddings:pricing.figures.{{ forloop.index0 }}.amount">{{ f.amount }}</span></p>
-        <p class="invest-cap"><span data-ed="weddings:pricing.figures.{{ forloop.index0 }}.caption">{{ f.caption }}</span></p>
+        {%- if fig_table != "" %}
+        <div class="invest-lab">
+          <p class="invest-label"><span data-ed="weddings:pricing.figures.{{ fi }}.label">{{ f.label }}</span></p>
+          {%- assign fc = f.caption | strip %}
+          <p class="invest-cap{% if fc == "" %} ed-empty{% endif %}"><span data-ed="weddings:pricing.figures.{{ fi }}.caption">{{ f.caption }}</span></p>
+        </div>
+        <p class="invest-amount"><span data-ed="weddings:pricing.figures.{{ fi }}.amount">{{ f.amount }}</span></p>
+        {%- else %}
+        <p class="invest-amount"><span data-ed="weddings:pricing.figures.{{ fi }}.amount">{{ f.amount }}</span></p>
+        <p class="invest-cap"><span data-ed="weddings:pricing.figures.{{ fi }}.caption">{{ f.caption }}</span></p>
+        {%- endif %}
       </div>
       {%- endfor %}
     </div>
