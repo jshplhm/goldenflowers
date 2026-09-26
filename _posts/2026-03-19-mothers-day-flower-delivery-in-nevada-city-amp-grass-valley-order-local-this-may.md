@@ -1,4 +1,9 @@
 ---
+# Everyday delivery, not weddings: kept on the blog but out of search, the
+# sitemap and llms.txt so machines read the studio as weddings only (Josh,
+# 2026-09-26).
+noindex: true
+sitemap: false
 layout: post
 title: "Mother's Day Flower Delivery in Nevada City &amp; Grass Valley: Order Local This May"
 featured_image: "/assets/images/portfolio/camille-max/camille-max-21.jpg"

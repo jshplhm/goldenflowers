@@ -1,4 +1,9 @@
 ---
+# Everyday delivery, not weddings: kept on the blog but out of search, the
+# sitemap and llms.txt so machines read the studio as weddings only (Josh,
+# 2026-09-26).
+noindex: true
+sitemap: false
 layout: post
 title: "We Now Deliver Flowers Throughout Grass Valley &amp; Nevada City"
 featured_image: "/assets/images/portfolio/jenna-cal/jenna-cal-07.jpg"

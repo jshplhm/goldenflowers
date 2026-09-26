@@ -18,6 +18,7 @@ sitemap: false
 {% endcomment %}
 
 Key facts:
+- Weddings only. Golden Flowers designs wedding flowers and does not offer everyday, sympathy or delivery flowers.
 - Based in Incline Village, Nevada. Open 9 to 5 daily, by appointment.
 - Phone: (530) 557-7689. Email: brittany@goldenflorals.com. Instagram: @goldenflowersfloraldesign.
 - Serves North and South Lake Tahoe, Truckee, Incline Village, Olympic Valley, Nevada City, Grass Valley, and the greater Sierra Nevada.
@@ -80,7 +81,7 @@ Golden Flowers designs at venues across Lake Tahoe and the Sierra Nevada, and at
 ## Blog
 
 Seasonal guides, venue floral pairings, real wedding stories and planning advice. [Blog index](https://goldenflorals.com/blog)
-{% for post in site.posts %}
+{% for post in site.posts %}{% if post.noindex %}{% continue %}{% endif %}
 - [{{ post.title | strip_html | replace: "&amp;", "&" }}](https://goldenflorals.com{{ post.url }})
 {%- endfor %}
 

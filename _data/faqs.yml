@@ -3,18 +3,23 @@ pages:
     url: /weddings
     faqs:
       - q: What actually makes Golden Flowers different?
-        a: <strong>Four specific things most florists can't say:</strong> We grow
-          flowers ourselves, on our plot at an organic community farm in
-          California. We never use floral foam. We
-          intentionally book a limited number of weddings per season, so your
-          wedding day gets our full team from start to finish. And our founder
-          Brittany is an artist and an agronomist, which means her design
-          decisions are rooted in how plants actually grow.<br><br> Most
-          florists source from the same wholesale importers and build the same
-          kinds of arrangements. We work with what the California land is
-          producing at peak, and we design around that. The result is florals
-          that feel grounded, seasonal, and specific to the Sierra Nevada
-          landscape where your wedding is happening.
+        # Rewritten 2026-09-26 (Josh approved): the site's three parts, told
+        # once each, California growers before our plot, and no comparison
+        # with how other florists work.
+        a: "Three things run through every wedding we design.<br><br>
+          <strong>The people.</strong> Golden Flowers is led by Brittany, an
+          artist and an agronomist, and built around a team of seasoned floral
+          designers. The team that designs your flowers is the team that shows
+          up to set them.<br><br> <strong>The flowers.</strong> We design around
+          what California grows best at the moment you get married, sourcing
+          from California growers we trust first and growing on our own plot at
+          an organic community farm in Nevada County. No floral foam,
+          ever.<br><br> <strong>The planning.</strong> We intentionally take
+          fewer weddings than most studios, so yours isn't slotted into a
+          production line. Everything is planned months ahead, with backups in
+          place for everything that matters.<br><br> The result is florals that
+          feel grounded, seasonal and specific to the Sierra Nevada landscape
+          where your wedding is happening."
       - q: What does a full-service wedding florals investment typically look like?
         on_page: false
         a: "Every wedding is quoted on its own. Our weddings begin at
