@@ -2556,9 +2556,10 @@ body.nav-hidden .venue-breadcrumb{top:0;}
 
 /* ---- more weddings (Josh, 2026-09-26): the next three, replacing the
    five-card rail. Desktop = three captioned photographs; phone = three rows
-   with a small photo, so it reads as a list and not as more gallery. The rule
-   carries the break; bottom padding keeps it off the tinted .cta. ---- */
-.wp-more{border-top:1px solid var(--line);
+   with a small photo, so it reads as a list and not as more gallery. No
+   full-width rule above it: sections break on space and their heading, as on
+   venue pages and Pricing (d581e56). Bottom padding keeps it off the .cta. ---- */
+.wp-more{
   padding:clamp(52px,6.5vw,92px) var(--pad-col) clamp(56px,7vw,104px);}
 .wm-h{display:flex;align-items:baseline;justify-content:space-between;gap:16px;
   margin-bottom:clamp(20px,2.6vw,32px);}
