@@ -1,100 +1,81 @@
+# Studio page (/about). Rewritten 2026-09-26: the page now runs who (Brittany,
+# then the team), how we work, what we believe, one review, the ask. The copy
+# it replaced is kept for reference in _archive/studio-copy-before-2026-09-26.yml
+# with a screenshot of the old page beside it.
 hero:
-  # "Studio", matching the nav label for this page. It read "Our Story" while
-  # the nav said Studio, so the page you arrived on announced itself by a
-  # different name than the link you clicked.
+  # "Studio", matching the nav label for this page.
   eyebrow: Studio
   heading: The team you want when it *has to be right.*
-  subheading: Golden Flowers is a professional floral studio led by Brittany, an
-    artist and an agronomist, and built around a team of the region's most
-    creative designers.
-intro:
-  label: What we're really for
-  heading: A wedding day happens once. There is no do-over.
+  subheading: Golden Flowers is a floral studio led by Brittany, an artist and an
+    agronomist, and built around a team of seasoned designers. We design for the
+    couples who marry in Lake Tahoe and across the Sierra Nevada.
+brittany:
+  heading: Brittany founded and leads the studio.
   paragraphs:
-    - "Golden Flowers exists to take that on: to plan for everything that can go
-      wrong with cut flowers, and to make your design feel effortless. Our
-      studio believes that the way flowers are designed are just as important as
-      the way those same flowers are selected and grown, and we design in a way
-      that honors both."
-    - "Brittany founded and leads the studio. She is an artist and an
-      agronomist, and she'll tell you the two were never separate: art is a
-      science, and science is an art. Her background runs deep on both sides,
-      with a master's degree in agronomy, more than a decade in sustainable
-      agriculture across Europe, North and South America and New Zealand, and
-      formal European floral design training. As an agronomist, she worked with
-      Whole Foods to bring new fruit and veggies to market, focusing on new
-      varieties that provided novel colors, textures and flavors. As a floral
-      designer she draws upon her experience working with agronomy to embody
-      each flower's uniqueness and ability to contribute to the overall vision.
-      "
-    - We're based in Incline Village and we design for the couples who marry in
-      Lake Tahoe. The flowers are grown close by, the team is local and
-      seasoned, and the standards don't move.
-one_rule:
-  label: Our one rule
-  heading: Fewer weddings, more time on yours
-  paragraph: "We take a limited number of weddings per date because of what it
-    lets us give the couple whose date it is: every hour of that day and every
-    hand on our team, focused on bringing one vision to life."
+    - Her background runs deep on both sides, with a master's degree in agronomy,
+      more than a decade in sustainable agriculture across Europe, North and
+      South America and New Zealand, and floral design training in Europe.
+    # Her training was in Europe but not a university program: never "formal".
+    # The Whole Foods role was new product development; the point of it here is
+    # the planning discipline that work demands (Josh, 2026-09-26).
+    - As an agronomist, she worked with Whole Foods to bring new varieties to
+      market in a field where almost nothing is certain, from the weather to the
+      yield. That work runs on planning months ahead and a backup for every step
+      that matters, and she plans a wedding the same way.
+    - The design is where the artist comes in. Brittany designs each proposal as
+      if it's the only one she's ever working on, choosing every flower for how
+      it grows, moves and holds, and for what it brings to the whole.
 team:
-  label: The team
-  heading: We work alongside the best designers in the region, and beyond.
+  heading: The team that designs your flowers is the team that shows up to set them.
+  # Don't characterise how the team is employed (no "collective", "freelance",
+  # "chosen for each wedding").
   paragraphs:
-    - "Golden Flowers is a collective of accomplished florists, several of whom
-      run their own studios and flower farms: seasoned designers we're
-      privileged to build with, chosen for each wedding around its scale, style,
-      and venue."
-    - The team that designs your flowers is the team that shows up to set them,
-      adjusts them in the room, and breaks everything down when the night ends.
-certainty:
-  label: Why it matters
-  heading: What you're really choosing is certainty.
+    - "Brittany leads a team of accomplished florists: seasoned designers we're
+      privileged to build with."
+    - The same hands arrange your flowers in the studio, adjust them in the room,
+      and break everything down when the night ends.
+planning:
+  # Certainty told as competence. Never list what can go wrong with flowers
+  # here: a fear named at section scale is a fear installed.
+  heading: Planned months ahead, so your day feels effortless.
   paragraphs:
-    - Cut flowers are delicate. Stems wilt, blooms open early or refuse to, a
-      shipment falls through, the heat turns, something breaks in transit. On an
-      ordinary day that's a nuisance. On a wedding day it's a crisis, unless the
-      people handling it have seen it before and planned for it.
-    - That's the expertise you're selecting. Most of the work that protects your
-      day happens months before anyone sees a flower.
+    - We take a limited number of weddings a season, so yours isn't slotted into
+      a production line.
+    - Most of the work that protects your day happens months before anyone sees a
+      flower.
   points:
     - title: Planned in advance
-      body: Sourcing, timing, and logistics are mapped months in advance, with backups
-        in place for everything that matters.
-    - title: Calm under pressure
-      body: When the inevitable happens, an experienced team solves it on-site without
+      body: Sourcing, timing, and logistics are mapped months ahead, with backups in
+        place for everything that matters.
+    - title: Built for the mountains
+      body: An agronomist's understanding of how every stem performs across a full
+        day, conditioned for the altitude and the forecast we're actually going
+        to get.
+    - title: Calm on the day
+      body: Our team is deep enough to absorb a surprise on the morning of, without
         it becoming your problem.
-    - title: Built to hold
-      body: Foam-free construction and an agronomist's understanding of how every stem
-        performs across a full day.
-    - title: Grown close by
-      body: "Our own plot and trusted regional growers: short supply chains and fresh
-        stems, cut days before your wedding."
-editorial:
-  label: Rooted in place
-  heading: We design with what the California land gives us, in the season you say yes.
-values:
-  label: Philosophy
-  heading: The principles behind the work.
-  items:
-    - title: Grown with intention
-      body: We work with what California produces at its peak, in the season you're
-        getting married, and we let the design respond to the land.
-    - title: Designed as art
-      body: To us, every wedding is a unique piece of art, curated around its venue,
-        season, and vision. There are no packages. Brittany designs each
-        proposal as if it's the only one she's ever working on.
-    - title: Sustainable at the root
-      body: Foam-free construction, California-grown sourcing, and growing practices
-        that treat soil health as a long-term investment. The environmental
-        ethic runs through the whole operation.
-sustainability_pointer:
-  label: Sustainability
-  heading: Grown here, and grown responsibly.
-  body: The commitments that shape how we design, source, and grow, from vase
-    return to composting the harvest, are written down, in public, on their own
-    page.
+    - title: One team, start to finish
+      body: Full service design from the first conversation through breakdown at the
+        end of the night.
+beliefs:
+  heading: To us, every wedding is a unique piece of art.
+  paragraphs:
+    - Each one is curated around its venue, season, and vision. We design around
+      what California grows best at the moment you get married.
+    # Same wording as the home page's "Locally grown" card: "our plot", never
+    # "our farm" or "our fields".
+    - We grow on our own plot at an organic community farm in Nevada County, and
+      what we don't grow ourselves comes from California growers we trust.
+      Seasonal sourcing, foam-free, reusable mechanics, and growing practices
+      that give back to the soil.
   link: Read our sustainability pledge
+testimonial:
+  quote: '"From the start they had a *streamlined process* and I never felt
+    overwhelmed with the endless flower options."'
+  name: Taylor
+  context: Olympic Valley Stables
 closing:
-  heading: We'd love to hear about *your wedding.*
+  # Brittany takes the first call herself, which is what makes this honest.
+  heading: Ready to *meet Brittany?*
   body: Tell us your date and venue, and we'll let you know if it's open.
   button: Check your date

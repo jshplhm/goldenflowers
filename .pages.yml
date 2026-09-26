@@ -111,33 +111,22 @@ content:
           - {name: eyebrow, label: "Small label", type: string}
           - {name: heading, label: "Headline", type: string, description: "*asterisks* = italics"}
           - {name: subheading, label: "Sub-headline", type: text}
-      - name: intro
-        label: "Section: what we're for"
+      - name: brittany
+        label: "Section: Brittany"
         type: object
         fields:
-          - {name: label, label: "Small label", type: string}
           - {name: heading, label: "Heading", type: string}
           - {name: paragraphs, label: "Paragraphs", type: text, list: true}
-      - name: one_rule
-        label: "Section: one wedding a day"
-        type: object
-        fields:
-          - {name: label, label: "Small label", type: string}
-          - {name: heading, label: "Heading", type: string}
-          - {name: paragraph, label: "Paragraph", type: text}
-          - {name: kicker, label: "Highlighted line", type: text}
       - name: team
         label: "Section: the team"
         type: object
         fields:
-          - {name: label, label: "Small label", type: string}
           - {name: heading, label: "Heading", type: string}
           - {name: paragraphs, label: "Paragraphs", type: text, list: true}
-      - name: certainty
-        label: "Section: buying certainty"
+      - name: planning
+        label: "Section: how we plan"
         type: object
         fields:
-          - {name: label, label: "Small label", type: string}
           - {name: heading, label: "Heading", type: string}
           - {name: paragraphs, label: "Paragraphs", type: text, list: true}
           - name: points
@@ -147,33 +136,20 @@ content:
             fields:
               - {name: title, label: "Title", type: string}
               - {name: body, label: "Text", type: text}
-      - name: editorial
-        label: Full-width photo band
+      - name: beliefs
+        label: "Section: what we believe"
         type: object
         fields:
-          - {name: label, label: "Small label", type: string}
-          - {name: heading, label: "Text over the photo", type: string}
-      - name: values
-        label: "Section: philosophy"
-        type: object
-        fields:
-          - {name: label, label: "Small label", type: string}
           - {name: heading, label: "Heading", type: string}
-          - name: items
-            label: The principles
-            type: object
-            list: true
-            fields:
-              - {name: title, label: "Title", type: string}
-              - {name: body, label: "Text", type: text}
-      - name: sustainability_pointer
-        label: "Section: sustainability pointer"
+          - {name: paragraphs, label: "Paragraphs", type: text, list: true}
+          - {name: link, label: "Link text (goes to the sustainability pledge)", type: string}
+      - name: testimonial
+        label: Review
         type: object
         fields:
-          - {name: label, label: "Small label", type: string}
-          - {name: heading, label: "Heading", type: string}
-          - {name: body, label: "Text", type: text}
-          - {name: link, label: "Link text", type: string}
+          - {name: quote, label: "Quote", type: text, description: "Keep the quotation marks. *asterisks* = italics"}
+          - {name: name, label: "Name", type: string}
+          - {name: context, label: "Venue", type: string}
       - name: closing
         label: Closing call to action
         type: object

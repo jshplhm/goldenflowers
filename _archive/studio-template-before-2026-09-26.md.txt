@@ -28,9 +28,12 @@ redirect_from:
    read them as "the older style of our site". Sections break on space and a
    hairline here like everywhere else. */
 
-/* The four planning points were bold serif at 1.6 leading; every other
+/* The four certainty points were bold serif at 1.6 leading; every other
    small serif heading on the site is regular weight at 1.2. */
 .cred-item h4{font-weight:430;line-height:1.2;}
+/* "Grown here, and grown responsibly." inherited 1.6 leading (80px) and fell
+   apart whenever it wrapped. Scoped here: /venues keeps its live spacing. */
+.mini h2{line-height:1.06;}
 </style>
 
 <!-- STUDIO HERO (split: deliberately not full-bleed) -->
@@ -47,20 +50,52 @@ redirect_from:
 
 <hr class="hr-line">
 
-<!-- BRITTANY -->
+<!-- STUDIO INTRO -->
+<section class="block">
+  <div class="twocol">
+    <div>
+      <h2><span data-ed="about:intro.heading">{{ site.data.about.intro.heading }}</span></h2>
+    </div>
+    <div class="prose">
+      {%- for p in site.data.about.intro.paragraphs %}
+      <p><span data-ed="about:intro.paragraphs.{{ forloop.index0 }}">{{ p }}</span></p>
+      {%- endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- FEWER WEDDINGS (was the page's one dark band; plain ground since 2026-09-25) -->
 <section class="block">
   <div class="story-split rev">
     <div class="ss-img">
       <img src="{{ site.baseurl }}/assets/images/studio-brittany.jpg" alt="Brittany of Golden Flowers with a large floral installation" loading="lazy"{% include img-dims.html path="/assets/images/studio-brittany.jpg" %}>
     </div>
     <div class="ss-text">
-      <h2><span data-ed="about:brittany.heading">{{ site.data.about.brittany.heading }}</span></h2>
+      <h2><span data-ed="about:one_rule.heading">{{ site.data.about.one_rule.heading }}</span></h2>
       <div class="prose">
-        {%- for p in site.data.about.brittany.paragraphs %}
-        <p><span data-ed="about:brittany.paragraphs.{{ forloop.index0 }}">{{ p }}</span></p>
-        {%- endfor %}
+        <p><span data-ed="about:one_rule.paragraph">{{ site.data.about.one_rule.paragraph }}</span></p>
+        <span class="kicker"><span data-ed="about:one_rule.kicker">{{ site.data.about.one_rule.kicker }}</span></span>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- CERTAINTY -->
+<section class="block">
+  <div class="twocol">
+    <div>
+      <h2><span data-ed="about:certainty.heading">{{ site.data.about.certainty.heading }}</span></h2>
+    </div>
+    <div class="prose">
+      {%- for p in site.data.about.certainty.paragraphs %}
+      <p><span data-ed="about:certainty.paragraphs.{{ forloop.index0 }}">{{ p }}</span></p>
+      {%- endfor %}
+    </div>
+  </div>
+  <div class="cred-grid">
+    {%- for pt in site.data.about.certainty.points %}
+    <div class="cred-item"><h4><span data-ed="about:certainty.points.{{ forloop.index0 }}.title">{{ pt.title }}</span></h4><p><span data-ed="about:certainty.points.{{ forloop.index0 }}.body">{{ pt.body }}</span></p></div>
+    {%- endfor %}
   </div>
 </section>
 
@@ -106,56 +141,29 @@ redirect_from:
   </div>
 </section>
 
-<hr class="hr-line">
-
-<!-- HOW WE WORK -->
-<section class="block">
-  {%- comment -%} No photo here on purpose (Josh, 2026-09-26): every wedding
-  photo tried beside "Planned months ahead" read as unrelated to it. Add one
-  only if it shows planning itself (sketches, sourcing, a cooler of stems). {%- endcomment %}
-  <div class="twocol">
-    <div>
-      <h2><span data-ed="about:planning.heading">{{ site.data.about.planning.heading }}</span></h2>
-    </div>
-    <div class="prose">
-      {%- for p in site.data.about.planning.paragraphs %}
-      <p><span data-ed="about:planning.paragraphs.{{ forloop.index0 }}">{{ p }}</span></p>
-      {%- endfor %}
-    </div>
-  </div>
-  <div class="cred-grid">
-    {%- for pt in site.data.about.planning.points %}
-    <div class="cred-item"><h4><span data-ed="about:planning.points.{{ forloop.index0 }}.title">{{ pt.title }}</span></h4><p><span data-ed="about:planning.points.{{ forloop.index0 }}.body">{{ pt.body }}</span></p></div>
-    {%- endfor %}
-  </div>
-</section>
-
 {%- comment -%} Seasonal availability moved OFF this page (Josh, 2026-09-25):
 a 40-flower reference table was the longest thing on a page about who the
 studio is. The answer now lives in the /weddings FAQ "What flowers will be
 available for my date?", which was the only link to it. {%- endcomment %}
 <hr class="hr-line">
 
-<!-- WHAT WE BELIEVE (the old philosophy grid and sustainability pointer, as one block) -->
+<!-- VALUES -->
 <section class="block">
-  <div class="twocol">
-    <div>
-      <h2><span data-ed="about:beliefs.heading">{{ site.data.about.beliefs.heading }}</span></h2>
-    </div>
-    <div class="prose">
-      {%- for p in site.data.about.beliefs.paragraphs %}
-      <p><span data-ed="about:beliefs.paragraphs.{{ forloop.index0 }}">{{ p }}</span></p>
-      {%- endfor %}
-      <p><a href="{{ site.baseurl }}/sustainability" class="txt-link"><span data-ed="about:beliefs.link">{{ site.data.about.beliefs.link }}</span> &rarr;</a></p>
-    </div>
+  <h2 class="h-lg"><span data-ed="about:values.heading">{{ site.data.about.values.heading }}</span></h2>
+  <div class="values-grid">
+    {%- for v in site.data.about.values.items %}
+    <div class="value-item"><h3><span data-ed="about:values.items.{{ forloop.index0 }}.title">{{ v.title }}</span></h3><p><span data-ed="about:values.items.{{ forloop.index0 }}.body">{{ v.body }}</span></p></div>
+    {%- endfor %}
   </div>
 </section>
 
-<!-- REVIEW (a different couple from the home page's) -->
-<section class="testi">
-  <div class="stars" aria-label="Five stars">★★★★★</div>
-  <blockquote class="disp">{% include em.html t=site.data.about.testimonial.quote k="about:testimonial.quote" %}</blockquote>
-  <p class="by"><b><span data-ed="about:testimonial.name">{{ site.data.about.testimonial.name }}</span></b> &nbsp;·&nbsp; <span data-ed="about:testimonial.context">{{ site.data.about.testimonial.context }}</span></p>
+<hr class="hr-line">
+
+<!-- SUSTAINABILITY POINTER (full pledge lives on /sustainability) -->
+<section class="mini">
+  <h2><span data-ed="about:sustainability_pointer.heading">{{ site.data.about.sustainability_pointer.heading }}</span></h2>
+  <p><span data-ed="about:sustainability_pointer.body">{{ site.data.about.sustainability_pointer.body }}</span></p>
+  <a href="{{ site.baseurl }}/sustainability" class="txt-link"><span data-ed="about:sustainability_pointer.link">{{ site.data.about.sustainability_pointer.link }}</span> &rarr;</a>
 </section>
 
 <!-- CLOSING -->
@@ -164,3 +172,4 @@ available for my date?", which was the only link to it. {%- endcomment %}
   <p><span data-ed="about:closing.body">{{ site.data.about.closing.body }}</span></p>
   <a class="btn btn-ink" href="{{ site.baseurl }}/consultation-form"><span data-ed="about:closing.button">{{ site.data.about.closing.button }}</span> <span>&rarr;</span></a>
 </section>
+
