@@ -162,11 +162,10 @@ pricing:
     own. What we can tell you is where our weddings begin, and where the ones
     we've done around the lake tend to land.
   figures:
-    - amount: Beginning at $5,000
-      caption: The starting point for any wedding we take on. We'll talk through
-        what your budget covers at the consultation.
+    - amount: Starting at $5,000
+      caption: Where every wedding we take on begins.
     - amount: "$10,000 – $16,000"
-      caption: Where a typical 100 guest full service wedding lands.
+      caption: Where a typical 100 guest wedding lands.
     - amount: Above $20,000
       caption: Larger guest counts, multiple installations, a room designed end to end.
     # Four things, because four is what a couple can hold. Each one is a lever
