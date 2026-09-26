@@ -55,6 +55,8 @@ exclude:
   - .jekyll-metadata
   # Internal design artifacts: keep out of the published site and sitemap
   - ds-bundle
+  # Build tooling (CI runs these from the repo, not from _site)
+  - scripts
   # Local-only internal docs (gitignored, absent in CI): excluded so a local
   # build never copies them into _site
   - seo-report

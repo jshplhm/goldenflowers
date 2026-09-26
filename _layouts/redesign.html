@@ -48,7 +48,17 @@
   {% seo title=false %}
 
   {% comment %} Business identity for search + AI answer engines. Brand domain is hardcoded
-  so it stays correct regardless of site.url (staging vs production). {% endcomment %}
+  so it stays correct regardless of site.url (staging vs production).
+
+  Hours: 9 to 5 daily MATCHES the Google Business Profile on purpose (Josh,
+  2026-09-26). The studio is open by appointment during those hours; do not
+  change one without the other.
+
+  No aggregateRating or review markup (removed 2026-09-26). It listed every
+  review from testimonials.yml with a count of 18 while only 13 exist and the
+  reviews section on /weddings is switched off, so it described reviews a
+  visitor cannot see, which is against Google's structured-data rules. Google
+  also never shows stars for reviews a business marks up about itself. {% endcomment %}
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -93,22 +103,7 @@
     "knowsAbout": [
       "wedding flowers", "foam-free floral design", "sustainable floristry",
       "locally-grown flowers", "Lake Tahoe weddings"
-    ],
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "5",
-      "bestRating": "5",
-      "worstRating": "1",
-      "reviewCount": "18"
-    },
-    "review": [{% for item in site.data.testimonials.items %}
-      {
-        "@type": "Review",
-        "author": { "@type": "Person", "name": {{ item.name | jsonify }} },
-        "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5", "worstRating": "1" },
-        "reviewBody": {{ item.quote | jsonify }}
-      }{% unless forloop.last %},{% endunless %}
-    {% endfor %}]
+    ]
   }
   </script>
 

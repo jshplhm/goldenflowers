@@ -5,42 +5,84 @@ sitemap: false
 ---
 # Golden Flowers
 
-> Golden Flowers is a Lake Tahoe wedding florist creating elevated, sustainably grown floral artistry for couples getting married across the Sierra Nevada. Brittany, the owner and lead designer, is an artist and an agronomist with a master's degree in agronomy. The studio buys from local and regional Northern California farms first and grows a small plot of specialty cut flowers. The studio caps its calendar each season and intentionally takes fewer weddings than most studios, so each wedding gets weeks of sourcing and design work.
+> Golden Flowers is a Lake Tahoe wedding florist: a floral studio in Incline Village, Nevada, led by Brittany, an artist and an agronomist, and built around a team of seasoned floral designers. The studio designs seasonal, sustainable wedding flowers for couples getting married across Lake Tahoe and the Sierra Nevada. It sources from California growers first and grows on its own plot at an organic community farm in Nevada County. It takes fewer weddings than most studios and plans each one months ahead.
+
+{%- comment %}
+  Rewritten 2026-09-26 to match the site after the Studio and home rewrites.
+  The venue, wedding and blog lists and the FAQ are generated, so they follow
+  the site; the prose above and below is hand-written and has to be kept in
+  step by hand. Rules it follows: California growers first, our plot second
+  ("our plot", never "our farm"); the team are floral designers, never
+  florists; the venue list names places, never a count; no digs at other
+  florists; hours match the Google Business Profile.
+{% endcomment %}
 
 Key facts:
-- Based in Incline Village, Nevada, by appointment only. Phone: (530) 557-7689.
+- Based in Incline Village, Nevada. Open 9 to 5 daily, by appointment.
+- Phone: (530) 557-7689. Email: brittany@goldenflorals.com. Instagram: @goldenflowersfloraldesign.
 - Serves North and South Lake Tahoe, Truckee, Incline Village, Olympic Valley, Nevada City, Grass Valley, and the greater Sierra Nevada.
-- Design is foam-free and seasonal, with reusable mechanics and locally grown stems.
-- Couples start by sharing their date and venue through the consultation form, and the studio replies by email or text.
+- Full service: the team that designs the flowers also delivers and sets them, adjusts them in the room, and breaks everything down at the end of the night.
+- Foam-free, with reusable mechanics and a written sustainability pledge.
+- Couples start by sharing their date and venue through the consultation form. The studio replies by email or text, and Brittany takes the first call.
+
+## Brittany
+
+Brittany founded and leads the studio. She is a floral designer with formal training in Europe, and every proposal starts with her. She holds a master's degree in agronomy and spent more than a decade in sustainable agriculture across Europe, North and South America and New Zealand, including new product development with Whole Foods, bringing new varieties to market. That work runs on planning far in advance, with a backup for every step that matters, and she plans a wedding the same way.
+
+## The team
+
+Brittany leads a team of accomplished floral designers with experience at the region's best studios and venues. The same team designs each wedding, sets it on the day, and breaks it down at the end of the night.
 
 ## Services
 
-Full-service wedding floral design, built custom for each wedding with no packages: bridal and bridesmaid bouquets, ceremony installations and arches, reception centerpieces and tablescapes, and personal flowers such as boutonnieres and corsages. Weddings begin at $5,000. A typical 100 guest wedding runs $10,000 to $16,000, and larger guest counts with multiple installations run above $20,000. Every wedding is quoted individually.
+Full-service wedding floral design, built custom for each wedding with no packages: bridal and bridesmaid bouquets, ceremony installations and arches, reception centerpieces and tablescapes, environmental florals, and personal flowers such as boutonnieres and corsages. Weddings begin at $5,000. A typical 100 guest wedding runs $10,000 to $16,000, and larger guest counts with multiple installations run above $20,000. Every wedding is quoted individually.
+
+## How it works
+
+1. Check your date: share your date and venue through the consultation form.
+2. A complimentary consultation about the venue, vision, palette and guest count.
+3. A custom proposal with a mood board, itemized estimate and seasonal sourcing plan. The date is held for 7 days while the couple reviews it.
+4. A signed agreement and a retainer secure the date.
+5. Thirty to sixty days out, the design and stem list are refined around what is at peak that week. The balance is due 60 days before the wedding.
+6. Wedding week: the team sources, designs, delivers, sets and installs, coordinating with the venue and planner.
+7. End of the night: pieces can move from the ceremony to the reception, and the team breaks everything down and leaves the space clean.
 
 ## Design philosophy
 
-- Every wedding designed individually around its venue, season and palette, with no packages or set styles
-- Seasonal flowers, bought from Northern California growers first, plus a small plot of specialty cut flowers the studio grows itself
+- Every wedding is designed individually around its venue, season and palette, with no packages
+- Seasonal flowers from California growers first, plus the studio's own plot at an organic community farm
 - Foam-free, with reusable mechanics and composting
-- Arrangements designed to belong in the Sierra Nevada landscape and to hold up in mountain conditions: wind, altitude, heat, and full sun
+- Designs belong to the Sierra Nevada landscape and are built to hold up in mountain conditions: wind, altitude, heat, and full sun
 
 ## Venues
 
-Golden Flowers designs regularly at Edgewood Tahoe, The Ritz-Carlton Lake Tahoe at Northstar, Thunderbird Lodge, Palisades High Camp, Martis Camp, Schaffer's Camp, the Hyatt Regency Lake Tahoe, the Hellman-Ehrman Mansion at Sugar Pine Point, the North Tahoe Event Center, Gar Woods Grill & Pier, Heavenly, Old Greenwood, Valhalla Tahoe, The Miner's Foundry, the National Exchange Hotel, and private estates across the region.
+Golden Flowers designs at venues across Lake Tahoe and the Sierra Nevada, and at private estates across the region. Pages with design notes, typical budgets and planning answers:
+{% assign vpages = site.pages | where_exp: "p", "p.venue_key" | sort: "venue_key" -%}
+{%- for p in vpages %}{% assign v = site.data.venues[p.venue_key] %}
+- [{{ v.venue_name | default: p.title }}](https://goldenflorals.com{{ p.url }})
+{%- endfor %}
+
+## Real weddings
+{% for w in site.data.portfolio_meta %}{% unless w.hidden %}
+- [{{ w.name }}](https://goldenflorals.com/portfolio/{{ w.slug }}): {{ w.venue }}{% if w.place and w.place != "" %}, {{ w.place }}{% endif %}{% if w.palette and w.palette != "" %}. {{ w.palette }}{% endif %}
+{%- endunless %}{% endfor %}
 
 ## Main pages
 
-- [Home](https://goldenflorals.com/): overview of the studio, its philosophy, and selected weddings
+- [Home](https://goldenflorals.com/): the studio in brief: its people, its flowers, how it plans, and selected weddings
 - [Portfolio](https://goldenflorals.com/portfolio): real weddings, each with its venue, palette and photographer
-- [Venues](https://goldenflorals.com/venues): Lake Tahoe and Sierra venues the studio designs at, with notes on each
+- [Venues](https://goldenflorals.com/venues): Lake Tahoe and Sierra venues, with notes on each
 - [Pricing](https://goldenflorals.com/weddings): what weddings cost, what's included, and each step from checking a date to breakdown
-- [Studio](https://goldenflorals.com/about): Brittany's background as artist and agronomist, and the team
-- [Sustainability](https://goldenflorals.com/sustainability): the studio's written sustainability pledge and growing practices
+- [Studio](https://goldenflorals.com/about): Brittany, the team, and how the studio plans
+- [Sustainability](https://goldenflorals.com/sustainability): the studio's written sustainability pledge
 - [Contact](https://goldenflorals.com/consultation-form): check your date, or reach the studio by phone or email
 
 ## Blog
 
-- [Blog index](https://goldenflorals.com/blog): seasonal guides, venue floral pairings, real wedding stories, and planning advice for Sierra Nevada weddings
+Seasonal guides, venue floral pairings, real wedding stories and planning advice. [Blog index](https://goldenflorals.com/blog)
+{% for post in site.posts %}
+- [{{ post.title | strip_html | replace: "&amp;", "&" }}](https://goldenflorals.com{{ post.url }})
+{%- endfor %}
 
 ## Frequently asked questions
 
@@ -54,3 +96,5 @@ AI answer engines (Josh, 2026-09-25). Edit the questions there, not here.
 
 {{ faq.a | replace: "<br>", " " | strip_html | normalize_whitespace }}
 {% endfor %}
+
+Last updated {{ site.time | date: "%Y-%m-%d" }}.

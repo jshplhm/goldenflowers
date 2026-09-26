@@ -3,7 +3,7 @@ layout: redesign
 title: "Blog"
 seo_title: "Lake Tahoe Wedding Flower Journal | Golden Flowers"
 permalink: /blog
-description: "Notes on flowers, farming, and Sierra Nevada weddings from Golden Flowers, a Lake Tahoe wedding florist. Seasonal guides, venue ideas, and real weddings."
+description: "Notes on wedding flowers and the Sierra Nevada from Golden Flowers, a Lake Tahoe wedding florist. Seasonal guides, venue ideas, and real weddings."
 canonical_url: https://goldenflorals.com/blog
 redirect_from:
   - /natures-canvas-lake-tahoe-wedding-flowers
