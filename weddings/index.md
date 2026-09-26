@@ -250,8 +250,6 @@ change, because it points at the #reviews anchor below. {%- endcomment -%}
   <h2 class="h-lg"><span data-ed="weddings:testimonials.heading">{{ site.data.weddings.testimonials.heading }}</span></h2>
   {% include redesign-testimonials.html %}
 </section>
-
-<hr class="hr-line">
 {%- endif %}
 
 <!-- FAQ -->
