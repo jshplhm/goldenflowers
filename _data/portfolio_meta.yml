@@ -113,18 +113,6 @@
   palette: "Phalaenopsis orchid, magnolia foliage, red silk"
   dots: [ "#f8f5ec", "#2f4a2c", "#c8202b", "#d8cdb4", "#8a9a6b" ]
 
-- slug: sarah-brian
-  name: "Sarah & Brian"
-  venue: "The Miner's Foundry"
-  place: "Nevada City"
-  band: [ "01", "03", "08" ]
-  strip: [ "07", "02" ]
-  lede: "All white against old stone. Roses, ranunculus and clouds of baby's
-    breath, with greenery hung above the ceremony so the room's own walls stayed
-    the backdrop."
-  palette: "White rose, ranunculus, baby's breath"
-  dots: [ "#f6f4ef", "#eae7dc", "#9aa87f", "#5e6b4c", "#8e857a" ]
-
 - slug: emma-ross
   name: "Emma & Ross"
   venue: "River Highlands Ranch"
@@ -136,6 +124,18 @@
     architectural."
   palette: "White garden rose, calla lily, trailing amaranthus"
   dots: [ "#f2efe6", "#e8e4d6", "#8d9450", "#5d6b3a", "#c9b98a" ]
+
+- slug: sarah-brian
+  name: "Sarah & Brian"
+  venue: "The Miner's Foundry"
+  place: "Nevada City"
+  band: [ "01", "03", "08" ]
+  strip: [ "07", "02" ]
+  lede: "All white against old stone. Roses, ranunculus and clouds of baby's
+    breath, with greenery hung above the ceremony so the room's own walls stayed
+    the backdrop."
+  palette: "White rose, ranunculus, baby's breath"
+  dots: [ "#f6f4ef", "#eae7dc", "#9aa87f", "#5e6b4c", "#8e857a" ]
 
 - slug: camille-max
   name: "Camille & Max"
