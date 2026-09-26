@@ -148,7 +148,6 @@
     installed."
   palette: "Blush and burgundy rose, trailing amaranthus"
   dots: [ "#e5b7a8", "#7a2338", "#9aa86e", "#f0e5d4", "#c4715f" ]
-  hidden: true
 
 - slug: jac-brandon
   name: "Jac & Brandon"
