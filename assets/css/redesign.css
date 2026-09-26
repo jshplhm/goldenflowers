@@ -2556,9 +2556,11 @@ body.nav-hidden .venue-breadcrumb{top:0;}
 
 /* ---- more weddings (Josh, 2026-09-26): the next three, replacing the
    five-card rail. Desktop = three captioned photographs; phone = three rows
-   with a small photo, so it reads as a list and not as more gallery. No
-   full-width rule above it: sections break on space and their heading, as on
-   venue pages and Pricing (d581e56). Bottom padding keeps it off the .cta. ---- */
+   with a small photo, so it reads as a list and not as more gallery.
+   Thumbnails are square because each one IS that wedding's /portfolio card
+   (same photo, same "card" framing), and a framing only matches in the shape
+   it was set for. No full-width rule above: sections break on space and
+   their heading, as on venue pages and Pricing. ---- */
 .wp-more{
   padding:clamp(52px,6.5vw,92px) var(--pad-col) clamp(56px,7vw,104px);}
 .wm-h{display:flex;align-items:baseline;justify-content:space-between;gap:16px;
@@ -2569,10 +2571,10 @@ body.nav-hidden .venue-breadcrumb{top:0;}
 .wm-all:hover{border-color:var(--accent);}
 .wm-g{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,1.8vw,24px);}
 .wm-card{display:block;}
-.wm-ph{overflow:hidden;border-radius:var(--r-img);aspect-ratio:4/5;background:var(--bg2);}
+.wm-ph{overflow:hidden;border-radius:var(--r-img);aspect-ratio:1/1;background:var(--bg2);}
 .wm-ph img{width:100%;height:100%;object-fit:cover;display:block;
   transition:transform 1.2s cubic-bezier(.2,.7,.3,1);}
-.wm-card:hover .wm-ph img{transform:scale(calc(var(--z,1) * 1.03));}
+.wm-card:hover .wm-ph img{transform:scale(calc(var(--z,1) * 1.025));}
 .wm-tx h3{font-family:var(--d);font-weight:430;font-size:var(--t-d4);letter-spacing:-.008em;
   margin-top:14px;transition:color .2s;}
 .wm-tx p{font-size:var(--t-tag);letter-spacing:.14em;text-transform:uppercase;color:var(--mute);margin-top:4px;}
@@ -2581,9 +2583,9 @@ body.nav-hidden .venue-breadcrumb{top:0;}
 @media(max-width:720px){
   .wm-h{margin-bottom:0;padding-bottom:14px;border-bottom:1px solid var(--line);}
   .wm-g{grid-template-columns:1fr;gap:0;}
-  .wm-card{display:grid;grid-template-columns:56px minmax(0,1fr) auto;align-items:center;column-gap:16px;
+  .wm-card{display:grid;grid-template-columns:64px minmax(0,1fr) auto;align-items:center;column-gap:16px;
     padding-block:12px;border-bottom:1px solid var(--line);}
-  .wm-ph{width:56px;height:70px;aspect-ratio:auto;border-radius:6px;}
+  .wm-ph{width:64px;border-radius:6px;}
   .wm-tx h3{margin-top:0;font-size:1.25rem;}
   .wm-tx p{font-size:.7rem;margin-top:3px;}
   .wm-arr{display:block;color:var(--mute);}

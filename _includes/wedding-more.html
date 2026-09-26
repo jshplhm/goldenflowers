@@ -17,8 +17,12 @@
   first. Hidden weddings are skipped. A hidden wedding's own page still gets
   three: the first shown weddings after where it sits in the list.
 
-  Cover = band[1], as the rail used, with ctx="rail" so a framing already set
-  on it in /edit carries over.
+  EACH THUMBNAIL IS ITS /portfolio CARD, EXACTLY (Josh, 2026-09-26): same
+  photo (band[0]), same framing record (ctx="card"), same square shape. The
+  framing is stored per slot shape, so matching it means matching the shape
+  too. Keep this in step with _includes/portfolio-card.html. One consequence:
+  framing one of these in /edit reframes that wedding's /portfolio card, and
+  the other way round, which is the point.
 
   Params: slug.
 {%- endcomment -%}
@@ -44,9 +48,10 @@
   <div class="wm-g">
     {%- for m in others -%}
     {%- assign s = m.slug -%}
-    {%- assign cover = "/assets/images/portfolio/" | append: s | append: "/" | append: s | append: "-" | append: m.band[1] | append: ".jpg" %}
+    {%- assign cn = m.band[0] | default: '01' -%}
+    {%- assign cover = "/assets/images/portfolio/" | append: s | append: "/" | append: s | append: "-" | append: cn | append: ".jpg" %}
     <a class="wm-card" href="{{ site.baseurl }}/portfolio/{{ s }}">
-      <div class="wm-ph"><img src="{{ site.baseurl }}{{ cover }}"{% include img-dims.html path=cover %}{% include img-crop.html path=cover ctx="rail" %} alt="{{ m.name }} wedding flowers at {{ m.venue }}{% if m.place != '' %}, {{ m.place }}{% endif %}" loading="lazy" sizes="(max-width:720px) 64px, 30vw"></div>
+      <div class="wm-ph"><img src="{{ site.baseurl }}{{ cover }}"{% include img-crop.html path=cover ctx="card" %} alt="{{ m.name }} wedding flowers at {{ m.venue }}{% if m.place != '' %}, {{ m.place }}{% endif %}" width="900" height="900" loading="lazy" sizes="(max-width:720px) 64px, 30vw"></div>
       <div class="wm-tx"><h3>{{ m.name }}</h3><p>{{ m.venue }}</p></div>
       <span class="wm-arr" aria-hidden="true">&rarr;</span>
     </a>
