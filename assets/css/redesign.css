@@ -2833,7 +2833,8 @@ body.nav-hidden .venue-breadcrumb{top:0;}
    decoration at a fifth of the size and the roads only have to suggest that
    the lake sits somewhere. */
 .vm-hwy{fill:none;stroke:oklch(74% .012 250);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;opacity:.3;}
-.vm-dot{fill:var(--accent);stroke:var(--paper);stroke-width:2.5;}
+.vm-dot{fill:var(--ink);stroke:var(--paper);stroke-width:2.5;}
+.vm-ring{fill:var(--bg);stroke:oklch(22% .015 150/.75);stroke-width:1.5;}
 .vmini-txt .disp{font-family:var(--d);font-weight:430;font-optical-sizing:auto;
   font-size:var(--t-d2);line-height:1.06;letter-spacing:-.02em;max-width:18ch;}
 .vmini-more{margin-top:clamp(20px,2.4vw,30px);}
@@ -3039,4 +3040,15 @@ body.nav-hidden .venue-breadcrumb{top:0;}
    highway included), sitting FLUSH RIGHT on desktop so its right edge meets
    the page margin, and a little narrower than its column, so the spare width
    becomes air between the list and the lake. */
-@media(min-width:861px){.map-hero .tahoe{margin:0 0 0 auto;max-width:clamp(340px,38vw,560px);}}
+/* viewBox trimmed at the Ridge Tahoe dot (the Carson City highway beyond it
+   is clipped); max-width scaled by 554/605 so the lake draws at the same size
+   as the untrimmed frame did and simply moves right. */
+@media(min-width:861px){.map-hero .tahoe{margin:0 0 0 auto;max-width:clamp(330px,38.5vw,531px);}}
+
+/* Map dots (Josh, 2026-09-25). Filled = a featured venue with its own page;
+   open ring = the rest of the list, the usual map convention. Featured dots
+   keep r 7.5. The home mini shows the twelve featured only (ink, not green):
+   it is the teaser, and /venues is where the rest appear. */
+.t-dot.sm{fill:var(--bg);stroke:oklch(22% .015 150/.75);stroke-width:1.5;}
+.t-pin.t-minor:hover .t-dot.sm,.t-pin.t-minor.is-active .t-dot.sm{fill:var(--ink);stroke:var(--paper);}
+.vlist-dot--minor{width:9px;height:9px;background:var(--bg);box-shadow:inset 0 0 0 1.5px oklch(22% .015 150/.75);}
