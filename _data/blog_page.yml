@@ -6,10 +6,10 @@ hero:
   subheading: "Seasonal notes, wedding inspiration, and what's growing."
 cta:
   heading: "Planning your *Sierra wedding?*"
-  body: "Tell us your date and venue, and we'll let you know if we're available."
+  body: "Tell us your date and venue, and we'll let you know if it's open."
   button: "Check your date"
 # CTA at the bottom of every blog post.
 post_cta:
-  heading: "Ready to design your wedding florals?"
+  heading: "Planning your *wedding flowers?*"
   body: "Tell us your date and venue, and we'll let you know if it's open."
-  button: "Schedule a consultation"
+  button: "Check your date"

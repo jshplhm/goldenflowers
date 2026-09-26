@@ -239,9 +239,9 @@ testimonials:
 
 faq:
   label: Frequently asked questions
-  heading: Everything else you might be wondering.
+  heading: FAQ
 
 closing:
-  heading: Is your date *still open?*
+  heading: Start with *your date.*
   body: Tell us your date and venue, and we'll let you know if it's open.
   button: Check your date

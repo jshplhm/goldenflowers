@@ -86,6 +86,13 @@
       recordCtaClick(trigger);
       if(!modal) return;            // no modal on page (e.g. no-JS / missing include) -> let link navigate
       e.preventDefault();
+      /* On a venue page (2026-09-25), any date-check button fills the
+         form's venue field so the couple is not asked for what the page they
+         are on already told us. Only into an empty field, never over typing. */
+      var pv=document.querySelector('[data-page-venue]');
+      var knownVenue=pv && pv.getAttribute('data-page-venue');
+      var venueInput=modal.querySelector('input[name="venue"]');
+      if(knownVenue && venueInput && !venueInput.value) venueInput.value=knownVenue;
       /* On /consultation-form the form is already the page, so the header
          button takes you to it rather than stacking the same form on top. */
       var pageForm=document.getElementById('consultation-form');

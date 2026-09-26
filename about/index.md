@@ -54,7 +54,6 @@ redirect_from:
 <section class="block">
   <div class="twocol">
     <div>
-      <span class="lab"><span data-ed="about:intro.label">{{ site.data.about.intro.label }}</span></span>
       <h2><span data-ed="about:intro.heading">{{ site.data.about.intro.heading }}</span></h2>
     </div>
     <div class="prose">
@@ -72,7 +71,6 @@ redirect_from:
       <img src="{{ site.baseurl }}/assets/images/studio-brittany.jpg" alt="Brittany of Golden Flowers with a large floral installation" loading="lazy"{% include img-dims.html path="/assets/images/studio-brittany.jpg" %}>
     </div>
     <div class="ss-text">
-      <span class="lab"><span data-ed="about:one_rule.label">{{ site.data.about.one_rule.label }}</span></span>
       <h2><span data-ed="about:one_rule.heading">{{ site.data.about.one_rule.heading }}</span></h2>
       <div class="prose">
         <p><span data-ed="about:one_rule.paragraph">{{ site.data.about.one_rule.paragraph }}</span></p>
@@ -86,7 +84,6 @@ redirect_from:
 <section class="block">
   <div class="twocol">
     <div>
-      <span class="lab"><span data-ed="about:certainty.label">{{ site.data.about.certainty.label }}</span></span>
       <h2><span data-ed="about:certainty.heading">{{ site.data.about.certainty.heading }}</span></h2>
     </div>
     <div class="prose">
@@ -108,7 +105,6 @@ redirect_from:
 <section class="block">
   <div class="story-split img-first-mobile">
     <div class="ss-text">
-      <span class="lab"><span data-ed="about:team.label">{{ site.data.about.team.label }}</span></span>
       <h2 class="h-lg"><span data-ed="about:team.heading">{{ site.data.about.team.heading }}</span></h2>
       <div class="prose">
         {%- for p in site.data.about.team.paragraphs %}
@@ -153,7 +149,6 @@ available for my date?", which was the only link to it. {%- endcomment %}
 
 <!-- VALUES -->
 <section class="block">
-  <span class="lab"><span data-ed="about:values.label">{{ site.data.about.values.label }}</span></span>
   <h2 class="h-lg"><span data-ed="about:values.heading">{{ site.data.about.values.heading }}</span></h2>
   <div class="values-grid">
     {%- for v in site.data.about.values.items %}
@@ -166,7 +161,6 @@ available for my date?", which was the only link to it. {%- endcomment %}
 
 <!-- SUSTAINABILITY POINTER (full pledge lives on /sustainability) -->
 <section class="mini">
-  <span class="lab"><span data-ed="about:sustainability_pointer.label">{{ site.data.about.sustainability_pointer.label }}</span></span>
   <h2><span data-ed="about:sustainability_pointer.heading">{{ site.data.about.sustainability_pointer.heading }}</span></h2>
   <p><span data-ed="about:sustainability_pointer.body">{{ site.data.about.sustainability_pointer.body }}</span></p>
   <a href="{{ site.baseurl }}/sustainability" class="txt-link"><span data-ed="about:sustainability_pointer.link">{{ site.data.about.sustainability_pointer.link }}</span> &rarr;</a>

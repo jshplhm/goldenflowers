@@ -106,7 +106,6 @@ redirect_from:
 <section class="invest-band" id="pricing">
   <div class="invest-wrap">
     <div class="invest-head">
-      <span class="lab"><span data-ed="weddings:pricing.label">{{ pr.label }}</span></span>
       <h2><span data-ed="weddings:pricing.heading">{{ pr.heading }}</span></h2>
       <p class="invest-intro"><span data-ed="weddings:pricing.intro">{{ pr.intro }}</span></p>
     </div>
@@ -145,7 +144,7 @@ redirect_from:
     answers is "what does that figure buy", so it sits under the figures. {%- endcomment -%}
     {%- assign inc = site.data.weddings.included -%}
     <div class="invest-incl">
-      <h3 class="invest-dh"><span data-ed="weddings:included.label">{{ inc.label }}</span></h3>
+      <h3 class="grp-h"><span data-ed="weddings:included.label">{{ inc.label }}</span></h3>
       <ul class="invest-incl-list">
         {%- for item in inc.items %}
         <li><span class="ii-t"><span data-ed="weddings:included.items.{{ forloop.index0 }}.title">{{ item.title }}</span></span>
@@ -158,7 +157,7 @@ redirect_from:
     {%- assign ndrv = pr.drivers | size -%}
     {%- if ndrv > 0 %}
     <div class="invest-drivers">
-      <h3 class="invest-dh"><span data-ed="weddings:pricing.drivers_label">{{ pr.drivers_label }}</span></h3>
+      <h3 class="grp-h"><span data-ed="weddings:pricing.drivers_label">{{ pr.drivers_label }}</span></h3>
       <dl class="invest-dl">
         {%- for d in pr.drivers %}
         <div>
@@ -202,7 +201,6 @@ redirect_from:
 {%- endcomment -%}
 <section class="block proc-rows">
   <div class="proc-head">
-    <span class="lab"><span data-ed="weddings:process.label">{{ site.data.weddings.process.label }}</span></span>
     <h2 class="h-lg"><span data-ed="weddings:process.heading">{{ site.data.weddings.process.heading }}</span></h2>
     <p class="proc-intro"><span data-ed="weddings:process.intro">{{ site.data.weddings.process.intro }}</span></p>
   </div>
@@ -214,14 +212,14 @@ redirect_from:
   <ol class="proc-list">
   {%- for step in site.data.weddings.process.steps %}
   {%- if step.phase and step.phase != seen_phase %}
-    <li class="proc-phase"><span data-ed="weddings:process.steps.{{ forloop.index0 }}.phase">{{ step.phase }}</span></li>
+    <li class="proc-phase grp-h"><span data-ed="weddings:process.steps.{{ forloop.index0 }}.phase">{{ step.phase }}</span></li>
   {%- assign seen_phase = step.phase %}
   {%- endif %}
     <li class="proc-row">
+      <span class="proc-ic" aria-hidden="true">{% include icon.html name=step.icon %}</span>
       {%- comment -%} No numerals (2026-09-25). The steps are an <ol>, so order is
       in the markup, and the "when" column already reads as the sequence;
       01-07 running across two phases made 05 look like it started a new list. {%- endcomment %}
-      <span class="proc-when"><span data-ed="weddings:process.steps.{{ forloop.index0 }}.when">{{ step.when }}</span></span>
       <div class="proc-body">
         <h3><span data-ed="weddings:process.steps.{{ forloop.index0 }}.title">{{ step.title }}</span></h3>
         <p><span data-ed="weddings:process.steps.{{ forloop.index0 }}.body">{{ step.body }}</span></p>
@@ -263,7 +261,6 @@ whole measure with the heading stranded above it and half the row empty after
 each question. {%- endcomment -%}
 <section class="block faq-split">
   <div class="faq-head">
-    <span class="lab"><span data-ed="weddings:faq.label">{{ site.data.weddings.faq.label }}</span></span>
     <h2 class="h-lg"><span data-ed="weddings:faq.heading">{{ site.data.weddings.faq.heading }}</span></h2>
   </div>
   {% include redesign-faq.html %}

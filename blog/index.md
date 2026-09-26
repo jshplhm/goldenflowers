@@ -55,7 +55,6 @@ redirect_from:
         {%- endif %}
         <h2 class="blog-card-title">{{ post.title }}</h2>
         <p class="blog-card-excerpt">{{ post.description | strip_html | truncatewords: 24 }}</p>
-        <span class="blog-card-more">Read more &rarr;</span>
       </a>
     </article>
     {% endfor %}

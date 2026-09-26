@@ -44,6 +44,13 @@ sitemap: false
 .contact-after .next-steps .n{font-family:var(--b);font-size:var(--t-ui);font-weight:500;top:1px;}
 .contact-after .next-steps strong{display:inline;margin:0;}
 @media(max-width:620px){.contact-after{grid-template-columns:1fr;}}
+/* The page heading now says "Check your date", every button's own words, so
+   the form's step-1 heading ("Is your date open?") would ask it twice. It
+   stays for step 2 ("A few more details."). Hidden, not removed: the lightbox
+   shares the script that writes it. */
+.contact-rail .form-progress:not(:has([data-progress-step2].on)) + .form-heading{display:none;}
+.contact-rail .form-progress + .form-heading + *{margin-top:0;}
+.contact-rail .form-progress{margin-bottom:26px;}
 /* Once sent, the thank-you carries its own "What happens next"; one is enough. */
 #consultation:has(#consultation-success:not([hidden])) + .contact-rail .contact-after > div:last-child{display:none;}
 </style>
@@ -209,7 +216,7 @@ sitemap: false
 <section class="contact-rail">
   <div class="contact-after">
     <div class="contact-links">
-      <span class="lab"><span data-ed="consultation:reach.label">{{ site.data.consultation.reach.label }}</span></span>
+      <h2 class="ca-h"><span data-ed="consultation:reach.label">{{ site.data.consultation.reach.label }}</span></h2>
       <p><a href="tel:5305577689">(530) 557-7689</a></p>
       <p><a href="mailto:brittany@goldenflorals.com">brittany@goldenflorals.com</a></p>
       <p><a href="https://www.instagram.com/goldenflowersfloraldesign/" target="_blank" rel="noopener">Instagram</a></p>
@@ -217,7 +224,7 @@ sitemap: false
       <p class="note"><span data-ed="consultation:reach.note">{{ site.data.consultation.reach.note }}</span></p>
     </div>
     <div>
-      <span class="lab"><span data-ed="consultation:next_steps.label">{{ site.data.consultation.next_steps.label }}</span></span>
+      <h2 class="ca-h"><span data-ed="consultation:next_steps.label">{{ site.data.consultation.next_steps.label }}</span></h2>
       <ol class="next-steps">
         {%- for step in site.data.consultation.next_steps.steps %}
         <li><span class="n">{{ forloop.index }}</span><strong><span data-ed="consultation:next_steps.steps.{{ forloop.index0 }}.title">{{ step.title }}</span></strong> <span data-ed="consultation:next_steps.steps.{{ forloop.index0 }}.body">{{ step.body }}</span></li>

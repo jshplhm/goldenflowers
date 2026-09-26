@@ -1918,7 +1918,7 @@ body.nav-hidden .venue-breadcrumb{top:0;}
    still says what it is once you are six answers down. */
 .faq-split{display:grid;grid-template-columns:.8fr 1.5fr;gap:clamp(32px,5vw,90px);align-items:start;}
 .faq-split .faq-head{position:sticky;top:calc(var(--nav-h) + 28px);}
-.faq-split .faq-head h2{margin-top:14px;}
+.faq-split .faq-head h2{margin-top:0;}
 .faq-split .faq-list{min-width:0;}
 @media(max-width:900px){
   .faq-split{grid-template-columns:1fr;gap:clamp(20px,4vw,32px);}
@@ -1961,7 +1961,7 @@ body.nav-hidden .venue-breadcrumb{top:0;}
    already carry the space. */
 .page-pic--mid{margin-top:0;}
 .venue-intro{display:grid;grid-template-columns:.82fr 1.18fr;gap:clamp(28px,5vw,64px);align-items:start;}
-.venue-intro .vi-head h2{font-family:var(--d);font-weight:430;font-optical-sizing:auto;font-size:var(--t-d3);letter-spacing:-.02em;line-height:1.08;margin-top:12px;color:var(--ink);}
+.venue-intro .vi-head h2{font-family:var(--d);font-weight:430;font-optical-sizing:auto;font-size:var(--t-d3);letter-spacing:-.02em;line-height:1.08;margin-top:0;color:var(--ink);}
 .venue-intro .vi-body p{font-size:1rem;line-height:1.72;color:var(--fg2);margin-bottom:16px;}
 .venue-intro .vi-body p:last-child{margin-bottom:0;}
 @media(max-width:760px){.venue-intro{grid-template-columns:1fr;gap:16px;}.venue-intro .vi-head h2{margin-top:6px;}}
@@ -2020,17 +2020,19 @@ body.nav-hidden .venue-breadcrumb{top:0;}
    view while all of it scrolls past. Josh, 2026-09-23. */
 .map-hero{display:grid;grid-template-columns:minmax(0,.94fr) minmax(0,1fr);column-gap:clamp(28px,3.5vw,60px);align-items:start;max-width:var(--body-max);margin:0 auto;padding:var(--hero-top) var(--pad) clamp(36px,5vw,60px);}
 .mh-rail{grid-column:1;min-width:0;}
-.mh-body{padding-top:16px;}
+.mh-body{padding-top:clamp(48px,5.4vw,82px);}
 /* no overflow:hidden here — the name card may breathe past the map box near its
    edges (the SVG clips its own off-frame roads) */
 /* Sticky, not centred. Centring inside a tall row put the lake halfway down a
    column of names and it drifted out of the window as you read. */
-.mh-map{grid-column:2;align-self:start;position:sticky;top:calc(var(--nav-h) + clamp(16px,2vw,30px));}
+/* Sticks where it starts (Josh, 2026-09-25): top = the hero's own top padding,
+   which is where the map sits on load, so scrolling never nudges it up first. */
+.mh-map{grid-column:2;align-self:start;position:sticky;top:var(--hero-top);}
 .map-hero .mh-head h1{font-family:var(--d);font-weight:430;font-optical-sizing:auto;font-size:var(--t-d1);line-height:1.02;letter-spacing:-.025em;margin:12px 0 0;}
 .tahoe{width:100%;height:auto;display:block;overflow:hidden;}
 /* Capped to the window, not to the column: a sticky element taller than the
    viewport can never come to rest, and this lake is 892 units tall. */
-.map-hero .tahoe{width:100%;height:auto;max-width:clamp(360px,44vw,580px);max-height:calc(100svh - var(--nav-h) - clamp(52px,6vw,90px));margin:0 auto;overflow:hidden;}
+.map-hero .tahoe{width:100%;height:auto;max-width:clamp(360px,44vw,580px);max-height:calc(100svh - var(--hero-top) - 24px);margin:0 auto;overflow:hidden;}
 /* The index lists are inside the rail now, so they stop being a band of their
    own: no page width, no page padding, just the next thing down the column. */
 .mh-rail .venues-more{max-width:none;margin:0;padding:clamp(34px,4vw,52px) 0 0;}
@@ -2215,7 +2217,8 @@ body.nav-hidden .venue-breadcrumb{top:0;}
    markup, so the grid goes on the section and every non-label child is pushed to
    column 2. */
 @media(min-width:1025px){
-  .mini{display:grid;grid-template-columns:var(--lab-rail) minmax(0,1fr);column-gap:var(--lab-gap);align-items:start;}
+  /* Only when a label is present (none are, since 2026-09-25). */
+  .mini:has(> .lab){display:grid;grid-template-columns:var(--lab-rail) minmax(0,1fr);column-gap:var(--lab-gap);align-items:start;}
   .mini > .lab{grid-column:1;grid-row:1;padding-top:9px;}
   .mini > :not(.lab){grid-column:2;}
   /* The exit link is a grid item now, so without this it stretches the full
@@ -2992,3 +2995,46 @@ body.nav-hidden .venue-breadcrumb{top:0;}
   .testi > *{grid-column:1 !important;grid-row:auto !important;}
 }
 @media(min-width:1025px){.facts .fact p{max-width:34ch;}}
+
+
+/* ==========================================================================
+   ONE LABEL PER PAGE (Josh, 2026-09-25). Home and Portfolio felt calm because
+   the only green caps on them is the one naming the page. Everywhere else:
+   - a caps label that restated the heading under it is gone;
+   - a caps label that WAS the only title of a list or block is now a small
+     serif heading (.grp-h, .fact-h, .ca-h), because it names something;
+   - caps text that repeated the prose (step timings, "Read more") is gone.
+   ========================================================================== */
+.grp-h,.proc-phase.grp-h,.vlist-lab.grp-h{font-family:var(--d);font-weight:430;font-optical-sizing:auto;
+  font-size:var(--t-d3);letter-spacing:-.015em;line-height:1.15;text-transform:none;color:var(--ink);}
+.vlist-lab.grp-h{display:flex;align-items:center;margin:0 0 14px;}
+.mh-rail .venues-more .vlist-lab.grp-h{margin-top:0;}
+.vm-group + .vm-group .vlist-lab.grp-h{margin-top:clamp(34px,4vw,52px);}
+.vlist-lab.grp-h .vlist-dot{margin-right:12px;}
+/* Process: the "when" column is gone, so each step is one column. */
+.proc-row{grid-template-columns:minmax(0,1fr);}
+.fact-h{font-family:var(--d);font-weight:430;font-optical-sizing:auto;font-size:var(--t-d4);
+  letter-spacing:-.01em;line-height:1.2;color:var(--ink);margin:0 0 8px;}
+.ca-h{font-family:var(--d);font-weight:430;font-optical-sizing:auto;font-size:var(--t-d4);
+  letter-spacing:-.01em;line-height:1.2;color:var(--ink);margin:0 0 14px;}
+
+/* Process icons back (Josh, 2026-09-25), same choices as the 2026-08-15
+   timeline: the line icons from _includes/icon.html in the accent green,
+   ~30px, stroke 1.5, in a column left of each step. No rail: the rows'
+   hairlines already join the steps. */
+.proc-row{grid-template-columns:clamp(34px,3.6vw,44px) minmax(0,1fr);column-gap:clamp(16px,2.4vw,32px);}
+.proc-ic{color:var(--accent);padding-top:2px;}
+.proc-ic svg{width:clamp(26px,3vw,32px);height:clamp(26px,3vw,32px);stroke-width:1.5;display:block;}
+@media(max-width:760px){.proc-row{grid-template-columns:32px minmax(0,1fr);}.proc-body{grid-column:2;}}
+/* Pledge: no numerals (the ten are a set, not a sequence, and 01-10 read as a
+   ranking); regular-weight titles like every other small serif heading. */
+.pledge-item .pledge-n{display:none;}
+.pledge-item{grid-template-columns:minmax(0,1fr);column-gap:0;}
+.pledge-item h4{font-weight:430;line-height:1.2;}
+
+/* Map framing (Josh, 2026-09-25). The viewBox now ends 6 units past the
+   outermost dots on both sides (Ridge Tahoe on the right; the Carson City
+   highway beyond it is clipped). Desktop: shifted left by half the column
+   gap so the lake sits centred between the list and the page margin, not in
+   its own column. Visual only (transform), so layout and sticky are untouched. */
+@media(min-width:861px){.map-hero .tahoe{transform:translateX(calc(clamp(28px,3.5vw,60px) / -2));}}

@@ -8,15 +8,13 @@ header:
   subheading: "Selected weddings across Lake Tahoe and the Sierra Nevada, each one
     built around a different landscape, venue, and couple."
 cta:
-  heading: "Let's bring your vision *to life.*"
-  body: "Bring a Pinterest board, a venue photo, or a feeling you can't quite name
-    yet, and we'll design from there."
-  button: "Share your inspiration"
+  heading: "See something *you love?*"
+  body: "Tell us your date and venue, and we'll let you know if it's open."
+  button: "Check your date"
 # Shared closing CTA on every individual wedding page.
 wedding_cta:
-  heading: "Tell us your *date.*"
-  body: "Our calendar is capped each season. Send your date and venue and we'll
-    let you know if yours is still open."
+  heading: Planning something *like this?*
+  body: "Tell us your date and venue, and we'll let you know if it's open."
   button: "Check your date"
 # Headings for the blocks on an individual wedding page.
 wedding:

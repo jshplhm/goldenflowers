@@ -12,7 +12,7 @@ layout: redesign
 
 <!-- Blog Post Header -->
 <header class="blog-header">
-  <span class="blog-category">{{ page.category | default: 'Blog' }}</span>
+  {%- comment -%} No category eyebrow (Josh, 2026-09-25): every post said BLOG. {%- endcomment %}
   <h1 class="blog-title"><span data-ed-fm="title" data-ed-src="{{ page.path }}">{{ page.title }}</span></h1>
   <div class="blog-meta">
     <!-- Date hidden from readers per migration strategy -->
