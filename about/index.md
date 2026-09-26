@@ -28,12 +28,6 @@ redirect_from:
    read them as "the older style of our site". Sections break on space and a
    hairline here like everywhere else. */
 
-/* Seasons, unboxed: four white cards on a tint was a panel inside a panel.
-   A hairline over each season is what the rest of the page's grids use. */
-.season-grid{gap:0 clamp(32px,4vw,56px);}
-.season-card{border:0;border-top:1px solid var(--line);border-radius:0;background:none;overflow:visible;}
-.season-card summary{padding:22px 0 16px;}
-.season-body{padding:0 0 clamp(28px,3vw,40px);}
 /* The four certainty points were bold serif at 1.6 leading; every other
    small serif heading on the site is regular weight at 1.2. */
 .cred-item h4{font-weight:430;line-height:1.2;}
@@ -151,27 +145,11 @@ redirect_from:
   </div>
 </section>
 
-<!-- SEASONAL AVAILABILITY -->
-<section class="block" id="seasonal-availability">
-  <div>
-  <span class="lab"><span data-ed="about:seasonal.label">{{ site.data.about.seasonal.label }}</span></span>
-  <h2 class="h-lg"><span data-ed="about:seasonal.heading">{{ site.data.about.seasonal.heading }}</span></h2>
-  <p class="prose" style="max-width:560px;margin-top:14px;"><span style="color:var(--fg2);"><span data-ed="about:seasonal.intro">{{ site.data.about.seasonal.intro }}</span></span></p>
-  <div class="season-grid">
-    {%- for season in site.data.about.seasonal.seasons %}
-    {%- assign si = forloop.index0 %}
-    <details class="season-card" open>
-      <summary><span class="season-name"><span data-ed="about:seasonal.seasons.{{ si }}.name">{{ season.name }}</span></span><span class="season-dates"><span data-ed="about:seasonal.seasons.{{ si }}.dates">{{ season.dates }}</span></span><span class="season-toggle"></span></summary>
-      <div class="season-body">
-        <ul class="flower-list">{% for f in season.flowers %}<li><span data-ed="about:seasonal.seasons.{{ si }}.flowers.{{ forloop.index0 }}">{{ f }}</span></li>{% endfor %}</ul>
-        <p class="season-note"><span data-ed="about:seasonal.seasons.{{ si }}.note">{{ season.note }}</span></p>
-      </div>
-    </details>
-    {%- endfor %}
-  </div>
-  <p class="season-foot"><span data-ed="about:seasonal.footnote">{{ site.data.about.seasonal.footnote }}</span></p>
-  </div>
-</section>
+{%- comment -%} Seasonal availability moved OFF this page (Josh, 2026-09-25):
+a 40-flower reference table was the longest thing on a page about who the
+studio is. The answer now lives in the /weddings FAQ "What flowers will be
+available for my date?", which was the only link to it. {%- endcomment %}
+<hr class="hr-line">
 
 <!-- VALUES -->
 <section class="block">
@@ -201,23 +179,3 @@ redirect_from:
   <a class="btn btn-ink" href="{{ site.baseurl }}/consultation-form"><span data-ed="about:closing.button">{{ site.data.about.closing.button }}</span> <span>&rarr;</span></a>
 </section>
 
-<script>
-/* Seasonal availability: desktop = always open & not collapsible; mobile = collapsed, expandable. */
-(function(){
-  var cards=[].slice.call(document.querySelectorAll('.season-card'));
-  if(!cards.length) return;
-  var mq=window.matchMedia('(min-width:861px)');
-  function apply(){
-    cards.forEach(function(d){
-      if(mq.matches){ d.open=true; d.dataset.lock='1'; }
-      else { d.dataset.lock=''; }
-    });
-  }
-  cards.forEach(function(d){
-    d.querySelector('summary').addEventListener('click', function(e){ if(d.dataset.lock==='1') e.preventDefault(); });
-  });
-  if(!mq.matches) cards.forEach(function(d){ d.open=false; });  // mobile: start collapsed
-  apply();
-  mq.addEventListener('change', apply);
-})();
-</script>

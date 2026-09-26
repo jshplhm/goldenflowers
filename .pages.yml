@@ -153,23 +153,6 @@ content:
         fields:
           - {name: label, label: "Small label", type: string}
           - {name: heading, label: "Text over the photo", type: string}
-      - name: seasonal
-        label: "Section: seasonal availability"
-        type: object
-        fields:
-          - {name: label, label: "Small label", type: string}
-          - {name: heading, label: "Heading", type: string}
-          - {name: intro, label: "Intro line", type: text}
-          - name: seasons
-            label: The four seasons
-            type: object
-            list: true
-            fields:
-              - {name: name, label: "Season name", type: string}
-              - {name: dates, label: "Dates", type: string}
-              - {name: flowers, label: "Flowers in season", type: string, list: true}
-              - {name: note, label: "Note", type: text}
-          - {name: footnote, label: "Footnote", type: text}
       - name: values
         label: "Section: philosophy"
         type: object
