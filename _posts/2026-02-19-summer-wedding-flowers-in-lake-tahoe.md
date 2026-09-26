@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Summer wedding flowers in lake tahoe: what’s in season and what holds up"
+title: "Summer wedding flowers in Lake Tahoe: what’s in season and what holds up"
 featured_image: "/assets/images/portfolio/tori-tucker/tori-tucker-16.jpg"
 date: 2026-02-19
 permalink: /natures-canvas-lake-tahoe-wedding-flowers/summer-wedding-flowers-in-lake-tahoe/

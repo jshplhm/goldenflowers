@@ -4,7 +4,7 @@ title: "Brooke and Josh"
 seo_title: "Brooke and Josh Wedding Flowers | Golden Flowers"
 permalink: /portfolio/brooke-josh
 portfolio_key: brooke-josh
-description: "A classic, garden inspired wedding in whites, cremes and blush."
+description: "Brooke & Josh at The Chateau in Incline Village: a classic garden wedding in white and cream garden roses and hydrangea, with a thread of blush."
 hero_photo: brooke-josh-01.jpg
 ---
 

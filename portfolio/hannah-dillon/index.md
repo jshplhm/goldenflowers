@@ -4,7 +4,7 @@ title: "Hannah and Dillon"
 seo_title: "Hannah and Dillon Wedding Flowers | Golden Flowers"
 permalink: /portfolio/hannah-dillon
 portfolio_key: hannah-dillon
-description: "A modern mountain soiree"
+description: "Hannah & Dillon at Austin Ridge above Truckee: a modern mountain wedding with a corten steel circle of magenta, raspberry and coral flowers."
 hero_photo: hannah-dillon-01.jpg
 ---
 

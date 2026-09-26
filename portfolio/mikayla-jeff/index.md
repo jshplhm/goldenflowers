@@ -4,7 +4,7 @@ title: "Mikayla & Jeff"
 seo_title: "Mikayla & Jeff Wedding Flowers | Golden Flowers"
 permalink: /portfolio/mikayla-jeff
 portfolio_key: mikayla-jeff
-description: "A modern and unique wedding inspired by Dr. Seuss"
+description: "Mikayla & Jeff at the PlumpJack Inn in Olympic Valley: a modern wedding inspired by Dr. Seuss, in lilac, white and trailing green."
 hero_photo: mikayla-jeff-11.jpg
 ---
 

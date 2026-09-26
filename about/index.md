@@ -6,6 +6,8 @@ permalink: /about
 description: "Golden Flowers is a Lake Tahoe floral studio led by Brittany, an artist and an agronomist, with a team of seasoned floral designers across the Sierra Nevada."
 canonical_url: https://goldenflorals.com/about
 redirect_from:
+  # Matches the menu label (2026-09-26); /about stays the ranked address.
+  - /studio
   - /about-us
 ---
 

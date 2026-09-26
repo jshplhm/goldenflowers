@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Seasonal flower selections for the lake tahoe bride"
+title: "Seasonal flower selections for the Lake Tahoe bride"
 featured_image: "/assets/images/portfolio/camille-max/camille-max-09.jpg"
 date: 2026-01-15
 permalink: /natures-canvas-lake-tahoe-wedding-flowers/seasonal-flower-selections-for-the-lake-tahoe-bride/

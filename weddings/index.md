@@ -6,6 +6,10 @@ permalink: /weddings
 description: "Golden Flowers designs seasonal, sustainable wedding flowers for Lake Tahoe, Truckee, and the Sierra Nevada. How our process works and what to expect on pricing."
 canonical_url: https://goldenflorals.com/weddings
 redirect_from:
+  # Short addresses that match the menu (2026-09-26): typed or shared, they land here;
+  # /weddings stays the address Google ranks.
+  - /pricing
+  - /process
   - /weddingflowers
   - /weddings-1
   # Retargeted here 2026-07-09 (were -> home): Squarespace's own URL mappings sent

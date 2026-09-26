@@ -32,7 +32,7 @@ defaults:
 lynn-aaron:
   photography: { name: "Elsa Boscarlello", url: "" }
   planning: { name: "", url: "" }
-  venue: { name: "Palisades High Camp", url: "/venues/palisades-high-camp" }
+  venue: { name: "Palisades High Camp", url: "/venues/palisades-tahoe" }
   catering: { name: "", url: "" }
   cake: { name: "", url: "" }
   rentals: { name: "", url: "" }
