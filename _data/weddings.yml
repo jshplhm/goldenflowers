@@ -184,12 +184,12 @@ pricing:
     # rendering, which is how the offer is withdrawn without touching markup.
   smaller:
     heading: If your budget is smaller
-    body: Full service takes the same design, sourcing, delivery, setup and
-      breakdown whether the order is large or small. On a small wedding that
-      work can cost more than the flowers themselves, which is a poor trade for
-      you. So tell us the number you have in mind and we'll suggest an a la
-      carte selection instead, with fewer pieces designed in your palette, the
-      scope agreed up front, and more of your money in the flowers.
+    body: Every wedding needs the same design, sourcing, delivery, setup and
+      breakdown, whatever its size. For a smaller wedding, that work can cost
+      more than the flowers themselves, and we'd rather your budget go toward
+      the flowers. So tell us the number you have in mind and we'll put
+      together an a la carte selection for you, with fewer pieces designed in
+      your palette and the scope agreed up front.
     button: Tell us your budget
 
 # What full-service covers. The six titles are what the /weddings FAQ already
