@@ -28,7 +28,7 @@ defaults:
     url: "/"
 
 lynn-aaron:
-  photography: { name: "TBC", url: "" }
+  photography: { name: "Elsa Boscarlello", url: "" }
   planning: { name: "", url: "" }
   venue: { name: "Palisades High Camp", url: "/venues/palisades-high-camp" }
   catering: { name: "", url: "" }
