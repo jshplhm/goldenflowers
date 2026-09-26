@@ -191,14 +191,14 @@ pricing:
     # rendering, which is how the offer is withdrawn without touching markup.
   smaller:
     heading: If your budget is smaller
-    body: A bigger wedding is more work, but the design, sourcing, delivery,
-      setup and breakdown behind it don't shrink much when a wedding gets
-      smaller. Below $5,000, that work takes up so much of the budget that too
-      little is left for the flowers, which is why that's where our weddings
-      begin. If your budget
-      is close to it, tell us the number you have in mind and we'll shape the
-      design around it, with fewer pieces in your palette and the scope agreed
-      up front.
+    # WITHDRAWN 2026-09-25 (Josh): with "Starting at $5,000" published, a note
+    # addressed to smaller budgets invites exactly the weddings Brittany will
+    # not take. Empty body = panel not rendered. The last wording was: "A
+    # bigger wedding is more work, but the design, sourcing, delivery, setup
+    # and breakdown behind it don't shrink much when a wedding gets smaller.
+    # Below $5,000, that work takes up so much of the budget that too little
+    # is left for the flowers, which is why that's where our weddings begin."
+    body: ""
     button: Tell us your budget
 
 # What full-service covers. The six titles are what the /weddings FAQ already
