@@ -1,14 +1,10 @@
 hero:
-  eyebrow: ""
   # The h1 reads on from the wordmark above it: "Golden Flowers / a luxury Lake
   # Tahoe wedding florist creating...". A plain definition of the business in a
   # real sentence, with the search phrase inside it rather than standing alone
   # as a four-word label. The title tag still carries the short phrase.
-  heading: a luxury Lake Tahoe wedding florist creating bold, artful and sustainable
-    floral design for couples getting married across the Sierra Nevada
-  subheading: Bold, artful and sustainable wedding flowers for Lake Tahoe and the
-    Sierra Nevada.
-  button: See our work
+  heading: a luxury Lake Tahoe wedding florist creating artful, sustainable floral
+    design for couples getting married across the Sierra Nevada
 intro:
   # Label intentionally blank (Josh, 2026-09-23): the eyebrow came off the
   # facts section on 09-22 and this was the last one left, which made it the
@@ -20,56 +16,46 @@ intro:
   # regrouped so the block has a shape instead of being a wall.
   # The opening sentence moved to the hero, where it is the h1. Nothing is lost:
   # what was the second sentence leads here now.
-  lead: 'Our philosophy is simple: we design around what California grows best at
-    the moment you get married.'
-  body: By sourcing wedding flowers seasonally and locally, we ensure your flowers
-    belong to the landscape where you say I do. To us, each wedding is a piece of
-    art with its own unique vision. Our designs are refined and grounded in texture
-    and movement, curated around your venue and your season.
+  lead: We design around what California grows best at the moment you get married.
+  body: Your flowers belong to the landscape where you say I do. To us, each
+    wedding is a piece of art with its own vision, refined and grounded in texture
+    and movement, and curated around your venue.
   # Blank (Josh, 2026-09-23). It was the third sentence in a row saying the
   # same thing: the lead says we design around what California grows, the body
   # says we source seasonally and locally, and this said it once more with the
   # softest hedge of the three. Type a line back in here and it renders again,
   # at body size rather than display size.
   close: ""
-  link: Read our story
+  link: ""
 why:
-  label: Why Golden Flowers
-  heading: We grow flowers ourselves on California soil, and source the rest close
-    to where you'll *say I do.*
+  # Three cards, one per part of the story, each told once on this page (Josh,
+  # 2026-09-26): the people, the flowers, the planning. Sourcing order: the
+  # California growers first, our own plot second. We farm, but we do not own a
+  # farm: say "our plot", never "our farm" or "our fields".
+  # Any card can carry a link. Set both link fields or neither; the card
+  # renders the link only when both are filled, so reordering keeps each link
+  # with its own card.
   facts:
-    # We farm, but we do not own a farm: the plot is ours, the land is a shared
-    # organic community farm. Say "our plot", never "our farm" or "our fields".
-    # Josh, 2026-09-23.
-    - title: Locally grown
-      body: We grow on our own plot at an organic community farm in Nevada County,
-        worked with regenerative practices, where Brittany's expertise in agronomy
-        and soil science shapes every planting. What we don't grow ourselves comes
-        from California growers we trust.
-    - title: Sustainable, always
-      body: Seasonal sourcing, foam-free, reusable mechanics, and growing practices
-        that give back to the soil. Our full pledge is written down, in public.
-      # Any fact can carry a link. Set both fields or neither; the card renders
-      # the link only when both are filled, so reordering the facts in the CMS
-      # keeps each link with its own card.
+    - title: Designed by artists
+      body: Golden Flowers is led by Brittany, an artist and an agronomist, and built
+        around a team of seasoned designers. The team that designs your flowers is
+        the team that shows up to set them.
+      link: Meet the studio
+      link_url: /about
+    - title: Seasonal and sustainable
+      body: We source from California growers we trust and grow on our own plot at an
+        organic community farm in Nevada County. Foam-free, reusable mechanics, and
+        a pledge written down in public.
       link: Read the pledge
       link_url: /sustainability
-    - title: Depth over volume
-      body: "Fewer weddings per season, more time on yours. We intentionally take
-        fewer weddings than most studios, so that yours isn't slotted into a
-        production line. "
-work:
-  heading: Selected weddings
-  # The only way out of the preview grid, sitting under the photos: a reader
-  # decides they want more after looking, not before. The old header link
-  # (work.link) was removed 2026-08-10 because two exits from one section is
-  # one too many.
-  more: See more weddings
-# Sits directly under the wedding previews, where "what would this cost?" is
-# the next question a reader has. Deliberately carries no numbers: the figures
+    - title: Fewer weddings, more time on yours
+      body: We intentionally take fewer weddings than most studios, so yours isn't
+        slotted into a production line. Everything is planned months ahead, with
+        backups in place for everything that matters.
+# Sits at the foot of the page, right before the closing ask (2026-09-26): the
+# reasons, the work and a review come first. Deliberately carries no numbers: the figures
 # live on one page (/weddings) so they can never drift out of step here.
 process:
-  label: Process & pricing
   heading: What it costs, and how it works.
   body: Full service design from the first conversation through breakdown at the
     end of the night, with real numbers before you ask for them.
@@ -77,9 +63,6 @@ process:
 marquee:
   label: We design at 30+ venues across the Sierra
   link: See all venues
-immersive:
-  label: From the field
-  heading: Grown and gathered for a single day in the mountains.
 testimonial:
   quote: '"Brittany and her team are the utmost in artistry, professionalism, and
     support. The presentation at the wedding was *through-the-roof beautiful.*"'
@@ -91,6 +74,5 @@ cta:
   # closing ask as every other page. See the comment in index.md for why the
   # 09-23 "the question already says it" call was reversed.
   heading: Is your date *still open?*
-  body: We take on a limited number of weddings a season. Tell us your date and
-    venue, and we'll let you know if it's open.
+  body: Tell us your date and venue, and we'll let you know if it's open.
   button: Check your date

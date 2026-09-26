@@ -69,14 +69,9 @@ planning:
 beliefs:
   heading: To us, every wedding is a unique piece of art.
   paragraphs:
-    - Each one is curated around its venue, season, and vision. We design around
-      what California grows best at the moment you get married.
-    # Same wording as the home page's "Locally grown" card: "our plot", never
-    # "our farm" or "our fields".
-    - We grow on our own plot at an organic community farm in Nevada County, and
-      what we don't grow ourselves comes from California growers we trust.
-      Seasonal sourcing, foam-free, reusable mechanics, and growing practices
-      that give back to the soil.
+    - Each one is curated around its venue, season, and vision, with flowers from
+      California growers we trust and our own small plot. How we source and grow
+      is written down, in public.
   link: Read our sustainability pledge
 testimonial:
   quote: '"From the start they had a *streamlined process* and I never felt

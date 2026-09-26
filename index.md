@@ -108,20 +108,6 @@ the moment one pale photo wants it and another does not, the machinery is here.
   </div>
 </section>
 
-<!-- PHOTOGRAPHS, and Process & Pricing beside one of them. The signpost used to
-     be its own full-width centred band; in a column next to a picture the page
-     stops starting and stopping. -->
-<section class="pband">
-  <div class="pb-row pb-row--split">
-    <div class="pb-txt">
-  <h2 class="disp"><span data-ed="home:process.heading">{{ site.data.home.process.heading }}</span></h2>
-  <p><span data-ed="home:process.body">{{ site.data.home.process.body }}</span></p>
-  <p class="marq-foot"><a href="{{ site.baseurl }}/weddings" class="txt-link"><span data-ed="home:process.link">{{ site.data.home.process.link }}</span> &rarr;</a></p>
-    </div>
-    <figure class="pb-pic"><img src="{{ site.baseurl }}/assets/images/portfolio/katie-james/katie-james-08.jpg"{% include img-dims.html path="/assets/images/portfolio/katie-james/katie-james-08.jpg" %}{% include img-crop.html path="/assets/images/portfolio/katie-james/katie-james-08.jpg" ctx="home" %} sizes="(max-width:820px) 87vw, (max-width:1340px) 45vw, 600px" loading="lazy" alt="Stone-walled ceremony room: a couple before their officiant under a towering arch of blush, peach and cream blooms"></figure>
-  </div>
-</section>
-
 <section class="pband">
   <div class="pb-row pb-row--full">
     <figure class="pb-pic"><img src="{{ site.baseurl }}/assets/images/blog/palisades-tahoe-wedding-high-camp/palisades-tahoe-wedding-high-camp-01.jpg"{% include img-dims.html path="/assets/images/blog/palisades-tahoe-wedding-high-camp/palisades-tahoe-wedding-high-camp-01.jpg" %}{% include img-crop.html path="/assets/images/blog/palisades-tahoe-wedding-high-camp/palisades-tahoe-wedding-high-camp-01.jpg" ctx="home" %} sizes="(max-width:1340px) 87vw, 1166px" loading="lazy" alt="A couple on the pier at the water's edge, the snow-covered Sierra across the lake behind them"></figure>
@@ -224,6 +210,22 @@ the moment one pale photo wants it and another does not, the machinery is here.
   <div class="pb-row flip">
     <figure class="pb-pic"><img src="{{ site.baseurl }}/assets/images/portfolio/camille-max/camille-max-30.jpg"{% include img-dims.html path="/assets/images/portfolio/camille-max/camille-max-30.jpg" %}{% include img-crop.html path="/assets/images/portfolio/camille-max/camille-max-30.jpg" ctx="home" %} sizes="(max-width:820px) 87vw, (max-width:1340px) 47vw, 620px" loading="lazy" alt="A dark installation of burgundy ranunculus and trailing amaranthus over a black-draped table"></figure>
     <figure class="pb-pic"><img src="{{ site.baseurl }}/assets/images/portfolio/tori-tucker/tori-tucker-18.jpg"{% include img-dims.html path="/assets/images/portfolio/tori-tucker/tori-tucker-18.jpg" %}{% include img-crop.html path="/assets/images/portfolio/tori-tucker/tori-tucker-18.jpg" ctx="home" %} sizes="(max-width:820px) 87vw, (max-width:1340px) 40vw, 530px" loading="lazy" alt="A bouquet of pink garden roses and trailing greenery held against an ivory gown"></figure>
+  </div>
+</section>
+
+<!-- PROCESS & PRICING, moved to the foot of the page (mock 2026-09-26): the
+     reasons, the work and a review come first, then what it costs, then the ask.
+     Was: PHOTOGRAPHS, and Process & Pricing beside one of them. The signpost used to
+     be its own full-width centred band; in a column next to a picture the page
+     stops starting and stopping. -->
+<section class="pband">
+  <div class="pb-row pb-row--split">
+    <div class="pb-txt">
+  <h2 class="disp"><span data-ed="home:process.heading">{{ site.data.home.process.heading }}</span></h2>
+  <p><span data-ed="home:process.body">{{ site.data.home.process.body }}</span></p>
+  <p class="marq-foot"><a href="{{ site.baseurl }}/weddings" class="txt-link"><span data-ed="home:process.link">{{ site.data.home.process.link }}</span> &rarr;</a></p>
+    </div>
+    <figure class="pb-pic"><img src="{{ site.baseurl }}/assets/images/portfolio/katie-james/katie-james-08.jpg"{% include img-dims.html path="/assets/images/portfolio/katie-james/katie-james-08.jpg" %}{% include img-crop.html path="/assets/images/portfolio/katie-james/katie-james-08.jpg" ctx="home" %} sizes="(max-width:820px) 87vw, (max-width:1340px) 45vw, 600px" loading="lazy" alt="Stone-walled ceremony room: a couple before their officiant under a towering arch of blush, peach and cream blooms"></figure>
   </div>
 </section>
 

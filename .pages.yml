@@ -27,10 +27,7 @@ content:
         label: Hero (very top)
         type: object
         fields:
-          - {name: eyebrow, label: "Small label above the headline", type: string}
           - {name: heading, label: "Headline", type: string, description: "Put *asterisks* around words to italicize them."}
-          - {name: subheading, label: "Sub-headline", type: text}
-          - {name: button, label: "Button text", type: string}
       - name: intro
         label: Intro band
         type: object
@@ -41,13 +38,11 @@ content:
           - {name: close, label: "Closing line (large)", type: text}
           - {name: link, label: "Link to Studio", type: string, description: "Text of the link under the paragraphs. Leave empty to hide it."}
       - name: why
-        label: Why Golden Flowers
+        label: The three cards
         type: object
         fields:
-          - {name: label, label: "Small label", type: string}
-          - {name: heading, label: "Heading", type: string, description: "*asterisks* = italics"}
           - name: facts
-            label: The three facts
+            label: "Cards: the people, the flowers, the planning"
             type: object
             list: true
             fields:
@@ -55,32 +50,19 @@ content:
               - {name: body, label: "Text", type: text}
               - {name: link, label: "Link text (optional)", type: string, description: "Shows a link under this card, but only if the URL below is filled in too."}
               - {name: link_url, label: "Link URL (optional)", type: string, description: "A path on this site, e.g. /sustainability"}
-      - name: work
-        label: Selected weddings
-        type: object
-        fields:
-          - {name: heading, label: "Heading", type: string}
-          - {name: link, label: "Link text", type: string}
       - name: process
-        label: Process & pricing signpost
+        label: Process & pricing signpost (foot of the page)
         type: object
         fields:
-          - {name: label, label: "Small label", type: string}
           - {name: heading, label: "Heading", type: string}
           - {name: body, label: "Text", type: text, description: "Keep prices off this page: the numbers live on Pricing only."}
           - {name: link, label: "Link text", type: string}
       - name: marquee
-        label: Scrolling venue strip
+        label: Venues (beside the lake map)
         type: object
         fields:
           - {name: label, label: "Label", type: string}
           - {name: link, label: "Link text", type: string}
-      - name: immersive
-        label: Full-width photo band
-        type: object
-        fields:
-          - {name: label, label: "Small label", type: string}
-          - {name: heading, label: "Text over the photo", type: string}
       - name: testimonial
         label: Featured review
         type: object
