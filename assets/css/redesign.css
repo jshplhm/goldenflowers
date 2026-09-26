@@ -2042,7 +2042,10 @@ body.nav-hidden .venue-breadcrumb{top:0;}
      the rail has to give up its two halves to the grid to let it through. */
   .mh-rail{display:contents;}
   .mh-head{grid-column:1;grid-row:1;}
-  .mh-map{grid-column:1;grid-row:2;align-self:auto;position:static;}
+  .mh-map{grid-column:1;grid-row:2;align-self:auto;position:relative;top:0;}
+  /* relative, not static: the name card is absolutely positioned inside
+     .mh-map. Static sent it to the next positioned ancestor and the card
+     landed ~375px above its dot on phones and narrow windows (Josh, 09-25). */
   .mh-body{grid-column:1;grid-row:3;padding-top:0;}
   .mh-rail .venues-more{grid-column:1;grid-row:4;padding-top:clamp(26px,5vw,38px);}
   .map-hero .tahoe{max-width:520px;max-height:none;}
