@@ -11,27 +11,33 @@ hero:
     couples who marry in Lake Tahoe and across the Sierra Nevada.
 brittany:
   heading: Brittany founded and leads the studio.
+  # Designer first (Josh, 2026-09-26): the section opens on the artist, then
+  # the agronomy, then what the agronomy means for your wedding. "Formal" or
+  # "professional" training is fine to say.
   paragraphs:
-    - Her background runs deep on both sides, with a master's degree in agronomy,
-      more than a decade in sustainable agriculture across Europe, North and
-      South America and New Zealand, and floral design training in Europe.
-    # Her training was in Europe but not a university program: never "formal".
+    - She is a floral designer with formal training in Europe, and every
+      proposal starts with her. She designs each one as if it's the only one
+      she's ever working on, refined and grounded in texture and movement,
+      choosing every flower for how it grows, moves and holds, and for what it
+      brings to the whole.
     # The Whole Foods role was new product development; the point of it here is
-    # the planning discipline that work demands (Josh, 2026-09-26).
-    - As an agronomist, she worked with Whole Foods to bring new varieties to
-      market in a field where almost nothing is certain, from the weather to the
-      yield. That work runs on planning months ahead and a backup for every step
-      that matters, and she plans a wedding the same way.
-    - The design is where the artist comes in. Brittany designs each proposal as
-      if it's the only one she's ever working on, choosing every flower for how
-      it grows, moves and holds, and for what it brings to the whole.
+    # the planning discipline that work demands, told lightly.
+    - Her background runs just as deep on the science side, with a master's
+      degree in agronomy and more than a decade in sustainable agriculture across
+      Europe, North and South America and New Zealand. As an agronomist, she
+      worked with Whole Foods to bring new varieties to market in a field where
+      almost nothing is certain, from the weather to the yield.
+    - That work runs on planning far in advance and a backup for every step that
+      matters, and she plans a wedding the same way.
 team:
   heading: The team that designs your flowers is the team that shows up to set them.
   # Don't characterise how the team is employed (no "collective", "freelance",
   # "chosen for each wedding").
   paragraphs:
-    - "Brittany leads a team of accomplished florists: seasoned designers we're
-      privileged to build with."
+    # Never "florists": they are designers and artists (Josh, 2026-09-26).
+    - Brittany leads a team of accomplished floral designers with experience at
+      the region's best studios and venues, artists we're privileged to build
+      with.
     - The same hands arrange your flowers in the studio, adjust them in the room,
       and break everything down when the night ends.
 planning:
@@ -44,9 +50,11 @@ planning:
     - Most of the work that protects your day happens months before anyone sees a
       flower.
   points:
-    - title: Planned in advance
-      body: Sourcing, timing, and logistics are mapped months ahead, with backups in
-        place for everything that matters.
+    # Backups and "months ahead" are said above; this card is what the
+    # planning covers.
+    - title: Every detail mapped
+      body: Sourcing, delivery, timing and setup are worked out in detail long
+        before the day.
     - title: Built for the mountains
       body: An agronomist's understanding of how every stem performs across a full
         day, conditioned for the altitude and the forecast we're actually going
