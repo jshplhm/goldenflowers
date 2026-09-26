@@ -212,7 +212,7 @@ sitemap: false
       <span class="lab"><span data-ed="consultation:reach.label">{{ site.data.consultation.reach.label }}</span></span>
       <p><a href="tel:5305577689">(530) 557-7689</a></p>
       <p><a href="mailto:brittany@goldenflorals.com">brittany@goldenflorals.com</a></p>
-      <p><a href="https://www.instagram.com/goldenflowersfloraldesign/" target="_blank" rel="noopener">@goldenflowersfloraldesign</a></p>
+      <p><a href="https://www.instagram.com/goldenflowersfloraldesign/" target="_blank" rel="noopener">Instagram</a></p>
       <p class="where"><span data-ed="consultation:reach.location">{{ site.data.consultation.reach.location }}</span></p>
       <p class="note"><span data-ed="consultation:reach.note">{{ site.data.consultation.reach.note }}</span></p>
     </div>
