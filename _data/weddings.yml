@@ -143,9 +143,14 @@ pricing:
   #   2026-08-28  the three-tier ladder, $8,000 floor / $12-20k / $20,000+
   #   2026-09-15  one price, "$5,000 full service"
   #
-  # `figures` is a list and the template follows it: two reads as the range and
-  # the ceiling, one reads as the answer, three starts to read as a ladder
-  # again, which is the shape we keep coming back off. Keep it at two.
+  # `figures` is a list and the template follows it. 2026-09-25 (Brittany via
+  # Josh): THREE figures. $5,000 is the smallest wedding we take, NOT "where
+  # full service starts" (that is nearer $8k, and the site deliberately does
+  # not split full service from a la carte; that is a consultation topic).
+  # No a la carte offer below $5,000 anywhere. The floor is given the same
+  # weight as the typical range and the top end. This reverses "keep it at two"
+  # and the no-published-floor position above, on purpose: Brittany wants the
+  # floor said plainly rather than left to a call.
   #
   # The FAQ "What does a full-service wedding florals investment typically look
   # like?" in _data/faqs.yml carries these same numbers. THEY HAVE TO AGREE.
@@ -154,12 +159,15 @@ pricing:
   heading: What it costs.
   intro: What a wedding costs moves with the venue, how much of the room you want
     designed, the season and your guest count, so every wedding is quoted on its
-    own. What we can tell you is where the weddings we have done around the lake
-    tend to land.
+    own. What we can tell you is where our weddings begin, and where the ones
+    we've done around the lake tend to land.
   figures:
-    - amount: "$12,000 to $18,000"
+    - amount: Beginning at $5,000
+      caption: The starting point for any wedding we take on. We'll talk through
+        what your budget covers at the consultation.
+    - amount: "$10,000 – $16,000"
       caption: Where a typical 100 guest full service wedding lands.
-    - amount: Above $25,000
+    - amount: Above $20,000
       caption: Larger guest counts, multiple installations, a room designed end to end.
     # Four things, because four is what a couple can hold. Each one is a lever
     # they actually control, so the list doubles as the agenda for the
@@ -184,12 +192,13 @@ pricing:
     # rendering, which is how the offer is withdrawn without touching markup.
   smaller:
     heading: If your budget is smaller
-    body: Every wedding needs the same design, sourcing, delivery, setup and
-      breakdown, whatever its size. For a smaller wedding, that work can cost
-      more than the flowers themselves, and we'd rather your budget go toward
-      the flowers. So tell us the number you have in mind and we'll put
-      together an a la carte selection for you, with fewer pieces designed in
-      your palette and the scope agreed up front.
+    body: A bigger wedding is more work, but the design, sourcing, delivery,
+      setup and breakdown behind it don't shrink much when a wedding gets
+      smaller. Below $5,000, that work would cost more than the flowers
+      themselves, which is why that's where our weddings begin. If your budget
+      is close to it, tell us the number you have in mind and we'll shape the
+      design around it, with fewer pieces in your palette and the scope agreed
+      up front.
     button: Tell us your budget
 
 # What full-service covers. The six titles are what the /weddings FAQ already

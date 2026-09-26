@@ -1,7 +1,7 @@
 <footer class="site-footer">
   <div class="foot-in">
     <div class="foot-lead">
-      <div class="foot-brand">Golden Flowers</div>
+      <a class="foot-brand" href="{{ site.baseurl }}/" aria-label="Golden Flowers, home">Golden Flowers</a>
       {%- comment -%}
         No tagline (Josh, 2026-09-25). "Artful and sustainable floral design
         for weddings across Lake Tahoe & the Sierra Nevada" repeated on every
@@ -33,45 +33,34 @@
         the opposite case and sits in Studio: it is more of the work, not a way
         to get in touch.
       {%- endcomment -%}
+      {%- comment -%}
+        NO COLUMN HEADINGS (Josh, 2026-09-25). A column of page names and a
+        column holding a phone number and an email explain themselves; three
+        small green caps labels were the busiest thing in the footer.
+
+        First column mirrors the top nav, in its order. Home is dropped: the
+        wordmark above links home. Second column is everything else, ending
+        on Contact, which is back now that /consultation-form is a page worth
+        sending people to (it was removed when the page was two columns of
+        prose over a form). People look for "Contact" in a footer by habit.
+        Instagram stays with the pages: it is more of the work, not a way to
+        reach us.
+      {%- endcomment %}
       <div>
-        <h4>Explore</h4>
-        <a href="{{ site.baseurl }}/">Home</a>
         <a href="{{ site.baseurl }}/portfolio">Portfolio</a>
         <a href="{{ site.baseurl }}/venues">Venues</a>
         <a href="{{ site.baseurl }}/weddings">Pricing</a>
+        <a href="{{ site.baseurl }}/about">Studio</a>
       </div>
       <div>
-        {%- comment -%} "About", not "Studio": the About page is now called
-        Studio in the nav, and a column headed Studio whose first link is also
-        Studio reads as a mistake. Josh, 2026-09-23. {%- endcomment -%}
-        <h4>About</h4>
-        <a href="{{ site.baseurl }}/about">Studio</a>
         <a href="{{ site.baseurl }}/sustainability">Sustainability</a>
         <a href="{{ site.baseurl }}/blog">Blog</a>
         <a href="https://www.instagram.com/goldenflowersfloraldesign/" target="_blank" rel="noopener">Instagram</a>
+        <a href="{{ site.baseurl }}/consultation-form">Contact</a>
       </div>
       <div>
-        <h4>Contact</h4>
-        {%- comment -%}
-          No "Contact us" link. It pointed at /consultation-form, one line above
-          the phone number and email that ARE the contact details, and every
-          button on the site already opens that form as a lightbox. The page
-          stays reachable by URL and remains the no-JS fallback for those
-          buttons; it just isn't advertised.
-        {%- endcomment -%}
         <a href="tel:5305577689">(530) 557-7689</a>
         <a href="mailto:brittany@goldenflorals.com">brittany@goldenflorals.com</a>
-        {%- comment -%}
-          Instagram moved to the Studio column as "Instagram" on 2026-09-22. As
-          a raw handle among a phone number and an email it read as a third way
-          to contact us, which it isn't; it is somewhere else to see the work,
-          which is what the Studio column is for.
-
-          Order here is how someone actually reads a contact block: how to reach
-          us first, then where we are and when. The street address is gone from
-          visible text entirely (it lives in the JSON-LD and on the Google
-          Business Profile) because there are no walk-ins.
-        {%- endcomment -%}
         {%- for line in site.data.footer.studio %}
         <p><span data-ed="footer:studio.{{ forloop.index0 }}">{{ line }}</span></p>
         {%- endfor %}

@@ -15,10 +15,10 @@ llms.txt lists every /weddings question, hidden or not. Josh, 2026-09-25.
 <div class="faq-list">
   {%- for faq in faq_entry.faqs %}
   {%- if faq.on_page == false %}{% continue %}{% endif %}
-  {%- comment -%} The first answer starts open: a wall of closed rows asks the
-  reader to guess which one is worth a click, and the first question is the one
-  most of them have. {%- endcomment -%}
-  <details class="faq-card"{% if forloop.first %} open{% endif %}>
+  {%- comment -%} All closed (Josh, 2026-09-25). An open first answer pushed the
+  rest of the list off a phone screen and chose what to read by position; a
+  closed list reads as a table of contents you scan for your question. {%- endcomment -%}
+  <details class="faq-card">
     <summary><span class="faq-q"><span data-ed="faqs:pages.{{ faq_pi }}.faqs.{{ forloop.index0 }}.q">{{ faq.q }}</span></span><span class="faq-toggle"></span></summary>
     {%- if faq.a contains '<' %}
     <div class="faq-a">{{ faq.a | replace: 'href="/', 'href="@@B@@/' | replace: '@@B@@', site.baseurl }}</div>

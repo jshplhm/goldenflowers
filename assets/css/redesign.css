@@ -840,7 +840,7 @@ nav.site-nav .pill{white-space:nowrap;}
    needs ~330px and the brand column is .85fr of the footer grid, so between
    roughly 900 and 1100px it wrapped to two lines and stopped reading as a
    wordmark. It scales with the column instead. */
-.foot-brand{font-family:var(--d);font-size:clamp(1.15rem,1.6vw,1.5rem);color:var(--ink);
+.foot-brand{display:inline-block;font-family:var(--d);font-size:clamp(1.15rem,1.6vw,1.5rem);color:var(--ink);
   letter-spacing:.24em;text-transform:uppercase;line-height:1.2;white-space:nowrap;
   -webkit-text-stroke:.25px currentColor;}
 .foot-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(24px,3vw,48px);}
@@ -884,7 +884,7 @@ nav.site-nav .pill{white-space:nowrap;}
      so every line starts on the same left edge. (Two-up pairs floated at
      different offsets, Josh; and the email is wider than a phone column.) */
   .foot-cols > div:last-child{grid-column:1 / -1;display:flex;flex-wrap:wrap;}
-  .foot-cols > div:last-child > :is(h4,a){flex-basis:100%;}
+  .foot-cols > div:last-child > a{flex-basis:100%;}
   .foot-cols > div:last-child > p + p::before{content:"·";margin:0 9px;color:var(--mute);}
 }
 
@@ -1786,6 +1786,20 @@ body.nav-hidden .venue-breadcrumb{top:0;}
 .invest-figs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
   gap:clamp(24px,3vw,56px);margin-top:clamp(34px,4.4vw,64px);}
 .invest-figs[data-n="1"]{grid-template-columns:minmax(0,1fr);}
+/* THREE FIGURES (2026-09-25 mockup): one row each, amount left at full size,
+   caption right. Three across wrapped "$10,000 to $16,000" onto two lines at
+   every width; rows give all three the same size and the same line, and read
+   like the drivers list under them. */
+.invest-figs[data-n="3"]{grid-template-columns:minmax(0,1fr);row-gap:0;}
+.invest-figs[data-n="3"] .invest-fig{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);
+  column-gap:clamp(24px,4vw,64px);align-items:baseline;padding:clamp(18px,2.2vw,28px) 0;}
+.invest-figs[data-n="3"] .invest-fig:last-child{border-bottom:1px solid var(--line);}
+.invest-figs[data-n="3"] .invest-amount{white-space:nowrap;}
+.invest-figs[data-n="3"] .invest-cap{margin-top:0;}
+@media(max-width:640px){
+  .invest-figs[data-n="3"] .invest-fig{grid-template-columns:minmax(0,1fr);}
+  .invest-figs[data-n="3"] .invest-cap{margin-top:10px;}
+}
 .invest-fig{border-top:1px solid var(--line);padding-top:clamp(18px,2.2vw,28px);}
 .invest-amount{font-family:var(--d);font-weight:430;font-optical-sizing:auto;
   font-size:clamp(34px,4.6vw,66px);line-height:1;letter-spacing:-.03em;color:var(--ink);}
