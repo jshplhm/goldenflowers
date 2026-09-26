@@ -1,99 +1,56 @@
 {%- comment -%}
-  The next few weddings, on a rail you swipe.
+  "More weddings": the next three, at the foot of this one.
 
-  ROTATED AND CAPPED (Josh, 2026-09-24). It used to show all nine others in
-  portfolio order, so every wedding page opened on very nearly the same rail
-  in the same sequence: browse two weddings and the portfolio starts to feel
-  smaller than it is. The list now STARTS at the wedding after this one and
-  wraps, and stops at MAX, so no two pages open the same way.
+  REPLACED THE FIVE-CARD RAIL (Josh, 2026-09-26). The rail was the heaviest
+  object on the page, sat directly above the closing ask, printed names over
+  the photographs on a dark wash nothing else on the site uses, and on a phone
+  showed a card and a half with the second name cut off.
 
-  Cover photo = band[1], the middle of the three photos portfolio_meta.yml
-  reserves for the hero shot. Change the cover by reordering that wedding's
-  `band` list, or in /edit under Cover photos.
+  One set of three, two layouts. Desktop: three photographs in a still row,
+  captioned underneath. Phone (<=720px): three compact rows, small photo +
+  name + venue, so it cannot be mistaken for more of this wedding's gallery
+  (Josh's reason for rows over photos on the phone). "All weddings" sits top
+  right on both.
+
+  WHICH THREE: the next weddings in portfolio order (_data/portfolio_meta.yml,
+  set in /edit under Portfolio order), wrapping from the last back to the
+  first. Hidden weddings are skipped. A hidden wedding's own page still gets
+  three: the first shown weddings after where it sits in the list.
+
+  Cover = band[1], as the rail used, with ctx="rail" so a framing already set
+  on it in /edit carries over.
 
   Params: slug.
 {%- endcomment -%}
-{%- assign MAX = 5 -%}
+{%- assign MAX = 3 -%}
 {%- assign wp = site.data.portfolio_page.wedding -%}
-{%- comment -%} Find where this wedding sits, then walk forward from it and
-wrap, so the rail begins somewhere different on every page. {%- endcomment -%}
-{%- comment -%} Hidden weddings are off this rail as well as off /portfolio: a
-rail that leads to a wedding the portfolio will not show is a route back into
-work we took down. The rotation runs over the visible list, so hiding one does
-not leave a gap in anybody's five. {%- endcomment -%}
-{%- assign all = site.data.portfolio_meta | where_exp: "w", "w.hidden != true" -%}
-{%- assign n = all.size -%}
+{%- assign meta = site.data.portfolio_meta -%}
+{%- assign n = meta.size -%}
 {%- assign here = 0 -%}
-{%- for w in all -%}{%- if w.slug == include.slug -%}{%- assign here = forloop.index0 -%}{%- endif -%}{%- endfor -%}
+{%- for w in meta -%}{%- if w.slug == include.slug -%}{%- assign here = forloop.index0 -%}{%- endif -%}{%- endfor -%}
 {%- assign others = "" | split: "" -%}
 {%- for step in (1..n) -%}
   {%- if others.size >= MAX -%}{%- break -%}{%- endif -%}
   {%- assign idx = here | plus: step | modulo: n -%}
-  {%- assign w = all[idx] -%}
-  {%- unless w.slug == include.slug -%}{%- assign others = others | push: w -%}{%- endunless -%}
+  {%- assign w = meta[idx] -%}
+  {%- if w.hidden != true and w.slug != include.slug -%}{%- assign others = others | push: w -%}{%- endif -%}
 {%- endfor -%}
 {%- if others.size > 0 -%}
-<section class="wp-onward" data-onward>
-  {%- comment -%}
-    Arrows sit where "Browse the portfolio" used to. The rail already holds
-    every other wedding and ends on a card back to /portfolio, so the header
-    link was a third route to the same place, and it was occupying the one spot
-    on the page where a desktop visitor needed a control: a rail that only
-    scrolls is unusable with a plain mouse wheel.
-
-    Desktop only. On a phone the swipe is the control and the arrows would just
-    take up room in the stacked header.
-  {%- endcomment -%}
-  <div class="wp-oh">
-    <h2>{{ wp.more_heading }}</h2>
-    <div class="wp-onav">
-      <button class="testi-nav" type="button" data-onward-prev aria-label="Previous weddings">&larr;</button>
-      <button class="testi-nav" type="button" data-onward-next aria-label="Next weddings">&rarr;</button>
-    </div>
+<section class="wp-more">
+  <div class="wm-h">
+    <h2><span data-ed="portfolio_page:wedding.more_heading">{{ wp.more_heading }}</span></h2>
+    <a class="wm-all" href="{{ site.baseurl }}/portfolio"><span data-ed="portfolio_page:wedding.all_link">{{ wp.all_link }}</span> <span aria-hidden="true">&rarr;</span></a>
   </div>
-  <div class="wp-og" data-onward-row tabindex="0" role="group" aria-label="{{ wp.more_heading }}, scrollable">
+  <div class="wm-g">
     {%- for m in others -%}
-      {%- assign s = m.slug -%}
-    <a class="wp-ocard" href="{{ site.baseurl }}/portfolio/{{ s }}">
-      {%- assign rail_path = "/assets/images/portfolio/" | append: s | append: "/" | append: s | append: "-" | append: m.band[1] | append: ".jpg" -%}
-      <img src="{{ site.baseurl }}{{ rail_path }}"{% include img-dims.html path=rail_path %}{% include img-crop.html path=rail_path ctx="rail" %} alt="{{ m.name }} wedding flowers at {{ m.venue }}{% if m.place != '' %}, {{ m.place }}{% endif %}" loading="lazy" sizes="(max-width:900px) 76vw, 28vw">
-      <span class="wp-oc"><span class="wp-on">{{ m.venue }}</span><h3>{{ m.name }}</h3></span></a>
-    {%- endfor -%}
-    {%- comment -%}
-      The rail ends somewhere, so end it on the way out rather than on a wall.
-    {%- endcomment -%}
-    <a class="wp-ocard wp-oend" href="{{ site.baseurl }}/portfolio">
-      <span>{{ wp.more_link }} <span aria-hidden="true">&rarr;</span></span></a>
+    {%- assign s = m.slug -%}
+    {%- assign cover = "/assets/images/portfolio/" | append: s | append: "/" | append: s | append: "-" | append: m.band[1] | append: ".jpg" %}
+    <a class="wm-card" href="{{ site.baseurl }}/portfolio/{{ s }}">
+      <div class="wm-ph"><img src="{{ site.baseurl }}{{ cover }}"{% include img-dims.html path=cover %}{% include img-crop.html path=cover ctx="rail" %} alt="{{ m.name }} wedding flowers at {{ m.venue }}{% if m.place != '' %}, {{ m.place }}{% endif %}" loading="lazy" sizes="(max-width:720px) 64px, 30vw"></div>
+      <div class="wm-tx"><h3>{{ m.name }}</h3><p>{{ m.venue }}</p></div>
+      <span class="wm-arr" aria-hidden="true">&rarr;</span>
+    </a>
+    {%- endfor %}
   </div>
-
-{%- comment -%}
-  This script lives INSIDE the section on purpose. Sitting between </section>
-  and the closing .cta it became an element between them, and the
-  `.wp-onward + .cta` hairline that keeps the two tint bands from reading as one
-  slab stopped matching.
-{%- endcomment -%}
-<script>
-/* Arrows for the rail. Same wrap-at-the-ends behaviour as the testimonials
-   carousel so the two scrollers on the site don't answer differently. */
-(function(){
-  var sec=document.querySelector('[data-onward]'); if(!sec) return;
-  var row=sec.querySelector('[data-onward-row]');
-  var prev=sec.querySelector('[data-onward-prev]'), next=sec.querySelector('[data-onward-next]');
-  function step(){
-    var card=row.querySelector('.wp-ocard');
-    var gap=parseFloat(getComputedStyle(row).columnGap)||14;
-    return card ? card.getBoundingClientRect().width+gap : row.clientWidth*0.8;
-  }
-  function maxLeft(){ return row.scrollWidth-row.clientWidth-2; }
-  next.addEventListener('click',function(){
-    if(row.scrollLeft>=maxLeft()) row.scrollTo({left:0,behavior:'smooth'});
-    else row.scrollBy({left:step(),behavior:'smooth'});
-  });
-  prev.addEventListener('click',function(){
-    if(row.scrollLeft<=2) row.scrollTo({left:maxLeft(),behavior:'smooth'});
-    else row.scrollBy({left:-step(),behavior:'smooth'});
-  });
-})();
-</script>
 </section>
 {%- endif -%}

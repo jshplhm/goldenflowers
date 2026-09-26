@@ -2554,56 +2554,38 @@ body.nav-hidden .venue-breadcrumb{top:0;}
 
 .wp-tbd{color:var(--mute);font-style:italic;opacity:.75;}
 
-/* ---- more weddings (not prev/next: with a short list the neighbours either
-   side are an accident of ordering and carry no meaning) ---- */
-/* The rule carries the break on its own; a tint here made the section shout,
-   and it butted into the tinted .cta below so the page ended on one long band.
-   The gallery's bottom padding above it does the rest. Bottom padding is not
-   optional, or the rail sits flush against the .cta. */
-.wp-onward{border-top:1px solid var(--line);
+/* ---- more weddings (Josh, 2026-09-26): the next three, replacing the
+   five-card rail. Desktop = three captioned photographs; phone = three rows
+   with a small photo, so it reads as a list and not as more gallery. The rule
+   carries the break; bottom padding keeps it off the tinted .cta. ---- */
+.wp-more{border-top:1px solid var(--line);
   padding:clamp(52px,6.5vw,92px) var(--pad-col) clamp(56px,7vw,104px);}
-.wp-oh{display:flex;align-items:center;justify-content:space-between;gap:20px;padding-bottom:18px;
-  margin-bottom:clamp(16px,2vw,26px);border-bottom:1px solid var(--line);}
-.wp-oh h2{font-family:var(--d);font-weight:430;font-size:var(--t-d3);
-  letter-spacing:-.012em;}
-.wp-onav{display:flex;gap:10px;flex:none;}
-/* Reuses .testi-nav so the site's two scrollers carry the same control. */
-
-/* The rail. --per is how many cards fit across the text column; the rest hang
-   off the right edge, so there is always one part-visible card saying "keep
-   going". It bleeds the full viewport width via negative margins and pays the
-   padding back inside, which is what lets a card sit under the edge of the
-   screen instead of stopping at the column. */
-.wp-og{--per:3.4;--rail-gap:clamp(10px,1.1vw,18px);
-  display:flex;gap:var(--rail-gap);overflow-x:auto;overscroll-behavior-x:contain;
-  scroll-snap-type:x mandatory;scroll-padding-inline:var(--pad-body);
-  margin-inline:calc(var(--pad-body) * -1);padding-inline:var(--pad-body);
-  scrollbar-width:none;-webkit-overflow-scrolling:touch;}
-.wp-og::-webkit-scrollbar{display:none;}
-.wp-ocard{flex:0 0 calc((100% - (var(--per) - 1) * var(--rail-gap)) / var(--per));
-  scroll-snap-align:start;position:relative;aspect-ratio:4/5;overflow:hidden;
-  display:block;background:var(--bg2);}
-.wp-og img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+.wm-h{display:flex;align-items:baseline;justify-content:space-between;gap:16px;
+  margin-bottom:clamp(20px,2.6vw,32px);}
+.wm-h h2{font-family:var(--d);font-weight:430;font-size:var(--t-d3);letter-spacing:-.012em;}
+.wm-all{flex:none;font-size:var(--t-ui);border-bottom:1px solid var(--line);padding-bottom:3px;
+  transition:border-color .25s ease;}
+.wm-all:hover{border-color:var(--accent);}
+.wm-g{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,1.8vw,24px);}
+.wm-card{display:block;}
+.wm-ph{overflow:hidden;border-radius:var(--r-img);aspect-ratio:4/5;background:var(--bg2);}
+.wm-ph img{width:100%;height:100%;object-fit:cover;display:block;
   transition:transform 1.2s cubic-bezier(.2,.7,.3,1);}
-.wp-og a:hover img{transform:scale(calc(var(--z,1) * 1.04));}
-.wp-og a:not(.wp-oend)::after{content:"";position:absolute;inset:0;
-  background:linear-gradient(to top,oklch(18% .02 150 / .62),transparent 58%);}
-.wp-oc{position:absolute;left:clamp(18px,1.9vw,28px);right:clamp(18px,1.9vw,28px);
-  bottom:clamp(16px,1.8vw,26px);z-index:2;color:var(--paper);}
-.wp-oc .wp-on{font-size:var(--t-tag);letter-spacing:.18em;text-transform:uppercase;opacity:.72;}
-.wp-oc h3{font-family:var(--d);font-weight:430;font-size:var(--t-d4);margin-top:5px;}
-/* Closing card: the way off the rail, quiet enough not to compete with a photo. */
-.wp-oend{background:var(--bg2);border:1px solid var(--line);display:flex;
-  align-items:center;justify-content:center;text-align:center;
-  padding:0 clamp(16px,2vw,26px);transition:border-color .25s ease;}
-.wp-oend span{font-size:var(--t-tag);letter-spacing:.12em;text-transform:uppercase;color:var(--accent);}
-.wp-oend:hover{border-color:var(--accent);}
-
-@media(max-width:900px){
-  .wp-og{--per:1.25;}
-  /* The swipe is the control on a phone, so the arrows go rather than take up
-     room in the header. */
-  .wp-onav{display:none;}
+.wm-card:hover .wm-ph img{transform:scale(calc(var(--z,1) * 1.03));}
+.wm-tx h3{font-family:var(--d);font-weight:430;font-size:var(--t-d4);letter-spacing:-.008em;
+  margin-top:14px;transition:color .2s;}
+.wm-tx p{font-size:var(--t-tag);letter-spacing:.14em;text-transform:uppercase;color:var(--mute);margin-top:4px;}
+.wm-card:hover h3{color:var(--accent);}
+.wm-arr{display:none;}
+@media(max-width:720px){
+  .wm-h{margin-bottom:0;padding-bottom:14px;border-bottom:1px solid var(--line);}
+  .wm-g{grid-template-columns:1fr;gap:0;}
+  .wm-card{display:grid;grid-template-columns:56px minmax(0,1fr) auto;align-items:center;column-gap:16px;
+    padding-block:12px;border-bottom:1px solid var(--line);}
+  .wm-ph{width:56px;height:70px;aspect-ratio:auto;border-radius:6px;}
+  .wm-tx h3{margin-top:0;font-size:1.25rem;}
+  .wm-tx p{font-size:.7rem;margin-top:3px;}
+  .wm-arr{display:block;color:var(--mute);}
 }
 
 /* ============================================================

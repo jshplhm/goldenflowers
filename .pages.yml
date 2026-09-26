@@ -371,9 +371,7 @@ content:
         type: object
         fields:
           - {name: more_heading, label: "More weddings heading", type: string}
-          - {name: more_link, label: "More weddings link", type: string}
-          - {name: strip_cta, label: "View the wedding link", type: string}
-          - {name: strip_label, label: "Swipe end card label", type: string}
+          - {name: all_link, label: "All weddings link", type: string}
 
   - name: credits
     label: Vendor credits

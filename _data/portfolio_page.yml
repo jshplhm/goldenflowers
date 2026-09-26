@@ -19,6 +19,4 @@ wedding_cta:
 # Headings for the blocks on an individual wedding page.
 wedding:
   more_heading: "More weddings"
-  more_link: "Browse the portfolio"
-  strip_cta: "View the wedding"
-  strip_label: "The full gallery"
+  all_link: "All weddings"
