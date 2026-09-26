@@ -60,15 +60,18 @@ the index it belongs to. {%- endcomment -%}
     panel no longer prints them, so this line is the only place they appear and
     the drift it was guarding against cannot happen.
 
+    VENUE ONLY, NO TOWN (Josh, 2026-09-26, "final answer"): the town came off
+    this line and off the /portfolio cards. `place` stays in portfolio_meta.yml
+    for image alt text and is editable in Pages CMS; nothing visible prints it.
+
     The venue name links to its own page when credits.yml gives it a /venues/
     url. That link used to live in the credits block at the foot of the page;
     it moved up here with the venue itself.
   {%- endcomment -%}
   <div class="wp-words">
     <h1 class="wp-name"><span data-ed="portfolio_meta:{{ include.slug }}.name">{{ m.name }}</span></h1>
-    {%- assign town_ = m.place | strip -%}
     {%- assign vurl = site.data.credits[include.slug].venue.url | default: "" -%}
-    <p class="wp-where">{% if vurl contains '/venues/' %}<a href="{{ site.baseurl }}{{ vurl }}"><span data-ed="portfolio_meta:{{ include.slug }}.venue">{{ m.venue }}</span></a>{% else %}<span data-ed="portfolio_meta:{{ include.slug }}.venue">{{ m.venue }}</span>{% endif %}{% if town_ != "" %}, <span data-ed="portfolio_meta:{{ include.slug }}.place">{{ m.place }}</span>{% else %}<span class="ed-empty">, <span data-ed="portfolio_meta:{{ include.slug }}.place" data-ed-hint="Add the town"></span></span>{% endif %}</p>
+    <p class="wp-where">{% if vurl contains '/venues/' %}<a href="{{ site.baseurl }}{{ vurl }}"><span data-ed="portfolio_meta:{{ include.slug }}.venue">{{ m.venue }}</span></a>{% else %}<span data-ed="portfolio_meta:{{ include.slug }}.venue">{{ m.venue }}</span>{% endif %}</p>
   </div>
 <figure class="wp-pic" data-ed-hero="{{ include.slug }}">
     {%- if wideFile -%}
@@ -151,7 +154,7 @@ the index it belongs to. {%- endcomment -%}
     {%- if shooter.name and shooter.name != "" -%}{%- assign shotempty = false -%}{%- endif -%}
     {%- comment -%}
       TWO ROWS, NOT FOUR (2026-09-24). Venue and Town came out. The line under
-      the couple's name already says "<venue>, <town>" two screens up, and the
+      the couple's name already says the venue two screens up, and the
       credits block at the foot of the page said the venue a third time. A
       value that appears three times on one page is not emphasis, it is a page
       that has not decided where the value lives. It lives under the name.
