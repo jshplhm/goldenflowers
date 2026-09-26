@@ -46,9 +46,9 @@
   {%- endif -%}
   {%- if src != "" -%}
 <figure class="page-pic">
-  <img src="{{ site.baseurl }}{{ src }}"{% include img-crop.html path=src ctx="page" %} alt="{{ hp.alt | default: include.v.venue_name }}"
+  <span class="pp-clip"><img src="{{ site.baseurl }}{{ src }}"{% include img-crop.html path=src ctx="page" %} alt="{{ hp.alt | default: include.v.venue_name }}"
        width="1500" height="844" loading="eager" fetchpriority="high"
-       sizes="(min-width:1500px) 1500px, 100vw">
+       sizes="(min-width:1500px) 1500px, 100vw"></span>
   {%- if credit and credit != "" %}
   <figcaption class="page-pic-credit">{{ credit }}</figcaption>
   {%- endif %}

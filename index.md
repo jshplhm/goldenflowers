@@ -55,8 +55,7 @@ the moment one pale photo wants it and another does not, the machinery is here.
   <figure class="ht-pic">
     <picture>
       <source media="(max-width:700px)" sizes="(max-width:1500px) 87vw, 1305px" srcset="{{ site.baseurl }}/assets/images/home-hero-laux-portrait.jpg">
-      <img src="{{ site.baseurl }}/assets/images/home-hero-laux.jpg"{% include img-dims.html path="/assets/images/home-hero-laux.jpg" %} sizes="(max-width:1500px) 87vw, 1305px" fetchpriority="high"
-           style="object-position:37% 72%;"
+      <img src="{{ site.baseurl }}/assets/images/home-hero-laux.jpg"{% include img-dims.html path="/assets/images/home-hero-laux.jpg" %}{% include img-crop.html path="/assets/images/home-hero-laux.jpg" ctx="home" %} sizes="(max-width:1500px) 87vw, 1305px" fetchpriority="high"
            alt="Golden hour in an Olympic Valley meadow: a couple in tall grass with the Sierra Nevada behind them, the bride holding a green and lavender bouquet">
     </picture>
   </figure>
@@ -75,11 +74,11 @@ the moment one pale photo wants it and another does not, the machinery is here.
 <!-- Full width, side to side: a landscape gets the whole column or nothing. -->
 <section class="pband">
   <div class="pb-row pb-row--full">
-    <figure class="pb-pic"><img src="{{ site.baseurl }}/assets/images/portfolio/kelly-dylan/kelly-dylan-07.jpg"{% include img-dims.html path="/assets/images/portfolio/kelly-dylan/kelly-dylan-07.jpg" %} sizes="(max-width:1340px) 87vw, 1166px" loading="lazy" alt="A couple on the shore between two installations of blue delphinium and anemone, Lake Tahoe and the Sierra behind them"></figure>
+    <figure class="pb-pic"><img src="{{ site.baseurl }}/assets/images/portfolio/kelly-dylan/kelly-dylan-07.jpg"{% include img-dims.html path="/assets/images/portfolio/kelly-dylan/kelly-dylan-07.jpg" %}{% include img-crop.html path="/assets/images/portfolio/kelly-dylan/kelly-dylan-07.jpg" ctx="home" %} sizes="(max-width:1340px) 87vw, 1166px" loading="lazy" alt="A couple on the shore between two installations of blue delphinium and anemone, Lake Tahoe and the Sierra behind them"></figure>
   </div>
   <div class="pb-row">
-    <figure class="pb-pic"><img src="{{ site.baseurl }}/assets/images/portfolio/kelly-dylan/kelly-dylan-09.jpg"{% include img-dims.html path="/assets/images/portfolio/kelly-dylan/kelly-dylan-09.jpg" %} sizes="(max-width:820px) 87vw, (max-width:1340px) 40vw, 530px" loading="lazy" alt="Bridal bouquet of blue delphinium, anemone and orange ranunculus on the shore of Lake Tahoe"></figure>
-    <figure class="pb-pic"><img src="{{ site.baseurl }}/assets/images/portfolio/hannah-dillon/hannah-dillon-24.jpg"{% include img-dims.html path="/assets/images/portfolio/hannah-dillon/hannah-dillon-24.jpg" %} sizes="(max-width:820px) 87vw, (max-width:1340px) 47vw, 620px" loading="lazy" alt="Magenta and coral blooms on the corten steel arch at Austin Ridge"></figure>
+    <figure class="pb-pic"><img src="{{ site.baseurl }}/assets/images/portfolio/kelly-dylan/kelly-dylan-09.jpg"{% include img-dims.html path="/assets/images/portfolio/kelly-dylan/kelly-dylan-09.jpg" %}{% include img-crop.html path="/assets/images/portfolio/kelly-dylan/kelly-dylan-09.jpg" ctx="home" %} sizes="(max-width:820px) 87vw, (max-width:1340px) 40vw, 530px" loading="lazy" alt="Bridal bouquet of blue delphinium, anemone and orange ranunculus on the shore of Lake Tahoe"></figure>
+    <figure class="pb-pic"><img src="{{ site.baseurl }}/assets/images/portfolio/hannah-dillon/hannah-dillon-24.jpg"{% include img-dims.html path="/assets/images/portfolio/hannah-dillon/hannah-dillon-24.jpg" %}{% include img-crop.html path="/assets/images/portfolio/hannah-dillon/hannah-dillon-24.jpg" ctx="home" %} sizes="(max-width:820px) 87vw, (max-width:1340px) 47vw, 620px" loading="lazy" alt="Magenta and coral blooms on the corten steel arch at Austin Ridge"></figure>
   </div>
 </section>
 
@@ -104,8 +103,8 @@ the moment one pale photo wants it and another does not, the machinery is here.
 <!-- Portrait pair. -->
 <section class="pband">
   <div class="pb-row">
-    <figure class="pb-pic"><img src="{{ site.baseurl }}/assets/images/portfolio/mikayla-jeff/mikayla-jeff-03.jpg"{% include img-dims.html path="/assets/images/portfolio/mikayla-jeff/mikayla-jeff-03.jpg" %} sizes="(max-width:820px) 87vw, (max-width:1340px) 40vw, 530px" loading="lazy" alt="Tall whimsical ceremony installation of thistle, lilac and trailing green against Olympic Valley pines"></figure>
-    <figure class="pb-pic"><img src="{{ site.baseurl }}/assets/images/portfolio/brooke-josh/brooke-josh-06.jpg"{% include img-dims.html path="/assets/images/portfolio/brooke-josh/brooke-josh-06.jpg" %} sizes="(max-width:820px) 87vw, (max-width:1340px) 47vw, 620px" loading="lazy" alt="Blush and butter-cream roses massed on a stone wall at The Miner&#39;s Foundry"></figure>
+    <figure class="pb-pic"><img src="{{ site.baseurl }}/assets/images/portfolio/mikayla-jeff/mikayla-jeff-03.jpg"{% include img-dims.html path="/assets/images/portfolio/mikayla-jeff/mikayla-jeff-03.jpg" %}{% include img-crop.html path="/assets/images/portfolio/mikayla-jeff/mikayla-jeff-03.jpg" ctx="home" %} sizes="(max-width:820px) 87vw, (max-width:1340px) 40vw, 530px" loading="lazy" alt="Tall whimsical ceremony installation of thistle, lilac and trailing green against Olympic Valley pines"></figure>
+    <figure class="pb-pic"><img src="{{ site.baseurl }}/assets/images/portfolio/brooke-josh/brooke-josh-06.jpg"{% include img-dims.html path="/assets/images/portfolio/brooke-josh/brooke-josh-06.jpg" %}{% include img-crop.html path="/assets/images/portfolio/brooke-josh/brooke-josh-06.jpg" ctx="home" %} sizes="(max-width:820px) 87vw, (max-width:1340px) 47vw, 620px" loading="lazy" alt="Blush and butter-cream roses massed on a stone wall at The Miner&#39;s Foundry"></figure>
   </div>
 </section>
 
@@ -119,13 +118,13 @@ the moment one pale photo wants it and another does not, the machinery is here.
   <p><span data-ed="home:process.body">{{ site.data.home.process.body }}</span></p>
   <p class="marq-foot"><a href="{{ site.baseurl }}/weddings" class="txt-link"><span data-ed="home:process.link">{{ site.data.home.process.link }}</span> &rarr;</a></p>
     </div>
-    <figure class="pb-pic"><img src="{{ site.baseurl }}/assets/images/portfolio/katie-james/katie-james-08.jpg"{% include img-dims.html path="/assets/images/portfolio/katie-james/katie-james-08.jpg" %} sizes="(max-width:820px) 87vw, (max-width:1340px) 45vw, 600px" loading="lazy" alt="Stone-walled ceremony room: a couple before their officiant under a towering arch of blush, peach and cream blooms"></figure>
+    <figure class="pb-pic"><img src="{{ site.baseurl }}/assets/images/portfolio/katie-james/katie-james-08.jpg"{% include img-dims.html path="/assets/images/portfolio/katie-james/katie-james-08.jpg" %}{% include img-crop.html path="/assets/images/portfolio/katie-james/katie-james-08.jpg" ctx="home" %} sizes="(max-width:820px) 87vw, (max-width:1340px) 45vw, 600px" loading="lazy" alt="Stone-walled ceremony room: a couple before their officiant under a towering arch of blush, peach and cream blooms"></figure>
   </div>
 </section>
 
 <section class="pband">
   <div class="pb-row pb-row--full">
-    <figure class="pb-pic"><img src="{{ site.baseurl }}/assets/images/blog/palisades-tahoe-wedding-high-camp/palisades-tahoe-wedding-high-camp-01.jpg"{% include img-dims.html path="/assets/images/blog/palisades-tahoe-wedding-high-camp/palisades-tahoe-wedding-high-camp-01.jpg" %} sizes="(max-width:1340px) 87vw, 1166px" loading="lazy" alt="A couple on the pier at the water's edge, the snow-covered Sierra across the lake behind them"></figure>
+    <figure class="pb-pic"><img src="{{ site.baseurl }}/assets/images/blog/palisades-tahoe-wedding-high-camp/palisades-tahoe-wedding-high-camp-01.jpg"{% include img-dims.html path="/assets/images/blog/palisades-tahoe-wedding-high-camp/palisades-tahoe-wedding-high-camp-01.jpg" %}{% include img-crop.html path="/assets/images/blog/palisades-tahoe-wedding-high-camp/palisades-tahoe-wedding-high-camp-01.jpg" ctx="home" %} sizes="(max-width:1340px) 87vw, 1166px" loading="lazy" alt="A couple on the pier at the water's edge, the snow-covered Sierra across the lake behind them"></figure>
   </div>
 </section>
 
@@ -156,7 +155,7 @@ the moment one pale photo wants it and another does not, the machinery is here.
      page had been careful about everywhere else. -->
 <section class="pband">
   <div class="pb-row pb-row--full">
-    <figure class="pb-pic"><img src="{{ site.baseurl }}/assets/images/portfolio/brooke-josh/brooke-josh-09.jpg"{% include img-dims.html path="/assets/images/portfolio/brooke-josh/brooke-josh-09.jpg" %} sizes="(max-width:1340px) 87vw, 1166px" loading="lazy" alt="A ceremony lawn at The Chateau with the chairs set in rows, pines and a blossoming tree behind"></figure>
+    <figure class="pb-pic"><img src="{{ site.baseurl }}/assets/images/portfolio/brooke-josh/brooke-josh-09.jpg"{% include img-dims.html path="/assets/images/portfolio/brooke-josh/brooke-josh-09.jpg" %}{% include img-crop.html path="/assets/images/portfolio/brooke-josh/brooke-josh-09.jpg" ctx="home" %} sizes="(max-width:1340px) 87vw, 1166px" loading="lazy" alt="A ceremony lawn at The Chateau with the chairs set in rows, pines and a blossoming tree behind"></figure>
   </div>
 </section>
 
@@ -174,7 +173,7 @@ the moment one pale photo wants it and another does not, the machinery is here.
     <p class="disp"><span data-ed="home:marquee.label">{{ site.data.home.marquee.label }}</span></p>
     <p class="vmini-more"><a href="{{ site.baseurl }}/venues" class="txt-link"><span data-ed="home:marquee.link">{{ site.data.home.marquee.link }}</span> &rarr;</a></p>
     </div>
-    <figure class="pb-pic"><img src="{{ site.baseurl }}/assets/images/portfolio/lynn-aaron/lynn-aaron-01.jpg"{% include img-dims.html path="/assets/images/portfolio/lynn-aaron/lynn-aaron-01.jpg" %} sizes="(max-width:820px) 87vw, (max-width:1340px) 46vw, 610px" loading="lazy" alt="A beach ceremony set on the shore of Lake Tahoe, an arch and chairs waiting under a grey sky"></figure>
+    <figure class="pb-pic"><img src="{{ site.baseurl }}/assets/images/portfolio/lynn-aaron/lynn-aaron-01.jpg"{% include img-dims.html path="/assets/images/portfolio/lynn-aaron/lynn-aaron-01.jpg" %}{% include img-crop.html path="/assets/images/portfolio/lynn-aaron/lynn-aaron-01.jpg" ctx="home" %} sizes="(max-width:820px) 87vw, (max-width:1340px) 46vw, 610px" loading="lazy" alt="A beach ceremony set on the shore of Lake Tahoe, an arch and chairs waiting under a grey sky"></figure>
   </div>
 </section>
 
@@ -182,7 +181,7 @@ the moment one pale photo wants it and another does not, the machinery is here.
 <!-- Between the venues block and the review. -->
 <section class="pband">
   <div class="pb-row pb-row--full">
-    <figure class="pb-pic"><img src="{{ site.baseurl }}/assets/images/portfolio/lynn-aaron/lynn-aaron-19.jpg"{% include img-dims.html path="/assets/images/portfolio/lynn-aaron/lynn-aaron-19.jpg" %} sizes="(max-width:1340px) 87vw, 1166px" loading="lazy" alt="Snowy Sierra mountaintop ceremony: a couple kissing between two towering floral installations"></figure>
+    <figure class="pb-pic"><img src="{{ site.baseurl }}/assets/images/portfolio/lynn-aaron/lynn-aaron-19.jpg"{% include img-dims.html path="/assets/images/portfolio/lynn-aaron/lynn-aaron-19.jpg" %}{% include img-crop.html path="/assets/images/portfolio/lynn-aaron/lynn-aaron-19.jpg" ctx="home" %} sizes="(max-width:1340px) 87vw, 1166px" loading="lazy" alt="Snowy Sierra mountaintop ceremony: a couple kissing between two towering floral installations"></figure>
   </div>
 </section>
 
@@ -213,18 +212,18 @@ the moment one pale photo wants it and another does not, the machinery is here.
      wide one on the right, which turned a rhythm into a template. -->
 <section class="pband">
   <div class="pb-row pb-row--full">
-    <figure class="pb-pic"><img src="{{ site.baseurl }}/assets/images/portfolio/tori-tucker/tori-tucker-13.jpg"{% include img-dims.html path="/assets/images/portfolio/tori-tucker/tori-tucker-13.jpg" %} sizes="(max-width:1340px) 87vw, 1166px" loading="lazy" alt="Lake Tahoe beach ceremony: a bride reading her vows between two coral and burgundy installations"></figure>
+    <figure class="pb-pic"><img src="{{ site.baseurl }}/assets/images/portfolio/tori-tucker/tori-tucker-13.jpg"{% include img-dims.html path="/assets/images/portfolio/tori-tucker/tori-tucker-13.jpg" %}{% include img-crop.html path="/assets/images/portfolio/tori-tucker/tori-tucker-13.jpg" ctx="home" %} sizes="(max-width:1340px) 87vw, 1166px" loading="lazy" alt="Lake Tahoe beach ceremony: a bride reading her vows between two coral and burgundy installations"></figure>
   </div>
   <div class="pb-row">
-    <figure class="pb-pic"><img src="{{ site.baseurl }}/assets/images/portfolio/jac-brandon/jac-brandon-07.jpg"{% include img-dims.html path="/assets/images/portfolio/jac-brandon/jac-brandon-07.jpg" %} sizes="(max-width:820px) 87vw, (max-width:1340px) 40vw, 530px" loading="lazy" alt="A couple in black, the bride holding a bouquet of crimson and oxblood roses against dark foliage"></figure>
-    <figure class="pb-pic"><img src="{{ site.baseurl }}/assets/images/portfolio/lynn-aaron/lynn-aaron-28.jpg"{% include img-dims.html path="/assets/images/portfolio/lynn-aaron/lynn-aaron-28.jpg" %} sizes="(max-width:820px) 87vw, (max-width:1340px) 47vw, 620px" loading="lazy" alt="A lounge vignette: a low white vessel of burgundy and blush blooms on marble, candles beside it"></figure>
+    <figure class="pb-pic"><img src="{{ site.baseurl }}/assets/images/portfolio/jac-brandon/jac-brandon-07.jpg"{% include img-dims.html path="/assets/images/portfolio/jac-brandon/jac-brandon-07.jpg" %}{% include img-crop.html path="/assets/images/portfolio/jac-brandon/jac-brandon-07.jpg" ctx="home" %} sizes="(max-width:820px) 87vw, (max-width:1340px) 40vw, 530px" loading="lazy" alt="A couple in black, the bride holding a bouquet of crimson and oxblood roses against dark foliage"></figure>
+    <figure class="pb-pic"><img src="{{ site.baseurl }}/assets/images/portfolio/lynn-aaron/lynn-aaron-28.jpg"{% include img-dims.html path="/assets/images/portfolio/lynn-aaron/lynn-aaron-28.jpg" %}{% include img-crop.html path="/assets/images/portfolio/lynn-aaron/lynn-aaron-28.jpg" ctx="home" %} sizes="(max-width:820px) 87vw, (max-width:1340px) 47vw, 620px" loading="lazy" alt="A lounge vignette: a low white vessel of burgundy and blush blooms on marble, candles beside it"></figure>
   </div>
   <div class="pb-row pb-row--full">
-    <figure class="pb-pic"><img src="{{ site.baseurl }}/assets/images/portfolio/lynn-aaron/lynn-aaron-02.jpg"{% include img-dims.html path="/assets/images/portfolio/lynn-aaron/lynn-aaron-02.jpg" %} sizes="(max-width:1340px) 87vw, 1166px" loading="lazy" alt="Guests seated along a long banquet table run with greenery and candles, caught mid-dinner"></figure>
+    <figure class="pb-pic"><img src="{{ site.baseurl }}/assets/images/portfolio/lynn-aaron/lynn-aaron-02.jpg"{% include img-dims.html path="/assets/images/portfolio/lynn-aaron/lynn-aaron-02.jpg" %}{% include img-crop.html path="/assets/images/portfolio/lynn-aaron/lynn-aaron-02.jpg" ctx="home" %} sizes="(max-width:1340px) 87vw, 1166px" loading="lazy" alt="Guests seated along a long banquet table run with greenery and candles, caught mid-dinner"></figure>
   </div>
   <div class="pb-row flip">
-    <figure class="pb-pic"><img src="{{ site.baseurl }}/assets/images/portfolio/camille-max/camille-max-30.jpg"{% include img-dims.html path="/assets/images/portfolio/camille-max/camille-max-30.jpg" %} sizes="(max-width:820px) 87vw, (max-width:1340px) 47vw, 620px" loading="lazy" alt="A dark installation of burgundy ranunculus and trailing amaranthus over a black-draped table"></figure>
-    <figure class="pb-pic"><img src="{{ site.baseurl }}/assets/images/portfolio/tori-tucker/tori-tucker-18.jpg"{% include img-dims.html path="/assets/images/portfolio/tori-tucker/tori-tucker-18.jpg" %} sizes="(max-width:820px) 87vw, (max-width:1340px) 40vw, 530px" loading="lazy" alt="A bouquet of pink garden roses and trailing greenery held against an ivory gown"></figure>
+    <figure class="pb-pic"><img src="{{ site.baseurl }}/assets/images/portfolio/camille-max/camille-max-30.jpg"{% include img-dims.html path="/assets/images/portfolio/camille-max/camille-max-30.jpg" %}{% include img-crop.html path="/assets/images/portfolio/camille-max/camille-max-30.jpg" ctx="home" %} sizes="(max-width:820px) 87vw, (max-width:1340px) 47vw, 620px" loading="lazy" alt="A dark installation of burgundy ranunculus and trailing amaranthus over a black-draped table"></figure>
+    <figure class="pb-pic"><img src="{{ site.baseurl }}/assets/images/portfolio/tori-tucker/tori-tucker-18.jpg"{% include img-dims.html path="/assets/images/portfolio/tori-tucker/tori-tucker-18.jpg" %}{% include img-crop.html path="/assets/images/portfolio/tori-tucker/tori-tucker-18.jpg" ctx="home" %} sizes="(max-width:820px) 87vw, (max-width:1340px) 40vw, 530px" loading="lazy" alt="A bouquet of pink garden roses and trailing greenery held against an ivory gown"></figure>
   </div>
 </section>
 

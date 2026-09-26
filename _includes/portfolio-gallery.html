@@ -85,7 +85,7 @@
   {%- unless include.nohero -%}
   <a class="wd-hero-link wd-lb" href="{{ site.baseurl }}{{ prefix }}{{ include.hero }}" aria-label="View {{ include.name }} photo 1 full screen">
     {%- assign hero_path = prefix | append: include.hero -%}
-    <img src="{{ site.baseurl }}{{ hero_path }}"{% include img-dims.html path=hero_path %} alt="{{ include.name }} wedding flowers by Golden Flowers" loading="eager" fetchpriority="high" class="wd-hero-img" sizes="(max-width:1231px) 100vw, 1080px">
+    <img src="{{ site.baseurl }}{{ hero_path }}"{% include img-dims.html path=hero_path %}{% include img-crop.html path=hero_path ctx="hero" %} alt="{{ include.name }} wedding flowers by Golden Flowers" loading="eager" fetchpriority="high" class="wd-hero-img" sizes="(max-width:1231px) 100vw, 1080px">
   </a>
   {%- endunless -%}
   <div class="wd-mosaic">

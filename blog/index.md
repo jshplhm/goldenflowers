@@ -51,7 +51,7 @@ redirect_from:
     <article class="blog-card{% if post.featured_image and post.featured_image != "" %} blog-card--cover{% endif %}" data-text="{{ post.title | append: ' ' | append: post.description | append: ' ' | append: post.content | strip_html | escape | downcase }}">
       <a href="{{ site.baseurl }}{{ post.url }}" class="blog-card-link">
         {%- if post.featured_image and post.featured_image != "" %}
-        <figure class="blog-card-cover"><img src="{{ site.baseurl }}{{ post.featured_image }}"{% include img-dims.html path=post.featured_image %} alt="" loading="lazy"></figure>
+        <figure class="blog-card-cover"><img src="{{ site.baseurl }}{{ post.featured_image }}"{% include img-dims.html path=post.featured_image %}{% include img-crop.html path=post.featured_image ctx="blog" %} alt="" loading="lazy"></figure>
         {%- endif %}
         <h2 class="blog-card-title">{{ post.title }}</h2>
         <p class="blog-card-excerpt">{{ post.description | strip_html | truncatewords: 24 }}</p>

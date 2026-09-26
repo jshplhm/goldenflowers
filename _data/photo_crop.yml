@@ -11,7 +11,12 @@
 #   card   the square cover on /portfolio
 #   tile   a photograph in a wedding's gallery mosaic
 #   rail   a card on the "more weddings" rail
-#   page   a `figure.page-pic` band (Pricing, a venue, Sustainability, Studio)
+#   page   a `figure.page-pic` band (Pricing, a venue, Sustainability)
+#   home   a photograph on the home page (added 2026-09-26)
+#   studio a photograph or the timelapse video on /about (the video is keyed
+#          by its .mp4 path and framed on its poster)
+#   blog   a post's cover card on /blog
+#   post   the photograph at the top of a blog post
 #
 # x and y are percentages, the same pair object-position takes: 0 0 is the top
 # left corner of the photograph, 50 50 the middle. Zoom is 1 to 3; 1 means no
@@ -33,3 +38,6 @@ card|/assets/images/portfolio/kelly-dylan/kelly-dylan-07.jpg: 50 50 1.15
 card|/assets/images/portfolio/lynn-aaron/lynn-aaron-16.jpg: 50 67 1.11
 card|/assets/images/portfolio/mikayla-jeff/mikayla-jeff-05.jpg: 51 59 1.00
 card|/assets/images/portfolio/hannah-dillon/hannah-dillon-25.jpg: 76 68 1.09
+# Seeded 2026-09-26 from the home hero's inline object-position (desktop; the
+# phone crop is its own portrait file with its own rule in redesign.css).
+"home|/assets/images/home-hero-laux.jpg": "37 72 1"

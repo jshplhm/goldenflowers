@@ -494,6 +494,16 @@ function hookFrame() {
         startEdit(body);
         return;
       }
+      /* A framed video (the Studio timelapse) has nothing to swap, so a click
+       * goes straight to Framing. */
+      const vid = e.target.closest && e.target.closest("video[data-crop-key]");
+      if (vid) {
+        e.preventDefault();
+        e.stopPropagation();
+        if (editing) stopEdit();
+        openFraming(vid);
+        return;
+      }
       const img = e.target.closest && e.target.closest("img");
       /* [data-ed-hero] is the big opening photo. It belongs to the gallery too,
        * so it goes to the same manager — which is also the only place that can
@@ -2680,6 +2690,10 @@ const FR_SLOT = {
   tile: "this photo in the gallery",
   rail: "this wedding's card on the “more weddings” row",
   page: "this photo band",
+  home: "this photo on the home page",
+  studio: "this photo on the Studio page",
+  blog: "this post's card on the blog page",
+  post: "the photo at the top of this post",
 };
 
 function frRead(el) {
@@ -2728,13 +2742,17 @@ function openFraming(el) {
    * 16:9 hero. An image still loading has no box yet; its own ratio is a
    * better guess than a square. */
   const r = el.getBoundingClientRect();
+  const nw = el.naturalWidth || el.videoWidth, nh = el.naturalHeight || el.videoHeight;
   const ratio = (r.width > 4 && r.height > 4)
     ? r.width / r.height
-    : (el.naturalWidth && el.naturalHeight ? el.naturalWidth / el.naturalHeight : 1);
+    : (nw && nh ? nw / nh : 1);
   frStage.style.aspectRatio = String(ratio);
   const slot = key.split("|")[0];
-  frWhere.innerHTML = `Framing <b>${escapeHtml(FR_SLOT[slot] || slot)}</b>. This is the only place it is cropped this way, so nothing else on the site moves.`;
-  frImg.src = el.currentSrc || el.src;
+  const isVideo = el.tagName === "VIDEO";
+  frWhere.innerHTML = `Framing <b>${isVideo ? "this video" : escapeHtml(FR_SLOT[slot] || slot)}</b>. This is the only place it is cropped this way, so nothing else on the site moves.`;
+  /* A video is framed on its poster, which is its first frame at the same
+   * size, so the crop judged here is the crop the video plays in. */
+  frImg.src = isVideo ? el.poster : (el.currentSrc || el.src);
   const c = frRead(el);
   frState = { el, key, ...c,
     wasStyle: el.getAttribute("style"),

@@ -233,7 +233,7 @@ redirect_from:
      the top; this is what the upper figure buys, a room dressed end to end
      (Palisades High Camp). Landscape, so it takes a full row. -->
 <figure class="page-pic page-pic--mid">
-  <img src="{{ site.baseurl }}/assets/images/portfolio/lynn-aaron/lynn-aaron-26.jpg"{% include img-dims.html path="/assets/images/portfolio/lynn-aaron/lynn-aaron-26.jpg" %}
+  <img src="{{ site.baseurl }}/assets/images/portfolio/lynn-aaron/lynn-aaron-26.jpg"{% include img-dims.html path="/assets/images/portfolio/lynn-aaron/lynn-aaron-26.jpg" %}{% include img-crop.html path="/assets/images/portfolio/lynn-aaron/lynn-aaron-26.jpg" ctx="page" %}
        alt="Reception room at Palisades High Camp dressed end to end: greenery climbing the timber posts, long tables in blush and olive, lounge seating and a tiered cake"
        loading="lazy" sizes="(min-width:1500px) 1500px, 100vw">
 </figure>

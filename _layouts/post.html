@@ -22,8 +22,8 @@ layout: redesign
 
 <!-- Featured Image (if present) -->
 {% if page.featured_image %}
-<img class="blog-hero-img" src="{{ page.featured_image }}" alt="{{ page.title }}"
-     width="1100" height="733" loading="eager" fetchpriority="high">
+<figure class="blog-hero-fig"><img class="blog-hero-img" src="{{ page.featured_image }}"{% include img-crop.html path=page.featured_image ctx="post" %} alt="{{ page.title }}"
+     width="1100" height="733" loading="eager" fetchpriority="high"></figure>
 {% endif %}
 
 <!-- Blog Body -->

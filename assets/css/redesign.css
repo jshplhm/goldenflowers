@@ -476,7 +476,7 @@ button.txt-link{background:none;border-top:0;border-left:0;border-right:0;cursor
    (120/15vw/180), which is where the last few pixels came from. It is the
    same clamp on both now: change one, change the other. */
 .studio-hero{display:grid;grid-template-columns:1.25fr 1fr;gap:clamp(32px,5vw,72px);align-items:start;max-width:var(--content-max);margin:0 auto;padding:var(--hero-top) var(--pad) var(--sp-m);}
-.studio-hero .sh-img{align-self:center;}
+.studio-hero .sh-img{align-self:center;overflow:hidden;border-radius:var(--r-img);}
 .studio-hero h1{font-family:var(--d);font-weight:430;font-optical-sizing:auto;font-size:var(--t-d1);line-height:1.02;letter-spacing:-.02em;margin:18px 0 22px;}
 .studio-hero h1 em{color:var(--forest);}
 .studio-hero .sh-sub{font-size:var(--t-lede);color:var(--fg2);line-height:1.62;max-width:46ch;}
@@ -724,10 +724,11 @@ nav.site-nav .pill{white-space:nowrap;}
    text-align:center went with it: the grid below has set these blocks left
    since 2026-09-23 and this was the losing half of a contradiction. */
 .cta{background:var(--bg2);padding:var(--sp-m) var(--pad-body);}
-/* Where a tint band butts straight into the CTA (sustainability: .pledge is the
-   previous sibling) the two would read as one slab, so carry the break on a
-   hairline instead of a tone change. */
-.pledge + .cta,.proc + .cta,.cta-section + .cta,.band-paper + .cta{border-top:1px solid var(--line);}
+/* Only two tinted blocks in a row need a hairline between them. .pledge,
+   .proc and .band-paper used to be tint bands too and carried one here; they
+   sit on the page ground now, so the CTA's own tone is the break and a line on
+   top of it doubled it (Josh, 2026-09-26, on /sustainability). */
+.cta-section + .cta{border-top:1px solid var(--line);}
 /* .cta--tall (Venues) existed to set a shorter top padding and a flex the
    grid overrides anyway. Both are the default now, so the class changes
    nothing; it stays on the markup because taking it off the page is a
@@ -755,7 +756,9 @@ nav.site-nav .pill{white-space:nowrap;}
    foot made the scroll end on a change of colour rather than on the studio's
    name, and it was the last full-bleed band left once the tint sections went.
    A hairline gives the footer its edge; the type does the rest. */
-.site-footer{background:var(--bg2);color:var(--fg2);border-top:1px solid var(--line);padding:var(--sp-m) var(--pad-col) 34px;}
+/* No top rule (2026-09-26): the footer's tint is the break from the page.
+   Only pages without a closing ask ever showed it (/contact). */
+.site-footer{background:var(--bg2);color:var(--fg2);padding:var(--sp-m) var(--pad-col) 34px;}
 /* The closing ask IS the top of the footer. Halving the gap between them was
    not enough: the ask still sat in its own box with a rule under it, so it read
    as something floating above the footer rather than as its opening line.
@@ -829,8 +832,11 @@ nav.site-nav .pill{white-space:nowrap;}
   :is(.cta,.cta-section) > *{grid-column:1 !important;grid-row:auto !important;}
   :is(.cta,.cta-section) h2{max-width:none;}
 }
-:is(.cta,.cta-section) + .site-footer{padding-top:0;border-top:0;}
-:is(.cta,.cta-section) + .site-footer .foot-in{
+/* ~ not +: /blog has its search script between the closing ask and the
+   footer, which broke the adjacency, so that page fell back on the footer's
+   own top rule and full padding (retired 2026-09-26). */
+:is(.cta,.cta-section) ~ .site-footer{padding-top:0;}
+:is(.cta,.cta-section) ~ .site-footer .foot-in{
   border-top:1px solid var(--line);padding-top:clamp(44px,5vw,76px);}
 .foot-in{display:grid;grid-template-columns:.85fr 1.6fr;gap:clamp(40px,6vw,80px);align-items:start;border-bottom:1px solid var(--line);padding-bottom:clamp(40px,5vw,60px);}
 .foot-lead{max-width:34ch;}
@@ -1048,8 +1054,13 @@ nav.site-nav .pill{white-space:nowrap;}
    absent is what keeps an unzoomed photograph off the compositing layer a
    transform would otherwise put it on. Deliberately low specificity: any
    layout that needs a different default still wins. */
-img[data-op]{object-position:var(--opx,50%) var(--op,50%);}
-img[data-zoom]{transform:scale(var(--z,1));transform-origin:var(--opx,50%) var(--op,50%);}
+/* Video joined 2026-09-26 (the Studio timelapse): object-position and a
+   transform behave on a <video> exactly as on an <img>. A zoomed slot needs a
+   parent that clips to the frame, or the scale spills past its corners; each
+   slot opened to framing that day got one (see .page-pic, .sh-img,
+   .blog-hero-fig, and the /about .ss-img). */
+:is(img,video)[data-op]{object-position:var(--opx,50%) var(--op,50%);}
+:is(img,video)[data-zoom]{transform:scale(var(--z,1));transform-origin:var(--opx,50%) var(--op,50%);}
 
 /* Wedding gallery: auto-filling mosaic (varied 1/2/3-up rows, never an empty bottom spot) */
 .wd-mosaic{display:grid;grid-template-columns:repeat(6,1fr);gap:16px;margin-top:16px;}
@@ -1641,7 +1652,7 @@ body.modal-open{overflow:hidden;}
 .blog-card-link{display:block;padding:26px 0 30px;}
 .blog-card-cover{margin:0 0 20px;overflow:hidden;border-radius:var(--r-img);aspect-ratio:3/2;background:var(--bg2);}
 .blog-card-cover img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s ease;}
-.blog-card:hover .blog-card-cover img{transform:scale(1.03);}
+.blog-card:hover .blog-card-cover img{transform:scale(calc(var(--z,1) * 1.03));}
 .blog-card-title{font-family:var(--d);font-weight:430;font-size:var(--t-d4);letter-spacing:-.01em;line-height:1.14;margin-bottom:12px;transition:color .2s;}
 .blog-card:hover .blog-card-title{color:var(--forest);}
 .blog-card-excerpt{color:var(--fg2);line-height:1.6;margin-bottom:16px;}
@@ -1660,9 +1671,12 @@ body.modal-open{overflow:hidden;}
 .blog-category{font-size:var(--t-tag);letter-spacing:.13em;text-transform:uppercase;color:var(--accent);font-weight:500;}
 .blog-title{font-family:var(--d);font-weight:430;font-optical-sizing:auto;font-size:var(--t-d1);letter-spacing:-.02em;line-height:1.06;margin:18px 0 20px;}
 .blog-meta{font-size:var(--t-ui);letter-spacing:.04em;color:var(--mute);}
-.blog-hero-img{display:block;max-width:var(--content-max);width:calc(100% - 2 * var(--pad));
-  aspect-ratio:3/2;object-fit:cover;margin:0 auto clamp(40px,5vw,64px);
+/* The figure carries the box so a framed zoom clips to it (2026-09-26); the
+   img only fills it. Same size, radius and spacing as the bare img had. */
+.blog-hero-fig{display:block;max-width:var(--content-max);width:calc(100% - 2 * var(--pad));
+  aspect-ratio:3/2;margin:0 auto clamp(40px,5vw,64px);overflow:hidden;
   border-radius:var(--r-img);background:var(--bg2);}
+.blog-hero-img{display:block;width:100%;height:100%;object-fit:cover;}
 .blog-body{max-width:680px;margin:0 auto;padding:0 var(--pad) clamp(60px,8vw,100px);}
 .blog-body p{font-size:var(--t-lede);line-height:1.8;color:var(--fg2);margin-bottom:22px;}
 .blog-body h2{font-family:var(--d);font-weight:430;font-optical-sizing:auto;font-size:var(--t-d3);letter-spacing:-.01em;line-height:1.16;margin:44px 0 16px;}
@@ -1946,7 +1960,14 @@ body.nav-hidden .venue-breadcrumb{top:0;}
    The credit sits under the picture, quiet: most of what lands here will be
    the venue's own photography used with permission, and the promise on
    /terms is that every photograph on the site is credited. */
+/* clip-path, not overflow: the figure is padded, so overflow would clip at
+   the padding edge and let a zoomed photo spill into the gutter. The inset
+   is the padding, so the clip is exactly the photograph's rounded box. */
 .page-pic{max-width:var(--content-max);margin:clamp(28px,4vw,48px) auto 0;padding:0 var(--pad);}
+.page-pic:not(:has(figcaption)){clip-path:inset(0 var(--pad) round var(--r-img));}
+/* A captioned band (venue heroes) clips in a wrapper instead, so the credit
+   under the photograph stays outside the clip. */
+.pp-clip{display:block;overflow:hidden;border-radius:var(--r-img);}
 .page-pic img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block;
   border-radius:var(--r-img);background:var(--bg2);}
 .page-pic-credit{margin-top:10px;font-size:var(--t-tag);letter-spacing:.09em;

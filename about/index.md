@@ -14,16 +14,23 @@ redirect_from:
 .story-split{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,64px);align-items:stretch;}
 .story-split .ss-text{align-self:center;}
 .story-split .ss-text .prose{margin-top:16px;}
-.story-split .ss-img img{width:100%;height:100%;min-height:clamp(360px,40vw,540px);object-fit:cover;border-radius:var(--r-img);display:block;}
+/* The frame clips, so a photo or the video zoomed in /edit stays inside its
+   rounded box. The video's sizing moved here from an inline style, which the
+   framing include needs the style attribute for. */
+.story-split .ss-img{overflow:hidden;border-radius:var(--r-img);}
+.story-split .ss-img :is(img,video){width:100%;height:100%;min-height:clamp(360px,40vw,540px);object-fit:cover;border-radius:var(--r-img);display:block;}
 .story-split.rev .ss-img{order:-1;}
 @media(max-width:760px){
   .story-split{grid-template-columns:1fr;gap:22px;}
   .story-split.rev .ss-img{order:0;}
   .story-split.img-first-mobile .ss-img{order:-1;}
-  .story-split .ss-img img{min-height:0;aspect-ratio:4/5;}
+  .story-split .ss-img :is(img,video){min-height:0;aspect-ratio:4/5;}
 }
 
-/* No bands (2026-09-25). This page kept the old site's forest-green band and a
+/* No full-width rules between sections either (2026-09-26): the page
+   alternates photograph and words, and that change already marks each break.
+
+   No bands (2026-09-25). This page kept the old site's forest-green band and a
    tint band after every other page moved to one ground in September: Josh
    read them as "the older style of our site". Sections break on space and a
    hairline here like everywhere else. */
@@ -41,17 +48,15 @@ redirect_from:
     <p class="sh-sub"><span data-ed="about:hero.subheading">{{ site.data.about.hero.subheading }}</span></p>
   </div>
   <div class="sh-img">
-    <img src="{{ site.baseurl }}/assets/images/our-story.jpg" alt="Brittany of Golden Flowers arranging a floral installation at an outdoor wedding" loading="eager"{% include img-dims.html path="/assets/images/our-story.jpg" %}>
+    <img src="{{ site.baseurl }}/assets/images/our-story.jpg" alt="Brittany of Golden Flowers arranging a floral installation at an outdoor wedding" loading="eager"{% include img-dims.html path="/assets/images/our-story.jpg" %}{% include img-crop.html path="/assets/images/our-story.jpg" ctx="studio" %}>
   </div>
 </section>
-
-<hr class="hr-line">
 
 <!-- BRITTANY -->
 <section class="block">
   <div class="story-split rev">
     <div class="ss-img">
-      <img src="{{ site.baseurl }}/assets/images/studio-brittany.jpg" alt="Brittany of Golden Flowers with a large floral installation" loading="lazy"{% include img-dims.html path="/assets/images/studio-brittany.jpg" %}>
+      <img src="{{ site.baseurl }}/assets/images/studio-brittany.jpg" alt="Brittany of Golden Flowers with a large floral installation" loading="lazy"{% include img-dims.html path="/assets/images/studio-brittany.jpg" %}{% include img-crop.html path="/assets/images/studio-brittany.jpg" ctx="studio" %}>
     </div>
     <div class="ss-text">
       <h2><span data-ed="about:brittany.heading">{{ site.data.about.brittany.heading }}</span></h2>
@@ -63,8 +68,6 @@ redirect_from:
     </div>
   </div>
 </section>
-
-<hr class="hr-line">
 
 <!-- THE TEAM -->
 <section class="block">
@@ -81,7 +84,7 @@ redirect_from:
       {%- comment -%} The poster paints instantly; the video file itself (4MB —
       timelapses compress poorly) isn't fetched until the visitor scrolls near
       this section, so it never competes with the photos above it. {%- endcomment -%}
-      <video muted loop playsinline preload="none" poster="{{ site.baseurl }}/assets/videos/team-timelapse-poster.jpg" data-lazy-video style="width:100%;height:100%;min-height:clamp(360px,40vw,540px);object-fit:cover;border-radius:var(--r-img);display:block;">
+      <video class="team-video" muted loop playsinline preload="none" poster="{{ site.baseurl }}/assets/videos/team-timelapse-poster.jpg" data-lazy-video{% include img-crop.html path="/assets/videos/team-timelapse.mp4" ctx="studio" %}>
         <source data-src="{{ site.baseurl }}/assets/videos/team-timelapse.mp4" type="video/mp4">
       </video>
       <script>
@@ -105,8 +108,6 @@ redirect_from:
     </div>
   </div>
 </section>
-
-<hr class="hr-line">
 
 <!-- HOW WE WORK -->
 <section class="block">
@@ -134,8 +135,6 @@ redirect_from:
 a 40-flower reference table was the longest thing on a page about who the
 studio is. The answer now lives in the /weddings FAQ "What flowers will be
 available for my date?", which was the only link to it. {%- endcomment %}
-<hr class="hr-line">
-
 <!-- WHAT WE BELIEVE (the old philosophy grid and sustainability pointer, as one block) -->
 <section class="block">
   <div class="twocol">
