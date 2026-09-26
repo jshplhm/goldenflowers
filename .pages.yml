@@ -370,8 +370,6 @@ content:
         label: Labels on each wedding page
         type: object
         fields:
-          - {name: credits_heading, label: "Credits heading", type: string}
-          - {name: credits_note, label: "Credits note", type: text}
           - {name: more_heading, label: "More weddings heading", type: string}
           - {name: more_link, label: "More weddings link", type: string}
           - {name: strip_cta, label: "View the wedding link", type: string}

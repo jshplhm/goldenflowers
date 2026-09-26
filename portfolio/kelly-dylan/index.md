@@ -12,8 +12,6 @@ hero_photo: kelly-dylan-07.jpg
 
 {% include portfolio-gallery.html slug="kelly-dylan" hero="kelly-dylan-07.jpg" name="Kelly & Dylan" nohero=true %}
 
-{% include wedding-credits.html slug="kelly-dylan" %}
-
 {% include wedding-more.html slug="kelly-dylan" %}
 
 {% include wedding-cta.html %}

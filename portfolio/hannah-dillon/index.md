@@ -12,8 +12,6 @@ hero_photo: hannah-dillon-01.jpg
 
 {% include portfolio-gallery.html slug="hannah-dillon" hero="hannah-dillon-01.jpg" name="Hannah and Dillon" nohero=true %}
 
-{% include wedding-credits.html slug="hannah-dillon" %}
-
 {% include wedding-more.html slug="hannah-dillon" %}
 
 {% include wedding-cta.html %}

@@ -1891,8 +1891,6 @@ hero_photo: ${heroName}
 
 {% include portfolio-gallery.html slug="${slug}" hero="${heroName}" name=${q(names)} nohero=true %}
 
-{% include wedding-credits.html slug="${slug}" %}
-
 {% include wedding-more.html slug="${slug}" %}
 
 {% include wedding-cta.html %}
@@ -2366,21 +2364,12 @@ hwForm.addEventListener("submit", async (e) => {
 });
 
 /* ============================================================================
-   VENDORS — everyone else who worked on this wedding (_data/credits.yml)
+   VENDORS — the photographer and venue (the "The team" block left the page 2026-09-26; other rows in credits.yml are kept but nothing prints them) (_data/credits.yml)
    ========================================================================= */
 
 const VENDOR_ROLES = [
   ["photography", "Photography"],
-  ["planning", "Planning & design"],
   ["venue", "Venue"],
-  ["catering", "Catering"],
-  ["cake", "Cake"],
-  ["rentals", "Rentals"],
-  ["beauty", "Hair & makeup"],
-  ["gown", "Gown"],
-  ["stationery", "Stationery"],
-  ["music", "Music"],
-  ["officiant", "Officiant"],
 ];
 const CREDITS_PATH = "_data/credits.yml";
 

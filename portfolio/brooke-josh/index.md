@@ -12,8 +12,6 @@ hero_photo: brooke-josh-01.jpg
 
 {% include portfolio-gallery.html slug="brooke-josh" hero="brooke-josh-01.jpg" name="Brooke and Josh" nohero=true %}
 
-{% include wedding-credits.html slug="brooke-josh" %}
-
 {% include wedding-more.html slug="brooke-josh" %}
 
 {% include wedding-cta.html %}

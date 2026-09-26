@@ -14,8 +14,6 @@ hero_photo: katie-james-07.jpg
 
 {% include portfolio-gallery.html slug="katie-james" hero="katie-james-07.jpg" name="Katie & James" nohero=true %}
 
-{% include wedding-credits.html slug="katie-james" %}
-
 {% include wedding-more.html slug="katie-james" %}
 
 {% include wedding-cta.html %}

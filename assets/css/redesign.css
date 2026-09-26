@@ -1033,8 +1033,8 @@ nav.site-nav .pill{white-space:nowrap;}
 /* Asymmetric on purpose. The top is tight because the story above it already
    ends on its own generous padding, but the bottom is the last thing before a
    ruled section boundary, and at 18-38px the rule sat almost against the final
-   photo while the heading below it had 52-92px of air. Bottom now matches what
-   .wp-credits uses above its own border, so the rule sits in a balanced gap. */
+   photo while the heading below it had 52-92px of air. Bottom matches the
+   section padding below, so the rule sits in a balanced gap. */
 .wd-gallery{max-width:var(--body-max);margin:0 auto;padding:clamp(18px,3vw,38px) var(--pad) clamp(60px,7vw,104px);}
 .wd-hero-img{width:100%;height:clamp(360px,52vw,640px);object-fit:cover;border-radius:var(--r-img);}
 .wd-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px;}
@@ -2211,11 +2211,11 @@ body.nav-hidden .venue-breadcrumb{top:0;}
 .map-tip .mt-go{display:none;}
 .map-tip.tappable{pointer-events:auto;}
 .map-tip.tappable .mt-go{display:block;font-size:.72rem;letter-spacing:.04em;color:var(--forest);margin-top:7px;}
-/* Touch: minor dots are decorative geography, not tap targets — their names
-   live in the lists below. (Their labels only ever show via the JS card.) */
+/* Touch: every dot is tappable and names itself in the JS card, so the SVG
+   labels stay hidden. Minor dots used to be pointer-events:none here, which on
+   an iPad read as broken (Josh, 2026-09-26). */
 @media(hover:none){
   .t-vlabel{display:none;}
-  .t-pin.t-minor,.t-pin.t-minor *{pointer-events:none;}
 }
 /* Small screens shrink the whole SVG, so featured dots get a modest boost to
    keep the featured/minor contrast and give taps a clear anchor. fill-box is
@@ -2552,36 +2552,6 @@ body.nav-hidden .venue-breadcrumb{top:0;}
 .wp-dots i{width:19px;height:19px;border-radius:50%;display:block;
   box-shadow:inset 0 0 0 1px oklch(20% .02 150 / .12);}
 
-/* ---- credits ---- */
-.wp-credits{padding:clamp(60px,7vw,104px) var(--pad-body);border-top:1px solid var(--line);}
-/* The note reads as a subtitle to "The team", so it sits under the heading
-   rather than opposite it. Pushed to the far right it was a separate object
-   the eye had to travel to, and it landed level with the heading's baseline as
-   though the two were peers. */
-.wp-ch{margin-bottom:clamp(28px,3.4vw,48px);}
-.wp-ch h2{font-family:var(--d);font-weight:430;font-size:var(--t-d3);
-  letter-spacing:-.012em;}
-.wp-ch p{max-width:44ch;margin-top:10px;font-size:var(--t-ui);color:var(--mute);line-height:1.6;}
-/* Two ranks: whoever's work is actually in these photographs reads first and
-   larger, everyone else settles into a quiet three-column list underneath. */
-.wp-lead{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(10px,1.1vw,18px);
-  padding-bottom:clamp(26px,3vw,40px);margin-bottom:clamp(26px,3vw,40px);
-  border-bottom:1px solid var(--line);}
-.wp-lead > div{display:flex;flex-direction:column;gap:8px;}
-.wp-lead dt{font-size:var(--t-tag);letter-spacing:.19em;text-transform:uppercase;color:var(--accent);}
-.wp-lead dd{font-family:var(--d);font-size:var(--t-d4);line-height:1.15;
-  letter-spacing:-.008em;}
-.wp-lead dd a{border-bottom:1px solid var(--line);padding-bottom:3px;
-  transition:border-color .25s ease;}
-.wp-lead dd a:hover{border-color:var(--accent);}
-.wp-rest{display:grid;grid-template-columns:repeat(3,1fr);gap:20px clamp(24px,3vw,56px);}
-.wp-rest > div{display:flex;justify-content:space-between;gap:18px;align-items:baseline;
-  border-bottom:1px solid var(--line);padding-bottom:11px;}
-.wp-rest dt{font-size:var(--t-tag);letter-spacing:.16em;text-transform:uppercase;color:var(--mute);
-  white-space:nowrap;}
-.wp-rest dd{font-size:var(--t-sm);text-align:right;}
-.wp-rest dd a{border-bottom:1px solid var(--line);padding-bottom:2px;}
-.wp-rest dd a:hover{border-color:var(--accent);}
 .wp-tbd{color:var(--mute);font-style:italic;opacity:.75;}
 
 /* ---- more weddings (not prev/next: with a short list the neighbours either
@@ -2630,8 +2600,6 @@ body.nav-hidden .venue-breadcrumb{top:0;}
 .wp-oend:hover{border-color:var(--accent);}
 
 @media(max-width:900px){
-  .wp-lead{grid-template-columns:1fr;gap:22px;}
-  .wp-rest{grid-template-columns:1fr;}
   .wp-og{--per:1.25;}
   /* The swipe is the control on a phone, so the arrows go rather than take up
      room in the header. */
@@ -3065,6 +3033,15 @@ body.nav-hidden .venue-breadcrumb{top:0;}
    is clipped); max-width scaled by 554/605 so the lake draws at the same size
    as the untrimmed frame did and simply moves right. */
 @media(min-width:861px){.map-hero .tahoe{margin:0 0 0 auto;max-width:clamp(330px,38.5vw,531px);}}
+/* Tablet widths (iPad portrait 1024, landscape 1180, Josh's ~954 window): the
+   38.5vw cap drew the lake at 394px in a 441px column, small and pushed into
+   the right margin (Josh, 2026-09-26). Here the words give up a little width
+   and the map fills its column; the window-height cap above still keeps it
+   able to stick in landscape. */
+@media(min-width:861px) and (max-width:1379px){.map-hero .tahoe{max-width:min(100%,531px);}}
+@media(min-width:861px) and (max-width:1279px){
+  .map-hero{grid-template-columns:minmax(0,.8fr) minmax(0,1fr);}
+}
 
 /* Map dots (Josh, 2026-09-25). Filled = a featured venue with its own page;
    open ring = the rest of the list, the usual map convention. Featured dots

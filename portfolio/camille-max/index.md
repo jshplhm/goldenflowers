@@ -14,8 +14,6 @@ hero_photo: camille-max-16.jpg
 
 {% include portfolio-gallery.html slug="camille-max" hero="camille-max-16.jpg" name="Camille & Max" nohero=true %}
 
-{% include wedding-credits.html slug="camille-max" %}
-
 {% include wedding-more.html slug="camille-max" %}
 
 {% include wedding-cta.html %}

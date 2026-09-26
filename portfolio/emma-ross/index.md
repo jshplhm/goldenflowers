@@ -16,8 +16,6 @@ hero_photo: emma-ross-11.jpg
 
 {% include portfolio-gallery.html slug="emma-ross" hero="emma-ross-11.jpg" name="Emma & Ross" nohero=true %}
 
-{% include wedding-credits.html slug="emma-ross" %}
-
 {% include wedding-more.html slug="emma-ross" %}
 
 {% include wedding-cta.html %}

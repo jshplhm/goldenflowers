@@ -14,8 +14,6 @@ hero_photo: tori-tucker-12.jpg
 
 {% include portfolio-gallery.html slug="tori-tucker" hero="tori-tucker-12.jpg" name="Tori & Tucker" nohero=true %}
 
-{% include wedding-credits.html slug="tori-tucker" %}
-
 {% include wedding-more.html slug="tori-tucker" %}
 
 {% include wedding-cta.html %}

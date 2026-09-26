@@ -18,9 +18,6 @@ wedding_cta:
   button: "Check your date"
 # Headings for the blocks on an individual wedding page.
 wedding:
-  credits_heading: "The team"
-  credits_note: "A wedding is never one vendor's work. Everyone who shaped this
-    day is credited here."
   more_heading: "More weddings"
   more_link: "Browse the portfolio"
   strip_cta: "View the wedding"

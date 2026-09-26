@@ -12,8 +12,6 @@ hero_photo: jac-brandon-01.jpg
 
 {% include portfolio-gallery.html slug="jac-brandon" hero="jac-brandon-01.jpg" name="Jac and Brandon" nohero=true %}
 
-{% include wedding-credits.html slug="jac-brandon" %}
-
 {% include wedding-more.html slug="jac-brandon" %}
 
 {% include wedding-cta.html %}

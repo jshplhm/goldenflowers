@@ -12,8 +12,6 @@ hero_photo: mikayla-jeff-11.jpg
 
 {% include portfolio-gallery.html slug="mikayla-jeff" hero="mikayla-jeff-11.jpg" name="Mikayla & Jeff" nohero=true %}
 
-{% include wedding-credits.html slug="mikayla-jeff" %}
-
 {% include wedding-more.html slug="mikayla-jeff" %}
 
 {% include wedding-cta.html %}

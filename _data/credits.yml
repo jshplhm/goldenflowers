@@ -1,4 +1,6 @@
-# Vendor credits, per wedding. Shown in "The team" block on each wedding page.
+# Vendor credits, per wedding. Only `photography` (fact panel) and `venue`
+# (under the couple's name) are printed. "The team" block that listed the
+# other roles was removed 2026-09-26; those rows are kept but nothing reads them.
 #
 # Every row is optional. Leave a `name` blank and the row disappears entirely,
 # so a half-filled set still looks deliberate rather than broken. Give a `name`

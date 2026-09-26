@@ -18,8 +18,6 @@ hero_photo: sarah-brian-01.jpg
 
 {% include portfolio-gallery.html slug="sarah-brian" hero="sarah-brian-01.jpg" name="Sarah & Brian" nohero=true %}
 
-{% include wedding-credits.html slug="sarah-brian" %}
-
 {% include wedding-more.html slug="sarah-brian" %}
 
 {% include wedding-cta.html %}

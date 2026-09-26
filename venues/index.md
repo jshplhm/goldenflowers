@@ -193,7 +193,9 @@ canonical_url: https://goldenflorals.com/venues
    Desktop (hover-capable): hovering a dot or a list name shows the card, whose
    caret points at the owning dot. Touch: first tap on a featured dot reveals
    the card, tapping the card (or the dot again) navigates, tapping elsewhere
-   dismisses. Minor dots stay decorative on touch. */
+   dismisses. Minor dots have no page, so a tap shows their name only and a
+   second tap closes it (they were untappable until 2026-09-26: on an iPad
+   every dot looks like a button, and half of them did nothing). */
 (function(){
   var pins={}, items={};
   document.querySelectorAll('.t-pin[data-venue]').forEach(function(p){ pins[p.getAttribute('data-venue')]=p; });
@@ -257,10 +259,12 @@ canonical_url: https://goldenflorals.com/venues
     });
   } else {
     Object.keys(pins).forEach(function(v){
-      var p=pins[v];
-      if(!p.classList.contains('feat')) return;
+      var p=pins[v], feat=p.classList.contains('feat');
       p.addEventListener('click',function(e){
-        if(active===v) return; /* second tap on the same dot follows the link */
+        if(active===v){ /* second tap: a featured dot follows its link, a minor one closes */
+          if(!feat){ set(v,false); active=null; hideTip(); }
+          return;
+        }
         e.preventDefault();
         if(active) set(active,false);
         active=v; set(v,true); showTip(v);
@@ -268,7 +272,7 @@ canonical_url: https://goldenflorals.com/venues
     });
     document.addEventListener('click',function(e){
       if(!active) return;
-      if(e.target.closest&&(e.target.closest('.t-pin.feat')||e.target.closest('.map-tip'))) return;
+      if(e.target.closest&&(e.target.closest('.t-pin')||e.target.closest('.map-tip'))) return;
       set(active,false); active=null; hideTip();
     });
   }

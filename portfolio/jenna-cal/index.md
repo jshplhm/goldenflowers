@@ -14,8 +14,6 @@ hero_photo: jenna-cal-15.jpg
 
 {% include portfolio-gallery.html slug="jenna-cal" hero="jenna-cal-15.jpg" name="Jenna & Cal" nohero=true %}
 
-{% include wedding-credits.html slug="jenna-cal" %}
-
 {% include wedding-more.html slug="jenna-cal" %}
 
 {% include wedding-cta.html %}

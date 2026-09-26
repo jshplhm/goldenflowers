@@ -14,8 +14,6 @@ hero_photo: lynn-aaron-16.jpg
 
 {% include portfolio-gallery.html slug="lynn-aaron" hero="lynn-aaron-16.jpg" name="Lynn & Aaron" nohero=true %}
 
-{% include wedding-credits.html slug="lynn-aaron" %}
-
 {% include wedding-more.html slug="lynn-aaron" %}
 
 {% include wedding-cta.html %}
