@@ -3032,9 +3032,8 @@ body.nav-hidden .venue-breadcrumb{top:0;}
 .pledge-item{grid-template-columns:minmax(0,1fr);column-gap:0;}
 .pledge-item h4{font-weight:430;line-height:1.2;}
 
-/* Map framing (Josh, 2026-09-25). The viewBox now ends 6 units past the
-   outermost dots on both sides (Ridge Tahoe on the right; the Carson City
-   highway beyond it is clipped). Desktop: shifted left by half the column
-   gap so the lake sits centred between the list and the page margin, not in
-   its own column. Visual only (transform), so layout and sticky are untouched. */
-@media(min-width:861px){.map-hero .tahoe{transform:translateX(calc(clamp(28px,3.5vw,60px) / -2));}}
+/* Map framing (Josh, 2026-09-25): the original full frame (Carson City
+   highway included), sitting FLUSH RIGHT on desktop so its right edge meets
+   the page margin, and a little narrower than its column, so the spare width
+   becomes air between the list and the lake. */
+@media(min-width:861px){.map-hero .tahoe{margin:0 0 0 auto;max-width:clamp(340px,38vw,560px);}}
