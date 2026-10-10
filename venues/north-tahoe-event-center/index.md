@@ -7,5 +7,7 @@ description: "Wedding flowers for the North Tahoe Event Center in Kings Beach. F
 canonical_url: https://goldenflorals.com/venues/north-tahoe-event-center
 redirect_from:
   - /wedding-florist-lake-tahoe-event-center
+# Which other venue pages this one links to under "Nearby venues" (north | truckee | south).
+area: north
 venue_key: north-tahoe-event-center
 ---

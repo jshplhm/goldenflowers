@@ -7,5 +7,7 @@ description: "Golden Flowers designs wedding flowers for Edgewood Tahoe. Seasona
 canonical_url: https://goldenflorals.com/venues/edgewood-tahoe
 redirect_from:
   - /wedding-florist-edgewood-tahoe
+# Which other venue pages this one links to under "Nearby venues" (north | truckee | south).
+area: south
 venue_key: edgewood-tahoe
 ---

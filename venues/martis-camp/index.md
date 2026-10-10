@@ -7,5 +7,7 @@ description: "Wedding flowers for Martis Camp near Truckee. Refined, foam-free, 
 canonical_url: https://goldenflorals.com/venues/martis-camp
 redirect_from:
   - /wedding-florist-martis-camp
+# Which other venue pages this one links to under "Nearby venues" (north | truckee | south).
+area: truckee
 venue_key: martis-camp
 ---

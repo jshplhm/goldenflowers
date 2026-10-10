@@ -7,5 +7,7 @@ description: "Wedding flowers for The Ritz-Carlton, Lake Tahoe at Northstar. Ref
 canonical_url: https://goldenflorals.com/venues/ritz-carlton-lake-tahoe
 redirect_from:
   - /wedding-florist-ritz-carlton-lake-tahoe
+# Which other venue pages this one links to under "Nearby venues" (north | truckee | south).
+area: truckee
 venue_key: ritz-carlton-lake-tahoe
 ---

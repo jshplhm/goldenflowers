@@ -7,5 +7,7 @@ description: "Wedding flowers for the Hyatt Regency Lake Tahoe. Golden Flowers i
 canonical_url: https://goldenflorals.com/venues/hyatt-regency-lake-tahoe
 redirect_from:
   - /wedding-florist-hyatt-regency-lake-tahoe
+# Which other venue pages this one links to under "Nearby venues" (north | truckee | south).
+area: north
 venue_key: hyatt-regency-lake-tahoe
 ---

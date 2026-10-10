@@ -111,6 +111,24 @@ migration, so this is the same component, not a new one. {%- endcomment -%}
   printed it here, and on 2026-09-25 the eyebrow came off every closing ask on
   the site anyway.
 {%- endcomment -%}
+{%- comment -%}
+  NEARBY VENUES (2026-10-10). No venue page linked to any other: each was a
+  dead end reachable only from the map. This lists the other venue pages in
+  the same `area` (set in each page's front matter), so a couple comparing
+  places on one shore can walk between them, and so can a crawler.
+{%- endcomment -%}
+{%- assign near = site.pages | where: "layout", "venue" | where: "area", page.area | sort: "venue_key" -%}
+{%- if page.area and near.size > 1 %}
+<section class="v-near">
+  <p class="v-near-lab"><span data-ed="venues_page:nearby.{{ page.area }}">{{ site.data.venues_page.nearby[page.area] }}</span></p>
+  <p class="v-near-list">
+    {%- for n in near -%}{%- if n.url != page.url -%}
+    <span class="vl-i"><a href="{{ site.baseurl }}{{ n.url }}">{{ site.data.venues[n.venue_key].venue_name }}</a><span aria-hidden="true">&nbsp;·</span></span>{{ " " }}
+    {%- endif -%}{%- endfor -%}
+    <span class="vl-i"><a href="{{ site.baseurl }}/venues"><span data-ed="venues_page:nearby.all">{{ site.data.venues_page.nearby.all }}</span></a></span>
+  </p>
+</section>
+{%- endif %}
 <div class="cta-section">
   <h2><span data-ed="{{ vk }}:cta.heading">{{ v.cta.heading }}</span></h2>
   {%- assign k_cb = vk | append: ":cta.body" %}

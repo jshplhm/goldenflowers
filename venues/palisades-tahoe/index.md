@@ -7,5 +7,7 @@ redirect_from:
   - /venues/palisades-high-camp
 description: "Wedding flowers at Palisades Tahoe, formerly Squaw Valley: High Camp at the top of the tram and the Olympic Valley Event Center below, all foam-free."
 canonical_url: https://goldenflorals.com/venues/palisades-tahoe
+# Which other venue pages this one links to under "Nearby venues" (north | truckee | south).
+area: truckee
 venue_key: palisades-high-camp
 ---

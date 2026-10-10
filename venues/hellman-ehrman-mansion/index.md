@@ -7,5 +7,7 @@ description: "Wedding flowers for the Hellman-Ehrman Mansion at Sugar Pine Point
 canonical_url: https://goldenflorals.com/venues/hellman-ehrman-mansion
 redirect_from:
   - /wedding-florist-hellman-ehrman-mansion-sugar-pine-point
+# Which other venue pages this one links to under "Nearby venues" (north | truckee | south).
+area: south
 venue_key: hellman-ehrman-mansion
 ---

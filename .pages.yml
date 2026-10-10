@@ -242,6 +242,14 @@ content:
           - {name: label, label: "Small label", type: string}
           - {name: heading, label: "Headline", type: string}
           - {name: intro, label: "Intro paragraph", type: text}
+      - name: nearby
+        label: "Nearby venues line (foot of each venue page)"
+        type: object
+        fields:
+          - {name: north, label: "Label on North Shore venue pages", type: string}
+          - {name: truckee, label: "Label on Truckee and Olympic Valley venue pages", type: string}
+          - {name: south, label: "Label on South and West Shore venue pages", type: string}
+          - {name: all, label: "Link to the venues page", type: string}
       - name: not_listed
         label: "Section: don't see your venue"
         type: object

@@ -1,9 +1,9 @@
 ---
 layout: redesign
 title: "Weddings"
-seo_title: "Lake Tahoe Wedding Flowers & Pricing | Golden Flowers"
+seo_title: "Lake Tahoe Wedding Flowers Cost & Pricing | Golden Flowers"
 permalink: /weddings
-description: "Golden Flowers designs seasonal, sustainable wedding flowers for Lake Tahoe, Truckee, and the Sierra Nevada. How our process works and what to expect on pricing."
+description: "What Lake Tahoe wedding flowers cost with Golden Flowers: weddings start at $5,000 and a typical 100 guest wedding runs $10,000 to $16,000. How our process works."
 canonical_url: https://goldenflorals.com/weddings
 redirect_from:
   # Short addresses that match the menu (2026-09-26): typed or shared, they land here;

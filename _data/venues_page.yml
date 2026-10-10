@@ -7,6 +7,14 @@ hero:
   heading: We love this place.
   intro: From lakefront estates to mountaintop lodges, these are the venues Tahoe couples ask about most. Tap a featured venue for design notes, typical budgets, and planning answers.
 
+# The line of links near the foot of every venue page. One label per area; the
+# venue names fill themselves in.
+nearby:
+  north: More venues on the North Shore
+  truckee: More venues around Truckee and Olympic Valley
+  south: More venues on the South and West Shore
+  all: All venues
+
 not_listed:
   label: Somewhere else?
   heading: Don't see your venue?
