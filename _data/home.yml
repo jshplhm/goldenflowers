@@ -1,10 +1,11 @@
 hero:
-  # The h1 reads on from the wordmark above it: "Golden Flowers / a luxury Lake
-  # Tahoe wedding florist creating...". A plain definition of the business in a
-  # real sentence, with the search phrase inside it rather than standing alone
-  # as a four-word label. The title tag still carries the short phrase.
-  heading: a luxury Lake Tahoe wedding florist creating artful, sustainable floral
-    design for couples getting married across the Sierra Nevada
+  # The h1 is the search phrase on its own line, and the sentence that used to
+  # BE the h1 sits under it without the words the h1 now says (2026-10-10).
+  # Keep the heading to these four words: it is what Google reads as the
+  # subject of the home page.
+  heading: Lake Tahoe Wedding Florist
+  line: Artful, sustainable floral design for couples getting married around the
+    lake and across the Sierra Nevada.
 intro:
   # Label intentionally blank (Josh, 2026-09-23): the eyebrow came off the
   # facts section on 09-22 and this was the last one left, which made it the
@@ -53,15 +54,23 @@ why:
         slotted into a production line. Everything is planned months ahead, with
         backups in place for everything that matters.
 # Sits at the foot of the page, right before the closing ask (2026-09-26): the
-# reasons, the work and a review come first. Deliberately carries no numbers: the figures
-# live on one page (/weddings) so they can never drift out of step here.
+# reasons, the work and a review come first. Carries the two headline figures
+# since 2026-10-10 (Josh): the same numbers as the table on /weddings. Change
+# one, change the other.
 process:
   heading: What it costs, and how it works.
-  body: Full service design from the first conversation through breakdown at the
-    end of the night, with real numbers before you ask for them.
+  body: Full service wedding flowers, from the first conversation through
+    breakdown at the end of the night. We design, deliver, set up and stay on
+    site until the last piece is placed. Weddings start at $5,000, and a
+    typical 100 guest wedding runs $10,000 to $16,000.
   link: See our process and pricing
 marquee:
   label: We design at 30+ venues across the Sierra
+  # Names the places people actually search by (2026-10-10). The studio line is
+  # the only place the home page says where we are in a sentence.
+  body: We work all the way around Lake Tahoe, from Incline Village and the North
+    Shore to South Lake Tahoe, and up through Truckee and Olympic Valley. Our
+    studio is in Incline Village, Nevada, by appointment.
   link: See all venues
 testimonial:
   quote: '"Brittany and her team are the utmost in artistry, professionalism, and

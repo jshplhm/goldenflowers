@@ -1,7 +1,10 @@
 ---
 layout: redesign
-title: "Golden Flowers"
-seo_title: "Lake Tahoe & Sierra Nevada Wedding Florist | Golden Flowers"
+# title feeds og:title and twitter:title (jekyll-seo-tag), seo_title feeds
+# <title>. Both lead with the exact search phrase and nothing splits it
+# (2026-10-10: "Lake Tahoe & Sierra Nevada Wedding Florist" broke the phrase in two).
+title: "Lake Tahoe Wedding Florist · Golden Flowers"
+seo_title: "Lake Tahoe Wedding Florist | Golden Flowers"
 permalink: /
 description: "Golden Flowers is a luxury Lake Tahoe wedding florist creating elevated, sustainable floral design, grown and sourced close to home across the Sierra Nevada."
 canonical_url: https://goldenflorals.com/
@@ -60,14 +63,15 @@ the moment one pale photo wants it and another does not, the machinery is here.
     </picture>
   </figure>
   <div class="ht-words">
-    {%- comment -%} The name, then one sentence, and the sentence IS the h1. It
-    reads on from the wordmark: "Golden Flowers / a luxury Lake Tahoe wedding
-    florist creating...". The search phrase sits inside a real sentence instead
-    of standing alone as a four-word label, and the title tag still carries the
-    short phrase on its own. The old hero sub-heading is gone: it said the same
-    thing in fewer words directly underneath. {%- endcomment -%}
+    {%- comment -%} The name, then the h1, then one sentence (2026-10-10). The
+    h1 is the four-word search phrase on its own line. From 09-22 the h1 was
+    the whole sentence with the phrase inside it; within a week the home page
+    fell out of the organic results for that phrase while /blog and venue
+    pages, which do lead with it, took its place. The sentence stays, as the
+    line under the h1, minus the words the h1 now says. {%- endcomment -%}
     <div class="ht-mark">Golden Flowers</div>
-    <h1 class="ht-line">{% include em.html t=site.data.home.hero.heading k="home:hero.heading" %}</h1>
+    <h1 class="ht-h1"><span data-ed="home:hero.heading">{{ site.data.home.hero.heading }}</span></h1>
+    <p class="ht-line">{% include em.html t=site.data.home.hero.line k="home:hero.line" %}</p>
   </div>
 </header>
 
@@ -157,6 +161,18 @@ the moment one pale photo wants it and another does not, the machinery is here.
     <div class="pb-txt vmini-txt">
       <div class="vmini-map">{% include lake-mini.html %}</div>
     <p class="disp"><span data-ed="home:marquee.label">{{ site.data.home.marquee.label }}</span></p>
+    <p class="vmini-body"><span data-ed="home:marquee.body">{{ site.data.home.marquee.body }}</span></p>
+    {%- comment -%} The venue names as real links (2026-10-10). The lake above
+    is a picture: its twelve names live in svg <title> elements, which nobody
+    reads and no crawler follows, so the home page linked to no venue page at
+    all. Names and addresses come from the venue pages themselves, so a new
+    venue page appears here without anyone touching this file. {%- endcomment -%}
+    {%- assign vpages = site.pages | where: "layout", "venue" | sort: "venue_key" %}
+    <p class="vmini-list">
+      {%- for v in vpages -%}
+      <span class="vl-i"><a href="{{ site.baseurl }}{{ v.url }}">{{ site.data.venues[v.venue_key].venue_name }}</a>{% unless forloop.last %}<span aria-hidden="true">&nbsp;·</span>{% endunless %}</span>{{ " " }}
+      {%- endfor -%}
+    </p>
     <p class="vmini-more"><a href="{{ site.baseurl }}/venues" class="txt-link"><span data-ed="home:marquee.link">{{ site.data.home.marquee.link }}</span> &rarr;</a></p>
     </div>
     <figure class="pb-pic"><img src="{{ site.baseurl }}/assets/images/portfolio/lynn-aaron/lynn-aaron-01.jpg"{% include img-dims.html path="/assets/images/portfolio/lynn-aaron/lynn-aaron-01.jpg" %}{% include img-crop.html path="/assets/images/portfolio/lynn-aaron/lynn-aaron-01.jpg" ctx="home" %} sizes="(max-width:820px) 87vw, (max-width:1340px) 46vw, 610px" loading="lazy" alt="A beach ceremony set on the shore of Lake Tahoe, an arch and chairs waiting under a grey sky"></figure>

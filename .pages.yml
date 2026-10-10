@@ -27,7 +27,8 @@ content:
         label: Hero (very top)
         type: object
         fields:
-          - {name: heading, label: "Headline", type: string, description: "Put *asterisks* around words to italicize them."}
+          - {name: heading, label: "Headline", type: string, description: "Keep this as 'Lake Tahoe Wedding Florist'. It is what Google reads as the subject of the home page."}
+          - {name: line, label: "Line under the headline", type: text, description: "Put *asterisks* around words to italicize them."}
       - name: intro
         label: Intro band
         type: object
@@ -55,13 +56,14 @@ content:
         type: object
         fields:
           - {name: heading, label: "Heading", type: string}
-          - {name: body, label: "Text", type: text, description: "Keep prices off this page: the numbers live on Pricing only."}
+          - {name: body, label: "Text", type: text, description: "The prices here must match the table on Pricing."}
           - {name: link, label: "Link text", type: string}
       - name: marquee
         label: Venues (beside the lake map)
         type: object
         fields:
           - {name: label, label: "Label", type: string}
+          - {name: body, label: "Sentence under the label", type: text, description: "Where we work and where the studio is. The venue names under it fill themselves in from the venue pages."}
           - {name: link, label: "Link text", type: string}
       - name: testimonial
         label: Featured review
