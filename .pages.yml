@@ -250,6 +250,13 @@ content:
           - {name: truckee, label: "Label on Truckee and Olympic Valley venue pages", type: string}
           - {name: south, label: "Label on South and West Shore venue pages", type: string}
           - {name: all, label: "Link to the venues page", type: string}
+      - name: who
+        label: "Who-we-are sentence under it (links to the home page)"
+        type: object
+        fields:
+          - {name: north, label: "North Shore pages", type: object, fields: [{name: before, label: "Before the link", type: string}, {name: link, label: "Linked words", type: string}, {name: after, label: "After the link", type: string}]}
+          - {name: truckee, label: "Truckee and Olympic Valley pages", type: object, fields: [{name: before, label: "Before the link", type: string}, {name: link, label: "Linked words", type: string}, {name: after, label: "After the link", type: string}]}
+          - {name: south, label: "South and West Shore pages", type: object, fields: [{name: before, label: "Before the link", type: string}, {name: link, label: "Linked words", type: string}, {name: after, label: "After the link", type: string}]}
       - name: not_listed
         label: "Section: don't see your venue"
         type: object

@@ -2816,8 +2816,9 @@ body.nav-hidden .venue-breadcrumb{top:0;}
 .v-near{max-width:var(--body-max);margin:0 auto;padding:0 var(--pad) var(--sp-m);}
 .v-near-lab{font-family:var(--d);font-weight:430;font-size:var(--t-d3);line-height:1.2;color:var(--ink);}
 .v-near-list{margin-top:clamp(12px,1.4vw,18px);font-size:.95rem;line-height:1.9;color:var(--fg2);}
-.v-near-list a{color:inherit;text-decoration:underline;text-decoration-color:var(--line);text-underline-offset:.22em;}
-.v-near-list a:hover{text-decoration-color:currentColor;}
+.v-near-who{margin-top:clamp(10px,1.2vw,14px);font-size:.95rem;line-height:1.6;color:var(--fg2);}
+.v-near-list a,.v-near-who a{color:inherit;text-decoration:underline;text-decoration-color:var(--line);text-underline-offset:.22em;}
+.v-near-list a:hover,.v-near-who a:hover{text-decoration-color:currentColor;}
 /* The venue names, as a run of links under the sentence (2026-10-10). */
 .vmini-txt > .vmini-body{margin-top:clamp(14px,1.6vw,20px);max-width:46ch;}
 .vmini-txt > .vmini-list{margin-top:clamp(14px,1.6vw,20px);max-width:46ch;

@@ -15,6 +15,22 @@ nearby:
   south: More venues on the South and West Shore
   all: All venues
 
+# One sentence under that line, linking the home page in words. Three parts so
+# the middle part can be the link: before + link + after.
+who:
+  north:
+    before: Golden Flowers is a
+    link: Lake Tahoe wedding florist
+    after: " based in Incline Village, on the North Shore."
+  truckee:
+    before: Golden Flowers is a
+    link: wedding florist for Lake Tahoe and Truckee
+    after: ", with a studio in Incline Village."
+  south:
+    before: We're a
+    link: Lake Tahoe wedding florist
+    after: " working all the way around the lake, from Incline Village to the South Shore."
+
 not_listed:
   label: Somewhere else?
   heading: Don't see your venue?

@@ -127,6 +127,14 @@ migration, so this is the same component, not a new one. {%- endcomment -%}
     {%- endif -%}{%- endfor -%}
     <span class="vl-i"><a href="{{ site.baseurl }}/venues"><span data-ed="venues_page:nearby.all">{{ site.data.venues_page.nearby.all }}</span></a></span>
   </p>
+  {%- comment -%} One sentence saying who we are, with the home page linked in
+  words (2026-10-10). The only links to the home page were the logo and the
+  menu, which tell a crawler nothing about what the page is. Worded per area
+  so thirteen pages do not carry the same line. {%- endcomment -%}
+  {%- assign who = site.data.venues_page.who[page.area] -%}
+  {%- if who %}
+  <p class="v-near-who"><span data-ed="venues_page:who.{{ page.area }}.before">{{ who.before }}</span> <a href="{{ site.baseurl }}/"><span data-ed="venues_page:who.{{ page.area }}.link">{{ who.link }}</span></a><span data-ed="venues_page:who.{{ page.area }}.after">{{ who.after }}</span></p>
+  {%- endif %}
 </section>
 {%- endif %}
 <div class="cta-section">
