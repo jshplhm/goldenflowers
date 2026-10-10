@@ -1,6 +1,8 @@
 ---
 layout: post
-title: "Lake Tahoe wedding florist: What to expect when you work with Golden Flowers"
+# Retitled 2026-10-10 (Josh). The old title led with "Lake Tahoe wedding
+# florist", the phrase the home page has to own. The address is unchanged.
+title: "Working with Golden Flowers: What to Expect, from First Inquiry to Wedding Day"
 featured_image: "/assets/images/portfolio/brooke-josh/brooke-josh-14.jpg"
 date: 2026-02-15
 permalink: /natures-canvas-lake-tahoe-wedding-flowers/lake-tahoe-wedding-florist/
