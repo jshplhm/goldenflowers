@@ -107,7 +107,7 @@ the moment one pale photo wants it and another does not, the machinery is here.
 <!-- Portrait pair. -->
 <section class="pband">
   <div class="pb-row">
-    <figure class="pb-pic"><img src="{{ site.baseurl }}/assets/images/portfolio/mikayla-jeff/mikayla-jeff-03.jpg"{% include img-dims.html path="/assets/images/portfolio/mikayla-jeff/mikayla-jeff-03.jpg" %}{% include img-crop.html path="/assets/images/portfolio/mikayla-jeff/mikayla-jeff-03.jpg" ctx="home" %} sizes="(max-width:820px) 87vw, (max-width:1340px) 40vw, 530px" loading="lazy" alt="Tall whimsical ceremony installation of thistle, lilac and trailing green against Olympic Valley pines"></figure>
+    <figure class="pb-pic"><img src="{{ site.baseurl }}/assets/images/portfolio/mikayla-jeff/mikayla-jeff-05.jpg"{% include img-dims.html path="/assets/images/portfolio/mikayla-jeff/mikayla-jeff-05.jpg" %}{% include img-crop.html path="/assets/images/portfolio/mikayla-jeff/mikayla-jeff-05.jpg" ctx="home" %} sizes="(max-width:820px) 87vw, (max-width:1340px) 40vw, 530px" loading="lazy" alt="Tall whimsical ceremony installation of thistle, lilac and trailing green against Olympic Valley pines"></figure>
     <figure class="pb-pic"><img src="{{ site.baseurl }}/assets/images/portfolio/brooke-josh/brooke-josh-06.jpg"{% include img-dims.html path="/assets/images/portfolio/brooke-josh/brooke-josh-06.jpg" %}{% include img-crop.html path="/assets/images/portfolio/brooke-josh/brooke-josh-06.jpg" ctx="home" %} sizes="(max-width:820px) 87vw, (max-width:1340px) 47vw, 620px" loading="lazy" alt="Blush and butter-cream roses massed on a stone wall at The Miner&#39;s Foundry"></figure>
   </div>
 </section>
