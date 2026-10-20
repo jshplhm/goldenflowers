@@ -168,7 +168,7 @@ pricing:
       amount: "$5,000"
       caption: ""
     - label: A typical 100 guest wedding
-      amount: "$10,000 – $16,000"
+      amount: "$10,000 – $12,000"
       caption: ""
     - label: Larger weddings
       amount: "$20,000+"
@@ -176,28 +176,28 @@ pricing:
     # Four things, because four is what a couple can hold. Each one is a lever
     # they actually control, so the list doubles as the agenda for the
     # consultation.
-  # PIECE BY PIECE (2026-10-20, Josh): Brittany's price guide, item by item,
-  # transcribed from her graphic. Its own section under the price band, because
-  # publishing prices is a moment on this site and Josh wants it designed as
-  # one. Grouped by where a piece lives on the day, each group headed by a
-  # photograph of that KIND of piece (never captioned with a price: the picture
-  # shows what a bouquet is, not what that bouquet cost). `labor` closes it as
-  # a row of its own (her 25% line). Empty `groups` and the section is gone.
-  # Ranges use "$400 – $500" (en dash, spaced) to match the figures above.
-  #
-  # `photos` on an item (2026-10-20, Josh): examples of OUR work, opened in
-  # place under the row. FIVE SLOTS per item, always: two filled is the
-  # house default, "" is an empty slot. Empty slots are invisible on the site
-  # and show as "Add photo" boxes in /edit, which is how a piece with nothing
-  # yet (corsage, petals, chuppah) gets its first picture. Keep five entries
-  # even when clearing one: /edit writes into a slot, it never adds one.
-  # /edit can also add a line ("+ Add a line" under a group, written with
-  # five empty slots) and remove one ("Remove this line" in its open panel).
-  # Each example's zoom and focus is a `guide|<path>` key in photo_crop.yml.
-  # Values are written the way /edit writes them: "slug/slug-NN.jpg" under
-  # assets/images/portfolio/, or a full "/assets/..." path for an upload.
-  # No captions under the photos (Josh: not the place for wedding names).
-  # Never use a hidden wedding's photos here.
+    # PIECE BY PIECE (2026-10-20, Josh): Brittany's price guide, item by item,
+    # transcribed from her graphic. Its own section under the price band, because
+    # publishing prices is a moment on this site and Josh wants it designed as
+    # one. Grouped by where a piece lives on the day, each group headed by a
+    # photograph of that KIND of piece (never captioned with a price: the picture
+    # shows what a bouquet is, not what that bouquet cost). `labor` closes it as
+    # a row of its own (her 25% line). Empty `groups` and the section is gone.
+    # Ranges use "$400 – $500" (en dash, spaced) to match the figures above.
+    #
+    # `photos` on an item (2026-10-20, Josh): examples of OUR work, opened in
+    # place under the row. FIVE SLOTS per item, always: two filled is the
+    # house default, "" is an empty slot. Empty slots are invisible on the site
+    # and show as "Add photo" boxes in /edit, which is how a piece with nothing
+    # yet (corsage, petals, chuppah) gets its first picture. Keep five entries
+    # even when clearing one: /edit writes into a slot, it never adds one.
+    # /edit can also add a line ("+ Add a line" under a group, written with
+    # five empty slots) and remove one ("Remove this line" in its open panel).
+    # Each example's zoom and focus is a `guide|<path>` key in photo_crop.yml.
+    # Values are written the way /edit writes them: "slug/slug-NN.jpg" under
+    # assets/images/portfolio/, or a full "/assets/..." path for an upload.
+    # No captions under the photos (Josh: not the place for wedding names).
+    # Never use a hidden wedding's photos here.
   guide:
     label: ""
     heading: Piece by piece.
@@ -211,20 +211,42 @@ pricing:
     groups:
       - title: Personal flowers
         photo: /assets/images/portfolio/emma-ross/emma-ross-18.jpg
-        alt: Emma holds her cascading bouquet of white calla lilies and long green amaranthus
+        alt: Emma holds her cascading bouquet of white calla lilies and long green
+          amaranthus
         items:
           - name: Bridal bouquet
             price: "$250 – $350"
-            photos: [ "brooke-josh/brooke-josh-06.jpg", "kelly-dylan/kelly-dylan-16.jpg", "", "", "" ]
+            photos:
+              [
+                "brooke-josh/brooke-josh-06.jpg",
+                "kelly-dylan/kelly-dylan-16.jpg",
+                "",
+                "",
+                ""
+              ]
           - name: Premium bridal bouquet
             price: "$400 – $500"
             photos: [ "jenna-cal/jenna-cal-01.jpg", "lynn-aaron/lynn-aaron-03.jpg", "", "", "" ]
           - name: Bridesmaid bouquet
             price: "$125 – $150"
-            photos: [ "brooke-josh/brooke-josh-23.jpg", "hannah-dillon/hannah-dillon-06.jpg", "", "", "" ]
+            photos:
+              [
+                "brooke-josh/brooke-josh-23.jpg",
+                "hannah-dillon/hannah-dillon-06.jpg",
+                "",
+                "",
+                ""
+              ]
           - name: Boutonniere
             price: "$45"
-            photos: [ "hannah-dillon/hannah-dillon-18.jpg", "jenna-cal/jenna-cal-02.jpg", "", "", "" ]
+            photos:
+              [
+                "hannah-dillon/hannah-dillon-18.jpg",
+                "jenna-cal/jenna-cal-02.jpg",
+                "",
+                "",
+                ""
+              ]
           - name: Corsage
             price: "$80"
             photos: [ "", "", "", "", "" ]
@@ -233,20 +255,42 @@ pricing:
             photos: [ "", "", "", "", "" ]
       - title: Ceremony
         photo: /assets/images/portfolio/hannah-dillon/hannah-dillon-17.jpg
-        alt: Corten steel ceremony circle with an asymmetric sweep of magenta, raspberry and coral flowers at Austin Ridge
+        alt: Corten steel ceremony circle with an asymmetric sweep of magenta, raspberry
+          and coral flowers at Austin Ridge
         items:
           - name: Aisle arrangement
             price: "$350 – $500"
-            photos: [ "katie-james/katie-james-26.jpg", "brooke-josh/brooke-josh-13.jpg", "", "", "" ]
+            photos:
+              [
+                "katie-james/katie-james-26.jpg",
+                "brooke-josh/brooke-josh-13.jpg",
+                "",
+                "",
+                ""
+              ]
           - name: Altar arrangement
             price: "$250 – $500"
             photos: [ "lynn-aaron/lynn-aaron-14.jpg", "", "", "", "" ]
           - name: Two-pillar arch install
             price: "$2,000 – $2,500"
-            photos: [ "tori-tucker/tori-tucker-11.jpg", "mikayla-jeff/mikayla-jeff-05.jpg", "", "", "" ]
+            photos:
+              [
+                "tori-tucker/tori-tucker-11.jpg",
+                "mikayla-jeff/mikayla-jeff-05.jpg",
+                "",
+                "",
+                ""
+              ]
           - name: Full arch installation
             price: "$2,800 – $4,000"
-            photos: [ "katie-james/katie-james-08.jpg", "jenna-cal/jenna-cal-25.jpg", "", "", "" ]
+            photos:
+              [
+                "katie-james/katie-james-08.jpg",
+                "jenna-cal/jenna-cal-25.jpg",
+                "",
+                "",
+                ""
+              ]
           - name: Ground meadow installation
             price: "$2,000 – $4,000"
             photos: [ "kelly-dylan/kelly-dylan-03.jpg", "", "", "", "" ]
@@ -258,29 +302,79 @@ pricing:
             photos: [ "mikayla-jeff/mikayla-jeff-03.jpg", "", "", "", "" ]
       - title: Reception
         photo: /assets/images/portfolio/lynn-aaron/lynn-aaron-22.jpg
-        alt: Coral peony, burgundy scabiosa and trailing amaranthus in a tall ribbed glass centerpiece
+        alt: Coral peony, burgundy scabiosa and trailing amaranthus in a tall ribbed
+          glass centerpiece
         items:
           - name: Bud vase
             price: "$25"
-            photos: [ "kelly-dylan/kelly-dylan-15.jpg", "lynn-aaron/lynn-aaron-24.jpg", "", "", "" ]
+            photos:
+              [
+                "kelly-dylan/kelly-dylan-15.jpg",
+                "lynn-aaron/lynn-aaron-24.jpg",
+                "",
+                "",
+                ""
+              ]
           - name: Low centerpiece
             price: "$75 – $300"
-            photos: [ "lynn-aaron/lynn-aaron-13.jpg", "sarah-brian/sarah-brian-05.jpg", "", "", "" ]
+            photos:
+              [
+                "lynn-aaron/lynn-aaron-13.jpg",
+                "sarah-brian/sarah-brian-05.jpg",
+                "",
+                "",
+                ""
+              ]
           - name: Tall centerpiece
             price: "$375 – $475"
-            photos: [ "lynn-aaron/lynn-aaron-18.jpg", "lynn-aaron/lynn-aaron-22.jpg", "", "", "" ]
+            photos:
+              [
+                "lynn-aaron/lynn-aaron-18.jpg",
+                "lynn-aaron/lynn-aaron-22.jpg",
+                "",
+                "",
+                ""
+              ]
           - name: Candle illumination, per table
             price: "$200 – $400"
-            photos: [ "katie-james/katie-james-04.jpg", "kelly-dylan/kelly-dylan-25.jpg", "", "", "" ]
+            photos:
+              [
+                "katie-james/katie-james-04.jpg",
+                "kelly-dylan/kelly-dylan-25.jpg",
+                "",
+                "",
+                ""
+              ]
           - name: Welcome sign arrangement
             price: "$250"
-            photos: [ "brooke-josh/brooke-josh-08.jpg", "kelly-dylan/kelly-dylan-05.jpg", "", "", "" ]
+            photos:
+              [
+                "brooke-josh/brooke-josh-08.jpg",
+                "kelly-dylan/kelly-dylan-05.jpg",
+                "",
+                "",
+                ""
+              ]
           - name: Bar arrangement
             price: "$250 – $500"
-            photos: [ "kelly-dylan/kelly-dylan-09.jpg", "tori-tucker/tori-tucker-10.jpg", "", "", "" ]
+            photos:
+              [
+                "kelly-dylan/kelly-dylan-09.jpg",
+                "tori-tucker/tori-tucker-10.jpg",
+                "",
+                "",
+                ""
+              ]
           - name: Custom hanging installation
             price: "$3,500 – $10,000"
-            photos: [ "lynn-aaron/lynn-aaron-26.jpg", "sarah-brian/sarah-brian-06.jpg", "", "", "" ]
+            photos:
+              [
+                "lynn-aaron/lynn-aaron-26.jpg",
+                "sarah-brian/sarah-brian-06.jpg",
+                "",
+                "",
+                ""
+              ]
     # The closing labor row is off (label blank hides it): at the foot of the
     # last list it read as a Reception charge. The 25% is said once in the
     # intro above, before all three lists (Josh, 2026-10-20). Put the label
