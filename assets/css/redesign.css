@@ -1890,19 +1890,19 @@ body.nav-hidden .venue-breadcrumb{top:0;}
 .pg-p{font-family:var(--d);font-weight:430;font-optical-sizing:auto;
   font-size:var(--t-d4);letter-spacing:-.01em;color:var(--ink);white-space:nowrap;
   font-variant-numeric:tabular-nums lining-nums;}
-/* The open affordance: a small plus that turns to a cross. A row with no
-   photos yet (.pg-none) keeps the same empty slot, so every price ends on
-   one edge, and does not toggle. /edit lifts both rules for that row. */
+/* The open affordance: the FAQ's plus (same size, weight and green) that
+   turns to a minus, so every open-in-place row on the page speaks one
+   language. A row with no photos yet (.pg-none) keeps the same empty slot,
+   so every price ends on one edge, and does not toggle. /edit lifts both
+   rules for that row. */
 .pg-none > summary{pointer-events:none;cursor:default;}
 .pg-none .pg-x{visibility:hidden;}
-.pg-x{flex:none;align-self:center;width:22px;height:22px;position:relative;}
-details.pg-item .pg-x{border:1px solid var(--line);border-radius:50%;transition:transform .25s ease,border-color .2s;}
+.pg-x{flex:none;align-self:center;width:14px;height:14px;position:relative;}
 details.pg-item .pg-x::before,details.pg-item .pg-x::after{content:"";position:absolute;left:50%;top:50%;
-  width:9px;height:1px;background:var(--ink);transform:translate(-50%,-50%);}
+  width:14px;height:1.5px;background:var(--accent);transform:translate(-50%,-50%);transition:transform .3s;}
 details.pg-item .pg-x::after{transform:translate(-50%,-50%) rotate(90deg);}
-@media(hover:hover){details.pg-item > summary:hover .pg-x{border-color:var(--ink);}
-details.pg-item > summary:hover .pg-n{text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1px;}}
-details.pg-item[open] .pg-x{transform:rotate(45deg);border-color:var(--ink);}
+details.pg-item[open] .pg-x::after{transform:translate(-50%,-50%) rotate(90deg) scaleX(0);}
+@media(hover:hover){details.pg-item > summary:hover .pg-n{text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1px;}}
 details.pg-item > summary:focus-visible{outline:2px solid var(--accent);outline-offset:4px;border-radius:4px;}
 /* The examples: a strip of our own photographs under the row, scrolling
    sideways when they outrun the column. No captions, by request. */
@@ -1919,15 +1919,27 @@ details.pg-item > summary:focus-visible{outline:2px solid var(--accent);outline-
 @keyframes pgIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
 @media(prefers-reduced-motion:reduce){.pg-ex{animation:none;}details.pg-item .pg-x{transition:none;}}
 @media(max-width:640px){.pg-ex figure{flex-basis:62%;}}
-/* The labor line, a closing row across the whole measure: label in small
-   caps like the figures in the band above, amount in the serif. */
+/* The labor line, a closing row across the whole measure, set like the
+   rows above (name in body type, amount at the price size) and kept apart
+   by space and by having no plus: it applies to everything, it is not a
+   piece you pick. */
 .pg-labor{display:flex;justify-content:space-between;align-items:baseline;gap:20px;flex-wrap:wrap;
-  margin-top:clamp(56px,7vw,112px);padding:clamp(20px,2.4vw,30px) 0;
+  margin-top:clamp(56px,7vw,112px);padding:clamp(14px,1.5vw,18px) 0;
   border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
-.pg-labor-l{font-size:var(--t-tag);letter-spacing:.12em;text-transform:uppercase;
-  color:var(--fg2);font-weight:500;line-height:1.5;}
+.pg-labor-l{font-size:1rem;color:var(--fg);line-height:1.4;}
 .pg-labor-a{font-family:var(--d);font-weight:430;font-optical-sizing:auto;
-  font-size:var(--t-d3);letter-spacing:-.015em;color:var(--ink);}
+  font-size:var(--t-d4);letter-spacing:-.01em;color:var(--ink);
+  font-variant-numeric:tabular-nums lining-nums;}
+/* Beside the photographs it sits in the list column, its amount on the
+   prices' edge (the plus slot, 14px + the 20px gap, kept clear). */
+@media(min-width:641px){
+  .pg-labor{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,8fr);
+    column-gap:clamp(32px,5vw,96px);padding:0;border:0;}
+  .pg-labor::before{content:"";grid-column:2;grid-row:1;align-self:stretch;
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+  .pg-labor-l,.pg-labor-a{grid-column:2;grid-row:1;padding:clamp(14px,1.5vw,18px) 0;}
+  .pg-labor-a{justify-self:end;padding-right:34px;}
+}
 @media(max-width:640px){
   .pg-row{grid-template-columns:minmax(0,1fr);row-gap:24px;margin-top:clamp(44px,12vw,64px);}
   .pg-pic img{aspect-ratio:5/4;}
@@ -1938,8 +1950,11 @@ details.pg-item > summary:focus-visible{outline:2px solid var(--accent);outline-
     column-gap:16px;row-gap:4px;align-items:start;padding:16px 0;}
   .pg-n{grid-column:1;grid-row:1;font-size:1.0625rem;line-height:1.35;}
   .pg-p{grid-column:1;grid-row:2;font-size:1.1875rem;}
-  .pg-x{grid-column:2;grid-row:1 / span 2;align-self:center;width:28px;height:28px;}
-  .pg-labor{border-top:0;margin-top:clamp(40px,10vw,56px);}
+  .pg-x{grid-column:2;grid-row:1 / span 2;align-self:center;}
+  /* Labor stacks like a row, set apart by space and by having no plus. */
+  .pg-labor{display:block;margin-top:clamp(40px,10vw,56px);padding:16px 0;}
+  .pg-labor-l{font-size:1.0625rem;line-height:1.35;}
+  .pg-labor-a{font-size:1.1875rem;margin-top:4px;}
 }
 
 /* The a la carte answer, unboxed (2026-09-25). It was a bordered card with
