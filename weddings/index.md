@@ -209,7 +209,11 @@ redirect_from:
 {%- if ngd > 0 %}
 <section class="block pguide" id="price-guide">
   <div class="pg-head">
-    <span class="lab"><span data-ed="weddings:pricing.guide.label">{{ gd.label }}</span></span>
+    {%- comment -%} No eyebrow on the site (2026-10-20): one label per page,
+    and "Pricing" above the h1 is it. Left in the data so /edit can bring it
+    back; blank renders as an /edit-only slot. {%- endcomment %}
+    {%- assign gl = gd.label | strip %}
+    <span class="lab{% if gl == "" %} ed-empty{% endif %}"><span data-ed="weddings:pricing.guide.label">{{ gd.label }}</span></span>
     <h2><span data-ed="weddings:pricing.guide.heading">{{ gd.heading }}</span></h2>
     {%- assign gi = gd.intro | strip %}
     {%- if gi != "" %}
@@ -280,6 +284,16 @@ redirect_from:
     <p class="pg-labor-a"><span data-ed="weddings:pricing.guide.labor.amount">{{ gd.labor.amount }}</span></p>
   </div>
   {%- endif %}
+</section>
+{%- endif %}
+
+<!-- THE ASK AFTER THE PRICES: same band as the closing ask, its own words. -->
+{%- assign pa = site.data.weddings.price_ask %}
+{%- if pa.heading %}
+<section class="cta cta--mid">
+  <h2 class="disp">{% include em.html t=pa.heading k="weddings:price_ask.heading" %}</h2>
+  <p><span data-ed="weddings:price_ask.body">{{ pa.body }}</span></p>
+  <a class="btn btn-ink" href="{{ site.baseurl }}/consultation-form"><span data-ed="weddings:price_ask.button">{{ pa.button }}</span> <span>&rarr;</span></a>
 </section>
 {%- endif %}
 

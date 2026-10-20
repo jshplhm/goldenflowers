@@ -112,6 +112,11 @@ JEKYLL_ENV=production bundle exec jekyll build    # adds srcset markup (see Imag
   tint bands used to. The footer is paper too: green is an accent, not a
   ground, and the scroll should end on the studio's name rather than on a
   colour change.
+  **Superseded in part, as built since 2026-09-25:** the closing ask (`.cta`,
+  `.cta-section`), the /weddings "What it costs" band (`.invest-band`) and the
+  footer all sit on `--bg2`, the gentle blush tint. That tint is how those
+  bands read as their own section. Everything else stays on `--bg`. The blush
+  is still a surface; no element takes the colour. Confirmed 2026-10-20.
 - **Type never sits on a photograph (2026-09-23).** The wedding pages were
   the last place it did. Every opening on the site is now the same shape: a
   contained photograph with `--r-img`, then the name under it at reading

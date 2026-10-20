@@ -199,7 +199,7 @@ pricing:
   # No captions under the photos (Josh: not the place for wedding names).
   # Never use a hidden wedding's photos here.
   guide:
-    label: The price guide
+    label: ""
     heading: Piece by piece.
     intro: What individual pieces cost, so you can picture where your own wedding
       might land before we talk.
@@ -319,7 +319,7 @@ pricing:
 # and writing a paragraph for each would have put words in Brittany's mouth.
 # Type one in (CMS or /edit) and it renders under its title.
 included:
-  label: What's included
+  label: What full service covers
   heading: Full-service means all of it.
   items:
     - title: Bridal & party florals
@@ -343,6 +343,16 @@ testimonials:
 faq:
   label: Frequently asked questions
   heading: Questions
+
+# The ask straight after the price guide (2026-10-20, Josh: "add a cta after
+# price, page needs broken there anyway"). Someone who has just read the
+# prices is the most ready to ask, and the page ran ~4,000px from there to
+# the closing ask with nothing to act on.
+price_ask:
+  heading: Ready for *your own number?*
+  body: Start with your date and venue. If it's open, we'll talk it through and
+    send an itemized proposal.
+  button: Check your date
 
 closing:
   heading: Start with *your date.*
