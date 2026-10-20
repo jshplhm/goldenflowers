@@ -1883,7 +1883,8 @@ body.nav-hidden .venue-breadcrumb{top:0;}
 .ig-note{margin-top:clamp(18px,2vw,24px);font-size:var(--t-sm);color:var(--mute);line-height:1.6;}
 /* Two up, the third group would sit alone beside an empty half. It takes
    the full row instead and runs its own rows in two columns. */
-@media(max-width:1100px){.ig-groups{grid-template-columns:repeat(2,minmax(0,1fr));}
+@media(max-width:1100px){.ig-groups{grid-template-columns:repeat(2,minmax(0,1fr));}}
+@media(min-width:641px) and (max-width:1100px){
   .ig-group:nth-child(3):last-child{grid-column:1/-1;}
   .ig-group:nth-child(3):last-child .ig-list{columns:2;column-gap:clamp(30px,4vw,80px);}
   .ig-group:nth-child(3):last-child .ig-list > div{break-inside:avoid;}}
