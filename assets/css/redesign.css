@@ -3192,3 +3192,10 @@ details.pg-item > summary:focus-visible{outline:2px solid var(--accent);outline-
   .faq-toggle::after{width:2px;}
   details.pg-item .pg-x::before,details.pg-item .pg-x::after{height:2px;}
 }
+/* The Palisades room now sits just above the closing ask, so it needs the
+   same air under it that the band above the ask gets. */
+.page-pic--mid{margin-bottom:clamp(56px,7vw,104px);}
+/* An emptied footer line stays out of the layout. The footer's own display
+   rules outrank the bare .ed-empty, which left the phone separator drawing
+   a dot after the last real line. */
+.foot-cols p.ed-empty{display:none;}

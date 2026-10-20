@@ -2,6 +2,63 @@ pages:
   - label: Weddings
     url: /weddings
     faqs:
+      # Order (2026-10-20, Josh): the questions a couple on the pricing page
+      # actually has come first, the brand questions after them, and the cost
+      # question last because the table at the top already answers it (it
+      # stays for search).
+      - q: How far in advance should I reach out?
+        a: For popular summer and fall Saturday dates at venues like Edgewood,
+          Palisades, or the National Exchange Hotel, we recommend reaching out
+          <strong>12–18 months in advance</strong>. Our calendar fills from the
+          back forward, and peak dates go first. If your date is closer than 12
+          months away, reach out anyway. We'll tell you honestly what's
+          available. We occasionally have openings for mid-week, off-season, or
+          non-peak dates.
+      - q: What flowers will be available for my date?
+        a: "<strong>Spring (March–May):</strong> ranunculus, anemones, sweet peas,
+          tulips, peonies, lilac, fritillaria, clematis, and flowering branches
+          like cherry and quince.<br><strong>Summer (June–August):</strong>
+          garden roses, dahlias, lisianthus, cosmos, delphinium, scabiosa,
+          snapdragons.<br><strong>Fall (September–November):</strong> dahlias at
+          their peak (café au lait especially), spider mums, celosia,
+          amaranthus, late garden roses, rose hips.<br><strong>Winter
+          (December–February):</strong> hellebores, anemones, ranunculus late in
+          the season, camellia, acacia, citrus branches, protea.<br><br> Your
+          proposal is built around what's at its peak on your date. If you have
+          your heart set on something out of season, we'll tell you early and
+          show you what we'd use instead."
+      - q: Can you work with my existing coordinator or planner?
+        a: Yes, always. We work closely with coordinators and planners at all the venues
+          we serve. If you're working with a planner, they'll be looped in from
+          the proposal stage so timeline, logistics, and setup are coordinated.
+          We're experienced working within planner-led events and take our cues
+          from whoever is running point on the day.
+      - q: What happens if a flower doesn't come in, or the weather turns?
+        a: We plan for it long before your date. Every wedding is over-sourced, so a
+          crop that underperforms or a shipment that arrives short doesn't
+          change your design. The pieces that matter most, your bouquet and the
+          ceremony installation, are built with backups on hand, and we
+          condition everything for the altitude and the forecast we're actually
+          going to get. Our team is deep enough to absorb a surprise on the
+          morning of, and because we cap how many weddings we take each season,
+          nothing on your date is competing for our attention. A wedding day has
+          no do-overs. We plan like it.
+      - q: Do you travel outside of Lake Tahoe?
+        a: Yes. We work throughout the Sierra Nevada foothills and Gold Country, from
+          Nevada City and Grass Valley to private estates across the region. The
+          National Exchange Hotel, Miner's Foundry, and private ranches in the
+          foothills are all part of our regular service area. Travel outside our
+          primary service area may involve a travel fee, which we'll include in
+          your proposal.
+      - q: Why does it matter that you're foam-free?
+        a: "Floral foam is a plastic-based product that sheds microplastics into water
+          and soil and never biodegrades. Most florists use it because it's
+          easier and faster. We don't use it because it contradicts everything
+          we care about: the environmental ethic of how we grow and source, the
+          integrity of the flowers, and the land where your wedding is
+          happening. Foam-free arrangements require more skill to build. We've
+          invested in that skill. Your flowers will look better for it and leave
+          less impact on the place you love."
       - q: What actually makes Golden Flowers different?
         # Rewritten 2026-09-26 (Josh approved): the site's three parts, told
         # once each, California growers before our plot, and no comparison
@@ -21,6 +78,12 @@ pages:
           place for everything that matters.<br><br> The result is florals that
           feel grounded, seasonal and specific to the Sierra Nevada landscape
           where your wedding is happening."
+      - q: What does "fewer weddings, more time on yours" actually mean?
+        a: Most wedding studios book every date they can and staff up to produce them.
+          We do the opposite. We cap our calendar each season, which means your
+          wedding gets weeks of sourcing and design work, instead of a slot on a
+          production line. Brittany is heavily involved in each wedding. When we
+          say more time on yours, we mean her time, specifically.
       # Shown again and re-asked the way people search it (2026-10-10, Josh).
       # It was hidden 09-25 because the table above says the same thing; it is
       # back because "lake tahoe wedding florist prices" is a search Google
@@ -45,14 +108,6 @@ pages:
         on_page: false
         a: Our weddings start at $5,000. From there, every design is built around
           your venue, your guest count and your budget.
-      - q: How far in advance should I reach out?
-        a: For popular summer and fall Saturday dates at venues like Edgewood,
-          Palisades, or the National Exchange Hotel, we recommend reaching out
-          <strong>12–18 months in advance</strong>. Our calendar fills from the
-          back forward, and peak dates go first. If your date is closer than 12
-          months away, reach out anyway. We'll tell you honestly what's
-          available. We occasionally have openings for mid-week, off-season, or
-          non-peak dates.
       - q: What if I'm not sure which aesthetic I want?
         on_page: false
         a: "That's what the consultation is for. Bring whatever references you have:
@@ -63,57 +118,6 @@ pages:
           also clean?\" and leave with a crystal-clear vision.<br><br> You can
           also <a href=\"/portfolio\">look through our recent weddings</a>
           before your consultation to get your bearings."
-      - q: What flowers will be available for my date?
-        a: "<strong>Spring (March–May):</strong> ranunculus, anemones, sweet peas,
-          tulips, peonies, lilac, fritillaria, clematis, and flowering branches
-          like cherry and quince.<br><strong>Summer (June–August):</strong>
-          garden roses, dahlias, lisianthus, cosmos, delphinium, scabiosa,
-          snapdragons.<br><strong>Fall (September–November):</strong> dahlias at
-          their peak (café au lait especially), spider mums, celosia,
-          amaranthus, late garden roses, rose hips.<br><strong>Winter
-          (December–February):</strong> hellebores, anemones, ranunculus late in
-          the season, camellia, acacia, citrus branches, protea.<br><br> Your
-          proposal is built around what's at its peak on your date. If you have
-          your heart set on something out of season, we'll tell you early and
-          show you what we'd use instead."
-      - q: What does "fewer weddings, more time on yours" actually mean?
-        a: Most wedding studios book every date they can and staff up to produce them.
-          We do the opposite. We cap our calendar each season, which means your
-          wedding gets weeks of sourcing and design work, instead of a slot on a
-          production line. Brittany is heavily involved in each wedding. When we
-          say more time on yours, we mean her time, specifically.
-      - q: Why does it matter that you're foam-free?
-        a: "Floral foam is a plastic-based product that sheds microplastics into water
-          and soil and never biodegrades. Most florists use it because it's
-          easier and faster. We don't use it because it contradicts everything
-          we care about: the environmental ethic of how we grow and source, the
-          integrity of the flowers, and the land where your wedding is
-          happening. Foam-free arrangements require more skill to build. We've
-          invested in that skill. Your flowers will look better for it and leave
-          less impact on the place you love."
-      - q: Can you work with my existing coordinator or planner?
-        a: Yes, always. We work closely with coordinators and planners at all the venues
-          we serve. If you're working with a planner, they'll be looped in from
-          the proposal stage so timeline, logistics, and setup are coordinated.
-          We're experienced working within planner-led events and take our cues
-          from whoever is running point on the day.
-      - q: What happens if a flower doesn't come in, or the weather turns?
-        a: We plan for it long before your date. Every wedding is over-sourced, so a
-          crop that underperforms or a shipment that arrives short doesn't
-          change your design. The pieces that matter most, your bouquet and the
-          ceremony installation, are built with backups on hand, and we
-          condition everything for the altitude and the forecast we're actually
-          going to get. Our team is deep enough to absorb a surprise on the
-          morning of, and because we cap how many weddings we take each season,
-          nothing on your date is competing for our attention. A wedding day has
-          no do-overs. We plan like it.
-      - q: Do you travel outside of Lake Tahoe?
-        a: Yes. We work throughout the Sierra Nevada foothills and Gold Country, from
-          Nevada City and Grass Valley to private estates across the region. The
-          National Exchange Hotel, Miner's Foundry, and private ranches in the
-          foothills are all part of our regular service area. Travel outside our
-          primary service area may involve a travel fee, which we'll include in
-          your proposal.
   - label: Edgewood Tahoe
     url: /venues/edgewood-tahoe
     faqs:

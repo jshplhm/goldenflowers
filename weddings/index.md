@@ -147,6 +147,7 @@ redirect_from:
     section of six bare names between the process and the price; what it
     answers is "what does that figure buy", so it sits under the figures. {%- endcomment -%}
     {%- assign inc = site.data.weddings.included -%}
+    {%- if inc.show != false %}
     <div class="invest-incl">
       <h3 class="grp-h"><span data-ed="weddings:included.label">{{ inc.label }}</span></h3>
       <ul class="invest-incl-list">
@@ -157,6 +158,7 @@ redirect_from:
         {%- endfor %}
       </ul>
     </div>
+    {%- endif %}
 
     {%- assign ndrv = pr.drivers | size -%}
     {%- if ndrv > 0 %}
@@ -339,14 +341,6 @@ redirect_from:
   </ol>
 </section>
 
-<!-- A ROOM, DESIGNED. The page was ~7,300px of words under one photograph at
-     the top; this is what the upper figure buys, a room dressed end to end
-     (Palisades High Camp). Landscape, so it takes a full row. -->
-<figure class="page-pic page-pic--mid">
-  <img src="{{ site.baseurl }}/assets/images/portfolio/lynn-aaron/lynn-aaron-26.jpg"{% include img-dims.html path="/assets/images/portfolio/lynn-aaron/lynn-aaron-26.jpg" %}{% include img-crop.html path="/assets/images/portfolio/lynn-aaron/lynn-aaron-26.jpg" ctx="page" %}
-       alt="Reception room at Palisades High Camp dressed end to end: greenery climbing the timber posts, long tables in blush and olive, lounge seating and a tiered cake"
-       loading="lazy" sizes="(min-width:1500px) 1500px, 100vw">
-</figure>
 
 {%- comment -%} REVIEWS: hidden by `testimonials.show: false` in
 _data/weddings.yml, not deleted. The 13 quotes still live in
@@ -373,6 +367,16 @@ each question. {%- endcomment -%}
   </div>
   {% include redesign-faq.html %}
 </section>
+
+<!-- A ROOM, DESIGNED. Moved 2026-10-20 from between the process and the
+     FAQ to just above the closing ask: the page now ends on a finished room. The page was ~7,300px of words under one photograph at
+     the top; this is what the upper figure buys, a room dressed end to end
+     (Palisades High Camp). Landscape, so it takes a full row. -->
+<figure class="page-pic page-pic--mid">
+  <img src="{{ site.baseurl }}/assets/images/portfolio/lynn-aaron/lynn-aaron-26.jpg"{% include img-dims.html path="/assets/images/portfolio/lynn-aaron/lynn-aaron-26.jpg" %}{% include img-crop.html path="/assets/images/portfolio/lynn-aaron/lynn-aaron-26.jpg" ctx="page" %}
+       alt="Reception room at Palisades High Camp dressed end to end: greenery climbing the timber posts, long tables in blush and olive, lounge seating and a tiered cake"
+       loading="lazy" sizes="(min-width:1500px) 1500px, 100vw">
+</figure>
 
 <!-- CLOSING -->
 <section class="cta">

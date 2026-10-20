@@ -157,10 +157,10 @@ pricing:
   # They did not between 2026-09-21 and today: the FAQ was still saying
   # $10,000-$30,000+ and $12,000-$20,000 under a block saying $12,000-$18,000.
   heading: What it costs.
-  intro: What a wedding costs moves with the venue, how much of the room you want
-    designed, the season and your guest count, so every wedding is quoted on its
-    own. What we can tell you is where our weddings begin, and where the ones
-    we've done around the lake tend to land.
+  # Cut to one line 2026-10-20: the drivers below say what moves the price,
+  # and the intro was saying it first.
+  intro: Every wedding is quoted on its own. Here is where ours begin, and where
+    the ones we've done around the lake tend to land.
   # label = what the number is (left, small caps); amount = the figure;
   # caption = optional second line under the label.
   figures:
@@ -201,8 +201,12 @@ pricing:
   guide:
     label: ""
     heading: Piece by piece.
+    # Second sentence folded in 2026-10-20 from the six-item "what full
+    # service covers" list, which repeated these headings and the process.
     intro: What individual pieces cost, so you can picture where your own wedding
-      might land before we talk.
+      might land before we talk. Every wedding is full service, so alongside the
+      pieces we handle the consultation, the mood board and proposal, and setup
+      and breakdown on the day.
     groups:
       - title: Personal flowers
         photo: /assets/images/portfolio/emma-ross/emma-ross-18.jpg
@@ -319,6 +323,9 @@ pricing:
 # and writing a paragraph for each would have put words in Brittany's mouth.
 # Type one in (CMS or /edit) and it renders under its title.
 included:
+  # Hidden 2026-10-20: the price guide carries this now (its intro, and its
+  # three headings). Flip to true to bring the six names back.
+  show: false
   label: What full service covers
   heading: Full-service means all of it.
   items:
