@@ -329,6 +329,10 @@ const FRAME_CSS = `
    * field, since an empty span is a zero-pixel click target. */
   .ed-empty{display:revert !important;}
   [data-ed-hint]:empty::before{content:attr(data-ed-hint);color:rgba(47,93,58,.65);font-style:italic;}
+  /* Price guide rows with no photos yet are inert on the site; in here they
+   * have to open, or their empty slots can never be filled. */
+  .pg-none > summary{pointer-events:auto !important;cursor:pointer !important;}
+  .pg-none .pg-x{visibility:visible !important;}
 `;
 
 /* current page context, set on every iframe load */
@@ -531,9 +535,28 @@ function hookFrame() {
     "keydown",
     (e) => {
       if (!editing) return;
+      /* A field inside a <summary> (the price guide's rows): the browser
+       * treats Space and Enter there as "toggle the row", so the keystroke
+       * never reaches the text. Insert the space ourselves. */
+      if (e.key === " " && editing.closest("summary")) {
+        e.preventDefault();
+        e.stopPropagation();
+        editing.ownerDocument.execCommand("insertText", false, " ");
+        return;
+      }
       if (e.key === "Escape") { e.preventDefault(); stopEdit(true); }
       /* Enter commits single-line fields; inside a post body it makes a new paragraph */
       else if (e.key === "Enter" && !isPostBody(editing)) { e.preventDefault(); stopEdit(); }
+    },
+    true
+  );
+
+  /* ...and the toggle itself fires on Space's keyup, which also steals focus
+   * and ends the edit. Swallow it while a summary field is being edited. */
+  doc.addEventListener(
+    "keyup",
+    (e) => {
+      if (editing && e.key === " " && editing.closest("summary")) { e.preventDefault(); e.stopPropagation(); }
     },
     true
   );
@@ -1558,6 +1581,11 @@ function openReplace(img) {
    * Unlike the band and home slots this stores a whole path, not a number, so
    * any wedding's photos — and an upload — are fair game. */
   if (img.hasAttribute("data-ed-photo")) repTarget.dataPhoto = img.getAttribute("data-ed-photo");
+  /* A slot in a photo LIST (the price guide's examples) can also be emptied;
+   * it stays in the data as "" so it can be filled again later. A single
+   * photo field has nothing to fall back to, so it never offers this. */
+  repRemove.hidden = !(repTarget.dataPhoto && /\.photos\.\d+$/.test(repTarget.dataPhoto)
+    && !img.closest(".ed-empty"));
   /* Which wedding's photos to offer. Default to the one this photo already
    * belongs to, but let any wedding be browsed: almost every swap is "use a
    * photo we already have", and upload-only made that the hard path.
@@ -1666,6 +1694,34 @@ function renderRepGallery(slug, ownSlug) {
 }
 
 repCancel.addEventListener("click", () => { repModal.hidden = true; repTarget = null; });
+
+const repRemove = document.getElementById("ed-rep-remove");
+repRemove.addEventListener("click", async () => {
+  if (!repTarget || !repTarget.dataPhoto || repBusy) return;
+  if (!DRYRUN && !token()) { repModal.hidden = true; await ensureAuth(); return; }
+  repBusy = true;
+  repErr.style.display = "none";
+  try {
+    const [file, dot] = repTarget.dataPhoto.split(":");
+    const path = `_data/${file}.yml`;
+    const doc = parseDocument(b64decodeUtf8((await getFile(path)).content));
+    const p = docPath(doc, keyPath(dot));
+    if (doc.getIn(p) === undefined) throw new Error(`"${dot}" isn't in ${path} any more — refresh the page and try again.`);
+    doc.setIn(p, "");
+    await commitFiles([{ path, text: doc.toString() }], `Remove a photo on ${curPage} via inline editor`);
+    const fig = repTarget.el.closest("figure");
+    if (fig) fig.classList.add("ed-empty");
+    showSwapped(repTarget.el, `${CFG.baseurl}/assets/images/ui/add-photo.svg`);
+    repModal.hidden = true;
+    repTarget = null;
+    statusEl.className = "ed-status ok";
+    statusEl.textContent = DRYRUN ? "Dry run done — nothing committed" : "✓ Photo removed, live site in ~2 minutes";
+  } catch (err) {
+    repErr.textContent = err.message;
+    repErr.style.display = "block";
+  }
+  repBusy = false;
+});
 
 repForm.addEventListener("submit", async (e) => {
   e.preventDefault();

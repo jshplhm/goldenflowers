@@ -186,11 +186,14 @@ pricing:
   # Ranges use "$400 – $500" (en dash, spaced) to match the figures above.
   #
   # `photos` on an item (2026-10-20, Josh): examples of OUR work, opened in
-  # place under the row. Ids are portfolio file names without .jpg; the
-  # wedding is read from the id, so "kelly-dylan-15" is
-  # assets/images/portfolio/kelly-dylan/kelly-dylan-15.jpg, captioned from
-  # portfolio_meta.yml. Every pick was checked by eye. An item with no photos
-  # is a plain row (corsage, petals, chuppah: nothing honest to show yet).
+  # place under the row. FOUR SLOTS per item, always: two filled is the
+  # house default, "" is an empty slot. Empty slots are invisible on the site
+  # and show as "Add photo" boxes in /edit, which is how a piece with nothing
+  # yet (corsage, petals, chuppah) gets its first picture. Keep four entries
+  # even when clearing one: /edit writes into a slot, it never adds one.
+  # Values are written the way /edit writes them: "slug/slug-NN.jpg" under
+  # assets/images/portfolio/, or a full "/assets/..." path for an upload.
+  # No captions under the photos (Josh: not the place for wedding names).
   # Never use a hidden wedding's photos here.
   guide:
     label: The price guide
@@ -204,69 +207,72 @@ pricing:
         items:
           - name: Bridal bouquet
             price: "$250 – $350"
-            photos: [ "brooke-josh-06", "kelly-dylan-16", "tori-tucker-04" ]
+            photos: [ "brooke-josh/brooke-josh-06.jpg", "kelly-dylan/kelly-dylan-16.jpg", "", "" ]
           - name: Premium bridal bouquet
             price: "$400 – $500"
-            photos: [ "jenna-cal-01", "lynn-aaron-03", "mikayla-jeff-10" ]
+            photos: [ "jenna-cal/jenna-cal-01.jpg", "lynn-aaron/lynn-aaron-03.jpg", "", "" ]
           - name: Bridesmaid bouquet
             price: "$125 – $150"
-            photos: [ "brooke-josh-23", "hannah-dillon-06", "katie-james-16" ]
+            photos: [ "brooke-josh/brooke-josh-23.jpg", "hannah-dillon/hannah-dillon-06.jpg", "", "" ]
           - name: Boutonniere
             price: "$45"
-            photos: [ "hannah-dillon-18", "jenna-cal-02" ]
+            photos: [ "hannah-dillon/hannah-dillon-18.jpg", "jenna-cal/jenna-cal-02.jpg", "", "" ]
           - name: Corsage
             price: "$80"
+            photos: [ "", "", "", "" ]
           - name: Flower girl or toss petals
             price: "$35"
+            photos: [ "", "", "", "" ]
       - title: Ceremony
         photo: /assets/images/portfolio/hannah-dillon/hannah-dillon-17.jpg
         alt: Corten steel ceremony circle with an asymmetric sweep of magenta, raspberry and coral flowers at Austin Ridge
         items:
           - name: Aisle arrangement
             price: "$350 – $500"
-            photos: [ "katie-james-26", "brooke-josh-13" ]
+            photos: [ "katie-james/katie-james-26.jpg", "brooke-josh/brooke-josh-13.jpg", "", "" ]
           - name: Altar arrangement
             price: "$250 – $500"
-            photos: [ "lynn-aaron-14" ]
+            photos: [ "lynn-aaron/lynn-aaron-14.jpg", "", "", "" ]
           - name: Two-pillar arch install
             price: "$2,000 – $2,500"
-            photos: [ "tori-tucker-11", "tori-tucker-09", "mikayla-jeff-05" ]
+            photos: [ "tori-tucker/tori-tucker-11.jpg", "mikayla-jeff/mikayla-jeff-05.jpg", "", "" ]
           - name: Full arch installation
             price: "$2,800 – $4,000"
-            photos: [ "katie-james-08", "hannah-dillon-17", "jenna-cal-25" ]
+            photos: [ "katie-james/katie-james-08.jpg", "jenna-cal/jenna-cal-25.jpg", "", "" ]
           - name: Ground meadow installation
             price: "$2,000 – $4,000"
-            photos: [ "kelly-dylan-03" ]
+            photos: [ "kelly-dylan/kelly-dylan-03.jpg", "", "", "" ]
           - name: Covered chuppah
             price: "$3,900 – $5,000"
+            photos: [ "", "", "", "" ]
           - name: Luxe custom ceremony installation
             price: "$5,000 – $10,000"
-            photos: [ "mikayla-jeff-03" ]
+            photos: [ "mikayla-jeff/mikayla-jeff-03.jpg", "", "", "" ]
       - title: Reception
         photo: /assets/images/portfolio/lynn-aaron/lynn-aaron-22.jpg
         alt: Coral peony, burgundy scabiosa and trailing amaranthus in a tall ribbed glass centerpiece
         items:
           - name: Bud vase
             price: "$25"
-            photos: [ "kelly-dylan-15", "lynn-aaron-24", "jenna-cal-30" ]
+            photos: [ "kelly-dylan/kelly-dylan-15.jpg", "lynn-aaron/lynn-aaron-24.jpg", "", "" ]
           - name: Low centerpiece
             price: "$75 – $300"
-            photos: [ "lynn-aaron-13", "sarah-brian-05", "mikayla-jeff-07" ]
+            photos: [ "lynn-aaron/lynn-aaron-13.jpg", "sarah-brian/sarah-brian-05.jpg", "", "" ]
           - name: Tall centerpiece
             price: "$375 – $475"
-            photos: [ "lynn-aaron-18", "lynn-aaron-22" ]
+            photos: [ "lynn-aaron/lynn-aaron-18.jpg", "lynn-aaron/lynn-aaron-22.jpg", "", "" ]
           - name: Candle illumination, per table
             price: "$200 – $400"
-            photos: [ "katie-james-04", "kelly-dylan-25" ]
+            photos: [ "katie-james/katie-james-04.jpg", "kelly-dylan/kelly-dylan-25.jpg", "", "" ]
           - name: Welcome sign arrangement
             price: "$250"
-            photos: [ "brooke-josh-08", "kelly-dylan-05" ]
+            photos: [ "brooke-josh/brooke-josh-08.jpg", "kelly-dylan/kelly-dylan-05.jpg", "", "" ]
           - name: Bar arrangement
             price: "$250 – $500"
-            photos: [ "kelly-dylan-09", "tori-tucker-10", "kelly-dylan-10" ]
+            photos: [ "kelly-dylan/kelly-dylan-09.jpg", "tori-tucker/tori-tucker-10.jpg", "", "" ]
           - name: Custom hanging installation
             price: "$3,500 – $10,000"
-            photos: [ "lynn-aaron-26", "katie-james-05", "sarah-brian-06" ]
+            photos: [ "lynn-aaron/lynn-aaron-26.jpg", "sarah-brian/sarah-brian-06.jpg", "", "" ]
     labor:
       label: Labor, delivery and cleanup
       amount: 25% of the subtotal

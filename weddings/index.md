@@ -219,45 +219,51 @@ redirect_from:
   {%- for g in gd.groups %}
   {%- assign gx = forloop.index0 %}
   <div class="pg-row">
-    {%- if g.photo %}
+    {%- comment -%} The group photograph is a /edit slot too: click it there
+    to pick any wedding's photo or upload one. /edit writes "slug/file.jpg",
+    the seeded values are full paths; both resolve here. Alt comes from
+    photo_alt.yml for whatever is chosen, so a swap never keeps a stale alt. {%- endcomment %}
+    {%- assign gp = g.photo | strip %}
+    {%- if gp != "" %}
+    {%- assign gp0 = gp | slice: 0 %}
+    {%- if gp0 != "/" %}{% assign gp = "/assets/images/portfolio/" | append: gp %}{% endif %}
     <figure class="pg-pic">
-      <img src="{{ site.baseurl }}{{ g.photo }}"{% include img-dims.html path=g.photo %}{% include img-crop.html path=g.photo ctx="page" %}
-           alt="{{ g.alt | escape }}" loading="lazy" sizes="(min-width:1100px) 420px, (min-width:641px) 36vw, 100vw">
+      <img src="{{ site.baseurl }}{{ gp }}"{% include img-dims.html path=gp %}{% include img-crop.html path=gp ctx="page" %}
+           data-ed-photo="weddings:pricing.guide.groups.{{ gx }}.photo"
+           alt="{{ site.data.photo_alt[gp] | default: g.alt | escape }}" loading="lazy" sizes="(min-width:1100px) 420px, (min-width:641px) 36vw, 100vw">
     </figure>
     {%- endif %}
     <div class="pg-body">
       <h3><span data-ed="weddings:pricing.guide.groups.{{ gx }}.title">{{ g.title }}</span></h3>
-      {%- comment -%} A row with photos is a <details> in one exclusive group
-      (name="pg"), so opening one closes the last and the reader never leaves
-      the table. The panel is a strip of our own work, captioned with the
-      wedding it came from. Rows without photos stay plain. {%- endcomment %}
+      {%- comment -%} Every row is a <details> in one exclusive group
+      (name="pg"): opening one closes the last and the reader never leaves the
+      table. Each carries FOUR photo slots from the data; filled ones show,
+      empty ones are .ed-empty "Add photo" boxes that only /edit reveals. A row
+      with nothing filled is .pg-none: on the site it reads as a plain row
+      (no plus, no toggle), in /edit it opens so its slots can be filled.
+      No captions (Josh, 2026-10-20). {%- endcomment %}
       <div class="pg-list">
         {%- for it in g.items %}
         {%- assign ix = forloop.index0 %}
-        {%- assign np = it.photos | size %}
-        {%- capture rowtxt %}<span class="pg-n"><span data-ed="weddings:pricing.guide.groups.{{ gx }}.items.{{ ix }}.name">{{ it.name }}</span></span>
-          <span class="pg-p"><span data-ed="weddings:pricing.guide.groups.{{ gx }}.items.{{ ix }}.price">{{ it.price }}</span></span>{% endcapture %}
-        {%- if np > 0 %}
-        <details class="pg-item" name="pg">
-          <summary>{{ rowtxt }}<span class="pg-x" aria-hidden="true"></span></summary>
+        {%- assign nfill = 0 %}
+        {%- for ph in it.photos %}{% assign phs = ph | strip %}{% if phs != "" %}{% assign nfill = nfill | plus: 1 %}{% endif %}{% endfor %}
+        <details class="pg-item{% if nfill == 0 %} pg-none{% endif %}" name="pg">
+          <summary{% if nfill == 0 %} tabindex="-1"{% endif %}><span class="pg-n"><span data-ed="weddings:pricing.guide.groups.{{ gx }}.items.{{ ix }}.name">{{ it.name }}</span></span>
+            <span class="pg-p"><span data-ed="weddings:pricing.guide.groups.{{ gx }}.items.{{ ix }}.price">{{ it.price }}</span></span><span class="pg-x" aria-hidden="true"></span></summary>
           <div class="pg-ex">
-            {%- for pid in it.photos %}
-            {%- assign parts = pid | split: "-" %}
-            {%- assign wslug = parts | pop | join: "-" %}
-            {%- assign w = site.data.portfolio_meta | where: "slug", wslug | first %}
-            {%- assign ppath = "/assets/images/portfolio/" | append: wslug | append: "/" | append: pid | append: ".jpg" %}
-            <figure>
-              <img src="{{ site.baseurl }}{{ ppath }}"{% include img-dims.html path=ppath %} alt="{{ site.data.photo_alt[ppath] | escape }}" loading="lazy" sizes="(min-width:641px) 240px, 62vw">
-              {%- if w %}
-              <figcaption><a href="{{ site.baseurl }}/portfolio/{{ wslug }}">{{ w.name }}</a>{% if w.venue %}, {{ w.venue }}{% endif %}</figcaption>
-              {%- endif %}
-            </figure>
+            {%- for ph in it.photos %}
+            {%- assign pp = ph | strip %}
+            {%- assign slot = "weddings:pricing.guide.groups." | append: gx | append: ".items." | append: ix | append: ".photos." | append: forloop.index0 %}
+            {%- if pp == "" %}
+            <figure class="ed-empty"><img src="{{ site.baseurl }}/assets/images/ui/add-photo.svg" data-ed-photo="{{ slot }}" alt="Add a photo of this piece" width="400" height="500" loading="lazy"></figure>
+            {%- else %}
+            {%- assign pp0 = pp | slice: 0 %}
+            {%- if pp0 != "/" %}{% assign pp = "/assets/images/portfolio/" | append: pp %}{% endif %}
+            <figure><img src="{{ site.baseurl }}{{ pp }}"{% include img-dims.html path=pp %} data-ed-photo="{{ slot }}" alt="{{ site.data.photo_alt[pp] | default: it.name | escape }}" loading="lazy" sizes="(min-width:641px) 240px, 62vw"></figure>
+            {%- endif %}
             {%- endfor %}
           </div>
         </details>
-        {%- else %}
-        <div class="pg-item pg-plain">{{ rowtxt }}<span class="pg-x" aria-hidden="true"></span></div>
-        {%- endif %}
         {%- endfor %}
       </div>
     </div>
