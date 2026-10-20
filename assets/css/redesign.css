@@ -1931,6 +1931,15 @@ details.pg-item > summary:focus-visible{outline:2px solid var(--accent);outline-
 @media(max-width:640px){
   .pg-row{grid-template-columns:minmax(0,1fr);row-gap:24px;margin-top:clamp(44px,12vw,64px);}
   .pg-pic img{aspect-ratio:5/4;}
+  /* Phones stack each row: name on top with the whole width (side by side,
+     long names wrapped to three lines), price under it a step smaller so the
+     piece is read before its cost, and the plus centred on both lines. */
+  .pg-item > summary{display:grid;grid-template-columns:minmax(0,1fr) auto;
+    column-gap:16px;row-gap:4px;align-items:start;padding:16px 0;}
+  .pg-n{grid-column:1;grid-row:1;font-size:1.0625rem;line-height:1.35;}
+  .pg-p{grid-column:1;grid-row:2;font-size:1.1875rem;}
+  .pg-x{grid-column:2;grid-row:1 / span 2;align-self:center;width:28px;height:28px;}
+  .pg-labor{border-top:0;margin-top:clamp(40px,10vw,56px);}
 }
 
 /* The a la carte answer, unboxed (2026-09-25). It was a bordered card with
