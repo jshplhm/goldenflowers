@@ -227,12 +227,39 @@ redirect_from:
     {%- endif %}
     <div class="pg-body">
       <h3><span data-ed="weddings:pricing.guide.groups.{{ gx }}.title">{{ g.title }}</span></h3>
-      <dl class="pg-list">
+      {%- comment -%} A row with photos is a <details> in one exclusive group
+      (name="pg"), so opening one closes the last and the reader never leaves
+      the table. The panel is a strip of our own work, captioned with the
+      wedding it came from. Rows without photos stay plain. {%- endcomment %}
+      <div class="pg-list">
         {%- for it in g.items %}
-        <div><dt><span data-ed="weddings:pricing.guide.groups.{{ gx }}.items.{{ forloop.index0 }}.name">{{ it.name }}</span></dt>
-          <dd><span data-ed="weddings:pricing.guide.groups.{{ gx }}.items.{{ forloop.index0 }}.price">{{ it.price }}</span></dd></div>
+        {%- assign ix = forloop.index0 %}
+        {%- assign np = it.photos | size %}
+        {%- capture rowtxt %}<span class="pg-n"><span data-ed="weddings:pricing.guide.groups.{{ gx }}.items.{{ ix }}.name">{{ it.name }}</span></span>
+          <span class="pg-p"><span data-ed="weddings:pricing.guide.groups.{{ gx }}.items.{{ ix }}.price">{{ it.price }}</span></span>{% endcapture %}
+        {%- if np > 0 %}
+        <details class="pg-item" name="pg">
+          <summary>{{ rowtxt }}<span class="pg-x" aria-hidden="true"></span></summary>
+          <div class="pg-ex">
+            {%- for pid in it.photos %}
+            {%- assign parts = pid | split: "-" %}
+            {%- assign wslug = parts | pop | join: "-" %}
+            {%- assign w = site.data.portfolio_meta | where: "slug", wslug | first %}
+            {%- assign ppath = "/assets/images/portfolio/" | append: wslug | append: "/" | append: pid | append: ".jpg" %}
+            <figure>
+              <img src="{{ site.baseurl }}{{ ppath }}"{% include img-dims.html path=ppath %} alt="{{ site.data.photo_alt[ppath] | escape }}" loading="lazy" sizes="(min-width:641px) 240px, 62vw">
+              {%- if w %}
+              <figcaption><a href="{{ site.baseurl }}/portfolio/{{ wslug }}">{{ w.name }}</a>{% if w.venue %}, {{ w.venue }}{% endif %}</figcaption>
+              {%- endif %}
+            </figure>
+            {%- endfor %}
+          </div>
+        </details>
+        {%- else %}
+        <div class="pg-item pg-plain">{{ rowtxt }}<span class="pg-x" aria-hidden="true"></span></div>
+        {%- endif %}
         {%- endfor %}
-      </dl>
+      </div>
     </div>
   </div>
   {%- endfor %}

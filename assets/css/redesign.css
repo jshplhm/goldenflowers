@@ -1881,13 +1881,38 @@ body.nav-hidden .venue-breadcrumb{top:0;}
 .pg-body h3{font-family:var(--d);font-weight:430;font-optical-sizing:auto;
   font-size:var(--t-d3);letter-spacing:-.015em;line-height:1.12;
   padding-bottom:clamp(14px,1.6vw,20px);border-bottom:1px solid var(--line);}
-.pg-list{margin:0;}
-.pg-list > div{display:flex;justify-content:space-between;align-items:baseline;gap:20px;
-  padding:clamp(14px,1.5vw,18px) 0;border-bottom:1px solid var(--line);}
-.pg-list dt{font-size:1rem;color:var(--fg);line-height:1.4;}
-.pg-list dd{margin:0;font-family:var(--d);font-weight:430;font-optical-sizing:auto;
+.pg-item{border-bottom:1px solid var(--line);}
+.pg-item > summary,.pg-plain{display:flex;align-items:baseline;gap:20px;
+  padding:clamp(14px,1.5vw,18px) 0;}
+.pg-item > summary{cursor:pointer;list-style:none;}
+.pg-item > summary::-webkit-details-marker{display:none;}
+.pg-n{flex:1;min-width:0;font-size:1rem;color:var(--fg);line-height:1.4;}
+.pg-p{font-family:var(--d);font-weight:430;font-optical-sizing:auto;
   font-size:var(--t-d4);letter-spacing:-.01em;color:var(--ink);white-space:nowrap;
   font-variant-numeric:tabular-nums lining-nums;}
+/* The open affordance: a small plus that turns to a cross. Plain rows keep
+   the same empty slot so every price ends on one edge. */
+.pg-x{flex:none;align-self:center;width:22px;height:22px;position:relative;}
+details.pg-item .pg-x{border:1px solid var(--line);border-radius:50%;transition:transform .25s ease,border-color .2s;}
+details.pg-item .pg-x::before,details.pg-item .pg-x::after{content:"";position:absolute;left:50%;top:50%;
+  width:9px;height:1px;background:var(--ink);transform:translate(-50%,-50%);}
+details.pg-item .pg-x::after{transform:translate(-50%,-50%) rotate(90deg);}
+@media(hover:hover){details.pg-item > summary:hover .pg-x{border-color:var(--ink);}
+details.pg-item > summary:hover .pg-n{text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1px;}}
+details.pg-item[open] .pg-x{transform:rotate(45deg);border-color:var(--ink);}
+details.pg-item > summary:focus-visible{outline:2px solid var(--accent);outline-offset:4px;border-radius:4px;}
+/* The examples: a strip of our own photographs under the row, scrolling
+   sideways when they outrun the column, each captioned with its wedding. */
+.pg-ex{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;
+  padding:4px 0 clamp(18px,2vw,24px);scrollbar-width:thin;animation:pgIn .35s ease both;}
+.pg-ex figure{margin:0;flex:0 0 clamp(150px,15vw,200px);scroll-snap-align:start;}
+.pg-ex img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:var(--r-img);background:var(--bg2);}
+.pg-ex figcaption{margin-top:8px;font-size:var(--t-tag);color:var(--mute);line-height:1.45;}
+.pg-ex figcaption a{color:var(--fg2);text-decoration:none;}
+.pg-ex figcaption a:hover{color:var(--ink);text-decoration:underline;text-underline-offset:3px;}
+@keyframes pgIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){.pg-ex{animation:none;}details.pg-item .pg-x{transition:none;}}
+@media(max-width:640px){.pg-ex figure{flex-basis:62%;}}
 /* The labor line, a closing row across the whole measure: label in small
    caps like the figures in the band above, amount in the serif. */
 .pg-labor{display:flex;justify-content:space-between;align-items:baseline;gap:20px;flex-wrap:wrap;
