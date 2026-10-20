@@ -158,6 +158,41 @@ redirect_from:
       </ul>
     </div>
 
+    {%- comment -%} PIECE BY PIECE (2026-10-20): Brittany's item price guide.
+    The figures above price a whole wedding; this prices its parts, after
+    "what's included" says what those parts are. Groups sit side by side on
+    a desktop, each a name-left, price-right list on the band's hairlines.
+    {%- endcomment -%}
+    {%- assign gd = pr.guide -%}
+    {%- assign ngd = gd.groups | size -%}
+    {%- if ngd > 0 %}
+    <div class="invest-guide">
+      <h3 class="grp-h"><span data-ed="weddings:pricing.guide.label">{{ gd.label }}</span></h3>
+      {%- assign gi = gd.intro | strip %}
+      {%- if gi != "" %}
+      <p class="ig-intro"><span data-ed="weddings:pricing.guide.intro">{{ gd.intro }}</span></p>
+      {%- endif %}
+      <div class="ig-groups">
+        {%- for g in gd.groups %}
+        {%- assign gx = forloop.index0 %}
+        <div class="ig-group">
+          <h4 class="ig-h"><span data-ed="weddings:pricing.guide.groups.{{ gx }}.title">{{ g.title }}</span></h4>
+          <dl class="ig-list">
+            {%- for it in g.items %}
+            <div><dt><span data-ed="weddings:pricing.guide.groups.{{ gx }}.items.{{ forloop.index0 }}.name">{{ it.name }}</span></dt>
+              <dd><span data-ed="weddings:pricing.guide.groups.{{ gx }}.items.{{ forloop.index0 }}.price">{{ it.price }}</span></dd></div>
+            {%- endfor %}
+          </dl>
+        </div>
+        {%- endfor %}
+      </div>
+      {%- assign gn = gd.note | strip %}
+      {%- if gn != "" %}
+      <p class="ig-note"><span data-ed="weddings:pricing.guide.note">{{ gd.note }}</span></p>
+      {%- endif %}
+    </div>
+    {%- endif %}
+
     {%- assign ndrv = pr.drivers | size -%}
     {%- if ndrv > 0 %}
     <div class="invest-drivers">

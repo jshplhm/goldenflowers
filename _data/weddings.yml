@@ -176,6 +176,63 @@ pricing:
     # Four things, because four is what a couple can hold. Each one is a lever
     # they actually control, so the list doubles as the agenda for the
     # consultation.
+  # PIECE BY PIECE (2026-10-20, Josh): Brittany's price guide, item by item,
+  # transcribed from her graphic. Grouped by where a piece lives on the day so
+  # 21 rows read as four short lists. `note` closes it (her labor line).
+  # Empty `items` in every group and the whole block stops rendering.
+  # Ranges use "$400 – $500" (en dash, spaced) to match the figures above.
+  guide:
+    label: Piece by piece
+    intro: A guide to what individual pieces cost, to help you picture where your
+      own wedding might land.
+    groups:
+      - title: Personal flowers
+        items:
+          - name: Bridal bouquet
+            price: "$250 – $350"
+          - name: Premium bridal bouquet
+            price: "$400 – $500"
+          - name: Bridesmaid bouquet
+            price: "$125 – $150"
+          - name: Boutonniere
+            price: "$45"
+          - name: Corsage
+            price: "$80"
+          - name: Flower girl or toss petals
+            price: "$35"
+      - title: Ceremony
+        items:
+          - name: Aisle arrangement
+            price: "$350 – $500"
+          - name: Altar arrangement
+            price: "$250 – $500"
+          - name: Two-pillar arch install
+            price: "$2,000 – $2,500"
+          - name: Full arch installation
+            price: "$2,800 – $4,000"
+          - name: Ground meadow installation
+            price: "$2,000 – $4,000"
+          - name: Covered chuppah
+            price: "$3,900 – $5,000"
+          - name: Luxe custom ceremony installation
+            price: "$5,000 – $10,000"
+      - title: Reception
+        items:
+          - name: Bud vase
+            price: "$25"
+          - name: Low centerpiece
+            price: "$75 – $300"
+          - name: Tall centerpiece
+            price: "$375 – $475"
+          - name: Candle illumination, per table
+            price: "$200 – $400"
+          - name: Welcome sign arrangement
+            price: "$250"
+          - name: Bar arrangement
+            price: "$250 – $500"
+          - name: Custom hanging installation
+            price: "$3,500 – $10,000"
+    note: Labor, delivery and cleanup are added at 25% of the subtotal.
   drivers_label: What moves the number
   drivers:
     - title: The venue
