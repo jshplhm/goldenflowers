@@ -177,16 +177,22 @@ pricing:
     # they actually control, so the list doubles as the agenda for the
     # consultation.
   # PIECE BY PIECE (2026-10-20, Josh): Brittany's price guide, item by item,
-  # transcribed from her graphic. Grouped by where a piece lives on the day so
-  # 21 rows read as four short lists. `note` closes it (her labor line).
-  # Empty `items` in every group and the whole block stops rendering.
+  # transcribed from her graphic. Its own section under the price band, because
+  # publishing prices is a moment on this site and Josh wants it designed as
+  # one. Grouped by where a piece lives on the day, each group headed by a
+  # photograph of that KIND of piece (never captioned with a price: the picture
+  # shows what a bouquet is, not what that bouquet cost). `labor` closes it as
+  # a row of its own (her 25% line). Empty `groups` and the section is gone.
   # Ranges use "$400 – $500" (en dash, spaced) to match the figures above.
   guide:
-    label: Piece by piece
-    intro: A guide to what individual pieces cost, to help you picture where your
-      own wedding might land.
+    label: The price guide
+    heading: Piece by piece.
+    intro: What individual pieces cost, so you can picture where your own wedding
+      might land before we talk.
     groups:
       - title: Personal flowers
+        photo: /assets/images/portfolio/emma-ross/emma-ross-18.jpg
+        alt: Emma holds her cascading bouquet of white calla lilies and long green amaranthus
         items:
           - name: Bridal bouquet
             price: "$250 – $350"
@@ -201,6 +207,8 @@ pricing:
           - name: Flower girl or toss petals
             price: "$35"
       - title: Ceremony
+        photo: /assets/images/portfolio/hannah-dillon/hannah-dillon-17.jpg
+        alt: Corten steel ceremony circle with an asymmetric sweep of magenta, raspberry and coral flowers at Austin Ridge
         items:
           - name: Aisle arrangement
             price: "$350 – $500"
@@ -217,6 +225,8 @@ pricing:
           - name: Luxe custom ceremony installation
             price: "$5,000 – $10,000"
       - title: Reception
+        photo: /assets/images/portfolio/lynn-aaron/lynn-aaron-22.jpg
+        alt: Coral peony, burgundy scabiosa and trailing amaranthus in a tall ribbed glass centerpiece
         items:
           - name: Bud vase
             price: "$25"
@@ -232,7 +242,9 @@ pricing:
             price: "$250 – $500"
           - name: Custom hanging installation
             price: "$3,500 – $10,000"
-    note: Labor, delivery and cleanup are added at 25% of the subtotal.
+    labor:
+      label: Labor, delivery and cleanup
+      amount: 25% of the subtotal
   drivers_label: What moves the number
   drivers:
     - title: The venue

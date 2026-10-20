@@ -1864,31 +1864,43 @@ body.nav-hidden .venue-breadcrumb{top:0;}
 .invest-incl-list .ii-b.ed-empty{display:none;}
 @media(max-width:860px){.invest-incl-list{grid-template-columns:repeat(2,minmax(0,1fr));}}
 
-/* Piece by piece (2026-10-20): Brittany's item guide. Three lists side by
-   side, each a small-caps group name over hairline rows, name left and price
-   right in the serif at list size, so the whole-wedding figures above still
-   outrank every line here. Tabular figures keep the prices on one edge. */
-.invest-guide{margin-top:clamp(44px,5.4vw,82px);}
-.ig-intro{margin-top:14px;max-width:62ch;font-size:var(--t-sm);color:var(--fg2);line-height:1.7;}
-.ig-groups{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
-  column-gap:clamp(30px,4vw,80px);row-gap:clamp(30px,4vw,48px);margin-top:clamp(22px,2.6vw,34px);align-items:start;}
-.ig-h{font-size:var(--t-tag);letter-spacing:.12em;text-transform:uppercase;
-  color:var(--fg2);font-weight:500;line-height:1.5;padding-bottom:10px;border-bottom:1px solid var(--line);}
-.ig-list{margin:0;}
-.ig-list > div{display:flex;justify-content:space-between;align-items:baseline;gap:16px;
-  padding:12px 0;border-bottom:1px solid var(--line);}
-.ig-list dt{font-size:var(--t-sm);color:var(--fg);line-height:1.4;}
-.ig-list dd{margin:0;font-family:var(--d);font-weight:430;font-optical-sizing:auto;
-  font-size:var(--t-sm);color:var(--ink);white-space:nowrap;font-variant-numeric:tabular-nums lining-nums;}
-.ig-note{margin-top:clamp(18px,2vw,24px);font-size:var(--t-sm);color:var(--mute);line-height:1.6;}
-/* Two up, the third group would sit alone beside an empty half. It takes
-   the full row instead and runs its own rows in two columns. */
-@media(max-width:1100px){.ig-groups{grid-template-columns:repeat(2,minmax(0,1fr));}}
-@media(min-width:641px) and (max-width:1100px){
-  .ig-group:nth-child(3):last-child{grid-column:1/-1;}
-  .ig-group:nth-child(3):last-child .ig-list{columns:2;column-gap:clamp(30px,4vw,80px);}
-  .ig-group:nth-child(3):last-child .ig-list > div{break-inside:avoid;}}
-@media(max-width:640px){.ig-groups{grid-template-columns:minmax(0,1fr);}}
+/* PRICE GUIDE (2026-10-20, Josh: "it's a moment on the website").
+   Its own section, heading at the rank of "What it costs.". Each group is a
+   row: a 4:5 photograph left, the prices right, names in the body face and
+   figures in the serif a step under the group title, so a price reads as a
+   price. Tabular figures keep every amount on one right edge. */
+.pguide{max-width:var(--body-max);margin:0 auto;}
+.pg-head h2{font-family:var(--d);font-weight:430;font-optical-sizing:auto;
+  font-size:var(--t-d2);letter-spacing:-.02em;line-height:1.06;margin-top:18px;}
+.pg-intro{margin-top:clamp(16px,1.8vw,22px);max-width:52ch;
+  font-size:var(--t-lede);color:var(--fg2);line-height:1.6;}
+.pg-row{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,8fr);
+  column-gap:clamp(32px,5vw,96px);align-items:start;margin-top:clamp(56px,7vw,112px);}
+.pg-pic{margin:0;}
+.pg-pic img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:var(--r-img);}
+.pg-body h3{font-family:var(--d);font-weight:430;font-optical-sizing:auto;
+  font-size:var(--t-d3);letter-spacing:-.015em;line-height:1.12;
+  padding-bottom:clamp(14px,1.6vw,20px);border-bottom:1px solid var(--line);}
+.pg-list{margin:0;}
+.pg-list > div{display:flex;justify-content:space-between;align-items:baseline;gap:20px;
+  padding:clamp(14px,1.5vw,18px) 0;border-bottom:1px solid var(--line);}
+.pg-list dt{font-size:1rem;color:var(--fg);line-height:1.4;}
+.pg-list dd{margin:0;font-family:var(--d);font-weight:430;font-optical-sizing:auto;
+  font-size:var(--t-d4);letter-spacing:-.01em;color:var(--ink);white-space:nowrap;
+  font-variant-numeric:tabular-nums lining-nums;}
+/* The labor line, a closing row across the whole measure: label in small
+   caps like the figures in the band above, amount in the serif. */
+.pg-labor{display:flex;justify-content:space-between;align-items:baseline;gap:20px;flex-wrap:wrap;
+  margin-top:clamp(56px,7vw,112px);padding:clamp(20px,2.4vw,30px) 0;
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+.pg-labor-l{font-size:var(--t-tag);letter-spacing:.12em;text-transform:uppercase;
+  color:var(--fg2);font-weight:500;line-height:1.5;}
+.pg-labor-a{font-family:var(--d);font-weight:430;font-optical-sizing:auto;
+  font-size:var(--t-d3);letter-spacing:-.015em;color:var(--ink);}
+@media(max-width:640px){
+  .pg-row{grid-template-columns:minmax(0,1fr);row-gap:24px;margin-top:clamp(44px,12vw,64px);}
+  .pg-pic img{aspect-ratio:5/4;}
+}
 
 /* The a la carte answer, unboxed (2026-09-25). It was a bordered card with
    a filled button, inside a tinted band, above a closing ask with another

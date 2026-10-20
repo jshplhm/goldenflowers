@@ -158,41 +158,6 @@ redirect_from:
       </ul>
     </div>
 
-    {%- comment -%} PIECE BY PIECE (2026-10-20): Brittany's item price guide.
-    The figures above price a whole wedding; this prices its parts, after
-    "what's included" says what those parts are. Groups sit side by side on
-    a desktop, each a name-left, price-right list on the band's hairlines.
-    {%- endcomment -%}
-    {%- assign gd = pr.guide -%}
-    {%- assign ngd = gd.groups | size -%}
-    {%- if ngd > 0 %}
-    <div class="invest-guide">
-      <h3 class="grp-h"><span data-ed="weddings:pricing.guide.label">{{ gd.label }}</span></h3>
-      {%- assign gi = gd.intro | strip %}
-      {%- if gi != "" %}
-      <p class="ig-intro"><span data-ed="weddings:pricing.guide.intro">{{ gd.intro }}</span></p>
-      {%- endif %}
-      <div class="ig-groups">
-        {%- for g in gd.groups %}
-        {%- assign gx = forloop.index0 %}
-        <div class="ig-group">
-          <h4 class="ig-h"><span data-ed="weddings:pricing.guide.groups.{{ gx }}.title">{{ g.title }}</span></h4>
-          <dl class="ig-list">
-            {%- for it in g.items %}
-            <div><dt><span data-ed="weddings:pricing.guide.groups.{{ gx }}.items.{{ forloop.index0 }}.name">{{ it.name }}</span></dt>
-              <dd><span data-ed="weddings:pricing.guide.groups.{{ gx }}.items.{{ forloop.index0 }}.price">{{ it.price }}</span></dd></div>
-            {%- endfor %}
-          </dl>
-        </div>
-        {%- endfor %}
-      </div>
-      {%- assign gn = gd.note | strip %}
-      {%- if gn != "" %}
-      <p class="ig-note"><span data-ed="weddings:pricing.guide.note">{{ gd.note }}</span></p>
-      {%- endif %}
-    </div>
-    {%- endif %}
-
     {%- assign ndrv = pr.drivers | size -%}
     {%- if ndrv > 0 %}
     <div class="invest-drivers">
@@ -223,6 +188,61 @@ redirect_from:
     </div>
     {%- endif %}
   </div>
+</section>
+{%- endif %}
+
+<!-- PRICE GUIDE -->
+{%- comment -%}
+  PIECE BY PIECE (2026-10-20, Josh): "the fact we give pricing is a big deal.
+  It's a moment on the website." So it is its own section straight after the
+  price band, with a display heading of the same rank as "What it costs.",
+  not a list tucked between two others inside it.
+
+  One row per group: a 4:5 photograph of that kind of piece on the left, the
+  group's prices on the right at reading size. Portrait beside words, per the
+  landscape rule. The labor line closes the section as a row of its own,
+  because it is a real cost, not a footnote. On a phone each group stacks:
+  photograph full width, then its list.
+{%- endcomment -%}
+{%- assign gd = site.data.weddings.pricing.guide -%}
+{%- assign ngd = gd.groups | size -%}
+{%- if ngd > 0 %}
+<section class="block pguide" id="price-guide">
+  <div class="pg-head">
+    <span class="lab"><span data-ed="weddings:pricing.guide.label">{{ gd.label }}</span></span>
+    <h2><span data-ed="weddings:pricing.guide.heading">{{ gd.heading }}</span></h2>
+    {%- assign gi = gd.intro | strip %}
+    {%- if gi != "" %}
+    <p class="pg-intro"><span data-ed="weddings:pricing.guide.intro">{{ gd.intro }}</span></p>
+    {%- endif %}
+  </div>
+  {%- for g in gd.groups %}
+  {%- assign gx = forloop.index0 %}
+  <div class="pg-row">
+    {%- if g.photo %}
+    <figure class="pg-pic">
+      <img src="{{ site.baseurl }}{{ g.photo }}"{% include img-dims.html path=g.photo %}{% include img-crop.html path=g.photo ctx="page" %}
+           alt="{{ g.alt | escape }}" loading="lazy" sizes="(min-width:1100px) 420px, (min-width:641px) 36vw, 100vw">
+    </figure>
+    {%- endif %}
+    <div class="pg-body">
+      <h3><span data-ed="weddings:pricing.guide.groups.{{ gx }}.title">{{ g.title }}</span></h3>
+      <dl class="pg-list">
+        {%- for it in g.items %}
+        <div><dt><span data-ed="weddings:pricing.guide.groups.{{ gx }}.items.{{ forloop.index0 }}.name">{{ it.name }}</span></dt>
+          <dd><span data-ed="weddings:pricing.guide.groups.{{ gx }}.items.{{ forloop.index0 }}.price">{{ it.price }}</span></dd></div>
+        {%- endfor %}
+      </dl>
+    </div>
+  </div>
+  {%- endfor %}
+  {%- assign lb = gd.labor.label | strip %}
+  {%- if lb != "" %}
+  <div class="pg-labor">
+    <p class="pg-labor-l"><span data-ed="weddings:pricing.guide.labor.label">{{ gd.labor.label }}</span></p>
+    <p class="pg-labor-a"><span data-ed="weddings:pricing.guide.labor.amount">{{ gd.labor.amount }}</span></p>
+  </div>
+  {%- endif %}
 </section>
 {%- endif %}
 
