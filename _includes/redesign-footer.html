@@ -62,7 +62,7 @@
         <a href="tel:5305577689">(530) 557-7689</a>
         <a href="mailto:brittany@goldenflorals.com">brittany@goldenflorals.com</a>
         {%- for line in site.data.footer.studio %}
-        <p><span data-ed="footer:studio.{{ forloop.index0 }}">{{ line }}</span></p>
+        <p{% assign ls = line | strip %}{% if ls == "" %} class="ed-empty"{% endif %}><span data-ed="footer:studio.{{ forloop.index0 }}">{{ line }}</span></p>
         {%- endfor %}
       </div>
     </nav>
