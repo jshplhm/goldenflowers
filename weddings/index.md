@@ -248,8 +248,8 @@ redirect_from:
         {%- assign nfill = 0 %}
         {%- for ph in it.photos %}{% assign phs = ph | strip %}{% if phs != "" %}{% assign nfill = nfill | plus: 1 %}{% endif %}{% endfor %}
         <details class="pg-item{% if nfill == 0 %} pg-none{% endif %}" name="pg">
-          <summary{% if nfill == 0 %} tabindex="-1"{% endif %}><span class="pg-n"><span data-ed="weddings:pricing.guide.groups.{{ gx }}.items.{{ ix }}.name">{{ it.name }}</span></span>
-            <span class="pg-p"><span data-ed="weddings:pricing.guide.groups.{{ gx }}.items.{{ ix }}.price">{{ it.price }}</span></span><span class="pg-x" aria-hidden="true"></span></summary>
+          <summary{% if nfill == 0 %} tabindex="-1"{% endif %}><span class="pg-n"><span data-ed="weddings:pricing.guide.groups.{{ gx }}.items.{{ ix }}.name" data-ed-hint="Name this piece">{{ it.name }}</span></span>
+            <span class="pg-p"><span data-ed="weddings:pricing.guide.groups.{{ gx }}.items.{{ ix }}.price" data-ed-hint="Add a price">{{ it.price }}</span></span><span class="pg-x" aria-hidden="true"></span></summary>
           <div class="pg-ex">
             {%- for ph in it.photos %}
             {%- assign pp = ph | strip %}
@@ -259,12 +259,16 @@ redirect_from:
             {%- else %}
             {%- assign pp0 = pp | slice: 0 %}
             {%- if pp0 != "/" %}{% assign pp = "/assets/images/portfolio/" | append: pp %}{% endif %}
-            <figure><img src="{{ site.baseurl }}{{ pp }}"{% include img-dims.html path=pp %} data-ed-photo="{{ slot }}" alt="{{ site.data.photo_alt[pp] | default: it.name | escape }}" loading="lazy" sizes="(min-width:641px) 240px, 62vw"></figure>
+            <figure><img src="{{ site.baseurl }}{{ pp }}"{% include img-dims.html path=pp %}{% include img-crop.html path=pp ctx="guide" %} data-ed-photo="{{ slot }}" alt="{{ site.data.photo_alt[pp] | default: it.name | escape }}" loading="lazy" sizes="(min-width:641px) 240px, 62vw"></figure>
             {%- endif %}
             {%- endfor %}
+            {%- comment -%} /edit only (.ed-empty): takes this line off the guide. {%- endcomment %}
+            <button type="button" class="ed-empty pg-rmline" data-ed-rmline="weddings:pricing.guide.groups.{{ gx }}.items.{{ ix }}">Remove this line</button>
           </div>
         </details>
         {%- endfor %}
+        {%- comment -%} /edit only: a new line, named "New piece", five empty slots. {%- endcomment %}
+        <button type="button" class="ed-empty pg-addline" data-ed-addline="weddings:pricing.guide.groups.{{ gx }}.items">+ Add a line</button>
       </div>
     </div>
   </div>

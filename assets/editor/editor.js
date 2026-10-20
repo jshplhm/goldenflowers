@@ -485,6 +485,15 @@ function hookFrame() {
   doc.addEventListener(
     "click",
     (e) => {
+      const act = e.target.closest && e.target.closest("[data-ed-addline],[data-ed-rmline]");
+      if (act) {
+        e.preventDefault();
+        e.stopPropagation();
+        if (editing) stopEdit();
+        if (act.hasAttribute("data-ed-addline")) addGuideLine(act);
+        else removeGuideLine(act);
+        return;
+      }
       const t = e.target.closest && e.target.closest(ED_SEL);
       if (t) {
         e.preventDefault();
@@ -1340,6 +1349,107 @@ async function makeHero(name) {
     phNote(err.message, "err");
   }
   phGrid.classList.remove("busy");
+}
+
+/* ---------- price guide: add and remove a line ---------- */
+
+/* A line's fields all carry its index in their paths (…items.3.name,
+ * …items.3.photos.0, …items.3 on the remove button). After a line is added
+ * or removed, rewrite those indices to match the rows' new positions, so the
+ * page behind the panel keeps editing the right entries without a reload. */
+function renumberGuideLines(listEl, base) {
+  const esc = base.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  const re = new RegExp(`^(${esc}\\.)\\d+`);
+  [...listEl.querySelectorAll(":scope > details.pg-item")].forEach((row, i) => {
+    row.querySelectorAll("[data-ed],[data-ed-photo],[data-ed-rmline]").forEach((n) => {
+      for (const a of ["data-ed", "data-ed-photo", "data-ed-rmline"]) {
+        const v = n.getAttribute(a);
+        if (v && re.test(v)) n.setAttribute(a, v.replace(re, `$1${i}`));
+      }
+    });
+  });
+}
+
+/* The data file must not move under unsaved text edits: they are keyed by
+ * index, and a shifted index would save words into the wrong line. */
+function guardUnsaved() {
+  if (dirty.size || postDirty.size) {
+    statusEl.className = "ed-status err";
+    statusEl.textContent = "Save or discard your text changes first, then add or remove the line.";
+    return false;
+  }
+  return true;
+}
+
+async function guideListDoc(base) {
+  const [file, dot] = base.split(":");
+  const path = `_data/${file}.yml`;
+  const doc = parseDocument(b64decodeUtf8((await getFile(path)).content));
+  const p = docPath(doc, keyPath(dot));
+  const seq = doc.getIn(p, true);
+  if (!seq || !isSeq(seq)) throw new Error("Couldn't find this list in the site's data. Refresh the page and try again.");
+  return { doc, path, p, seq };
+}
+
+async function addGuideLine(btn) {
+  if (!guardUnsaved()) return;
+  if (!DRYRUN && !token()) { await ensureAuth(); return; }
+  const base = btn.getAttribute("data-ed-addline");
+  const listEl = btn.closest(".pg-list");
+  try {
+    const { doc, path, seq } = await guideListDoc(base);
+    const item = doc.createNode({ name: "New piece", price: "", photos: ["", "", "", "", ""] });
+    item.get("photos", true).flow = true;
+    seq.items.push(item);
+    await commitFiles([{ path, text: doc.toString() }], `Add a price guide line on ${curPage} via inline editor`);
+    /* Show it now: copy an existing line, empty it, open it. */
+    const tpl = listEl.querySelector(":scope > details.pg-item");
+    if (tpl) {
+      const row = tpl.cloneNode(true);
+      row.classList.add("pg-none");
+      row.querySelector(".pg-n [data-ed]").textContent = "New piece";
+      row.querySelector(".pg-p [data-ed]").textContent = "";
+      row.querySelectorAll(".pg-ex figure").forEach((fig) => {
+        fig.classList.add("ed-empty");
+        const img = fig.querySelector("img");
+        ["srcset", "sizes", "style", "data-op", "data-zoom", "data-crop-key"].forEach((a) => img.removeAttribute(a));
+        img.src = `${CFG.baseurl}/assets/images/ui/add-photo.svg`;
+      });
+      listEl.insertBefore(row, btn);
+      renumberGuideLines(listEl, base);
+      row.open = true;
+    }
+    statusEl.className = "ed-status ok";
+    statusEl.textContent = DRYRUN ? "Dry run done, nothing committed" : "✓ Line added. Click its name and price to fill them in, then Save.";
+  } catch (err) {
+    statusEl.className = "ed-status err";
+    statusEl.textContent = err.message;
+  }
+}
+
+async function removeGuideLine(btn) {
+  if (!guardUnsaved()) return;
+  const row = btn.closest("details.pg-item");
+  const name = (row.querySelector(".pg-n") || {}).textContent || "this line";
+  if (!confirm(`Remove "${name.trim()}" from the price guide?`)) return;
+  if (!DRYRUN && !token()) { await ensureAuth(); return; }
+  const at = btn.getAttribute("data-ed-rmline");
+  const base = at.replace(/\.\d+$/, "");
+  const idx = Number(at.match(/(\d+)$/)[1]);
+  const listEl = row.parentElement;
+  try {
+    const { doc, path, seq } = await guideListDoc(base);
+    if (idx >= seq.items.length) throw new Error("That line isn't in the site's data any more. Refresh the page and try again.");
+    seq.items.splice(idx, 1);
+    await commitFiles([{ path, text: doc.toString() }], `Remove a price guide line on ${curPage} via inline editor`);
+    row.remove();
+    renumberGuideLines(listEl, base);
+    statusEl.className = "ed-status ok";
+    statusEl.textContent = DRYRUN ? "Dry run done, nothing committed" : "✓ Line removed, live site in ~2 minutes";
+  } catch (err) {
+    statusEl.className = "ed-status err";
+    statusEl.textContent = err.message;
+  }
 }
 
 /* ---------- photos: swap any page image ---------- */
@@ -2739,6 +2849,7 @@ const FR_SLOT = {
   studio: "this photo on the Studio page",
   blog: "this post's card on the blog page",
   post: "the photo at the top of this post",
+  guide: "this photo in the price guide",
 };
 
 function frRead(el) {
@@ -2792,6 +2903,7 @@ function openFraming(el) {
     ? r.width / r.height
     : (nw && nh ? nw / nh : 1);
   frStage.style.aspectRatio = String(ratio);
+  frStage.style.setProperty("--r", String(ratio));
   const slot = key.split("|")[0];
   const isVideo = el.tagName === "VIDEO";
   frWhere.innerHTML = `Framing <b>${isVideo ? "this video" : escapeHtml(FR_SLOT[slot] || slot)}</b>. This is the only place it is cropped this way, so nothing else on the site moves.`;

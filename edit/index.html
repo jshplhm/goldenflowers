@@ -150,7 +150,11 @@ sitemap: false
        The stage is the SLOT's aspect, not the photograph's, because the whole
        question being answered here is what survives this particular crop. A
        square preview would look right and lie. */
-    .fr-stage{position:relative;width:100%;max-width:440px;margin:0 auto 14px;overflow:hidden;
+    /* flex:none + a width cap from the window height: the card is a column
+       capped at the window, and a shrinking stage kept its width while losing
+       height, so a 4:5 slot previewed nearly square. Shrink it whole instead. */
+    .fr-stage{position:relative;width:100%;max-width:min(440px,calc((100dvh - 500px) * var(--r,1)));
+      min-width:min(100%,180px);flex:none;margin:0 auto 14px;overflow:hidden;
       border-radius:8px;background:#eee;touch-action:none;cursor:crosshair;
       user-select:none;-webkit-user-select:none;}
     .fr-stage img{width:100%;height:100%;object-fit:cover;display:block;pointer-events:none;}
@@ -238,7 +242,7 @@ sitemap: false
   </div>
   <!-- Framing: where a photograph is cropped in its slot, and how far in -->
   <div class="ed-login" id="ed-fr-modal" hidden>
-    <form class="ed-card" id="ed-fr-form" style="max-width:560px;">
+    <form class="ed-card" id="ed-fr-form" style="max-width:560px;overflow-y:auto;">
       <h2>Framing</h2>
       <p class="fr-where" id="ed-fr-where"></p>
       <p>Click or drag on the picture to set what it centres on. The box below is the real shape this photo is cropped to on the page, so what you see here is what you get.</p>
