@@ -206,7 +206,8 @@ pricing:
     intro: What individual pieces cost, so you can picture where your own wedding
       might land before we talk. Every wedding is full service, so alongside the
       pieces we handle the consultation, the mood board and proposal, and setup
-      and breakdown on the day.
+      and breakdown on the day. Labor, delivery and cleanup are added at 25% of
+      the subtotal.
     groups:
       - title: Personal flowers
         photo: /assets/images/portfolio/emma-ross/emma-ross-18.jpg
@@ -280,8 +281,12 @@ pricing:
           - name: Custom hanging installation
             price: "$3,500 – $10,000"
             photos: [ "lynn-aaron/lynn-aaron-26.jpg", "sarah-brian/sarah-brian-06.jpg", "", "", "" ]
+    # The closing labor row is off (label blank hides it): at the foot of the
+    # last list it read as a Reception charge. The 25% is said once in the
+    # intro above, before all three lists (Josh, 2026-10-20). Put the label
+    # back to bring the row back.
     labor:
-      label: Labor, delivery and cleanup
+      label: ""
       amount: 25% of the subtotal
   drivers_label: What moves the number
   drivers:
