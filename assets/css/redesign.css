@@ -1923,22 +1923,19 @@ details.pg-item > summary:focus-visible{outline:2px solid var(--accent);outline-
    rows above (name in body type, amount at the price size) and kept apart
    by space and by having no plus: it applies to everything, it is not a
    piece you pick. */
-.pg-labor{display:flex;justify-content:space-between;align-items:baseline;gap:20px;flex-wrap:wrap;
+.pg-labor{display:flex;justify-content:space-between;align-items:baseline;gap:4px 20px;flex-wrap:wrap;
   margin-top:clamp(56px,7vw,112px);padding:clamp(14px,1.5vw,18px) 0;
   border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
 .pg-labor-l{font-size:1rem;color:var(--fg);line-height:1.4;}
 .pg-labor-a{font-family:var(--d);font-weight:430;font-optical-sizing:auto;
   font-size:var(--t-d4);letter-spacing:-.01em;color:var(--ink);
   font-variant-numeric:tabular-nums lining-nums;}
-/* Beside the photographs it sits in the list column, its amount on the
-   prices' edge (the plus slot, 14px + the 20px gap, kept clear). */
+/* Beside the photographs it sits in the list column (offset by the photo
+   column plus the gap, the same 5fr/8fr split as .pg-row), its amount on
+   the prices' edge (the plus slot, 14px + the 20px gap, kept clear). */
 @media(min-width:641px){
-  .pg-labor{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,8fr);
-    column-gap:clamp(32px,5vw,96px);padding:0;border:0;}
-  .pg-labor::before{content:"";grid-column:2;grid-row:1;align-self:stretch;
-    border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
-  .pg-labor-l,.pg-labor-a{grid-column:2;grid-row:1;padding:clamp(14px,1.5vw,18px) 0;}
-  .pg-labor-a{justify-self:end;padding-right:34px;}
+  .pg-labor{margin-left:calc((100% - clamp(32px,5vw,96px)) * 5 / 13 + clamp(32px,5vw,96px));}
+  .pg-labor-a{padding-right:34px;}
 }
 @media(max-width:640px){
   .pg-row{grid-template-columns:minmax(0,1fr);row-gap:24px;margin-top:clamp(44px,12vw,64px);}
