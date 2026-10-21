@@ -317,7 +317,7 @@ pricing:
               ]
           - name: Covered chuppah
             price: "$3,900 – $5,000"
-            photos: [ "", "", "", "", "" ]
+            photos: [ "/assets/images/pages/add-photo-mvigzs3s.jpg", "", "", "", "" ]
           - name: Luxe custom ceremony installation
             price: "$5,000 – $10,000"
             photos: [ "mikayla-jeff/mikayla-jeff-03.jpg", "", "", "", "" ]
