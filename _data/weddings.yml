@@ -277,7 +277,14 @@ pricing:
               ]
           - name: Altar arrangement
             price: "$250 – $500"
-            photos: [ "lynn-aaron/lynn-aaron-14.jpg", "", "", "", "" ]
+            photos:
+              [
+                "lynn-aaron/lynn-aaron-14.jpg",
+                "/assets/images/pages/add-photo-mvigu03u.jpg",
+                "",
+                "",
+                ""
+              ]
           - name: Two-pillar arch install
             price: "$2,000 – $2,500"
             photos:
