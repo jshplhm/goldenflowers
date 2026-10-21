@@ -333,6 +333,20 @@ const FRAME_CSS = `
    * have to open, or their empty slots can never be filled. */
   .pg-none > summary{pointer-events:auto !important;cursor:pointer !important;}
   .pg-none .pg-x{visibility:visible !important;}
+  /* Move and remove buttons on each price guide photo. The first photo can't
+   * move earlier, the last filled one can't move later, empty slots get none. */
+  .pg-ex figure{position:relative;}
+  .ed-phctl{position:absolute;left:6px;right:6px;bottom:6px;display:flex;gap:6px;justify-content:space-between;}
+  .ed-phctl button{all:unset;box-sizing:border-box;width:34px;height:34px;border-radius:50%;
+    background:rgba(255,255,255,.94);color:#1f3a28;font:600 18px/34px system-ui,sans-serif;text-align:center;
+    cursor:pointer;box-shadow:0 1px 4px rgba(0,0,0,.25);}
+  .ed-phctl button:hover{background:#fff;color:#000;}
+  .ed-phctl [data-ed-phrm]{margin:0 auto;font-size:15px;}
+  .pg-ex figure.ed-empty .ed-phctl{display:none;}
+  .pg-ex figure:first-child [data-ed-phmove="-1"]{visibility:hidden;}
+  .pg-ex figure:has(+ figure.ed-empty) [data-ed-phmove="1"],
+  .pg-ex figure:has(+ :not(figure)) [data-ed-phmove="1"]{visibility:hidden;}
+  .pg-ex.busy{opacity:.55;pointer-events:none;}
 `;
 
 /* current page context, set on every iframe load */
@@ -456,6 +470,7 @@ function hookFrame() {
   /* Portfolio order is offered in the two places you would reach for it: the
    * grid it reorders, and a wedding page you have just decided to take down. */
   pfOrderBtn.hidden = !(doc.querySelector("[data-ed-pforder]") || curGallery);
+  addGuidePhotoControls(doc);
   lastRange = null;
   doc.addEventListener("selectionchange", () => {
     const sel = doc.getSelection();
@@ -485,6 +500,16 @@ function hookFrame() {
   doc.addEventListener(
     "click",
     (e) => {
+      const ph = e.target.closest && e.target.closest("[data-ed-phmove],[data-ed-phrm]");
+      if (ph) {
+        e.preventDefault();
+        e.stopPropagation();
+        if (editing) stopEdit();
+        const img = ph.closest("figure").querySelector("img[data-ed-photo]");
+        if (ph.hasAttribute("data-ed-phrm")) guidePhotoOp(img, "remove");
+        else guidePhotoOp(img, Number(ph.getAttribute("data-ed-phmove")));
+        return;
+      }
       const act = e.target.closest && e.target.closest("[data-ed-addline],[data-ed-rmline]");
       if (act) {
         e.preventDefault();
@@ -1452,6 +1477,93 @@ async function removeGuideLine(btn) {
   }
 }
 
+/* ---------- price guide: reorder and remove a line's photos ---------- */
+
+/* Each figure in a row's strip gets ‹ × › buttons (the empty "Add photo"
+ * boxes hide theirs in CSS). Injected rather than written in the template so
+ * the public page carries none of it. */
+function addGuidePhotoControls(doc) {
+  doc.querySelectorAll(".pg-ex figure").forEach((fig) => {
+    if (fig.querySelector(".ed-phctl")) return;
+    const bar = doc.createElement("div");
+    bar.className = "ed-phctl";
+    bar.innerHTML = '<button type="button" data-ed-phmove="-1" title="Move earlier" aria-label="Move earlier">‹</button>'
+      + '<button type="button" data-ed-phrm title="Remove this photo" aria-label="Remove this photo">✕</button>'
+      + '<button type="button" data-ed-phmove="1" title="Move later" aria-label="Move later">›</button>';
+    fig.appendChild(bar);
+  });
+}
+
+/* Remove keeps the list five long but closes the gap: the photo comes out
+ * and an empty slot goes on the end, so what's left still starts at the
+ * first spot. Move swaps with the neighbour, never into an empty slot.
+ * Both save straight away, like every other photo action. */
+let guidePhotoBusy = false;
+async function guidePhotoOp(img, op) {
+  if (!img || guidePhotoBusy) return;
+  const slot = img.getAttribute("data-ed-photo") || "";
+  const m = slot.match(/^(.*\.photos)\.(\d+)$/);
+  if (!m) return;
+  if (!DRYRUN && !token()) { await ensureAuth(); return; }
+  const [base, k] = [m[1], Number(m[2])];
+  const strip = img.closest(".pg-ex");
+  const figs = [...strip.querySelectorAll(":scope > figure")];
+  const fig = figs[k];
+  guidePhotoBusy = true;
+  strip.classList.add("busy");
+  try {
+    const [file, dot] = base.split(":");
+    const path = `_data/${file}.yml`;
+    const doc = parseDocument(b64decodeUtf8((await getFile(path)).content));
+    const seq = doc.getIn(docPath(doc, keyPath(dot)), true);
+    if (!seq || !isSeq(seq) || k >= seq.items.length) throw new Error("This photo isn't where the site's data expects it. Refresh the page and try again.");
+    const val = (i) => String(seq.items[i] && seq.items[i].value !== undefined ? seq.items[i].value : seq.items[i] || "").trim();
+    /* The photo on screen must be the one in the data at that spot, or a
+     * stale page would move or remove the wrong picture. */
+    const full = (v) => (v.startsWith("/") ? v : `/assets/images/portfolio/${v}`);
+    if (full(val(k)) !== imgPath(img)) throw new Error("The photos here have changed since this page loaded. Refresh the page and try again.");
+    if (op === "remove") {
+      const [gone] = seq.items.splice(k, 1);
+      gone.value = "";
+      seq.items.push(gone);
+    } else {
+      const j = k + op;
+      if (j < 0 || j >= seq.items.length || !val(j) || !val(k)) return;
+      [seq.items[k], seq.items[j]] = [seq.items[j], seq.items[k]];
+    }
+    await commitFiles([{ path, text: doc.toString() }],
+      `${op === "remove" ? "Remove" : "Reorder"} a price guide photo on ${curPage} via inline editor`);
+
+    /* Same change on the page behind the panel. */
+    if (op === "remove") {
+      fig.classList.add("ed-empty");
+      ["srcset", "sizes", "style", "data-op", "data-zoom", "data-crop-key"].forEach((a) => img.removeAttribute(a));
+      img.src = `${CFG.baseurl}/assets/images/ui/add-photo.svg`;
+      const after = strip.querySelector(":scope > :not(figure)");
+      strip.insertBefore(fig, after);
+    } else if (op < 0) {
+      strip.insertBefore(fig, figs[k - 1]);
+    } else {
+      strip.insertBefore(figs[k + 1], fig);
+    }
+    strip.querySelectorAll(":scope > figure").forEach((f, i) => {
+      const im = f.querySelector("img[data-ed-photo]");
+      if (im) im.setAttribute("data-ed-photo", `${base}.${i}`);
+    });
+    const row = strip.closest("details.pg-item");
+    if (row && !strip.querySelector(":scope > figure:not(.ed-empty)")) row.classList.add("pg-none");
+    statusEl.className = "ed-status ok";
+    statusEl.textContent = DRYRUN ? "Dry run done, nothing committed"
+      : op === "remove" ? "✓ Photo removed, live site in ~2 minutes" : "✓ Order saved, live site in ~2 minutes";
+  } catch (err) {
+    statusEl.className = "ed-status err";
+    statusEl.textContent = err.message;
+  } finally {
+    guidePhotoBusy = false;
+    strip.classList.remove("busy");
+  }
+}
+
 /* ---------- photos: swap any page image ---------- */
 
 /* Production HTML gets srcset variants at /assets/images/rsp/<stem>-<w>w.jpg
@@ -1808,6 +1920,13 @@ repCancel.addEventListener("click", () => { repModal.hidden = true; repTarget = 
 const repRemove = document.getElementById("ed-rep-remove");
 repRemove.addEventListener("click", async () => {
   if (!repTarget || !repTarget.dataPhoto || repBusy) return;
+  if (repTarget.el.closest(".pg-ex")) {
+    const el = repTarget.el;
+    repModal.hidden = true;
+    repTarget = null;
+    await guidePhotoOp(el, "remove");
+    return;
+  }
   if (!DRYRUN && !token()) { repModal.hidden = true; await ensureAuth(); return; }
   repBusy = true;
   repErr.style.display = "none";
