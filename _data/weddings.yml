@@ -279,9 +279,9 @@ pricing:
             price: "$250 – $500"
             photos:
               [
-                "lynn-aaron/lynn-aaron-14.jpg",
                 "jac-brandon/jac-brandon-15.jpg",
                 "/assets/images/pages/add-photo-mvigw334.jpg",
+                "",
                 "",
                 ""
               ]
