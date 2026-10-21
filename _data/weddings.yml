@@ -252,7 +252,7 @@ pricing:
             photos: [ "", "", "", "", "" ]
           - name: Flower girl or toss petals
             price: "$35"
-            photos: [ "", "", "", "", "" ]
+            photos: [ "/assets/images/pages/add-photo-mvighw0k.jpg", "", "", "", "" ]
       - title: Ceremony
         photo: /assets/images/portfolio/hannah-dillon/hannah-dillon-17.jpg
         alt: Corten steel ceremony circle with an asymmetric sweep of magenta, raspberry
