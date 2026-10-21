@@ -249,7 +249,14 @@ pricing:
               ]
           - name: Corsage
             price: "$80"
-            photos: [ "/assets/images/pages/add-photo-mviglx45.jpg", "", "", "", "" ]
+            photos:
+              [
+                "/assets/images/pages/add-photo-mviglx45.jpg",
+                "katie-james/katie-james-13.jpg",
+                "",
+                "",
+                ""
+              ]
           - name: Flower girl or toss petals
             price: "$35"
             photos: [ "/assets/images/pages/add-photo-mvigixkc.jpg", "", "", "", "" ]
