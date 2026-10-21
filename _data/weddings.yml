@@ -307,7 +307,14 @@ pricing:
               ]
           - name: Ground meadow installation
             price: "$2,000 – $4,000"
-            photos: [ "kelly-dylan/kelly-dylan-03.jpg", "", "", "", "" ]
+            photos:
+              [
+                "kelly-dylan/kelly-dylan-03.jpg",
+                "/assets/images/pages/add-photo-mvigya9d.jpg",
+                "",
+                "",
+                ""
+              ]
           - name: Covered chuppah
             price: "$3,900 – $5,000"
             photos: [ "", "", "", "", "" ]
