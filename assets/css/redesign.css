@@ -1890,18 +1890,18 @@ body.nav-hidden .venue-breadcrumb{top:0;}
 .pg-p{font-family:var(--d);font-weight:430;font-optical-sizing:auto;
   font-size:var(--t-d4);letter-spacing:-.01em;color:var(--ink);white-space:nowrap;
   font-variant-numeric:tabular-nums lining-nums;}
-/* The open affordance: the FAQ's plus (same size, weight and green) that
-   turns to a minus, so every open-in-place row on the page speaks one
-   language. A row with no photos yet (.pg-none) keeps the same empty slot,
-   so every price ends on one edge, and does not toggle. /edit lifts both
-   rules for that row. */
+/* The open affordance: a small chevron that turns over when the row opens.
+   Not the FAQ's plus: beside a price a plus reads as "$45+", a price that
+   goes up from there. A row with no photos yet (.pg-none) keeps the same
+   empty slot, so every price ends on one edge, and does not toggle. /edit
+   lifts both rules for that row. */
 .pg-none > summary{pointer-events:none;cursor:default;}
 .pg-none .pg-x{visibility:hidden;}
 .pg-x{flex:none;align-self:center;width:14px;height:14px;position:relative;}
-details.pg-item .pg-x::before,details.pg-item .pg-x::after{content:"";position:absolute;left:50%;top:50%;
-  width:14px;height:1.5px;background:var(--accent);transform:translate(-50%,-50%);transition:transform .3s;}
-details.pg-item .pg-x::after{transform:translate(-50%,-50%) rotate(90deg);}
-details.pg-item[open] .pg-x::after{transform:translate(-50%,-50%) rotate(90deg) scaleX(0);}
+details.pg-item .pg-x::before{content:"";position:absolute;left:50%;top:50%;
+  width:8px;height:8px;border-right:1.5px solid var(--ink);border-bottom:1.5px solid var(--ink);
+  transform:translate(-50%,-75%) rotate(45deg);transition:transform .3s;}
+details.pg-item[open] .pg-x::before{transform:translate(-50%,-25%) rotate(225deg);}
 @media(hover:hover){details.pg-item > summary:hover .pg-n{text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1px;}}
 details.pg-item > summary:focus-visible{outline:2px solid var(--accent);outline-offset:4px;border-radius:4px;}
 /* The examples: a strip of our own photographs under the row, scrolling
@@ -3190,7 +3190,7 @@ details.pg-item > summary:focus-visible{outline:2px solid var(--accent);outline-
 @media(max-resolution:1.5dppx){
   .faq-toggle::before{height:2px;}
   .faq-toggle::after{width:2px;}
-  details.pg-item .pg-x::before,details.pg-item .pg-x::after{height:2px;}
+  details.pg-item .pg-x::before{border-width:2px;}
 }
 /* The Palisades room now sits just above the closing ask, so it needs the
    same air under it that the band above the ask gets. */
