@@ -55,6 +55,9 @@
 <script>
 (function(){
   var root=document.querySelector('[data-pl]'); if(!root) return;
+  // The Add controls only appear once this script runs: without it they
+  // would be buttons that do nothing.
+  document.getElementById('price-guide').classList.add('pl-ready');
   var LIVE={{ pl.live | default: false | jsonify }};
   var ENDPOINT={{ site.consult_endpoint | jsonify }};
   var T={ one:{{ pl.bar_one | jsonify }}, many:{{ pl.bar_many | jsonify }},
@@ -132,7 +135,7 @@
     try{ localStorage.setItem(KEY,JSON.stringify(store)); }catch(e){}
     root._text=picked.map(function(l){
       var r=range(l.dataset.plPrice);
-      return (l._q>1?l._q+' x ':'')+l.dataset.plName+': '+span(r[0]*l._q,r[1]*l._q);
+      return (l._q>1?l._q+' \u00d7 ':'')+l.dataset.plName+': '+span(r[0]*l._q,r[1]*l._q);
     }).concat(count?[T.labor+': '+wide(lo*LABOR,hi*LABOR), T.total+': '+wide(tlo,thi)]:[]).join('\n');
     // A list changed after it was sent is a new list: offer to send it again
     // (name and email stay filled in).
@@ -217,7 +220,9 @@
   var guide=document.getElementById('price-guide'), panelOn=false, guideOn=false;
   function showBar(){ bar.hidden=root.hidden||panelOn||!guideOn; }
   if('IntersectionObserver' in window){
-    new IntersectionObserver(function(es){ panelOn=es[0].isIntersecting; showBar(); },{threshold:0.15}).observe(root);
+    // Steps aside as the panel's top comes within a bar's height of the
+    // screen's foot, so it never sits over the guide's last row.
+    new IntersectionObserver(function(es){ panelOn=es[0].isIntersecting; showBar(); },{rootMargin:'0px 0px 96px 0px'}).observe(root);
     new IntersectionObserver(function(es){ guideOn=es[0].isIntersecting; showBar(); }).observe(guide);
   } else { guideOn=true; }
 
