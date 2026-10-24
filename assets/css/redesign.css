@@ -2050,7 +2050,8 @@ details.pg-item > summary:focus-visible{outline:2px solid var(--accent);outline-
 /* The sent message starts where the ask's heading was, inside the height the
    form held (set in price-list.html), so nothing below moves; centred, it
    left a hole above the check that read as something missing. */
-.pl-undo{margin-top:clamp(28px,4vw,48px);color:var(--fg2);animation:pgIn .3s ease both;}
+.pl-wrap{display:flow-root;}
+.pl-undo{margin-top:clamp(56px,7vw,112px);color:var(--fg2);}
 .pl-undo[hidden]{display:none;}
 .pl-undo button{font:inherit;color:var(--ink);font-weight:500;background:none;border:0;padding:8px 4px;margin-left:6px;
   text-decoration:underline;text-underline-offset:3px;cursor:pointer;}
