@@ -335,6 +335,10 @@ pricing:
         items:
           - name: Bud vase
             price: "$25"
+            # `note` (2026-10-24, Josh): optional, shown above the photos when
+            # the row opens, and flagged with a small ? after the name.
+            note: Best for rectangular tables, spaced about 18 inches apart depending on
+              what else is on the table.
             photos:
               [
                 "lynn-aaron/lynn-aaron-24.jpg",
@@ -410,6 +414,31 @@ pricing:
     labor:
       label: ""
       amount: 25% of the subtotal
+    # YOUR LIST (2026-10-23, Josh): every row can be added to a list, which
+    # adds up with labor and can be emailed to the couple (name + email only,
+    # a lighter lead than the consult form; it lands on the leads tab as
+    # "Price list only", the list in the Estimate column). `live: false`
+    # fakes the send so the page can be reviewed before the Apps Script paste.
+    list:
+      live: true
+      add: Add to your list
+      bar_one: piece
+      bar_many: pieces
+      bar_link: See your list
+      heading: Your list
+      labor: Labor, delivery and cleanup, 25%
+      total: Estimated total
+      floor_note: Our weddings start at $5,000, so a list this size would be part of a
+        larger order.
+      send_heading: Keep this list
+      send_body: We'll email it to you, so it's there when you come back to it.
+      name: Your name
+      email: Email
+      button: Email me this list
+      sending: Sending
+      sent: Sent to {email}. If it isn't in your inbox in a few minutes, check spam.
+      failed: That didn't send. Try again, or text us at 530-557-7689.
+      clear: Clear list
   drivers_label: What moves the number
   drivers:
     - title: The venue
@@ -482,7 +511,11 @@ faq:
 # price, page needs broken there anyway"). Someone who has just read the
 # prices is the most ready to ask, and the page ran ~4,000px from there to
 # the closing ask with nothing to act on.
+# Hidden 2026-10-24 (Josh): with the price list's own email box right above
+# it, a second ask straight after the guide "feels like it shouldn't be
+# there". Flip to true to bring it back.
 price_ask:
+  show: false
   heading: Ready for *your own number?*
   body: Start with your date and venue. If it's open, we'll talk it through and
     send an itemized proposal.

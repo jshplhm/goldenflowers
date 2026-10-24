@@ -1,0 +1,181 @@
+{%- comment -%}
+  YOUR LIST (2026-10-23, Josh). Rendered at the foot of the price guide on
+  /weddings. Every row above has a + (in weddings/index.md, .pl-q); picking
+  pieces fills this panel, which adds them up with the 25% labor line and
+  offers to email the list to the couple. Name + email only: Josh chose the
+  light capture over handing off to the consult form. They land on the leads
+  tab with Status "Price list only" and the list in the Estimate column
+  (Josh, 2026-10-24: no tab of their own).
+
+  The total is a RANGE: the sum of every low end and every high end, then the
+  labor share on top. Never a single figure, because no row is one.
+
+  The list survives a reload (localStorage, per visitor, best effort) so
+  someone who wanders off to the portfolio comes back to what they picked.
+
+  Copy: weddings.pricing.guide.list. `live: false` fakes the send so the page
+  can be reviewed before the Apps Script version that knows kind=list is
+  pasted; flip it only after that paste, or every list would be filed as a
+  consult lead with no date.
+{%- endcomment -%}
+<div class="pl" id="your-list" data-pl hidden>
+  <div class="pl-panel">
+    <h3><span data-ed="weddings:pricing.guide.list.heading">{{ pl.heading }}</span></h3>
+    <ul class="pl-rows" data-pl-rows></ul>
+    <div class="pl-sum">
+      <p class="pl-lab"><span>{{ pl.labor }}</span><span class="pl-amt" data-pl-labor></span></p>
+      <p class="pl-tot"><span>{{ pl.total }}</span><span class="pl-amt" data-pl-total></span></p>
+      <p class="pl-floor" data-pl-floor hidden>{{ pl.floor_note }}</p>
+    </div>
+    <button type="button" class="pl-clear" data-pl-clear>{{ pl.clear }}</button>
+  </div>
+  <form class="pl-send" data-pl-form novalidate>
+    <h3>{{ pl.send_heading }}</h3>
+    <p>{{ pl.send_body }}</p>
+    <label class="pl-f"><span>{{ pl.name }}</span><input name="name" autocomplete="name" required></label>
+    <label class="pl-f"><span>{{ pl.email }}</span><input name="email" type="email" autocomplete="email" inputmode="email" required></label>
+    <input class="pl-hp" name="gf_hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <button class="btn btn-ink" type="submit" data-pl-submit>{{ pl.button }}</button>
+    <p class="pl-msg" data-pl-msg role="status" aria-live="polite"></p>
+  </form>
+</div>
+
+<div class="pl-bar" data-pl-bar hidden>
+  <span class="pl-bar-c"><span data-pl-count></span> · <span data-pl-bartotal></span></span>
+  <a href="#your-list" class="pl-bar-a">{{ pl.bar_link }} <span aria-hidden="true">&darr;</span></a>
+</div>
+
+<script>
+(function(){
+  var root=document.querySelector('[data-pl]'); if(!root) return;
+  var LIVE={{ pl.live | default: false | jsonify }};
+  var ENDPOINT={{ site.consult_endpoint | jsonify }};
+  var T={ one:{{ pl.bar_one | jsonify }}, many:{{ pl.bar_many | jsonify }},
+    sending:{{ pl.sending | jsonify }}, sent:{{ pl.sent | jsonify }}, failed:{{ pl.failed | jsonify }},
+    button:{{ pl.button | jsonify }}, labor:{{ pl.labor | jsonify }}, total:{{ pl.total | jsonify }} };
+  var KEY='gf_price_list', FLOOR=5000, LABOR=0.25, loadedAt=Date.now();
+  var lines=[].slice.call(document.querySelectorAll('.pg-line'));
+  var bar=document.querySelector('[data-pl-bar]');
+  var form=root.querySelector('[data-pl-form]'), msg=root.querySelector('[data-pl-msg]');
+
+  /* "$250 – $350" -> [250,350]; "$45" -> [45,45]. */
+  function range(s){
+    var n=(String(s).match(/[\d,]+/g)||[]).map(function(x){return +x.replace(/,/g,'');});
+    return n.length?[n[0],n[n.length-1]]:[0,0];
+  }
+  function money(n){ return '$'+Math.round(n).toLocaleString('en-US'); }
+  function span(lo,hi){ return lo===hi?money(lo):money(lo)+' – '+money(hi); }
+  /* Labor and the total are worked out, not quoted, so they round OUTWARD
+     to $50: the range only ever gets wider, never quietly narrower. */
+  function wide(lo,hi){ return span(Math.floor(lo/50)*50, Math.ceil(hi/50)*50); }
+  function id(l){ return l.dataset.plGroup+'|'+l.dataset.plName; }
+
+  /* Version B (?pl=b, for review): the control moves inside the opened row
+     and a count badge marks a picked row in its closed state. */
+  var B=/[?&]pl=b\b/.test(location.search);
+  if(B){
+    document.getElementById('price-guide').classList.add('pl-b');
+    lines.forEach(function(l){
+      var d=l.querySelector('details'), q=l.querySelector('[data-pl-q]');
+      d.appendChild(q);
+      var b=document.createElement('span'); b.className='pl-badge'; l.querySelector('.pg-n').appendChild(b);
+    });
+  }
+  var saved={}; try{ saved=JSON.parse(localStorage.getItem(KEY)||'{}')||{}; }catch(e){}
+  lines.forEach(function(l){ l._q=Math.max(0,Math.min(999,+saved[id(l)]||0)); });
+
+  function setQ(l,q){
+    l._q=Math.max(0,Math.min(999,q|0));
+    var on=l._q>0;
+    l.classList.toggle('pl-on',on);
+    l.querySelector('.pl-add').hidden=on;
+    l.querySelector('.pl-step').hidden=!on;
+    var inp=l.querySelector('.pl-n'); if(document.activeElement!==inp) inp.value=l._q;
+    var bd=l.querySelector('.pl-badge'); if(bd) bd.textContent='\u00d7 '+l._q;
+  }
+
+  function render(){
+    var picked=lines.filter(function(l){return l._q>0;});
+    var lo=0,hi=0,count=0,store={};
+    var rows=root.querySelector('[data-pl-rows]'); rows.innerHTML='';
+    picked.forEach(function(l){
+      var r=range(l.dataset.plPrice), q=l._q;
+      lo+=r[0]*q; hi+=r[1]*q; count+=q; store[id(l)]=q;
+      var li=document.createElement('li');
+      var a=document.createElement('span'); a.className='pl-name';
+      a.textContent=(q>1?q+' × ':'')+l.dataset.plName;
+      var b=document.createElement('span'); b.className='pl-amt'; b.textContent=span(r[0]*q,r[1]*q);
+      li.appendChild(a); li.appendChild(b); rows.appendChild(li);
+    });
+    var tlo=lo*(1+LABOR), thi=hi*(1+LABOR);
+    root.querySelector('[data-pl-labor]').textContent=wide(lo*LABOR,hi*LABOR);
+    root.querySelector('[data-pl-total]').textContent=wide(tlo,thi);
+    root.querySelector('[data-pl-floor]').hidden=!(count && thi<FLOOR);
+    root.hidden=!count;
+    bar.querySelector('[data-pl-count]').textContent=count+' '+(count===1?T.one:T.many);
+    bar.querySelector('[data-pl-bartotal]').textContent=wide(tlo,thi);
+    showBar();
+    try{ localStorage.setItem(KEY,JSON.stringify(store)); }catch(e){}
+    root._text=picked.map(function(l){
+      var r=range(l.dataset.plPrice);
+      return (l._q>1?l._q+' x ':'')+l.dataset.plName+': '+span(r[0]*l._q,r[1]*l._q);
+    }).concat(count?[T.labor+': '+wide(lo*LABOR,hi*LABOR), T.total+': '+wide(tlo,thi)]:[]).join('\n');
+  }
+
+  lines.forEach(function(l){
+    setQ(l,l._q);
+    l.querySelector('[data-pl-q]').addEventListener('click',function(e){
+      var b=e.target.closest('[data-pl-step]'); if(!b) return;
+      var was=l._q; setQ(l,l._q+(+b.dataset.plStep)); render();
+      // Keep focus on a live control: the + it came from disappears on the
+      // first add and the stepper disappears when the count hits zero.
+      if(!was && l._q) l.querySelector('.pl-plus').focus();
+      else if(was && !l._q) l.querySelector('.pl-add').focus();
+    });
+    var inp=l.querySelector('.pl-n');
+    inp.addEventListener('input',function(){ inp.value=inp.value.replace(/\D/g,''); if(inp.value!==''){ l._q=+inp.value; render(); } });
+    inp.addEventListener('blur',function(){ setQ(l,+inp.value||0); render(); });
+    inp.addEventListener('focus',function(){ inp.select(); });
+  });
+
+  root.querySelector('[data-pl-clear]').addEventListener('click',function(){
+    lines.forEach(function(l){ setQ(l,0); }); render();
+    var g=document.getElementById('price-guide'); if(g) g.scrollIntoView({behavior:'smooth'});
+  });
+
+  /* The bar rides the guide only: on once something is picked, off when the
+     panel itself is on screen (it would be pointing at what you are reading)
+     and off once you scroll past the guide. */
+  var guide=document.getElementById('price-guide'), panelOn=false, guideOn=false;
+  function showBar(){ bar.hidden=root.hidden||panelOn||!guideOn; }
+  if('IntersectionObserver' in window){
+    new IntersectionObserver(function(es){ panelOn=es[0].isIntersecting; showBar(); },{threshold:0.15}).observe(root);
+    new IntersectionObserver(function(es){ guideOn=es[0].isIntersecting; showBar(); }).observe(guide);
+  } else { guideOn=true; }
+
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    var name=form.name.value.trim(), email=form.email.value.trim();
+    form.name.setCustomValidity(name?'':'Add your name.');
+    form.email.setCustomValidity(/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)?'':'Check your email address.');
+    if(!form.reportValidity()) return;
+    var btn=form.querySelector('[data-pl-submit]');
+    btn.disabled=true; btn.textContent=T.sending; msg.textContent='';
+    var src={}; try{ src=JSON.parse(sessionStorage.getItem('gf_source')||'{}'); }catch(e){}
+    var body=new URLSearchParams({ kind:'list', name:name, email:email, list:root._text,
+      gf_hp:form.gf_hp.value, ts:String(loadedAt), k:'gf-lupine-26',
+      utm_source:src.utm_source||'', utm_medium:src.utm_medium||'', utm_campaign:src.utm_campaign||'', referrer:src.referrer||'' });
+    var send=LIVE
+      ? fetch(ENDPOINT,{method:'POST',body:body}).then(function(r){ if(!r.ok) throw 0; })
+      : new Promise(function(ok){ setTimeout(ok,700); });
+    send.then(function(){
+      form.classList.add('pl-done');
+      msg.textContent=T.sent.replace('{email}',email);
+    },function(){
+      msg.textContent=T.failed;
+    }).then(function(){ btn.disabled=false; btn.textContent=T.button; });
+  });
+
+  render();
+})();
+</script>

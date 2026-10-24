@@ -1949,6 +1949,112 @@ details.pg-item > summary:focus-visible{outline:2px solid var(--accent);outline-
   .pg-labor{margin-left:calc((100% - clamp(32px,5vw,96px)) * 5 / 13 + clamp(32px,5vw,96px));}
   .pg-labor-a{padding-right:34px;}
 }
+/* YOUR LIST (2026-10-23). The add control sits over the row's right edge,
+   outside <summary> so a tap on it never opens the row. The summary keeps
+   its right side clear for it: a 36px circle at rest, the wider stepper once
+   the piece is on the list. */
+.pg-line{position:relative;}
+/* Beside the photo every row reserves the stepper's width, picked or not,
+   so all the prices keep one right edge. */
+.pg-line > .pg-item > summary{padding-right:136px;}
+.pl-q{position:absolute;right:0;top:clamp(10px,1.1vw,13px);display:flex;justify-content:flex-end;}
+.pl-add,.pl-minus,.pl-plus{position:relative;width:36px;height:36px;border-radius:50%;
+  border:1px solid var(--ink);background:none;color:var(--ink);cursor:pointer;padding:0;flex:none;
+  transition:background .2s,color .2s;}
+.pl-add::before,.pl-add::after,.pl-plus::before,.pl-plus::after,.pl-minus::before{content:"";position:absolute;
+  left:50%;top:50%;width:12px;height:1.5px;background:currentColor;transform:translate(-50%,-50%);}
+.pl-add::after,.pl-plus::after{transform:translate(-50%,-50%) rotate(90deg);}
+.pl-plus,.pl-minus{border-color:var(--line);}
+.pl-step:not([hidden]){display:flex;align-items:center;gap:4px;}
+.pl-on .pl-plus{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+.pl-n{width:38px;height:36px;line-height:36px;text-align:center;border:0;background:none;padding:0;
+  font-family:var(--d);font-size:var(--t-d4);color:var(--ink);font-variant-numeric:tabular-nums lining-nums;}
+.pl-n:focus{outline:1px solid var(--line);border-radius:6px;}
+@media(hover:hover){.pl-add:hover{background:var(--ink);color:var(--paper);}.pl-minus:hover{border-color:var(--ink);}}
+.pl-add:focus-visible,.pl-minus:focus-visible,.pl-plus:focus-visible{outline:2px solid var(--accent);outline-offset:3px;}
+.pl-on .pg-n{font-weight:500;}
+@media(max-width:900px){
+  .pl-q{top:50%;transform:translateY(-50%);}
+  .pg-line > .pg-item[open] + .pl-q{top:24px;transform:none;}
+  .pg-line > .pg-item > summary{padding-right:52px;}
+  .pg-line.pl-on > .pg-item > summary{padding-right:120px;}
+}
+/* 2026-10-24, Josh: the chevron beside the +/- was "super busy". Version A
+   (default): no chevron; a small thumbnail of the piece leads the row and is
+   the cue that it opens to photos. Version B (.pl-b, ?pl=b): today's row with
+   its chevron, and the add control moved inside the opened row. */
+.pg-th{flex:none;width:52px;height:52px;border-radius:8px;overflow:hidden;background:var(--bg2);align-self:center;}
+.pg-th img{display:block;width:100%;height:100%;object-fit:cover;}
+.pguide:not(.pl-b) .pg-line .pg-x{display:none;}
+.pguide:not(.pl-b) .pg-line > .pg-item > summary{align-items:center;gap:18px;}
+.pguide:not(.pl-b) .pg-line > .pg-item > summary{padding-right:136px;}
+.pguide:not(.pl-b) .pl-q{top:50%;transform:translateY(-50%);}
+.pguide:not(.pl-b) .pg-line > .pg-item[open] + .pl-q{top:calc(clamp(14px,1.5vw,18px) + 26px);}
+.pg-q{display:inline-flex;align-items:center;justify-content:center;width:17px;height:17px;margin-left:8px;
+  border:1px solid var(--mute);border-radius:50%;font-size:11px;line-height:1;color:var(--mute);vertical-align:2px;}
+.pg-note{max-width:46ch;margin:0 0 14px;font-size:var(--t-sm);line-height:1.55;color:var(--fg2);}
+.pg-note.ed-empty{display:none;}
+.pguide:not(.pl-b) .pg-note{padding-left:70px;}
+@media(max-width:900px){
+  .pguide:not(.pl-b) .pg-line > .pg-item > summary{grid-template-columns:52px minmax(0,1fr);grid-template-rows:auto auto;align-content:center;align-items:end;column-gap:16px;row-gap:2px;padding-right:52px;}
+  .pguide:not(.pl-b) .pg-p{align-self:start;}
+  .pguide:not(.pl-b) .pg-line.pl-on > .pg-item > summary{padding-right:120px;}
+  .pguide:not(.pl-b) .pg-th{grid-column:1;grid-row:1 / span 2;}
+  .pguide:not(.pl-b) .pg-n,.pguide:not(.pl-b) .pg-p{grid-column:2;}
+  .pguide:not(.pl-b) .pg-line > .pg-item[open] + .pl-q{top:calc(16px + 26px);}
+  .pguide:not(.pl-b) .pg-note{padding-left:0;}
+}
+/* B: no thumbnails, the chevron is back, the control lives in the panel. */
+.pl-b .pg-th{display:none;}
+.pl-b .pg-line > .pg-item > summary,
+.pl-b .pg-line.pl-on > .pg-item > summary{padding-right:0;}
+.pl-b .pl-q{position:static;transform:none;margin:0 0 clamp(18px,2vw,24px);justify-content:flex-start;}
+.pl-b .pg-ex{padding-bottom:16px;}
+.pl-b .pl-add{width:auto;height:44px;border-radius:var(--r-img);padding:0 18px;font:inherit;font-size:var(--t-ui);}
+.pl-b .pl-add::before{display:none;}
+.pl-b .pl-add::after{content:"+ " attr(data-label);position:static;width:auto;height:auto;background:none;transform:none;}
+.pl-badge{display:none;}
+.pl-b .pl-on .pl-badge{display:inline-flex;align-items:center;margin-left:10px;padding:2px 9px;border-radius:999px;
+  background:var(--ink);color:var(--paper);font-size:12px;font-weight:500;vertical-align:2px;font-variant-numeric:tabular-nums;}
+/* The list itself, at the foot of the guide: what you picked on the left,
+   the email box on the right; stacked on a phone. An inset panel, so --bg2. */
+.pl{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(28px,4vw,72px);
+  margin-top:clamp(56px,7vw,112px);padding:clamp(24px,3.4vw,48px);background:var(--bg2);border-radius:var(--r-card);
+  scroll-margin-top:calc(var(--nav-h) + 16px);}
+.pl[hidden]{display:none;}
+.pl h3{font-family:var(--d);font-weight:430;font-size:var(--t-d3);letter-spacing:-.015em;line-height:1.12;}
+.pl-rows{list-style:none;margin:16px 0 0;padding:0;border-top:1px solid var(--line);}
+.pl-rows li,.pl-sum p{display:flex;justify-content:space-between;align-items:baseline;gap:16px;
+  padding:11px 0;border-bottom:1px solid var(--line);}
+.pl-amt{font-family:var(--d);white-space:nowrap;color:var(--ink);font-variant-numeric:tabular-nums lining-nums;}
+.pl-lab{color:var(--fg2);}
+.pl-sum .pl-tot{border-bottom:0;padding-top:16px;font-weight:500;}
+.pl-tot .pl-amt{font-size:var(--t-d3);font-weight:430;}
+.pl-sum .pl-floor{display:block;border:0;padding:4px 0 0;color:var(--mute);font-size:var(--t-sm);}
+.pl-sum .pl-floor[hidden]{display:none;}
+.pl-clear{margin-top:14px;font:inherit;font-size:var(--t-sm);color:var(--mute);background:none;border:0;padding:6px 0;
+  text-decoration:underline;text-underline-offset:3px;cursor:pointer;}
+.pl-send p{margin-top:10px;color:var(--fg2);line-height:1.55;}
+.pl-f{display:block;margin-top:16px;}
+.pl-f span{display:block;font-size:var(--t-ui);color:var(--fg2);margin-bottom:6px;}
+.pl-f input{width:100%;font:inherit;font-size:16px;padding:13px 14px;border:1px solid var(--line);
+  border-radius:var(--r-img);background:var(--paper);color:var(--ink);}
+.pl-f input:focus{outline:2px solid var(--accent);outline-offset:1px;}
+.pl-hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0;}
+.pl-send .btn{margin-top:20px;width:100%;justify-content:center;border:0;cursor:pointer;}
+.pl-send .pl-msg{margin-top:12px;font-size:var(--t-sm);color:var(--fg2);min-height:1em;}
+.pl-done .pl-f,.pl-done .btn,.pl-done > p:not(.pl-msg){display:none;}
+.pl-done .pl-msg{font-size:1rem;color:var(--ink);}
+@media(max-width:760px){.pl{grid-template-columns:minmax(0,1fr);}}
+/* The bar that keeps the total in view while you pick. Ink, like the
+   buttons; it is a control, not a surface. */
+.pl-bar{position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom));z-index:50;
+  display:flex;align-items:center;justify-content:space-between;gap:12px;max-width:560px;margin:0 auto;
+  padding:14px 18px;border-radius:var(--r-card);background:var(--ink);color:var(--paper);
+  box-shadow:0 8px 28px oklch(20% .02 150 / .22);font-size:var(--t-ui);animation:pgIn .25s ease both;}
+.pl-bar[hidden]{display:none;}
+.pl-bar-c{font-variant-numeric:tabular-nums lining-nums;}
+.pl-bar-a{color:var(--paper);font-weight:500;white-space:nowrap;text-decoration:underline;text-underline-offset:3px;}
 @media(max-width:640px){
   .pg-row{grid-template-columns:minmax(0,1fr);row-gap:24px;margin-top:clamp(44px,12vw,64px);}
   .pg-pic img{aspect-ratio:5/4;}

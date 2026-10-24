@@ -1,5 +1,17 @@
 /**
- * Golden Flowers consultation form — hardened intake, v3.7 (September 2026).
+ * Golden Flowers consultation form — hardened intake, v3.8 (October 2026).
+ *
+ * What changed from v3.7 (v3.8):
+ *   - PRICE LISTS. The price guide on /weddings lets a couple add pieces to a
+ *     list and email it to themselves (name + email only). Those posts carry
+ *     kind=list and take their own path: their own spam rules and their own
+ *     email (the list, to the couple, us on BCC). They land on the leads tab
+ *     like any lead (Josh, 2026-10-24: no new tab), with Status "Price list
+ *     only", no wedding date, and the list in the Estimate column.
+ *   - PASTE AND REDEPLOY BEFORE the site flips `pricing.guide.list.live` to
+ *     true. Until then the page fakes the send. An older deployment would
+ *     file every list as a consult lead with no date and send it the
+ *     "Checking availability" email, which is wrong for these.
  *
  * What changed from v3.6 (v3.7):
  *   - NO RESPONSE TIME IS PROMISED ANYWHERE. Both couple-facing emails said
@@ -256,6 +268,7 @@ function doPost(e) {
 }
 
 function handlePost_(p, ss) {
+  if (String(p.kind || '') === 'list') return handleList_(p, ss);
   var isPartial = String(p.status || '') === 'partial';
   var reasons = spamReasons_(p);
   var now = new Date();
@@ -1189,6 +1202,98 @@ function partialLeadsDigest_() {
 
 /** Run once from the editor after deploying. Replaces the old 30-minute
  *  stale-partial trigger with the single daily digest timer. Safe to re-run. */
+/* ---------------------------------------------------------------------------
+   PRICE LISTS (v3.8). A couple builds a list of pieces on the /weddings price
+   guide and asks for it by email. Name and email only, so it is a lighter
+   lead than the consult form: it lands on its own tab and the email goes to
+   them, with us on BCC so Brittany sees who is planning and with what.
+--------------------------------------------------------------------------- */
+function handleList_(p, ss) {
+  var now = new Date();
+  p.estimate = String(p.list || '').trim();  // the list lives in the Estimate column
+  var reasons = listSpamReasons_(p);
+  if (reasons.length) {
+    writeToSpam_(ss, p, false, reasons, now);
+    return success_();
+  }
+  var leads = sheet_(ss, LEADS_SHEET);
+  var cols = colMap_(ensureHeaders_(leads));
+  var values = buildRowValues_(p, false, now, now, genLeadIdFallback_());
+  values['Status'] = 'Price list only' + (String(p.k || '') === FORM_TOKEN ? '' : ' (unverified)');
+  writeRow_(leads, leads.getLastRow() + 1, cols, values);
+  sendListEmail_(p);
+  return success_();
+}
+
+/* Same honesty rule as the consult form: only reject what the real page
+   cannot produce. The list is machine-written from the guide's rows, so it
+   never holds a link and stays well under 3,000 characters even with every
+   row on it. */
+function listSpamReasons_(p) {
+  var r = [];
+  var name = String(p.name || '').trim();
+  var email = String(p.email || '').trim();
+  var list = String(p.list || '').trim();
+  if (String(p.gf_hp || '').trim()) r.push('honeypot');
+  var ts = Number(p.ts || 0);
+  if (ts && Date.now() - ts >= 0 && Date.now() - ts < 3000) r.push('submitted too fast');
+  if (!name) r.push('missing name');
+  if (/btc|bitcoin|crypto|withdraw|https?:|www\./i.test(name)) r.push('spam keywords');
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
+    r.push('bad email format');
+  } else {
+    var domain = email.split('@')[1].toLowerCase();
+    if (PLACEHOLDER_DOMAINS.indexOf(domain) !== -1) r.push('placeholder email domain');
+    else if (!domainReceivesMail_(domain)) r.push('email domain cannot receive mail');
+  }
+  if (!list) r.push('empty list');
+  else if (list.length > 3000) r.push('list too long');
+  else if (/btc|bitcoin|crypto|withdraw|https?:|www\./i.test(list)) r.push('spam keywords in list');
+  if (email && floodCount_(email) > 6) r.push('flood');
+  return r;
+}
+
+function sendListEmail_(p) {
+  var email = String(p.email || '').trim();
+  var first = (String(p.name || '').trim().split(/\s+/)[0]) || '';
+  var list = String(p.list || '').trim();
+  var hi = first ? 'Hi ' + first + ',' : 'Hi,';
+  var subject = 'Your flower list · Golden Flowers';
+  var intro = 'Here is the list you put together on our price guide.';
+  var after = 'These are our guide prices. Your own proposal is built around your venue, ' +
+    'your date and what is in season, so it can land a little differently.';
+  var ask = 'When you are ready, tell us your date and venue and we will check that it is open.';
+
+  var textBody = [hi, '', intro, '', indent_(list), '', after, '', ask,
+    'https://goldenflorals.com/consultation-form', '',
+    'You can also text us anytime at 530-557-7689.', '',
+    'Warmly,', 'Brittany', 'Golden Flowers', 'Lake Tahoe wedding florist', 'goldenflorals.com'].join('\n');
+
+  var body =
+    '<p style="margin:0 0 16px;">' + escHtml_(hi) + '</p>' +
+    '<p style="margin:0 0 22px;">' + escHtml_(intro) + '</p>' +
+    emailEstimate_(list, 'Your list', '22px') +
+    '<p style="margin:0 0 22px;">' + escHtml_(after) + '</p>' +
+    '<p style="margin:0 0 18px;">' + escHtml_(ask) + '</p>' +
+    '<p style="margin:0 0 26px;"><a href="https://goldenflorals.com/consultation-form" style="display:inline-block;background:' + EM_GREEN + ';color:#ffffff;text-decoration:none;font:14px Helvetica,Arial,sans-serif;letter-spacing:.03em;padding:13px 22px;border-radius:4px;">Check your date</a></p>' +
+    '<p style="margin:0 0 26px;">You can also text us anytime at <strong style="color:' + EM_GREEN + ';white-space:nowrap;">530-557-7689</strong>.</p>' +
+    '<div style="border-top:1px solid ' + EM_LINE + ';margin:0 0 20px;"></div>';
+
+  var footer =
+    'Warmly,<br>' +
+    '<strong>Brittany</strong><br>' +
+    '<span style="color:' + EM_GREEN + ';">Golden Flowers</span><br>' +
+    '<span style="color:' + EM_MUTE + ';">Lake Tahoe wedding florist</span><br>' +
+    '<a href="https://goldenflorals.com" style="color:' + EM_GREEN + ';text-decoration:none;">goldenflorals.com</a>';
+
+  GmailApp.sendEmail(email, subject, textBody, {
+    htmlBody: emailShell_(body, footer),
+    name: 'Golden Flowers',
+    replyTo: NOTIFY_EMAIL,
+    bcc: NOTIFY_EMAIL + ',' + BCC_EMAIL
+  });
+}
+
 function setupTriggers() {
   ScriptApp.getProjectTriggers().forEach(function (t) {
     var fn = t.getHandlerFunction();

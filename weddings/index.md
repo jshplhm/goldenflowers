@@ -253,9 +253,21 @@ redirect_from:
         {%- assign ix = forloop.index0 %}
         {%- assign nfill = 0 %}
         {%- for ph in it.photos %}{% assign phs = ph | strip %}{% if phs != "" %}{% assign nfill = nfill | plus: 1 %}{% endif %}{% endfor %}
+        {%- comment -%} .pg-line holds the row and its add control side by
+        side: the control can't live in <summary> (a tap there would also
+        open the row), so it sits over the row's right edge instead. {%- endcomment %}
+        <div class="pg-line" data-pl-group="{{ g.title | escape }}" data-pl-name="{{ it.name | escape }}" data-pl-price="{{ it.price | escape }}">
         <details class="pg-item{% if nfill == 0 %} pg-none{% endif %}" name="pg">
-          <summary{% if nfill == 0 %} tabindex="-1"{% endif %}><span class="pg-n"><span data-ed="weddings:pricing.guide.groups.{{ gx }}.items.{{ ix }}.name" data-ed-hint="Name this piece">{{ it.name }}</span></span>
+          {%- comment -%} The row's first example as a small thumbnail (the
+          "tap me for photos" cue that replaced the chevron, 2026-10-24), and a
+          ? after the name when the piece carries a note. {%- endcomment %}
+          {%- assign th = "" %}
+          {%- for ph in it.photos %}{% assign phs = ph | strip %}{% if phs != "" and th == "" %}{% assign th = phs %}{% endif %}{% endfor %}
+          {%- if th != "" %}{% assign th0 = th | slice: 0 %}{% if th0 != "/" %}{% assign th = "/assets/images/portfolio/" | append: th %}{% endif %}{% endif %}
+          {%- assign nt = it.note | strip %}
+          <summary{% if nfill == 0 %} tabindex="-1"{% endif %}><span class="pg-th">{% if th != "" %}<img src="{{ site.baseurl }}{{ th }}" alt="" loading="lazy" sizes="56px">{% endif %}</span><span class="pg-n"><span data-ed="weddings:pricing.guide.groups.{{ gx }}.items.{{ ix }}.name" data-ed-hint="Name this piece">{{ it.name }}</span>{% if nt != "" %}<span class="pg-q" aria-label="Has a note">?</span>{% endif %}</span>
             <span class="pg-p"><span data-ed="weddings:pricing.guide.groups.{{ gx }}.items.{{ ix }}.price" data-ed-hint="Add a price">{{ it.price }}</span></span><span class="pg-x" aria-hidden="true"></span></summary>
+          <p class="pg-note{% if nt == "" %} ed-empty{% endif %}"><span data-ed="weddings:pricing.guide.groups.{{ gx }}.items.{{ ix }}.note" data-ed-hint="Add a note about this piece">{{ it.note }}</span></p>
           <div class="pg-ex">
             {%- for ph in it.photos %}
             {%- assign pp = ph | strip %}
@@ -272,6 +284,15 @@ redirect_from:
             <button type="button" class="ed-empty pg-rmline" data-ed-rmline="weddings:pricing.guide.groups.{{ gx }}.items.{{ ix }}">Remove this line</button>
           </div>
         </details>
+        <div class="pl-q" data-pl-q>
+          <button type="button" class="pl-add" data-pl-step="1" data-label="{{ gd.list.add }}" aria-label="{{ gd.list.add }}: {{ it.name | escape }}"></button>
+          <span class="pl-step" hidden>
+            <button type="button" class="pl-minus" data-pl-step="-1" aria-label="One fewer {{ it.name | escape }}"></button>
+            <input class="pl-n" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="3" value="0" aria-label="How many: {{ it.name | escape }}">
+            <button type="button" class="pl-plus" data-pl-step="1" aria-label="One more {{ it.name | escape }}"></button>
+          </span>
+        </div>
+        </div>
         {%- endfor %}
         {%- comment -%} /edit only: a new line, named "New piece", five empty slots. {%- endcomment %}
         <button type="button" class="ed-empty pg-addline" data-ed-addline="weddings:pricing.guide.groups.{{ gx }}.items">+ Add a line</button>
@@ -286,12 +307,16 @@ redirect_from:
     <p class="pg-labor-a"><span data-ed="weddings:pricing.guide.labor.amount">{{ gd.labor.amount }}</span></p>
   </div>
   {%- endif %}
+  {%- assign pl = gd.list %}
+  {%- if pl %}
+  {%- include price-list.html %}
+  {%- endif %}
 </section>
 {%- endif %}
 
 <!-- THE ASK AFTER THE PRICES: same band as the closing ask, its own words. -->
 {%- assign pa = site.data.weddings.price_ask %}
-{%- if pa.heading %}
+{%- if pa.heading and pa.show != false %}
 <section class="cta cta--mid">
   <h2 class="disp">{% include em.html t=pa.heading k="weddings:price_ask.heading" %}</h2>
   <p><span data-ed="weddings:price_ask.body">{{ pa.body }}</span></p>
