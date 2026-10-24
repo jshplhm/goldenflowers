@@ -162,17 +162,34 @@
      minutes to build. The note sits where the panel was, for eight seconds. */
   var undo=document.querySelector('[data-pl-undo]'), undoSnap=null, undoT=0;
   root.parentNode.insertBefore(undo, root.nextSibling);
+  /* The panel folds shut on Clear and unfolds on Undo instead of vanishing
+     and popping back (Josh, 2026-10-24). Height, padding and the gap above
+     it ease together; instant for anyone who asked for reduced motion. */
+  var still=window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function fold(el,open,done){
+    if(still || !el.animate){ if(done) done(); return; }
+    var cs=getComputedStyle(el), full={height:el.offsetHeight+'px',opacity:1,
+      paddingTop:cs.paddingTop,paddingBottom:cs.paddingBottom,marginTop:cs.marginTop};
+    var shut={height:'0px',opacity:0,paddingTop:'0px',paddingBottom:'0px',marginTop:'0px'};
+    el.style.overflow='hidden';
+    var an=el.animate(open?[shut,full]:[full,shut],{duration:open?420:360,easing:'cubic-bezier(.4,0,.2,1)'});
+    an.onfinish=function(){ el.style.overflow=''; if(done) done(); };
+  }
   root.querySelector('[data-pl-clear]').addEventListener('click',function(){
     undoSnap=lines.map(function(l){ return l._q; });
-    lines.forEach(function(l){ setQ(l,0); }); render();
     track('price_list_clear');
-    undo.hidden=false; undo.scrollIntoView({block:'center',behavior:'smooth'});
-    clearTimeout(undoT); undoT=setTimeout(function(){ undo.hidden=true; undoSnap=null; },8000);
+    fold(root,false,function(){
+      lines.forEach(function(l){ setQ(l,0); }); render();
+      undo.hidden=false;
+      var r=undo.getBoundingClientRect();
+      if(r.top<80 || r.bottom>innerHeight) undo.scrollIntoView({block:'center',behavior:'smooth'});
+      clearTimeout(undoT); undoT=setTimeout(function(){ undo.hidden=true; undoSnap=null; },8000);
+    });
   });
   undo.querySelector('[data-pl-undo-btn]').addEventListener('click',function(){
     if(undoSnap) lines.forEach(function(l,i){ setQ(l,undoSnap[i]); });
     undoSnap=null; undo.hidden=true; clearTimeout(undoT); render();
-    root.scrollIntoView({block:'start',behavior:'smooth'});
+    fold(root,true);
   });
 
   /* The bar rides the guide only: on once something is picked, off when the
