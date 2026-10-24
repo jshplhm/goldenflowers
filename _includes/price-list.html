@@ -45,6 +45,8 @@
   </form>
 </div>
 
+<p class="pl-undo" data-pl-undo role="status" hidden>{{ pl.cleared }} <button type="button" data-pl-undo-btn>{{ pl.undo }}</button></p>
+
 <div class="pl-bar" data-pl-bar hidden>
   <span class="pl-bar-c"><span data-pl-count></span> · <span data-pl-bartotal></span></span>
   <a href="#your-list" class="pl-bar-a">{{ pl.bar_link }} <span aria-hidden="true">&darr;</span></a>
@@ -57,7 +59,8 @@
   var ENDPOINT={{ site.consult_endpoint | jsonify }};
   var T={ one:{{ pl.bar_one | jsonify }}, many:{{ pl.bar_many | jsonify }},
     sending:{{ pl.sending | jsonify }}, sent:{{ pl.sent | jsonify }}, failed:{{ pl.failed | jsonify }},
-    button:{{ pl.button | jsonify }}, labor:{{ pl.labor | jsonify }}, total:{{ pl.total | jsonify }} };
+    button:{{ pl.button | jsonify }}, cleared:{{ pl.cleared | jsonify }}, labor:{{ pl.labor | jsonify }}, total:{{ pl.total | jsonify }} };
+  var sentText=null;
   var KEY='gf_price_list', FLOOR=5000, LABOR=0.25, loadedAt=Date.now();
   var lines=[].slice.call(document.querySelectorAll('.pg-line'));
   var bar=document.querySelector('[data-pl-bar]');
@@ -73,6 +76,10 @@
   /* Labor and the total are worked out, not quoted, so they round OUTWARD
      to $50: the range only ever gets wider, never quietly narrower. */
   function wide(lo,hi){ return span(Math.floor(lo/50)*50, Math.ceil(hi/50)*50); }
+  /* Analytics (GA4, through the site's own gtag): did anyone add a piece,
+     email a list, clear one. Guarded like the form's conversion call, so a
+     blocked or not-yet-loaded tag never throws. */
+  function track(name,params){ try{ if(typeof gtag==='function') gtag('event',name,params||{}); }catch(e){} }
   function id(l){ return l.dataset.plGroup+'|'+l.dataset.plName; }
 
   var saved={}; try{ saved=JSON.parse(localStorage.getItem(KEY)||'{}')||{}; }catch(e){}
@@ -120,12 +127,18 @@
     root.hidden=!count;
     bar.querySelector('[data-pl-count]').textContent=count+' '+(count===1?T.one:T.many);
     bar.querySelector('[data-pl-bartotal]').textContent=wide(tlo,thi);
+    root._count=count;
     showBar();
     try{ localStorage.setItem(KEY,JSON.stringify(store)); }catch(e){}
     root._text=picked.map(function(l){
       var r=range(l.dataset.plPrice);
       return (l._q>1?l._q+' x ':'')+l.dataset.plName+': '+span(r[0]*l._q,r[1]*l._q);
     }).concat(count?[T.labor+': '+wide(lo*LABOR,hi*LABOR), T.total+': '+wide(tlo,thi)]:[]).join('\n');
+    // A list changed after it was sent is a new list: offer to send it again
+    // (name and email stay filled in).
+    if(sentText!==null && root._text!==sentText){
+      form.classList.remove('pl-done'); form.style.minHeight=''; sentText=null;
+    }
   }
 
   lines.forEach(function(l){
@@ -133,6 +146,7 @@
     l.querySelector('[data-pl-q]').addEventListener('click',function(e){
       var b=e.target.closest('[data-pl-step]'); if(!b) return;
       var was=l._q; setQ(l,l._q+(+b.dataset.plStep)); render();
+      if(!was && l._q) track('price_list_add',{item_name:l.dataset.plName, item_category:l.dataset.plGroup});
       // Keep focus on a live control: the + it came from disappears on the
       // first add and the stepper disappears when the count hits zero.
       if(!was && l._q) l.querySelector('.pl-plus').focus();
@@ -144,9 +158,21 @@
     inp.addEventListener('focus',function(){ inp.select(); });
   });
 
+  /* Clear, with a way back: one stray tap used to wipe a list that took five
+     minutes to build. The note sits where the panel was, for eight seconds. */
+  var undo=document.querySelector('[data-pl-undo]'), undoSnap=null, undoT=0;
+  root.parentNode.insertBefore(undo, root.nextSibling);
   root.querySelector('[data-pl-clear]').addEventListener('click',function(){
+    undoSnap=lines.map(function(l){ return l._q; });
     lines.forEach(function(l){ setQ(l,0); }); render();
-    var g=document.getElementById('price-guide'); if(g) g.scrollIntoView({behavior:'smooth'});
+    track('price_list_clear');
+    undo.hidden=false; undo.scrollIntoView({block:'center',behavior:'smooth'});
+    clearTimeout(undoT); undoT=setTimeout(function(){ undo.hidden=true; undoSnap=null; },8000);
+  });
+  undo.querySelector('[data-pl-undo-btn]').addEventListener('click',function(){
+    if(undoSnap) lines.forEach(function(l,i){ setQ(l,undoSnap[i]); });
+    undoSnap=null; undo.hidden=true; clearTimeout(undoT); render();
+    root.scrollIntoView({block:'start',behavior:'smooth'});
   });
 
   /* The bar rides the guide only: on once something is picked, off when the
@@ -176,7 +202,11 @@
       : new Promise(function(ok){ setTimeout(ok,700); });
     send.then(function(){
       root.querySelector('[data-pl-sent-to]').textContent=T.sent.replace('{email}',email);
-      form.classList.add('pl-done');
+      // Hold the box at the form's height so nothing below it jumps; the
+      // check and its line take the ask's place at the top (Josh, 2026-10-24).
+      form.style.minHeight=form.offsetHeight+'px';
+      form.classList.add('pl-done'); sentText=root._text;
+      track('price_list_send',{pieces:root._count});
     },function(){
       msg.textContent=T.failed;
     }).then(function(){ btn.disabled=false; btn.classList.remove('pl-busy'); btn.textContent=T.button; });

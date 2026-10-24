@@ -441,6 +441,8 @@ pricing:
       sent: We sent it to {email}. If it isn't in your inbox in a few minutes, check spam.
       failed: That didn't send. Try again, or text us at 530-557-7689.
       clear: Clear list
+      cleared: List cleared.
+      undo: Undo
   drivers_label: What moves the number
   drivers:
     - title: The venue

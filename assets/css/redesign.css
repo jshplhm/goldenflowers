@@ -2038,6 +2038,13 @@ details.pg-item > summary:focus-visible{outline:2px solid var(--accent);outline-
 .pl-ok{display:none;}
 .pl-done .pl-ask,.pl-done .pl-f,.pl-done .btn,.pl-done .pl-msg{display:none;}
 .pl-done .pl-ok{display:block;animation:pgIn .35s ease both;}
+/* The sent message starts where the ask's heading was, inside the height the
+   form held (set in price-list.html), so nothing below moves; centred, it
+   left a hole above the check that read as something missing. */
+.pl-undo{margin-top:clamp(28px,4vw,48px);color:var(--fg2);}
+.pl-undo[hidden]{display:none;}
+.pl-undo button{font:inherit;color:var(--ink);font-weight:500;background:none;border:0;padding:8px 4px;margin-left:6px;
+  text-decoration:underline;text-underline-offset:3px;cursor:pointer;}
 .pl-ok-mark{display:block;position:relative;width:44px;height:44px;border-radius:50%;background:var(--ink);margin-bottom:16px;}
 .pl-ok-mark::after{content:"";position:absolute;left:50%;top:46%;width:8px;height:15px;
   border-right:2px solid var(--paper);border-bottom:2px solid var(--paper);transform:translate(-50%,-50%) rotate(45deg);}
