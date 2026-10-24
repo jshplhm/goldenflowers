@@ -2857,6 +2857,17 @@ details.pg-item > summary:focus-visible{outline:2px solid var(--accent);outline-
 /* A quiet text link, not a second button competing with "Check my date". */
 .est-recap-adjust{flex:none;background:none;border:0;padding:0;font-family:var(--b);font-size:.8rem;color:var(--forest);border-bottom:1px solid var(--accent);cursor:pointer;line-height:1.3;}
 .est-recap-adjust:hover{color:var(--accent);}
+/* The price list in this card (2026-10-24) reads like the list on the page:
+   the name wraps, the figure never does and keeps the right edge, the total
+   sits beside its label in the display face, and the sentence gets its own
+   line with both ways out together under it. */
+.est-recap[data-src="list"] .est-recap-list li{flex-wrap:nowrap;justify-content:space-between;align-items:baseline;gap:14px;}
+.est-recap[data-src="list"] .est-recap-list .k{flex:1 1 auto;min-width:0;}
+.est-recap[data-src="list"] .est-recap-list .v{flex:none;white-space:nowrap;text-align:right;font-variant-numeric:tabular-nums lining-nums;}
+.est-recap[data-src="list"] .est-recap-list li.is-range .k{color:var(--ink);}
+.est-recap[data-src="list"] .est-recap-foot{display:block;}
+.est-recap[data-src="list"] .est-recap-note{margin-bottom:9px;text-wrap:pretty;}
+.est-recap[data-src="list"] .est-recap-adjust{margin-right:18px;}
 
 
 /* ---------- PHOTO BANDS ----------

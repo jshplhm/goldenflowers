@@ -52,6 +52,63 @@
     )[0];
     if(first) setTimeout(function(){ first.focus(); },60);
   }
+  /* The price list rides along (2026-10-24). A couple who built a list on
+     /weddings and then asks about a date gets it in the form's read-only
+     recap, from any page, so Brittany sees it with the request (Estimate
+     column, "From your estimate" in the emails). "Change it" goes back to the
+     list; "Leave it off" drops it from this request and remembers that for
+     this exact list, so it does not reappear on the next open. */
+  var PL={ head:{{ site.data.weddings.pricing.guide.list.handoff_heading | jsonify }},
+    note:{{ site.data.weddings.pricing.guide.list.handoff_note | jsonify }},
+    change:{{ site.data.weddings.pricing.guide.list.handoff_change | jsonify }},
+    total:{{ site.data.weddings.pricing.guide.list.total | jsonify }} };
+  function fillPriceList(){
+    if(!modal) return;
+    var box=modal.querySelector('[data-est-recap]'); if(!box) return;
+    var text='', omitted='';
+    try{ text=localStorage.getItem('gf_price_list_text')||''; omitted=sessionStorage.getItem('gf_price_list_omit')||''; }catch(e){}
+    var val=box.querySelector('[data-est-recap-value]');
+    if(!text || text===omitted){ if(box.dataset.src==='list'){ box.hidden=true; val.value=''; } return; }
+    box.dataset.src='list';
+    box.querySelector('[data-est-recap-head]').textContent=PL.head;
+    box.querySelector('[data-est-recap-note]').textContent=PL.note;
+    box.querySelector('[data-est-recap-adjust]').textContent=PL.change;
+    box.querySelector('[data-est-recap-omit]').hidden=false;
+    var ul=box.querySelector('[data-est-recap-list]'); ul.innerHTML='';
+    text.split('\n').forEach(function(line){
+      var i=line.indexOf(': '), li=document.createElement('li');
+      var k=document.createElement('span'); k.className='k'; k.textContent=i<0?line:line.slice(0,i); li.appendChild(k);
+      if(i>=0){ var v=document.createElement('span'); v.className='v'; v.textContent=line.slice(i+2); li.appendChild(v); }
+      if(i>=0 && line.slice(0,i)===PL.total) li.className='is-range';
+      ul.appendChild(li);
+    });
+    val.value=text; box.hidden=false;
+  }
+  document.addEventListener('click',function(e){
+    var box=modal && modal.querySelector('[data-est-recap]');
+    if(!box || box.dataset.src!=='list') return;
+    if(e.target.closest('[data-est-recap-omit]')){
+      try{ sessionStorage.setItem('gf_price_list_omit', box.querySelector('[data-est-recap-value]').value); }catch(err){}
+      box.querySelector('[data-est-recap-value]').value='';
+      // Fades, then eases shut, rather than vanishing in one frame.
+      var still=window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if(still || !box.animate){ box.hidden=true; return; }
+      var h=box.offsetHeight, cs=getComputedStyle(box);
+      box.animate([{opacity:1},{opacity:0}],{duration:150,easing:'ease-out',fill:'forwards'}).onfinish=function(){
+        box.style.overflow='hidden';
+        var a=box.animate([{height:h+'px',paddingTop:cs.paddingTop,paddingBottom:cs.paddingBottom,borderTopWidth:'1px',borderBottomWidth:'1px',opacity:0},
+          {height:'0px',paddingTop:'0px',paddingBottom:'0px',borderTopWidth:'0px',borderBottomWidth:'0px',opacity:0}],{duration:320,easing:'cubic-bezier(.4,0,.2,1)'});
+        a.onfinish=function(){ box.hidden=true; box.style.overflow=''; box.getAnimations().forEach(function(x){ x.cancel(); }); };
+      };
+    } else if(e.target.closest('[data-est-recap-adjust]')){
+      // data-consult-close shuts the lightbox; then go to the list.
+      setTimeout(function(){
+        var here=document.getElementById('your-list');
+        if(here && !here.hidden) here.scrollIntoView({behavior:'smooth',block:'start'});
+        else location.href='{{ site.baseurl }}/weddings#price-guide';
+      },60);
+    }
+  });
   function closeModal(){
     if(!modal) return;
     modal.classList.remove('open');
@@ -89,6 +146,7 @@
       /* On a venue page (2026-09-25), any date-check button fills the
          form's venue field so the couple is not asked for what the page they
          are on already told us. Only into an empty field, never over typing. */
+      fillPriceList();
       var pv=document.querySelector('[data-page-venue]');
       var knownVenue=pv && pv.getAttribute('data-page-venue');
       var venueInput=modal.querySelector('input[name="venue"]');

@@ -162,13 +162,16 @@
         the script BEFORE this ships. {%- endcomment -%}
         {%- assign HO = site.data.estimator.copy.handoff -%}
         <div class="field-full est-recap" data-est-recap hidden>
-          <span class="est-recap-head">{{ HO.heading }}</span>
+          <span class="est-recap-head" data-est-recap-head>{{ HO.heading }}</span>
           <ul class="est-recap-list" data-est-recap-list></ul>
           <div class="est-recap-foot">
-            <p class="est-recap-note">{{ HO.note }}</p>
+            <p class="est-recap-note" data-est-recap-note>{{ HO.note }}</p>
             {%- comment -%} data-consult-close is what shuts the lightbox (the
             document-level handler); the estimator adds the scroll. {%- endcomment -%}
             <button type="button" class="est-recap-adjust" data-est-recap-adjust data-consult-close>{{ HO.adjust }}</button>
+            {%- comment -%} The price list's own way out (2026-10-24): send the
+            request without it. Hidden unless the list filled this block. {%- endcomment -%}
+            <button type="button" class="est-recap-adjust" data-est-recap-omit hidden>{{ site.data.weddings.pricing.guide.list.handoff_omit }}</button>
           </div>
           <input type="hidden" name="estimate" data-est-recap-value>
         </div>

@@ -443,6 +443,11 @@ pricing:
       clear: Clear list
       cleared: List cleared.
       undo: Undo
+      # Inside the "Check your date" form, when they have a list (2026-10-24).
+      handoff_heading: Your list
+      handoff_note: It comes with your request, so we can see what you picked.
+      handoff_change: Change it
+      handoff_omit: Leave it off
   drivers_label: What moves the number
   drivers:
     - title: The venue

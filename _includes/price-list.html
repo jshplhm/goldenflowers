@@ -137,6 +137,17 @@
       var r=range(l.dataset.plPrice);
       return (l._q>1?l._q+' \u00d7 ':'')+l.dataset.plName+': '+span(r[0]*l._q,r[1]*l._q);
     }).concat(count?[T.labor+': '+wide(lo*LABOR,hi*LABOR), T.total+': '+wide(tlo,thi)]:[]).join('\n');
+    // The list rides along with "Check your date" on any page: the form reads
+    // this (redesign-consult-js.html). Kept under the server's 1,200 character
+    // cap on that field, which files anything longer as spam: whole rows drop
+    // from the end, counted in one closing line, never the labor or total.
+    try{
+      if(count){
+        var items=root._text.split('\n'), tail=items.splice(-2), dropped=0, out;
+        while((out=items.concat(dropped?['And '+dropped+' more']:[]).concat(tail).join('\n')).length>1100 && items.length){ items.pop(); dropped++; }
+        localStorage.setItem(KEY+'_text', out);
+      } else localStorage.removeItem(KEY+'_text');
+    }catch(e){}
     // A list changed after it was sent is a new list: offer to send it again
     // (name and email stay filled in).
     if(sentText!==null && root._text!==sentText){
