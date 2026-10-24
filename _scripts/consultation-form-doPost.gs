@@ -796,15 +796,17 @@ function emailEstimate_(est, label, gap) {
   var s = String(est || '').trim();
   if (!s) return '';
   return emailEyebrow_(label) +
-    '<table role="presentation" cellpadding="0" cellspacing="0" style="margin:0 0 ' + gap + ';">' +
+    '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:0 0 ' + gap + ';">' +
     s.split('\n').map(function (line) {
       var i = line.indexOf(': ');
       if (i === -1) {
         return '<tr><td colspan="2" style="padding:3px 0;font:14px Helvetica,Arial,sans-serif;color:' + EM_INK + ';">' + escHtml_(line) + '</td></tr>';
       }
+      // The name wraps, the figure never does: on a phone, a nowrap label
+      // squeezed "$2,800 – $4,000" onto three lines (Josh, 2026-10-24).
       return '<tr>' +
-        '<td style="padding:3px 18px 3px 0;font:13px Helvetica,Arial,sans-serif;color:' + EM_MUTE + ';white-space:nowrap;vertical-align:top;">' + escHtml_(line.slice(0, i)) + '</td>' +
-        '<td style="padding:3px 0;font:14px Helvetica,Arial,sans-serif;color:' + EM_INK + ';">' + escHtml_(line.slice(i + 2)) + '</td>' +
+        '<td style="padding:4px 16px 4px 0;font:13px/1.4 Helvetica,Arial,sans-serif;color:' + EM_MUTE + ';vertical-align:top;">' + escHtml_(line.slice(0, i)) + '</td>' +
+        '<td style="padding:4px 0;font:14px/1.4 Helvetica,Arial,sans-serif;color:' + EM_INK + ';white-space:nowrap;text-align:right;vertical-align:top;">' + escHtml_(line.slice(i + 2)) + '</td>' +
       '</tr>';
     }).join('') + '</table>';
 }
@@ -1262,10 +1264,13 @@ function sendListEmail_(p) {
   var intro = 'Here is the list you put together on our price guide.';
   var after = 'These are our guide prices. Your own proposal is built around your venue, ' +
     'your date and what is in season, so it can land a little differently.';
-  var ask = 'When you are ready, tell us your date and venue and we will check that it is open.';
+  // The next step is a reply, not a trip back to the site (Josh, 2026-10-24):
+  // replyTo is Brittany, so answering this email reaches her in the same
+  // thread as her BCC copy. BCC stays BCC: the list is theirs, not a CC'd
+  // sales thread.
+  var ask = 'When you are ready, just reply to this email with your date and venue, and we will check that it is open.';
 
-  var textBody = [hi, '', intro, '', indent_(list), '', after, '', ask,
-    'https://goldenflorals.com/consultation-form', '',
+  var textBody = [hi, '', intro, '', indent_(list), '', after, '', ask, '',
     'You can also text us anytime at 530-557-7689.', '',
     'Warmly,', 'Brittany', 'Golden Flowers', 'Lake Tahoe wedding florist', 'goldenflorals.com'].join('\n');
 
@@ -1274,8 +1279,7 @@ function sendListEmail_(p) {
     '<p style="margin:0 0 22px;">' + escHtml_(intro) + '</p>' +
     emailEstimate_(list, 'Your list', '22px') +
     '<p style="margin:0 0 22px;">' + escHtml_(after) + '</p>' +
-    '<p style="margin:0 0 18px;">' + escHtml_(ask) + '</p>' +
-    '<p style="margin:0 0 26px;"><a href="https://goldenflorals.com/consultation-form" style="display:inline-block;background:' + EM_GREEN + ';color:#ffffff;text-decoration:none;font:14px Helvetica,Arial,sans-serif;letter-spacing:.03em;padding:13px 22px;border-radius:4px;">Check your date</a></p>' +
+    '<p style="margin:0 0 22px;">' + escHtml_(ask) + '</p>' +
     '<p style="margin:0 0 26px;">You can also text us anytime at <strong style="color:' + EM_GREEN + ';white-space:nowrap;">530-557-7689</strong>.</p>' +
     '<div style="border-top:1px solid ' + EM_LINE + ';margin:0 0 20px;"></div>';
 

@@ -30,13 +30,18 @@
     <button type="button" class="pl-clear" data-pl-clear>{{ pl.clear }}</button>
   </div>
   <form class="pl-send" data-pl-form novalidate>
-    <h3>{{ pl.send_heading }}</h3>
-    <p>{{ pl.send_body }}</p>
+    <h3 class="pl-ask">{{ pl.send_heading }}</h3>
+    <p class="pl-ask">{{ pl.send_body }}</p>
     <label class="pl-f"><span>{{ pl.name }}</span><input name="name" autocomplete="name" required></label>
     <label class="pl-f"><span>{{ pl.email }}</span><input name="email" type="email" autocomplete="email" inputmode="email" required></label>
     <input class="pl-hp" name="gf_hp" tabindex="-1" autocomplete="off" aria-hidden="true">
     <button class="btn btn-ink" type="submit" data-pl-submit>{{ pl.button }}</button>
     <p class="pl-msg" data-pl-msg role="status" aria-live="polite"></p>
+    <div class="pl-ok" role="status">
+      <span class="pl-ok-mark" aria-hidden="true"></span>
+      <h3>{{ pl.sent_heading }}</h3>
+      <p data-pl-sent-to></p>
+    </div>
   </form>
 </div>
 
@@ -70,19 +75,20 @@
   function wide(lo,hi){ return span(Math.floor(lo/50)*50, Math.ceil(hi/50)*50); }
   function id(l){ return l.dataset.plGroup+'|'+l.dataset.plName; }
 
-  /* Version B (?pl=b, for review): the control moves inside the opened row
-     and a count badge marks a picked row in its closed state. */
-  var B=/[?&]pl=b\b/.test(location.search);
-  if(B){
-    document.getElementById('price-guide').classList.add('pl-b');
-    lines.forEach(function(l){
-      var d=l.querySelector('details'), q=l.querySelector('[data-pl-q]');
-      d.appendChild(q);
-      var b=document.createElement('span'); b.className='pl-badge'; l.querySelector('.pg-n').appendChild(b);
-    });
-  }
   var saved={}; try{ saved=JSON.parse(localStorage.getItem(KEY)||'{}')||{}; }catch(e){}
   lines.forEach(function(l){ l._q=Math.max(0,Math.min(999,+saved[id(l)]||0)); });
+
+  /* The control sits on the price's line, centred on it. Measured, not set
+     in CSS: a name that wraps moves the price down, and the control has to
+     follow it rather than float at a guessed height (it used to slide when
+     a row opened, Josh 2026-10-24). */
+  function place(l){
+    var p=l.querySelector('.pg-p'), q=l.querySelector('.pl-q');
+    if(p && q) q.style.top=(p.offsetTop+p.offsetHeight/2-q.offsetHeight/2)+'px';
+  }
+  function placeAll(){ lines.forEach(place); }
+  window.addEventListener('resize',placeAll);
+  if(document.fonts && document.fonts.ready) document.fonts.ready.then(placeAll);
 
   function setQ(l,q){
     l._q=Math.max(0,Math.min(999,q|0));
@@ -91,7 +97,7 @@
     l.querySelector('.pl-add').hidden=on;
     l.querySelector('.pl-step').hidden=!on;
     var inp=l.querySelector('.pl-n'); if(document.activeElement!==inp) inp.value=l._q;
-    var bd=l.querySelector('.pl-badge'); if(bd) bd.textContent='\u00d7 '+l._q;
+    place(l);
   }
 
   function render(){
@@ -160,7 +166,7 @@
     form.email.setCustomValidity(/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)?'':'Check your email address.');
     if(!form.reportValidity()) return;
     var btn=form.querySelector('[data-pl-submit]');
-    btn.disabled=true; btn.textContent=T.sending; msg.textContent='';
+    btn.disabled=true; btn.classList.add('pl-busy'); btn.textContent=T.sending+'\u2026'; msg.textContent='';
     var src={}; try{ src=JSON.parse(sessionStorage.getItem('gf_source')||'{}'); }catch(e){}
     var body=new URLSearchParams({ kind:'list', name:name, email:email, list:root._text,
       gf_hp:form.gf_hp.value, ts:String(loadedAt), k:'gf-lupine-26',
@@ -169,11 +175,11 @@
       ? fetch(ENDPOINT,{method:'POST',body:body}).then(function(r){ if(!r.ok) throw 0; })
       : new Promise(function(ok){ setTimeout(ok,700); });
     send.then(function(){
+      root.querySelector('[data-pl-sent-to]').textContent=T.sent.replace('{email}',email);
       form.classList.add('pl-done');
-      msg.textContent=T.sent.replace('{email}',email);
     },function(){
       msg.textContent=T.failed;
-    }).then(function(){ btn.disabled=false; btn.textContent=T.button; });
+    }).then(function(){ btn.disabled=false; btn.classList.remove('pl-busy'); btn.textContent=T.button; });
   });
 
   render();

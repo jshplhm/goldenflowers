@@ -285,7 +285,7 @@ redirect_from:
           </div>
         </details>
         <div class="pl-q" data-pl-q>
-          <button type="button" class="pl-add" data-pl-step="1" data-label="{{ gd.list.add }}" aria-label="{{ gd.list.add }}: {{ it.name | escape }}"></button>
+          <button type="button" class="pl-add" data-pl-step="1" aria-label="{{ gd.list.add }}: {{ it.name | escape }}">{{ gd.list.add_short }}</button>
           <span class="pl-step" hidden>
             <button type="button" class="pl-minus" data-pl-step="-1" aria-label="One fewer {{ it.name | escape }}"></button>
             <input class="pl-n" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="3" value="0" aria-label="How many: {{ it.name | escape }}">

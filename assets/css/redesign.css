@@ -1949,73 +1949,54 @@ details.pg-item > summary:focus-visible{outline:2px solid var(--accent);outline-
   .pg-labor{margin-left:calc((100% - clamp(32px,5vw,96px)) * 5 / 13 + clamp(32px,5vw,96px));}
   .pg-labor-a{padding-right:34px;}
 }
-/* YOUR LIST (2026-10-23). The add control sits over the row's right edge,
-   outside <summary> so a tap on it never opens the row. The summary keeps
-   its right side clear for it: a 36px circle at rest, the wider stepper once
-   the piece is on the list. */
+/* YOUR LIST (2026-10-23, reworked 10-24 after Josh used it on his phone).
+   Each row: a thumbnail of the piece (the cue that it opens to photos; the
+   chevron beside the stepper was "super busy"), name, price, and an "+ Add"
+   button that says what it does (a bare + read as "open the photos"). The
+   control sits OUTSIDE <summary> so a tap on it never opens the row, and
+   price-list.html measures it onto the price's line, so it never slides when
+   the row opens and, on a phone, never squeezes the name. */
 .pg-line{position:relative;}
-/* Beside the photo every row reserves the stepper's width, picked or not,
-   so all the prices keep one right edge. */
-.pg-line > .pg-item > summary{padding-right:136px;}
-.pl-q{position:absolute;right:0;top:clamp(10px,1.1vw,13px);display:flex;justify-content:flex-end;}
-.pl-add,.pl-minus,.pl-plus{position:relative;width:36px;height:36px;border-radius:50%;
-  border:1px solid var(--ink);background:none;color:var(--ink);cursor:pointer;padding:0;flex:none;
-  transition:background .2s,color .2s;}
-.pl-add::before,.pl-add::after,.pl-plus::before,.pl-plus::after,.pl-minus::before{content:"";position:absolute;
-  left:50%;top:50%;width:12px;height:1.5px;background:currentColor;transform:translate(-50%,-50%);}
-.pl-add::after,.pl-plus::after{transform:translate(-50%,-50%) rotate(90deg);}
-.pl-plus,.pl-minus{border-color:var(--line);}
+.pg-line .pg-x{display:none;}
+.pg-line > .pg-item > summary{align-items:center;gap:18px;padding-right:136px;}
+.pg-th{flex:none;width:52px;height:52px;border-radius:8px;overflow:hidden;background:var(--bg2);align-self:center;}
+.pg-th img{display:block;width:100%;height:100%;object-fit:cover;}
+.pl-q{position:absolute;right:0;top:12px;display:flex;justify-content:flex-end;}
+.pl-add{display:inline-flex;align-items:center;gap:7px;height:36px;padding:0 15px 0 13px;border-radius:var(--r-img);
+  border:1px solid var(--ink);background:none;color:var(--ink);font:inherit;font-size:var(--t-ui);font-weight:500;
+  cursor:pointer;transition:background .2s,color .2s;}
+.pl-add::before{content:"+";font-size:1.15em;line-height:1;font-weight:400;}
+.pl-minus,.pl-plus{position:relative;width:36px;height:36px;border-radius:50%;border:1px solid var(--line);
+  background:none;color:var(--ink);cursor:pointer;padding:0;flex:none;transition:background .2s,color .2s;}
+.pl-plus::before,.pl-plus::after,.pl-minus::before{content:"";position:absolute;left:50%;top:50%;
+  width:12px;height:1.5px;background:currentColor;transform:translate(-50%,-50%);}
+.pl-plus::after{transform:translate(-50%,-50%) rotate(90deg);}
+.pl-plus{background:var(--ink);color:var(--paper);border-color:var(--ink);}
 .pl-step:not([hidden]){display:flex;align-items:center;gap:4px;}
-.pl-on .pl-plus{background:var(--ink);color:var(--paper);border-color:var(--ink);}
 .pl-n{width:38px;height:36px;line-height:36px;text-align:center;border:0;background:none;padding:0;
   font-family:var(--d);font-size:var(--t-d4);color:var(--ink);font-variant-numeric:tabular-nums lining-nums;}
 .pl-n:focus{outline:1px solid var(--line);border-radius:6px;}
 @media(hover:hover){.pl-add:hover{background:var(--ink);color:var(--paper);}.pl-minus:hover{border-color:var(--ink);}}
 .pl-add:focus-visible,.pl-minus:focus-visible,.pl-plus:focus-visible{outline:2px solid var(--accent);outline-offset:3px;}
 .pl-on .pg-n{font-weight:500;}
-@media(max-width:900px){
-  .pl-q{top:50%;transform:translateY(-50%);}
-  .pg-line > .pg-item[open] + .pl-q{top:24px;transform:none;}
-  .pg-line > .pg-item > summary{padding-right:52px;}
-  .pg-line.pl-on > .pg-item > summary{padding-right:120px;}
-}
-/* 2026-10-24, Josh: the chevron beside the +/- was "super busy". Version A
-   (default): no chevron; a small thumbnail of the piece leads the row and is
-   the cue that it opens to photos. Version B (.pl-b, ?pl=b): today's row with
-   its chevron, and the add control moved inside the opened row. */
-.pg-th{flex:none;width:52px;height:52px;border-radius:8px;overflow:hidden;background:var(--bg2);align-self:center;}
-.pg-th img{display:block;width:100%;height:100%;object-fit:cover;}
-.pguide:not(.pl-b) .pg-line .pg-x{display:none;}
-.pguide:not(.pl-b) .pg-line > .pg-item > summary{align-items:center;gap:18px;}
-.pguide:not(.pl-b) .pg-line > .pg-item > summary{padding-right:136px;}
-.pguide:not(.pl-b) .pl-q{top:50%;transform:translateY(-50%);}
-.pguide:not(.pl-b) .pg-line > .pg-item[open] + .pl-q{top:calc(clamp(14px,1.5vw,18px) + 26px);}
 .pg-q{display:inline-flex;align-items:center;justify-content:center;width:17px;height:17px;margin-left:8px;
   border:1px solid var(--mute);border-radius:50%;font-size:11px;line-height:1;color:var(--mute);vertical-align:2px;}
-.pg-note{max-width:46ch;margin:0 0 14px;font-size:var(--t-sm);line-height:1.55;color:var(--fg2);}
+.pg-note{max-width:46ch;margin:0 0 14px;padding-left:70px;font-size:var(--t-sm);line-height:1.55;color:var(--fg2);}
 .pg-note.ed-empty{display:none;}
-.pguide:not(.pl-b) .pg-note{padding-left:70px;}
-@media(max-width:900px){
-  .pguide:not(.pl-b) .pg-line > .pg-item > summary{grid-template-columns:52px minmax(0,1fr);grid-template-rows:auto auto;align-content:center;align-items:end;column-gap:16px;row-gap:2px;padding-right:52px;}
-  .pguide:not(.pl-b) .pg-p{align-self:start;}
-  .pguide:not(.pl-b) .pg-line.pl-on > .pg-item > summary{padding-right:120px;}
-  .pguide:not(.pl-b) .pg-th{grid-column:1;grid-row:1 / span 2;}
-  .pguide:not(.pl-b) .pg-n,.pguide:not(.pl-b) .pg-p{grid-column:2;}
-  .pguide:not(.pl-b) .pg-line > .pg-item[open] + .pl-q{top:calc(16px + 26px);}
-  .pguide:not(.pl-b) .pg-note{padding-left:0;}
+/* A narrow list (any phone, and the list column beside the photo on a
+   laptop around 950px, where "Luxe custom ceremony installation" ran to three
+   lines): thumbnail beside two lines, the name on the first with the full
+   width, the price on the second sharing its line with the control. Keyed to
+   the LIST's width, not the screen's, because it's the column that runs out. */
+.pg-list{container-type:inline-size;}
+@container (max-width:600px){
+  .pg-line > .pg-item > summary{display:grid;grid-template-columns:52px minmax(0,1fr);grid-template-rows:auto auto;
+    align-content:center;align-items:end;column-gap:16px;row-gap:2px;padding:16px 0;}
+  .pg-th{grid-column:1;grid-row:1 / span 2;}
+  .pg-n{grid-column:2;grid-row:1;font-size:1.0625rem;line-height:1.35;}
+  .pg-p{grid-column:2;grid-row:2;font-size:1.1875rem;align-self:start;min-height:36px;display:flex;align-items:center;}
+  .pg-note{padding-left:0;}
 }
-/* B: no thumbnails, the chevron is back, the control lives in the panel. */
-.pl-b .pg-th{display:none;}
-.pl-b .pg-line > .pg-item > summary,
-.pl-b .pg-line.pl-on > .pg-item > summary{padding-right:0;}
-.pl-b .pl-q{position:static;transform:none;margin:0 0 clamp(18px,2vw,24px);justify-content:flex-start;}
-.pl-b .pg-ex{padding-bottom:16px;}
-.pl-b .pl-add{width:auto;height:44px;border-radius:var(--r-img);padding:0 18px;font:inherit;font-size:var(--t-ui);}
-.pl-b .pl-add::before{display:none;}
-.pl-b .pl-add::after{content:"+ " attr(data-label);position:static;width:auto;height:auto;background:none;transform:none;}
-.pl-badge{display:none;}
-.pl-b .pl-on .pl-badge{display:inline-flex;align-items:center;margin-left:10px;padding:2px 9px;border-radius:999px;
-  background:var(--ink);color:var(--paper);font-size:12px;font-weight:500;vertical-align:2px;font-variant-numeric:tabular-nums;}
 /* The list itself, at the foot of the guide: what you picked on the left,
    the email box on the right; stacked on a phone. An inset panel, so --bg2. */
 .pl{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(28px,4vw,72px);
@@ -2043,8 +2024,18 @@ details.pg-item > summary:focus-visible{outline:2px solid var(--accent);outline-
 .pl-hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0;}
 .pl-send .btn{margin-top:20px;width:100%;justify-content:center;border:0;cursor:pointer;}
 .pl-send .pl-msg{margin-top:12px;font-size:var(--t-sm);color:var(--fg2);min-height:1em;}
-.pl-done .pl-f,.pl-done .btn,.pl-done > p:not(.pl-msg){display:none;}
-.pl-done .pl-msg{font-size:1rem;color:var(--ink);}
+.pl-busy{opacity:.85;cursor:progress;}
+.pl-busy::before{content:"";width:14px;height:14px;margin-right:2px;border-radius:50%;
+  border:1.5px solid currentColor;border-right-color:transparent;animation:plSpin .7s linear infinite;}
+@keyframes plSpin{to{transform:rotate(360deg)}}
+/* Sent: the ask gives way to a check and one plain line. */
+.pl-ok{display:none;}
+.pl-done .pl-ask,.pl-done .pl-f,.pl-done .btn,.pl-done .pl-msg{display:none;}
+.pl-done .pl-ok{display:block;animation:pgIn .35s ease both;}
+.pl-ok-mark{display:block;position:relative;width:44px;height:44px;border-radius:50%;background:var(--ink);margin-bottom:16px;}
+.pl-ok-mark::after{content:"";position:absolute;left:50%;top:46%;width:8px;height:15px;
+  border-right:2px solid var(--paper);border-bottom:2px solid var(--paper);transform:translate(-50%,-50%) rotate(45deg);}
+.pl-ok p{margin-top:10px;color:var(--fg2);line-height:1.55;}
 @media(max-width:760px){.pl{grid-template-columns:minmax(0,1fr);}}
 /* The bar that keeps the total in view while you pick. Ink, like the
    buttons; it is a control, not a surface. */
