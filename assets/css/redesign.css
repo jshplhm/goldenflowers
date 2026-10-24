@@ -1968,14 +1968,18 @@ details.pg-item > summary:focus-visible{outline:2px solid var(--accent);outline-
 .pl-add{display:inline-flex;align-items:center;gap:6px;min-height:40px;padding:0 0 0 12px;border:0;background:none;
   color:var(--ink);font:inherit;font-size:var(--t-ui);font-weight:500;cursor:pointer;}
 .pl-add::before{content:"+";font-size:1.25em;line-height:1;font-weight:400;}
-.pl-minus,.pl-plus{position:relative;width:36px;height:40px;border:0;background:none;color:var(--ink);
+/* Tight to look at, full size to tap: each button keeps a 40x44 target but
+   draws its glyph near the count, so the three read as one small group. */
+.pl-minus,.pl-plus{position:relative;width:40px;height:44px;border:0;background:none;color:var(--ink);
   cursor:pointer;padding:0;flex:none;}
-.pl-plus::before,.pl-plus::after,.pl-minus::before{content:"";position:absolute;left:50%;top:50%;
+.pl-plus::before,.pl-plus::after,.pl-minus::before{content:"";position:absolute;top:50%;
   width:11px;height:1.5px;background:currentColor;transform:translate(-50%,-50%);}
+.pl-minus::before{left:calc(100% - 10px);}
+.pl-plus::before,.pl-plus::after{left:10px;}
 .pl-plus::after{transform:translate(-50%,-50%) rotate(90deg);}
-.pl-plus{margin-right:-11px;}
+.pl-plus{margin-right:-24px;}
 .pl-step:not([hidden]){display:flex;align-items:center;gap:0;}
-.pl-n{width:30px;height:40px;line-height:40px;text-align:center;border:0;background:none;padding:0;
+.pl-n{width:28px;height:44px;line-height:44px;text-align:center;border:0;background:none;padding:0;
   font:inherit;font-size:1rem;font-weight:500;color:var(--ink);font-variant-numeric:tabular-nums lining-nums;}
 .pl-n:focus{outline:1px solid var(--line);border-radius:6px;}
 @media(hover:hover){.pl-add:hover{text-decoration:underline;text-underline-offset:4px;}
