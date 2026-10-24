@@ -367,7 +367,7 @@ pricing:
                 "",
                 ""
               ]
-          - name: Candle illumination, per table
+          - name: Candles, per table
             price: "$200 – $400"
             photos:
               [
@@ -377,7 +377,7 @@ pricing:
                 "",
                 ""
               ]
-          - name: Welcome sign arrangement
+          - name: Welcome arrangement
             price: "$250"
             photos:
               [
