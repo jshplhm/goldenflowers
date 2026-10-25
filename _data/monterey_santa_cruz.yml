@@ -1,0 +1,66 @@
+# Monterey & Santa Cruz page (/monterey-santa-cruz-weddings), added 2026-10-25.
+# Edit the wording here or in /edit; SEO settings live in the page file.
+# Tip: wrap words in *asterisks* to make them italic.
+#
+# Facts confirmed by Josh 2026-10-25:
+# the coast is a real second home base, and we buy from Watsonville and Salinas
+# growers. Born and raised in Monterey COUNTY (not the city). No travel fee line
+# (removed by Josh 10-25).
+# No street address down here (no walk-ins), and no venue we haven't worked at.
+# Photograph under the heading. Needs a credit (who took it) or it won't show.
+# Off until we know who took it (2026-10-25). Fill in credit and remove the #s.
+# hero_photo:
+#   src: "/assets/images/regions/big-sur-calla-lilies.jpg"
+#   alt: "Wild calla lilies filling a green canyon that opens onto the Pacific in Big Sur"
+#   credit: ""
+hero:
+  heading: Monterey & Santa Cruz Wedding Florist
+  subheading: Wedding flowers for Carmel, Big Sur, Monterey and Santa Cruz,
+    designed by a florist who grew up here.
+intro:
+  heading: Brittany is *from here.*
+  paragraphs:
+    - Brittany was born and raised in Monterey County. Golden Flowers began in Lake
+      Tahoe, and the Central Coast is now our second home base, so we design
+      weddings from Santa Cruz down to Big Sur.
+    - It's the same studio and the same team couples hire in Tahoe, with the
+      same way of working. Every design is planned months ahead, built around
+      what's in season on your date, and set by the people who designed it.
+areas:
+  - label: Monterey Peninsula
+    body: Monterey, Carmel-by-the-Sea, Pacific Grove and Pebble Beach.
+  - label: Carmel Valley
+    body: Ranches, vineyards and gardens in the valley, a short drive inland from
+      Carmel.
+  - label: Big Sur
+    body: The coast south of Carmel, from Point Lobos all the way down to Big Sur.
+  - label: Santa Cruz County
+    body: Santa Cruz, Capitola, Aptos and the Santa Cruz Mountains.
+approach:
+  heading: How we design for the coast.
+  items:
+    - title: Built for the wind
+      body: Clifftop and ocean view ceremonies often catch a strong breeze. Arches
+        and installations are built and anchored for it, so they hold their shape
+        through the last dance.
+    - title: Made for soft light
+      body: Coastal light is soft, and the fog can roll in by late afternoon. We
+        choose colors and textures that still read beautifully in grey light, not
+        only in full sun.
+    - title: Sourced close by
+      body: We buy from growers in Watsonville, Salinas and other California farms first,
+        and source further afield only when a design calls for it.
+    - title: Foam-free, as always
+      body: Every design is foam-free, on the coast the same as in the mountains.
+faq:
+  heading: Questions
+pricing:
+  heading: What it costs.
+  body: Pricing works the same way here as everywhere we work. Every proposal is
+    custom, built around your guest count, your venue and your vision.
+  link_pricing: See our pricing
+  link_list: Browse the price list
+cta:
+  heading: Getting married *on the coast?*
+  body: Tell us your date and venue, and we'll let you know if it's open.
+  button: Check your date

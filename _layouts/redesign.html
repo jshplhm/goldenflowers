@@ -90,10 +90,17 @@
       "opens": "09:00",
       "closes": "17:00"
     },
+    {%- comment -%} A page may name its own service area (front matter
+    `area_served`, 2026-10-25): only /monterey-santa-cruz-weddings does, so every
+    other page keeps the Tahoe list. {%- endcomment %}
+    {%- if page.area_served %}
+    "areaServed": {{ page.area_served | jsonify }},
+    {%- else %}
     "areaServed": [
       "Lake Tahoe", "Incline Village", "Truckee", "Olympic Valley", "Tahoe City",
       "South Lake Tahoe", "Northstar", "Sierra Nevada", "Nevada City", "Grass Valley"
     ],
+    {%- endif %}
     "sameAs": [
       "https://www.instagram.com/goldenflowersfloraldesign/"
     ],
