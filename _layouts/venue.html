@@ -21,7 +21,9 @@ migration, so this is the same component, not a new one. {%- endcomment -%}
   </ol>
 </nav>
 
-<header class="text-hero venue-hero">
+{%- comment -%} With a photograph under it, the hero closes up to it the way
+/weddings does (2026-10-25, Josh): the open gap is for pages with no photo. {%- endcomment %}
+<header class="text-hero{% if v.hero_photo %} text-hero--pic{% endif %} venue-hero">
   {%- comment -%} No eyebrow (Josh, 2026-09-25); `hero.eyebrow` stays in the data. {%- endcomment %}
   {%- assign k_hh = vk | append: ":hero.heading" %}
   <h1>{% include em.html t=v.hero.heading k=k_hh %}</h1>
