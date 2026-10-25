@@ -8,13 +8,11 @@
 # (removed by Josh 10-25).
 # No street address down here (no walk-ins), and no venue we haven't worked at.
 # Photograph under the heading. Needs a credit (who took it) or it won't show.
-# Josh said include it (2026-10-25) before we knew who took it, so the line
-# under it names the place for now. Swap in the photographer's name when known.
+# Photograph under the heading, shown with no caption (Josh, 2026-10-25).
 hero_photo:
   src: "/assets/images/regions/big-sur-calla-lilies.jpg"
   alt: "Wild calla lilies filling a green canyon that opens onto the Pacific in
     Big Sur"
-  credit: "Calla Lily Valley, Big Sur"
 hero:
   heading: Monterey & Santa Cruz Wedding Florist
   subheading: Wedding flowers for Carmel, Big Sur, Monterey and Santa Cruz,

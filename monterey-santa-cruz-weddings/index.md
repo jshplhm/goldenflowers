@@ -27,8 +27,7 @@ area_served:
 
   Same parts as a venue page (intro beside its heading, a facts strip, the
   approach grid, FAQ, the closing ask) so it reads as part of the site. The
-  photograph comes from `hero_photo` in the data file, the same slot a venue
-  page uses; it needs a credit or it does not render.
+  photograph comes from `hero_photo` in the data file and shows no caption.
 {%- endcomment -%}
 {%- assign d = site.data.monterey_santa_cruz -%}
 
@@ -37,7 +36,17 @@ area_served:
   <p class="th-sub">{% include em.html t=d.hero.subheading k="monterey_santa_cruz:hero.subheading" %}</p>
 </header>
 
-{% include venue-hero.html v=d %}
+{%- comment -%} The photograph, with no line under it (Josh, 2026-10-25).
+Written here rather than through venue-hero.html, which drops any photo that
+has no credit. {%- endcomment -%}
+{%- assign hp = d.hero_photo -%}
+{%- if hp.src and hp.src != "" %}
+<figure class="page-pic">
+  <span class="pp-clip"><img src="{{ site.baseurl }}{{ hp.src }}"{% include img-crop.html path=hp.src ctx="page" %} alt="{{ hp.alt }}"
+       width="1500" height="844" loading="eager" fetchpriority="high"
+       sizes="(min-width:1500px) 1500px, 100vw"></span>
+</figure>
+{%- endif %}
 
 <section class="section">
   <div class="container">
