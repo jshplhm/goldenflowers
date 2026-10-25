@@ -12,7 +12,8 @@
 # under it names the place for now. Swap in the photographer's name when known.
 hero_photo:
   src: "/assets/images/regions/big-sur-calla-lilies.jpg"
-  alt: "Wild calla lilies filling a green canyon that opens onto the Pacific in Big Sur"
+  alt: "Wild calla lilies filling a green canyon that opens onto the Pacific in
+    Big Sur"
   credit: "Calla Lily Valley, Big Sur"
 hero:
   heading: Monterey & Santa Cruz Wedding Florist
@@ -21,9 +22,9 @@ hero:
 intro:
   heading: Brittany is *from here.*
   paragraphs:
-    - Brittany was born and raised in Monterey County. Golden Flowers began in Lake
-      Tahoe, and the Central Coast is now our second home base, so we design
-      weddings from Santa Cruz down to Big Sur.
+    - Brittany was born and raised in Monterey County, Golden Flowers began in
+      Lake Tahoe, and Monterey is now our second home base. We design weddings
+      from Santa Cruz down to Big Sur.
     - It's the same studio and the same team couples hire in Tahoe, with the
       same way of working. Every design is planned months ahead, built around
       what's in season on your date, and set by the people who designed it.
@@ -41,16 +42,16 @@ approach:
   heading: How we design for the coast.
   items:
     - title: Built for the wind
-      body: Clifftop and ocean view ceremonies often catch a strong breeze. Arches
-        and installations are built and anchored for it, so they hold their shape
+      body: Clifftop and ocean view ceremonies often catch a strong breeze. Arches and
+        installations are built and anchored for it, so they hold their shape
         through the last dance.
     - title: Made for soft light
       body: Coastal light is soft, and the fog can roll in by late afternoon. We
-        choose colors and textures that still read beautifully in grey light, not
-        only in full sun.
+        choose colors and textures that still read beautifully in grey light,
+        not only in full sun.
     - title: Sourced close by
-      body: We buy from growers in Watsonville, Salinas and other California farms first,
-        and source further afield only when a design calls for it.
+      body: We buy from growers in Watsonville, Salinas and other California farms
+        first, and source further afield only when a design calls for it.
     - title: Foam-free, as always
       body: Every design is foam-free, on the coast the same as in the mountains.
 faq:
