@@ -51,7 +51,6 @@
         <a href="{{ site.baseurl }}/venues">Venues</a>
         <a href="{{ site.baseurl }}/weddings">Pricing</a>
         <a href="{{ site.baseurl }}/about">Studio</a>
-        <a href="{{ site.baseurl }}/monterey-santa-cruz-weddings">Monterey &amp; Santa Cruz</a>
       </div>
       <div>
         <a href="{{ site.baseurl }}/sustainability">Sustainability</a>
@@ -63,6 +62,11 @@
         <a href="tel:5305577689">(530) 557-7689</a>
         <a href="mailto:brittany@goldenflorals.com">brittany@goldenflorals.com</a>
         {%- for line in site.data.footer.studio %}
+        {%- if forloop.index0 == 1 %}
+        {%- comment -%} The second base, linked to its page (2026-10-25, Josh):
+        under Incline Village, where it reads as where we are. {%- endcomment %}
+        <a href="{{ site.baseurl }}/monterey-santa-cruz-weddings">Monterey &amp; Santa Cruz, CA</a>
+        {%- endif %}
         <p{% assign ls = line | strip %}{% if ls == "" %} class="ed-empty"{% endif %}><span data-ed="footer:studio.{{ forloop.index0 }}">{{ line }}</span></p>
         {%- endfor %}
       </div>
