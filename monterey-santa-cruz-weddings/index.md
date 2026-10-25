@@ -31,7 +31,7 @@ area_served:
 {%- endcomment -%}
 {%- assign d = site.data.monterey_santa_cruz -%}
 
-<header class="text-hero venue-hero">
+<header class="text-hero text-hero--pic venue-hero">
   <h1>{% include em.html t=d.hero.heading k="monterey_santa_cruz:hero.heading" %}</h1>
   <p class="th-sub">{% include em.html t=d.hero.subheading k="monterey_santa_cruz:hero.subheading" %}</p>
 </header>
