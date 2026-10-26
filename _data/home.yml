@@ -4,8 +4,8 @@ hero:
   # Keep the heading to these four words: it is what Google reads as the
   # subject of the home page.
   heading: Lake Tahoe Wedding Florist
-  line: Artful, sustainable floral design for couples getting married around the
-    lake and across the Sierra Nevada.
+  line: Artful, sustainable wedding flowers for couples getting married around
+    Lake Tahoe and across the Sierra Nevada.
 intro:
   # Label intentionally blank (Josh, 2026-09-23): the eyebrow came off the
   # facts section on 09-22 and this was the last one left, which made it the
@@ -19,8 +19,9 @@ intro:
   # what was the second sentence leads here now.
   lead: We design around what California grows best at the moment you get married.
   body: Your flowers belong to the landscape where you say I do. To us, each
-    wedding is a piece of art with its own vision, refined and grounded in texture
-    and movement, and curated around your venue.
+    Tahoe wedding is a piece of art with its own vision, refined and grounded in
+    texture and movement, and built around your venue, whether that's a lakefront
+    lawn in Incline Village or a ridge above Truckee.
   # Blank (Josh, 2026-09-23). It was the third sentence in a row saying the
   # same thing: the lead says we design around what California grows, the body
   # says we source seasonally and locally, and this said it once more with the
