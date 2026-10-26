@@ -13,3 +13,8 @@ post_cta:
   heading: "Planning your *wedding flowers?*"
   body: "Tell us your date and venue, and we'll let you know if it's open."
   button: "Check your date"
+
+who:
+  before: Golden Flowers is a
+  link: Lake Tahoe wedding florist
+  after: " based in Incline Village, designing weddings all around the lake."

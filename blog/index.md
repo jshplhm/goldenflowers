@@ -1,7 +1,7 @@
 ---
 layout: redesign
 title: "Blog"
-seo_title: "Lake Tahoe Wedding Flower Journal | Golden Flowers"
+seo_title: "Wedding Flower Journal | Golden Flowers"
 permalink: /blog
 # No "Lake Tahoe wedding florist" in here on purpose (2026-10-10): this listing
 # was showing up for that search in place of the home page.
@@ -50,7 +50,7 @@ redirect_from:
       an editorial choice.
     {%- endcomment -%}
     {% for post in site.posts %}
-    <article class="blog-card{% if post.featured_image and post.featured_image != "" %} blog-card--cover{% endif %}" data-text="{{ post.title | append: ' ' | append: post.description | append: ' ' | append: post.content | strip_html | escape | downcase }}">
+    <article class="blog-card{% if post.featured_image and post.featured_image != "" %} blog-card--cover{% endif %}" data-url="{{ post.url }}">
       <a href="{{ site.baseurl }}{{ post.url }}" class="blog-card-link">
         {%- if post.featured_image and post.featured_image != "" %}
         <figure class="blog-card-cover"><img src="{{ site.baseurl }}{{ post.featured_image }}"{% include img-dims.html path=post.featured_image %}{% include img-crop.html path=post.featured_image ctx="blog" %} alt="" loading="lazy"></figure>
@@ -82,7 +82,22 @@ redirect_from:
   var empty=document.getElementById('blog-empty');
   var shown=PAGE, q='';
 
-  function matches(card){ return !q || card.dataset.text.indexOf(q)>-1; }
+  // Full post text lives in /blog/search.json, fetched the first time someone
+  // types (2026-10-26). It used to sit in a data-text attribute on every card:
+  // 182KB of the whole blog inside this page, which made the listing look like
+  // the site's best page for "Lake Tahoe wedding florist". Until it arrives,
+  // search matches the title and summary on the card.
+  var text={}, asked=false;
+  function load(){
+    if(asked) return; asked=true;
+    fetch('{{ site.baseurl }}/blog/search.json').then(function(r){ return r.json(); })
+      .then(function(d){ text=d; if(q) render(); }).catch(function(){});
+  }
+  function matches(card){
+    if(!q) return true;
+    var t=text[card.dataset.url] || card.textContent.toLowerCase();
+    return t.indexOf(q)>-1;
+  }
   function render(){
     var visible=cards.filter(matches);
     cards.forEach(function(c){ c.style.display='none'; });
@@ -92,7 +107,8 @@ redirect_from:
     more.style.display = (!q && visible.length>shown) ? '' : 'none';
     count.textContent = visible.length + (visible.length===1?' post':' posts');
   }
-  search.addEventListener('input', function(){ q=this.value.trim().toLowerCase(); shown=PAGE; render(); });
+  search.addEventListener('focus', load);
+  search.addEventListener('input', function(){ load(); q=this.value.trim().toLowerCase(); shown=PAGE; render(); });
   more.addEventListener('click', function(){ shown+=PAGE; render(); });
   render();
 })();

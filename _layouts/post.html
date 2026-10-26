@@ -31,6 +31,16 @@ layout: redesign
   {{ content }}
 </article>
 
+{%- comment -%} One sentence saying who we are, with the home page linked in
+  plain words (2026-10-26). Same idea as the venue pages' line: only 1 of 36
+  posts linked home, so the site never told Google which page is the florist.
+  Outside the article on purpose, so /edit never saves it into a post body.
+{%- endcomment %}
+{%- assign who = site.data.blog_page.who %}
+{%- if who %}
+<p class="blog-who"><span data-ed="blog_page:who.before">{{ who.before }}</span> <a href="{{ site.baseurl }}/"><span data-ed="blog_page:who.link">{{ who.link }}</span></a><span data-ed="blog_page:who.after">{{ who.after }}</span></p>
+{%- endif %}
+
 <!-- Post-specific CTA -->
 {%- comment -%}
   THE SAME CLOSING ASK AS EVERY OTHER PAGE (2026-09-24, Josh, comparing three
