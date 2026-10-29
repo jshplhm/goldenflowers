@@ -286,7 +286,7 @@ pricing:
                 ""
               ]
           - name: Two-pillar arch
-            price: "$2,000 – $2,500"
+            price: "$2,000 – $3,000"
             photos:
               [
                 "camille-max/camille-max-23.jpg",
@@ -438,7 +438,8 @@ pricing:
       button: Email me this list
       sending: Sending
       sent_heading: Your list is on its way.
-      sent: We sent it to {email}. If it isn't in your inbox in a few minutes, check spam.
+      sent: We sent it to {email}. If it isn't in your inbox in a few minutes, check
+        spam.
       failed: That didn't send. Try again, or text us at 530-557-7689.
       clear: Clear list
       cleared: List cleared.
