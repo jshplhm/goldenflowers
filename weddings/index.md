@@ -317,11 +317,12 @@ redirect_from:
 <!-- THE ASK AFTER THE PRICES: same band as the closing ask, its own words. -->
 {%- assign pa = site.data.weddings.price_ask %}
 {%- if pa.heading and pa.show != false %}
-<section class="cta cta--mid">
+<section class="cta cta--mid" data-pl-ask>
   <h2 class="disp">{% include em.html t=pa.heading k="weddings:price_ask.heading" %}</h2>
   <p><span data-ed="weddings:price_ask.body">{{ pa.body }}</span></p>
   <a class="btn btn-ink" href="{{ site.baseurl }}/consultation-form"><span data-ed="weddings:price_ask.button">{{ pa.button }}</span> <span>&rarr;</span></a>
 </section>
+<script>(function(){var r=document.querySelector('[data-pl]');if(r&&r._count)document.querySelector('[data-pl-ask]').hidden=true;})();</script>
 {%- endif %}
 
 <!-- PROCESS -->

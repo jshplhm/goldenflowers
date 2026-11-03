@@ -128,6 +128,11 @@
     root.querySelector('[data-pl-total]').textContent=wide(tlo,thi);
     root.querySelector('[data-pl-floor]').hidden=!(count && thi<FLOOR);
     root.hidden=!count;
+    // The "Ready for your own number?" band after the guide stands in for
+    // an empty list: gone once something is picked, back after Clear
+    // (Josh, 2026-11-03). On first load it isn't parsed yet; the band reads
+    // root._count itself.
+    var ask=document.querySelector('[data-pl-ask]'); if(ask) ask.hidden=!!count;
     bar.querySelector('[data-pl-count]').textContent=count+' '+(count===1?T.one:T.many);
     bar.querySelector('[data-pl-bartotal]').textContent=wide(tlo,thi);
     root._count=count;

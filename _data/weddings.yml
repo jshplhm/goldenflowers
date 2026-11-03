@@ -524,8 +524,10 @@ faq:
 # Hidden 2026-10-24 (Josh): with the price list's own email box right above
 # it, a second ask straight after the guide "feels like it shouldn't be
 # there". Flip to true to bring it back.
+# Back 2026-11-03 (Josh): shown only while the price list is empty; it
+# hides the moment a piece is added and returns after Clear.
 price_ask:
-  show: false
+  show: true
   heading: Ready for *your own number?*
   body: Start with your date and venue. If it's open, we'll talk it through and
     send an itemized proposal.
