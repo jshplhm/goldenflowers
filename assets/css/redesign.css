@@ -2833,6 +2833,12 @@ details.pg-item > summary:focus-visible{outline:2px solid var(--accent);outline-
    to beat, so the checkbox stays a checkbox and the label stays inline. */
 .modal .not-couple,.form-section .not-couple{display:flex;align-items:center;gap:10px;font-size:var(--t-sm);color:var(--fg2);cursor:pointer;padding:2px 0;}
 .modal .not-couple input,.form-section .not-couple input{margin:0;flex:none;accent-color:var(--accent);width:17px;height:17px;padding:0;}
+/* Drawn, not native (2026-11-03): iOS 26 draws a native checkbox as a
+   circle, which read as a radio button. A small rounded square on every
+   device, filled forest green with a white tick when on. */
+.modal .not-couple input,.form-section .not-couple input{-webkit-appearance:none;appearance:none;width:18px;height:18px;border:1.5px solid var(--mute);border-radius:4px;background:var(--paper) center/12px 12px no-repeat;cursor:pointer;transition:background-color .15s,border-color .15s;}
+.modal .not-couple input:checked,.form-section .not-couple input:checked{background-color:var(--accent);border-color:var(--accent);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2.5 6.2l2.3 2.3 4.7-4.9' fill='none' stroke='%23fff' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");}
+.modal .not-couple input:focus-visible,.form-section .not-couple input:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
 .modal .stack-label,.form-section .stack-label{margin-top:14px;}
 .modal textarea#m-message{overflow-y:hidden;min-height:calc(3lh + 30px);}
 
