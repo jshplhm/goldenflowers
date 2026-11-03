@@ -342,7 +342,6 @@ function appendCommon_(params, form){
       if(phoneEl){
         phoneEl.addEventListener('blur', function(){
           phoneEl.setCustomValidity(phoneIssue(phoneEl.value));
-          if(phoneEl.value) phoneEl.reportValidity();
         });
       }
     }
@@ -400,23 +399,77 @@ function appendCommon_(params, form){
     form.dataset.leadId=(window.crypto&&crypto.randomUUID)?crypto.randomUUID():('c-'+Date.now()+'-'+Math.random().toString(36).slice(2));
     form.dataset.renderedAt=String(Date.now());
     function toTop(){ var m=form.closest('.modal'); if(m) m.scrollTop=0; }
-    advanceBtn.addEventListener('click', function(){
-      var reqs=form.querySelectorAll('.form-step-1 [required]');
-      for(var i=0;i<reqs.length;i++){ if(reqs[i].disabled) continue; if(!reqs[i].reportValidity()) return; }
-      // Checkboxes don't group-validate natively the way radios do.
-      var boxes=form.querySelectorAll('.form-step-1 [name="contact_method"]');
+    /* Step-1 problems, in page order (2026-11-03, Josh: say nothing about
+       required fields until they try to continue, then take them back to it
+       and make it obvious). Nothing is checked while they fill it in. On
+       Continue every problem gets a line under it and the first one is
+       scrolled to and focused; each mark clears as soon as it is fixed.
+       Native bubbles are gone: on iOS reportValidity() steals focus. */
+    var step1El=form.querySelector('.form-step-1')||form;
+    function problems(){
+      var out=[];
+      function add(el, box, after, msg){ out.push({el:el, box:box||el, after:after||el, msg:msg}); }
+      var d=step1El.querySelector('[data-date-mask]');
+      if(d){
+        if(d._finalizeYear) d._finalizeYear(); else applyDateValidity(d);
+        if(!d.value.trim()) add(d,null,null,'Add your wedding date.');
+        else if(!d.checkValidity()) add(d,null,null,d.validationMessage);
+      }
+      var nm=step1El.querySelector('[name="name"]');
+      if(nm && !nm.value.trim()) add(nm,null,null,'Add your name.');
+      var radios=step1El.querySelectorAll('input[type="radio"][name="role"]');
+      if(radios.length && !radios[0].disabled && !step1El.querySelector('input[name="role"]:checked')){
+        var rs=radios[0].closest('.reach-seg'); add(radios[0],rs,rs,'Pick your role.');
+      }
+      var boxes=step1El.querySelectorAll('[name="contact_method"]');
       if(boxes.length && form._checkedMethods && !form._checkedMethods().length){
-        boxes[0].setCustomValidity('Pick email or text (or both).');
-        boxes[0].reportValidity();
+        var cs=boxes[0].closest('.reach-seg'); add(boxes[0],cs,cs,'Pick email or text (or both).');
+      }
+      var em=step1El.querySelector('input[type="email"]');
+      if(em && !em.disabled){
+        if(!em.value.trim()) add(em,null,null,'Add your email address.');
+        else if(!em.checkValidity()) add(em,null,null,'Check your email address.');
+      }
+      var ph=step1El.querySelector('input[type="tel"]');
+      if(ph && !ph.disabled){
+        ph.setCustomValidity(phoneIssue(ph.value));
+        if(!ph.value.trim()) add(ph,null,null,'Add your phone number.');
+        else if(!ph.checkValidity()) add(ph,null,null,ph.validationMessage);
+      }
+      return out;
+    }
+    function unmark(box){
+      box.classList.remove('f-bad');
+      var n=box.nextElementSibling; if(n && n.classList.contains('f-err')) n.remove();
+      if(box._errFor) box._errFor.removeAttribute('aria-invalid');
+    }
+    function mark(pb){
+      pb.box.classList.add('f-bad'); pb.box._errFor=pb.el;
+      pb.el.setAttribute('aria-invalid','true');
+      var n=pb.box.nextElementSibling;
+      if(!n || !n.classList.contains('f-err')){ n=document.createElement('p'); n.className='f-err'; pb.box.insertAdjacentElement('afterend', n); }
+      n.textContent=pb.msg;
+    }
+    function recheck(){
+      var bad=step1El.querySelectorAll('.f-bad'); if(!bad.length) return;
+      var still=problems().map(function(pb){ return pb.box; });
+      Array.prototype.forEach.call(bad,function(b){ if(still.indexOf(b)===-1) unmark(b); });
+    }
+    step1El.addEventListener('input', recheck);
+    step1El.addEventListener('change', recheck);
+    advanceBtn.addEventListener('click', function(){
+      var pbs=problems();
+      Array.prototype.forEach.call(step1El.querySelectorAll('.f-bad'),unmark);
+      if(pbs.length){
+        pbs.forEach(mark);
+        var first=pbs[0], lab=first.box.closest('.field-full,.reach-fieldset')||first.box;
+        first.el.focus({preventScroll:true});
+        lab.scrollIntoView({block:'center', behavior:'smooth'});
         return;
       }
-      var dateEl=form.querySelector('.form-step-1 [data-date-mask]');
-      if(dateEl){ (dateEl._finalizeYear||function(){ applyDateValidity(dateEl); })(); if(!dateEl.reportValidity()) return; }
-      var phoneCheck=form.querySelector('.form-step-1 input[type="tel"]');
-      if(phoneCheck && !phoneCheck.disabled){
-        phoneCheck.setCustomValidity(phoneIssue(phoneCheck.value));
-        if(!phoneCheck.reportValidity()) return;
-      }
+      // Anything required that the list above doesn't know about yet.
+      var reqs=step1El.querySelectorAll('[required]');
+      for(var i=0;i<reqs.length;i++){ if(reqs[i].disabled) continue; if(!reqs[i].reportValidity()) return; }
       if(!form.dataset.partialSent && form.hasAttribute('data-ajax')){
         form.dataset.partialSent='1';
         try{
@@ -509,7 +562,10 @@ function appendCommon_(params, form){
       el.value=mask(el.value, !deleting); render();
       el.setCustomValidity(''); // don't flag mid-edit; finalizeYear re-checks when typing settles
     });
-    el.addEventListener('blur', function(){ finalizeYear(); el.reportValidity(); });
+    /* Silent on blur (2026-11-03): reportValidity() on iOS pulls focus back
+       to the empty date box, so no other field could raise the keyboard.
+       Problems are only shown when they tap Continue. */
+    el.addEventListener('blur', finalizeYear);
     render();
   });
 

@@ -60,6 +60,7 @@
      --accent      = rich green for light backgrounds, buttons, rules.
      --accent-soft = warm cream for accents on the dark forest panels. */
   --accent:oklch(38% .105 150);
+  --err:oklch(50% .19 27);
   --accent-soft:oklch(89% .022 92);
   --line:oklch(87% .012 60 / .7);
   /* The lake, on both maps. It was a flat cornflower blue, the one saturated
@@ -1615,6 +1616,11 @@ body.modal-open{overflow:hidden;}
 .reach-seg label.sel{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent);background:oklch(97% .012 145);font-weight:500;}
 .reach-seg label:has(input:checked){border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent);background:oklch(97% .012 145);font-weight:500;}
 .reach-seg label:has(input:focus-visible){outline:2px solid var(--accent);outline-offset:2px;}
+/* What's missing, shown only after Continue (2026-11-03). The one red on
+   the site: it marks a problem, it is not a brand accent. */
+.form-section input.f-bad,.modal input.f-bad{border-color:var(--err);box-shadow:inset 0 0 0 1px var(--err);}
+.reach-seg.f-bad label{border-color:var(--err);}
+.f-err{margin:8px 0 0;font-size:var(--t-sm);font-weight:500;color:var(--err);}
 .reach-reveal{display:grid;grid-template-rows:0fr;opacity:0;visibility:hidden;margin-top:0;transition:grid-template-rows .3s ease,opacity .25s ease,margin-top .3s ease,visibility 0s .3s;}
 .reach-reveal.open{grid-template-rows:1fr;opacity:1;visibility:visible;margin-top:15px;transition:grid-template-rows .3s ease,opacity .25s ease,margin-top .3s ease,visibility 0s;}
 .reach-fieldset:has([name="contact_method"][value="Email"]:checked) .reach-reveal[data-reach-email],
