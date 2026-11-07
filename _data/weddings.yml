@@ -165,7 +165,7 @@ pricing:
   # caption = optional second line under the label.
   figures:
     - label: Where weddings start
-      amount: "$5,000 full service, $3,500 a la carte"
+      amount: "$6,000 full service, $3,500 a la carte"
       caption: ""
     - label: A typical full service wedding
       amount: "$10,000 – $13,000"
