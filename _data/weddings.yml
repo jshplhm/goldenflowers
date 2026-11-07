@@ -248,7 +248,7 @@ pricing:
                 ""
               ]
           - name: Corsage
-            price: "$80"
+            price: "$100"
             photos:
               [
                 "/assets/images/pages/add-photo-mviglx45.jpg",
@@ -276,7 +276,7 @@ pricing:
                 ""
               ]
           - name: Altar arrangement
-            price: "$250 – $500"
+            price: "$350 – $500"
             photos:
               [
                 "/assets/images/pages/add-photo-mvigw334.jpg",
@@ -348,7 +348,7 @@ pricing:
                 ""
               ]
           - name: Low centerpiece
-            price: "$75 – $300"
+            price: "$100 – $300"
             photos:
               [
                 "lynn-aaron/lynn-aaron-13.jpg",
@@ -368,7 +368,7 @@ pricing:
                 ""
               ]
           - name: Candles, per table
-            price: "$200 – $400"
+            price: "$100 – $400"
             photos:
               [
                 "katie-james/katie-james-04.jpg",
