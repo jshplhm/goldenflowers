@@ -3133,6 +3133,15 @@ details.pg-item > summary:focus-visible{outline:2px solid var(--accent);outline-
   font-size:var(--t-d3);line-height:1.2;letter-spacing:-.005em;color:var(--ink);
   margin:clamp(18px,2.2vw,30px) auto 0;}
 .ht-h1 + .ht-line{margin-top:clamp(8px,1vw,12px);}
+/* 2026-11-18: the wordmark is gone, so the h1 leads at headline size, then a
+   short tagline at sub-section size, then the sentence in grey. */
+.hero-top .ht-h1{font-size:var(--t-d1);line-height:1.04;letter-spacing:-.02em;
+  margin-top:0;text-wrap:balance;}
+.ht-tag{font-family:var(--d);font-weight:430;font-optical-sizing:auto;
+  font-size:var(--t-d3);line-height:1.25;color:var(--ink);
+  margin:clamp(14px,1.6vw,22px) auto 0;}
+.ht-tag em{color:var(--forest);}
+.ht-tag + .ht-line{margin-top:clamp(12px,1.4vw,18px);max-width:60ch;text-wrap:pretty;}
 @media(max-width:820px){ .ht-pic{aspect-ratio:4/5;} }
 /* The phone crop, on its own. Below 700px the <picture> swaps to the PORTRAIT
    master (1200x1936), and the inline object-position on the <img> was written
@@ -3237,6 +3246,21 @@ details.pg-item > summary:focus-visible{outline:2px solid var(--accent);outline-
 @media(max-width:820px){
   .testi{grid-template-columns:1fr;row-gap:16px;}
   .testi > *{grid-column:1 !important;grid-row:auto !important;}
+}
+/* Home: Brittany's portrait beside the review and the press line
+   (2026-11-18). Portrait left, words right; on a phone the photo leads. */
+.testi.testi-pic{grid-template-columns:minmax(0,1fr) minmax(0,1.35fr);align-items:center;}
+.testi-pic .tp-pic{margin:0;grid-column:1;grid-row:1;overflow:hidden;border-radius:var(--r-img);aspect-ratio:4/5;}
+.testi-pic .tp-pic img{width:100%;height:100%;object-fit:cover;display:block;}
+.testi-pic .tp-words{grid-column:2;grid-row:1;}
+.testi-pic blockquote{margin-top:18px;max-width:28ch;}
+.testi-pic .by{margin-top:28px;}
+.tp-press{margin-top:clamp(28px,3vw,44px);padding-top:clamp(20px,2vw,28px);border-top:1px solid var(--line);
+  line-height:1.5;color:var(--fg2);max-width:40ch;}
+.tp-press em{font-family:var(--d);font-size:1.08em;color:var(--ink);}
+@media(max-width:820px){
+  .testi.testi-pic{grid-template-columns:1fr;row-gap:28px;}
+  .testi-pic .tp-pic{max-width:420px;}
 }
 @media(min-width:1025px){.facts .fact p{max-width:34ch;}}
 

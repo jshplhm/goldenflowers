@@ -69,8 +69,13 @@ the moment one pale photo wants it and another does not, the machinery is here.
     fell out of the organic results for that phrase while /blog and venue
     pages, which do lead with it, took its place. The sentence stays, as the
     line under the h1, minus the words the h1 now says. {%- endcomment -%}
-    <div class="ht-mark">Golden Flowers</div>
+    {%- comment -%} 2026-11-18: the GOLDEN FLOWERS wordmark that stood above
+    the h1 is gone. The nav already says the name, and the wordmark pushed the
+    words that sell below the fold. The h1 takes its size. {%- endcomment %}
     <h1 class="ht-h1"><span data-ed="home:hero.heading">{{ site.data.home.hero.heading }}</span></h1>
+    {%- if site.data.home.hero.tagline and site.data.home.hero.tagline != "" %}
+    <p class="ht-tag">{% include em.html t=site.data.home.hero.tagline k="home:hero.tagline" %}</p>
+    {%- endif %}
     <p class="ht-line">{% include em.html t=site.data.home.hero.line k="home:hero.line" %}</p>
   </div>
 </header>
@@ -188,10 +193,18 @@ the moment one pale photo wants it and another does not, the machinery is here.
 </section>
 
 <!-- TESTIMONIAL -->
-<section class="testi">
+{%- comment -%} Brittany beside the review and the press line (2026-11-18):
+the studio is sold by a person, so the home page shows her once. A portrait,
+so it can sit beside words. {%- endcomment %}
+<section class="testi testi-pic">
+  <figure class="tp-pic"><img src="{{ site.baseurl }}/assets/images/our-story.jpg"{% include img-dims.html path="/assets/images/our-story.jpg" %}{% include img-crop.html path="/assets/images/our-story.jpg" ctx="home" %} sizes="(max-width:820px) 87vw, 420px" loading="lazy" alt="Brittany, founder of Golden Flowers, smiling beside a ceremony arrangement of orange roses and white snapdragons"></figure>
+  <div class="tp-words">
   <div class="stars" aria-label="Five stars">★★★★★</div>
   <blockquote class="disp">{% include em.html t=site.data.home.testimonial.quote k="home:testimonial.quote" %}</blockquote>
   <p class="by"><b><span data-ed="home:testimonial.name">{{ site.data.home.testimonial.name }}</span></b> &nbsp;·&nbsp; <span data-ed="home:testimonial.context">{{ site.data.home.testimonial.context }}</span></p>
+  {%- if site.data.home.testimonial.press and site.data.home.testimonial.press != "" %}
+  <p class="tp-press">{% include em.html t=site.data.home.testimonial.press k="home:testimonial.press" %}</p>
+  {%- endif %}
   {%- comment -%} Points at the #reviews anchor on /weddings, which is hidden
   while weddings.yml `testimonials.show` is false. Guarded on empty so blanking
   the link text in the CMS removes it cleanly rather than leaving a bare arrow.
@@ -199,6 +212,7 @@ the moment one pale photo wants it and another does not, the machinery is here.
   {%- if site.data.home.testimonial.link != "" %}
   <p class="marq-foot" style="margin-top:24px;"><a href="{{ site.baseurl }}/weddings#reviews" class="txt-link"><span data-ed="home:testimonial.link">{{ site.data.home.testimonial.link }}</span> &rarr;</a></p>
   {%- endif %}
+  </div>
 </section>
 
 <!-- THE LAST RUN OF PHOTOGRAPHS (Josh, 2026-09-23). One section, not two, so

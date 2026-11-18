@@ -28,7 +28,8 @@ content:
         type: object
         fields:
           - {name: heading, label: "Headline", type: string, description: "Keep this as 'Lake Tahoe Wedding Florist'. It is what Google reads as the subject of the home page."}
-          - {name: line, label: "Line under the headline", type: text, description: "Put *asterisks* around words to italicize them."}
+          - {name: tagline, label: "Short line under the headline", type: string, description: "*asterisks* = italics, in green. Leave empty to hide it."}
+          - {name: line, label: "Sentence under that", type: text, description: "Put *asterisks* around words to italicize them."}
       - name: intro
         label: Intro band
         type: object
@@ -73,6 +74,7 @@ content:
           - {name: name, label: "Name", type: string}
           - {name: context, label: "Context (e.g. Lake Tahoe Wedding)", type: string}
           - {name: link, label: "Link text", type: string, description: "Goes to the reviews on Pricing."}
+          - {name: press, label: "Press line", type: text, description: "Under the review, beside Brittany's photo. *asterisks* = italics. Leave empty to hide it."}
       - name: cta
         label: Closing call to action
         type: object

@@ -2,10 +2,18 @@ hero:
   # The h1 is the search phrase on its own line, and the sentence that used to
   # BE the h1 sits under it without the words the h1 now says (2026-10-10).
   # Keep the heading to these four words: it is what Google reads as the
-  # subject of the home page.
+  # subject of the home page. Since 2026-11-18 it is also the largest type on
+  # the page: the GOLDEN FLOWERS wordmark that sat above it is gone (the nav
+  # already carries the name).
   heading: Lake Tahoe Wedding Florist
-  line: Bold, artful, sustainable wedding flowers for couples getting married
-    around Lake Tahoe and across the Sierra Nevada.
+  # The claim no other Tahoe florist can make (2026-11-18): an agronomist
+  # choosing flowers for altitude, wind and sun. Same facts as the Studio page
+  # ("Built for the mountains") and the FAQ. Say "an agronomist by training",
+  # never "certified" or "trained agronomist".
+  tagline: Wedding flowers chosen to hold at *6,000 feet.*
+  line: Brittany is a floral designer and an agronomist by training. She chooses
+    flowers for how they hold up in thin mountain air, dry wind and August sun,
+    and our team sets every piece and breaks it all down when the night ends.
 intro:
   # Label intentionally blank (Josh, 2026-09-23): the eyebrow came off the
   # facts section on 09-22 and this was the last one left, which made it the
@@ -79,6 +87,10 @@ testimonial:
   name: Brian
   context: Tahoe lakeside estate
   link: ""
+  # The press line under the review, beside Brittany's photo (2026-11-18).
+  # Leave empty to hide it.
+  press: Our weddings have been featured in *Real Weddings Magazine* and *Rocky
+    Mountain Bride.*
 cta:
   # 2026-09-25: the body paragraph is back and the page ends with the same
   # closing ask as every other page. See the comment in index.md for why the
