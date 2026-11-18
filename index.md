@@ -57,7 +57,7 @@ the moment one pale photo wants it and another does not, the machinery is here.
 <header class="hero-top">
   <figure class="ht-pic">
     <picture>
-      <img src="{{ site.baseurl }}/assets/images/portfolio/lynn-aaron/lynn-aaron-16.jpg"{% include img-dims.html path="/assets/images/portfolio/lynn-aaron/lynn-aaron-16.jpg" %}{% include img-crop.html path="/assets/images/portfolio/lynn-aaron/lynn-aaron-16.jpg" ctx="home" %} sizes="(max-width:1500px) 87vw, 1305px" fetchpriority="high"
+      <img src="{{ site.baseurl }}/assets/images/portfolio/lynn-aaron/lynn-aaron-16.jpg"{% include img-dims.html path="/assets/images/portfolio/lynn-aaron/lynn-aaron-16.jpg" %}{% include img-crop.html path="/assets/images/portfolio/lynn-aaron/lynn-aaron-16.jpg" ctx="home" m=true %} sizes="(max-width:1500px) 87vw, 1305px" fetchpriority="high"
            alt="Lynn and Aaron hold hands at the ceremony, a jewel-toned floral tower and jagged peaks behind them">
     </picture>
   </figure>

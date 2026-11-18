@@ -21,7 +21,28 @@
   tag and escapes it into visible text on every page written in markdown. The
   HTML pages looked fine, which is how it would have shipped.
 {%- endcomment -%}
+{%- comment -%} PHONE FRAMING (2026-11-18, the home hero only). With m=true
+  the include also reads "<ctx>-phone|<path>" and, if set, writes --opx-m /
+  --op-m / --z-m and data-op-m (data-zoom-m for a real zoom). The stylesheet
+  uses those under 700px wide, so a phone crop never moves the desktop one.
+  data-crop-key-m is always written when m=true so /edit, opened on a phone,
+  knows which key to save. {%- endcomment -%}
 {%- assign ck = include.ctx | append: "|" | append: include.path -%}
 {%- assign spec = site.data.photo_crop[ck] | default: "" | strip -%}
 {%- assign parts = spec | split: " " -%}
-{%- if parts.size >= 2 %} style="--opx:{{ parts[0] | plus: 0 }}%;--op:{{ parts[1] | plus: 0 }}%;{% if parts.size >= 3 %}{% assign cz = parts[2] | plus: 0.0 %}{% if cz > 1 %}--z:{{ cz }};{% endif %}{% endif %}" data-op{% if parts.size >= 3 %}{% assign cz2 = parts[2] | plus: 0.0 %}{% if cz2 > 1 %} data-zoom{% endif %}{% endif %} data-crop-key="{{ ck }}"{% else %} data-crop-key="{{ ck }}"{% endif -%}
+{%- assign st = "" -%}{%- assign at = "" -%}
+{%- if parts.size >= 2 -%}
+  {%- capture st %}--opx:{{ parts[0] | plus: 0 }}%;--op:{{ parts[1] | plus: 0 }}%;{% if parts.size >= 3 %}{% assign cz = parts[2] | plus: 0.0 %}{% if cz > 1 %}--z:{{ cz }};{% endif %}{% endif %}{% endcapture -%}
+  {%- capture at %} data-op{% if parts.size >= 3 %}{% assign cz2 = parts[2] | plus: 0.0 %}{% if cz2 > 1 %} data-zoom{% endif %}{% endif %}{% endcapture -%}
+{%- endif -%}
+{%- if include.m -%}
+  {%- assign ckm = include.ctx | append: "-phone|" | append: include.path -%}
+  {%- assign specm = site.data.photo_crop[ckm] | default: "" | strip -%}
+  {%- assign pm = specm | split: " " -%}
+  {%- if pm.size >= 2 -%}
+    {%- capture st %}{{ st }}--opx-m:{{ pm[0] | plus: 0 }}%;--op-m:{{ pm[1] | plus: 0 }}%;{% if pm.size >= 3 %}--z-m:{{ pm[2] | plus: 0.0 }};{% endif %}{% endcapture -%}
+    {%- capture at %}{{ at }} data-op-m{% if pm.size >= 3 %}{% assign zm = pm[2] | plus: 0.0 %}{% if zm > 1 %} data-zoom-m{% endif %}{% endif %}{% endcapture -%}
+  {%- endif -%}
+  {%- capture at %}{{ at }} data-crop-key-m="{{ ckm }}"{% endcapture -%}
+{%- endif -%}
+{%- if st != "" %} style="{{ st }}"{% endif %}{{ at }} data-crop-key="{{ ck }}"

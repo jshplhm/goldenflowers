@@ -2971,11 +2971,21 @@ const FR_SLOT = {
   guide: "this photo in the price guide",
 };
 
-function frRead(el) {
+/* PHONE FRAMING (2026-11-18). A slot carrying data-crop-key-m (the home
+ * hero) has its own crop under 700px. Framing it while the page is that
+ * narrow edits the phone crop: the "-m" variables, attributes and key. */
+const FR_PHONE_MAX = 700;
+function frSuffix(el) {
+  const w = el.ownerDocument.defaultView.innerWidth;
+  return el.hasAttribute("data-crop-key-m") && w <= FR_PHONE_MAX ? "-m" : "";
+}
+function frRead(el, sfx = "") {
   const n = (v, d) => { const f = parseFloat(v); return isNaN(f) ? d : f; };
-  return { x: n(el.style.getPropertyValue("--opx"), 50),
-           y: n(el.style.getPropertyValue("--op"), 50),
-           z: n(el.style.getPropertyValue("--z"), 1) };
+  const g = (name) => el.style.getPropertyValue(name + sfx);
+  /* An unset phone crop starts from the desktop one, which is what a phone
+   * showed before it had its own. */
+  if (sfx && !el.hasAttribute("data-op-m")) return frRead(el, "");
+  return { x: n(g("--opx"), 50), y: n(g("--op"), 50), z: n(g("--z"), 1) };
 }
 
 /* Paint the pending values onto BOTH the stage and the real tile behind the
@@ -2985,16 +2995,18 @@ function frRead(el) {
 function frPaint() {
   if (!frState) return;
   const { el, x, y, z } = frState;
+  const sfx = frState.sfx || "";
   frDot.style.left = x + "%";
   frDot.style.top = y + "%";
   frZval.textContent = z.toFixed(2) + "×";
   frImg.style.objectPosition = `${x}% ${y}%`;
   frImg.style.transform = `scale(${z})`;
   frImg.style.transformOrigin = `${x}% ${y}%`;
-  el.style.setProperty("--opx", x + "%");
-  el.style.setProperty("--op", y + "%");
-  el.setAttribute("data-op", "");
-  if (z > 1) { el.style.setProperty("--z", z); el.setAttribute("data-zoom", ""); }
+  el.style.setProperty("--opx" + sfx, x + "%");
+  el.style.setProperty("--op" + sfx, y + "%");
+  el.setAttribute("data-op" + sfx, "");
+  if (sfx) { el.style.setProperty("--z-m", z); }
+  else if (z > 1) { el.style.setProperty("--z", z); el.setAttribute("data-zoom", ""); }
   else { el.style.removeProperty("--z"); el.removeAttribute("data-zoom"); }
 }
 
@@ -3003,14 +3015,16 @@ function frPaint() {
 function frRevert() {
   if (!frState) return;
   const { el, wasStyle, wasOp, wasZoom } = frState;
+  const sfx = frState.sfx || "";
   if (wasStyle === null) el.removeAttribute("style"); else el.setAttribute("style", wasStyle);
-  if (wasOp === null) el.removeAttribute("data-op"); else el.setAttribute("data-op", wasOp);
-  if (wasZoom === null) el.removeAttribute("data-zoom"); else el.setAttribute("data-zoom", wasZoom);
+  if (wasOp === null) el.removeAttribute("data-op" + sfx); else el.setAttribute("data-op" + sfx, wasOp);
+  if (wasZoom === null) el.removeAttribute("data-zoom" + sfx); else el.setAttribute("data-zoom" + sfx, wasZoom);
   frState = null;
 }
 
 function openFraming(el) {
-  const key = el.getAttribute("data-crop-key");
+  const sfx = frSuffix(el);
+  const key = el.getAttribute(sfx ? "data-crop-key-m" : "data-crop-key");
   if (!key) return;
   frErr.style.display = "none";
   /* The stage takes the tile's rendered ratio, so a 16:9 hero is judged as a
@@ -3023,17 +3037,19 @@ function openFraming(el) {
     : (nw && nh ? nw / nh : 1);
   frStage.style.aspectRatio = String(ratio);
   frStage.style.setProperty("--r", String(ratio));
-  const slot = key.split("|")[0];
+  const slot = key.split("|")[0].replace(/-phone$/, "");
   const isVideo = el.tagName === "VIDEO";
-  frWhere.innerHTML = `Framing <b>${isVideo ? "this video" : escapeHtml(FR_SLOT[slot] || slot)}</b>. This is the only place it is cropped this way, so nothing else on the site moves.`;
+  frWhere.innerHTML = sfx
+    ? `Framing <b>${escapeHtml(FR_SLOT[slot] || slot)} on phones</b>. Computers keep their own crop; open /edit on a computer to change that one.`
+    : `Framing <b>${isVideo ? "this video" : escapeHtml(FR_SLOT[slot] || slot)}</b>. This is the only place it is cropped this way, so nothing else on the site moves.`;
   /* A video is framed on its poster, which is its first frame at the same
    * size, so the crop judged here is the crop the video plays in. */
   frImg.src = isVideo ? el.poster : (el.currentSrc || el.src);
-  const c = frRead(el);
-  frState = { el, key, ...c,
+  const c = frRead(el, sfx);
+  frState = { el, key, sfx, ...c,
     wasStyle: el.getAttribute("style"),
-    wasOp: el.getAttribute("data-op"),
-    wasZoom: el.getAttribute("data-zoom") };
+    wasOp: el.getAttribute("data-op" + sfx),
+    wasZoom: el.getAttribute("data-zoom" + sfx) };
   frZoom.value = c.z;
   frPaint();
   repModal.hidden = true;
