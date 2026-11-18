@@ -3141,7 +3141,11 @@ details.pg-item > summary:focus-visible{outline:2px solid var(--accent);outline-
   font-size:var(--t-d3);line-height:1.25;color:var(--ink);
   margin:clamp(14px,1.6vw,22px) auto 0;}
 .ht-tag em{color:var(--forest);}
-.ht-tag + .ht-line{margin-top:clamp(12px,1.4vw,18px);max-width:60ch;text-wrap:pretty;}
+/* The sentence is set like every other paragraph on the page (Josh,
+   2026-11-18): body face, --t-lede, 1.6 leading, as .intro-body. In Castoro it
+   drew ~12% smaller than those at the same token (Castoro's size-adjust:88%). */
+.ht-tag + .ht-line{margin-top:clamp(12px,1.4vw,18px);max-width:56ch;text-wrap:pretty;
+  font-family:var(--b);line-height:1.6;}
 @media(max-width:820px){ .ht-pic{aspect-ratio:4/5;} }
 /* The phone crop, on its own. Below 700px the <picture> swaps to the PORTRAIT
    master (1200x1936), and the inline object-position on the <img> was written
