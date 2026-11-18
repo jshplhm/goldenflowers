@@ -179,7 +179,7 @@ so it can sit beside words. {%- endcomment %}
      page had been careful about everywhere else. -->
 <section class="pband">
   <div class="pb-row pb-row--full">
-    <figure class="pb-pic"><img src="{{ site.baseurl }}/assets/images/portfolio/camille-max/camille-max-23.jpg"{% include img-dims.html path="/assets/images/portfolio/camille-max/camille-max-23.jpg" %}{% include img-crop.html path="/assets/images/portfolio/camille-max/camille-max-23.jpg" ctx="home" %} sizes="(max-width:1340px) 87vw, 1166px" loading="lazy" alt="A ceremony lawn at The Chateau with the chairs set in rows, pines and a blossoming tree behind"></figure>
+    <figure class="pb-pic"><img src="{{ site.baseurl }}/assets/images/portfolio/camille-max/camille-max-18.jpg"{% include img-dims.html path="/assets/images/portfolio/camille-max/camille-max-18.jpg" %}{% include img-crop.html path="/assets/images/portfolio/camille-max/camille-max-18.jpg" ctx="home" %} sizes="(max-width:1340px) 87vw, 1166px" loading="lazy" alt="A ceremony lawn at The Chateau with the chairs set in rows, pines and a blossoming tree behind"></figure>
   </div>
 </section>
 
