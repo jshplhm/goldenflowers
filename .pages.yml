@@ -74,7 +74,8 @@ content:
           - {name: name, label: "Name", type: string}
           - {name: context, label: "Context (e.g. Lake Tahoe Wedding)", type: string}
           - {name: link, label: "Link text", type: string, description: "Goes to the reviews on Pricing."}
-          - {name: press, label: "Press line", type: text, description: "Under the review, beside Brittany's photo. *asterisks* = italics. Leave empty to hide it."}
+          - {name: press_label, label: "Press label", type: string, description: "Small label above the magazine names, e.g. Featured in."}
+          - {name: press, label: "Magazines", type: string, list: true, description: "One per line, under the review beside Brittany's photo. Empty the list to hide it."}
       - name: cta
         label: Closing call to action
         type: object

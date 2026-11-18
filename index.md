@@ -57,9 +57,8 @@ the moment one pale photo wants it and another does not, the machinery is here.
 <header class="hero-top">
   <figure class="ht-pic">
     <picture>
-      <source media="(max-width:700px)" sizes="(max-width:1500px) 87vw, 1305px" srcset="{{ site.baseurl }}/assets/images/home-hero-laux-portrait.jpg">
       <img src="{{ site.baseurl }}/assets/images/portfolio/lynn-aaron/lynn-aaron-16.jpg"{% include img-dims.html path="/assets/images/portfolio/lynn-aaron/lynn-aaron-16.jpg" %}{% include img-crop.html path="/assets/images/portfolio/lynn-aaron/lynn-aaron-16.jpg" ctx="home" %} sizes="(max-width:1500px) 87vw, 1305px" fetchpriority="high"
-           alt="Golden hour in an Olympic Valley meadow: a couple in tall grass with the Sierra Nevada behind them, the bride holding a green and lavender bouquet">
+           alt="Lynn and Aaron hold hands at the ceremony, a jewel-toned floral tower and jagged peaks behind them">
     </picture>
   </figure>
   <div class="ht-words">
@@ -144,6 +143,36 @@ the moment one pale photo wants it and another does not, the machinery is here.
   </div>
 </section>
 
+<!-- TESTIMONIAL -->
+{%- comment -%} Brittany beside the review and the press line (2026-11-18):
+the studio is sold by a person, so the home page shows her once. A portrait,
+so it can sit beside words. {%- endcomment %}
+<section class="testi testi-pic">
+  <figure class="tp-pic"><img src="{{ site.baseurl }}/assets/images/our-story.jpg"{% include img-dims.html path="/assets/images/our-story.jpg" %}{% include img-crop.html path="/assets/images/our-story.jpg" ctx="home" %} sizes="(max-width:820px) 87vw, 420px" loading="lazy" alt="Brittany, founder of Golden Flowers, smiling beside a ceremony arrangement of orange roses and white snapdragons"></figure>
+  <div class="tp-words">
+  <div class="stars" aria-label="Five stars">★★★★★</div>
+  <blockquote class="disp">{% include em.html t=site.data.home.testimonial.quote k="home:testimonial.quote" %}</blockquote>
+  <p class="by"><b><span data-ed="home:testimonial.name">{{ site.data.home.testimonial.name }}</span></b> &nbsp;·&nbsp; <span data-ed="home:testimonial.context">{{ site.data.home.testimonial.context }}</span></p>
+  {%- if site.data.home.testimonial.press and site.data.home.testimonial.press.size > 0 %}
+  <div class="tp-press">
+    <p class="tp-lab"><span data-ed="home:testimonial.press_label">{{ site.data.home.testimonial.press_label }}</span></p>
+    <ul class="tp-pubs">
+    {%- for pub in site.data.home.testimonial.press %}
+      <li><span data-ed="home:testimonial.press.{{ forloop.index0 }}">{{ pub }}</span></li>
+    {%- endfor %}
+    </ul>
+  </div>
+  {%- endif %}
+  {%- comment -%} Points at the #reviews anchor on /weddings, which is hidden
+  while weddings.yml `testimonials.show` is false. Guarded on empty so blanking
+  the link text in the CMS removes it cleanly rather than leaving a bare arrow.
+  Restore both together. {%- endcomment -%}
+  {%- if site.data.home.testimonial.link != "" %}
+  <p class="marq-foot" style="margin-top:24px;"><a href="{{ site.baseurl }}/weddings#reviews" class="txt-link"><span data-ed="home:testimonial.link">{{ site.data.home.testimonial.link }}</span> &rarr;</a></p>
+  {%- endif %}
+  </div>
+</section>
+
 <!-- Between the three text blocks (Josh, 2026-09-23). Facts, then the venues
      map, then the review used to run straight into each other: three sections
      of words with no photograph to separate them, which is the one thing this
@@ -192,30 +221,9 @@ the moment one pale photo wants it and another does not, the machinery is here.
   </div>
 </section>
 
-<!-- TESTIMONIAL -->
-{%- comment -%} Brittany beside the review and the press line (2026-11-18):
-the studio is sold by a person, so the home page shows her once. A portrait,
-so it can sit beside words. {%- endcomment %}
-<section class="testi testi-pic">
-  <figure class="tp-pic"><img src="{{ site.baseurl }}/assets/images/our-story.jpg"{% include img-dims.html path="/assets/images/our-story.jpg" %}{% include img-crop.html path="/assets/images/our-story.jpg" ctx="home" %} sizes="(max-width:820px) 87vw, 420px" loading="lazy" alt="Brittany, founder of Golden Flowers, smiling beside a ceremony arrangement of orange roses and white snapdragons"></figure>
-  <div class="tp-words">
-  <div class="stars" aria-label="Five stars">★★★★★</div>
-  <blockquote class="disp">{% include em.html t=site.data.home.testimonial.quote k="home:testimonial.quote" %}</blockquote>
-  <p class="by"><b><span data-ed="home:testimonial.name">{{ site.data.home.testimonial.name }}</span></b> &nbsp;·&nbsp; <span data-ed="home:testimonial.context">{{ site.data.home.testimonial.context }}</span></p>
-  {%- if site.data.home.testimonial.press and site.data.home.testimonial.press != "" %}
-  <p class="tp-press">{% include em.html t=site.data.home.testimonial.press k="home:testimonial.press" %}</p>
-  {%- endif %}
-  {%- comment -%} Points at the #reviews anchor on /weddings, which is hidden
-  while weddings.yml `testimonials.show` is false. Guarded on empty so blanking
-  the link text in the CMS removes it cleanly rather than leaving a bare arrow.
-  Restore both together. {%- endcomment -%}
-  {%- if site.data.home.testimonial.link != "" %}
-  <p class="marq-foot" style="margin-top:24px;"><a href="{{ site.baseurl }}/weddings#reviews" class="txt-link"><span data-ed="home:testimonial.link">{{ site.data.home.testimonial.link }}</span> &rarr;</a></p>
-  {%- endif %}
-  </div>
-</section>
-
-<!-- THE LAST RUN OF PHOTOGRAPHS (Josh, 2026-09-23). One section, not two, so
+<!-- THE LAST RUN OF PHOTOGRAPHS (Josh, 2026-09-23). Since 2026-11-18 it opens
+     on a pair: the review moved up beside the facts, so the full-width
+     mountaintop photograph above now sits directly over this run. One section, not two, so
      every gap in here is the .pband row gap rather than two sections' padding
      butting together, which made the first break twice the size of the rest.
 
@@ -227,19 +235,19 @@ so it can sit beside words. {%- endcomment %}
      flipped so the wide tile is on the left: every pair on the page had the
      wide one on the right, which turned a rhythm into a template. -->
 <section class="pband">
-  <div class="pb-row pb-row--full">
-    <figure class="pb-pic"><img src="{{ site.baseurl }}/assets/images/portfolio/tori-tucker/tori-tucker-13.jpg"{% include img-dims.html path="/assets/images/portfolio/tori-tucker/tori-tucker-13.jpg" %}{% include img-crop.html path="/assets/images/portfolio/tori-tucker/tori-tucker-13.jpg" ctx="home" %} sizes="(max-width:1340px) 87vw, 1166px" loading="lazy" alt="Lake Tahoe beach ceremony: a bride reading her vows between two coral and burgundy installations"></figure>
-  </div>
   <div class="pb-row">
     <figure class="pb-pic"><img src="{{ site.baseurl }}/assets/images/portfolio/jac-brandon/jac-brandon-07.jpg"{% include img-dims.html path="/assets/images/portfolio/jac-brandon/jac-brandon-07.jpg" %}{% include img-crop.html path="/assets/images/portfolio/jac-brandon/jac-brandon-07.jpg" ctx="home" %} sizes="(max-width:820px) 87vw, (max-width:1340px) 40vw, 530px" loading="lazy" alt="A couple in black, the bride holding a bouquet of crimson and oxblood roses against dark foliage"></figure>
     <figure class="pb-pic"><img src="{{ site.baseurl }}/assets/images/portfolio/lynn-aaron/lynn-aaron-28.jpg"{% include img-dims.html path="/assets/images/portfolio/lynn-aaron/lynn-aaron-28.jpg" %}{% include img-crop.html path="/assets/images/portfolio/lynn-aaron/lynn-aaron-28.jpg" ctx="home" %} sizes="(max-width:820px) 87vw, (max-width:1340px) 47vw, 620px" loading="lazy" alt="A lounge vignette: a low white vessel of burgundy and blush blooms on marble, candles beside it"></figure>
   </div>
   <div class="pb-row pb-row--full">
-    <figure class="pb-pic"><img src="{{ site.baseurl }}/assets/images/portfolio/lynn-aaron/lynn-aaron-02.jpg"{% include img-dims.html path="/assets/images/portfolio/lynn-aaron/lynn-aaron-02.jpg" %}{% include img-crop.html path="/assets/images/portfolio/lynn-aaron/lynn-aaron-02.jpg" ctx="home" %} sizes="(max-width:1340px) 87vw, 1166px" loading="lazy" alt="Guests seated along a long banquet table run with greenery and candles, caught mid-dinner"></figure>
+    <figure class="pb-pic"><img src="{{ site.baseurl }}/assets/images/portfolio/tori-tucker/tori-tucker-13.jpg"{% include img-dims.html path="/assets/images/portfolio/tori-tucker/tori-tucker-13.jpg" %}{% include img-crop.html path="/assets/images/portfolio/tori-tucker/tori-tucker-13.jpg" ctx="home" %} sizes="(max-width:1340px) 87vw, 1166px" loading="lazy" alt="Lake Tahoe beach ceremony: a bride reading her vows between two coral and burgundy installations"></figure>
   </div>
   <div class="pb-row flip">
     <figure class="pb-pic"><img src="{{ site.baseurl }}/assets/images/portfolio/camille-max/camille-max-30.jpg"{% include img-dims.html path="/assets/images/portfolio/camille-max/camille-max-30.jpg" %}{% include img-crop.html path="/assets/images/portfolio/camille-max/camille-max-30.jpg" ctx="home" %} sizes="(max-width:820px) 87vw, (max-width:1340px) 47vw, 620px" loading="lazy" alt="A dark installation of burgundy ranunculus and trailing amaranthus over a black-draped table"></figure>
     <figure class="pb-pic"><img src="{{ site.baseurl }}/assets/images/portfolio/tori-tucker/tori-tucker-18.jpg"{% include img-dims.html path="/assets/images/portfolio/tori-tucker/tori-tucker-18.jpg" %}{% include img-crop.html path="/assets/images/portfolio/tori-tucker/tori-tucker-18.jpg" ctx="home" %} sizes="(max-width:820px) 87vw, (max-width:1340px) 40vw, 530px" loading="lazy" alt="A bouquet of pink garden roses and trailing greenery held against an ivory gown"></figure>
+  </div>
+  <div class="pb-row pb-row--full">
+    <figure class="pb-pic"><img src="{{ site.baseurl }}/assets/images/portfolio/lynn-aaron/lynn-aaron-02.jpg"{% include img-dims.html path="/assets/images/portfolio/lynn-aaron/lynn-aaron-02.jpg" %}{% include img-crop.html path="/assets/images/portfolio/lynn-aaron/lynn-aaron-02.jpg" ctx="home" %} sizes="(max-width:1340px) 87vw, 1166px" loading="lazy" alt="Guests seated along a long banquet table run with greenery and candles, caught mid-dinner"></figure>
   </div>
 </section>
 
