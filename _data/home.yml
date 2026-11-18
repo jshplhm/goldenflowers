@@ -10,15 +10,14 @@ hero:
   # choosing flowers for altitude, wind and sun. Same facts as the Studio page
   # ("Built for the mountains") and the FAQ. Say "an agronomist by training",
   # never "certified" or "trained agronomist".
-  tagline: Bold, artful and sustainable wedding flowers designed to hold at *6,000
-    feet.*
+  tagline: Bold, artful and sustainable wedding flowers designed for Tahoe*.*
   # Team first, then the credential in words couples know, then what it does
   # for them (Josh, 2026-11-18). Her master's is in agriculture: "plant
   # science" is Josh's approved wording. Not "agronomist" here, nobody knew
   # what it meant or why it mattered.
-  line: Our designers are led by Brittany, who also holds a master's in plant
-    science, so we know which flowers stay fresh through a long day of thin
-    air, wind and sun.
+  line: Brittany leads Golden Flowers. She studied agriculture and trained in fine
+    arts. We design each piece like a sculpture, with attention to form, scale
+    and movement.
 intro:
   # Label intentionally blank (Josh, 2026-09-23): the eyebrow came off the
   # facts section on 09-22 and this was the last one left, which made it the
