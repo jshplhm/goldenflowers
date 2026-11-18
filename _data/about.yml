@@ -24,10 +24,10 @@ brittany:
     # The Whole Foods role was new product development; the point of it here is
     # the planning discipline that work demands, told lightly.
     - Her background runs just as deep on the science side, with a master's
-      degree in agronomy and more than a decade in sustainable agriculture across
-      Europe, North and South America and New Zealand. As an agronomist, she
-      worked with Whole Foods to bring new varieties to market in a field where
-      almost nothing is certain, from the weather to the yield.
+      degree in plant science and more than a decade in sustainable agriculture
+      across Europe, North and South America and New Zealand. As an agronomist,
+      she worked with Whole Foods to bring new varieties to market in a field
+      where almost nothing is certain, from the weather to the yield.
     - That work runs on planning far in advance and a backup for every step that
       matters, and she plans a wedding the same way.
 team:
@@ -39,8 +39,8 @@ team:
     - Brittany leads a team of accomplished floral designers with experience at
       the region's best studios and venues, artists we're privileged to build
       with.
-    - The same hands arrange your flowers in the studio, adjust them in the room,
-      and break everything down when the night ends.
+    - The same hands arrange your flowers in the studio, adjust them in the
+      room, and break everything down when the night ends.
 planning:
   # Certainty told as competence. Never list what can go wrong with flowers
   # here: a fear named at section scale is a fear installed.
@@ -48,30 +48,30 @@ planning:
   paragraphs:
     - We take a limited number of weddings a season, so yours isn't slotted into
       a production line.
-    - Most of the work that protects your day happens months before anyone sees a
-      flower.
+    - Most of the work that protects your day happens months before anyone sees
+      a flower.
   points:
     # Backups and "months ahead" are said above; this card is what the
     # planning covers.
     - title: Every detail mapped
-      body: Sourcing, delivery, timing and setup are worked out in detail long
-        before the day.
+      body: Sourcing, delivery, timing and setup are worked out in detail long before
+        the day.
     - title: Built for the mountains
       body: An agronomist's understanding of how every stem performs across a full
         day, conditioned for the altitude and the forecast we're actually going
         to get.
     - title: Calm on the day
-      body: Our team is deep enough to absorb a surprise on the morning of, without
-        it becoming your problem.
+      body: Our team is deep enough to absorb a surprise on the morning of, without it
+        becoming your problem.
     - title: One team, start to finish
       body: Full service design from the first conversation through breakdown at the
         end of the night.
 beliefs:
   heading: To us, every wedding is a unique piece of art.
   paragraphs:
-    - Each one is curated around its venue, season, and vision, with flowers from
-      California growers we trust and our own small plot. How we source and grow
-      is written down, in public.
+    - Each one is curated around its venue, season, and vision, with flowers
+      from California growers we trust and our own small plot. How we source and
+      grow is written down, in public.
   link: Read our sustainability pledge
 testimonial:
   quote: '"From the start they had a *streamlined process* and I never felt
