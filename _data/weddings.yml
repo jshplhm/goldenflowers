@@ -159,8 +159,8 @@ pricing:
   heading: What it costs.
   # Cut to one line 2026-10-20: the drivers below say what moves the price,
   # and the intro was saying it first.
-  intro: Every wedding is quoted on its own. Here is where ours begin, and where
-    the ones we've done around the lake tend to land.
+  intro: Every wedding is quoted and designed on its own. Here are where our
+    prices begin.
   # label = what the number is (left, small caps); amount = the figure;
   # caption = optional second line under the label.
   figures:
