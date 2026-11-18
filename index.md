@@ -58,7 +58,7 @@ the moment one pale photo wants it and another does not, the machinery is here.
   <figure class="ht-pic">
     <picture>
       <source media="(max-width:700px)" sizes="(max-width:1500px) 87vw, 1305px" srcset="{{ site.baseurl }}/assets/images/home-hero-laux-portrait.jpg">
-      <img src="{{ site.baseurl }}/assets/images/home-hero-laux.jpg"{% include img-dims.html path="/assets/images/home-hero-laux.jpg" %}{% include img-crop.html path="/assets/images/home-hero-laux.jpg" ctx="home" %} sizes="(max-width:1500px) 87vw, 1305px" fetchpriority="high"
+      <img src="{{ site.baseurl }}/assets/images/portfolio/lynn-aaron/lynn-aaron-16.jpg"{% include img-dims.html path="/assets/images/portfolio/lynn-aaron/lynn-aaron-16.jpg" %}{% include img-crop.html path="/assets/images/portfolio/lynn-aaron/lynn-aaron-16.jpg" ctx="home" %} sizes="(max-width:1500px) 87vw, 1305px" fetchpriority="high"
            alt="Golden hour in an Olympic Valley meadow: a couple in tall grass with the Sierra Nevada behind them, the bride holding a green and lavender bouquet">
     </picture>
   </figure>
